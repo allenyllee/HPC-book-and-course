@@ -1,0 +1,1975 @@
+The largest and most powerful computers are sometimes called
+`supercomputers'. For the last two decades, this has, without
+exception, referred to parallel computers: machines with more than one
+CPU that can be set to work on the same problem.
+
+Parallelism is hard to define precisely, since it can appear on
+several levels. In the previous chapter you already saw how inside a
+CPU several instructions can be `in flight' simultaneously. This is
+called \indextermsub{instruction-level}{parallelism}, and it is outside
+explicit user control: it derives from the compiler and the CPU
+deciding which instructions, out of a single instruction stream, can
+be processed simultaneously. At the other extreme is the sort of
+parallelism where more than one instruction stream is handled by
+multiple processors, often each on their own circuit board. This type
+of parallelism is typically explicitly scheduled by the user.
+
+In this chapter, we will analyze this more explicit type of
+parallelism, the hardware that supports it, the programming that
+enables it, and the concepts that analyze it.
+
+For further reading, a good introduction to parallel computers and
+parallel programming is Wilkinson and Allen~\cite{WilkinsonAllen}. 
+
+\Level 0 {Introduction}
+\label{sec:parallel-intro}
+
+In scientific codes, there is often a large amount of work to be done,
+and it is often regular to some extent, with the same operation being
+performed on many data. The question is then whether this work can be
+sped up by use of a parallel computer. If there are $n$ operations to
+be done, and they would take time~$t$ on a single processor, can they
+be done in time~$t/p$ on $p$~processors?
+
+Let us start with a very simple example. Adding two vectors of length~$n$
+\begin{verbatim}
+for (i=0; i<n; i++)
+  a[i] = b[i] + c[i];
+\end{verbatim}
+can be done with up to $n$~processors. In the idealized case with $n$
+processors, each processor has local scalars \n{a,b,c} and executes
+\begin{figure}[ht]
+  \includegraphics[scale=.11]{graphics/parallel-add}
+  \caption{Parallelization of a vector addition}
+  \label{fig:par-add}
+\end{figure}
+the single instruction \n{a=b+c}. This is depicted in
+figure~\ref{fig:par-add}.
+
+In the general case, where each processor executes something like
+\begin{verbatim}
+for (i=my_low; i<my_high; i++)
+  a[i] = b[i] + c[i];
+\end{verbatim}
+execution time is linearly
+reduced with the number of processors. If each operation takes a unit
+time, the original algorithm takes time~$n$, and the parallel
+execution on $p$ processors~$n/p$. The parallel algorithm is faster by
+a factor of~$p$\footnote{We ignore lower order errors in this result
+  when $p$ does not divide perfectly in~$n$. We will also, in general,
+ignore matters of loop overhead.}.
+
+Next, let us consider summing the elements of a vector. We again
+assume that each processor contains just a single array element. The
+sequential code:
+\begin{verbatim}
+s = 0;
+for (i=0; i<n; i++)
+  s += x[i]
+\end{verbatim}
+is no longer obviously parallel, but if we recode the loop as
+\begin{verbatim}
+for (s=2; s<n; s*=2)
+  for (i=0; i<n; i+=s)
+    x[i] += x[i+s/2]
+\end{verbatim}
+there is a way to parallelize it: every iteration of the outer loop is
+now a loop that can be done by $n/s$ processors in parallel. Since the
+\begin{figure}[ht]
+  \includegraphics[scale=.13]{graphics/parallel-sum}
+  \caption{Parallelization of a vector addition}
+  \label{fig:par-sum}
+\end{figure}
+outer loop will go through $\log_2n$ iterations, we see that the new
+algorithm has a reduced runtime of $n/p\cdot\log_2 n$. The parallel
+algorithm is now faster by a factor of $p/\log_2n$. This is depicted
+in figure~\ref{fig:par-sum}.
+
+Even from these two simple examples we can see some of the
+characteristics of parallel computing:
+\begin{itemize}
+\item Sometimes algorithms need to be rewritten slightly to make them
+  parallel.
+\item A parallel algorithm may not show perfect speedup.
+\end{itemize}
+There are other things to remark on. In the first case, if each
+processors has its $x_i,y_i$ in a local store the
+algorithm can be executed without further complications. In the second
+case, processors need to \emph{communicate} data among each
+other and we haven't assigned a cost to that yet.
+
+First let us look systematically at communication. We can take the
+second half of figure~\ref{fig:par-sum} and turn it into a tree graph
+(see Appendix~\ref{app:graph}) by defining the inputs as leave nodes,
+all partial sums as interior nodes, and the root as the total
+sum. There is an edge from one node to another if the first is input
+to the (partial) sum in the other. This is illustrated in
+figure~\ref{fig:par-sum-graph}. In this figure nodes are horizontally
+aligned with other computations that can be performed simultaneously;
+each level is sometimes called a \indexterm{superstep} in the computation.
+Nodes are vertically aligned if they are computed on the same
+processors, and an arrow corresponds to a communication if it goes
+from one processor to another. 
+\begin{figure}[ht]
+  \includegraphics[scale=.13]{graphics/parallel-sum-graph}
+  \caption{Communication structure of a parallel vector addition}
+  \label{fig:par-sum-graph}
+\end{figure}
+The vertical alignment in figure~\ref{fig:par-sum-graph} is not the
+only one possible. If nodes are shuffled within a superstep or
+horizontal level, a different communication pattern arises.
+\begin{exercise}
+  Consider placing the nodes within a superstep on random
+  processors. Show that, if no two nodes wind up on the same
+  processor, at most twice the number of communications is performed
+  from the case in figure~\ref{fig:par-sum-graph}.
+\end{exercise}
+
+\begin{exercise}
+  Can you draw the graph of a computation that leaves the sum result
+  on each processor? There is a solution that takes twice the number
+  of supersteps, and there is one that takes the same number. In both
+  cases the graph is no longer a tree, but a more general \ac{DAG}.
+\end{exercise}
+
+Processors are often connected through a network, and moving data
+through this network takes time. This introduces a concept of distance
+between the processors. This is easily see in figure~\ref{fig:par-sum-graph}
+where the
+processors are linearly ordered. If the network only connects a
+processor with its immediate neighbours,  each iteration of the
+outer loop increases the distance over which communication takes
+place.
+
+\begin{exercise}
+  \label{ex:summing0}
+  Assume that an addition takes a certain unit time, and that moving a
+  number from one processor to another takes that same unit time. Show
+  that the communication time equals the computation time.
+
+  Now assume that sending a number from processor $p$ to $p\pm k$
+  takes time~$k$. Show that the execution time of the parallel
+  algorithm now is of the same order as the sequential time.
+\end{exercise}
+
+The summing example made the unrealistic assumption that every
+processor initially stored just one vector element: in practice we will
+have $P<N$, and every processor stores a number of vector
+elements. The obvious strategy is to give each processor a consecutive
+stretch of elements, but sometimes the obvious strategy is not the
+best.
+
+\begin{exercise}
+  Consider the case of summing 8 elements with 4 processors. Show that
+  some of the edges in the graph of figure~\ref{fig:par-sum-graph} no
+  longer correspond to actual communications. 
+  %
+  Now consider summing 16 elements with, again, 4 processors. What is
+  the number of communication edges this time?
+\end{exercise}
+
+These matters of algorithm adaptation, efficiency, and communication,
+are crucial to all of parallel computing. We will return to these
+issues in various guises throughout this chapter.
+
+\Level 0 {Parallel Computers Architectures}
+
+For quite a while now, the top computers have been
+some sort of parallel computer, that is, an architecture that allows
+the simultaneous execution of multiple instructions or instruction
+sequences. One way of characterizing the various forms this can take
+is due to Flynn~\cite{flynn:taxonomy}. Flynn's taxonomy distinguishes
+between whether one or more different instructions are executed
+simultaneously, and between whether that happens on one or more data
+items. The following four types result, which we will discuss in more
+detail below:
+\begin{description}
+\item[SISD] Single Instruction Single Data: this is the traditional
+  CPU architecture: at any one time only a single instruction is
+  executed, operating on a single data item.
+\item[SIMD] Single Instruction Multiple Data: in this computer type
+  there can be multiple processors, each operating on its own data
+  item, but they are all executing the same instruction on that data
+  item. Vector computers (section~\ref{sec:vector}) are typically also
+  characterized as SIMD.
+\item[MISD] Multiple Instruction Single Data. No architectures
+  answering to this description exist.
+\item[MIMD] Multiple Instruction Multiple Data: here multiple CPUs
+  operate on multiple data items, each executing independent
+  instructions. Most current parallel computers are of this
+  type.
+\end{description}
+
+
+\Level 1 {SIMD}
+\label{sec:simd}
+
+Parallel computers of the SIMD type apply the same operation
+simultaneously to a number of data items. The design of the CPUs of
+such a computer can be quite simple, since the arithmetic unit does
+not need separate logic and instruction decoding units: all CPUs
+execute the same operation in lock step. 
+This makes SIMD computers excel at operations on arrays, such as
+%
+\begin{verbatim}
+for (i=0; i<N; i++) a[i] = b[i]+c[i];
+\end{verbatim}
+and, for this reason, they are also often called \indexterm{array
+  processors}. Scientific codes can often be written so that
+a large fraction of the time is spent in array operations.
+
+On the other hand, there are operations that can not can be executed
+efficiently on an array processor. For instance, evaluating a number
+of terms of a recurrence $x_{i+1}=ax_i+b_i$ involves that many
+additions and multiplications, but they alternate, so only one
+operation of each type can be processed at any one time. There are no
+arrays of numbers here that are simultaneously the input of an
+addition or multiplication.
+
+In order to allow for different instruction streams on
+different parts of the data, the processor would have a `mask bit'
+that could be set to prevent execution of instructions. In code, this 
+typically looks like
+\begin{verbatim}
+where (x>0) {
+  x[i] = sqrt(x[i])
+\end{verbatim}
+The programming model where identical operations are applied to a
+number of data items simultaneously, is known as
+\indextermsub{data}{parallelism}.
+
+Such array operations  can occur in the context of physics simulations, but
+another important source is graphics applications. For this application,
+the processors in an array processor can be much weaker than the
+processor in a PC: often they are in fact bit processors, capable of
+operating on only a single bit at a time. Along these lines, ICL
+had the 4096 processor DAP~\cite{DAP:79a} in the 1980s, and Goodyear
+built a 16K processor MPP~\cite{Batcher:85a} in the 1970s.
+
+Later, the Connection Machine (CM-1, CM-2, CM-5) were quite popular.
+While the first Connection Machine had bit processors (16 to a chip),
+the later models had traditional processors capable of floating point
+arithmetic, and were not true SIMD architectures. All were based on a
+hyper-cube interconnection network; see section~\ref{sec:hypercube}. Another
+manufacturer that had a commercially successful array processor was
+MasPar.
+
+Supercomputers based on array processing do not exist anymore, but the
+notion of SIMD lives on in various guises, which we will now discuss.
+
+\Level 2 {Pipelining}
+\label{sec:vector}
+
+A number of computers have been based on a \indexterm{vector
+  processor} or \indextermbus{pipeline}{processor} design. The first
+commercially successful supercomputers, the Cray-1 and the Cyber-205
+were of this type. In recent times, the Cray-X1 and the NEC SX series
+have featured vector pipes. The `Earth Simulator'
+computer~\cite{Sato2004}, which led the TOP500
+(section~\ref{sec:top500}) for 3~years, was based on NEC~SX
+processors.  The general idea behind pipelining was described in
+section~\ref{sec:pipeline}.
+
+While supercomputers based on pipeline processors are in a distinct
+minority, pipelining is now mainstream in the superscalar CPUs that
+are the basis for clusters. A~typical CPU has pipelined floating point
+units, often with separate units for addition and multiplication; see
+section~\ref{sec:pipeline}.
+
+However, there are some important differences between pipelining in a
+modern superscalar CPU and in, more old-fashioned, vector units.  The
+pipeline units in these vector computers are not integrated floating
+point units in the CPU, but can better be considered as attached
+vector units to a CPU that itself has a floating point unit. The
+vector unit has vector registers\footnote{The Cyber205 was an
+  exception, with direct-to-memory architecture.} with a typical
+length of 64 floating point numbers; there is typically no `vector
+cache'. The logic in vector units is also simpler, often addressable
+by explicit vector instructions. Superscalar CPUs, on the other hand,
+are fully integrated in the CPU and geared towards exploiting data
+streams in unstructured code.
+
+\Level 2 {True SIMD in CPUs and GPUs}
+\label{sec:sse-avx}
+
+True SIMD array processing can be found in modern CPUs and GPUs, in
+both cases inspired by the parallelism that is needed in graphics
+applications.
+
+Modern CPUs from Intel\index{Intel} and AMD\index{AMD}, as well as
+PowerPC\index{PowerPC} chips, have instructions that can perform
+multiple instances of an operation simultaneously. On Intel processors
+this is known as \indexacf{SSE} or \indexacf{AVX}. These extensions were
+originally intended for graphics processing, where often the same
+operation needs to be performed on a large number of pixels. Often,
+the data has to be a total of, say, 128 bits, and this can be divided
+into two 64-bit reals, four~32-bit reals, or a larger number of even
+smaller chunks such as 4~bits. 
+
+The \ac{AVX} instructions are based on up to
+512-bit wide SIMD, that is, eight floating point numbers can be
+processed simultaneously. Somewhat surprisingly, this is mostly
+motivated by power considerations. Decoding instructions is actually
+more power consuming than executing them, so SIMD parallelism is a way
+to save power.
+
+Current compilers can generate \ac{SSE} or \ac{AVX}
+instructions automatically;
+sometimes it is also possible for the user to insert pragmas, for
+instance with the Intel compiler:
+\begin{verbatim}
+void func(float *restrict c, float *restrict a,
+          float *restrict b, int n)
+{
+#pragma vector always
+  for (int i=0; i<n; i++)
+    c[i] = a[i] * b[i];
+}
+\end{verbatim}
+Use of these extensions often requires data to be aligned with cache
+line boundaries (section~\ref{sec:cacheline}), so there are special
+allocate and free calls that return aligned memory.
+
+\begin{comment}
+For a nontrivial example, see figure~\ref{fig:SSEcomplexmult}, which
+describes complex multiplication using SSE3.
+\begin{figure}[ht]
+  \begin{quote}
+  \includegraphics[scale=.5]{graphics/complexmult}
+  \end{quote}
+  \caption{Complex multiplication with SSE3}
+  \label{fig:SSEcomplexmult}
+\end{figure}
+\end{comment}
+
+Array processing on a larger scale can be found in
+\indexac{GPU}s. A~\ac{GPU} contains a large number of simple
+processors, ordered in groups of~32, typically. Each processor group
+is limited to executing the same instruction. Thus, this is true
+example of~\ac{SIMD} processing.
+\begin{gpu}
+For further discussion, see section~\ref{sec:gpu}.
+\end{gpu}
+
+\Level 1 {MIMD / SPMD computers}
+\label{sec:mimd}\label{sec:spmd}
+\indexacstart{MIMD}
+
+By far the most common parallel computer architecture these days is
+called \acf{MIMD}: the processors execute multiple, possibly differing
+instructions, each on their own data. Saying that the instructions
+differ does not mean that the processors actually run different
+programs: most of these machines operate in \indexacf{SPMD} mode, where the
+programmer starts up the same executable on the parallel processors.
+Since the different instances of the executable can take differing
+paths through conditional statements, or execute differing numbers of
+iterations of loops, they will in general not be completely in sync as
+they were on \ac{SIMD} machines. If this lack of synchronization is
+due to processors working on different amounts of data, it is
+called \indextermbus{load}{unbalance}, and it is a major source of less
+than perfect \indexterm{speedup}; see section~\ref{sec:load}.
+
+There is a great variety in \ac{MIMD} computers. Some of the aspects
+concern the way memory is organized, and the network that connects the
+processors. Apart from these hardware aspects, there are also
+differing ways of programming these machines. We will see all these
+aspects below. Many machines these days are 
+called \indexterm{clusters}. They can be built out of custom or
+commodity processors (if they consist of PCs, running Linux, and
+connected with Ethernet, they are referred to as Beowulf
+clusters~\cite{Gropp:BeowulfBook}); since the processors are
+independent they are examples of the \ac{MIMD} or \ac{SPMD} model.
+
+\indexacend{MIMD}
+
+\Level 1 {The commoditization of supercomputers}
+\label{sec:commodity}
+
+In the 1980s and 1990s supercomputers were radically different from
+personal computer and mini or super-mini computers such as the DEC PDP
+and VAX series. The SIMD vector computers had one
+(\indextermbus{CDC}{Cyber205} or \emph{Cray-1}\index{Cray!Cray-1}), or
+at most a few (\indexterm{ETA-10}, \emph{Cray-2}\index{Cray!Cray-2},
+\indextermbus{Cray}{X/MP}, \indextermbus{Cray}{Y/MP}), extremely
+powerful processors, often a vector processor. Around the mid-1990s
+clusters with thousands of simpler (micro) processors started taking
+over from the machines with relative small numbers of vector pipes
+(see \url{http://www.top500.org/lists/1994/11}). At first these
+microprocessors (\indextermbus{IBM}{Power series},
+\indextermbus{Intel}{i860}, \indexterm{MIPS},
+\indextermbus{DEC}{Alpha}) were still much more powerful than `home
+computer' processors, but later this distinction also faded to an
+extent. Currently, many of the most powerful clusters are powered by
+essentially the same Intel Xeon and AMD Opteron chips that are
+available on the consumer market. Others use IBM Power Series or other
+`server' chips. See section~\ref{sec:top500} for illustrations of
+this history since 1993.
+
+\Level 0 {Different types of memory access}
+
+In the introduction we defined a parallel computer as a setup where
+multiple processors work together on the same problem. In all but the
+simplest cases this means that these processors need access to a joint
+pool of data. In the previous chapter you saw how, even on a single
+processor, memory can have a hard time keeping up with processor demands.
+For parallel machines, where potentially several processors
+want to access the same memory location, this problem becomes even
+worse. We can characterize parallel machines by the approach they take
+to the problem of reconciling multiple accesses, by multiple
+processes, to a joint pool of data.
+
+The main distinction here is between
+\indextermsub{distributed}{memory} and
+\indextermsub{shared}{memory}. With distributed memory, each processor
+has its own physical memory, and more importantly its own
+\indexterm{address space}.
+\begin{figure}
+  \includegraphics[scale=.1]{graphics/shared-distributed}
+  \caption{References to identically named variables in the
+    distributed and shared memory case}
+  \label{fig:shared-distributed}
+\end{figure}
+Thus, if two processors refer to a variable~\n{x}, they access a
+variable in their own local memory. On the other hand, with shared
+memory, all processors access the same memory; we also say that they
+have a \indextermsub{shared}{address space}. Thus, if two processors
+both refer to a variable~\n{x}, they access the same memory location.
+
+\Level 1 {Symmetric Multi-Processors: Uniform Memory Access}
+\label{sec:uma}
+
+Parallel programming is fairly simple if any processor can access any
+memory location. For this reason, there is a strong incentive for
+manufacturers to make architectures where processors see no difference
+between one memory location and another: any memory location is
+accessible to every processor, and
+the access times do not differ. This is called \indexac{UMA}, and 
+the programming model for
+architectures on this principle is often called \indexac{SMP}.
+
+There are a few ways to realize an SMP architecture.  Current desktop
+computers can have a few processors accessing a shared memory through
+a single memory bus; for instance Apple markets a model with 2
+six-core processors. Having a memory bus that is shared between
+processors works only for small numbers of processors; for larger
+numbers one can use a \indexterm{crossbar} that connects multiple
+processors to multiple memory banks; see section~\ref{sec:crossbar}.
+%%  Figure~\ref{fig:crossbar} shows
+%% the simplest type of crossbar, while figure~\ref{fig:butterfly} show
+%% the \indexterm{butterfly exchange}, which is built up out of simple
+%% elements.
+
+On \indexterm{multicore} processors there is uniform memory access of
+a different type: the cores typically have a
+\indextermsub{shared}{cache}, typically the L3 or L2 cache.
+
+\Level 1 {Non-Uniform Memory Access}
+
+The \ac{UMA} approach based on shared memory 
+is obviously limited to a small number of
+processors. The crossbar networks are expandable, so they would seem 
+the best choice. 
+However, in practice one puts 
+processors with a local memory in a configuration with an exchange
+network. This leads to a situation where a processor can access its
+own memory fast, and other processors' memory slower.
+This is one case of so-called \indexac{NUMA}: a strategy that
+uses physically distributed memory, abandoning the uniform access
+time, but maintaining the logically shared address space: each processor can
+still access any memory location.
+
+\begin{figure}
+  \begin{quote}
+  \includegraphics[scale=.6]{graphics/ranger-numa}
+  \end{quote}
+  \caption{Non-uniform memory access in a four-socket motherboard}
+  \label{fig:ranger-numa}
+\end{figure}
+
+Figure~\ref{fig:ranger-numa} illustrates \ac{NUMA} in the case of the
+four-socket motherboard of the Ranger supercomputer. Each chip has its
+own memory (8Gb) but the motherboard acts as if the processors have
+access to a shared pool of 32Gb. Obviously, accessing the memory of
+another processor is slower than accessing local memory. In addition,
+note that each processor has three connections that could be used to
+access other memory, but the rightmost two chips use one connection to
+connect to the network. This means that accessing each other's memory
+can only happen through an intermediate processor, slowing down the
+transfer, and tieing up that processor's connections.
+
+While the \ac{NUMA} approach is convenient for the programmer, it offers some
+challenges for the system. Imagine that two different processors each
+have a copy of a memory location in their local (cache) memory. If one
+processor alters the content of this location, this change has to be
+propagated to the other processors. If both processors try to alter
+the content of the one memory location, the behaviour of the program
+can become undetermined.
+
+Keeping copies of a memory location synchronized is known as
+\indextermbus{cache}{coherence} (see section~\ref{sec:coherence};
+a multi-processor system using it is sometimes called a
+`cache-coherent NUMA' or \indexterm{ccNUMA} architecture.
+
+Cache coherence is obviously desirable, since it facilitates parallel
+programming. However, it carries costs on several levels. It probably
+requires hardware support from the processors and the network and it
+complicates the Operating System software. Moreover, keeping caches
+coherent means that there is data traveling through the network,
+taking up precious bandwidth.
+
+Among current vendors only SGI (the \emph{UV}\index{SGI!UV} line) and
+Cray (the \emph{XE6}\index{Cray!XE6}) market products with large scale
+NUMA. Both offer strong support for \indexac{PGAS} languages; see
+section~\ref{sec:pgas}.
+
+\Level 1 {Logically and physically distributed memory}
+
+The most extreme solution to the memory access problem is to offer
+memory that is not just physically, but that is also logically
+distributed: the processors have their own address space, and can not
+directly see another processor's memory. This approach is often called
+`distributed memory', but this term is unfortunate, since we really
+have to consider the questions separately whether memory \emph{is}
+distributed and whether is \emph{appears} distributed.
+Note that NUMA also has physically
+distributed memory; the distributed nature of it is just not apparent
+to the programmer.
+
+With logically \emph{and} physically distributed memory, the only way
+one processor can exchange information with another is through passing
+information explicitly through the network. You will see more about
+this in section~\ref{sec:mpi}.
+
+This type of architecture has the significant advantage that it can
+scale up to large numbers of processors: the
+\indextermbus{IBM}{BlueGene} has been built with over 200,000
+processors. On the other hand, this is also the hardest kind of
+parallel system to program.
+
+Various kinds of hybrids between the above types exist. For instance,
+the \indexterm{Columbia} computer at NASA consists of twenty nodes,
+connected by a switch, where each node is an NUMA architecture of 512
+processors.
+
+\Level 1 {Latency hiding}
+\label{sec:comcom-overlap}
+
+Communication between processors is typically slow, slower than data
+transfer from memory on a single processor, and much slower than
+operating on data. For this reason, it is good to think about the
+relative volumes of network traffic versus `useful' operations when
+designing a parallel program. There has to be enough work per
+processor to offset the communication.
+
+Another way of coping with the relative slowness of
+communication is to arrange the program so that the communication
+actually happens while some computation is going on. This is referred
+to as \indextermsub{overlapping computation with}{communication} or
+\indexterm{latency hiding}.
+
+For example, consider the parallel execution of a matrix-vector
+product $y=Ax$ (there will be further discussion of this operation in
+section~\ref{sec:blockrow}). Assume that the vectors are distributed,
+so each processor~$p$ executes
+\[ \forall_{i\in I_p}\colon y_i=\sum_j a_{ij}x_j. \]
+Since $x$ is also distributed, we can write this as
+\[ \forall_{i\in I_p}\colon y_i=
+  \left(\sum_{\mbox{\small $j$ local}}
+    +\sum_{\mbox{\small $j$ not local}} \right) a_{ij}x_j. \]
+This scheme is illustrated in figure~\ref{fig:distmvp}.
+\begin{figure}
+  \begin{quote}
+  \includegraphics[scale=.12]{graphics/distmvp}
+  \end{quote}
+  \caption{The parallel matrix-vector product with a blockrow
+    distribution.}
+  \label{fig:distmvp}
+\end{figure}
+We can now proceed as follows:
+\begin{itemize}
+\item Start the transfer of non-local elements of~$x$;
+\item Operate on the local elements of~$x$ while data transfer is
+  going on;
+\item Make sure that the transfers are finished;
+\item Operate on the non-local elements of~$x$.
+\end{itemize}
+
+Of course, this scenario presupposes that there is software and
+hardware support for this overlap. MPI allows for this (see
+section~\ref{sec:nonblocking}), through so-called
+\indexterm{asynchronous communication} or \indexterm{non-blocking
+  communication} routines. This does not immediately imply that
+overlap will actually happen, since hardware support is an entirely
+separate question.
+
+\Level 0 {Granularity of parallelism}
+
+\input chapters-public/granularity
+
+\Level 0 {Parallel programming}
+\label{sec:parallel-programming}
+
+Parallel programming is more complicated than sequential
+programming. While for sequential programming most programming
+languages operate on similar principles (some exceptions such as
+functional or logic languages aside), there is a variety of ways of
+tackling parallelism. Let's explore some of the concepts and practical
+aspects.
+
+There are various approaches to parallel programming. First of all,
+there does not seem to be any hope of a
+\indextermsub{parallelizing}{compiler}
+that can
+automagically transform a sequential program into a parallel
+one. Apart from the problem of figuring out which operations are
+independent, the main
+problem is that the problem of locating data in a parallel context is
+very hard. A~compiler would need to consider the whole code, rather
+than a subroutine at a time. Even then, results have been
+disappointing.
+
+More productive is the approach where the user writes mostly a
+sequential program, but gives some indications about what computations
+can be parallelized, and how data should be distributed. Indicating
+parallelism of operations explicitly is done in OpenMP
+(section~\ref{sec:openmp}); indicating the data distribution and
+leaving parallelism to the compiler and runtime is the basis for PGAS
+languages (section~\ref{sec:pgas}). Such approaches work best with
+shared memory.
+
+By far the hardest way to program in parallel, but with the best
+results in practice, is to expose the parallelism to the programmer
+and let the programmer manage everything explicitly. This approach is
+necessary in the case of distributed memory programming. We will have
+a general discussion of distributed programming in
+section~\ref{sec:distributed-programming}; section~\ref{sec:mpi} will
+discuss the MPI library.
+
+\Level 1 {Thread parallelism}
+\label{sec:threads}
+\index{thread|(}
+\input chapters-public/threads
+\index{thread|)}
+
+\Level 1 {OpenMP}
+\label{sec:openmp}
+\index{OpenMP|(}
+
+\indexterm{OpenMP} is an extension to the programming languages
+C and Fortran.
+Its main approach to parallelism is the parallel execution of loops:
+based on compiler directives, a preprocessor can schedule the parallel
+execution of the loop iterations.
+
+The amount of parallelism is flexible: the user merely specifies a
+parallel region, indicating that all iterations are independent to
+some extent, and the runtime system will then use whatever resources
+are available. Because of this dynamic nature, and because no data
+distribution is specified, OpenMP can only work with threads on shared
+memory.
+
+OpenMP is not a language, but an extension to the existing C and
+Fortran languages. It mostly operates by inserting
+directives into source code, which are interpreted by the
+compiler. It also has a modest number of library calls, but these are
+not the main point, unlike in MPI (section~\ref{sec:mpi}). Finally,
+there is a runtime system that manages the parallel execution.
+
+Many compilers, such as GCC\index{GCC} or the Intel compiler, support
+the OpenMP extensions. In Fortran, OpenMP directives are placed in
+comment statements; in~C, they are placed in \verb+#pragma+ CPP
+directives, which indicate compiler specific extensions. As a result,
+OpenMP code still looks like legal C or Fortran to a compiler that
+does not support OpenMP. Programs need to be linked to an OpenMP
+runtime library, and their behaviour can be controlled through
+environment variables.
+
+OpenMP features \indextermsub{dynamic}{parallelism}: the number of
+execution streams operating in parallel can vary from one part of the
+code to another.
+
+For more information about OpenMP, see~\cite{Chapman2008:OpenMPbook}.
+
+\Level 2 {OpenMP examples}
+
+The simplest example of OpenMP use is the parallel loop. 
+\begin{verbatim}
+#pragma omp for
+for (i=0; i<ProblemSize; i++) {
+  a[i] = b[i];
+}
+\end{verbatim}
+Clearly, all iterations can be executed independently and in any
+order. The pragma CPP directive then conveys this fact to the
+compiler.
+
+Some loops are fully parallel conceptually, but not in implementation:
+\begin{verbatim}
+for (i=0; i<ProblemSize; i++) {
+  t = b[i]*b[i];
+  a[i] = sin(t) + cos(t);
+}
+\end{verbatim}
+Here it looks as if each iteration writes to, and reads from, a shared
+variable~\n{t}. However, \n{t}~is really a temporary variable,
+local to each iteration. Code that should be parallelizable, but is
+not due to such constructs, is called not \indextermbus{thread}{safe}.
+
+OpenMP indicates that the temporary is private to each iteration as follows:
+\begin{verbatim}
+#pragma parallel for shared(a,b), private(t)
+  for (i=0; i<ProblemSize; i++) {
+    t = b[i]*b[i];
+    a[i] = sin(t) + cos(t);
+  }
+\end{verbatim}
+If a scalar \emph{is} indeed shared, OpenMP has various mechanisms for
+dealing with that. For instance, shared variables commonly occur in
+\indexterm{reduction operations}:
+\begin{verbatim}
+  s = 0;
+#pragma parallel for reduction(+:sum)
+  for (i=0; i<ProblemSize; i++) {
+    s = s + a[i]*b[i];
+  }
+\end{verbatim}
+As you see, a sequential code can be easily parallelized this way.
+
+The assignment of iterations to threads is done by the runtime system,
+but the user can guide this assignment. We are mostly concerned with
+the case where there are more iterations than threads: if there are
+$P$ threads and $N$ iterations and $N>P$, how is iteration~$i$ going
+to be assigned to a thread?
+
+The simplest assignment uses \indextermbus{round-robin}{task scheduling}, a
+\indextermsub{static}{scheduling} strategy where thread~$p$ get iterations
+$p\times(N/P),\ldots,(p+1)\times (N/P)-1$.
+This has the advantage that if some data is
+reused between iterations, it will stay in the data cache of the
+processor executing that thread. On the other hand, if the iterations
+differ in the amount of work involved, the process may suffer from
+\indextermbus{load}{unbalance} with static scheduling. In that case, a
+\indextermsub{dynamic}{scheduling} strategy would work better, where each
+thread starts work on the next unprocessed iteration as soon as it
+finishes its current iteration.
+\begin{figure}
+  \begin{quote}
+  \includegraphics[scale=.7]{graphics/scheduling}
+  \end{quote}
+  \caption{Static or round-robin (left) vs dynamic (right) thread
+    scheduling; the task numbers are indicated.}
+  \label{fig:staticdynamic}
+\end{figure}
+The example in figure~\ref{fig:staticdynamic} shows static versus
+dynamic scheduling of a number of tasks that gradually decrease in
+individual running time. In static scheduling, the first thread gets
+tasks 1~and~4, the second 2 and~5, et cetera. In dynamic scheduling,
+any thread that finishes its task gets the next task. This clearly
+gives a better running time in this particular example. On the other
+hand, dynamic scheduling is likely to have a higher overhead.
+
+\index{OpenMP|)}
+
+\Level 1 {Distributed memory programming through message passing}
+
+While OpenMP programs, and programs written using other shared memory
+paradigms, still look very much like sequential programs, this does
+not hold true for message passing code. Before we discuss the \acf{MPI}
+library in some detail, we will take a look at this shift the way
+parallel code is written.
+
+\Level 2 {The global versus the local view in distributed programming}
+\label{sec:distributed-programming}
+\input chapters-public/localglobal
+\Level 2 {The MPI library}
+\indexacstart{MPI}
+\label{sec:mpi}
+\input chapters-public/mpi
+\indexacend{MPI}
+
+\Level 1 {Hybrid shared/distributed memory computing}
+\label{sec:hybrid}
+\index{hybrid computing|(}
+\input chapters-public/hybrid
+\index{hybrid computing|)}
+
+\Level 1 {One-sided communication}
+\index{one-sided communication|(}
+\label{sec:one-sided}
+
+The MPI way of writing matching send and receive instructions is not
+ideal for a number of reasons. First of all, it requires the
+programmer to give the same data description twice, once in the send
+and once in the receive call. Secondly, it requires a rather precise
+orchestration of communication if deadlock is to be avoided; the
+alternative of using asynchronous calls is tedious to program,
+requiring the program to manage a lot of buffers.
+Lastly, it requires a receiving processor to know how many incoming
+messages to expect, which can be tricky in irregular applications.
+Life would be so much easier if it was
+possible to pull data from another processor, or conversely to put it
+on another processor, without that other processor being explicitly
+involved. 
+
+This style of programming is further encouraged by the
+existence of \indexacf{RDMA} support on some hardware. An early example was
+the  \indextermbus{Cray}{T3E}. 
+These days, one-sided communication is widely available through its
+incorporation in the MPI-2 library; section~\ref{sec:mpi-1-2}.
+
+Let us take a brief look at one-sided communication in MPI-2, using
+averaging of array values as an example:
+\[ \forall_i\colon a_i\leftarrow (a_i+a_{i-1}+a_{i+1})/3. \]
+The MPI parallel code will look like
+\begin{verbatim}
+// do data transfer
+a_local = (a_local+left+right)/3
+\end{verbatim}
+It is clear what the transfer has to accomplish: the \n{a_local}
+variables needs to become the \n{left} variable on the processor with
+the next higher rank, and the \n{right} variables on the one with the
+next lower rank.
+
+First of all, processors need to declare explicitly what memory area
+is available for one-sided transfer, the so-called `window'. In this
+example, that consists of the \n{a_local}, \n{left}, and \n{right}
+variables on the processors:
+\begin{verbatim}
+MPI_Win_create(&a_local,...,&data_window);
+MPI_Win_create(&left,....,&left_window);
+MPI_Win_create(&right,....,&right_window);
+\end{verbatim}
+The code now has two options: it is possible to push data out
+\begin{verbatim}
+target = my_tid-1;
+MPI_Put(&a_local,...,target,right_window);
+target = my_tid+1;
+MPI_Put(&a_local,...,target,left_window);
+\end{verbatim}
+or to pull it in
+\begin{verbatim}
+data_window = a_local;
+source = my_tid-1;
+MPI_Get(&right,...,data_window);
+source = my_tid+1;
+MPI_Get(&left,...,data_window);
+\end{verbatim}
+The above code will have the right semantics if the Put and Get calls
+are blocking; see section~\ref{sec:blocking}. However, part of the
+attraction of one-sided communication is that it makes it easier to
+express communication, and for this, a non-blocking semantics is
+assumed. 
+
+The problem with non-blocking one-sided calls is that it becomes
+necessary to ensure explicitly that communication is successfully
+completed. For instance, if one processor does a one-sided \emph{put}
+operation on another, the other processor has no way of checking that
+the data has arrived, or indeed that transfer has begun at
+all. Therefore it is necessary to insert a global barrier in the program,
+for which every package has its own implementation. In MPI-2 the
+relevant call is the 
+\n{MPI_Win_fence} routine. These barriers in effect divide the program
+execution in \indexterm{supersteps}; see section~\ref{sec:bsp}.
+
+Another form of one-sided communication is used in the Charm++
+package; see section~\ref{sec:charm++}.
+
+\index{one-sided communication|)}
+
+\Level 2 {The Global Arrays library}
+\index{Global Arrays|(}
+
+The Global Arrays library (\url{http://www.emsl.pnl.gov/docs/global/})
+is another example of \indexterm{one-sided communication}, and in fact
+it predates MPI. This library has as its prime data structure
+\indexterm{cartesian product} arrays\footnote{This means that if the
+  array is three-dimensional, it can be described by three integers
+  $n_1,n_2,n_3$, and each point has a coordinate $(i_1,i_2,i_3)$ with
+  $1\leq i_1\leq n_1$ et cetera.}, distributed over a processor grid
+of the same or lower dimension. Through library calls, any processor
+can access any sub-brick out of the array in either a \n{put} or
+\n{get} operation. These operations are non-collective. As with any
+one-sided protocol, a barrier sync is necessary to ensure completion
+of the sends/receives.
+
+\index{Global Arrays|)}
+
+\Level 1 {Parallel languages}
+\label{sec:pgas}
+\indexacstart{PGAS}
+\input chapters-public/languages
+\indexacend{PGAS}
+
+\Level 1 {OS-based approaches}
+
+It is possible to design an architecture with a shared address space,
+and let the data movement be handled by the operating system. The
+Kendall Square computer~\cite{KSRallcache} had an architecture name
+`all-cache', where no data was natively associated with any
+processor. Instead, all data was considered to be cached on a
+processor, and moved through the network on demand, much like data is
+moved from main memory to cache in a regular CPU. This idea 
+is analogous to the numa support in current SGI architectures.
+
+\Level 1 {Active messages}
+\label{sec:charm++}
+
+The MPI paradigm (section~\ref{sec:mpi}) is traditionally based on
+two-sided operations: each data transfer requires an explicit send and
+receive operation. This approach works well with relatively simple
+codes, but for complicated problems it becomes hard to orchestrate all
+the data movement. One of the ways to simplify consists of using
+\indexterm{active messages}. This is used in the package
+\indexterm{Charm++}\cite{charmpp}.
+
+With active messages, one processor can send data to another, without
+that second processor doing an explicit receive operation. Instead,
+the recipient declares code that handles the incoming data, a~`method'
+in objective orientation parlance, and the sending processor calls
+this method with the data that it wants to send. Since the sending
+processor in effect activates code on the other processor, this is
+also known as \indexterm{remote method invocation}. A~big advantage of
+this method is that overlap of communication and computation becomes
+easier to realize.
+
+As an example, consider the matrix-vector multiplication with a
+tridiagonal matrix
+\[ \forall_i\colon y_i\leftarrow 2x_i-x_{i+1}-x_{i-1}. \]
+See section~\ref{sec:1dbvp} for an explanation of the origin of this
+problem in \acp{PDE}. Assuming that each processor has exactly one
+index~$i$, the MPI code could look like:
+\begin{verbatim}
+if ( /* I am the first or last processor */ )
+   n_neighbours = 1;
+else
+   n_neighbours = 2;
+
+/* do the MPI_Isend operations on my local data */
+
+sum = 2*local_x_data;
+received = 0;
+for (neighbour=0; neighbour<n_neighbours; neighbour++) {
+   MPI_WaitAny( /* wait for any incoming data */ )
+   sum = sum - /* the element just received */
+   received++
+   if (received==n_neighbours)
+      local_y_data = sum
+}
+\end{verbatim}
+With active messages this looks like
+\begin{verbatim}
+void incorporate_neighbour_data(x) {
+   sum = sum-x;
+   if (received==n_neighbours)
+      local_y_data = sum
+}
+sum = 2*local_xdata;
+received = 0;
+all_processors[myid+1].incorporate_neighbour_data(local_x_data);
+all_processors[myid-1].incorporate_neighbour_data(local_x_data);
+\end{verbatim}
+
+\Level 1 {Bulk synchronous parallelism}
+\label{sec:bsp}
+
+The MPI library (section~\ref{sec:mpi} can lead to very efficient
+code. The price for this is that the programmer needs to spell out the
+communication in great detail. On the other end of the spectrum, PGAS
+languages (section~\ref{sec:pgas}) ask very little of the programmer,
+but give not much performance in return. One attempt to find a middle
+ground is the \indexacf{BSP}
+model~\cite{Valiant:1990:BSP,Skillicorn96questionsand}. Here the
+programmer needs to spell out the communications, but not their
+ordering.
+
+The \ac{BSP} model orders the program into a sequence of
+\indexterm{supersteps}, each of which ends with a \indexterm{barrier}
+synchronization.  The communications that are started in one superstep
+are all asynchronous and rely on the barrier to be completed.  This
+makes programming easier and removes the possibility of deadlock.
+
+\begin{exercise}
+  Consider the parallel summing example in
+  section~\ref{sec:parallel-intro}. Argue that a \ac{BSP}
+  implementation needs $\log_2n$ supersteps.
+\end{exercise}
+
+Because of its synchronization of the processors through the barriers
+concluding the supersteps the \ac{BSP} model can do a simple cost
+analysis of parallel algorithms. Also, in its originally proposed form
+the \ac{BSP} model called for an \indexterm{overdecomposition} of the
+problem which assigns multiple processes to each processor, as well as
+\indexterm{random placement} of data and tasks. A~statistical argument
+tells us then that with high likelihood this will give a good balance
+of work and communication.
+
+The \ac{BSP} model is implemented in BSPlib~\cite{BSPlib}, and
+recently was also used for Google\index{Google}'s
+\indexterm{Pregel}~\cite{Pregel:podc2009}.
+
+\Level 0 {Topologies}
+
+If a number of processors are working together on a single task, most
+likely they need to communicate data. For this reason there needs to
+be a way for data to make it from any processor to any other. In this
+section we will discuss some of the possible schemes to connect the
+processors in a parallel machine.
+
+In order to get an appreciation for the fact that there is a genuine
+problem here, consider two
+simple schemes that do not `scale up':
+\begin{itemize}
+\item Ethernet is a connection scheme where all machines on a network
+  are on a single cable\footnote{We are here describing the original
+    design of Ethernet. With the use of switches, especially in an HPC
+    context, this description does not really apply anymore.}. If one
+  machine puts a signal on the wire to send a message, and another
+  also wants to send a message, the latter will detect that the sole
+  available communication channel is occupied, and it will wait some
+  time before retrying its send operation. Receiving data on ethernet
+  is simple: messages contain the address of the intended recipient,
+  so a processor only has to check whether the signal on the wire is
+  intended for it.
+
+  The problems with this scheme should be clear. The capacity of the
+  communication channel is finite, so as more processors are connected
+  to it, the capacity available to each will go down. Because of the
+  scheme for resolving conflicts, the average delay before a message
+  can be started will also increase\footnote{It was initially
+  thought that ethernet would be inferior to other solutions such as
+  IBM\index{IBM}'s `token ring'. It takes fairly sophisticated statistical
+  analysis to prove that it works a lot better than was
+  naively expected.}.
+\item In a \indexterm{fully connected} configuration,
+  each processor has one wire for
+  the communications with each other processor. This scheme is perfect
+  in the sense that messages can be sent in the minimum amount of time,
+  and two messages will never interfere with each other.
+  The amount of data that can be sent from one
+  processor is no longer a decreasing function of the number of
+  processors; it is in fact an increasing function, and if the
+  network controller can handle it, a processor can even engage in
+  multiple simultaneous communications.
+
+  The problem with this scheme is of course that the design of the
+  network interface of a processor 
+  is no longer fixed: as more processors are added
+  to the parallel machine, the network interface gets more
+  connecting wires. The network controller similarly becomes 
+  more complicated, and the cost of the machine increases faster than
+  linearly in the number of processors.
+\end{itemize}
+
+In this section we will see a number of schemes that \emph{can} be
+increased to large numbers of processors.
+
+\Level 1 {Some graph theory}
+
+The network that connects the processors in a parallel computer can
+conveniently be described with some elementary graph theory
+concepts. We describe the parallel machine with a graph where each
+processor is a node, and two nodes are connected\footnote{We assume
+  that connections are symmetric, so that the network
+  is an \indextermsub{undirected}{graph}.} if
+there is a direct connection between them. 
+
+We can then analyze two
+important concepts of this graph.
+
+First of all, the \indexterm{degree} of a node in a graph is the
+number of other nodes it is connected to. With the nodes representing
+processors, and the edges the wires, it is clear that a high degree
+is not just desirable for efficiency of computing, but also costly
+from an engineering point of view. We assume that all processors have
+the same degree.
+
+Secondly, a message traveling from one processor to another, through
+one or more intermediate nodes, will most likely incur some delay at each
+stage of the path between the nodes.
+For this reason, the \indexterm{diameter} of the
+graph is important. The diameter is defined as the maximum shortest
+distance, counting numbers of links, between any two nodes:
+\[ d(G) = \max_{i,j}|\hbox{shortest path between $i$ and $j$}|. \]
+If $d$ is the diameter,
+and if sending a message over one wire takes unit time,
+this means a message will always arrive in at most time~$d$.
+
+\begin{exercise}
+  Find a relation between the number of processors, their degree,
+  and the diameter of the connectivity graph.
+\end{exercise}
+
+In addition to the question `how long will a message from processor~A
+to processor~B take', we often worry about conflicts between two
+simultaneous messages: is there a possibility that two messages, under
+way at the same time, will need to use the same network link? In
+figure~\ref{fig:contention} we illustrate what happens if every
+processor $p_i$ with $i<n/2$ send a message to~$p_{i+n/2}$: there will
+be $n/2$ messages trying to get through the wire between $p_{n/2-1}$
+and~$p_{n/2}$.
+\begin{figure}[ht]
+  \includegraphics[scale=.09]{graphics/contention}
+  \caption{Contention for a network link due to simultaneous messages}
+  \label{fig:contention}
+\end{figure}
+This
+sort of conflict is called \indexterm{congestion} or
+\indexterm{contention}. Clearly, the more links a
+parallel comupter has, the smaller the chance of congestion.
+
+A~precise way to describe the likelihood of congestion, is
+to look at the \indexterm{bisection width}. This is defined as the
+minimum number of links that have to be removed to partition the
+processor graph into two unconnected graphs. For instance, consider
+processors connected as a linear array, that is, processor $P_i$ is
+connected to $P_{i-1}$ and~$P_{i+1}$. In this case the bisection width
+is~1.
+
+The bisection width~$w$ describes how many messages can, guaranteed,
+be under way simultaneously in a parallel computer. Proof: take $w$
+sending and $w$ receiving processors. The $w$ paths thus defined are
+disjoint: if they were not, we could separate the processors into two
+groups by removing only~$w-1$ links. 
+
+In practice, of course, more than
+$w$ messages can be under way simultaneously. For instance, in a
+linear array, which has $w=1$, $P/2$~messages can be sent and received
+simultaneously if all communication is between neighbours, and if a
+processor can only send or receive, but not both, at any one time. If
+processors can both send and receive simultaneously, $P$~messages can
+be under way in the network.
+
+Bisection width also describes \indexterm{redundancy} in a network: if
+one or more connections are malfunctioning, can a message
+still find its way from sender to receiver?
+
+While bisection width is a measure express as a number of wires, in
+practice we care about the capacity through those wires. The relevant
+concept here is \indexterm{bisection bandwidth}: the bandwidth across
+the bisection width, which is the product of the bisection width, and
+the capacity (in bits per second) of the wires.  
+%
+Bisection bandwidth
+can be considered as a measure for the bandwidth that can be attained
+if an arbitrary half of the processors communicates with the other
+half.
+Bisection bandwidth is a more realistic measure than the
+\indextermsub{aggregate}{bandwidth} which is sometimes quoted
+and which is defined
+as the  total data rate if every processor is sending: the number of
+processors times the bandwidth of a connection times the number of
+simultaneous sends a processor can perform. This can be quite
+a high number, and it is typically not representative of the
+communication rate that is achieved in actual applications.
+
+\Level 1 {Linear arrays and rings}
+
+A simple way to hook up multiple processors is to connect them in a
+\indexterm{linear array}: every processor has a number~$i$, and
+processor~$P_i$ is connected to $P_{i-1}$ and~$P_{i+1}$. The first and
+last processor are possible exceptions: if they are connected to each
+other, we call the architecture a \indexterm{ring network}.
+
+This solution requires each processor to have two network connections,
+so the design is fairly simple.
+
+\begin{exercise}
+  What is the bisection width of a linear array? Of a ring?
+\end{exercise}
+
+\begin{exercise}
+  With the limited connections of a linear array, you may have to be
+  clever about how to program parallel algorithms. For instance,
+  consider a `broadcast' operation: processor~$0$ has a data item that
+  needs to be sent to every other processor. 
+
+  We make the following simplifying assumptions:
+  \begin{itemize}
+  \item a processor can send any number of messages simultaneously,
+  \item but a wire can can carry only one message at a time; however,
+    \item communication between any two processors takes unit time,
+      regardless the number of processors in between them.
+  \end{itemize}
+
+  In a fully connected network or a star network
+  you can simply write
+  \begin{tabbing}
+    for \=$i=1\ldots N-1$:\\ \>send the message to processor~$i$
+  \end{tabbing}
+  With the assumption that a processor can send multiple messages,
+  this means that the operation is done in one step.
+
+  Now consider a linear array. Show that, even with this unlimited capacity for
+  sending, the above algorithm runs into trouble because of congestion.
+
+  Find a better way to organize the send operations. Hint: pretend
+  that your processors are connected as a binary tree. Assume that
+  there are $N=2^n-1$ processors.
+  Show that the broadcast can be done in $\log N$ stages, and that
+  processors only need to be able to send a single message simultaneously.
+\end{exercise}
+This exercise is an example of \indexterm{embedding} a
+`logical' communication pattern in a physical one.
+
+\Level 1 {2D and 3D arrays}
+
+A popular design for parallel computers is to organize the processors
+in a two-dimensional or three-dimensional \indexterm{cartesian mesh}.
+This means that every processor has a coordinate $(i,j)$ or $(i,j,k)$,
+and it is connected to its neighbours in all coordinate directions.
+The processor design is still fairly simple: the number of network
+connections (the degree of the connectivity graph) is twice the number
+of space dimensions (2~or~3) of the network.
+
+It is a fairly natural idea to have 2D or 3D networks, since the world
+around us is three-dimensional, and computers are often used to model
+real-life phenomena. If we accept for now that the physical model
+requires \indexterm{nearest neighbour} type communications (which we
+will see is the case in section~\ref{sec:2dbvp}), then a mesh computer
+is a natural candidate for running physics simulations.
+
+\begin{exercise}
+  What is the diameter of a 3D cube of $n\times n\times n$ processors? What is the
+  bisection width? How does that change if you add wraparound torus
+  connections?
+\end{exercise}
+
+\begin{exercise}
+  Your parallel computer has its processors organized in a 2D grid.
+  The chip manufacturer comes out with a new chip with same clock
+  speed that is dual core instead of single core, and that will fit in
+  the existing sockets. Critique the following argument: "the amount
+  work per second that can be done (that does not involve communication)
+  doubles; since the network stays the same, the bisection bandwidth
+  also stays the same, so I can reasonably expect my new machine to
+  become twice as fast\footnote{With the numbers one and two replaced
+    by higher numbers, this is actually not a bad description of
+    current trends in processor design.}."
+\end{exercise}
+
+Grid-based designs often have so-called \emph{wrap-around} or
+\indexterm{torus} connections, which connect the left and right sides
+of a 2D grid, as well as the top and bottom. This is illustrated in
+figure~\ref{fig:torus}.
+\begin{figure}[th]
+  \includegraphics[scale=.11]{graphics/torus}
+  \caption{A 2D grid with torus connections}
+  \label{fig:torus}
+\end{figure}
+
+Some computer designs claim to be a grid of high dimensionality, for
+instance~5D, but not all dimensional are equal here. For instance a 3D
+grid where each node is quad-socket quad-core can be considered as a
+5D grid. However, the last two dimensions are fully connected.
+
+\Level 1 {Hypercubes}
+\label{sec:hypercube}
+
+Above we gave a hand-waving argument for the suitability of
+mesh-organized processors, based on the prevalence of nearest
+neighbour communications. However, sometimes sends and receives
+between arbitrary processors occur. One example of this is the
+above-mentioned broadcast. For this reason, it is desirable to have a
+network with a smaller diameter than a mesh. On the other hand we want
+to avoid the complicated design of a fully connected network.
+
+A good intermediate solution is the \indexterm{hypercube} design. An
+$n$-dimensional hypercube computer has $2^n$ processors, with each
+processor connected to one other in each dimension; see
+figure~\ref{fig:hypercube}. 
+
+\begin{figure}[ht]
+  \begin{quote}
+  \includegraphics[scale=.12]{graphics/hypercubes}
+  \end{quote}
+  \caption{Hypercubes}
+  \label{fig:hypercube}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=.1]{graphics/hypercubenumber}
+  \caption{Numbering of the nodes of a hypercube}
+  \label{fig:cubenumber}
+\end{figure}
+An easy way to describe this is to give each processor an address
+consisting of $d$~bits: we give each node of a hypercube a number that
+is the bit pattern describing its location in the cube; see
+figure~\ref{fig:cubenumber}.
+
+With this numbering scheme, a~processor is then connected to all others
+that have an address that differs by exactly one bit. This means that,
+unlike in a grid, a processor's neighbours do not have numbers
+that differ by~1 or~$\sqrt P$, but by~$1,2,4,8,\ldots$.
+
+The big advantages of a hypercube design are the small diameter and
+large capacity for traffic through the network.
+\begin{exercise}
+  What is the diameter of a hypercube? What is the bisection width?
+\end{exercise}
+
+One disadvantage is the fact that the processor design is dependent on
+the total machine size. In practice, processors will be designed with
+a maximum number of possible connections, and someone buying a smaller
+machine then will be paying for unused capacity.  Another
+disadvantage is the fact that extending a given machine can only be
+done by doubling it: other sizes than $2^p$ are not possible.
+
+\begin{exercise}
+  Consider the parallel summing example of
+  section~\ref{sec:parallel-intro}, and give the execution time of a
+  parallel implementation on a
+  hypercube. Show that 
+  the theoretical speedup from the example is attained (up to a
+  factor) for the implementation on a hypercube.
+\end{exercise}
+
+\Level 2 {Embedding grids in a hypercube}
+
+Above we made the argument that mesh-connected processors are a
+logical choice for many applications that model physical phenomena.
+Hypercubes do not look like a mesh, but they have enough
+connections that they can simply pretend to be a mesh by ignoring
+certain connections. 
+
+Let's say that we want the structure of a 1D array: we want processors
+with a numbering so that processor $i$ can directly send data to $i-1$
+and~$i+1$. We can not use the obvious numbering of
+nodes as in figure~\ref{fig:cubenumber}. For instance, node~1 is
+directly connected to node~0, but has a distance of~2 to node~2. The
+right neighbour of node~3 in a ring, node~4, even has the maximum
+distance of~3 in this hypercube. Clearly we need to renumber the nodes
+in some way.
+
+What we will show is that
+it's possible to walk through a hypercube, touching
+every corner exactly once, which is equivalent to embedding a 1D mesh
+in the hypercube.
+
+The basic concept here is a (binary reflected) \indexterm{Gray
+  code}~\cite{Gray:graycodepatent}. This is a way of ordering the
+binary numbers $0\ldots2^d-\nobreak1$ as $g_0,\ldots g_{2^d-1}$ so that $g_i$
+and $g_{i+1}$ differ in only one bit. Clearly, the ordinary binary
+numbers do not satisfy this: the binary representations for 1~and~2
+already differ in two bits. Why do Gray codes help us? Well, since
+$g_i$ and $g_{i+1}$ differ only in one bit, it means they are the
+numbers of nodes in the hypercube that are directly connected.
+
+Figure~\ref{fig:graycode} illustrates how to construct a Gray
+code. The procedure is recursive, and can be described informally as
+`divide the cube into two subcubes, number the one subcube, cross over
+to the other subcube, and number its nodes in the reverse order of the
+first one'.
+
+\begin{figure}[h]
+\hbox{\fbox{1D Gray code}:
+$\vcenter{$
+\begin{array}{rll}
+  \hphantom{1D code and reflection:}&0&1\\
+\end{array}$}
+$}
+
+\hbox{\fbox{2D Gray code}:
+$\vcenter{$
+\begin{array}{rccccc}
+  \hbox{1D code and reflection:}&0&1&\vdots&1&0\\
+  \hbox{append 0 and 1 bit:}&0&0&\vdots&1&1
+\end{array}$}
+$}
+
+\hbox{\fbox{3D Gray code}:
+$\vcenter{$
+\begin{array}{rccccccccc}
+  \hbox{2D code and reflection:}&0&1&1&0&\vdots&0&1&1&0\\
+  &0&0&1&1&\vdots&1&1&0&0\\
+  \hbox{append 0 and 1 bit:}&0&0&0&0&\vdots&1&1&1&1
+\end{array}$}
+$}
+
+  \caption{Gray codes}
+  \label{fig:graycode}
+\end{figure}
+
+Since a Gray code offers us a way to embed a one-dimensional `mesh'
+into a hypercube, we can now work our way up.
+\begin{exercise}
+  Show how a square mesh of $2^{2d}$ nodes can be embedded in a
+  hypercube by appending the bit patterns of the embeddings of two
+  $2^d$ node cubes. How would you accomodate a mesh of $2^{d_1+d_2}$
+  nodes? A three-dimensional mesh of $2^{d_1+d_2+d_3}$ nodes?
+\end{exercise}
+
+\Level 1 {Switched networks}
+\label{sec:crossbar}
+
+Above, we briefly discussed fully connected processors. They are
+impractical if the connection is made by making a large number of
+wires between all the processors. There is another possibility,
+however, by connecting all the processors to a \indexterm{switch} or
+switching network. Some popular network designs are the
+\indexterm{crossbar}, the \indexterm{butterfly exchange}, and the
+\indexterm{fat tree}.
+
+Switching networks are made out of switching elements, each of which
+have a small number (up to about a dozen) of inbound and outbound
+links. By hooking all processors up to some switching element, and
+having multiple stages of switching, it then becomes possible to
+connect any two processors by a path through the network.
+
+\Level 2 {Cross bar}
+
+\begin{figure}[ht]
+  \begin{quote}
+  \includegraphics[scale=.7]{graphics/crossbar}
+  \end{quote}
+  \caption{A simple cross bar connecting 6 inputs to 6 outputs}
+  \label{fig:crossbar}
+\end{figure}
+The simplest switching network is a cross bar, an arrangement of $n$
+horizontal and vertical lines, with a switch element on each
+intersection that determines whether the lines are connected; see
+figure~\ref{fig:crossbar}. If we designate the horizontal lines as
+inputs the vertical as outputs, this is clearly a way of having $n$
+inputs be mapped to $n$ outputs. Every combination of inputs and
+outputs (sometimes called a `permutation') is allowed.
+
+\Level 2 {Butterfly exchange}
+
+\begin{figure}[ht]
+  \begin{quote}
+    \includegraphics[scale=.06]{graphics/butterfly1}\hspace{.5in}
+    \includegraphics[scale=.06]{graphics/butterfly2}
+  \end{quote}
+  \caption{A butterfly exchange network for two and four processors/memories}
+  \label{fig:butterfly}
+\end{figure}
+
+Butterfly exchanges are typically built out of small switching
+elements, and they have multiple stages; as the number of processors
+grows, the number of stages grows with it. Figure~\ref{fig:butterfly}
+shows a one-stage butterfly used to implement both shared memory and
+distributed (or distributed shared) memory, and the extension of the
+latter to two stages.
+
+As you can see in
+figure~\ref{fig:butterflyroute}, butterfly exchanges allow several processors to
+access memory simultaneously. Also, their access times are identical, 
+so exchange networks are a way of implementing a \indexac{UMA}
+architecture; see section~\ref{sec:uma}. One computer that was based
+on a Butterfly exchange network was the \indextermbus{BBN}{Butterfly}\footnote{\url{http://en.wikipedia.org/wiki/BBN_Butterfly}}.
+
+\begin{figure}[ht]
+  \begin{quote}
+  \includegraphics[scale=.1]{graphics/butterfly3}
+  \end{quote}
+  \caption{Two independent routes through a butterfly exchange network}
+  \label{fig:butterflyroute}
+\end{figure}
+
+\begin{exercise}
+For both the simple cross bar and the butterfly
+exchange, the network needs to be expanded as the number of processors grows. 
+Give the number of wires (of some unit length) and the number of switching
+elements that is needed in both cases to connect~$n$ processors and memories. 
+What is the time that a data packet needs to go from memory to processor,
+expressed in the unit time that it takes to traverse a unit length of wire
+and the time to traverse a switching element?
+\end{exercise}
+
+Routing through a butterfly network is done based on considering the
+bits in the destination address. On the $i$-th level the $i$-th digit
+is considered;
+\begin{figure}[ht]
+  \includegraphics[scale=.18]{graphics/butterfly-route}
+  \caption{Routing through a three-stage butterfly exchange network}
+  \label{fig:butterfly-route}
+\end{figure}
+if this is~$1$, the left exit of the switch is taken, if~$0$, the
+right exit. This is illustrated in
+figure~\ref{fig:butterfly-route}. If we attach the memories to the
+processors, as in figure~\ref{fig:butterflyroute}, we need only two
+bits (to the last switch) but a further
+three bits to describe the reverse route.
+
+\Level 2 {Fat-trees}
+\label{sec:fat-tree}
+
+If we were to connect switching nodes like a tree, there would be a
+big problem with congestion close to the root since there are only two
+wires attached to the root note.  Say we have a $k$-level tree, so
+there are $2^k$ leaf nodes.  If all leaf nodes in the left subtree try
+to communicate with nodes in the right subtree, we have $2^{k-1}$
+messages going through just one wire into the root, and similarly out
+through one wire.  A fat-tree is a tree network where each level has
+the same total bandwidth, so that this congestion problem does not
+occur: the root will actually have $2^{k-1}$ incoming and outgoing
+wires attached~\cite{Greenberg89randomizedrouting}; see
+figure~\ref{fig:fattree}.
+\begin{figure}
+  \begin{quote}
+  \includegraphics[scale=.12]{graphics/fattree5}
+  \end{quote}
+  \caption{A fat tree with a three-level interconnect}
+  \label{fig:fattree}
+\end{figure}
+The first successful computer
+architecture based on a fat-tree was the Connection Machines CM5.
+
+In fat-trees, as in other switching networks, each message carries its
+own routing information. Since in a fat-tree the choices are limited
+to going up a level, or switching to the other subtree at the
+current level, a message needs to carry only as many bits routing
+information as there are levels, which is $\log_2n$ for $n$
+processors.
+
+The theoretical exposition of fat-trees in~\cite{Leiserson:fattree}
+shows that fat-trees are optimal in some sense: it can deliver
+messages as fast (up to logarithmic factors) as any other network that
+takes the same amount of space to build. The underlying assumption of
+this statement is that switches closer to the root have to connect
+more wires, therefore take more components, and correspondingly are
+larger. 
+
+This argument, while theoretically interesting, is of no practical
+significance, as the physical size of the network hardly plays a role
+in the biggest currently available computers that use fat-tree
+interconnect. For instance, in the Ranger supercomputer of The
+University of Texas at Austin, the fat-tree switch connects 60,000
+cores, yet takes less than 10 percent of the floor space.
+
+A fat tree, as sketched above, would be costly to build, since for
+every next level a new, bigger, switch would have to be designed. In
+practice, therefore, a network with the characteristics of a fat-tree
+is constructed from simple switching elements; see
+figure~\ref{fig:fattreeclos}.
+\begin{figure}
+  \begin{quote}
+    \includegraphics[scale=.11]{graphics/fattree-clos}
+  \end{quote}
+  \caption{A fat-tree built from simple switching elements}
+  \label{fig:fattreeclos}
+\end{figure}
+This network is equivalent in its bandwidth and routing possibilities
+to a fat-tree. Routing algorithms will be slightly more complicated:
+in a fat-tree, a data packet can go up in only one way, but here a
+packet has to know to which of the two higher switches to route.
+
+This type of switching network is one case of a \indexterm{Clos
+  network}~\cite{Clos1953}.
+
+\Level 1 {Co-processors}
+
+Current CPUs are built to be moderately efficient at just about any
+conceivable computation. This implies that by restricting the
+functionality of a processor it may be possible to raise its
+efficiency, or lower its power consumption at similar
+efficiency. Thus, the idea of incorporating a \indexterm{co-processor}
+has been explored many times. For instance, Intel's 8086 chip, which
+powered the first generation of IBM PCs, could have a numerical
+co-processor, the 80287, added to it. This processor was very
+efficient at transcendental functions and it also incorporated
+\ac{SIMD} technology. Using a separate processor for graphics has also
+been popular\footnote{Further examples are the use of co-processors
+  for \ac{DSP} instructions, as well as \ac{FPGA} boards which can be
+  reconfigured to accomodate specific needs. We will not go into
+  these.}, leading to the \indexac{SSE} instructions for the x86 processor,
+and separate \ac{GPU} units to be attached to the PCI-X bus.
+
+Co-processors can be programmed in two different ways: sometimes 
+it is seamlessly integrated, and certain instructions are
+automatically executed there, rather than on the `host' processor. On
+the other hahd, it is also possible that co-processor functions need
+to be explicitly invoked, and it may even be possible to overlap
+co-processor functions with host functions. The latter case may sound
+attractive from an efficiency point of view, but it raises a serious
+problem of programmability. The programmer now needs to identify
+explicitly two streams of work: one for the host processor and one for
+the co-processor.
+
+Some notable parallel machines with co-processors where:
+\begin{itemize}
+\item The \indextermbus{Intel}{Paragon} (1993) had two processors per
+  node, one for communication and the other for computation. These
+  were in fact identical, the \indextermbus{Intel}{i860}Intel i860
+  processor. In a later revision, it became possible to pass data and
+  function pointers to the communication processors.
+\item The \indextermbus{IBM}{Roadrunner} at Los Alamos was the first
+  machine to reach a PetaFlop\footnote{The \indexterm{Grape computer}
+    had reached this point earlier, but that was a special purpose
+    machine for molecular dynamics calculations.}. It achieved this
+  speed through the use of Cell\index{Cell processor}
+  co-processors. Incidentally, the Cell processor is in essence the
+  engine of the Sony Playstation3, showing again the commoditization
+  of supercomputers (section~\ref{sec:commodity}).
+\item The Chinese \indexterm{Tianhe-1A} topped the Top 500 list in
+  2010, reaching about 2.5 PetaFlops through the use of
+  NVidia\index{NVidia} \acp{GPU}.
+\end{itemize}
+The Roadrunner and Tianhe-1A are examples of co-processors that are
+very powerful, and that need to be explicitly programmed independently
+of the host CPU. For instance, code runing on the the \acp{GPU} of the
+Tianhe-1A is programmed in \indexterm{CUDA} and compiled separately.
+
+In both cases the programmability problem is further exacerbated by
+the fact that the co-processor can not directly talk to the network.
+To send data from one co-processor to another it has to be passed to a
+host processor, from there through the network to the other host
+processor, and only then moved to the target co-processor.
+
+\Level 1 {Bandwidth and latency}
+\label{sec:bwlatency}
+
+The statement above that sending a message can be considered a unit
+time operation, is of course unrealistic. A large message will take
+longer to transmit than a short one. There are two concepts to arrive
+at a more realistic description of the transmission process; we have
+already seen this in section~\ref{sec:latencybandwidth} in the context
+of transferring data between cache levels of a processor.
+\begin{description}
+\item[latency] Setting up a communication between two processors takes
+  an amount of time that is independent of the message size. The time
+  that this takes is known as the \indexterm{latency} of a message.
+  There are various causes for this delay.
+  \begin{itemize}
+  \item The two processors engage in `hand-shaking', to make sure that
+    the recipient is ready, and that appropriate buffer space is
+    available for receiving the message.
+  \item The message needs to be encoded for transmission by the sender,
+    and decoded by the receiver.
+  \item The actual transmission may take time: parallel computers are
+    often big enough that, even at lightspeed, the first byte of a
+    message can take hundreds of cycles to traverse the distance
+    between two processors.
+  \end{itemize}
+\item[bandwidth] After a transmission between two processors has been
+  initiated, the main number of interest is the number of bytes per
+  second that can go through the channel. This is known as the
+  \indexterm{bandwidth}. The bandwidth can usually be determined by
+  the \indexterm{channel rate}, the rate at which a physical link can
+  deliver bits, and the \indexterm{channel width}, the number of
+  physical wires in a link. The channel width is typically a multiple
+  of 16, usually 64 or~128. This is also expressed by saying that a
+  channel can send one or~two 8-byte words simultaneously.
+\end{description}
+
+Bandwidth and latency are formalized in the expression
+\[ T(n)=\alpha+\beta n \]
+for the transmission time of an $n$-byte message. Here, $\alpha$~is
+the latency and $\beta$~is the time per byte, that is, the inverse of
+bandwidth. Sometimes we consider data transfers that involve
+communication, for instance in the case of a \indexterm{collective
+  operation}; see section~\ref{sec:collective-cost}. We then extend
+the transmission time formula to
+\[ T(n)=\alpha+\beta n+\gamma n \]
+where $\gamma$ is the time per operation, that is, the inverse of the
+\indexterm{computation rate}.
+
+It would also be possible to refine this formulas as
+\[ T(n,p) = \alpha+\beta n+\delta p \]
+where $p$ is the number of network `hops' that is traversed. However,
+on most networks the value of $\delta$ is far lower than of~$\alpha$,
+so we will ignore it here. Also, in fat-tree networks
+(section~\ref{sec:fat-tree}) the number of hops is of the order of
+$\log P$, where $P$~is the total number of processors, so it can never
+be very large anyway.
+
+\Level 0 {Efficiency of parallel computing}
+
+There are two important reasons for using a parallel computer: to have
+access to more memory or to obtain higher performance. It is easy to
+characterize the gain in memory, as the total memory is the sum of the
+individual memories. The speed of a parallel computer is harder to
+characterize. This section will have an extended discussion on
+theoretical measures for expressing and judging the gain in execution
+speed from going to a parallel architecture.
+
+\Level 1 {Definitions}
+
+A~simple approach to defining speedup is to let the same program run on a
+single processor, and on a parallel machine with $p$ processors, and
+to compare runtimes.
+With $T_1$ the execution time on a single processor and
+$T_p$ the time on $p$ processors, we define the \indexterm{speedup} as
+$S_p=T_1/T_p$. (Sometimes $T_1$ is defined as `the best time to solve the
+problem on a single processor', which allows for using a different
+algorithm on a single processor than in parallel.)
+In the ideal case, $T_p=T_1/p$, but in practice we don't expect to
+attain that, so $S_P\leq p$. To measure how far we are from the ideal
+speedup, we introduce the \indexterm{efficiency} $E_p=S_p/p$. Clearly,
+$0< E_p\leq 1$.
+
+There is a practical problem with
+this definition: a problem that can be solved on a parallel machine
+may be too large to fit on any single processor. Conversely,
+distributing a single processor problem
+over many processors may give a distorted picture since very little
+data will wind up on each processor. Below we will discuss more
+realistic measures of speed-up.
+
+There are various reasons why the actual speed is less than~$P$. For
+one, using more than one processors necessitates communication, which
+is overhead that was not part of the original computation. Secondly,
+if the processors do not have exactly the same amount of work to do,
+they may be idle part of the time (this is known as
+\indextermbus{load}{unbalance}), again lowering the actually attained
+speedup. Finally, code may have sections that are inherently
+sequential.
+
+Communication between processors is an important source of a loss of
+efficiency. Clearly, a problem that can be solved without
+communication will be very efficient. Such problems, in effect
+consisting of a number of completely independent calculations, is
+called \indexterm{embarassingly parallel}; it will have close to a perfect
+speedup and efficiency.
+
+\begin{exercise}
+  The case of speedup larger than the number of processors is called
+  \indexterm{superlinear speedup}. Give a theoretical argument why
+  this can never happen.
+\end{exercise}
+
+In practice, superlinear speedup can happen. For instance, suppose a 
+problem is too large to fit in memory, and a single processor can only
+solve it by swapping data to disc. If the same problem fits in the
+memory of two processors, the speedup may well be larger than~$2$
+since disc swapping no longer occurs. Having less, or more localized,
+data may also improve the cache behaviour of a code.
+
+\Level 1 {Asymptotics}
+\label{sec:asymptotics}
+\input chapters-public/asymptotics
+
+\Level 1 {Amdahl's law}
+\label{sec:amdahl}
+\index{Amdahl's law|(}
+
+One reason for less than perfect speedup is that parts of a code can
+be inherently sequential. This limits the parallel efficiency as
+follows. Suppose that $5\%$ of a code is sequential, then the time for
+that part can not be reduced, no matter how many processors are
+available. Thus, the speedup on that code is limited to a factor
+of~$20$. This phenomenon is known as \emph{Amdahl's
+  Law}~\cite{amd:law}, which we will now formulate.
+
+Let $F_s$ be the
+\indexterm{sequential fraction} and
+$F_p$ be the \indexterm{parallel fraction} 
+(or more strictly: the `parallelizable'
+fraction) of a code, respectively. Then $F_p+F_s=1$. The parallel
+execution time $T_p$ on $p$ processors
+is the sum of the part that is sequential
+$T_1F_s$ and the part that can be parallelized $T_1F_p/P$:
+\begin{equation}
+  T_P=T_1(F_s+F_p/P).
+  \label{eq:amdahl}
+\end{equation}
+As the number of processors grows
+$P\rightarrow\infty$, the parallel execution time now approaches that
+of the sequential fraction of the code: $T_P\downarrow
+T_1F_s$. We conclude that speedup is limited by $S_P\leq 1/F_s$ and
+efficiency is a decreasing function $E\sim 1/P$.
+
+The sequential fraction of a code can consist of things such as I/O
+operations. However, there are also parts of a code that in effect act
+as sequential. Consider a program that executes a single loop, where
+all iterations can be computed independently. Clearly, this code is
+easily parallelized. However, by splitting the loop in a number of
+parts, one per processor, each processor now has to deal with loop
+overhead: calculation of bounds, and the test for completion. This
+overhead is replicated as many times as there are processors. In
+effect, loop overhead acts as a sequential part of the code.
+
+\begin{exercise}
+  Investigate the implications of Amdahls's law: if the number of
+  processors~$P$ increases, how does the parallel fraction of a code
+  have to increase to maintain a fixed efficiency?
+\end{exercise}
+
+
+\Level 2 {Amdahl's law with communication overhead}
+
+In a way, Amdahl's law, sobering as it is, is even optimistic.
+Parallelizing a code will give a certain speedup, but it also
+introduces \indexterm{communication overhead} that will lower the
+speedup attained. Let us refine our model of
+equation~\eqref{eq:amdahl} (see~\cite[p.~367]{Landau:comp-phys}):
+\[ T_p= T_1(F_s+F_p/P) +T_c, \]
+where $T_c$ is a fixed communication time.
+
+To assess the influence of this communication overhead, we assume that
+the code is fully parallelizable, that is, $F_p=1$. We then find that
+\[ S_p=\frac{T_1}{T_1/p+T_c}. \]
+For this to be close to~$p$, we need $T_c\ll T_1/p$ or $p\ll
+T_1/T_c$. In other words, the number of processors should not grow
+beyond the ratio of scalar execution time and communication overhead.
+
+\Level 2 {Gustafson's law}
+\index{Gustafson's law|(}
+
+Amdahl's law was thought to show that large numbers of processors
+would never pay off. However, the implicit assumption in Amdahl's law
+is that there is a fixed computation which gets executed on more and
+more processors. In practice this is not the case: typically there is
+a way of scaling up a problem (in chapter~\ref{ch:odepde} you will
+learn the concept of `discretization'), and one
+tailors the size of the problem to the number of available processors.
+
+A more realistic assumption would be to say that the sequential
+fraction is independent of the problem size, and the parallel fraction
+can be arbitrarily extended.  To formalize this, instead of starting
+with the execution time of the sequential program, let us start with
+the execution time of the parallel program, and say that
+\[ T_p=F_s+F_p\equiv 1, \]
+and the execution time of this problem on a sequential processor would
+then be \[ T_1=F_s+p\cdot F_p. \]
+This gives us a speedup of
+\[ S_p=\frac{T_1}{T_p}=\frac{F_s+p\cdot F_p}{F_s+F_p}
+   = F_s+p\cdot F_p = p-(p-1)\cdot F_s. 
+\]
+That is, speedup is now a function that decreases from $p$, linearly
+with~$p$.
+
+\index{Gustafson's law|)}
+
+\Level 2 {Amdahl's law and hybrid programming}
+
+Above, you learned about hybrid programming, a mix between distributed
+and shared memory programming. This leads to a new form of Amdahl's
+law.
+
+Suppose we have $p$ nodes with $c$ cores each, and $F_p$ describes the fraction
+of the code that uses $c$-way thread parallelism. We assume that the
+whole code is fully parallel over the $p$ nodes.
+The ideal speed up would be $p c$, and the ideal parallel running
+time $T_1/(pc)$, but the actual running time is 
+\[
+  T_{p,c} = T_1 \left(\frac {F_s}{p} + \frac{F_p}{p c}\right)
+  = \frac{T_1}{pc}\left( F_sc+F_p\right) 
+  = \frac{T_1}{pc}\left( 1+ F_s(c-1)\right).
+\]
+\begin{exercise}
+  Show that the speedup $T_1/T_{p,c}$ can be approximated by~$p/F_s$.
+\end{exercise}
+In the original Amdahl's law, speedup was limited by the sequential
+portion to a fixed number~$1/F_s$, in hybrid programming it is limited
+by the task parallel portion to~$p/F_s$.
+
+\index{Amdahl's law|)}
+
+\Level 1 {Scalability}
+\label{sec:scaling}
+\index{scaling|(}\index{scalability|(}
+
+Above, we remarked that splitting a given problem over more and more
+processors does not make sense: at a certain point there is just not
+enough work for each processor to operate efficiently. Instead, in
+practice, users of a parallel code will either choose the number of
+processors to match the problem size, or they will solve a series of
+increasingly larger problems on correspondingly growing numbers of
+processors. In both cases it is hard to talk about speedup. Instead,
+the concept of \indexterm{scalability} is used.
+
+We distinguish two types of scalability. So-called
+\indextermsub{strong}{scalability} is in effect the same as speedup,
+discussed above. We say that a program shows strong scalability if,
+partitioned over more and more processors, it shows perfect or near
+perfect speedup. Typically, one encounters statements like `this
+problem scales up to 500 processors', meaning that up to 500
+processors the speedup will not noticeably decrease from optimal. It
+is not necessary for this problem to fit on a single processors: often
+a smaller number such as 64 processors is used as the baseline from
+which scalability is judged.
+
+More interestingly, \indextermsub{weak}{scalability} is a more vaguely
+defined term. It describes that, as problem size and number of
+processors grow in such a way that the amount of data per processor
+stays constant, the speed in operations per second of each processor
+also stays constant. This measure is somewhat hard to report, since
+the relation between the number of operations and the amount of data
+can be complicated. If this relation is linear, one could state that
+the amount of data per processor is kept constant, and report that parallel
+execution time is constant as the number of processors grows.
+
+Although in industry parlance the term `scalability' is sometimes
+applied to architectures or whole computer systems\footnote {``A
+  scalable computer is a computer designed from a small number of
+  basic components, without a single bottleneck component, so that
+  the computer can be incrementally expanded over its designed scaling
+  range, delivering linear incremental performance for a well-defined
+  set of scalable applications.  General-purpose scalable computers
+  provide a wide range of processing, memory size, and I/O
+  resources.  Scalability is the degree to which performance
+  increments of a scalable computer are linear''~\cite{Bell:outlook}.},
+%
+in scientific computing
+scalability is a property of an algorithm and the way it is
+parallelized on an architecture, in
+particular noting the way data is distributed. In
+section~\ref{sec:densescaling} you will find an analysis of the
+matrix-vector product operation: distributing a matrix by block rows
+turns out not to be scalable, but a two-dimensional distribution by
+submatrices is.
+
+\index{scaling|)}\index{scalability|)}
+
+\Level 0 {Multi-threaded architectures}
+\label{sec:mta}
+\input chapters-public/mta
+
+\begin{gpu}
+\Level 0 {GPU computing}
+\label{sec:gpu}
+\indexacstart{GPU}
+\input chapters-public/gpu
+\indexacend{GPU}
+\end{gpu}
+
+\Level 0 {Remaining topics}
+
+\Level 1 {Load balancing}
+\label{sec:load}
+\index{load!balancing|(}
+\input chapters-public/load
+\index{load!balancing|)}
+ 
+\Level 1 {Distributed computing, grid computing, cloud
+  computing}
+\label{sec:cloud}
+\index{cloud computing|(}
+\index{distributed computing|(}
+\input chapters-public/cloud
+\index{cloud computing|)}
+\index{distributed computing|)}
+
+\Level 1 {Capability versus capacity computing}
+\label{sec:capacity}
+\index{capacity computing|(}
+\index{capability computing|(}
+\input chapters-public/capability
+\index{capacity computing|)}
+\index{capability computing|)}
+
+\begin{notready}
+\Level 1 {FPGA computing}
+\indexacstart{FPGA}
+\input chapters-public/fpga
+\indexacend{FPGA}
+\end{notready}
+
+\Level 1 {MapReduce}
+\label{sec:mapreduce}
+\index{MapReduce|(}
+\input chapters-public/mapreduce
+\index{MapReduce|)}
+
+\Level 1 {The top500 list}
+\label{sec:top500}
+\index{top 500|(}
+\input chapters-public/top500
+\index{top 500|)}
+
+\Level 1 {Heterogeneous computing}
+\label{sec:heterogeneous}
+\index{heterogeneous computing|(}
+\input chapters-public/hetero
+\index{heterogeneous computing|)}

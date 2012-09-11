@@ -1,0 +1,203 @@
+TACC: Setting memory limits for job 1164517 to 31876710 KB
+TACC: Dumping job script:
+--------------------------------------------------------------------------------
+#!/bin/bash
+
+#$   -q development
+#$   -V
+#$   -cwd
+#$   -pe 1way 16
+#$   -l h_rt=0:05:00
+
+#$   -j y
+#$   -N papirun_line
+#$   -o $JOB_NAME.oe$JOB_ID
+#$   -e $JOB_NAME.oe$JOB_ID
+#$   -M eijkhout@tacc.utexas.edu
+#$   -m e
+
+#$ -A A-ccsc
+
+module load papi
+./line 
+
+--------------------------------------------------------------------------------
+TACC: Done.
+Run: stride=1
+stride=1
+Tot cycles: 85010
+L1 misses:	214
+accesses per miss:	 37.83178
+
+L1 refills:	1208
+accesses per refill:	  6.70199
+L1 accesses:	17662
+accesses per operation:	  0.45839
+
+Run: stride=2
+stride=2
+Tot cycles: 117940
+L1 misses:	104
+accesses per miss:	 77.84615
+
+L1 refills:	2063
+accesses per refill:	  3.92438
+L1 accesses:	16353
+accesses per operation:	  0.49508
+
+Run: stride=3
+stride=3
+Tot cycles: 155484
+L1 misses:	218
+accesses per miss:	 37.13761
+
+L1 refills:	3073
+accesses per refill:	  2.63456
+L1 accesses:	16337
+accesses per operation:	  0.49556
+
+Run: stride=4
+stride=4
+Tot cycles: 194995
+L1 misses:	212
+accesses per miss:	 38.18868
+
+L1 refills:	4084
+accesses per refill:	  1.98237
+L1 accesses:	16324
+accesses per operation:	  0.49596
+
+Run: stride=5
+stride=5
+Tot cycles: 222388
+L1 misses:	323
+accesses per miss:	 25.06502
+
+L1 refills:	5096
+accesses per refill:	  1.58870
+L1 accesses:	16328
+accesses per operation:	  0.49584
+
+Run: stride=6
+stride=6
+Tot cycles: 250749
+L1 misses:	571
+accesses per miss:	 14.17863
+
+L1 refills:	6109
+accesses per refill:	  1.32526
+L1 accesses:	16334
+accesses per operation:	  0.49565
+
+Run: stride=7
+stride=7
+Tot cycles: 284301
+L1 misses:	777
+accesses per miss:	 10.41956
+
+L1 refills:	7124
+accesses per refill:	  1.13644
+L1 accesses:	16337
+accesses per operation:	  0.49556
+
+Run: stride=8
+stride=8
+Tot cycles: 316816
+L1 misses:	1042
+accesses per miss:	  7.76967
+
+L1 refills:	8134
+accesses per refill:	  0.99533
+L1 accesses:	16331
+accesses per operation:	  0.49574
+
+Run: stride=9
+stride=9
+Tot cycles: 358980
+L1 misses:	2778
+accesses per miss:	  2.91433
+
+L1 refills:	9043
+accesses per refill:	  0.89528
+L1 accesses:	16334
+accesses per operation:	  0.49565
+
+Run: stride=10
+stride=10
+Tot cycles: 389721
+L1 misses:	5293
+accesses per miss:	  1.52957
+
+L1 refills:	9837
+accesses per refill:	  0.82302
+L1 accesses:	16340
+accesses per operation:	  0.49547
+
+Run: stride=11
+stride=11
+Tot cycles: 415930
+L1 misses:	6670
+accesses per miss:	  1.21379
+
+L1 refills:	10864
+accesses per refill:	  0.74521
+L1 accesses:	16336
+accesses per operation:	  0.49559
+
+Run: stride=12
+stride=12
+Tot cycles: 443979
+L1 misses:	8130
+accesses per miss:	  0.99582
+
+L1 refills:	11950
+accesses per refill:	  0.67749
+L1 accesses:	16332
+accesses per operation:	  0.49571
+
+Run: stride=13
+stride=13
+Tot cycles: 409875
+L1 misses:	8129
+accesses per miss:	  0.99594
+
+L1 refills:	11004
+accesses per refill:	  0.73573
+L1 accesses:	16327
+accesses per operation:	  0.49587
+
+Run: stride=14
+stride=14
+Tot cycles: 393414
+L1 misses:	8136
+accesses per miss:	  0.99508
+
+L1 refills:	10050
+accesses per refill:	  0.80557
+L1 accesses:	16342
+accesses per operation:	  0.49541
+
+Run: stride=15
+stride=15
+Tot cycles: 388543
+L1 misses:	8132
+accesses per miss:	  0.99557
+
+L1 refills:	9088
+accesses per refill:	  0.89085
+L1 accesses:	16331
+accesses per operation:	  0.49574
+
+Run: stride=16
+stride=16
+Tot cycles: 390610
+L1 misses:	8118
+accesses per miss:	  0.99729
+
+L1 refills:	8118
+accesses per refill:	  0.99729
+L1 accesses:	16321
+accesses per operation:	  0.49605
+
+TACC: Cleaning up after job: 1164517
+TACC: Done.

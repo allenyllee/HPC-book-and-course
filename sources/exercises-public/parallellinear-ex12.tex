@@ -1,0 +1,17 @@
+  Consider the \ac{CG} method of section~\ref{sec:cg},
+  figure~\ref{fig:pcg}, applied to the
+  matrix from a 2D \ac{BVP}; equation~\eqref{eq:5starmatrix}, First
+  consider the unpreconditioned case $M=I$. Show that there is a
+  roughly equal number of floating point
+  operations are performed in the matrix-vector product and
+  in the vector operations. Express everything in the matrix size~$N$ and
+  ignore lower order terms. How would this balance be if the matrix
+  had 20 nonzeros per row?
+
+  Next, investigate this balance between vector and matrix operations
+  for the \ac{FOM} scheme in section~\ref{sec:fom}. Since the number
+  of vector operations depends on the iteration, consider the first 50
+  iterations and count how many floating point operations are done in
+  the vector updates and inner product versus the matrix-vector
+  product. How many nonzeros does the matrix need to have for these
+  quantities to be equal?

@@ -1,0 +1,47 @@
+\newenvironment{exercises}{\begin{enumerate}}{\end{enumerate}}
+\newcommand{\project}{\item[Project]}
+\excludecomment{quiz}
+
+\newcounter{excounter}[chapter]
+\makeatletter
+\renewcommand\theexcounter{\@arabic\c@chapter.\@arabic\c@excounter}
+\makeatother
+
+\newcommand\exercisenumber{\arabic{chapter}.\arabic{excounter}}
+\generalcomment{exercise}
+  {\refstepcounter{excounter}%
+   \begingroup\def\ProcessCutFile{}\par
+   \edef\tmp{\def\noexpand\CommentCutFile
+                 {exercises-public/\chapshortname-ex\arabic{excounter}.tex}}\tmp
+   }
+  {\begin{quote}
+   \leavevmode
+   \hbox{\kern-\unitindent 
+         \textbf Exercise \exercisenumber.\hspace{1em}}%
+     \ignorespaces
+   \input{\CommentCutFile}
+   \end{quote}
+   \endgroup}
+
+\generalcomment{answer}
+  {\begingroup
+   \edef\tmp{\def\noexpand\CommentCutFile
+                 {answers-public/\chapshortname-an\noexpand\arabic{excounter}.tex}}\tmp
+   \def\ProcessCutFile{}}
+  {\ifIncludeAnswers \begin{quote}
+   \leavevmode
+   \hbox{\kern-\unitindent 
+         \textbf Solution to exercise \arabic{chapter}.\arabic{excounter}.\hspace{1em}}%
+     \ignorespaces\it
+   \input{\CommentCutFile}
+   \end{quote}\fi
+   \endgroup}
+
+\newenvironment{exerciseB}[1]
+  {\par
+   {\bfseries Problem \arabic{chapter}.\arabic{excounter}}
+   \parbox[t]{2in}{\slshape #1}%
+   \par
+  }
+  {\par}
+

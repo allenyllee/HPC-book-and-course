@@ -1,0 +1,20 @@
+  Let $A$ and $x$ be the $n\times n$ matrix and dimension~$n$ vector
+  \[
+  A = \begin{pmatrix}
+    1&1\\ &1&1\\ &&\ddots&\ddots\\ &&&1&1\\&&&&1
+  \end{pmatrix},\qquad
+  x =  (0,\ldots,0,1)^t.
+  \]
+  Show that the sequence $[x,Ax,\ldots,A^ix]$ is an independent set
+  for $i<n$. Why is this no longer true for~$i\geq n$?
+
+  Now consider the matrix $B$:
+  \[ B=\left(
+  \begin{array}{cccc|cccc}
+    1&1&&\\ &\ddots&\ddots&\\ &&1&1\\ &&&1\\ \hline
+    &&&&1&1\\ &&&&&\ddots&\ddots\\ &&&&&&1&1\\ &&&&&&&1
+  \end{array}\right),\qquad
+  y = (0,\ldots,0,1)^t
+  \]
+  Show that the set $[y,By,\ldots,B^iy]$ is an independent set for
+  $i<n/2$, but not for any larger values of~$i$.

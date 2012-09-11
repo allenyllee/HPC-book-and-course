@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#$   -q systest
+###development
+#$   -V
+#$   -cwd
+#$   -pe WAYway 16
+#$   -l h_rt=0:05:00
+
+#$   -j y
+#$   -N papirun_PROGRAM
+#$   -o $JOB_NAME.oe$JOB_ID
+#$   -e $JOB_NAME.oe$JOB_ID
+##$   -M eijkhout@tacc.utexas.edu
+##$   -m e
+
+#$ -A A-ccsc
+
+module load papi
+./PROGRAM ARGS
+

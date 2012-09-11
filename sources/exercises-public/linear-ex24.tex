@@ -1,0 +1,16 @@
+The operations described so far are fairly simple, in that they never
+make changes to the sparsity structure of the matrix. The CRS format,
+as described above, does not allow you to add new nonzeros to the
+matrix, but it is not hard to make an extension that does allow it.
+
+Let numbers $p_i, i=1\ldots n$, describing the number of nonzeros in
+the $i$-th row, be given.  Design an extension to CRS that gives each
+row space for $q$ extra elements. Implement this scheme and test it:
+construct a matrix with $p_i$ nonzeros in the $i$-th row, and check
+the correctness of the matrix-vector product before and after adding
+new elements, up to $q$ elements per row.
+
+Now assume that the matrix will never have more than a total of $qn$
+nonzeros. Alter your code so that it can deal with starting with an
+empty matrix, and gradually adding nonzeros in random places. Again,
+check the correctness.

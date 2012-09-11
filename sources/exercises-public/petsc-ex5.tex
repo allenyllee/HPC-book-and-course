@@ -1,0 +1,15 @@
+  In addition to setting the diagonal, also set the first
+  subdiagonal and the first superdiagonal, that is, the elements
+  $(i,i-1)$ and $(i,i+1)$. To set all three elements in a row with one
+  call you can do this:
+\begin{verbatim}
+vm = 1.*mytid;
+for (i=myfirst; i<mylast; i++) {
+  PetscInt j[3]; PetscReal v[3];
+  j[0] = i-1; j[1] = i; j[2] = i+1;
+  v[0] = --vm-1; v[1] = 2*vm; v[2] = -vm+1;
+  ierr = MatSetValues(A,1,&i,3,j,v,INSERT_VALUES); CHKERRQ(ierr);
+}
+\end{verbatim}
+However, this code is not entirely correct. Edit the program using
+this fragment and run it. Diagnose the problem and fix it.
