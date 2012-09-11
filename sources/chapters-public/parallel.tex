@@ -39,7 +39,7 @@ for (i=0; i<n; i++)
 can be done with up to $n$~processors. In the idealized case with $n$
 processors, each processor has local scalars \n{a,b,c} and executes
 \begin{figure}[ht]
-  \includegraphics[scale=.11]{graphics/parallel-add}
+  \includegraphics[scale=.11]{graphics-public/parallel-add}
   \caption{Parallelization of a vector addition}
   \label{fig:par-add}
 \end{figure}
@@ -76,7 +76,7 @@ for (s=2; s<n; s*=2)
 there is a way to parallelize it: every iteration of the outer loop is
 now a loop that can be done by $n/s$ processors in parallel. Since the
 \begin{figure}[ht]
-  \includegraphics[scale=.13]{graphics/parallel-sum}
+  \includegraphics[scale=.13]{graphics-public/parallel-sum}
   \caption{Parallelization of a vector addition}
   \label{fig:par-sum}
 \end{figure}
@@ -111,7 +111,7 @@ Nodes are vertically aligned if they are computed on the same
 processors, and an arrow corresponds to a communication if it goes
 from one processor to another. 
 \begin{figure}[ht]
-  \includegraphics[scale=.13]{graphics/parallel-sum-graph}
+  \includegraphics[scale=.13]{graphics-public/parallel-sum-graph}
   \caption{Communication structure of a parallel vector addition}
   \label{fig:par-sum-graph}
 \end{figure}
@@ -335,7 +335,7 @@ For a nontrivial example, see figure~\ref{fig:SSEcomplexmult}, which
 describes complex multiplication using SSE3.
 \begin{figure}[ht]
   \begin{quote}
-  \includegraphics[scale=.5]{graphics/complexmult}
+  \includegraphics[scale=.5]{graphics-public/complexmult}
   \end{quote}
   \caption{Complex multiplication with SSE3}
   \label{fig:SSEcomplexmult}
@@ -424,7 +424,7 @@ The main distinction here is between
 has its own physical memory, and more importantly its own
 \indexterm{address space}.
 \begin{figure}
-  \includegraphics[scale=.1]{graphics/shared-distributed}
+  \includegraphics[scale=.1]{graphics-public/shared-distributed}
   \caption{References to identically named variables in the
     distributed and shared memory case}
   \label{fig:shared-distributed}
@@ -480,7 +480,7 @@ still access any memory location.
 
 \begin{figure}
   \begin{quote}
-  \includegraphics[scale=.6]{graphics/ranger-numa}
+  \includegraphics[scale=.6]{graphics-public/ranger-numa}
   \end{quote}
   \caption{Non-uniform memory access in a four-socket motherboard}
   \label{fig:ranger-numa}
@@ -579,7 +579,7 @@ Since $x$ is also distributed, we can write this as
 This scheme is illustrated in figure~\ref{fig:distmvp}.
 \begin{figure}
   \begin{quote}
-  \includegraphics[scale=.12]{graphics/distmvp}
+  \includegraphics[scale=.12]{graphics-public/distmvp}
   \end{quote}
   \caption{The parallel matrix-vector product with a blockrow
     distribution.}
@@ -754,7 +754,7 @@ thread starts work on the next unprocessed iteration as soon as it
 finishes its current iteration.
 \begin{figure}
   \begin{quote}
-  \includegraphics[scale=.7]{graphics/scheduling}
+  \includegraphics[scale=.7]{graphics-public/scheduling}
   \end{quote}
   \caption{Static or round-robin (left) vs dynamic (right) thread
     scheduling; the task numbers are indicated.}
@@ -1108,7 +1108,7 @@ processor $p_i$ with $i<n/2$ send a message to~$p_{i+n/2}$: there will
 be $n/2$ messages trying to get through the wire between $p_{n/2-1}$
 and~$p_{n/2}$.
 \begin{figure}[ht]
-  \includegraphics[scale=.09]{graphics/contention}
+  \includegraphics[scale=.09]{graphics-public/contention}
   \caption{Contention for a network link due to simultaneous messages}
   \label{fig:contention}
 \end{figure}
@@ -1252,7 +1252,7 @@ Grid-based designs often have so-called \emph{wrap-around} or
 of a 2D grid, as well as the top and bottom. This is illustrated in
 figure~\ref{fig:torus}.
 \begin{figure}[th]
-  \includegraphics[scale=.11]{graphics/torus}
+  \includegraphics[scale=.11]{graphics-public/torus}
   \caption{A 2D grid with torus connections}
   \label{fig:torus}
 \end{figure}
@@ -1280,7 +1280,7 @@ figure~\ref{fig:hypercube}.
 
 \begin{figure}[ht]
   \begin{quote}
-  \includegraphics[scale=.12]{graphics/hypercubes}
+  \includegraphics[scale=.12]{graphics-public/hypercubes}
   \end{quote}
   \caption{Hypercubes}
   \label{fig:hypercube}
@@ -1288,7 +1288,7 @@ figure~\ref{fig:hypercube}.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[scale=.1]{graphics/hypercubenumber}
+  \includegraphics[scale=.1]{graphics-public/hypercubenumber}
   \caption{Numbering of the nodes of a hypercube}
   \label{fig:cubenumber}
 \end{figure}
@@ -1420,7 +1420,7 @@ connect any two processors by a path through the network.
 
 \begin{figure}[ht]
   \begin{quote}
-  \includegraphics[scale=.7]{graphics/crossbar}
+  \includegraphics[scale=.7]{graphics-public/crossbar}
   \end{quote}
   \caption{A simple cross bar connecting 6 inputs to 6 outputs}
   \label{fig:crossbar}
@@ -1437,8 +1437,8 @@ outputs (sometimes called a `permutation') is allowed.
 
 \begin{figure}[ht]
   \begin{quote}
-    \includegraphics[scale=.06]{graphics/butterfly1}\hspace{.5in}
-    \includegraphics[scale=.06]{graphics/butterfly2}
+    \includegraphics[scale=.06]{graphics-public/butterfly1}\hspace{.5in}
+    \includegraphics[scale=.06]{graphics-public/butterfly2}
   \end{quote}
   \caption{A butterfly exchange network for two and four processors/memories}
   \label{fig:butterfly}
@@ -1460,7 +1460,7 @@ on a Butterfly exchange network was the \indextermbus{BBN}{Butterfly}\footnote{\
 
 \begin{figure}[ht]
   \begin{quote}
-  \includegraphics[scale=.1]{graphics/butterfly3}
+  \includegraphics[scale=.1]{graphics-public/butterfly3}
   \end{quote}
   \caption{Two independent routes through a butterfly exchange network}
   \label{fig:butterflyroute}
@@ -1480,7 +1480,7 @@ Routing through a butterfly network is done based on considering the
 bits in the destination address. On the $i$-th level the $i$-th digit
 is considered;
 \begin{figure}[ht]
-  \includegraphics[scale=.18]{graphics/butterfly-route}
+  \includegraphics[scale=.18]{graphics-public/butterfly-route}
   \caption{Routing through a three-stage butterfly exchange network}
   \label{fig:butterfly-route}
 \end{figure}
@@ -1507,7 +1507,7 @@ wires attached~\cite{Greenberg89randomizedrouting}; see
 figure~\ref{fig:fattree}.
 \begin{figure}
   \begin{quote}
-  \includegraphics[scale=.12]{graphics/fattree5}
+  \includegraphics[scale=.12]{graphics-public/fattree5}
   \end{quote}
   \caption{A fat tree with a three-level interconnect}
   \label{fig:fattree}
@@ -1544,7 +1544,7 @@ is constructed from simple switching elements; see
 figure~\ref{fig:fattreeclos}.
 \begin{figure}
   \begin{quote}
-    \includegraphics[scale=.11]{graphics/fattree-clos}
+    \includegraphics[scale=.11]{graphics-public/fattree-clos}
   \end{quote}
   \caption{A fat-tree built from simple switching elements}
   \label{fig:fattreeclos}

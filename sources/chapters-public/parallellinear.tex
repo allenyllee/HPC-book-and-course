@@ -137,7 +137,7 @@ buffer $B_{pq}$ for each processor~$q\not=p$ where we collect the
 elements from~$q$ that are needed to perform the product on~$p$. (See
 \begin{figure}
   \begin{quote}
-    \includegraphics[scale=.12]{graphics/distmvp}
+    \includegraphics[scale=.12]{graphics-public/distmvp}
   \end{quote}
   \caption{The parallel matrix-vector product with a blockrow
     distribution.}
@@ -234,7 +234,7 @@ For this reason, an \indexterm{overdecomposition} is used, where
 the matrix is divided in more blocks than there are processors,
 and each processor stores several, non-contiguous, sub-matrices. 
 \begin{figure}[ht]
-  \includegraphics[scale=.11]{graphics/cyclic-1}
+  \includegraphics[scale=.11]{graphics-public/cyclic-1}
   \caption{One-dimensional cyclic distribution: assignment of four
     matrix columns to two processors, and the resulting mapping of
     storage to matrixcolumns}
@@ -246,7 +246,7 @@ a contiguous block of memory two non-contiguous matrix columns.
 
 Next, we illustrate in figure~\ref{fig:cyclic-1-mvp}
 \begin{figure}[ht]
-  \includegraphics[scale=.11]{graphics/cyclic-1-mvp}
+  \includegraphics[scale=.11]{graphics-public/cyclic-1-mvp}
   \caption{Matrix-vector multiplication with a cyclicly distributed matrix}
   \label{fig:cyclic-1-mvp}
 \end{figure}
@@ -424,7 +424,7 @@ modeling is then assumed to polynomial, often of a low degree, such as
 linear or bilinear.
 
 \begin{figure}[ht]
-  \includegraphics[scale=.12]{graphics/fem}  
+  \includegraphics[scale=.12]{graphics-public/fem}  
   \caption{A finite element domain, parallelization of the matrix
     construction, and parallelization of matrix element storage}
   \label{fig:fem-assembly}
@@ -557,7 +557,7 @@ simply a slightly cruder approximation.
 The idea behind block methods can easily be appreciated pictorially;
 see figure~\ref{fig:block-method}.
 \begin{figure}[ht]
-  \includegraphics[scale=.12]{graphics/block-jacobi}
+  \includegraphics[scale=.12]{graphics-public/block-jacobi}
   \caption{Sparsity pattern corresponding to a block Jacobi
     preconditioner}
   \label{fig:block-method}
@@ -614,7 +614,7 @@ write the usual algorithm (section~\ref{sec:lu-solve}) as
 \end{exercise}
 
 \begin{figure}
-  \includegraphics[scale=.1]{graphics/pilu}
+  \includegraphics[scale=.1]{graphics-public/pilu}
   \caption{A partitioned domain with coloured nodes}
   \label{fig:pilu}
 \end{figure}
@@ -623,7 +623,7 @@ sequential\ldots Well, it is true that the outer loop over the colours
 is sequential, but all the points of one colour are independent of
 each other, so they can be solved at the same time.
 \begin{figure}
-  \includegraphics[scale=.12]{graphics/pilu-solve}
+  \includegraphics[scale=.12]{graphics-public/pilu-solve}
   \caption{Solving a parallel multicolour ILU in four steps}
   \label{fig:pilu-solve}
 \end{figure}

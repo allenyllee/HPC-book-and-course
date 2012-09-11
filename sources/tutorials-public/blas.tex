@@ -64,7 +64,7 @@ from two-dimensional matrix coordinates to memory locations. The
 elements in a column are stored consecutively; see
 figure~\ref{fig:densearray}.
 \begin{figure}
-  \includegraphics[scale=.14]{graphics/densearray}
+  \includegraphics[scale=.14]{graphics-public/densearray}
   \caption{Column-major storage of an array in Fortran}
   \label{fig:densearray}
 \end{figure}
@@ -78,7 +78,7 @@ $m\times n$ matrix in $mn$ memory locations. However, there are many
 cases where software needs access to a matrix that is a subblock of
 another, larger, matrix. As you see in figure~\ref{fig:lda1}
 \begin{figure}[ht]
-  \includegraphics[scale=.14]{graphics/denselda}
+  \includegraphics[scale=.14]{graphics-public/denselda}
   \caption{A subblock out of a larger matrix}
   \label{fig:lda1}
 \end{figure}
@@ -88,7 +88,7 @@ let {\tt LDA} be the `leading dimension of~{\tt A}', that is, the
 allocated first dimension of the surrounding array. This is
 illustrated in figure~\ref{fig:lda2}.
 \begin{figure}
-  \includegraphics[scale=.14]{graphics/denselda2}
+  \includegraphics[scale=.14]{graphics-public/denselda2}
   \caption{A subblock out of a larger matrix, using {\tt LDA}}
   \label{fig:lda2}
 \end{figure}

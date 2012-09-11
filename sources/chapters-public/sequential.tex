@@ -355,7 +355,7 @@ architecture, this is called the `north bridge', as opposed to the
 of the graphics controller.
 
 \begin{quote}
-\includegraphics[scale=.1]{graphics/bridges}
+\includegraphics[scale=.1]{graphics-public/bridges}
 \end{quote}
 
 The bus is typically slower than the processor, operating with clock
@@ -609,7 +609,7 @@ closer caches are to the \acp{FPU}, the faster, but also the
 smaller they are.
 \begin{figure}
   \begin{quote}
-  \includegraphics[scale=.15]{graphics/hierarchy}
+  \includegraphics[scale=.15]{graphics-public/hierarchy}
   \end{quote}
   \caption{Memory hierarchy of an AMD Xeon, characterized by speed and size.}
   \label{fig:hierarchy}
@@ -735,7 +735,7 @@ code that accesses arrays by \indexterm{stride}: elements are read or
 written at regular intervals.
 
 \begin{wrapfigure}{r}{3in}
-  \includegraphics[scale=.07]{graphics/stride-1}
+  \includegraphics[scale=.07]{graphics-public/stride-1}
   \caption{Accessing 4 elements at stride 1}
   \label{fig:stride-1}
   \vskip-.5in
@@ -753,7 +753,7 @@ satisfied from cache, meaning with high bandwidth and low latency.
 \bigskip
 
 \begin{wrapfigure}{r}{3in}
-  \includegraphics[scale=.07]{graphics/stride-3}
+  \includegraphics[scale=.07]{graphics-public/stride-3}
   \caption{Accessing 4 elements at stride 3}
   \label{fig:stride-3}
   \vskip-.5in
@@ -1013,7 +1013,7 @@ independent, we get a statement of \indexterm{Little's
   law}~\cite{Little:law}:
 \[ \mathrm{Concurrency}=\mathrm{Bandwidth}\times \mathrm{Latency}. \]
 \begin{figure}[ht]
-  \includegraphics[scale=.13]{graphics/little}
+  \includegraphics[scale=.13]{graphics-public/little}
   \caption{Illustration of Little's Law that states how much
     independent data needs to be in flight}
   \label{fig:little}
@@ -1169,7 +1169,7 @@ were simply two processors on the same die, later generations
 incorporated L3 or L2 caches that were shared between the two
 processor cores; see figure~\ref{fig:core-caches}
 \begin{figure}
-  \includegraphics[scale=.18]{graphics/cache-hierarchy}
+  \includegraphics[scale=.18]{graphics-public/cache-hierarchy}
   \caption{Cache hiearchy in a single-core and dual-core chip}
   \label{fig:core-caches}
 \end{figure}
@@ -1198,8 +1198,8 @@ memory other than through the on-chip network.
 
 \begin{figure}
   \begin{quote}
-  \includegraphics[scale=.5]{graphics/ScCC-1}
-  \includegraphics[scale=.4]{graphics/ScCC-2}
+  \includegraphics[scale=.5]{graphics-public/ScCC-1}
+  \includegraphics[scale=.4]{graphics-public/ScCC-2}
   \end{quote}
   \caption{Structure of the Intel Single-chip Cloud Computer chip}
   \label{fig:rockcreek}
@@ -1545,7 +1545,7 @@ for i=1..n
 }%\end{quotation}
 These implementations are illustrated in figure~\ref{fig:ijk-mult}
 \begin{figure}[ht]
-  \includegraphics[scale=.1]{graphics/ijk-mult}
+  \includegraphics[scale=.1]{graphics-public/ijk-mult}
   \caption{Two loop orderings for the $C\leftarrow A\cdot B$
     matrix-matrix product}
   \label{fig:ijk-mult}

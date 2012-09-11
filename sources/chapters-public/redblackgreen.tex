@@ -23,7 +23,7 @@ Pictorially, we take the points $1,\ldots,n$ and colour them red and
 black (figure~\ref{fig:red-black-1d}), then we permute them to first
 \begin{figure}
   \begin{quote}
-    \includegraphics[scale=.12]{graphics/red-black-1d}
+    \includegraphics[scale=.12]{graphics-public/red-black-1d}
   \end{quote}
   \caption{Red-black ordering of a the points on a line}
   \label{fig:red-black-1d}
@@ -61,7 +61,7 @@ Apparently the algorithm has three stages that are each parallel over
 half the domain points. This is illustrated in
 figure~\ref{fig:1d-rb-solve}.
 \begin{figure}[ht]
-  \includegraphics[scale=.1]{graphics/red-black-1d-solve}
+  \includegraphics[scale=.1]{graphics-public/red-black-1d-solve}
   \caption{Red-black solution on a 1d domain}
   \label{fig:1d-rb-solve}
 \end{figure}
@@ -71,7 +71,7 @@ have a subdomain. Now you can see in figure~\ref{fig:1d-rb-solve-par}
 how this causes a very modest amount of communication: each processor
 sends at most the data of two red points to its neighbours.
 \begin{figure}[ht]
-  \includegraphics[scale=.1]{graphics/red-black-1d-solve-par}
+  \includegraphics[scale=.1]{graphics-public/red-black-1d-solve-par}
   \caption{Parallel red-black solution on a 1d domain}
   \label{fig:1d-rb-solve-par}
 \end{figure}
@@ -87,7 +87,7 @@ the domain, we continue with the even points in the first line, the
 odd points in the second, et cetera.
 \begin{figure}[ht]
   \begin{quote}
-    \includegraphics[scale=.12]{graphics/redblack}
+    \includegraphics[scale=.12]{graphics-public/redblack}
   \end{quote}
   \caption{Red-black ordering of the variables of a two-dimensional
     domain}

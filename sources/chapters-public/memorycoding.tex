@@ -141,7 +141,7 @@ operation will be determined by the latency and bandwidth of the L2
 cache. This can be seen in figure~\ref{fig:cache-overflow}.
 \begin{figure}[ht]
   \begin{quote}
-  \includegraphics[scale=.5]{graphics/cacheoverflow}
+  \includegraphics[scale=.5]{graphics-public/cacheoverflow}
   \end{quote}
   \caption{Average cycle count per operation as function of the
     dataset size}
@@ -196,7 +196,7 @@ are at distance \n{stride}. As this \indexterm{stride} increases, we expect an
 increasing runtime, which is born out by
 \begin{figure}[ht]
   \begin{quote}
-  \includegraphics[scale=.5]{graphics/cacheline8}
+  \includegraphics[scale=.5]{graphics-public/cacheline8}
   \end{quote}
   \caption{Run time in kcycles and L1 reuse as a function of stride}
   \label{fig:cacheline}
@@ -240,7 +240,7 @@ plotted in figures \ref{fig:tlb_row} and~\ref{fig:tlb_col}.
 
 \begin{figure}
   \begin{quote}
-  \includegraphics[scale=.5]{graphics/tlb_col}
+  \includegraphics[scale=.5]{graphics-public/tlb_col}
   \end{quote}
   \caption{Number of TLB misses per column as function of the number
     of columns; columnwise traversal of the array.}
@@ -248,7 +248,7 @@ plotted in figures \ref{fig:tlb_row} and~\ref{fig:tlb_col}.
 \end{figure}
 \begin{figure}
   \begin{quote}
-  \includegraphics[scale=.5]{graphics/tlb_row}
+  \includegraphics[scale=.5]{graphics-public/tlb_row}
   \end{quote}
   \caption{Number of TLB misses per column as function of the number
     of columns; rowwise traversal of the array.}
@@ -302,7 +302,7 @@ cycles of letting $m=1,2,\ldots$.
 
 \begin{figure}
   \begin{quote}
-  \includegraphics[scale=.5]{graphics/l1_assoc}
+  \includegraphics[scale=.5]{graphics-public/l1_assoc}
   \end{quote}
   \caption{The number of L1 cache misses and the number of cycles for
     each $j$ column accumulation, vector length~$4096$}
@@ -311,7 +311,7 @@ cycles of letting $m=1,2,\ldots$.
 
 \begin{figure}
   \begin{quote}
-  \includegraphics[scale=.5]{graphics/l1_assocshift}
+  \includegraphics[scale=.5]{graphics-public/l1_assocshift}
   \end{quote}
   \caption{The number of L1 cache misses and the number of cycles for
     each $j$ column accumulation, vector length~$4096+8$}
@@ -501,7 +501,7 @@ loops is determined by the number of available registers.
 
 \begin{figure}[ht]
   \begin{quote}
-  \includegraphics[scale=.5]{graphics/dft}
+  \includegraphics[scale=.5]{graphics-public/dft}
   \end{quote}
   \caption{Performance of naive and optimized implementations of the Discrete Fourier Transform}
   \label{fig:dft-perf}
@@ -509,7 +509,7 @@ loops is determined by the number of available registers.
 
 \begin{figure}[ht]
   \begin{quote}
-  \includegraphics[scale=.5]{graphics/gemm}
+  \includegraphics[scale=.5]{graphics-public/gemm}
   \end{quote}
   \caption{Performance of naive and optimized implementations of the matrix-matrix product}
   \label{fig:gemm-perf}
@@ -615,7 +615,7 @@ of rows times the number of elements per cacheline is more than the
 cachesize, lines will be evicted before they can be reused.
 
 \begin{figure}[ht]
-  \includegraphics[scale=.1]{graphics/oblivious1}
+  \includegraphics[scale=.1]{graphics-public/oblivious1}
   \caption{Matrix transpose operation, with simple and recursive
     traversal of the source matrix}
   \label{fig:oblivious-transpose}
