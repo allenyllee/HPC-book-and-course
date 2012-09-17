@@ -1,0 +1,259 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of slides for
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{beamer}
+
+\newenvironment{beamdisplayeq}%
+ {\begin{equation}\small}{\end{equation}}
+
+\usepackage{beamerthemeTACC}
+\parskip=.5\baselineskip plus .5\baselineskip
+\event{Intro sci/tech computing}
+
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{multicol}
+
+\newcommand\inv{^{-1}}
+
+\begin{document}
+\title{Solving linear systems: direct methods}
+\author{Victor Eijkhout}
+\date{}
+\frame{\titlepage}
+
+\frame{\frametitle{Two different approaches}
+  Solve $Ax=b$
+
+  Direct methods:
+  \begin{itemize}
+  \item Deterministic
+  \item Exact up to machine precision
+  \item Expensive (in time and space)
+  \end{itemize}
+  Iterative methods:
+  \begin{itemize}
+  \item Only approximate
+  \item Cheaper in space and (possibly) time
+  \item Convergence not guaranteed
+  \end{itemize}
+}
+
+\frame{\frametitle{Really bad example of direct method}
+  Cramer's rule\\
+  write $|A|$ for determinant, then
+  \[ x_i=\left|
+    \begin{matrix}
+      a_{11}&a_{12}&\ldots&a_{1i-1}&b_1&a_{1i+1}&\ldots&a_{1n}\\
+      a_{21}&      &\ldots&        &b_2&        &\ldots&a_{2n}\\
+      \vdots&      &      &        &\vdots&     &      &\vdots\\
+      a_{n1}&      &\ldots&        &b_n&        &\ldots&a_{nn}
+    \end{matrix}\right|
+    / |A|
+    \]
+    Time complexity $O(n!)$
+}
+
+\frame{\frametitle{Gaussian elimination}
+  \footnotesize
+  Example
+  \[ 
+  \left(
+    \begin{matrix}
+      6&-2&2\\ 12&-8&6\\ 3&-13&3
+    \end{matrix}\right)
+  x =
+  \left(
+    \begin{matrix}
+      16\\ 26\\ -19
+    \end{matrix}\right)
+  \]
+  \[
+  \left[
+    \begin{matrix}
+      6&-2&2&|&16\\ 12&-8&6&|&26\\ 3&-13&3&|&-19      
+    \end{matrix}\right] \longrightarrow
+  \left[
+    \begin{matrix}
+      6&-2&2&|&16\\ 0&-4&2&|&-6\\ 0&-12&2&|&-27
+    \end{matrix}\right] \longrightarrow
+  \left[
+    \begin{matrix}
+      6&-2&2&|&16\\ 0&-4&2&|&-6\\ 0&0&-4&|&-9
+    \end{matrix}\right]
+  \]
+  Solve $x_3$, then $x_2$, then $x_1$
+
+  $6,-4,-4$ are the `pivots'
+}
+
+\frame{\frametitle{Pivoting}
+  If a pivot is zero, exchange that row and another.\\
+  (there is always a row with a nonzero pivot if the matrix is nonsingular)\\
+  best choice is the largest possible pivot\\
+  in fact, that's a good choice even if the pivot is not zero
+}
+
+\frame{\frametitle{Roundoff control}
+
+  Consider
+  \[ \left(
+    \begin{matrix}
+      \epsilon&1\\ 1&1
+    \end{matrix}\right) x = \left(
+    \begin{matrix}
+      1+\epsilon\\2
+    \end{matrix}\right)
+  \] with solution $x=(1,1)^t$
+
+  Ordinary elimination:
+  \[ \left(
+    \begin{matrix}
+      \epsilon&1\\ 0&(1-\frac1\epsilon)
+    \end{matrix}\right) x = \left(
+    \begin{matrix}
+      1\\ 2-\frac1\epsilon
+    \end{matrix}\right)
+  \]
+  \[ \Rightarrow x_2=\frac{2-\frac1\epsilon}{1-\frac1\epsilon}
+  \Rightarrow x_1=\frac{1-x_2}\epsilon
+  \]
+}
+
+\frame{\frametitle{Roundoff 2}
+  If $\epsilon<\epsilon_{\mathrm{mach}}$, then $2-1/\epsilon=-1/\epsilon$
+  and $1-1/\epsilon=-1/\epsilon$, so 
+  \[  x_2=\frac{2-\frac1\epsilon}{1-\frac1\epsilon}=1,
+  \Rightarrow x_1=\frac{1-x_2}\epsilon=0
+  \]
+}
+
+\frame{\frametitle{Roundoff 3}
+  Pivot first:
+  \[ \left(
+    \begin{matrix}
+      1&1\\ \epsilon&1
+    \end{matrix}\right) x = \left(
+    \begin{matrix}
+      2\\1
+    \end{matrix}\right)
+  \Rightarrow \left(
+    \begin{matrix}
+      1&1\\ 0&1-\epsilon
+    \end{matrix}\right) x=\left(
+    \begin{matrix}
+      2\\ 1-2\epsilon
+    \end{matrix}\right)
+  \]
+  If $\epsilon$ very small:
+  \[ x_2=\frac{1-2\epsilon}{1-\epsilon}=1,\qquad
+  x_1=2-x_2=1
+  \]
+}
+
+\frame{\frametitle{LU factorization}
+  Same example again:
+  \[ A=
+  \left(
+    \begin{matrix}
+      6&-2&2\\ 12&-8&6\\ 3&-13&3
+    \end{matrix}\right)
+  \]
+  2nd row minus $2\times$ first; 3rd row minus $1/2\times$ first;\\
+  equivalent to
+  \[ L_1Ax=L_1b,\qquad
+  L_1=\left(
+    \begin{matrix}
+      1&0&0\\ -2&1&0\\ -1/2&0&1
+    \end{matrix}\right)
+  \]
+}
+
+\frame{\frametitle{LU 2}
+  Next step: $L_2L_1Ax=L_2L_1b$ with
+  \[ L_2=\left(
+    \begin{matrix}
+      1&0&0\\ 0&1&0\\ 0&-3&1
+    \end{matrix}\right)
+  \]
+  Define $U=L_2L_1A$, then $A=L_1^{-1}L_2^{-1}U$\\
+  `LU factorization'
+}
+
+\frame{\frametitle{LU 3}
+  Observe:
+  \[ 
+  L_1=\left(
+    \begin{matrix}
+      1&0&0\\ -2&1&0\\ -1/2&0&1
+    \end{matrix}\right)\qquad
+  L_1^{-1}=\left(
+    \begin{matrix}
+      1&0&0\\ 2&1&0\\ 1/2&0&1
+    \end{matrix}\right)
+  \]
+  Likewise
+  \[ L_2=\left(
+    \begin{matrix}
+      1&0&0\\ 0&1&0\\ 0&-3&1
+    \end{matrix}\right)\qquad
+  L_2=\left(
+    \begin{matrix}
+      1&0&0\\ 0&1&0\\ 0&3&1
+    \end{matrix}\right)
+  \]
+  Even more remarkable:
+  \[ L_1^{-1}L_2^{-1} = \left(
+    \begin{matrix}
+      1&0&0\\ 2&1&0\\ 1/2&3&1
+    \end{matrix}\right)
+  \]
+  Can be computed in place! (pivoting?)
+}
+
+\frame{\frametitle{Solve LU system}
+  $Ax=b\longrightarrow LUx=b$ solve in two steps:\\
+  $Ly=b$, and $Ux=y$
+
+  Forward sweep:
+  \[ \left(
+    \begin{matrix}
+      1&&&\emptyset\\ \ell_{21}&1\\ \ell_{31}&\ell_{32}&1\\
+      \vdots&&\ddots\\ \ell_{n1}&\ell_{n2}&&\cdots&1
+    \end{matrix}\right) \left(
+    \begin{matrix}
+      y_1\\ y_2\\ \\ \vdots\\ y_n
+    \end{matrix}\right) = \left(
+    \begin{matrix}
+      b_1\\ b_2\\ \\ \vdots\\ b_n
+    \end{matrix}\right)
+  \]
+  \[ y_1=b_1,\quad y_2=b_2-\ell_{21}y_1,\ldots \]
+}  
+
+\frame{\frametitle{Solve LU 2}
+  Backward sweep:
+  \[ \left(
+    \begin{matrix}
+      u_{11}&u_{12}&\ldots&u_{1n}\\ &u_{22}&\ldots&u_{2n}\\
+      &&\ddots&\vdots\\ \emptyset&&u_{nn}
+    \end{matrix}\right) \left(
+    \begin{matrix}
+      x_1\\ x_2\\ \vdots\\ x_n
+    \end{matrix}\right)=\left(
+    \begin{matrix}
+      y_1\\ y_2\\ \vdots\\ y_n
+    \end{matrix}\right)
+  \]
+  \[ x_n=u_{nn}^{-1}y_n,\quad x_{n-1}=u_{n-1n-1}^{-1}(y_{n-1}-u_{n-1n}x_n),
+  \ldots \]
+}
+
+\end{document}
