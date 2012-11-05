@@ -1,0 +1,13 @@
+  We would like to show that the block algorithm here again computes
+  the same result as the scalar one. Doing so by looking explicitly at
+  the computed elements is cumbersome, so we take another
+  approach.  First, recall from section~\ref{sec:LUunique} that $LU$ factorizations are unique: if
+  $A=L_1U_1=L_2U_2$ and $L_1,L_2$ have unit diagonal, then $L_1=L_2$,
+  $U_1=U_2$.
+
+  Next, consider the computation of $A_{kk}\inv$. Show that this can
+  be done easily by first computing an LU factorization
+  of~$A_{kk}$. Now use this to show that the block LU factorization
+  can give $L$ and $U$ factors that are strictly triangular. The
+  uniqueness of $LU$ factorizations then proves that the block
+  algorithm computes the scalar result.

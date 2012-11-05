@@ -1,0 +1,20 @@
+  Let $A$ be the matrix
+  \begin{equation} A=
+  \begin{pmatrix}
+    a_{11}&&\emptyset\\ a_{21}&a_{22}\\ &\ddots&\ddots\\
+    \emptyset&&a_{n,n-1}&a_{nn}
+  \end{pmatrix}.\label{eq:ex:bidiagonal}
+  \end{equation}
+  Show that the matrix vector product $y\leftarrow Ax$ and the system
+  solution $x\leftarrow A\inv y$, obtained by solving the
+    triangular system $Ax=y$, not by inverting~$A$, have the same
+  operation count.
+
+  Now consider parallelizing the product $y\leftarrow Ax$. Suppose we
+  have $n$ processors, and each processor~$i$ stores $x_i$ and the
+  $i$-th row of~$A$. Show that the product $Ax$ can be computed without
+  idle time on any processor but the first.
+
+  Can the same be done for the solution of the triangular system
+  $Ax=y$? Show that the straightforward implementation has every
+  processor idle for an $(n-1)/n$ fraction of the computation.

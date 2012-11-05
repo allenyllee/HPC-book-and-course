@@ -1,0 +1,88 @@
+\relax 
+\ifx\hyper@anchor\@undefined
+\global \let \oldcontentsline\contentsline
+\gdef \contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global \let \oldnewlabel\newlabel
+\gdef \newlabel#1#2{\newlabelxx{#1}#2}
+\gdef \newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\let \contentsline\oldcontentsline
+\let \newlabel\oldnewlabel}
+\else
+\global \let \hyper@last\relax 
+\fi
+
+\citation{frenkel-smit}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Force Computation}{2}{section.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Force Fields}{2}{subsection.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Computing Short-Range Nonbonded Forces}{3}{subsection.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Computing nonbonded forces within a cutoff, $r_c$. To compute forces involving the highlighted particle, only particles in the shaded regions are considered.}}{3}{figure.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Cell list method.}}}{3}{figure.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Verlet neighbor list method.}}}{3}{figure.1}}
+\newlabel{fig:nb}{{1}{3}{Computing nonbonded forces within a cutoff, $r_c$. To compute forces involving the highlighted particle, only particles in the shaded regions are considered}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Computing Long-Range Forces}{4}{subsection.1.3}}
+\citation{frenkel-smit}
+\citation{plimpton}
+\citation{shaw}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Parallel Decompositions}{5}{section.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Atom Decompositions}{5}{subsection.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Atom decomposition, showing a force matrix of 16 particles distributed among 8 processors. A dot represents a nonzero entry in the force matrix. On the left, the matrix is symmetric; on the right, only one element of a pair of skew-symmetric elements is computed, to take advantage of Newton's third law.}}{6}{figure.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Force matrix.}}}{6}{figure.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Force matrix, redundancies removed.}}}{6}{figure.2}}
+\newlabel{fig:atom}{{2}{6}{Atom decomposition, showing a force matrix of 16 particles distributed among 8 processors. A dot represents a nonzero entry in the force matrix. On the left, the matrix is symmetric; on the right, only one element of a pair of skew-symmetric elements is computed, to take advantage of Newton's third law}{figure.2}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Atom decomposition time step}}{6}{algorithm.1}}
+\newlabel{alg:atom1}{{1}{6}{Atom Decompositions\relax }{algorithm.1}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Atom decomposition time step, without redundant calculations}}{7}{algorithm.2}}
+\newlabel{alg:atom2}{{2}{7}{Atom Decompositions\relax }{algorithm.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Force Decompositions}{7}{subsection.2.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Force decomposition, showing a force matrix of 16 particles and forces partitioned among 16 processors. }}{8}{figure.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Force matrix.}}}{8}{figure.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Force matrix, redundancies removed.}}}{8}{figure.3}}
+\newlabel{fig:force}{{3}{8}{Force decomposition, showing a force matrix of 16 particles and forces partitioned among 16 processors. \relax }{figure.3}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Force decomposition time step}}{8}{algorithm.3}}
+\newlabel{alg:force1}{{3}{8}{Force Decompositions\relax }{algorithm.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Force decomposition, with permuted columns in the force matrix. Note that columns 3, 7, 11, 15 are now in the block column corresponding to processors 3, 7, 11, 15 (the same indices), etc.}}{9}{figure.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Force matrix.}}}{9}{figure.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Force matrix, redundancies removed.}}}{9}{figure.4}}
+\newlabel{fig:force-perm}{{4}{9}{Force decomposition, with permuted columns in the force matrix. Note that columns 3, 7, 11, 15 are now in the block column corresponding to processors 3, 7, 11, 15 (the same indices), etc}{figure.4}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Force decomposition time step, with permuted columns of force matrix}}{9}{algorithm.4}}
+\newlabel{alg:force2}{{4}{9}{Force Decompositions\relax }{algorithm.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Spatial Decompositions}{10}{subsection.2.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Spatial decomposition, showing particles in a 2-D computational box, (a) partitioned into 64 cells, (b) import region for one cell.}}{10}{figure.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Decomposition into 64 cells.}}}{10}{figure.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Import region for one cell.}}}{10}{figure.5}}
+\newlabel{fig:spatial}{{5}{10}{Spatial decomposition, showing particles in a 2-D computational box, (a) partitioned into 64 cells, (b) import region for one cell}{figure.5}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces Spatial decomposition time step}}{10}{algorithm.5}}
+\newlabel{alg:spatial}{{5}{10}{Spatial Decompositions\relax }{algorithm.5}{}}
+\citation{shaw}
+\citation{shaw}
+\citation{shaw}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Neutral Territory Methods}{11}{subsection.2.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Neutral territory method, showing particles in a 2-D computational box and the import region (shaded) for one cell (center square). This Figure can be compared directly to the spatial decomposition case of Fig.\nobreakspace  {}\ref  {fig:spatial}(b). See Shaw \cite  {shaw} for additional details. }}{11}{figure.6}}
+\newlabel{fig:nt}{{6}{11}{Neutral territory method, showing particles in a 2-D computational box and the import region (shaded) for one cell (center square). This Figure can be compared directly to the spatial decomposition case of Fig.~\ref {fig:spatial}(b). See Shaw \cite {shaw} for additional details. \relax }{figure.6}{}}
+\citation{shaw}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {6}{\ignorespaces Neutral territory method time step}}{12}{algorithm.6}}
+\newlabel{alg:nt}{{6}{12}{Neutral Territory Methods\relax }{algorithm.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Parallel Fast Fourier Transform}{12}{section.3}}
+\newlabel{sec:fft}{{3}{12}{Parallel Fast Fourier Transform\relax }{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Parallel 1-D FFT}{12}{subsection.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Data flow diagram for 1-D FFT for 16 points. The shaded regions show a decomposition for 4 processors (one processor per region). In this parallelization, the first two FFT stages have no communication; the last two FFT stages do have communication.}}{13}{figure.7}}
+\newlabel{fig:fft1}{{7}{13}{Data flow diagram for 1-D FFT for 16 points. The shaded regions show a decomposition for 4 processors (one processor per region). In this parallelization, the first two FFT stages have no communication; the last two FFT stages do have communication}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces 1-D FFT with transpose. The first two stages do not involve communication. The data is then transposed among the processors. As a result, the second two stages also do not involve communication.}}{14}{figure.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Data flow diagram (shown without horizontal lines for clarity) for 1-D FFT for 16 points.}}}{14}{figure.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Partitioning of the indices before (left) and after (right) the transpose.}}}{14}{figure.8}}
+\newlabel{fig:fft2}{{8}{14}{1-D FFT with transpose. The first two stages do not involve communication. The data is then transposed among the processors. As a result, the second two stages also do not involve communication}{figure.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Parallel 3-D FFT}{14}{subsection.3.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Three data decompositions for 3-D FFTs.}}{15}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Block Decomposition}}}{15}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Slab Decomposition}}}{15}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Pencil Decomposition}}}{15}{figure.9}}
+\newlabel{fig:fft3}{{9}{15}{Three data decompositions for 3-D FFTs}{figure.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Integration for Molecular Dynamics}{15}{section.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Phase plot of the solution of the simple harmonic oscillator for three methods with initial value (1,0), time step 0.05, and 500 steps. For explicit Euler, the solution spirals outward; for implicit Euler, the solution spirals inward; the total energy is best preserved with the St\"{o}rmer-Verlet method.}}{16}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Explicit Euler}}}{16}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Implicit Euler}}}{16}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {St\"{o}rmer-Verlet Method}}}{16}{figure.10}}
+\newlabel{fig:integ}{{10}{16}{Phase plot of the solution of the simple harmonic oscillator for three methods with initial value (1,0), time step 0.05, and 500 steps. For explicit Euler, the solution spirals outward; for implicit Euler, the solution spirals inward; the total energy is best preserved with the St\"{o}rmer-Verlet method}{figure.10}{}}
+\bibcite{frenkel-smit}{1}
+\bibcite{plimpton}{2}
+\bibcite{shaw}{3}

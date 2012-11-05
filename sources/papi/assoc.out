@@ -1,0 +1,219 @@
+TACC: Setting memory limits for job 1117700 to 31876710 KB
+TACC: Dumping job script:
+--------------------------------------------------------------------------------
+#!/bin/bash
+
+#$   -q development
+#$   -V
+#$   -cwd
+#$   -pe 1way 16
+#$   -l h_rt=0:05:00
+
+#$   -j y
+#$   -N papirun_assoc
+#$   -o $JOB_NAME.oe$JOB_ID
+#$   -e $JOB_NAME.oe$JOB_ID
+
+#$ -A A-ccsc
+
+module load papi
+./assoc 
+
+--------------------------------------------------------------------------------
+TACC: Done.
+Run: 1,2048
+m,n=1,2048
+#elements:	2048
+Tot cycles: 19758
+L1 misses:	99
+misses per accumulation:	  0.04834
+
+Run: 1,4096
+m,n=1,4096
+#elements:	4096
+Tot cycles: 26722
+L1 misses:	153
+misses per accumulation:	  0.03735
+
+Run: 1,8192
+m,n=1,8192
+#elements:	8192
+Tot cycles: 52979
+L1 misses:	237
+misses per accumulation:	  0.02893
+
+Run: 1,16384
+m,n=1,16384
+#elements:	16384
+Tot cycles: 101496
+L1 misses:	165
+misses per accumulation:	  0.01007
+
+Run: 2,2048
+m,n=2,2048
+#elements:	4096
+Tot cycles: 43860
+L1 misses:	83
+misses per accumulation:	  0.04053
+
+Run: 2,4096
+m,n=2,4096
+#elements:	8192
+Tot cycles: 126056
+L1 misses:	2838
+misses per accumulation:	  0.69287
+
+Run: 2,8192
+m,n=2,8192
+#elements:	16384
+Tot cycles: 255714
+L1 misses:	5644
+misses per accumulation:	  0.68896
+
+Run: 2,16384
+m,n=2,16384
+#elements:	32768
+Tot cycles: 532806
+L1 misses:	11908
+misses per accumulation:	  0.72681
+
+Run: 3,2048
+m,n=3,2048
+#elements:	6144
+Tot cycles: 67656
+L1 misses:	128
+misses per accumulation:	  0.06250
+
+Run: 3,4096
+m,n=3,4096
+#elements:	12288
+Tot cycles: 233799
+L1 misses:	6165
+misses per accumulation:	  1.50513
+
+Run: 3,8192
+m,n=3,8192
+#elements:	24576
+Tot cycles: 464507
+L1 misses:	11981
+misses per accumulation:	  1.46252
+
+Run: 3,16384
+m,n=3,16384
+#elements:	49152
+Tot cycles: 966315
+L1 misses:	24625
+misses per accumulation:	  1.50299
+
+Run: 4,2048
+m,n=4,2048
+#elements:	8192
+Tot cycles: 125597
+L1 misses:	2304
+misses per accumulation:	  1.12500
+
+Run: 4,4096
+m,n=4,4096
+#elements:	16384
+Tot cycles: 376338
+L1 misses:	10322
+misses per accumulation:	  2.52002
+
+Run: 4,8192
+m,n=4,8192
+#elements:	32768
+Tot cycles: 760594
+L1 misses:	20614
+misses per accumulation:	  2.51636
+
+Run: 4,16384
+m,n=4,16384
+#elements:	65536
+Tot cycles: 1556731
+L1 misses:	42061
+misses per accumulation:	  2.56720
+
+Run: 5,2048
+m,n=5,2048
+#elements:	10240
+Tot cycles: 175272
+L1 misses:	5551
+misses per accumulation:	  2.71045
+
+Run: 5,4096
+m,n=5,4096
+#elements:	20480
+Tot cycles: 704883
+L1 misses:	20918
+misses per accumulation:	  5.10693
+
+Run: 5,8192
+m,n=5,8192
+#elements:	40960
+Tot cycles: 1399921
+L1 misses:	41428
+misses per accumulation:	  5.05713
+
+Run: 5,16384
+m,n=5,16384
+#elements:	81920
+Tot cycles: 2646925
+L1 misses:	76852
+misses per accumulation:	  4.69067
+
+Run: 6,2048
+m,n=6,2048
+#elements:	12288
+Tot cycles: 241697
+L1 misses:	8212
+misses per accumulation:	  4.00977
+
+Run: 6,4096
+m,n=6,4096
+#elements:	24576
+Tot cycles: 745510
+L1 misses:	21463
+misses per accumulation:	  5.23999
+
+Run: 6,8192
+m,n=6,8192
+#elements:	49152
+Tot cycles: 1646941
+L1 misses:	47136
+misses per accumulation:	  5.75391
+
+Run: 6,16384
+m,n=6,16384
+#elements:	98304
+Tot cycles: 3294013
+L1 misses:	93670
+misses per accumulation:	  5.71716
+
+Run: 7,2048
+m,n=7,2048
+#elements:	14336
+Tot cycles: 320583
+L1 misses:	13308
+misses per accumulation:	  6.49805
+
+Run: 7,4096
+m,n=7,4096
+#elements:	28672
+Tot cycles: 1011153
+L1 misses:	29294
+misses per accumulation:	  7.15186
+
+Run: 7,8192
+m,n=7,8192
+#elements:	57344
+Tot cycles: 2025566
+L1 misses:	58483
+misses per accumulation:	  7.13904
+
+Run: 7,16384
+m,n=7,16384
+#elements:	114688
+Tot cycles: 4088891
+L1 misses:	116744
+misses per accumulation:	  7.12549
+

@@ -1,0 +1,835 @@
+\begin{thebibliography}{100}
+
+\bibitem{amd:law}
+G.~Amdahl.
+\newblock The validity of the single processor approach to achieving large
+  scale computing capabilities.
+\newblock In {\em Proceedings of the AFIPS Computing Conference}, volume~30,
+  pages 483--485, 1967.
+
+\bibitem{AxBa:febook}
+O.~Axelsson and A.V. Barker.
+\newblock {\em Finite element solution of boundary value problems. Theory and
+  computation}.
+\newblock Academic Press, Orlando, Fl., 1984.
+
+\bibitem{AxPo:dd2}
+Owe Axelsson and Ben Polman.
+\newblock Block preconditioning and domain decomposition methods~{II}.
+\newblock {\em J. Comp. Appl. Math.}, 24:55--72, 1988.
+
+\bibitem{Ba:templates}
+Richard Barrett, Michael Berry, Tony~F. Chan, James Demmel, June Donato, Jack
+  Dongarra, Victor Eijkhout, Roldan Pozo, Charles Romine, and Henk {van der
+  Vorst}.
+\newblock {\em Templates for the Solution of Linear Systems: Building Blocks
+  for Iterative Methods}.
+\newblock SIAM, Philadelphia PA, 1994.
+\newblock {\tt http://www.netlib.org/templates/}.
+
+\bibitem{Batcher:85a}
+K.E. Batcher.
+\newblock {MPP}: A high speed image processor.
+\newblock In {\em Algorithmically Specialized Parallel Computers}. Academic
+  Press, New York, 1985.
+
+\bibitem{Bell:outlook}
+Gordon Bell.
+\newblock The outlook for scalable parallel processing.
+\newblock Decision Resources, Inc, 1994.
+
+\bibitem{BePl:book}
+Abraham Berman and Robert~J. Plemmons.
+\newblock {\em Nonnegative Matrices in the Mathematical Sciences}.
+\newblock SIAM, 1994.
+\newblock originally published by Academic Press, 1979, New York.
+
+\bibitem{BGSm:96}
+Petter~E. Bjorstad, William Gropp, and Barry Smith.
+\newblock {\em Domain decomposition : parallel multilevel methods for elliptic
+  partial differential equations}.
+\newblock Cambridge University Press, 1996.
+
+\bibitem{BlackScholes}
+Fischer Black and Myron~S Scholes.
+\newblock The pricing of options and corporate liabilities.
+\newblock {\em Journal of Political Economy}, 81(3):637--54, May-June 1973.
+
+\bibitem{reference-blas}
+Netlib.org {BLAS} reference implementation.
+\newblock \url{http://www.netlib.org/blas}.
+
+\bibitem{Bohr:30yearDennard}
+Mark Bohr.
+\newblock A 30 year retrospective on {Dennard}'s {MOSFET} scaling paper.
+\newblock {\em Solid-State Circuits Newsletter, IEEE}, 12(1):11 --13, winter
+  2007.
+
+\bibitem{Bohr:ISSCC2009}
+Mark Bohr.
+\newblock The new era of scaling in an soc world.
+\newblock In {\em ISSCC}, pages 23--28, 2009.
+
+\bibitem{boost:interval-arithmetic}
+{BOOST} interval arithmetic library.
+\newblock \url{http://www.boost.org/libs/numeric/interval/doc/interval.htm}.
+
+\bibitem{papi}
+S.~Browne, J~Dongarra, N.~Garner, G.~Ho, and P.~Mucci.
+\newblock A portable programming interface for performance evaluation on modern
+  processors.
+\newblock {\em International Journal of High Performance Computing
+  Applications}, 14:189--204, Fall 2000.
+
+\bibitem{ButtEijkLang:spmvp}
+Alfredo Buttari, Victor Eijkhout, Julien Langou, and Salvatore Filippone.
+\newblock Performance optimization and modeling of blocked sparse kernels.
+\newblock {\em Int. J. High Perf. Comput. Appl.}, 21:467--484, 2007.
+
+\bibitem{Campbell:octree}
+P.~M. Campbell, K.~D. Devine, J.~E. Flaherty, L.~G. Gervasio, and J.~D.
+  Teresco.
+\newblock Dynamic octree load balancing using space-filling curves, 2003.
+
+\bibitem{Chan2007Collective}
+Ernie Chan, Marcel Heimlich, Avi Purkayastha, and Robert van~de Geijn.
+\newblock Collective communication: theory, practice, and experience.
+\newblock {\em Concurrency and Computation: Practice and Experience},
+  19:1749--1783, 2007.
+
+\bibitem{Chapel:homepage}
+Chapel programming language homepage.
+\newblock \url{http://chapel.cray.com/}.
+
+\bibitem{Chapman2008:OpenMPbook}
+Barbara Chapman, Gabriele Jost, and Ruud van~der Pas.
+\newblock {\em Using {OpenMP}: Portable Shared Memory Parallel Programming},
+  volume~10 of {\em Scientific Computation Series}.
+\newblock MIT Press, ISBN 0262533022, 9780262533027, 2008.
+
+\bibitem{scalapack}
+Yaeyoung Choi, Jack~J. Dongarra, Roldan Pozo, and David~W. Walker.
+\newblock Scalapack: a scalable linear algebra library for distributed memory
+  concurrent computers.
+\newblock In {\em Proceedings of the fourth symposium on the frontiers of
+  massively parallel computation (Frontiers '92), McLean, Virginia, Oct 19--21,
+  1992}, pages 120--127, 1992.
+
+\bibitem{ChGe:sstep}
+A.~Chronopoulos and C.W. Gear.
+\newblock {$s$}-step iterative methods for symmetric linear systems.
+\newblock {\em Journal of Computational and Applied Mathematics}, 25:153--168,
+  1989.
+
+\bibitem{Cipra:Ising}
+Barry~A. Cipra.
+\newblock An introduction to the ising model.
+\newblock {\em The American Mathematical Monthly}, pages 937--959, 1987.
+
+\bibitem{Clos1953}
+Charles Clos.
+\newblock A study of non-blocking switching networks.
+\newblock {\em Bell System Technical Journal}, 32:406--242, 1953.
+
+\bibitem{DAzEijRo:ppscicomp}
+E.F. D'Azevedo, V.L. Eijkhout, and C.H. Romine.
+\newblock A matrix framework for conjugate gradient methods and some variants
+  of cg with less synchronization overhead.
+\newblock In {\em Proceedings of the Sixth SIAM Conference on Parallel
+  Procesing for Scientific Computing}, pages 644--646, Philadelphia, 1993.
+  SIAM.
+
+\bibitem{Google:mapreduce}
+Jeffrey Dean and Sanjay Ghemawat.
+\newblock {MapReduce}: Simplified data processing on large clusters.
+\newblock In {\em OSDI'04: Sixth Symposium on Operating System Design and
+  Implementation}, 2004.
+
+\bibitem{dehevo92:acta}
+J.~Demmel, M.~Heath, and H.~{Van der Vorst}.
+\newblock Parallel numerical linear algebra.
+\newblock In {\em Acta Numerica 1993}. Cambridge University Press, Cambridge,
+  1993.
+
+\bibitem{DemEtAl:ieeeproc2004}
+Jim Demmel, Jack Dongarra, Victor Eijkhout, Erika Fuentes, Antoine Petitet,
+  Rich Vuduc, R.~Clint Whaley, and Katherine Yelick.
+\newblock Self adapting linear algebra algorithms and software.
+\newblock {\em Proceedings of the IEEE}, 93:293--312, February 2005.
+
+\bibitem{Dennard:scaling}
+R.H. Dennard, F.H. Gaensslen, V.L. Rideout, E.~Bassous, and A.R. LeBlanc.
+\newblock Design of ion-implanted mosfet's with very small physical dimensions.
+\newblock {\em Solid-State Circuits, IEEE Journal of}, 9(5):256 -- 268, oct
+  1974.
+
+\bibitem{Deshpande92efficientparallel}
+Ashish Deshpande and Martin Schultz.
+\newblock Efficient parallel programming with linda.
+\newblock In {\em In Supercomputing '92 Proceedings}, pages 238--244, 1992.
+
+\bibitem{Dijkstra:semaphores}
+E.~W. Dijkstra.
+\newblock Cooperating sequential processes.
+\newblock
+  \url{http://www.cs.utexas.edu/users/EWD/transcriptions/EWD01xx/EWD123.html }.
+\newblock Technological University, Eindhoven, The Netherlands, September 1965.
+
+\bibitem{Dijkstra1974Programming}
+Edsger~W. Dijkstra.
+\newblock Programming as a discipline of mathematical nature.
+\newblock {\em Am. Math. Monthly}, 81:608--612, 1974.
+
+\bibitem{pvm-1}
+J.~Dongarra, A.~Geist, R.~Manchek, and V.~Sunderam.
+\newblock {Integrated PVM Framework Supports Heterogeneous Network Computing}.
+\newblock {\em Computers in Physics}, 7(2):166--75, April 1993.
+
+\bibitem{Dongarra1987LinpackBenchmark}
+J.~J. Dongarra.
+\newblock {\em The {LINPACK} benchmark: An explanation}, volume 297, chapter
+  Supercomputing 1987, pages 456--474.
+\newblock Springer-Verlag, Berlin, 1988.
+
+\bibitem{BLAS3}
+Jack~J. Dongarra, Jeremy Du~Croz, Sven Hammarling, and Iain Duff.
+\newblock A set of level 3 basic linear algebra subprograms.
+\newblock {\em ACM Transactions on Mathematical Software}, 16(1):1--17, March
+  1990.
+
+\bibitem{BLAS2}
+Jack~J. Dongarra, Jeremy Du~Croz, Sven Hammarling, and Richard~J. Hanson.
+\newblock An extended set of {FORTRAN} basic linear algebra subprograms.
+\newblock {\em ACM Transactions on Mathematical Software}, 14(1):1--17, March
+  1988.
+
+\bibitem{DobbsComplex}
+{Dr. Dobbs}.
+\newblock Complex arithmetic: in the intersection of {C} and {C++}.
+\newblock \url{http://www.ddj.com/cpp/184401628}.
+
+\bibitem{Duff:harwellboeingformat}
+I.~S. Duff, R.~G. Grimes, and J.~G. Lewis.
+\newblock Users' guide for the {H}arwell-{B}oeing sparse matrix collection
+  (release~{I}).
+\newblock Technical Report RAL 92-086, Rutherford Appleton Laboratory, 1992.
+
+\bibitem{Eij:general}
+Victor Eijkhout.
+\newblock A general formulation for incomplete blockwise factorizations.
+\newblock {\em Comm. Appl. Numer. Meth.}, 4:161--164, 1988.
+
+\bibitem{Eijkhout2010ICCS-krylov}
+Victor Eijkhout, Paolo Bientinesi, and Robert van~de Geijn.
+\newblock Towards mechanical derivation of {Krylov} solver libraries.
+\newblock {\em Procedia Computer Science}, 1(1):1805--1813, 2010.
+\newblock Proceedings of ICCS 2010,
+  \url{http://www.sciencedirect.com/science/publication?issn=18770509&volume=1&issue=1}.
+
+\bibitem{Erdos:randomgraph}
+Paul Erd\"os and A.~Rényi.
+\newblock On the evolution of random graphs.
+\newblock {\em Publications of the Mathematical Institute of the Hungarian
+  Academy of Sciences}, 5:17–--61, 1960.
+
+\bibitem{fama84}
+V.~Faber and T.~A. Manteuffel.
+\newblock Necessary and sufficient conditions for the existence of a conjugate
+  gradient method.
+\newblock {\em SIAM J. Numer. Anal.}, 21(2):352--362, 1984.
+
+\bibitem{Falgout:scalable-hypre}
+R.D. Falgout, J.E. Jones, and U.M. Yang.
+\newblock Pursuing scalability for hypre's conceptual interfaces.
+\newblock Technical Report UCRL-JRNL-205407, Lawrence Livermore National Lab,
+  2004.
+\newblock submitted to ACM Transactions on Mathematical Software.
+
+\bibitem{Fiedler:75-property}
+M.~Fiedler.
+\newblock A property of eigenvectors of nonnegative symmetric matrices and its
+  applications to graph theory.
+\newblock {\em Czechoslovak Mathematical Journal}, 25:618--633, 1975.
+
+\bibitem{Fisher:fastparallel}
+D.~C. Fisher.
+\newblock Your favorite parallel algorithms might not be as fast as you think.
+\newblock {\em IEEE Trans. Computers}, 37:211--213, 1988.
+
+\bibitem{flynn:taxonomy}
+M.~Flynn.
+\newblock Some computer organizations and their effectiveness.
+\newblock {\em IEEE Trans. Comput.}, C-21:948, 1972.
+
+\bibitem{Fortress:homepage}
+Project fortress homepage.
+\newblock \url{http://projectfortress.sun.com/Projects/Community}.
+
+\bibitem{frenkel-smit}
+D.~Frenkel and B.~Smit.
+\newblock Understanding molecular simulations: From algorithms to applications,
+  2nd edition.
+\newblock 2002.
+
+\bibitem{FrNa:qmr}
+Roland~W. Freund and No\"el~M. Nachtigal.
+\newblock {QMR}: a quasi-minimal residual method for non-{H}ermitian linear
+  systems.
+\newblock {\em Numer. Math.}, 60:315--339, 1991.
+
+\bibitem{Frigo:oblivious}
+M.~Frigo, Charles~E. Leiserson, H.~Prokop, and S.~Ramachandran.
+\newblock Cache oblivious algorithms.
+\newblock In {\em Proc. 40th Annual Symposium on Foundations of Computer
+  Science}, 1999.
+
+\bibitem{pvm-2}
+A.~Geist, A.~Beguelin, J.~Dongarra, W.~Jiang, R.~Manchek, and V.~Sunderam.
+\newblock {\em {PVM}: A Users' Guide and Tutorial for Networked Parallel
+  Computing}.
+\newblock MIT Press, 1994.
+\newblock The book is available electronically, the url is {\tt
+  ftp://www.netlib.org/pvm3/book/pvm-book.ps}.
+
+\bibitem{Gelernter85generativecommunication}
+David Gelernter.
+\newblock Generative communication in {Linda}.
+\newblock {\em ACM Transactions on Programming Languages and Systems},
+  7:80--112, 1985.
+
+\bibitem{Linda-CACM}
+David Gelernter and Nicholas Carriero.
+\newblock Coordination languages and their significance.
+\newblock {\em Commun. ACM}, 35(2):97--107, 1992.
+
+\bibitem{gmplib}
+{GNU} multiple precision library.
+\newblock \url{http://gmplib.org/}.
+
+\bibitem{Goedeker:performance-book}
+Stefan Goedecker and Adolfy Hoisie.
+\newblock {\em Performance Optimization of Numerically Intensive Codes}.
+\newblock SIAM, 2001.
+
+\bibitem{Goldberg:arithmetic}
+D.~Goldberg.
+\newblock Compuer arithmetic.
+\newblock Appendix in \cite{HennessyPatterson}.
+
+\bibitem{goldberg:floatingpoint}
+David Goldberg.
+\newblock What every computer scientist should know about floating-point
+  arithmetic.
+\newblock {\em Computing Surveys}, March 1991.
+
+\bibitem{GolubOleary:cg-history}
+G.~H. Golub and D.~P. O'Leary.
+\newblock Some history of the conjugate gradient and {L}anczos algorithms:
+  1948-1976.
+\newblock 31:50--102, 1989.
+
+\bibitem{golo83}
+G.~H. Golub and C.~F. {Van Loan}.
+\newblock {\em Matrix Computations}.
+\newblock North Oxford Academic, Oxford, 1983.
+
+\bibitem{GoVL:matcomp}
+Gene~H. Golub and Charles~F. {Van Loan}.
+\newblock {\em Matrix Computations}.
+\newblock The Johns Hopkins University Press, Baltimore, second edition
+  edition, 1989.
+
+\bibitem{GotoGeijn:2008:Anatomy}
+Kazushige Goto and Robert A. van~de Geijn.
+\newblock Anatomy of high-performance matrix multiplication.
+\newblock {\em ACM Trans. Math. Softw.}, 34(3):1--25, 2008.
+
+\bibitem{Gray:graycodepatent}
+F.~Gray.
+\newblock Pulse code communication.
+\newblock U.S. Patent 2,632,058, March 17, 1953 (filed Nov. 1947).
+
+\bibitem{Greenberg89randomizedrouting}
+Ronald~I. Greenberg and Charles~E. Leiserson.
+\newblock Randomized routing on fat-trees.
+\newblock In {\em Advances in Computing Research}, pages 345--374. JAI Press,
+  1989.
+
+\bibitem{MPI1}
+W.~Gropp, E.~Lusk, and A.~Skjellum.
+\newblock {\em Using {MPI}}.
+\newblock {T}he {MIT} {P}ress, 1994.
+
+\bibitem{mpi-2-reference}
+William Gropp, Steven Huss-Lederman, Andrew Lumsdaine, Ewing Lusk, Bill
+  Nitzberg, William Saphir, and Marc Snir.
+\newblock {\em {MPI}: The Complete Reference, Volume 2 - The {MPI}-2
+  Extensions}.
+\newblock MIT Press, 1998.
+
+\bibitem{Gropp:BeowulfBook}
+William Gropp, Thomas Sterling, and Ewing Lusk.
+\newblock {\em Beowulf Cluster Computing with Linux, 2nd Edition}.
+\newblock MIT Press, 2003.
+
+\bibitem{Hadoop-wiki}
+Hadoop wiki.
+\newblock \url{http://wiki.apache.org/hadoop/FrontPage}.
+
+\bibitem{HaYo:applied}
+Louis~A. Hageman and David~M. Young.
+\newblock {\em Applied Iterative Methods}.
+\newblock Academic Press, New York, 1981.
+
+\bibitem{Hartstein:cache-sqrt}
+A.~Hartstein, V.~Srinivasan, T.~R. Puzak, and P.~G. Emma.
+\newblock Cache miss behavior: is it \&\#8730;2?
+\newblock In {\em Proceedings of the 3rd conference on Computing frontiers}, CF
+  '06, pages 313--320, New York, NY, USA, 2006. ACM.
+
+\bibitem{Heath:scicomp}
+Michael~T. Heath.
+\newblock {\em Scientific Computing: an introductory survey; second edition}.
+\newblock McGraw Hill, 2002.
+
+\bibitem{He:surveyparallel}
+Don Heller.
+\newblock A survey of parallel algorithms in numerical linear algebra.
+\newblock {\em SIAM Review}, 20:740--777, 1978.
+
+\bibitem{HeWo:94}
+B.~A. Hendrickson and D.~E. Womble.
+\newblock The torus-wrap mapping for dense matrix calculations on massively
+  parallel computers.
+\newblock 15(5):1201--1226, 1994.
+
+\bibitem{HennessyPatterson}
+John~L. Hennessy and David~A. Patterson.
+\newblock {\em Computer Architecture, A Quantitative Approach}.
+\newblock Morgan Kaufman Publishers, 3rd edition edition, 1990, 3rd edition
+  2003.
+
+\bibitem{HestenesStiefel1952:cg}
+M.R. Hestenes and E.~Stiefel.
+\newblock Methods of conjugate gradients for solving linear systems.
+\newblock {\em Nat. Bur. Stand. J. Res.}, 49:409--436, 1952.
+
+\bibitem{Higham:2002:ASN}
+Nicholas~J. Higham.
+\newblock {\em Accuracy and Stability of Numerical Algorithms}.
+\newblock Society for Industrial and Applied Mathematics, Philadelphia, PA,
+  USA, second edition, 2002.
+
+\bibitem{BSPlib}
+Jonathan. Hill, Bill Mccoll, Dan~C. Stefanescu, Mark~W. Goudreau, Kevin Lang,
+  Satish~B. Rao, Torsten Suel, Thanasis Tsantilas, and Rob~H. Bisseling.
+\newblock {BSPlib}: The {BSP} programming library.
+\newblock {\em Parallel Computing}, 24(14):1947--1980, 1998.
+
+\bibitem{Hoare1969axiomatic}
+C.~A.~R. Hoare.
+\newblock An axiomatic basis for computer programming.
+\newblock {\em Communications of the ACM}, 12:576--580, 1969.
+
+\bibitem{ieee754-webpage}
+{IEEE} 754: Standard for binary floating-point arithmetic.
+\newblock \url{http://grouper.ieee.org/groups/754}.
+
+\bibitem{wikipedia:interval-arithmetic}
+Interval arithmetic.
+\newblock \url{http://en.wikipedia.org/wiki/Interval_(mathematics)}.
+
+\bibitem{DAP:79a}
+C.R. Jesshope and R.W. {Hockney editors}.
+\newblock The {DAP} approach, volume 2.
+\newblock pages 311--329. Infotech Intl. Ltd., Maidenhead, 1979.
+
+\bibitem{jopl94}
+M.~T. Jones and P.~E. Plassmann.
+\newblock The efficient parallel iterative solution of large sparse linear
+  systems.
+\newblock In A.~George, J.R. Gilbert, and J.W.H. Liu, editors, {\em Graph
+  Theory and Sparse Matrix Computations}, IMA Vol 56. Springer Verlag, Berlin,
+  1994.
+
+\bibitem{charmpp}
+L.~V. Kale and S.~Krishnan.
+\newblock Charm++: Parallel programming with message-driven objects.
+\newblock In {\em Parallel Programming using C++, G. V. Wilson and P. Lu,
+  editors}, pages 175--213. MIT Press, 1996.
+
+\bibitem{Karbo:book}
+Michael Karbo.
+\newblock {PC} architecture.
+\newblock \url{http://www.karbosguide.com/books/pcarchitecture/chapter00.htm}.
+
+\bibitem{KarpZhang88}
+R.M. Karp and Y.~Zhang.
+\newblock A randomized parallel branch-and-bound procedure.
+\newblock In {\em Proceedings of the Twentieth Annual ACM Symposium on Theory
+  of Computing, Chicago, IL, USA, 2-4 May 1988}, pages .290--300. ACM Press,
+  1988.
+
+\bibitem{KSRallcache}
+{Kendall Square Research}.
+\newblock \url{http://en.wikipedia.org/wiki/Kendall_Square_Research}.
+
+\bibitem{Knuth:vol2}
+Donald Knuth.
+\newblock {\em The Art of Computer Programming, Volume 2: Seminumiercal
+  algorithms}.
+\newblock Addison-Wesley, Reading MA, 3rd edition edition, 1998.
+
+\bibitem{KopkaDaly}
+Helmut Kopka and Patrick~W. Daly.
+\newblock {\em A Guide to {\LaTeX}}.
+\newblock Addison-Wesley, first published 1992.
+
+\bibitem{Kulkami:howmuch}
+Milind Kulkarni, Martin Burtscher, Rajasekhar Inkulu, Keshav Pingali, and Calin
+  Cascaval.
+\newblock How much parallelism is there in irregular applications?
+\newblock In {\em Principles and Practices of Parallel Programming (PPoPP)},
+  2009.
+
+\bibitem{Kumar:parcomp-book}
+Vipin Kumar, Ananth Grama, Anshul Gupta, and George Karypis.
+\newblock {\em Introduction to Parallel Computing}.
+\newblock Benjamin Cummings, 1994.
+
+\bibitem{Lamport:sequential}
+L.~Lamport.
+\newblock How to make a multiprocessor computer that correctly executes
+  multiprocess programs.
+\newblock {\em IEEE Transactions on Computers}, C-28:690–--691, 1979.
+
+\bibitem{Lamport:LaTeX}
+L.~Lamport.
+\newblock {\em {\LaTeX}, a Document Preparation System}.
+\newblock Addison-Wesley, 1986.
+
+\bibitem{Lanczos1952:solution_of_systems}
+C.~Lanczos.
+\newblock Solution of systems of linear equations by minimized iterations.
+\newblock {\em Journal of Research, Nat. Bu. Stand.}, 49:33--53, 1952.
+
+\bibitem{Landau:comp-phys}
+Rubin~H Landau, Manual~Jos\'e P\'aez, and Cristian~C. Bordeianu.
+\newblock {\em A Survey of Computational Physics}.
+\newblock Princeton University Press, 2008.
+
+\bibitem{Langou:thesis}
+J.~Langou.
+\newblock {\em Iterative methods for solving linear systems with multiple
+  right-hand sides.}
+\newblock {P}h.{D}. dissertation, INSA~Toulouse, June 2003.
+\newblock CERFACS TH/PA/03/24.
+
+\bibitem{Langville2005eigenvector}
+Amy~N. Langville and Carl~D. Meyer.
+\newblock A survey of eigenvector methods for web information retrieval.
+\newblock {\em SIAM Review}, 47(1):135--161, 2005.
+
+\bibitem{Lawson:blas}
+C.~L. Lawson, R.~J. Hanson, D.~Kincaid, and F.~T. Krogh.
+\newblock {Basic Linear Algebra Subprograms} for {FORTRAN} usage.
+\newblock {\em ACM Trans. Math. Software}, 5:308--323, 1979.
+\newblock (Algorithm 539).
+
+\bibitem{Leiserson:fattree}
+Charles~E. Leiserson.
+\newblock Fat-{T}rees: Universal networks for hardware-efficient
+  supercomputing.
+\newblock {\em IEEE Trans. Comput}, C-34:892--901, 1985.
+
+\bibitem{LiRoTa:dissection}
+Richard~J. Lipton, Donald~J. Rose, and Robert~Endre Tarjan.
+\newblock Generalized nested dissection.
+\newblock {\em SIAM J. Numer. Anal.}, 16:346--358, 1979.
+
+\bibitem{LiTa:separator}
+Richard~J. Lipton and Robert~Endre Tarjan.
+\newblock A separator theorem for planar graphs.
+\newblock {\em SIAM J. Appl. Math.}, 36:177--189, 1979.
+
+\bibitem{Little:law}
+J.D.C. Little.
+\newblock A proof of the queueing formula {$L=\lambda W$}.
+\newblock {\em Ope. Res.}, pages 383--387, 1961.
+
+\bibitem{Luby:parallel}
+M.~Luby.
+\newblock A simple parallel algorithm for the maximal independent set problem.
+\newblock {\em SIAM Journal on Computing}, 4, 1986.
+
+\bibitem{Pregel:podc2009}
+Grzegorz Malewicz, Matthew~H. Austern, Aart~J.C. Bik, James~C. Dehnert, Ilan
+  Horn, Naty Leiser, and Grzegorz Czajkowski.
+\newblock Pregel: a system for large-scale graph processing - "abstract".
+\newblock In {\em Proceedings of the 28th ACM symposium on Principles of
+  distributed computing}, PODC '09, pages 6--6, New York, NY, USA, 2009. ACM.
+
+\bibitem{Mascagni:SPRNG}
+M.~Mascagni and A.~Srinivasan.
+\newblock Algorithm 806: Sprng: A scalable library for pseudorandom number
+  generation,.
+\newblock {\em ACM Transactions on Mathematical Software}, 26:436--461, 2000.
+
+\bibitem{OReilly-GnuMake}
+Robert Mecklenburg.
+\newblock {\em Managing Projects with {GNU} {Make}}.
+\newblock O'Reilly Media, 3rd edition edition, 2004.
+\newblock Print ISBN:978-0-596-00610-5 ISBN 10:0-596-00610-1 Ebook
+  ISBN:978-0-596-10445-0 ISBN 10:0-596-10445-6.
+
+\bibitem{MevdVo:itsol}
+J.A. Meijerink and H.A. van~der Vorst.
+\newblock An iterative solution method for linear systems of which the
+  coefficient matrix is a symmetric {M}-matrix.
+\newblock {\em Math Comp}, 31:148--162, 1977.
+
+\bibitem{Metropolis}
+N.~{Metropolis}, A.~W. {Rosenbluth}, M.~N. {Rosenbluth}, A.~H. {Teller}, and
+  E.~{Teller}.
+\newblock Equation of state calculations by fast computing machines.
+\newblock {\em Journal of Chemical Physics}, 21:1087--1092, June 1953.
+
+\bibitem{Me:multicg}
+Gerard Meurant.
+\newblock Multitasking the conjugate gradient method on the {CRAY} {X-MP/48}.
+\newblock {\em Parallel Computing}, 5:267--280, 1987.
+
+\bibitem{Me:dd}
+G\'erard Meurant.
+\newblock Domain decomposition methods for partial differential equations on
+  parallel computers.
+\newblock {\em Int. J. Supercomputing Appls.}, 2:5--12, 1988.
+
+\bibitem{LaTeXcompanion}
+Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
+  Rowley.
+\newblock {\em The {\LaTeX} Companion, 2nd edition}.
+\newblock Addison-Wesley, 2004.
+
+\bibitem{Oetiker:LaTeXintro}
+Tobi Oetiker.
+\newblock The not so short introductino to {\LaTeX}{}.
+\newblock \url{http://tobi.oetiker.ch/lshort/}.
+
+\bibitem{matrix-market}
+National~Institute of~Standards and Technology.
+\newblock Matrix market.
+\newblock \url{http://math.nist.gov/MatrixMarket}.
+
+\bibitem{OgAi:sparsestorage}
+Andrew~T. Ogielski and William Aiello.
+\newblock Sparse matrix computations on parallel processor arrays.
+\newblock {\em SIAM J. Sci. Stat. Comput.}
+\newblock in press.
+
+\bibitem{mpi-ref}
+S.~Otto, J.~Dongarra, S.~Hess-Lederman, M.~Snir, and D.~Walker.
+\newblock {\em Message Passing Interface: The Complete Reference}.
+\newblock The {MIT} Press, 1995.
+
+\bibitem{Overton:754book}
+Michael~L. Overton.
+\newblock {\em Numerical Computing with {IEEE} Floating Point Arithmetic}.
+\newblock SIAM, Philadelphia PA, 2001.
+
+\bibitem{PageBrin:PageRank}
+Larry Page, Sergey Brin, R.~Motwani, and T.~Winograd.
+\newblock The pagerank citation ranking: Bringing order to the web, 1998.
+
+\bibitem{Pa:combinations}
+V.~Ya. Pan.
+\newblock New combination sof methods for the acceleration of matrix
+  multiplication.
+\newblock {\em Comp. \& Maths. with Appls.}, 7:73--125, 1981.
+
+\bibitem{papi-homepage}
+Performance application programming interface.
+\newblock \url{http://icl.cs.utk.edu/papi/}.
+
+\bibitem{Patterson2008datacenter}
+David~A. Patterson.
+\newblock Technical perspective: the data center is the computer.
+\newblock {\em Commun. ACM}, 51(1):105--105, 2008.
+
+\bibitem{plimpton}
+S.~Plimpton.
+\newblock Fast parallel algorithms for short-range molecular dynamics.
+\newblock {\em J. Comput. Phys.}, 117:1--19, 1995.
+
+\bibitem{spiral}
+M.~P{\"u}schel, B.~Singer, J.~Xiong, J.~M.~F. Moura, J.~Johnson, D.~Padua,
+  M.~Veloso, and R.~W. Johnson.
+\newblock {SPIRAL}: A generator for platform-adapted libraries of signal
+  processing algorithms.
+\newblock {\em Int'l Journal of High Performance Computing Applications},
+  18(1):21--45, 2004.
+
+\bibitem{tacc:ranger}
+{Texas Advanced Computing Center: Sun Constellation Cluster: Ranger}.
+\newblock \url{http://www.tacc.utexas.edu/resources/hpc/constellation}.
+
+\bibitem{Rao:1978:cache}
+Gururaj~S. Rao.
+\newblock Performance analysis of cache memories.
+\newblock {\em J. ACM}, 25:378--395, July 1978.
+
+\bibitem{Reid1971:cg}
+J.K. Reid.
+\newblock On the method of conjugate gradients for the solution of large sparse
+  systems of linear equations.
+\newblock In J.K. Reid, editor, {\em Large sparse sets of linear equations},
+  pages 231--254. Academic Press, London, 1971.
+
+\bibitem{saad96}
+Y.~Saad.
+\newblock {\em Iterative methods for sparse linear systems}.
+\newblock PWS Publishing Company, Boston, 1996.
+
+\bibitem{Sato2004}
+Tetsuya Sato.
+\newblock The earth simulator: Roles and impacts.
+\newblock {\em Nuclear Physics B - Proceedings Supplements}, 129-130:102 --
+  108, 2004.
+\newblock Lattice 2003.
+
+\bibitem{canfar-lecture}
+David Schade.
+\newblock Canfar: Integrating cyberinfrastructure for astronomy.
+\newblock
+  \url{https://wiki.bc.net/atl-conf/display/BCNETPUBLIC/CANFAR+-+Integrating+Cyberinfrastructure+for+Astronomy}.
+
+\bibitem{Schreiber:scalability92}
+R.~Schreiber.
+\newblock Scalability of sparse direct solvers.
+\newblock In {\em Sparse Matrix Computations: Graph Theory Issues and
+  Algorithms (An IMA Workshop Volume), A. George, J.R. Gilbert, and J.W.-H.
+  Liu, eds.} New York: Springer-Verlag, 1993.
+\newblock also: Technical Report RIACS TR 92.13, NASA Ames Research Center,
+  Moffet Field, Calif., May 1992.
+
+\bibitem{shaw}
+D.~E. Shaw.
+\newblock A fast, scalable method for the parallel evaluation of
+  distance-limited pairwise particle interactions.
+\newblock {\em J. Comput. Chem.}, 26:1318--1328, 2005.
+
+\bibitem{Skillicorn96questionsand}
+D.~B. Skillicorn, Jonathan M.~D. Hill, and W.~F. Mccoll.
+\newblock Questions and answers about {BSP}, 1996.
+
+\bibitem{mpi-reference}
+Marc Snir, Steve Otto, Steven Huss-Lederman, David Walker, and Jack Dongarra.
+\newblock {\em MPI: The Complete Reference, Volume 1, The MPI-1 Core}.
+\newblock MIT Press, second edition edition, 1998.
+
+\bibitem{Spielman:spectral-graph-theory}
+Dan Spielman.
+\newblock Spectral graph theory, fall 2009.
+\newblock \url{http://www.cs.yale.edu/homes/spielman/561/}.
+
+\bibitem{Stewart90}
+{G.~W.} Stewart.
+\newblock Communication and matrix computations on large message passing
+  systems.
+\newblock {\em Parallel Computing}, 16:27--40, 1990.
+
+\bibitem{St:gaussnotoptimal}
+V.~Strassen.
+\newblock Gaussian elimination is not optimal.
+\newblock {\em Numer. Math.}, 13:354--356, 1969.
+
+\bibitem{UKTeXFAQ}
+{\TeX} frequently asked questions.
+
+\bibitem{UPC:homepage}
+{Universal Parallel C at George Washingon University}.
+\newblock \url{http://upc.gwu.edu/}.
+
+\bibitem{Valiant:1990:BSP}
+Leslie~G. Valiant.
+\newblock A bridging model for parallel computation.
+\newblock {\em Commun. ACM}, 33:103--111, August 1990.
+
+\bibitem{PLAPACK:UG}
+R.~van~de Geijn, Philip Alpatov, Greg Baker, Almadena Chtchelkanova, Joe Eaton,
+  Carter Edwards, Murthy Guddati, John Gunnels, Sam Guyer, Ken Klimkowski,
+  Calvin Lin, Greg Morrow, Peter Nagel, James Overfelt, and Michelle Pal.
+\newblock Parallel linear algebra package ({PLAPACK}): Release r0.1 (beta)
+  users' guide.
+\newblock 1996.
+
+\bibitem{PLAPACK}
+Robert~A. van~de Geijn.
+\newblock {\em Using {PLAPACK}: Parallel Linear Algebra Package}.
+\newblock The MIT Press, 1997.
+
+\bibitem{TSoPMC}
+Robert~A. van~de Geijn and Enrique~S. Quintana-Ort\'{\i}.
+\newblock {\em The Science of Programming Matrix Computations}.
+\newblock {\tt www.lulu.com}, 2008.
+
+\bibitem{vdVorst1992:bicgstab}
+Henk {van der Vorst}.
+\newblock {Bi-CGSTAB}: a fast and smoothly converging variant of {Bi-CG} for
+  the solution of nonsymmetric linear systems.
+\newblock {\em SIAM J. Sci. Stat. Comput.}, 13:631--644, 1992.
+
+\bibitem{Varga:iterative-analysis}
+Richard~S. Varga.
+\newblock {\em Matrix Iterative Analysis}.
+\newblock Prentice-Hall, Englewood Cliffs, NJ, 1962.
+
+\bibitem{oski}
+R.~Vuduc, J.~Demmel, and K.~Yelikk.
+\newblock Oski: A library of automatically tuned sparse matrix kernels.
+\newblock In {\em (Proceedings of SciDAC 2005, Journal of Physics: Conference
+  Series, to appear.}, 2005.
+
+\bibitem{atlas-parcomp}
+R.~Clint Whaley, Antoine Petitet, and Jack~J. Dongarra.
+\newblock Automated empirical optimization of software and the {ATLAS} project.
+\newblock {\em Parallel Computing}, 27(1--2):3--35, 2001.
+\newblock Also available as University of Tennessee LAPACK Working Note \#147,
+  UT-CS-00-448, 2000 ({\tt www.netlib.org/lapack/lawns/lawn147.ps}).
+
+\bibitem{Wi:fastseparable}
+O.~Widlund.
+\newblock On the use of fast methods for separable finite difference equations
+  for the solution of general elliptic problems.
+\newblock In D.J. Rose and R.A. Willoughby, editors, {\em Sparse matrices and
+  their applications}, pages 121--134. Plenum Press, New York, 1972.
+
+\bibitem{WilkinsonAllen}
+Barry Wilkinson and Michael Allen.
+\newblock {\em Parallel Programming}.
+\newblock Prentice Hall, New Jersey, 1999.
+
+\bibitem{Wilkinson:roundoff}
+J.H. Wilkinson.
+\newblock {\em Rounding Errors in Algebraic Processes}.
+\newblock Prentice-Hall, Englewood Cliffs, N.J., 1963.
+
+\bibitem{YandBrent:bicgstab}
+L.~T. Yand and R.~Brent.
+\newblock The improved bicgstab method for large and sparse unsymmetric linear
+  systems on parallel distributed memory architectures.
+\newblock In {\em Proceedings of the Fifth International Conference on
+  Algorithms and Architectures for Parallel Processing}. IEEE, 2002.
+
+\bibitem{YatesFixedPoint}
+Randy Yates.
+\newblock Fixed point: an introduction.
+\newblock \url{http://www.digitalsignallabs.com/fp.pdf}, 2007.
+
+\bibitem{Young:thesis}
+David~M. Young.
+\newblock {\em Iterative method for solving partial differential equations of
+  elliptic type}.
+\newblock PhD thesis, Harvard Univ., Cambridge, MA, 1950.
+
+\end{thebibliography}

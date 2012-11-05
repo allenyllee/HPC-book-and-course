@@ -1,0 +1,453 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012
+%%%%
+%%%% This book is distributed under a Creative Commons Attribution 3.0
+%%%% Unported (CC BY 3.0) license and made possible by funding from
+%%%% The Saylor Foundation \url{http://www.saylor.org}.
+%%%%
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Traditional scientific computing applications concern continuous data,
+often stemming from \acp{PDE}. In this chapter we will concern two
+applications areas, sorting and graph computations, that are not
+traditionally considered as scientific computing, but that are
+interesting from a point of high performance and large scale computing.
+
+\Level 0 {Sorting}
+\index{sorting|(}
+
+Sorting is not a common operation in scientific computing: one expects
+it to be more important in databases, whether these be financial or
+biological (for instance in sequence alignment). However, it sometimes
+comes up, for instance in \indexac{AMR} and other applications where
+significant manipulations of data structures occurs.
+
+In this section we will briefly look at the QuickSort
+algorithm and how it can be done in parallel. For more details,
+see~\cite{Kumar:parcomp-book} and the references therein.
+
+\Level 1 {Brief introduction to sorting}
+
+There are many sorting algorithms. One way to distinguish them is by
+their computational complexity, that is, given an array of $n$
+elements, how many operations does it take to sort them, as a function
+of~$n$. For some sorting algorithms, the answer to this question is
+not simple to give. While some algorithms work largely independent of
+the state of the input data, for others, the operation count does
+depend on it. One could imagine that a sorting algorithm would make a
+pass over the data to check if it was already sorted. In that case,
+the complexity is~$n$ operations for a sorted list, and something
+higher for an unsorted list.
+
+The so-called \indexterm{bubble sort} algorithm has a complexity
+independent of the data to be sorted. This algorithm is given by:
+
+\begin{displayalgorithm}
+  \For{$t$ from $n-1$ down to $1$}{
+    \For{$e$ from 1 to $t$}{
+      \If{elements $e$ and $e+1$ are ordered the wrong way}{exchange
+      them}
+    }
+  }
+  \caption{The bubble sort algorithm}
+\end{displayalgorithm}
+
+It is easy to see that this algorithm has a complexity of~$O(n^2)$:
+the inner loop does $t$ comparisons and up to $t$ exchanges. Summing
+this from $1$ to $n-1$ gives approximately $n^2/2$ comparisons and a
+at most the same number of exchanges.
+
+Theoretically one can show that a sorting algorithm has to have at
+least complexity~$O(n\log n)$\footnote{One can consider a sorting
+  algorithm as a decision tree: a first comparison is made, depending
+  on it two other comparisons are made, et cetera. Thus, an actual
+  sorting becomes a path through this decision tree. If every path has
+  running time~$h$, the tree has $2^h$ nodes. Since a sequence of $n$
+  elements can be ordered in $n!$ ways, the tree needs to have enough
+  paths to accomodate all of these; in other words, $2^h\geq
+  n!$. Using Stirling's formula, this means that $n\geq O(n\log
+  n)$}. There are indeed several algorithms that are guaranteed to
+attain this complexity, but a very popular algorithm, called
+\indexterm{quicksort} has only an `expected' complexity of~$O(n\log
+n)$, and a worst case complexity of~$O(n^2)$.
+
+\Level 1 {Quicksort} 
+\index{quicksort|(}
+
+Quicksort is a recursive algorithm, that, unlike bubble sort, is not
+deterministic. It is a two step procedure, based on a reordering of
+the sequence\footnote{The name is explained by its origin with the
+  Dutch computer scientist Edsger Dijkstra; see
+  \url{http://en.wikipedia.org/wiki/Dutch_national_flag_problem}.}:
+
+\begin{displayalgorithm}
+  \TitleOfAlgo{Dutch National Flag ordering of an array}
+  \Input{An array of elements, and a `pivot' value}
+  \Output{The input array with elements ordered as red-white-blue,
+    where red elements are larger than the pivot, white elements are
+    equal to the pivot, and blue elements are less than the pivot}
+\end{displayalgorithm}
+
+We state without proof that this can be done in $O(n)$ operations.
+With this, quicksort becomes:
+
+\begin{displayalgorithm}
+  \TitleOfAlgo{Quicksort}
+  \Input{An array of elements}
+  \Output{The input array, sorted}
+  \While{The array is longer than one element}{
+    pick an arbitrary value as pivot \;
+    apply the Dutch National Flag reordering to this array \;
+    Quicksort( the blue elements ) \; Quicksort( the red elements ) \;
+  }
+\end{displayalgorithm}
+
+The indeterminacy of this algorithm, and the variance in its
+complexity, stems from the pivot choice. In the worst case, the pivot
+is always the (unique) smallest element of the array. There will then
+be no blue elements, the only white element is the pivot, and the
+recursive call will be on the array of $n-1$ red elements. It is easy
+to see that the running time will then be~$O(n^2)$. On the other hand,
+if the pivot is always (close to) the median, that is, the element
+that is intermediate in size, then the recursive calls will have an
+about equal running time, and we get a recursive formula for the
+running time:
+\[ T_n = 2T_{n/2} + O(n) \]
+which  is (again without proof) $O(n\log n)$.
+
+We will now consider parallel implementations of quicksort.
+
+\Level 1 {Quicksort in shared memory}
+
+A simple parallelization of the quicksort algorithm can be achieved by
+executing the two recursive calls in parallel. This is easiest
+realized with a shared memory model, and threads
+(section~\ref{sec:threads}) for the recursive calls. However, this
+implementation is not efficient. 
+
+On an array of length~$n$, and with perfect pivot choice, there will
+be $n$~threads active in the final stage of the algorithm. Optimally,
+we would want a parallel algorithm to run in $O(\log n)$ time, but
+here the time is dominated by the initial reordering of the array by
+the first thread.
+
+\begin{exercise}
+  Make this argument precise. What is the total running time, the
+  speedup, and the efficiency of parallelizing the quicksort algorithm
+  this way?
+\end{exercise}
+
+Since shared memory is not the most interesting case, we will forego
+trying to make the thread implementation more efficient, and we will
+move on straight away to distributed memory parallelization.
+
+\Level 1 {Quicksort on a hypercube}
+
+As was apparent from the previous section, for an efficient
+parallelization of the quicksort algorithm, we need to make the Dutch
+National Flag reordering parallel too. Let us then assume that the
+array has been partitioned over the $p$ processors of a hypercube of
+dimension~$d$ (meaning that $p=2^d$).
+
+In the first step of the parallel algorithm, we choose a pivot, and
+broadcast it to all processors. All processors will then apply the
+reordering independently on their local data. 
+
+In order to bring together the red and blue elements in this first
+level, every processor is now paired up with one that has a binary
+address that is the same in every bit but the most significant one. In
+each pair, the blue elements are sent to the processor that has a
+1~value in that bit; the red elements go to the processor that has a
+0~value in that bit.
+
+After this exchange (which is local, and therefore fully parallel),
+the processors with an address $1xxxxx$ have all the red elements, and
+the processors with an address $0xxxxx$ have all the blue
+elements. The previous steps can now be repeated on the subcubes.
+
+This algorithm keeps all processors working in every step; however, it
+is susceptible to load imbalance if the chosen pivots are far from the
+median. Moreover, this load imbalance is not lessened during the sort
+process.
+
+\Level 1 {Quicksort on a general parallel processor}
+
+Quicksort can also be done on any parallel machine that has a linear
+ordering of the processors. We assume at first that every processor
+holds exactly one array element, and, because of the flag reordering,
+sorting will always involve a consecutive set of processors.
+
+Parallel quicksort of an array (or subarray in a recursive call)
+starts by constructing a binary tree on the processors storing the
+array. A~pivot value is chosen and broadcast through the tree. The
+tree structure is then used to count on each processor how many
+elements in the left and right subtree are less than, equal to, or
+more than the pivot value. 
+
+With this information, the root processor can compute where the
+red/white/blue regions are going to be stored. This information is
+sent down the tree, and every subtree computes the target locations
+for the elements in its subtree.
+
+If we ignore network contention, the reordering can now be done in
+unit time, since each processor sends at most one element. This means
+that each stage only takes time in summing the number of blue and red
+elements in the subtrees, which is $O(\log n)$ on the top level,
+$O(\log n/2)$~on the next, et cetera. This makes for almost perfect
+speedup.
+
+\index{quicksort|)}
+\index{sorting|)}
+
+\Level 0 {Graph problems}
+
+Various problems in scientific computing can be formulated as graph
+problems (for
+an introduction to graph theory see Appendix~\ref{app:graph}); for
+instance, you have 
+encountered the problem of load
+balancing (section~\ref{sec:graph-loadbalancing}) and finding
+independent sets (section~\ref{sec:redblackgreen}).
+%
+Many traditional graph algorithms are
+not immediately, or at least not efficiently, applicable, since the
+graphs are often distributed, and traditional graph theory assume global
+knowledge of the whole graph. 
+
+Recently, new types of graph computations in have arisen in scientific
+computing. Here the graph are no longer tools, but objects of study
+themselves. Examples are the \indexterm{World Wide Web} or the
+\indextermsub{social}{graph} of \indexterm{Facebook}, or the graph
+of all possible \indexterm{protein interactions} in a living organism.
+
+For this reason, combinatorial computational
+science is becoming a discipline in its own right.  We will look at
+some specific graph problems in this chapter.
+
+\Level 1 {`Real world' graphs}
+
+In discussions such as in section~\ref{sec:2dbvp} you have seen how
+the discretization of \acp{PDE} leads to computational problems that
+has a graph aspect to them. Such graphs have properties that make them
+amenable to certain kinds of problems.
+%
+For instance, using \acp{FDM} or \acp{FEM} to model two or
+three-dimensional objects leads graphs where each node is connected to
+just a few neighbours. This makes it easy to find
+\indextermp{separator}, which in turn allows such solution methods as
+\indexterm{nested dissection}; see section~\ref{sec:dissection}.
+
+There are however applications with computationally intensive graph
+problems that do not look like \ac{FEM} graphs. We will briefly look
+at the example of the world-wide web, and algorithms such
+\indexterm{Google}'s \indexterm{PageRank} which try to find
+authoratative nodes.
+
+For now, we will call such graphs \indextermsubp{random}{graph},
+although this term has a technical meaning
+too~\cite{Erdos:randomgraph}.
+
+\Level 2 {Properties of random graphs}
+
+The graphs we have seen in most of this course have properties that
+stem from the fact that they model objects in our three-dimensional
+world. Thus, the typical distance between two nodes is
+typically~$O(N^{1/3})$ where $N$ is the number of nodes. Random graphs
+do not behave like this: they often have a \indexterm{small world}
+property where the typical distance is~$O(\log N)$. A~famous example
+is the graph of film actors and their connection by having appeared in
+the same movie: according to `Six degrees of separation', no two actors
+have a distance more than six in this graph. In graph terms this means
+that the diameter of the graph is six.
+
+Small-world graphs have other properties, such as the existence of
+cliques (although these feature too in higher order \ac{FEM} problems)
+and hubs: nodes of a high degree. This leads to implications such as
+the following: deleting a random node in such a graph does not have a
+large effect on shortest paths.
+
+\begin{exercise}
+  Considering the graph of airports and the routes that exist between
+  them. If there are only hubs and non-hubs, argue that deleting a
+  non-hub has no effect on shortest paths between other airports. On
+  the other hand, consider the nodes ordered in a two-dimensional
+  grid, and delete an arbitrary node. How many shortest paths are affected?
+\end{exercise}
+
+\begin{notready}
+\Level 2 {Concepts}
+
+Two measures of centrality: eigenvector centrality and
+betweenness. Low EC and high betweenness indicates a `gatekeeper'
+function.
+
+\begin{description}
+  \item[Degree, diameter,distance] are defined as usual.
+  \item[Betweenness]%\footnote{\url{http://en.wikipedia.org/wiki/Betweenness#Betweenness_centrality}}
+    is defined as 
+    \[ C(v)=\frac
+       {\sum_{s\not=t\not=v} \#\hbox{shortest paths between $s,t$}}
+       {\sum_{s\not=t\not=v} \#\hbox{shortest paths between $s,t$ that go through $v$}}
+    \]
+  \item[Eigenvector centrality] is the magnitude of a node's component
+    in the Perron vector; see section~\ref{sec:pagerank}.
+  \item[Closeness] measures the average distance of a node to all
+    others:
+    \[ c(v) = \frac{1}{n-1}\sum_{t\not=v}d(t,v). \]
+  \item[Clustering coefficient] measures how much of a graph is
+    organized in cliques. A~global coefficient is
+    \[ \frac{\#\hbox{closed triplets}}{\#\hbox{open triplets}} \]
+    where an open triplet is a triplet $i,j,k$ so that
+    \[ (i,j)\in E,\quad (i,k)\in E, \quad (j,k)\not\in E \]
+    while for a closed triplet the last relation is an
+    inclusion. A~local definition is based on the fact that in a
+    \indexterm{clique} of $k$ nodes there are $k(k-1)/2$ edges (in an
+    undirected graph). Defining the \indexterm{neighbourhood} of a
+    node~$i$ as 
+    \[ N_i=\{j\not=i\colon (i,j)\in E\}, \]
+    the local clustering coefficient can be defined as 
+    \[ \frac{|\{e_{jk}\}_{j,k\in N_i}|}{k(k-1)/2}. \]
+\end{description}
+\end{notready}
+
+\Level 1 {Hypertext algorithms}
+\label{sec:pagerank}
+
+There are several algorithms based on linear algebra
+for measuring the importance of web
+sites~\cite{Langville2005eigenvector}. We will briefly define a few
+and discuss computational implications.
+
+\Level 2 {HITS}
+
+In the HITS (Hypertext-Induced
+Text Search) algorithm, sites have a \emph{hub} score that measures how many
+other sites it points to, and an \emph{authority} score that measures
+how many sites point to it. To calculate such scores we define an
+\indexterm{incidence matrix}~$L$, where
+\[ L_{ij}=
+\begin{cases}
+  1&\mbox{document $i$ points to document $j$}\\
+  0&\mbox{otherwise}
+\end{cases}
+\]
+The authority scores $x_i$ are defined as the sum of the hub scores
+$y_j$ of everything that points to~$i$, and the other way around. Thus
+\[
+\begin{array}{l}
+  x=L^ty\\ y=Lx
+\end{array}
+\]
+or $x=LL^tx$ and $y=L^tLy$, showing that this is an eigenvalue
+problem. The eigenvector we need has only nonnegative entries; this is
+known as the \indexterm{Perron vector} for a
+\indextermsub{nonnegative}{matrix}, see appendix~\ref{app:perron}. The
+Perron vector is computed by a \indexterm{power method}; see next section.
+
+A practical search strategy is:
+\begin{itemize}
+\item Find all documents that contain the search terms;
+\item Build the subgraph of these documents, and possible one or two
+  levels of documents related to them;
+\item Compute authority and hub scores on these documents, and present
+  them to the user as an ordered list.
+\end{itemize}
+
+\Level 2 {Pagerank}
+\index{PageRank|(}
+
+The PageRank~\cite{PageBrin:PageRank} basic idea is similar to
+HITS. Again we define a connectivity matrix
+\[ M_{ij}=
+\begin{cases}
+  1&\mbox{if page $j$ links to $i$}\\
+  0&\mbox{otherwise}
+\end{cases}
+\]
+With $e=(1,\ldots,1)$, the vector $d^t=e^tM$ counts how many links
+there are on a page: $d_i$~is the number of links on page~$i$. We
+construct a diagonal matrix $D=\diag(d_1,\ldots)$ we normalize $M$ to
+$T=MD\inv$. 
+
+Now the columns sums (that is, the sum of the elements in any column)
+of $T$ are all~$1$, which we can express as $e^tTe$. Such a matrix is
+called \indextermsub{stochastic}{matrix}. It has the following
+interpretation:
+\begin{quote}
+  If $p$ is a vector of probabilities, that is, $p_i$ is the
+  probability that the user is looking at page~$i$, then $Tp$ is the
+  vector of probabilities after the user has clicked on a random link.
+\end{quote}
+The PageRank algorithm introduces another element: sometimes the user
+will get bored from clicking, and will go to an arbitrary page (there
+are also provisions for pages with no outgoing links). If we
+call $s$ the chance that the user will click on a link, then the
+chance of going to an arbitrary page is $1-s$. Together, we now have
+the process
+\[ p'\leftarrow sTp+(1-s)e, \]
+that is, if $p$~is a vector of probabilities then $p'$ is a vector of
+probabilities that describes where the user is after making one page
+transition, either by clicking on a link or by `teleporting'.
+
+The PageRank vector is the stationary point of this process; you can
+think of it as the probability distribution after the user has made
+infinitely many transitions. The PageRank vector satisfies
+\[ p=sTp+(1-s)e \Leftrightarrow (I-sT)p=(1-s)e. \]
+Thus, we now have to wonder whether $I-sT$ has an inverse.
+If the inverse exists it satisfies
+\[ (I-sT)\inv = I+sT+s^2T^2+\cdots \]
+It is not hard to see that the inverse exists: with the Gershgorin theorem
+(appendix~\ref{app:gershgorin}) you can see that the eigenvalues of
+$T$ satisfy $|\lambda|\leq 1$. Now use that $s<1$, so the series of
+partial sums converges.
+
+The above formula for the inverse also indicates a way to compute the
+PageRank vector~$p$ by using a series of matrix-vector
+multiplications.
+
+\begin{exercise}
+  Write pseudo-code for computing the PageRank vector, given the
+  matrix~$T$. Show that you never need to compute the powers of~$T$
+  explicitly. (This is an instance of \indexterm{Horner's rule}.
+\end{exercise}
+
+In the case that $s=1$, meaning that we rule out teleportation, the
+PageRank vector satisfies $p=Tp$, which is again the problem of
+finding the \indexterm{Perron vector}; see appendix~\ref{app:perron}.
+
+We find the Perron vector by a power iteration (section~\ref{app:power-method})
+\[ p^{(i+1)} = T p^{(i)}. \]
+This is a sparse matrix vector product, but unlike in the \ac{BVP}
+case the sparsity is unlikely to have a structure such as
+bandedness. Computationally, one probably has to use the same
+parallelism arguments as for a dense matrix: the matrix has to be
+distributed two-dimensionally~\cite{OgAi:sparsestorage}.
+
+\index{PageRank|)}
+
+\endinput
+
+Triadic closure: if $(i,j)\in E$ and $(i,k)\in E$ then $(j,k)\in E$;
+example: friend or trust relationship.
+
+A \indextermsub{scale-free}{network}, or one that observes a
+\indexterm{power law}, is one where the fraction of nodes with
+degree~$k$ is proportional to $k^{-\gamma}$ where $\gamma$ is
+positive, typically $2<\gamma<3$. There are claims that graphs such as
+the \ac{WWW} obey power laws; this is a claim about the logical
+structure, not the physical one, which is very hard to
+infer~\cite{Willinger:internet}.
+
+A small-world network can be created by extending an existing network
+by \emph{preferential attachment}:
+the chance of attaching a new node is proportional to the degree
+of the old node.
+
+Power law networks usually have a very small diameter.
+

@@ -1,0 +1,14 @@
+  Consider a square $n\times n$ matrix, and a square $p\times p$
+  processor grid, where $p$ divides~$n$ without remainder. Consider
+  the overdecomposition outlined above, and make a sketch of matrix
+  element assignment for the specific case $n=6,p=2$. That is, draw an
+  $n\times n$ table where location $(i,j)$ contains the processor
+  number that stores the corresponding matrix element. Also make a
+  table for each of the processors describing the local to global mapping,
+  that is, giving the global $(i,j)$ coordinates of the elements in
+  the local matrix. (You will find this task facilitated by using
+  zero-based numbering.)
+
+  Now write functions $P,Q,I,J$ of $i,j$ that describe the global to
+  local mapping, that is, matrix element $a_{ij}$ is stored in
+  location $(I(i,j),J(i,j))$ on processor $(P(i,j),Q(i,j))$.
