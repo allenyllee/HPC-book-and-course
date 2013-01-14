@@ -1,2 +1,0 @@
-\contentsline {section}{\numberline {1}\bfseries This is a section}{1}
-\contentsline {section}{\numberline {2}\bfseries This is another section}{1}
