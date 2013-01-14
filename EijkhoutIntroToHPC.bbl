@@ -1,5 +1,12 @@
 \begin{thebibliography}{100}
 
+\bibitem{AWK:awk}
+ALFRED~V. AHO, BRIAN~W. KERNIGHAN, and PETER~J WEINBERGER.
+\newblock {\em The Awk Programming Languages}.
+\newblock Addison-Wesley Series in Computer Science. Addison-Wesley Publ.,
+  1988.
+\newblock ISBN 020107981X, 9780201079814.
+
 \bibitem{amd:law}
 G.~Amdahl.
 \newblock The validity of the single processor approach to achieving large
@@ -17,6 +24,11 @@ O.~Axelsson and A.V. Barker.
 Owe Axelsson and Ben Polman.
 \newblock Block preconditioning and domain decomposition methods~{II}.
 \newblock {\em J. Comp. Appl. Math.}, 24:55--72, 1988.
+
+\bibitem{BarnesHut}
+Josh Barnes and Piet Hut.
+\newblock A hierarchical {O(N log N)} force-calculation algorithm.
+\newblock {\em Nature}, 324:446--449, 1986.
 
 \bibitem{Ba:templates}
 Richard Barrett, Michael Berry, Tony~F. Chan, James Demmel, June Donato, Jack
@@ -65,10 +77,10 @@ Mark Bohr.
 \newblock {\em Solid-State Circuits Newsletter, IEEE}, 12(1):11 --13, winter
   2007.
 
-\bibitem{Bohr:ISSCC2009}
-Mark Bohr.
-\newblock The new era of scaling in an soc world.
-\newblock In {\em ISSCC}, pages 23--28, 2009.
+\bibitem{Bolz:GPUsparse}
+Jeff Bolz, Ian Farmer, Eitan Grinspun, and Peter Schr\"{o}oder.
+\newblock Sparse matrix solvers on the gpu: conjugate gradients and multigrid.
+\newblock {\em ACM Trans. Graph.}, 22(3):917--924, July 2003.
 
 \bibitem{boost:interval-arithmetic}
 {BOOST} interval arithmetic library.
@@ -131,12 +143,23 @@ Charles Clos.
 \newblock A study of non-blocking switching networks.
 \newblock {\em Bell System Technical Journal}, 32:406--242, 1953.
 
+\bibitem{CuMcK:reducing}
+E.~Cuthill and J.~McKee.
+\newblock Reducing the bandwidth of sparse symmetric matrices.
+\newblock In {\em ACM proceedings of the 24th National Conference}, 1969.
+
+\bibitem{DAzevedo2005:vector-mvp}
+Eduardo~F. D'Azevedo, Mark~R. Fahey, and Richard~T. Mills.
+\newblock Vectorized sparse matrix multiply for compressed row storage format.
+\newblock {\em Lecture Notes in Computer Science, Computational Science –
+  ICCS 2005}, pages 99--106, 2005.
+
 \bibitem{DAzEijRo:ppscicomp}
 E.F. D'Azevedo, V.L. Eijkhout, and C.H. Romine.
 \newblock A matrix framework for conjugate gradient methods and some variants
   of cg with less synchronization overhead.
 \newblock In {\em Proceedings of the Sixth SIAM Conference on Parallel
-  Procesing for Scientific Computing}, pages 644--646, Philadelphia, 1993.
+  Processing for Scientific Computing}, pages 644--646, Philadelphia, 1993.
   SIAM.
 
 \bibitem{Google:mapreduce}
@@ -202,6 +225,13 @@ Jack~J. Dongarra, Jeremy Du~Croz, Sven Hammarling, and Richard~J. Hanson.
 \newblock An extended set of {FORTRAN} basic linear algebra subprograms.
 \newblock {\em ACM Transactions on Mathematical Software}, 14(1):1--17, March
   1988.
+
+\bibitem{OReilly:sedawk}
+Dale Dougherty and Arnold Robbins.
+\newblock {\em sed \& awk}.
+\newblock O'Reilly Media, 2nd edition edition.
+\newblock Print ISBN: 978-1-56592-225-9 , ISBN 10:1-56592-225-5; Ebook ISBN:
+  978-1-4493-8700-6, ISBN 10:1-4493-8700-4.
 
 \bibitem{DobbsComplex}
 {Dr. Dobbs}.
@@ -355,7 +385,7 @@ Ronald~I. Greenberg and Charles~E. Leiserson.
 \newblock In {\em Advances in Computing Research}, pages 345--374. JAI Press,
   1989.
 
-\bibitem{MPI1}
+\bibitem{Gropp:UsingMPI1}
 W.~Gropp, E.~Lusk, and A.~Skjellum.
 \newblock {\em Using {MPI}}.
 \newblock {T}he {MIT} {P}ress, 1994.
@@ -401,7 +431,7 @@ Don Heller.
 B.~A. Hendrickson and D.~E. Womble.
 \newblock The torus-wrap mapping for dense matrix calculations on massively
   parallel computers.
-\newblock 15(5):1201--1226, 1994.
+\newblock {\em SIAM J. Sci. Comput.}, 15(5):1201--1226, 1994.
 
 \bibitem{HennessyPatterson}
 John~L. Hennessy and David~A. Patterson.
@@ -469,6 +499,12 @@ R.M. Karp and Y.~Zhang.
 \newblock In {\em Proceedings of the Twentieth Annual ACM Symposium on Theory
   of Computing, Chicago, IL, USA, 2-4 May 1988}, pages .290--300. ACM Press,
   1988.
+
+\bibitem{Katzenelson:nbody}
+J.~Katzenelson.
+\newblock Computational structure of the n-body problem.
+\newblock {\em SIAM Journal of Scientific and Statistical Computing},
+  10:787--815, July 1989.
 
 \bibitem{KSRallcache}
 {Kendall Square Research}.
@@ -706,9 +742,9 @@ David Schade.
 \bibitem{Schreiber:scalability92}
 R.~Schreiber.
 \newblock Scalability of sparse direct solvers.
-\newblock In {\em Sparse Matrix Computations: Graph Theory Issues and
-  Algorithms (An IMA Workshop Volume), A. George, J.R. Gilbert, and J.W.-H.
-  Liu, eds.} New York: Springer-Verlag, 1993.
+\newblock In A.~George, J.R. Gilbert, and J.W.-H. Liu, editors, {\em Sparse
+  Matrix Computations: Graph Theory Issues and Algorithms (An IMA Workshop
+  Volume)}. Springer-Verlag, New York, 1993, 1993.
 \newblock also: Technical Report RIACS TR 92.13, NASA Ames Research Center,
   Moffet Field, Calif., May 1992.
 
@@ -789,6 +825,11 @@ R.~Vuduc, J.~Demmel, and K.~Yelikk.
 \newblock Oski: A library of automatically tuned sparse matrix kernels.
 \newblock In {\em (Proceedings of SciDAC 2005, Journal of Physics: Conference
   Series, to appear.}, 2005.
+
+\bibitem{vuduc:thesis}
+Richard~W. Vuduc.
+\newblock {\em Automatic Performance Tuning of Sparse Matrix Kernels}.
+\newblock PhD thesis, University of California Berkeley, 2003.
 
 \bibitem{atlas-parcomp}
 R.~Clint Whaley, Antoine Petitet, and Jack~J. Dongarra.

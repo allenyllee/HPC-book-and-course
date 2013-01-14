@@ -1,0 +1,365 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012
+%%%%
+%%%% This book is distributed under a Creative Commons Attribution 3.0
+%%%% Unported (CC BY 3.0) license and made possible by funding from
+%%%% The Saylor Foundation \url{http://www.saylor.org}.
+%%%%
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As a preliminary to OpenMP (section~\ref{sec:openmp}), we will briefly
+go into `threads'.
+A~\emph{thread} is an independent instruction stream,
+but as part of a Unix process.  While processes can belong to
+different users, or be different programs that a single user is
+running concurrently, and therefore have their own data space, threads
+are part of one process and therefore share each other's data. Threads
+do have a possibility of having private data, for instance by have
+their own data stack, but their main characteristic is that they can
+collaborate on the same data. 
+
+Threads have long existed, even on a single processor.
+By having more than one thread on a single processor, a higher
+  processor utilization can result, since the instructions of one
+  thread can be processed while another thread is waiting for data.
+  On traditional CPUs, switching between threads is fairly expensive
+  (an exception is the \indexterm{hyper-threading} mechanism)
+  but on \acp{GPU} it is not, and in fact they \emph{need} many
+  threads to attain high performance.
+
+In the context of parallel processing we are also interested in
+threads, sinc in a shared memory context multiple threads running on
+multiple processors or processor cores can be an easy way to
+parallelize a computation. The shared memory allows the threads to all
+see the same data. This can also lead to problems; see
+section~\ref{sec:shared-lock}.
+
+\Level 2 {Threads example}
+\label{sec:thread-example}
+
+The following example\footnote{This is strictly Unix-centric and will
+  not work on Windows.} uses the \indexterm{pthreads} library to spawn
+a number of tasks that all update a global counter. Since threads
+share the same memory space, they indeed see and update the same
+memory location.
+\begin{verbatim}
+#include <stdlib.h>
+#include <stdio.h>
+#include "pthread.h"
+
+int sum=0;
+
+void adder() {
+  sum = sum+1;
+  return;
+}
+
+#define NTHREADS 50
+int main() {
+  int i;
+  pthread_t threads[NTHREADS];
+  printf("forking\n");
+  for (i=0; i<NTHREADS; i++)
+    if (pthread_create(threads+i,NULL,&adder,NULL)!=0) return i+1;
+  printf("joining\n");
+  for (i=0; i<NTHREADS; i++)
+    if (pthread_join(threads[i],NULL)!=0) return NTHREADS+i+1;
+  printf("Sum computed: %d\n",sum);
+
+  return 0;
+}
+\end{verbatim}
+The fact that this code gives the right result is a
+coincidence: it
+only happens because updating the variable is so much quicker than
+creating the thread. (On a multicore processor the chance of errors
+will greatly increase.) If we artificially increase the time for the
+update, we will no longer get the right result:
+\begin{verbatim}
+void adder() {
+  int t = sum; sleep(1); sum = t+1;
+  return;
+}
+\end{verbatim}
+Now all threads read out the value of \n{sum}, wait a while
+(presumably calculating something) and then update.
+
+This can be fixed by having a lock on the code region that should be
+`mutually exclusive':
+\begin{verbatim}
+pthread_mutex_t lock;
+
+void adder() {
+  int t,r;
+  pthread_mutex_lock(&lock);
+  t = sum; sleep(1); sum = t+1; 
+  pthread_mutex_unlock(&lock);
+  return;
+}
+
+int main() {
+  ....
+  pthread_mutex_init(&lock,NULL);
+
+\end{verbatim}
+The lock and unlock commands guarantee that no two threads can
+interfere with each other's update.
+
+For more information on pthreads, see for instance
+\url{https://computing.llnl.gov/tutorials-public/pthreads}.
+
+\Level 2 {Atomic operations}
+\index{atomic operation|(}
+\index{atomicity|see{atomic operation}}
+\label{sec:shared-lock}
+
+Shared memory makes life easy for the programmer, since every
+processor has access to all of the data: no explicit data traffic
+between the processor is needed. On the other hand, multiple
+processes/processors can also write to the same variable, which is a
+source of potential problems.
+
+Suppose that two processes both try to increment an integer
+variable~\texttt{I}:
+\begin{tabbing}
+  process 1: \texttt{I=I+2}\\
+  process 2: \texttt{I=I+3}
+\end{tabbing}
+This is a legitimate activity if the variable is an accumulator for
+values computed by independent processes.
+The result of these two updates
+depends on the sequence in which the processors read and
+write the variable. Here are three scenarios:
+
+\begin{tabular}{|rr|rr|rr|}
+  \hline
+  \multicolumn{2}{|c|}{scenario 1.}& \multicolumn{2}{|c|}{scenario 2.}&
+  \multicolumn{2}{|c|}{scenario 3.}\\ \hline
+  \multicolumn{6}{|c|}{$\n{I}=0$}\\ \hline
+  read $\n{I}=0$&read $\n{I}=0$&
+    read $\n{I}=0$&read $\n{I}=0$&
+      read $\n{I}=0$& \\
+  compute $\n{I}=2$&compute $\n{I}=3$& 
+    compute $\n{I}=2$&compute $\n{I}=3$&
+      compute $\n{I}=2$& \\
+  write $\n{I}=2$& & &write $\n{I}=3$&write $\n{I}=2$& \\
+  &write $\n{I}=3$&write $\n{I}=2$& & &read $\n{I}=2$\\
+  &&&&&compute $\n{I}=5$\\
+  &&&&&write $\n{I}=5$\\
+  \hline
+  \multicolumn{2}{|c|}{$\n{I}=3$}& \multicolumn{2}{|c|}{$\n{I}=2$}&
+  \multicolumn{2}{|c|}{$\n{I}=5$}\\ \hline
+\end{tabular}
+
+A very practical example of such conflicting updates is the inner
+product calculation:
+\begin{verbatim}
+for (i=0; i<1000; i++)
+   sum = sum+a[i]*b[i];
+\end{verbatim}
+Here the products are truly independent, so we could choose to have
+the loop iterations do them in parallel, for instance by their own
+threads. However, all threads need to update the same variable~\n{sum}.
+
+There are essentially two ways of solving this problem. 
+One is that we declare such updates of a shared variable a
+\indexterm{critical section} of code. This means that the instructions
+in the critical section (in the inner product example `read \n{sum}
+from memory, update it, write back to memory') can be executed by only
+one thread at a time. In particular, they need to be executed
+entirely by one thread before any other thread can start them so the
+ambiguity problem above will not arise. Of course, the above code
+fragment is so common that systems like OpenMP
+(section~\ref{sec:openmp}) have a dedicated mechanism for it, by
+declaring it a \emph{reduction}\index{reduction!under multi-threading}
+operation.
+
+Critical sections can for instance be implemented through the 
+\indexterm{semaphore}
+mechanism~\cite{Dijkstra:semaphores}. Surrounding each critical
+section there will be two atomic operations controlling a semaphore, a
+sign post.
+The first process to encounter the semaphore will lower it, and start
+executing the critical section. Other processes see the lowered
+semaphore, and wait. When the first process finishes the critical
+section, it executes the second instruction which raises the
+semaphore, allowing one of the waiting processes to enter the critical
+section.
+
+The other way to resolve common access to shared data is to set a 
+temporary \indexterm{lock} on certain memory areas. This solution may
+be preferable, if common execution of the critical section is likely,
+for instance if it implements writing to a database or hash table. In
+this case, one process entering a
+critical section would prevent any other process from writing
+to the data, even if they might be writing to different locations;
+locking the specific data item being accessed is then a better
+solution.
+
+The problem with locks is that they typically exist on the operating
+system level. This means that they are relatively slow. Since we hope that
+iterations of the inner product loop above would be executed at the
+speed of the floating point unit, or at least that of the memory bus,
+this is unacceptable.
+
+One implementation of
+this is \indexterm{transactional memory}, where the hardware itself
+supports atomic operations; the term derives from database
+transactions, which have a similar integrity problem. In transactional
+memory, a process will perform a normal memory update, unless the
+processor detects a conflict with an update from another process. In
+that case, the updates (`transactions') are aborted and retried with
+one processor locking the memory and the other waiting for the
+lock. This is an elegant solution; however, aborting the transaction
+may carry a certain cost of \indextermsub{pipeline}{flushing}
+(section~\ref{sec:pipelinecpu}) and
+cache line invalidation (section~\ref{sec:coherence}).
+
+\index{atomic operation|)}
+
+\Level 2 {Affinity}
+\index{affinity|(}
+
+Thread programming is very flexible, effectively creating parallelism
+as needed. However, a large part of this book is about the importance
+of data movement in scientific computations, and that aspect can not
+be ignored in thread programming.
+
+In the context of a multicore processor, any thread can be scheduled
+to any core, and there is no immediate problem with this. The problem
+in cases where we have two subsequent regions that are handled with
+thread-level parallelism. If the first region computes data, and the
+second uses that data, then we have to make sure that the thread
+producing a particular data item and the thread consuming (or
+updating) it are scheduled to the same core.
+
+We call \emph{affinity} the maintaining of a fixed mapping between
+threads (\emph{thread affinity}\index{thread!affinity|see{affinity}})
+or processes (\emph{process
+  affinity}\index{process!affinity|see{affinity}}) and cores.
+
+Maintaining thread affinity is easy in some cases. If the loop
+structure that is being parallelized stays the same, a fixed mapping
+of threads to cores makes sense:
+\begin{verbatim}
+for (i=0; i<ndata; i++) // this loop will be done by threads
+  x[i] = ....
+for (i=0; i<ndata; i++) // as will this one
+  ... = .... x[i] ...
+\end{verbatim}
+In other cases a fixed mapping is not the right solution:
+\begin{verbatim}
+for (i=0; i<ndata; i++) // produces loop
+  x[i] = ....
+for (i=0; i<ndata; i+=2) // use even indices
+  ... = ... x[i] ...
+for (i=1; i<ndata; i+=2) // use odd indices
+  ... = ... x[i] ...
+\end{verbatim}
+In this second example, either the program has to be transformed, or
+the programmer has to maintain in effect a \indextermbus{task}{queue}.
+
+\index{affinity|)}
+
+\Level 2 {Sequential consistency}
+\label{sec:seq-consist}
+
+Thread programs often look very much like fully sequential
+programs. Creating a thread for a function is much like invoking that
+function directly, and \indexterm{OpenMP} programs (see below) only
+differ from sequential programs in directives that are hidden in
+comments and pragmas. Thus, it has been proposed to solve the problem
+of conflicts such a described above by enforcing \indexterm{sequential
+  consistency}~\cite{Lamport:sequential}: a~parallel program should
+compute the same result as when its source is executed sequentially,
+with all the parallel statements in sequence.
+
+This means that a program
+\begin{verbatim}
+integer n
+n = 0
+!$omp parallel shared(n)
+n = n + 1
+!$omp end parallel
+\end{verbatim}
+should have the same effect as
+\begin{verbatim}
+n = 0
+n = n+1 ! for processor 0
+n = n+1 ! for processoe 1
+        ! et cetera
+\end{verbatim}
+With sequential consistency it is no longer necessary to declare
+atomic operations or critical sections; however, this puts strong
+demands on the implementation of the model, so it may lead to
+inefficient code.
+
+\Level 2 {Concurrency}
+
+In this book, we discuss threads in the context of scientific
+computing. However, threads also facilitate parallelism in other contexts,
+such as operating systems. In this case, the term
+\indexterm{concurrency} is often used, rather than `parallelism'.
+Concurrent tasks are typically asynchronous, rather than tightly coupled.
+
+Concurrency has been studied for a long time. Often, the question
+addressed is that of \indexterm{resource contention}: what if two
+processes, for instance users on the same system, request access to
+the same resource, for instance a printer. This means that the system
+call to print is another example of a critical section of code; see
+section~\ref{sec:shared-lock} above. Another problem with concurrency
+is that two processes can both request access to \emph{two} devices
+with exclusive use, for instance a printer and some hardware input
+device. If one process gets hold of the one resource first, and the
+other process the other resource, we have another case of
+\indexterm{deadlock}.
+
+\Level 2 {Cilk}
+
+Other programming models based on threads exist. For instance,
+\indexterm{Cilk} is a set of extensions of C/C++ with which a
+programmer can create threads.
+
+\hbox{%
+  \kern.5\unitindent
+  \begin{minipage}{2in}\tt
+    \begin{tabbing}
+      \textit{Sequential code:}\\  
+      int \=fib(int n)\{ \\
+      \>if (n<2) return 1;\\
+      \>else \=\{\\
+      \>\>int rst=0;\\
+      \>\>rst += fib(n-1);\\
+      \>\>rst += fib(n-2);\\
+      \>\>return rst;\\
+      \}\\
+    \end{tabbing}
+      \end{minipage}
+  \kern.5\unitindent
+  \begin{minipage}{2in}\tt
+    \begin{tabbing}
+      \textit{Cilk code:}\\  
+      cilk int \=fib(int n)\{ \\
+      \>if (n<2) return 1;\\
+      \>else \=\{\\
+      \>\>int rst=0;\\
+      \>\>rst += spawn fib(n-1);\\
+      \>\>rst += spawn fib(n-2);\\
+      \>\>sync;\\
+      \>\>return rst;\\
+      \}\\
+    \end{tabbing}
+      \end{minipage}
+}
+
+In this example, the variable \n{rst} is updated by two, potentially
+independent threads. The semantics of this update, that is, the
+precise definition of how conflicts such as simultaneous writes are
+resolved, is defined by \indexterm{sequential consistency}; see
+section~\ref{sec:seq-consist}.

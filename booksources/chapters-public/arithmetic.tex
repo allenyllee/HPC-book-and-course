@@ -1,0 +1,1156 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012
+%%%%
+%%%% This book is distributed under a Creative Commons Attribution 3.0
+%%%% Unported (CC BY 3.0) license and made possible by funding from
+%%%% The Saylor Foundation \url{http://www.saylor.org}.
+%%%%
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Of the various types of data that one normally encounters, the ones we
+are concerned with in the context of scientific computing are the
+numerical types: integers (or whole numbers)
+$\ldots,-2,-1,0,1,2,\ldots$, real numbers $0,1,-1.5,2/3,\sqrt 2,\log
+10,\ldots$, and complex numbers $1+2i,\sqrt 3-\sqrt 5i,\ldots$.
+Computer memory is organized to give only a certain amount of space to
+represent each number, in multiples of \indexterm{bytes}, each
+containing 8~\indexterm{bits}. Typical values are 4 bytes for an
+integer,  4~or~8 bytes for a real number, and 8~or~16 bytes for a
+complex number.
+
+Since only a certain amount of memory is available to store a number,
+it is clear that not all numbers of a certain type can be stored. For
+instance, for integers only a range is stored. In the case of real
+numbers, even storing a range is not possible since any interval $[a,b]$
+contains infinitely many numbers. Therefore, any
+\indextermsub{representation of}{real numbers} will cause gaps between the
+numbers that are stored. As a result, any computation that results in
+a number that is not representable will have to be dealt with by issuing an
+error or by approximating the result. In this chapter we will look at
+the ramifications of such approximations of the `true' outcome of
+numerical calculations.
+
+\Level 0 {Integers}
+
+In scientific computing, most operations are on real
+numbers. Computations on integers rarely add up to any serious
+computation load\footnote{Some computations are done on bit
+  strings. We will not mention them at all.}. It is mostly for
+completeness that we start with a short discussion of integers.
+
+Integers are commonly stored in 16, 32, or 64~bits, with 16 becoming
+less common and 64 becoming more and more so. The main reason for this increase is
+not the changing nature of computations, but the fact that integers
+are used to index arrays. As the size of data sets grows (in
+particular in parallel computations), larger indices are needed. For
+instance, in 32~bits one can store the numbers zero through
+$2^{32}-1\approx 4\cdot 10^9$. In other words, a 32 bit index can
+address 4 gigabytes of memory. Until recently this was enough for most
+purposes; these days the need for larger data sets has made 64~bit
+indexing necessary.
+
+When we are indexing an array, only positive integers are needed.
+In general integer computations, of course, we need to accomodate
+the negative integers too. We will now discuss several strategies for
+implementing negative integers. Our motivation here will be that
+arithmetic on positive and negative integers should be as simple as on
+positive integers only: the circuitry that we have for comparing and
+operating on bitstrings should be usable for (signed) integers.
+
+There are several ways of implementing
+negative integers. The simplest solution is to reserve one bit as a
+\indexterm{sign bit}, and use the remaining 31 (or 15 or 63; from now on we will
+consider 32 bits the standard) bits to store the
+absolute magnitude. By comparison, we will call the straightforward
+interpretation of bitstring \indexterm{unsigned} integers.
+
+\[
+\begin{array}{|c|rrrrrr|}
+  \hline
+  \hbox{bitstring}&
+  00\cdots0&\ldots&01\cdots1&
+  10\cdots0&\ldots&11\cdots1\\ \hline
+  \hbox{interpretation as unsigned int}&
+  0&\ldots&2^{31}-1&
+  2^{31}&\ldots&2^{32}-1\\ \hline
+  \hbox{interpretation as signed integer}&
+  0&\cdots&2^{31}-1&
+  -0&\cdots&-(2^{31}-1)\\
+  \hline
+\end{array}
+\]
+
+This scheme has some disadvantages, one being that
+there is both a positive and negative number zero. This means that a test
+for equality becomes more complicated than simply testing for equality
+as a bitstring. More importantly, in the second half of the
+bitstrings, the interpretation as signed integer \emph{decreases},
+going to the right. This means that a test for greater-than becomes
+complex; also
+adding a positive number to a
+negative number now has to be treated differently from adding it to a
+positive number.
+
+Another solution would be to let an unsigned number $n$ be interpreted
+as $n-B$ where $B$ is some plausible base, for instance~$2^{31}$.
+
+\[
+\begin{array}{|c|rrrrrr|}
+  \hline
+  \hbox{bitstring}&
+  00\cdots0&\ldots&01\cdots1&
+  10\cdots0&\ldots&11\cdots1\\ \hline
+  \hbox{interpretation as unsigned int}&
+  0&\ldots&2^{31}-1&
+  2^{31}&\ldots&2^{32}-1\\ \hline
+  \hbox{interpretation as shifted int}&
+  -2^{31}&\ldots&-1&
+  0&\ldots&-2^{31}+1\\ \hline
+\end{array}
+\]
+
+This shifted scheme does not suffer from the $\pm0$ problem, and addition now
+works properly. However, it would be nice if for positive numbers
+\n{int n} and \n{unsigned int n} had the same bit pattern. To get
+this, we flip the first and second half of the number line.
+
+The resulting scheme, which is the one that is used most commonly, is
+called \indexterm{2's complement}. Using this scheme,
+the representation of integers is
+formally defined as follows.
+\begin{itemize}
+\item If $0\leq m\leq 2^{31}-1$, the normal bit pattern for $m$ is
+  used.
+\item For $-2^{31}\leq n\leq -1$, $n$ is represented by the bit
+  pattern for $2^{32}-|n|$.
+\end{itemize}
+The following diagram shows the correspondence between bitstrings and
+their interpretation as 2's complement integer:
+\[
+\begin{array}{|c|rrrrrr|}
+  \hline
+  \hbox{bitstring}&
+  00\cdots0&\ldots&01\cdots1&
+  10\cdots0&\ldots&11\cdots1\\ \hline
+  \hbox{interpretation as unsigned int}&
+  0&\ldots&2^{31}-1&
+  2^{31}&\ldots&2^{32}-1\\ \hline
+  \hbox{interpretation as 2's comp. integer}&
+  0&\cdots&2^{31}-1&
+  -2^{31}&\cdots&-1\\
+  \hline
+\end{array}
+\]
+
+Some observations:
+\begin{itemize}
+\item There is no overlap between the bit patterns for positive and
+  negative integers, in particular, there is only one pattern for zero.
+\item The positive numbers have a leading bit zero, the negative
+  numbers have the leading bit set.
+\end{itemize}
+
+\begin{exercise}
+  \label{ex:compare-mn}
+  For the `naive' scheme and the 2's complement scheme for negative
+  numbers, give pseudocode for the comparison test $m<n$, where $m$
+  and~$n$ are integers. Be careful to distinguish between all cases of
+  $m,n$ positive, zero, or negative.
+\end{exercise}
+
+Adding two numbers with the same sign, or multiplying two numbers of
+any sign, may lead to a result that is too
+large or too small to represent. This is called \indexterm{overflow}.
+
+\begin{exercise}
+  Investigate what happens when you perform such a calculation. What
+  does your compiler say if you try to write down a nonrepresentible
+  number explicitly, for instance in an assignment statement?
+\end{exercise}
+
+In exercise~\ref{ex:compare-mn} above you explored comparing two integers.
+Let us know explore how 
+subtracting numbers in two's complement is implemented. Consider $0\leq
+m\leq 2^{31}-1$ and $1\leq n\leq 2^{31}$ and let us see what happens
+in the computation of $m-n$. 
+
+Suppose we have an algorithm for adding and subtracting unsigned
+32-bit numbers. Can we use that to subtract two's complement integers?
+We start by observing that the integer subtraction $m-n$ becomes the
+unsigned addition $m+(2^{32}-n)$.
+\begin{itemize}
+\item Case: $m<n$. In this case, $m-n$ is negative and $1\leq
+  |m-n|\leq 2^{31}$, so the bit pattern for $m-n$ is that of
+  $2^{32}-(n-m)$. Now, $2^{32}-(n-m)=m+(2^{32}-n)$, so we can compute
+  $m-n$ in 2's complement by adding the bit patterns of $m$ and $-n$ as
+  unsigned integers.
+\item Case: $m>n$. Here we observe that
+  $m+(2^{32}-n)=2^{32}+m-n$. Since $m-n>0$, this is a number $>2^{32}$
+  and therefore not a legitimate
+  representation of a negative number. However, if we store this
+  number in 33 bits, we see that it is
+  the correct result $m-n$, plus a single bit in the
+  33-rd position. Thus, by performing the unsigned addition, and
+  ignoring the \indexterm{overflow bit}, we again get the correct result.
+\end{itemize}
+In both cases we conclude that we can perform the subtraction $m-n$ by adding
+the unsigned number that represent $m$ and $-n$
+and ignoring overflow if it occurs.
+
+\Level 0 {Real numbers}
+
+In this section we will look at how real numbers are
+represented in a computer, and the limitations of various schemes. The
+next section will then explore the ramifications of this for arithmetic
+involving computer numbers.
+
+\Level 1 {They're not really real numbers}
+\label{sec:arith-intro}
+
+In the mathematical sciences, we usually work with real numbers, so
+it's convenient to pretend that computers can do this too. However,
+since numbers in a computer have only a finite number of bits, most
+real numbers can not be represented exactly. In fact, even many
+fractions can not be represented exactly, since they repeat; for
+instance, $1/3=0.333\ldots$. An illustration of this is given in
+appendix~\ref{sec:fraction-code}.
+
+\begin{exercise}
+  Some programming languages allow you to write loops with not just an
+  integer, but also with a real number as `counter'. Explain why this
+  is a bad idea. Hint: when is the upper bound reached?
+\end{exercise}
+
+Whether a fraction repeats depends on the number system. (How would
+you write $1/3$ in ternary, base~3, arithmetic?) In binary computers
+this means that fractions such as $1/10$, which in decimal arithmetic
+are terminating, are repeating. See section~\ref{sec:bcd} for why some
+people care about this and what was done about it.
+
+\Level 1 {Representation of real numbers}
+\label{sec:float-representation}
+\index{floating point numbers!representation|(}
+
+Real numbers are stored using a scheme that is analogous to what is
+known as `scientific notation', where a number is represented as a
+\indexterm{significant} and an \indexterm{exponent}, for
+instance~$6.022\cdot 10^{23}$, which has a significant \n{6022} with a
+\indexterm{radix point} after the first digit, and an exponent~\n{23}.
+This number stands for
+\[ 6.022\cdot 10^{23}= \left[
+    6\times 10^0+0\times 10^{-1}+2\times10^{-2}+2\times10^{-3}
+    \right] \cdot 10^{23}. 
+\]
+We introduce a \indexterm{base}, 
+a small integer number, 10~in the preceding example, and 2~in computer
+numbers, and write numbers in terms of it as a sum of $t$~terms:
+\begin{equation}
+    x = \pm 1 \times \left[
+       d_1\beta^0+d_2\beta^{-1}+d_3\beta^{-2}+\cdots+d_t\beta^{-t+1}b\right] \times \beta^e =
+       \pm \Sigma_{i=1}^t d_i\beta^{1-i}  \times\beta^e
+       \label{eq:floatingpoint-def}
+\end{equation}
+where the components are
+\begin{itemize}
+\item the \indexterm{sign bit}: a single bit storing whether the
+  number is positive or negative;
+\item $\beta$ is the base of the number system;
+\item $0\leq d_i\leq \beta-1$ the digits of the \indexterm{mantissa}
+  or \indexterm{significant} -- the location of the radix point
+  (decimal point in decimal numbers) is implicitly assumed to the
+  immediately following the first digit;
+\item $t$ is the length of the mantissa;
+\item $e\in [L,U]$ exponent; typically $L<0<U$ and $L\approx-U$.
+\end{itemize}
+
+Note that there is an explicit sign bit for the whole number; the sign
+of the exponent is handled differently. 
+For reasons of efficiency, $e$~is not a signed number; instead it is
+considered as an unsigned number in \indexterm{excess} of a certain minimum
+value. For instance, the bit pattern for the number zero is
+interpreted as~$e=\nobreak L$.
+
+\Level 2 {Some examples}
+
+Let us look at some specific examples of floating point
+representations. Base 10 is the most logical choice for human
+consumption, but computers are binary, so base~2 predominates
+there. Old IBM\index{IBM} mainframes grouped bits to make for a base~16
+representation.
+
+\begin{tabular}{r|r|r|r|r}
+  &$\beta$&$t$&$L$&$U$\\ \hline
+  IEEE single precision (32 bit)&2&24&-126&127\\
+  IEEE double precision (64 bit)&2&53&-1022&1023\\
+  Old Cray 64 bit&2&48&-16383&16384\\
+  IBM mainframe 32 bit&16&6&-64&63\\
+  packed decimal&10&50&-999&999\\
+  Setun&3
+\end{tabular}
+
+Of these, the single and double precision formats are by far the most
+common. We will discuss these in section~\ref{sec:ieee754} and
+further.
+
+\Level 2 {Binary coded decimal}
+\label{sec:bcd}
+
+Decimal numbers are not relevant in scientific computing, but they are
+useful in financial calculations, where computations involving money
+absolutely have to be exact. Binary arithmetic is at a disadvantage
+here, since numbers such as $1/10$ are repeating fractions in
+binary. With a finite number of bits in the mantissa\index{mantissa},
+this means that the number $1/10$ can not be represented exactly in
+binary.  For this reason, \indexterm{binary-coded-decimal} schemes
+were used in old IBM\index{IBM} mainframes, and are in fact being
+standardized in revisions of IEEE754~\cite{ieee754-webpage}; see also
+section~\ref{sec:ieee754}.
+
+In BCD schemes, one or more decimal digits are encoded in a number of
+bits. The simplest scheme would encode the digits $0\ldots9$ in four
+bits. This has the advantage that in a
+BCD number each digit is readily identified; it has the disadvantage
+that about $1/3$ of all bits are wasted, since 4 bits can
+encode the numbers~$0\ldots15$.
+%
+More efficient encodings would encode $0\ldots999$ in ten bits, which
+could in principle store the numbers~$0\ldots1023$. While this is
+efficient in the sense that few bits are wasted, identifying
+individual digits in such a number takes some decoding. For this
+reason, BCD arithmetic needs hardware support from the processor,
+which is rarely found these days; one example is the IBM
+Power architecture, starting with the \indextermbus{IBM}{Power6}.
+
+\Level 2 {Other number bases for computer arithmetic}
+
+There have been some experiments with \indexterm{ternary arithmetic}
+(see~\url{http://en.wikipedia.org/wiki/Ternary_computer}
+and~\url{http://www.computer-museum.ru/english/setun.htm}), however,
+no practical hardware exists.
+
+\index{floating point numbers!representation|)}
+
+\Level 1 {Limitations}
+\label{sec:exceptions}
+
+Since we use only a finite number of bits to store floating point
+numbers, not all numbers can be represented. The ones that can not be
+represented fall into two categories: those that are too large or too
+small (in some sense), and those that fall in the gaps. Numbers can be
+too large or too small in the following ways.
+\begin{itemize}
+\item[Overflow] The largest number we can store is
+  \[ (\beta-1)\cdot1+(\beta-1)\cdot\beta\inv+\cdots
+  +(\beta-1)\cdot\beta^{-(t-1)}=\beta-1\cdot\beta^{-(t-1)},
+  \]
+  and the smallest number (in an absolute
+  sense) is $-(\beta-\beta^{-(t-1)}$; anything larger than the
+  former or smaller than the latter causes a condition called
+  \indexterm{overflow}.
+\item[Underflow]The number closest to zero is $\beta^{-(t-1)}\cdot
+  \beta^L$. A computation that has a result less than that (in
+  absolute value) causes a condition called \indexterm{underflow}. In
+  fact, most computers use \indexterm{normalized floating point
+    numbers}: the first digit $d_1$ is taken to be nonzero; see
+  section~\ref{sec:machine-eps} for more about this. In this case, any
+  number less than $1\cdot\beta^L$ causes underflow. Trying
+  to compute a number less than that in absolute value is sometimes
+  handled by using \indexterm{unnormalized floating point numbers}
+  (a~process known as \indexterm{gradual underflow}), but this is
+  typically tens or hundreds of times slower than computing with
+  regular floating point numbers\footnote{In real-time applications
+    such as audio processing this phenomenon is especially noticable;
+    see \url{http://phonophunk.com/articles/pentium4-denormalization.php?pg=3}.}. At
+  the time of this writing, only the IBM\index{IBM} Power6 has
+  hardware support for gradual underflow.
+\end{itemize}
+The fact that only a small number of real numbers can be represented
+exactly is the basis of the field of round-off error analysis. We will
+study this in some detail in the following sections.
+
+For detailed discussions, see the book by
+Overton~\cite{Overton:754book}; it is easy to find online copies of
+the essay by Goldberg~\cite{goldberg:floatingpoint}. For extensive
+discussions of round-off error analysis in algorithms, see the books
+by Higham~\cite{Higham:2002:ASN} and Wilkinson~\cite{Wilkinson:roundoff}.
+
+\Level 1 {Normalized numbers}
+
+The general definition of floating point numbers,
+equation \eqref{eq:floatingpoint-def}, leaves us with the problem that numbers
+have more than one representation. For instance,
+$.5\times10^{2}=.05\times 10^3$. Since this would make computer
+arithmetic needlessly complicated, for instance in testing equality of
+numbers, we use \indexterm{normalized floating point
+  numbers}. A~number is normalized if its first digit is nonzero.
+The implies that the mantissa\index{mantissa} part is $\beta> x_m\geq 1$.
+
+A practical implication in the case of binary numbers is that the
+first digit is always~1, so we do not need to store it explicitly.
+In the IEEE 754 standard, this means that every floating point number
+is of the form
+\[ 1.d_1d_2\ldots d_t\times 2^{\mathrm exp}.\]
+
+\Level 1 {Representation error}
+
+Let us consider a real number that is not representable in a
+computer's number system.
+
+An unrepresentable number is approximated either by
+\indexterm{rounding} or \indexterm{truncation}.
+This means that a machine number~$\tilde x$ is the representation for
+all~$x$ in an interval around it.  With $t$ digits in the
+mantissa\index{mantissa}, this is the interval of numbers that differ
+from~$\bar x$ in the $t+1$st digit. For the mantissa\index{mantissa}
+part we get:
+\[
+\begin{cases}
+  x\in \left[\tilde x,\tilde x+\beta^{-t+1}\right)&\hbox{truncation}\\
+  x\in \left[\tilde x-\frac12 \beta^{-t+1},\tilde x+\frac12 \beta^{-t+1}\right)
+    &\hbox{rounding}
+\end{cases}
+\]
+
+If $x$ is a number and $\tilde x$ its representation in the computer,
+we call $x-\tilde x$ the \emph{representation error} or
+\indextermsub{absolute}{representation error}, and $\frac{x-\tilde x}{x}$
+the \indextermsub{relative}{representation error}. Often we are not
+interested in the sign of the error, so we may apply the terms error
+and relative error to $|x-\tilde x|$ and~$|\frac{x-\tilde x}{x}|$
+respectively.
+
+Often we are only interested in bounds on the error. If $\epsilon$ is
+a bound on the error, we will write
+\[ \tilde x = x\pm\epsilon \defined
+    |x-\tilde x|\leq\epsilon 
+    \Leftrightarrow \tilde x\in[x-\epsilon,x+\epsilon]
+\]
+For the relative error we note that
+\[ \tilde x =x(1+\epsilon) \Leftrightarrow
+    \left|\frac{\tilde x-x}{x}\right|\leq \epsilon
+\]
+
+Let us consider an example in decimal arithmetic, that is, $\beta=10$,
+and with a 3-digit mantissa: $t=3$.  The number $x=1.256$ has a
+representation that depends on whether we round or truncate: $\tilde
+x_{\mathrm{round}}=1.26$, $\tilde x_{\mathrm{truncate}}=1.25$.
+The error is in the 4th digit: if $\epsilon=x-\tilde x$ 
+then $|\epsilon|<\beta^{t-1}$.
+\begin{exercise}
+The number in this example had no exponent part. What are the error
+and relative error if there had been one?
+\end{exercise}
+
+\Level 1 {Machine precision}
+\label{sec:machine-eps}
+
+Often we are only interested in the order of magnitude of the
+representation error,
+and we will write $\tilde x=x(1+\epsilon)$, where~$|\epsilon|\leq\beta^{-t}$.
+This maximum relative error is called the \indexterm{machine
+  precision}, or sometimes \emph{machine epsilon}\index{machine
+  epsilon|see{machine precision}}. Typical values are:
+\[
+\begin{cases}
+  \epsilon\approx10^{-7}&\hbox{32-bit single precision}\\
+  \epsilon\approx10^{-16}&\hbox{64-bit double precision}
+\end{cases}
+\]
+Machine precision can be defined another way: $\epsilon$~is the
+smallest number that can be added to~$1$ so that $1+\epsilon$ has a
+different representation than~$1$. A~small example shows how aligning
+exponents can shift a too small operand so that it is effectively ignored in
+the addition operation:
+\[
+\begin{array}{cll}
+   &1.0000&\times 10^0\\
+  +&1.0000&\times 10^{-5}\\ \hline
+\end{array}
+\quad\Rightarrow\quad
+\begin{array}{cll}
+   &1.0000&\times 10^0\\
+  +&0.00001&\times 10^0\\ \hline
+  =&1.0000&\times 10^0
+\end{array}
+\]
+Yet another way of looking at this
+is to observe that, in the addition $x+y$, if the ratio of $x$ and~$y$
+is too large, the result will be identical to~$x$.
+
+The machine precision is the maximum attainable accuracy of
+computations: it does not make sense to ask for more than 6-or-so
+digits accuracy in single precision, or 15 in double.
+
+\begin{exercise}
+  Write a small program that computes the machine epsilon. Does it
+  make any difference if you set the
+  \indextermbus{compiler}{optimization levels} low or high? 
+  %Can you find other ways in which this computation goes wrong?
+\end{exercise}
+\begin{exercise}
+  The number $e\approx 2.72$, the base for the natural logarithm, has
+  various definitions. One of them is 
+  \[ e=\lim_{n\rightarrow\infty} (1+1/n)^n. \]
+  Write a single precision program that tries to compute~$e$ in this
+  manner. Evaluate the expression for $n=10^k$ with
+  $k=1,\ldots,10$. Explain the output for large~$n$. Comment on the
+  behaviour of the error.
+\end{exercise}
+
+\Level 1 {The IEEE 754 standard for floating point numbers}
+\label{sec:ieee754}
+
+\begin{figure}
+  \[
+  \begin{array}{| l || l || l |}
+    \hline
+    \hbox{sign}&\hbox{exponent}&\hbox{mantissa}\\
+    \hline
+    s&e_1\cdots e_8&s_1\dots s_{23}\\
+    \hline
+    31&30\cdots 23&22\cdots 0\\
+    \hline
+  \end{array}\quad
+  \begin{array}{|r|r|}
+    \hline
+    (e_1\cdots e_8)&\hbox{numerical value}\\
+    \hline
+    (0\cdots0)=0& \pm 0.s_1\cdots s_{23}\times 2^{-126}\\
+    \hline
+    (0\cdots 01)=1& \pm 1.s_1\cdots s_{23}\times 2^{-126}\\
+    \hline
+    (0\cdots 010)=2& \pm 1.s_1\cdots s_{23}\times 2^{-125}\\
+    \hline
+    \cdots&\\
+    \hline
+    (01111111)=127& \pm 1.s_1\cdots s_{23}\times 2^{0}\\
+    \hline
+    (10000000)=128& \pm 1.s_1\cdots s_{23}\times 2^{1}\\
+    \hline
+    \cdots&\\
+    \hline
+    (11111110)=254& \pm 1.s_1\cdots s_{23}\times 2^{127}\\
+    \hline
+    (11111111)=255& \hbox{$\pm\infty$ if $s_1\cdots s_{23}=0$, otherwise \n{NaN}} \\
+    \hline
+  \end{array}
+  \]
+  \caption{Single precision arithmetic}
+  \label{fig:single-precision}
+\end{figure}
+
+Some decades ago, issues like the length of the
+mantissa\index{mantissa} and the rounding behaviour of operations
+could differ between computer manufacturers, and even between models
+from one manufacturer. This was obviously a bad situation from a point
+of portability of codes and reproducibility of results. The IEEE
+standard 754\footnote{IEEE 754 is a standard for binary arithmetic;
+  there is a further standard, IEEE 854, that allows decimal
+  arithmetic.}\footnote{`` It was remarkable that so many hardware
+  people there, knowing how difficult p754 would be, agreed that it
+  should benefit the community at large. If it encouraged the
+  production of floating-point software and eased the development of
+  reliable software, it would help create a larger market for
+  everyone's hardware. This degree of altruism was so astonishing that
+  MATLAB's creator Dr. Cleve Moler used to advise foreign visitors not
+  to miss the country's two most awesome spectacles: the Grand Canyon,
+  and meetings of IEEE p754.'' W. Kahan,
+  \url{http://www.cs.berkeley.edu/~wkahan/ieee754status/754story.html}.}
+codified all this, for instance stipulating 24 and 53 bits for the
+mantissa\index{mantissa} in single and double precision arithmetic,
+using a storage sequence of sign bit, exponent, mantissa. 
+%% \footnote{Computer systems
+%%   can still differ as to how to store successive bytes. If the
+%%   \indexterm{least significant byte} is stored first, the system is
+%%   called \indexterm{little-endian}; if the \indexterm{most significant
+%%     byte} is stored first, it is called \indexterm{big-endian}. See
+%%   \url{http://en.wikipedia.org/wiki/Endianness} for details.}.
+
+The standard also declared the rounding behaviour
+to be \indexterm{correct rounding}: the result of an operation should be the
+rounded version of the exact result. There will be much more on the
+influence of rounding (and truncation) on numerical computations, below.
+
+Above (section~\ref{sec:exceptions}), we have seen the phenomena of
+overflow and underflow, that is, operations leading to unrepresentable
+numbers. There is a further exceptional situation that needs to be
+dealt with: what result should be returned if the program asks for
+illegal operations such as~$\sqrt{-4}$? The IEEE 754 standard has two
+special quantities for this: \texttt{Inf} and~\texttt{NaN} for
+`infinity' and `not a number'.  Infinity is the result of overflow or
+dividing by zero, not-a-number is the result of, for instance,
+subtracting infinity from infinity.  If \texttt{NaN} appears in an
+expression, the whole expression will evaluate to that value. The rule
+for computing with \texttt{Inf} is a bit more
+complicated~\cite{goldberg:floatingpoint}.
+
+An inventory of the meaning of all bit patterns in IEEE
+754 double precision is given in figure~\ref{fig:single-precision}.
+Note that for normalized numbers the first nonzero digit is a~1, which
+is not stored, so the bit pattern $d_1d_2\ldots d_t$ is interpreted as
+$1.d_1d_2\ldots d_t$.
+
+\begin{exercise}
+  Every programmer, at some point in their life, makes the mistake of
+  storing a real number in an integer or the other way around. This
+  can happen for instance if you call a function differently from how
+  it was defined.
+\begin{verbatim}
+void a(float x) {....}
+int main() {
+  int i;
+  .... a(i) ....
+}
+\end{verbatim}
+What happens when you print \n{x} in the function? Consider the bit
+pattern for a small integer, and use the table in
+figure~\ref{fig:single-precision} to interpret it as a floating point
+number. Explain that it will be an unnormalized number\footnote{This
+  is one of those errors you won't forget after you make it. In the
+  future, whenever you see a number on the order of $10^{-305}$ you'll
+  recognize that you made this error.}.
+\end{exercise}
+
+These days, almost all processors adhere to the IEEE 754 standard,
+with only occasional exceptions. For instance, Nvidia Tesla
+\indexac{GPU}s are not standard-conforming in single precision;
+see~\url{http://en.wikipedia.org/wiki/Nvidia_Tesla}. The justification
+for this is that single precision is more likely used for graphics,
+where exact compliance matters less. For many scientific computations,
+double precision is necessary, since the precision of calculations
+gets worse with increasing problem size or runtime. This is true for
+the sort of calculations in chapter~\ref{ch:odepde}, but not for
+others such as Lattice-Boltzmann.
+
+\Level 0 {Round-off error analysis}
+\index{round-off error analysis|(}
+
+Numbers that are too large or too small to be represented, leading to
+overflow and underflow, are
+uncommon: usually computations can be arranged so that this situation
+will not occur. By contrast, the case that the result of a computation
+between computer numbers
+(even something as simple as a single addition) 
+is not representable is very common. Thus, looking at the
+implementation of an algorithm, we need to analyze the
+effect of such small errors propagating through the computation.
+This is commonly called
+\indexterm{round-off error analysis}.
+
+\Level 1 {Correct rounding}
+
+The IEEE 754 standard, mentioned in section~\ref{sec:ieee754}, does
+not only declare the way a floating point number is stored, it also
+gives a standard for the accuracy of operations such as addition,
+subtraction, multiplication, division. The model for arithmetic in the
+standard is that of \indexterm{correct rounding}: the result of an
+operation should be as if the following procedure is followed:
+\begin{itemize}
+\item The exact result of the operation is computed, whether this is
+  representable or not;
+\item This result is then rounded to the nearest computer number.
+\end{itemize}
+In short: the representation of the result of an
+operation is the rounded exact result of that operation. (Of course,
+after two operations it no longer needs to hold that the computed
+result is the exact rounded version of the exact result.)
+
+If this statement sounds trivial or self-evident, consider subtraction
+as an example. In a decimal number system with two digits in the
+mantissa, the computation
+$1.0-\fp{9.4}{-1}=1.0-0.94=0.06=\fp{0.6}{-2}$. Note that in an
+intermediate step the mantissa $.094$ appears, which has one more
+digit than the two we declared for our number system. The extra digit
+is called a \indexterm{guard digit}.
+
+Without a guard digit, this operation would have proceeded as
+$1.0-\fp{9.4}{-1}$, where $\fp{9.4}{-1}$ would be rounded to~$0.9$,
+giving a final result of~$0.1$, which is almost double the correct result.
+\begin{exercise}
+  Consider the computation $1.0-\fp{9.5}{-1}$, and assume again that
+  numbers are rounded to fit the 2-digit mantissa. Why is this
+  computation in a way a lot worse than the example?
+\end{exercise}
+One guard digit is not enough to guarantee correct rounding. An
+analysis that we will not reproduce here shows that three extra bits
+are needed~\cite{Goldberg:arithmetic}.
+
+\Level 1 {Addition}
+
+Addition of two floating point numbers is done in a couple of steps.
+First the exponents are aligned: the smaller of the two numbers is
+written to have the same exponent as the larger number. Then the
+mantissas\index{mantissa} are added. Finally, the result is adjusted
+so that it again is a normalized number.
+
+As an example, consider $1.00+2.00\times 10^{-2}$. Aligning the
+exponents, this becomes $1.00+0.02=1.02$, and this result requires no
+final adjustment. We note that this computation was exact, but
+the sum $1.00+2.55\times 10^{-2}$ has the same result, and here the
+computation is clearly not exact: the exact result is $1.0255$, which
+is not representable with three digits to the mantissa.
+
+In the example $6.15\times 10^1+3.98\times 10^1=10.13\times 10^1=1.013\times
+10^2\rightarrow 1.01\times 10^2$ we see that after addition of the mantissas an
+adjustment of the exponent is needed. The error again comes from
+truncating or rounding the first digit of the result that does not fit
+in the mantissa: if $x$ is the true sum and $\tilde x$ the computed
+sum, then $\tilde x=x(1+\epsilon)$ where, with a 3-digit mantissa
+$|\epsilon|<10^{-3}$.
+
+Formally, let us consider the computation of
+$s=x_1+x_2$, and we assume that the numbers~$x_i$ are represented
+as $\tilde x_i=x_i(1+\epsilon_i)$.
+Then the sum~$s$ is represented as
+\[ 
+\begin{array}{rl}
+\tilde s&=(\tilde x_1+\tilde x_2)(1+\epsilon_3)\\
+&=x_1(1+\epsilon_1)(1+\epsilon_3)+x_2(1+\epsilon_2)(1+\epsilon_3)\\
+&\approx x_1(1+\epsilon_1+\epsilon_3)+x_2(1+\epsilon_2+\epsilon_3)\\
+&\approx s(1+2\epsilon)
+\end{array}
+\]
+under the assumptions that all~$\epsilon_i$ are small and of roughly
+equal size, and that both $x_i>0$.
+We see that the relative errors are added under addition.
+
+\Level 1 {Multiplication}
+
+Floating point multiplication, like addition, involves several steps.
+In order to multiply two numbers $m_1\times\beta^{e_1}$
+and~$m_2\times\beta^{e_2}$, the following steps are needed.
+\begin{itemize}
+\item The exponents are added: $e\leftarrow e_1+e_2$.
+\item The mantissas\index{mantissa} are multiplied: $m\leftarrow
+  m_1\times m_2$.
+\item The mantissa is normalized, and the exponent adjusted accordingly.
+\end{itemize}
+
+For example: $\fp{1.23}{0}\times\fp{5.67}1=\fp{0.69741}1\rightarrow
+\fp{6.9741}0\rightarrow\fp{6.97}0$.
+
+\begin{exercise}
+  Analyze the relative error of multiplication.
+\end{exercise}
+
+\Level 1 {Subtraction}
+\label{sec:subtraction}
+
+Subtraction behaves very differently from addition. Whereas in
+addition errors are added, giving only a gradual increase of overall
+roundoff error, subtraction has the potential for greatly increased
+error in a single operation. 
+
+For example, consider subtraction with 3 digits to the mantissa:
+$1.24-1.23=.001\rightarrow \fp{1.00}{-2}$. While the result is exact,
+it has only one significant digit\footnote {Normally, a number with 3
+  digits to the mantissa suggests an error corresponding to rounding
+  or truncating the fourth digit. We say that such a number has 3
+  \indexterm{significant digits}. In this case, the last two digits have no
+  meaning, resulting from the normalization process.}. To see this, consider
+the case where the first operand~$1.24$ is actually the rounded result
+of a computation that should have resulted in~$1.235$. In that case,
+the result of the subtraction should have been~$\fp{5.00}{-3}$, that
+is, there is a 100\% error, even though the relative error of the
+inputs was as small as could be expected. Clearly, subsequent
+operations involving the result of this subtraction will also be
+inaccurate.
+We conclude that subtracting almost equal numbers is a likely cause of
+numerical roundoff.
+
+There are some subtleties about this example. Subtraction of almost
+equal numbers is exact, and we have the correct rounding behaviour of
+IEEE arithmetic. Still, the correctness of a single operation does not
+imply that a sequence of operations containing it will be
+accurate. While the addition example showed only modest decrease of
+numerical accuracy, the cancellation in this example can have
+disastrous effects.
+
+\begin{comment}
+Exercise: sine function through power series. How to deal with the
+alternating signs?
+\end{comment}
+
+\Level 1 {Examples}
+
+From the above, the reader may got the impression that roundoff errors
+only lead to serious problems in exceptional circumstances. In this
+section we will discuss some very practical examples where the
+inexactness of computer arithmetic becomes visible in the result of a
+computation. These will be fairly simple examples; more complicated
+examples exist that are outside the scope of this book, such as the
+instability of matrix inversion. The interested reader is referred
+to~\cite{Wilkinson:roundoff,Higham:2002:ASN}.
+
+\Level 2 {The `abc-formula'}
+
+As a practical example, consider the quadratic equation $ax^2+bx+c=0$ 
+which has solutions $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$.
+Suppose $b>0$ and $b^2\gg 4ac$ then $\sqrt{b^2-4ac}\approx b$ and
+the `$+$' solution will be
+inaccurate. In this case it is better 
+to compute $x_-=\frac{-b-\sqrt{b^2-4ac}}{2a}$ and use $x_+\cdot x_-=-c/a$.
+
+\begin{exercise}
+  Program a simulator for decimal $d$-digit arithmetic and experiment with the
+  accuracy of the two ways of computing the solution of a quadratic
+  equation. Simulating $d$-digit decimal arithmetic can be done as
+  follows. Let $x$ be a floating point number, then:
+  \begin{itemize}
+  \item Normalize $x$ by finding an integer $e$ such that
+    $x'\mathrel{:=} |x|\cdot 10^e\in[.1,1)$. 
+    \item Now truncate this number to $d$ digits by 
+      multiplying $x'$ by $10^d$, truncating the result to an integer,
+      and multiplying that result again by~$10^{-d}$.
+    \item Multiply this truncated number by~$10^{-e}$ to revert the
+      normalization.
+  \end{itemize}
+\end{exercise}
+
+\Level 2 {Summing series}
+
+The previous example was about preventing a large roundoff error in a
+single operation. This example shows that even gradual buildup of
+roundoff error can be handled in different ways.
+
+Consider the sum $\sum_{n=1}^{10000}\frac{1}{n^2}=1.644834$
+and assume we are working with single precision, which on most computers
+means a machine precision of~$10^{-7}$. The problem with this example
+is that both the ratio between terms, and the ratio of terms to
+partial sums, is ever increasing. In section~\ref{sec:machine-eps} we
+observed that a too large ratio can lead to one operand of an addition in
+effect being ignored.
+
+If we sum the series in the sequence it is given, we observe that
+the first term is~1, so all partial sums ($\sum_{n=1}^N$~where $N<10000$)
+are at least~1. This means that any term where $1/n^2<10^{-7}$ gets
+ignored since it is less than the machine precision.
+Specifically, the last 7000 terms are ignored, and
+the computed sum is~$1.644725$. The first 4 digits are correct.
+
+However, if we evaluate the sum in reverse order
+we obtain the exact result in single precision. We are still adding
+small quantities to larger ones, but now the ratio will never be as
+bad as one-to-$\epsilon$, so the smaller number is never ignored.
+To see this,
+consider the ratio of two terms subsequent terms:
+\[ \frac{n^2}{(n-1)^2}=\frac{n^2}{n^2-2n+1}=\frac1{1-2/n+1/n^2}
+    \approx 1+\frac2n
+\]
+Since we only sum $10^5$ terms and the machine precision is $10^{-7}$, 
+in the addition $1/n^2+1/(n-1)^2$ the second term will not be wholly
+ignored as it is when we sum from large to small.
+\begin{exercise}
+  There is still a step missing in our reasoning. We have shown that
+  in adding two subsequent terms, the smaller one is not
+  ignored. However, during the calculation we add partial sums to the
+  next term in the sequence. Show that this does not worsen the situation.
+\end{exercise}
+
+The lesson here is that series that are monotone (or close to
+monotone) should be summed from small to large, since the error is
+minimized if the quantities to be added are closer in magnitude. Note
+that this is the opposite strategy from the case of subtraction, where
+operations involving similar quantities lead to larger errors. This
+implies that if an application asks for adding and subtracting series
+of numbers, and we know a priori which terms are positive and
+negative, it may pay off to rearrange the algorithm accordingly.
+
+% with aligned exponents:
+% \begin{tabular}{rr|cl}
+%   $n-1$:&$.00\cdots0$&$10\cdots00$\\
+%   $n$:&  $.00\cdots0$&$00\cdots01$&$0\cdots0$\\
+%       &             &$n$ bits
+% \end{tabular}
+% The last digit in the smaller number is not lost if $n<1/\epsilon$
+
+\Level 2 {Unstable algorithms}
+
+We will now consider an example where we can give a direct argument
+that the algorithm can not cope with problems due to inexactly
+represented real numbers.
+
+Consider the recurrence $y_n=\int_0^1 \frac{x^n}{x-5}dx =
+\frac1n-5y_{n-1}$.%\marginpar{Negative? check this}
+This is easily seen to be monotonically decreasing; the first term can
+be computed as~$y_0=\ln 6 - \ln 5$.
+
+Performing the computation in 3 decimal digits we get:
+
+\begin{tabular}{lll}
+  computation&&correct result\\
+  $y_0=\ln 6 - \ln 5=.182|322\times 10^{1}\ldots$&&1.82\\
+  $y_1=.900\times 10^{-1}$&&.884\\
+  $y_2=.500\times 10^{-1}$&&.0580\\
+  $y_3=.830\times 10^{-1}$&going up?&.0431\\
+  $y_4=-.165$&negative?&.0343
+\end{tabular}
+
+We see that the computed results are quickly not just inaccurate, but
+actually nonsensical. We can analyze why this is the case.
+
+If we define the error $\epsilon_n$ in the $n$-th step as
+\[ \tilde y_n-y_n=\epsilon_n,\] then
+\[ \tilde y_n=1/n-5\tilde y_{n-1}=1/n+5n_{n-1}+5\epsilon_{n-1}
+    = y_n+5\epsilon_{n-1} \]
+so $\epsilon_n\geq 5\epsilon_{n-1}$. The error made by this
+computation shows exponential growth.
+%\marginpar{Show stability of backwards computation}
+
+\Level 2 {Linear system solving}
+
+Sometimes we can make statements about the numerical precision of a
+problem even without specifying what algorithm we use. Suppose we want
+to solve a linear system, that is, we have an $n\times n$ matrix~$A$
+and a vector~$b$ of size~$n$, and we want to compute the vector~$x$
+such that $Ax=b$. (We will actually considering algorithms for this in
+chapter~\ref{ch:linear}.) Since the vector~$b$ will the result of some
+computation or measurement, we are actually dealing with a
+vector~$\tilde b$, which is some perturbation of the ideal~$b$:
+\[ \tilde b =  b+\Delta b. \]
+The perturbation vector~$\Delta b$ can be of the order of the machine
+precision if it only arises from representation error, or it can be
+larger, depending on the calculations that produced~$\tilde b$.
+
+We now ask what the relation is between the exact value of~$x$, which
+we would have obtained from doing an exact calculation with $A$
+and~$b$, which is clearly impossible, and
+the computed value~$\tilde x$, which we get from computing with $A$
+and~$\tilde b$. (In this discussion we will assume that $A$ itself is
+exact, but this is a simplification.)
+
+Writing $\tilde x= x+\Delta x$, the result of our computation is now
+\[ A\tilde x = \tilde b \] or \[ A(x+\Delta x)=b+\Delta b. \]
+Since $Ax=b$, we get $A\Delta x=\Delta b$. From this, we get
+(see appendix~\ref{app:norms} for details)
+\begin{equation}
+ \left \{
+\begin{array}{rl}
+  \Delta x&=A\inv \Delta b\\ Ax&=b
+\end{array} \right\} \Rightarrow \left\{
+\begin{array}{rl}
+  \|A\| \|x\|&\geq\|b\| \\ \|\Delta x\|&\leq \|A\inv\| \|\Delta b\|
+\end{array} \right.
+\Rightarrow
+\frac{\|\Delta x\|}{\|x\|}
+\leq 
+\|A\| \|A\inv\| \frac{\|\Delta b\|}{\|b\|}
+    \label{eq:xbound}
+\end{equation}
+The quantity $\|A\| \|A\inv\|$ is called the \indexterm{condition
+  number} of a matrix. The bound \eqref{eq:xbound} then says that any
+perturbation in the right hand side can lead to a perturbation in the
+solution that is at most larger by the condition number of the
+matrix~$A$. Note that it does not say that the perturbation in~$x$
+\emph{needs} to be anywhere close to that size, but we can not rule it
+out, and in some cases it indeed happens that this bound is attained.
+
+Suppose that $b$ is exact up to machine precision, and the
+condition number of~$A$ is~$10^4$. The bound \eqref{eq:xbound} is
+often interpreted as saying that the last 4 digits of~$x$ are
+unreliable, or that the computation `loses 4 digits of accuracy'.
+
+Equation~\eqref{eq:xbound} can also be interpreted as follows: when we
+solve a linear system $Ax=b$ we get an approximate solution $x+\Delta
+x$ which is the \emph{exact} solution of a perturbed system
+$A(x+\Delta x)=b+\Delta b$. The fact that the perturbation in the
+solution can be related to the perturbation in the system, is
+expressed by saying that the algorithm exhibits \indexterm{backwards
+  stability}.
+
+The analysis of the accuracy of linear algebra algorithms is a field
+of study in itself; see for instance the book by
+Higham~\cite{Higham:2002:ASN}.
+
+\Level 1 {Roundoff error in parallel computations}
+
+From the above example of summing a series we saw that addition in
+computer arithmetic is not \emph{associative}\index{floating point
+  arithmetic!associativity of}. A~similar fact holds for
+multiplication.  This has an interesting consequence for parallel
+computations: the way a computation is spread over parallel processors
+influences the result. For instance, consider computing the sum of a
+large number~$N$ of terms. With $P$~processors at our disposition, we
+can let each compute $N/P$ terms, and combine the partial results. We
+immediately see that for no two values of~$P$ will the results be
+identical. This means that reproducibility of results in a parallel
+context is elusive.
+
+\index{round-off error analysis|)}
+
+\Level 0 {More about floating point arithmetic}
+
+\Level 1 {Programming languages}
+
+Different languages have different approaches to declaring integers and
+floating point numbers.
+\begin{itemize}
+\item [Fortran]\index{Fortran!declarations in} In Fortran there are
+  various ways of specifying the storage format for integer and real
+  variables. For instance, it is possible to declare
+   the number of bytes that it takes to store a variable:
+  \texttt{INTEGER*2, REAL*8}. One advantage of this approach is the
+  easy interoperability with other languages, or the MPI library.
+
+  Often it is possible to write a code
+  using only \texttt{INTEGER, REAL}, and use
+  \indextermbus{compiler}{flags} to indicate the size of an integer
+  and real number in bytes.
+
+  More sophisticated, modern versions of Fortran can indicate the
+  number of digits of precision a floating point number needs to have:
+\begin{verbatim}
+integer, parameter :: k9 = selected_real_kind(9)
+real(kind=k9) :: r
+r = 2._k9; print *, sqrt(r) ! prints 1.4142135623730
+\end{verbatim}
+  The `kind' values will usually be 4,8,16 but this is compiler
+  dependent.
+\item [C] In C, the type identifiers have no standard length. For
+  integers there is \texttt{short int, int, long int}, and for
+  floating point \texttt{float, double}. The \texttt{sizeof()}
+  operator gives the number of bytes used to store a datatype.
+\item [C99, Fortran2003] Recent standards of the C and Fortran
+  languages incorporate the C/Fortran interoperability standard, which
+  can be used to declare a type in one language so that it is
+  compatible with a certain type in the other language.
+\end{itemize}
+
+\Level 1 {Other computer arithmetic systems}
+
+Other systems have been proposed to dealing with the problems of
+inexact arithmetic on computers. One solution is extended precision
+arithmetic, where numbers are stored in more bits than usual. A common
+use of this is in the calculation of inner products of vectors: the
+accumulation is internally performed in extended precision, but
+returned as a regular floating point number. Alternatively, there are
+libraries such as GMPlib~\cite{gmplib} that allow for any calculation
+to be performed in higher precision.
+
+Another solution to the imprecisions of computer arithmetic is `interval
+arithmetic'~\cite{wikipedia:interval-arithmetic}, where for each
+calculation interval bounds are maintained. While this has been
+researched for considerable time, it is not practically used other
+than through specialized libraries~\cite{boost:interval-arithmetic}.
+
+\Level 1 {Fixed-point arithmetic}
+
+A fixed-point number (for a more thorough discussion than found here,
+see~\cite{YatesFixedPoint}) can be represented as $\fxp NF$ where
+$N\geq\beta^0$ is the integer part and $F<1$ is the fractional
+part. Another way of looking at this, is that a fixed-point number is
+an integer stored in $N+F$ digits, with an implied decimal point after
+the first $N$ digits.
+
+Fixed-point calculations can overflow, with no possibility to adjust
+an exponent. Consider the multiplication $\fxp{N_1}{F_1}\times
+\fxp{N_2}{F_2}$, where $N_1\geq \beta^{n_1}$ and $N_2\geq
+\beta^{n_2}$. This overflows if $n_1+n_2$ is more than the number of
+positions available for the integer part. (Informally, the number of
+digits of the product is the sum of the digits of the operands.)
+This means that, in a program
+that uses fixed-point, numbers will need to have a number of zero
+digits, if you are ever going to multiply them, 
+which lowers the numerical accuracy.
+It also means that the programmer has to think harder about
+calculations, arranging them in such a way that overflow will not
+occur, and that numerical accuracy is still preserved to a reasonable
+extent.
+
+So why would people use fixed-point numbers? One important application
+is in embedded low-power devices, think a battery-powered digital
+thermometer. Since fixed-point calculations are essentially identical
+to integer calculations, they do not require a floating-point unit,
+thereby lowering chip size and lessening power demands. Also, many
+early video game systems had a processor that either had no
+floating-point unit, or where the integer unit was considerably faster
+than the floating-point unit. In both cases, implementing non-integer
+calculations as fixed-point, using the integer unit, was the key to
+high throughput. 
+
+Another area where fixed point arithmetic is still used is in signal
+processing. In modern CPUs, integer and floating point operations
+are of essentially the same speed, but converting between them is
+relatively slow. Now, if the sine function is implemented through
+table lookup, this means that in $\sin(\sin x)$ 
+the output of a function is used to index the next function
+application. Obviously, outputting the sine function in fixed point
+obviates the need for conversion between real and integer quantities,
+which simplifies the chip logic needed, and speeds up calculations.
+
+\Level 1 {Complex numbers}
+\label{sec:complex}
+
+Some programming languages have complex numbers as a native data type,
+others not, and others are in between. For instance, in Fortran you
+can declare
+\begin{verbatim}
+COMPLEX z1,z2, z(32)
+COMPLEX*16 zz1, zz2, zz(36)
+\end{verbatim}
+A complex number is a pair of real numbers, the real and imaginary
+part, allocated adjacent in memory. The first declaration then uses
+8~bytes to store to \n{REAL*4} numbers, the second one has \n{REAL*8}s
+for the real and imaginary part.  (Alternatively, use \n{DOUBLE
+  COMPLEX} or in Fortran90 \n{COMPLEX(KIND=2)} for the second line.)
+
+By contrast, the \n{C} language does not natively have complex
+numbers, but both \n{C99} and \n{C++} have a \n{complex.h} header
+file\footnote {These two header files are not identical, and in fact
+  not compatible. Beware, if you compile C code with a C++
+  compiler~\cite{DobbsComplex}.}. This defines as complex number as in
+Fortran, as two real numbers.
+
+Storing a complex number like this is easy, but sometimes it is
+computationally not the best solution. This becomes apparent when we
+look at arrays of complex numbers.
+If a computation often relies
+on access to the real (or imaginary) parts of complex numbers
+exclusively, striding through an array of complex numbers, has a
+stride two, which is disadvantageous (see
+section~\ref{sec:stride}). In this case, it is better to allocate one
+array for the real parts, and another for the imaginary parts.
+
+\begin{exercise}
+  Suppose arrays of complex numbers are stored the Fortran
+  way. Analyze the memory access pattern of pairwise multiplying the
+  arrays, that is, $\forall_i\colon c_i\leftarrow a_i\cdot b_i$, where
+  \texttt{a(), b(), c()} are arrays of complex numbers.
+\end{exercise}
+
+\begin{exercise}
+  Show that an $n\times n$ linear system $Ax=b$ over the complex numbers
+  can be written as a $2n\times 2n$ system over the real
+  numbers. Hint: split the matrix and the vectors in their real and
+  imaginary parts. Argue for the efficiency of storing arrays of
+  complex numbers as separate arrays for the real and imaginary parts.
+\end{exercise}
+
+\Level 0 {Conclusions}
+
+Computations done on a computer are invariably beset with numerical error.
+In a way, the reason for the error is the imperfection of computer
+arithmetic: if we could calculate with actual real numbers there would
+be no problem. (There would still be the matter of measurement error
+in data, and approximations made in numerical methods; see the next
+chapter.) However, if we accept roundoff as a fact of life, then
+various observations hold:
+\begin{itemize}
+\item Mathematically equivalent operations need not behave identically
+  from a point of stability; see the `abc-formula' example.
+\item Even rearrangements of the same computations do not behave
+  identically; see the summing example.
+\end{itemize}
+Thus it
+becomes imperative to analyze computer algorithms with regard to their
+roundoff behaviour: does roundoff increase as a slowly growing
+function of problem parameters, such as the number of terms evaluted,
+or is worse behaviour possible? We will not address such questions in
+further detail in this book.
+

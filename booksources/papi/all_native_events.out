@@ -1,0 +1,1498 @@
+TACC: Setting memory limits for job 1002920 to 31876710 KB
+TACC: Dumping job script:
+--------------------------------------------------------------------------------
+#!/bin/bash
+
+#$   -q development
+#$   -V
+#$   -cwd
+#$   -pe 1way 16
+#$   -l h_rt=0:01:00
+
+#$   -j y
+#$   -N papirun
+#$   -o $JOB_NAME.oe
+#$   -e $JOB_NAME.oe
+
+#$ -A A-ccsc
+
+module load papi
+./all_native_events
+
+
+
+
+--------------------------------------------------------------------------------
+TACC: Done.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+PAPI Error: vperfctr_control() returned < 0.
+Test case ALL_NATIVE_EVENTS: Available native events and hardware information.
+--------------------------------------------------------------------------------
+Vendor string and code   : AuthenticAMD (2)
+Model string and code    : AMD Family 10h (19)
+CPU Revision             : 3.000000
+CPU Megahertz            : 2293.909912
+CPU Clock Megahertz      : 2293
+CPU's in this Node       : 16
+Nodes in this System     : 1
+Total CPU's              : 16
+Number Hardware Counters : 4
+Max Multiplex Counters   : 32
+--------------------------------------------------------------------------------
+
+Added DISPATCHED_FPU:OPS_ADD successfully.
+Stopped DISPATCHED_FPU:OPS_ADD successfully.
+Removed DISPATCHED_FPU:OPS_ADD successfully.
+Added DISPATCHED_FPU:OPS_MULTIPLY successfully.
+Stopped DISPATCHED_FPU:OPS_MULTIPLY successfully.
+Removed DISPATCHED_FPU:OPS_MULTIPLY successfully.
+Added DISPATCHED_FPU:OPS_STORE successfully.
+Stopped DISPATCHED_FPU:OPS_STORE successfully.
+Removed DISPATCHED_FPU:OPS_STORE successfully.
+Added DISPATCHED_FPU:OPS_ADD_PIPE_LOAD_OPS successfully.
+Stopped DISPATCHED_FPU:OPS_ADD_PIPE_LOAD_OPS successfully.
+Removed DISPATCHED_FPU:OPS_ADD_PIPE_LOAD_OPS successfully.
+Added DISPATCHED_FPU:OPS_MULTIPLY_PIPE_LOAD_OPS successfully.
+Stopped DISPATCHED_FPU:OPS_MULTIPLY_PIPE_LOAD_OPS successfully.
+Removed DISPATCHED_FPU:OPS_MULTIPLY_PIPE_LOAD_OPS successfully.
+Added DISPATCHED_FPU:OPS_STORE_PIPE_LOAD_OPS successfully.
+Stopped DISPATCHED_FPU:OPS_STORE_PIPE_LOAD_OPS successfully.
+Removed DISPATCHED_FPU:OPS_STORE_PIPE_LOAD_OPS successfully.
+Added DISPATCHED_FPU:ALL successfully.
+Stopped DISPATCHED_FPU:ALL successfully.
+Removed DISPATCHED_FPU:ALL successfully.
+Added CYCLES_NO_FPU_OPS_RETIRED successfully.
+Stopped CYCLES_NO_FPU_OPS_RETIRED successfully.
+Removed CYCLES_NO_FPU_OPS_RETIRED successfully.
+Added DISPATCHED_FPU_OPS_FAST_FLAG successfully.
+Stopped DISPATCHED_FPU_OPS_FAST_FLAG successfully.
+Removed DISPATCHED_FPU_OPS_FAST_FLAG successfully.
+Added RETIRED_SSE_OPERATIONS:SINGLE_ADD_SUB_OPS successfully.
+Stopped RETIRED_SSE_OPERATIONS:SINGLE_ADD_SUB_OPS successfully.
+Removed RETIRED_SSE_OPERATIONS:SINGLE_ADD_SUB_OPS successfully.
+Added RETIRED_SSE_OPERATIONS:SINGLE_MUL_OPS successfully.
+Stopped RETIRED_SSE_OPERATIONS:SINGLE_MUL_OPS successfully.
+Removed RETIRED_SSE_OPERATIONS:SINGLE_MUL_OPS successfully.
+Added RETIRED_SSE_OPERATIONS:SINGLE_DIV_OPS successfully.
+Stopped RETIRED_SSE_OPERATIONS:SINGLE_DIV_OPS successfully.
+Removed RETIRED_SSE_OPERATIONS:SINGLE_DIV_OPS successfully.
+Added RETIRED_SSE_OPERATIONS:DOUBLE_ADD_SUB_OPS successfully.
+Stopped RETIRED_SSE_OPERATIONS:DOUBLE_ADD_SUB_OPS successfully.
+Removed RETIRED_SSE_OPERATIONS:DOUBLE_ADD_SUB_OPS successfully.
+Added RETIRED_SSE_OPERATIONS:DOUBLE_MUL_OPS successfully.
+Stopped RETIRED_SSE_OPERATIONS:DOUBLE_MUL_OPS successfully.
+Removed RETIRED_SSE_OPERATIONS:DOUBLE_MUL_OPS successfully.
+Added RETIRED_SSE_OPERATIONS:DOUBLE_DIV_OPS successfully.
+Stopped RETIRED_SSE_OPERATIONS:DOUBLE_DIV_OPS successfully.
+Removed RETIRED_SSE_OPERATIONS:DOUBLE_DIV_OPS successfully.
+Added RETIRED_SSE_OPERATIONS:OP_TYPE successfully.
+Stopped RETIRED_SSE_OPERATIONS:OP_TYPE successfully.
+Removed RETIRED_SSE_OPERATIONS:OP_TYPE successfully.
+Added RETIRED_SSE_OPERATIONS:ALL successfully.
+Stopped RETIRED_SSE_OPERATIONS:ALL successfully.
+Removed RETIRED_SSE_OPERATIONS:ALL successfully.
+Added RETIRED_MOVE_OPS:LOW_QW_MOVE_UOPS successfully.
+Stopped RETIRED_MOVE_OPS:LOW_QW_MOVE_UOPS successfully.
+Removed RETIRED_MOVE_OPS:LOW_QW_MOVE_UOPS successfully.
+Added RETIRED_MOVE_OPS:HIGH_QW_MOVE_UOPS successfully.
+Stopped RETIRED_MOVE_OPS:HIGH_QW_MOVE_UOPS successfully.
+Removed RETIRED_MOVE_OPS:HIGH_QW_MOVE_UOPS successfully.
+Added RETIRED_MOVE_OPS:ALL_OTHER_MERGING_MOVE_UOPS successfully.
+Stopped RETIRED_MOVE_OPS:ALL_OTHER_MERGING_MOVE_UOPS successfully.
+Removed RETIRED_MOVE_OPS:ALL_OTHER_MERGING_MOVE_UOPS successfully.
+Added RETIRED_MOVE_OPS:ALL_OTHER_MOVE_UOPS successfully.
+Stopped RETIRED_MOVE_OPS:ALL_OTHER_MOVE_UOPS successfully.
+Removed RETIRED_MOVE_OPS:ALL_OTHER_MOVE_UOPS successfully.
+Added RETIRED_MOVE_OPS:ALL successfully.
+Stopped RETIRED_MOVE_OPS:ALL successfully.
+Removed RETIRED_MOVE_OPS:ALL successfully.
+Added RETIRED_SERIALIZING_OPS:SSE_BOTTOM_EXECUTING_UOPS successfully.
+Stopped RETIRED_SERIALIZING_OPS:SSE_BOTTOM_EXECUTING_UOPS successfully.
+Removed RETIRED_SERIALIZING_OPS:SSE_BOTTOM_EXECUTING_UOPS successfully.
+Added RETIRED_SERIALIZING_OPS:SSE_BOTTOM_SERIALIZING_UOPS successfully.
+Stopped RETIRED_SERIALIZING_OPS:SSE_BOTTOM_SERIALIZING_UOPS successfully.
+Removed RETIRED_SERIALIZING_OPS:SSE_BOTTOM_SERIALIZING_UOPS successfully.
+Added RETIRED_SERIALIZING_OPS:X87_BOTTOM_EXECUTING_UOPS successfully.
+Stopped RETIRED_SERIALIZING_OPS:X87_BOTTOM_EXECUTING_UOPS successfully.
+Removed RETIRED_SERIALIZING_OPS:X87_BOTTOM_EXECUTING_UOPS successfully.
+Added RETIRED_SERIALIZING_OPS:X87_BOTTOM_SERIALIZING_UOPS successfully.
+Stopped RETIRED_SERIALIZING_OPS:X87_BOTTOM_SERIALIZING_UOPS successfully.
+Removed RETIRED_SERIALIZING_OPS:X87_BOTTOM_SERIALIZING_UOPS successfully.
+Added RETIRED_SERIALIZING_OPS:ALL successfully.
+Stopped RETIRED_SERIALIZING_OPS:ALL successfully.
+Removed RETIRED_SERIALIZING_OPS:ALL successfully.
+Added FP_SCHEDULER_CYCLES:BOTTOM_EXECUTE_CYCLES successfully.
+Stopped FP_SCHEDULER_CYCLES:BOTTOM_EXECUTE_CYCLES successfully.
+Removed FP_SCHEDULER_CYCLES:BOTTOM_EXECUTE_CYCLES successfully.
+Added FP_SCHEDULER_CYCLES:BOTTOM_SERIALIZING_CYCLES successfully.
+Stopped FP_SCHEDULER_CYCLES:BOTTOM_SERIALIZING_CYCLES successfully.
+Removed FP_SCHEDULER_CYCLES:BOTTOM_SERIALIZING_CYCLES successfully.
+Added FP_SCHEDULER_CYCLES:ALL successfully.
+Stopped FP_SCHEDULER_CYCLES:ALL successfully.
+Removed FP_SCHEDULER_CYCLES:ALL successfully.
+Added SEGMENT_REGISTER_LOADS:ES successfully.
+Stopped SEGMENT_REGISTER_LOADS:ES successfully.
+Removed SEGMENT_REGISTER_LOADS:ES successfully.
+Added SEGMENT_REGISTER_LOADS:CS successfully.
+Stopped SEGMENT_REGISTER_LOADS:CS successfully.
+Removed SEGMENT_REGISTER_LOADS:CS successfully.
+Added SEGMENT_REGISTER_LOADS:SS successfully.
+Stopped SEGMENT_REGISTER_LOADS:SS successfully.
+Removed SEGMENT_REGISTER_LOADS:SS successfully.
+Added SEGMENT_REGISTER_LOADS:DS successfully.
+Stopped SEGMENT_REGISTER_LOADS:DS successfully.
+Removed SEGMENT_REGISTER_LOADS:DS successfully.
+Added SEGMENT_REGISTER_LOADS:FS successfully.
+Stopped SEGMENT_REGISTER_LOADS:FS successfully.
+Removed SEGMENT_REGISTER_LOADS:FS successfully.
+Added SEGMENT_REGISTER_LOADS:GS successfully.
+Stopped SEGMENT_REGISTER_LOADS:GS successfully.
+Removed SEGMENT_REGISTER_LOADS:GS successfully.
+Added SEGMENT_REGISTER_LOADS:HS successfully.
+Stopped SEGMENT_REGISTER_LOADS:HS successfully.
+Removed SEGMENT_REGISTER_LOADS:HS successfully.
+Added SEGMENT_REGISTER_LOADS:ALL successfully.
+Stopped SEGMENT_REGISTER_LOADS:ALL successfully.
+Removed SEGMENT_REGISTER_LOADS:ALL successfully.
+Added PIPELINE_RESTART_DUE_TO_SELF_MODIFYING_CODE successfully.
+Stopped PIPELINE_RESTART_DUE_TO_SELF_MODIFYING_CODE successfully.
+Removed PIPELINE_RESTART_DUE_TO_SELF_MODIFYING_CODE successfully.
+Added PIPELINE_RESTART_DUE_TO_PROBE_HIT successfully.
+Stopped PIPELINE_RESTART_DUE_TO_PROBE_HIT successfully.
+Removed PIPELINE_RESTART_DUE_TO_PROBE_HIT successfully.
+Added LS_BUFFER_2_FULL_CYCLES successfully.
+Stopped LS_BUFFER_2_FULL_CYCLES successfully.
+Removed LS_BUFFER_2_FULL_CYCLES successfully.
+Added LOCKED_OPS:EXECUTED successfully.
+Stopped LOCKED_OPS:EXECUTED successfully.
+Removed LOCKED_OPS:EXECUTED successfully.
+Added LOCKED_OPS:CYCLES_SPECULATIVE_PHASE successfully.
+Stopped LOCKED_OPS:CYCLES_SPECULATIVE_PHASE successfully.
+Removed LOCKED_OPS:CYCLES_SPECULATIVE_PHASE successfully.
+Added LOCKED_OPS:CYCLES_NON_SPECULATIVE_PHASE successfully.
+Stopped LOCKED_OPS:CYCLES_NON_SPECULATIVE_PHASE successfully.
+Removed LOCKED_OPS:CYCLES_NON_SPECULATIVE_PHASE successfully.
+Added LOCKED_OPS:CYCLES_WAITING successfully.
+Stopped LOCKED_OPS:CYCLES_WAITING successfully.
+Removed LOCKED_OPS:CYCLES_WAITING successfully.
+Added LOCKED_OPS:ALL successfully.
+Stopped LOCKED_OPS:ALL successfully.
+Removed LOCKED_OPS:ALL successfully.
+Added RETIRED_CLFLUSH_INSTRUCTIONS successfully.
+Stopped RETIRED_CLFLUSH_INSTRUCTIONS successfully.
+Removed RETIRED_CLFLUSH_INSTRUCTIONS successfully.
+Added RETIRED_CPUID_INSTRUCTIONS successfully.
+Stopped RETIRED_CPUID_INSTRUCTIONS successfully.
+Removed RETIRED_CPUID_INSTRUCTIONS successfully.
+Added CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:ADDRESS_MISMATCHES successfully.
+Stopped CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:ADDRESS_MISMATCHES successfully.
+Removed CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:ADDRESS_MISMATCHES successfully.
+Added CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:STORE_IS_SMALLER_THAN_LOAD successfully.
+Stopped CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:STORE_IS_SMALLER_THAN_LOAD successfully.
+Removed CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:STORE_IS_SMALLER_THAN_LOAD successfully.
+Added CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:MISALIGNED successfully.
+Stopped CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:MISALIGNED successfully.
+Removed CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:MISALIGNED successfully.
+Added CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:ALL successfully.
+Stopped CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:ALL successfully.
+Removed CANCELLED_STORE_TO_LOAD_FORWARD_OPERATIONS:ALL successfully.
+Added SMIS_RECEIVED successfully.
+Stopped SMIS_RECEIVED successfully.
+Removed SMIS_RECEIVED successfully.
+Added DATA_CACHE_ACCESSES successfully.
+Stopped DATA_CACHE_ACCESSES successfully.
+Removed DATA_CACHE_ACCESSES successfully.
+Added DATA_CACHE_MISSES successfully.
+Stopped DATA_CACHE_MISSES successfully.
+Removed DATA_CACHE_MISSES successfully.
+Added DATA_CACHE_REFILLS:SYSTEM successfully.
+Stopped DATA_CACHE_REFILLS:SYSTEM successfully.
+Removed DATA_CACHE_REFILLS:SYSTEM successfully.
+Added DATA_CACHE_REFILLS:L2_SHARED successfully.
+Stopped DATA_CACHE_REFILLS:L2_SHARED successfully.
+Removed DATA_CACHE_REFILLS:L2_SHARED successfully.
+Added DATA_CACHE_REFILLS:L2_EXCLUSIVE successfully.
+Stopped DATA_CACHE_REFILLS:L2_EXCLUSIVE successfully.
+Removed DATA_CACHE_REFILLS:L2_EXCLUSIVE successfully.
+Added DATA_CACHE_REFILLS:L2_OWNED successfully.
+Stopped DATA_CACHE_REFILLS:L2_OWNED successfully.
+Removed DATA_CACHE_REFILLS:L2_OWNED successfully.
+Added DATA_CACHE_REFILLS:L2_MODIFIED successfully.
+Stopped DATA_CACHE_REFILLS:L2_MODIFIED successfully.
+Removed DATA_CACHE_REFILLS:L2_MODIFIED successfully.
+Added DATA_CACHE_REFILLS:ALL successfully.
+Stopped DATA_CACHE_REFILLS:ALL successfully.
+Removed DATA_CACHE_REFILLS:ALL successfully.
+Added DATA_CACHE_REFILLS_FROM_SYSTEM:INVALID successfully.
+Stopped DATA_CACHE_REFILLS_FROM_SYSTEM:INVALID successfully.
+Removed DATA_CACHE_REFILLS_FROM_SYSTEM:INVALID successfully.
+Added DATA_CACHE_REFILLS_FROM_SYSTEM:SHARED successfully.
+Stopped DATA_CACHE_REFILLS_FROM_SYSTEM:SHARED successfully.
+Removed DATA_CACHE_REFILLS_FROM_SYSTEM:SHARED successfully.
+Added DATA_CACHE_REFILLS_FROM_SYSTEM:EXCLUSIVE successfully.
+Stopped DATA_CACHE_REFILLS_FROM_SYSTEM:EXCLUSIVE successfully.
+Removed DATA_CACHE_REFILLS_FROM_SYSTEM:EXCLUSIVE successfully.
+Added DATA_CACHE_REFILLS_FROM_SYSTEM:OWNED successfully.
+Stopped DATA_CACHE_REFILLS_FROM_SYSTEM:OWNED successfully.
+Removed DATA_CACHE_REFILLS_FROM_SYSTEM:OWNED successfully.
+Added DATA_CACHE_REFILLS_FROM_SYSTEM:MODIFIED successfully.
+Stopped DATA_CACHE_REFILLS_FROM_SYSTEM:MODIFIED successfully.
+Removed DATA_CACHE_REFILLS_FROM_SYSTEM:MODIFIED successfully.
+Added DATA_CACHE_REFILLS_FROM_SYSTEM:ALL successfully.
+Stopped DATA_CACHE_REFILLS_FROM_SYSTEM:ALL successfully.
+Removed DATA_CACHE_REFILLS_FROM_SYSTEM:ALL successfully.
+Added DATA_CACHE_LINES_EVICTED:INVALID successfully.
+Stopped DATA_CACHE_LINES_EVICTED:INVALID successfully.
+Removed DATA_CACHE_LINES_EVICTED:INVALID successfully.
+Added DATA_CACHE_LINES_EVICTED:SHARED successfully.
+Stopped DATA_CACHE_LINES_EVICTED:SHARED successfully.
+Removed DATA_CACHE_LINES_EVICTED:SHARED successfully.
+Added DATA_CACHE_LINES_EVICTED:EXCLUSIVE successfully.
+Stopped DATA_CACHE_LINES_EVICTED:EXCLUSIVE successfully.
+Removed DATA_CACHE_LINES_EVICTED:EXCLUSIVE successfully.
+Added DATA_CACHE_LINES_EVICTED:OWNED successfully.
+Stopped DATA_CACHE_LINES_EVICTED:OWNED successfully.
+Removed DATA_CACHE_LINES_EVICTED:OWNED successfully.
+Added DATA_CACHE_LINES_EVICTED:MODIFIED successfully.
+Stopped DATA_CACHE_LINES_EVICTED:MODIFIED successfully.
+Removed DATA_CACHE_LINES_EVICTED:MODIFIED successfully.
+Added DATA_CACHE_LINES_EVICTED:BY_PREFETCHNTA successfully.
+Stopped DATA_CACHE_LINES_EVICTED:BY_PREFETCHNTA successfully.
+Removed DATA_CACHE_LINES_EVICTED:BY_PREFETCHNTA successfully.
+Added DATA_CACHE_LINES_EVICTED:NOT_BY_PREFETCHNTA successfully.
+Stopped DATA_CACHE_LINES_EVICTED:NOT_BY_PREFETCHNTA successfully.
+Removed DATA_CACHE_LINES_EVICTED:NOT_BY_PREFETCHNTA successfully.
+Added DATA_CACHE_LINES_EVICTED:ALL successfully.
+Stopped DATA_CACHE_LINES_EVICTED:ALL successfully.
+Removed DATA_CACHE_LINES_EVICTED:ALL successfully.
+Added L1_DTLB_MISS_AND_L2_DTLB_HIT:L2_4K_TLB_HIT successfully.
+Stopped L1_DTLB_MISS_AND_L2_DTLB_HIT:L2_4K_TLB_HIT successfully.
+Removed L1_DTLB_MISS_AND_L2_DTLB_HIT:L2_4K_TLB_HIT successfully.
+Added L1_DTLB_MISS_AND_L2_DTLB_HIT:L2_2M_TLB_HIT successfully.
+Stopped L1_DTLB_MISS_AND_L2_DTLB_HIT:L2_2M_TLB_HIT successfully.
+Removed L1_DTLB_MISS_AND_L2_DTLB_HIT:L2_2M_TLB_HIT successfully.
+Added L1_DTLB_MISS_AND_L2_DTLB_HIT:ALL successfully.
+Stopped L1_DTLB_MISS_AND_L2_DTLB_HIT:ALL successfully.
+Removed L1_DTLB_MISS_AND_L2_DTLB_HIT:ALL successfully.
+Added L1_DTLB_AND_L2_DTLB_MISS:4K_TLB_RELOAD successfully.
+Stopped L1_DTLB_AND_L2_DTLB_MISS:4K_TLB_RELOAD successfully.
+Removed L1_DTLB_AND_L2_DTLB_MISS:4K_TLB_RELOAD successfully.
+Added L1_DTLB_AND_L2_DTLB_MISS:2M_TLB_RELOAD successfully.
+Stopped L1_DTLB_AND_L2_DTLB_MISS:2M_TLB_RELOAD successfully.
+Removed L1_DTLB_AND_L2_DTLB_MISS:2M_TLB_RELOAD successfully.
+Added L1_DTLB_AND_L2_DTLB_MISS:1G_TLB_RELOAD successfully.
+Stopped L1_DTLB_AND_L2_DTLB_MISS:1G_TLB_RELOAD successfully.
+Removed L1_DTLB_AND_L2_DTLB_MISS:1G_TLB_RELOAD successfully.
+Added L1_DTLB_AND_L2_DTLB_MISS:ALL successfully.
+Stopped L1_DTLB_AND_L2_DTLB_MISS:ALL successfully.
+Removed L1_DTLB_AND_L2_DTLB_MISS:ALL successfully.
+Added MISALIGNED_ACCESSES successfully.
+Stopped MISALIGNED_ACCESSES successfully.
+Removed MISALIGNED_ACCESSES successfully.
+Added MICROARCHITECTURAL_LATE_CANCEL_OF_AN_ACCESS successfully.
+Stopped MICROARCHITECTURAL_LATE_CANCEL_OF_AN_ACCESS successfully.
+Removed MICROARCHITECTURAL_LATE_CANCEL_OF_AN_ACCESS successfully.
+Added MICROARCHITECTURAL_EARLY_CANCEL_OF_AN_ACCESS successfully.
+Stopped MICROARCHITECTURAL_EARLY_CANCEL_OF_AN_ACCESS successfully.
+Removed MICROARCHITECTURAL_EARLY_CANCEL_OF_AN_ACCESS successfully.
+Added SCRUBBER_SINGLE_BIT_ECC_ERRORS:SCRUBBER_ERROR successfully.
+Stopped SCRUBBER_SINGLE_BIT_ECC_ERRORS:SCRUBBER_ERROR successfully.
+Removed SCRUBBER_SINGLE_BIT_ECC_ERRORS:SCRUBBER_ERROR successfully.
+Added SCRUBBER_SINGLE_BIT_ECC_ERRORS:PIGGYBACK_ERROR successfully.
+Stopped SCRUBBER_SINGLE_BIT_ECC_ERRORS:PIGGYBACK_ERROR successfully.
+Removed SCRUBBER_SINGLE_BIT_ECC_ERRORS:PIGGYBACK_ERROR successfully.
+Added SCRUBBER_SINGLE_BIT_ECC_ERRORS:LOAD_PIPE_ERROR successfully.
+Stopped SCRUBBER_SINGLE_BIT_ECC_ERRORS:LOAD_PIPE_ERROR successfully.
+Removed SCRUBBER_SINGLE_BIT_ECC_ERRORS:LOAD_PIPE_ERROR successfully.
+Added SCRUBBER_SINGLE_BIT_ECC_ERRORS:STORE_WRITE_PIPE_ERROR successfully.
+Stopped SCRUBBER_SINGLE_BIT_ECC_ERRORS:STORE_WRITE_PIPE_ERROR successfully.
+Removed SCRUBBER_SINGLE_BIT_ECC_ERRORS:STORE_WRITE_PIPE_ERROR successfully.
+Added SCRUBBER_SINGLE_BIT_ECC_ERRORS:ALL successfully.
+Stopped SCRUBBER_SINGLE_BIT_ECC_ERRORS:ALL successfully.
+Removed SCRUBBER_SINGLE_BIT_ECC_ERRORS:ALL successfully.
+Added PREFETCH_INSTRUCTIONS_DISPATCHED:LOAD successfully.
+Stopped PREFETCH_INSTRUCTIONS_DISPATCHED:LOAD successfully.
+Removed PREFETCH_INSTRUCTIONS_DISPATCHED:LOAD successfully.
+Added PREFETCH_INSTRUCTIONS_DISPATCHED:STORE successfully.
+Stopped PREFETCH_INSTRUCTIONS_DISPATCHED:STORE successfully.
+Removed PREFETCH_INSTRUCTIONS_DISPATCHED:STORE successfully.
+Added PREFETCH_INSTRUCTIONS_DISPATCHED:NTA successfully.
+Stopped PREFETCH_INSTRUCTIONS_DISPATCHED:NTA successfully.
+Removed PREFETCH_INSTRUCTIONS_DISPATCHED:NTA successfully.
+Added PREFETCH_INSTRUCTIONS_DISPATCHED:ALL successfully.
+Stopped PREFETCH_INSTRUCTIONS_DISPATCHED:ALL successfully.
+Removed PREFETCH_INSTRUCTIONS_DISPATCHED:ALL successfully.
+Added DCACHE_MISSES_BY_LOCKED_INSTRUCTIONS:DATA_CACHE_MISSES_BY_LOCKED_INSTRUCTIONS successfully.
+Stopped DCACHE_MISSES_BY_LOCKED_INSTRUCTIONS:DATA_CACHE_MISSES_BY_LOCKED_INSTRUCTIONS successfully.
+Removed DCACHE_MISSES_BY_LOCKED_INSTRUCTIONS:DATA_CACHE_MISSES_BY_LOCKED_INSTRUCTIONS successfully.
+Added DCACHE_MISSES_BY_LOCKED_INSTRUCTIONS:ALL successfully.
+Stopped DCACHE_MISSES_BY_LOCKED_INSTRUCTIONS:ALL successfully.
+Removed DCACHE_MISSES_BY_LOCKED_INSTRUCTIONS:ALL successfully.
+Added L1_DTLB_HIT:L1_4K_TLB_HIT successfully.
+Stopped L1_DTLB_HIT:L1_4K_TLB_HIT successfully.
+Removed L1_DTLB_HIT:L1_4K_TLB_HIT successfully.
+Added L1_DTLB_HIT:L1_2M_TLB_HIT successfully.
+Stopped L1_DTLB_HIT:L1_2M_TLB_HIT successfully.
+Removed L1_DTLB_HIT:L1_2M_TLB_HIT successfully.
+Added L1_DTLB_HIT:L1_1G_TLB_HIT successfully.
+Stopped L1_DTLB_HIT:L1_1G_TLB_HIT successfully.
+Removed L1_DTLB_HIT:L1_1G_TLB_HIT successfully.
+Added L1_DTLB_HIT:ALL successfully.
+Stopped L1_DTLB_HIT:ALL successfully.
+Removed L1_DTLB_HIT:ALL successfully.
+Added INEFFECTIVE_SW_PREFETCHES:SW_PREFETCH_HIT_IN_L1 successfully.
+Stopped INEFFECTIVE_SW_PREFETCHES:SW_PREFETCH_HIT_IN_L1 successfully.
+Removed INEFFECTIVE_SW_PREFETCHES:SW_PREFETCH_HIT_IN_L1 successfully.
+Added INEFFECTIVE_SW_PREFETCHES:SW_PREFETCH_HIT_IN_L2 successfully.
+Stopped INEFFECTIVE_SW_PREFETCHES:SW_PREFETCH_HIT_IN_L2 successfully.
+Removed INEFFECTIVE_SW_PREFETCHES:SW_PREFETCH_HIT_IN_L2 successfully.
+Added INEFFECTIVE_SW_PREFETCHES:ALL successfully.
+Stopped INEFFECTIVE_SW_PREFETCHES:ALL successfully.
+Removed INEFFECTIVE_SW_PREFETCHES:ALL successfully.
+Added GLOBAL_TLB_FLUSHES successfully.
+Stopped GLOBAL_TLB_FLUSHES successfully.
+Removed GLOBAL_TLB_FLUSHES successfully.
+Added MEMORY_REQUESTS:NON_CACHEABLE successfully.
+Stopped MEMORY_REQUESTS:NON_CACHEABLE successfully.
+Removed MEMORY_REQUESTS:NON_CACHEABLE successfully.
+Added MEMORY_REQUESTS:WRITE_COMBINING successfully.
+Stopped MEMORY_REQUESTS:WRITE_COMBINING successfully.
+Removed MEMORY_REQUESTS:WRITE_COMBINING successfully.
+Added MEMORY_REQUESTS:STREAMING_STORE successfully.
+Stopped MEMORY_REQUESTS:STREAMING_STORE successfully.
+Removed MEMORY_REQUESTS:STREAMING_STORE successfully.
+Added MEMORY_REQUESTS:ALL successfully.
+Stopped MEMORY_REQUESTS:ALL successfully.
+Removed MEMORY_REQUESTS:ALL successfully.
+Added DATA_PREFETCHES:CANCELLED successfully.
+Stopped DATA_PREFETCHES:CANCELLED successfully.
+Removed DATA_PREFETCHES:CANCELLED successfully.
+Added DATA_PREFETCHES:ATTEMPTED successfully.
+Stopped DATA_PREFETCHES:ATTEMPTED successfully.
+Removed DATA_PREFETCHES:ATTEMPTED successfully.
+Added DATA_PREFETCHES:ALL successfully.
+Stopped DATA_PREFETCHES:ALL successfully.
+Removed DATA_PREFETCHES:ALL successfully.
+Added SYSTEM_READ_RESPONSES:EXCLUSIVE successfully.
+Stopped SYSTEM_READ_RESPONSES:EXCLUSIVE successfully.
+Removed SYSTEM_READ_RESPONSES:EXCLUSIVE successfully.
+Added SYSTEM_READ_RESPONSES:MODIFIED successfully.
+Stopped SYSTEM_READ_RESPONSES:MODIFIED successfully.
+Removed SYSTEM_READ_RESPONSES:MODIFIED successfully.
+Added SYSTEM_READ_RESPONSES:SHARED successfully.
+Stopped SYSTEM_READ_RESPONSES:SHARED successfully.
+Removed SYSTEM_READ_RESPONSES:SHARED successfully.
+Added SYSTEM_READ_RESPONSES:DATA_ERROR successfully.
+Stopped SYSTEM_READ_RESPONSES:DATA_ERROR successfully.
+Removed SYSTEM_READ_RESPONSES:DATA_ERROR successfully.
+Added SYSTEM_READ_RESPONSES:ALL successfully.
+Stopped SYSTEM_READ_RESPONSES:ALL successfully.
+Removed SYSTEM_READ_RESPONSES:ALL successfully.
+Added QUADWORDS_WRITTEN_TO_SYSTEM:QUADWORD_WRITE_TRANSFER successfully.
+Stopped QUADWORDS_WRITTEN_TO_SYSTEM:QUADWORD_WRITE_TRANSFER successfully.
+Removed QUADWORDS_WRITTEN_TO_SYSTEM:QUADWORD_WRITE_TRANSFER successfully.
+Added QUADWORDS_WRITTEN_TO_SYSTEM:ALL successfully.
+Stopped QUADWORDS_WRITTEN_TO_SYSTEM:ALL successfully.
+Removed QUADWORDS_WRITTEN_TO_SYSTEM:ALL successfully.
+Added CPU_CLK_UNHALTED successfully.
+Stopped CPU_CLK_UNHALTED successfully.
+Removed CPU_CLK_UNHALTED successfully.
+Added REQUESTS_TO_L2:INSTRUCTIONS successfully.
+Stopped REQUESTS_TO_L2:INSTRUCTIONS successfully.
+Removed REQUESTS_TO_L2:INSTRUCTIONS successfully.
+Added REQUESTS_TO_L2:DATA successfully.
+Stopped REQUESTS_TO_L2:DATA successfully.
+Removed REQUESTS_TO_L2:DATA successfully.
+Added REQUESTS_TO_L2:TLB_WALK successfully.
+Stopped REQUESTS_TO_L2:TLB_WALK successfully.
+Removed REQUESTS_TO_L2:TLB_WALK successfully.
+Added REQUESTS_TO_L2:SNOOP successfully.
+Stopped REQUESTS_TO_L2:SNOOP successfully.
+Removed REQUESTS_TO_L2:SNOOP successfully.
+Added REQUESTS_TO_L2:CANCELLED successfully.
+Stopped REQUESTS_TO_L2:CANCELLED successfully.
+Removed REQUESTS_TO_L2:CANCELLED successfully.
+Added REQUESTS_TO_L2:HW_PREFETCH_FROM_DC successfully.
+Stopped REQUESTS_TO_L2:HW_PREFETCH_FROM_DC successfully.
+Removed REQUESTS_TO_L2:HW_PREFETCH_FROM_DC successfully.
+Added REQUESTS_TO_L2:ALL successfully.
+Stopped REQUESTS_TO_L2:ALL successfully.
+Removed REQUESTS_TO_L2:ALL successfully.
+Added L2_CACHE_MISS:INSTRUCTIONS successfully.
+Stopped L2_CACHE_MISS:INSTRUCTIONS successfully.
+Removed L2_CACHE_MISS:INSTRUCTIONS successfully.
+Added L2_CACHE_MISS:DATA successfully.
+Stopped L2_CACHE_MISS:DATA successfully.
+Removed L2_CACHE_MISS:DATA successfully.
+Added L2_CACHE_MISS:TLB_WALK successfully.
+Stopped L2_CACHE_MISS:TLB_WALK successfully.
+Removed L2_CACHE_MISS:TLB_WALK successfully.
+Added L2_CACHE_MISS:HW_PREFETCH_FROM_DC successfully.
+Stopped L2_CACHE_MISS:HW_PREFETCH_FROM_DC successfully.
+Removed L2_CACHE_MISS:HW_PREFETCH_FROM_DC successfully.
+Added L2_CACHE_MISS:ALL successfully.
+Stopped L2_CACHE_MISS:ALL successfully.
+Removed L2_CACHE_MISS:ALL successfully.
+Added L2_FILL_WRITEBACK:L2_FILLS successfully.
+Stopped L2_FILL_WRITEBACK:L2_FILLS successfully.
+Removed L2_FILL_WRITEBACK:L2_FILLS successfully.
+Added L2_FILL_WRITEBACK:L2_WRITEBACKS successfully.
+Stopped L2_FILL_WRITEBACK:L2_WRITEBACKS successfully.
+Removed L2_FILL_WRITEBACK:L2_WRITEBACKS successfully.
+Added L2_FILL_WRITEBACK:ALL successfully.
+Stopped L2_FILL_WRITEBACK:ALL successfully.
+Removed L2_FILL_WRITEBACK:ALL successfully.
+Added INSTRUCTION_CACHE_FETCHES successfully.
+Stopped INSTRUCTION_CACHE_FETCHES successfully.
+Removed INSTRUCTION_CACHE_FETCHES successfully.
+Added INSTRUCTION_CACHE_MISSES successfully.
+Stopped INSTRUCTION_CACHE_MISSES successfully.
+Removed INSTRUCTION_CACHE_MISSES successfully.
+Added INSTRUCTION_CACHE_REFILLS_FROM_L2 successfully.
+Stopped INSTRUCTION_CACHE_REFILLS_FROM_L2 successfully.
+Removed INSTRUCTION_CACHE_REFILLS_FROM_L2 successfully.
+Added INSTRUCTION_CACHE_REFILLS_FROM_SYSTEM successfully.
+Stopped INSTRUCTION_CACHE_REFILLS_FROM_SYSTEM successfully.
+Removed INSTRUCTION_CACHE_REFILLS_FROM_SYSTEM successfully.
+Added L1_ITLB_MISS_AND_L2_ITLB_HIT successfully.
+Stopped L1_ITLB_MISS_AND_L2_ITLB_HIT successfully.
+Removed L1_ITLB_MISS_AND_L2_ITLB_HIT successfully.
+Added L1_ITLB_MISS_AND_L2_ITLB_MISS:4K_PAGE_FETCHES successfully.
+Stopped L1_ITLB_MISS_AND_L2_ITLB_MISS:4K_PAGE_FETCHES successfully.
+Removed L1_ITLB_MISS_AND_L2_ITLB_MISS:4K_PAGE_FETCHES successfully.
+Added L1_ITLB_MISS_AND_L2_ITLB_MISS:2M_PAGE_FETCHES successfully.
+Stopped L1_ITLB_MISS_AND_L2_ITLB_MISS:2M_PAGE_FETCHES successfully.
+Removed L1_ITLB_MISS_AND_L2_ITLB_MISS:2M_PAGE_FETCHES successfully.
+Added L1_ITLB_MISS_AND_L2_ITLB_MISS:ALL successfully.
+Stopped L1_ITLB_MISS_AND_L2_ITLB_MISS:ALL successfully.
+Removed L1_ITLB_MISS_AND_L2_ITLB_MISS:ALL successfully.
+Added PIPELINE_RESTART_DUE_TO_INSTRUCTION_STREAM_PROBE successfully.
+Stopped PIPELINE_RESTART_DUE_TO_INSTRUCTION_STREAM_PROBE successfully.
+Removed PIPELINE_RESTART_DUE_TO_INSTRUCTION_STREAM_PROBE successfully.
+Added INSTRUCTION_FETCH_STALL successfully.
+Stopped INSTRUCTION_FETCH_STALL successfully.
+Removed INSTRUCTION_FETCH_STALL successfully.
+Added RETURN_STACK_HITS successfully.
+Stopped RETURN_STACK_HITS successfully.
+Removed RETURN_STACK_HITS successfully.
+Added RETURN_STACK_OVERFLOWS successfully.
+Stopped RETURN_STACK_OVERFLOWS successfully.
+Removed RETURN_STACK_OVERFLOWS successfully.
+Added INSTRUCTION_CACHE_VICTIMS successfully.
+Stopped INSTRUCTION_CACHE_VICTIMS successfully.
+Removed INSTRUCTION_CACHE_VICTIMS successfully.
+Added INSTRUCTION_CACHE_LINES_INVALIDATED:INVALIDATING_PROBE_NO_IN_FLIGHT successfully.
+Stopped INSTRUCTION_CACHE_LINES_INVALIDATED:INVALIDATING_PROBE_NO_IN_FLIGHT successfully.
+Removed INSTRUCTION_CACHE_LINES_INVALIDATED:INVALIDATING_PROBE_NO_IN_FLIGHT successfully.
+Added INSTRUCTION_CACHE_LINES_INVALIDATED:INVALIDATING_PROBE_ONE_OR_MORE_IN_FLIGHT successfully.
+Stopped INSTRUCTION_CACHE_LINES_INVALIDATED:INVALIDATING_PROBE_ONE_OR_MORE_IN_FLIGHT successfully.
+Removed INSTRUCTION_CACHE_LINES_INVALIDATED:INVALIDATING_PROBE_ONE_OR_MORE_IN_FLIGHT successfully.
+Added INSTRUCTION_CACHE_LINES_INVALIDATED:SMC_NO_IN_FLIGHT successfully.
+Stopped INSTRUCTION_CACHE_LINES_INVALIDATED:SMC_NO_IN_FLIGHT successfully.
+Removed INSTRUCTION_CACHE_LINES_INVALIDATED:SMC_NO_IN_FLIGHT successfully.
+Added INSTRUCTION_CACHE_LINES_INVALIDATED:SMC_ONE_OR_MORE_IN_FLIGHT successfully.
+Stopped INSTRUCTION_CACHE_LINES_INVALIDATED:SMC_ONE_OR_MORE_IN_FLIGHT successfully.
+Removed INSTRUCTION_CACHE_LINES_INVALIDATED:SMC_ONE_OR_MORE_IN_FLIGHT successfully.
+Added INSTRUCTION_CACHE_LINES_INVALIDATED:ALL successfully.
+Stopped INSTRUCTION_CACHE_LINES_INVALIDATED:ALL successfully.
+Removed INSTRUCTION_CACHE_LINES_INVALIDATED:ALL successfully.
+Added ITLB_RELOADS successfully.
+Stopped ITLB_RELOADS successfully.
+Removed ITLB_RELOADS successfully.
+Added ITLB_RELOADS_ABORTED successfully.
+Stopped ITLB_RELOADS_ABORTED successfully.
+Removed ITLB_RELOADS_ABORTED successfully.
+Added RETIRED_INSTRUCTIONS successfully.
+Stopped RETIRED_INSTRUCTIONS successfully.
+Removed RETIRED_INSTRUCTIONS successfully.
+Added RETIRED_UOPS successfully.
+Stopped RETIRED_UOPS successfully.
+Removed RETIRED_UOPS successfully.
+Added RETIRED_BRANCH_INSTRUCTIONS successfully.
+Stopped RETIRED_BRANCH_INSTRUCTIONS successfully.
+Removed RETIRED_BRANCH_INSTRUCTIONS successfully.
+Added RETIRED_MISPREDICTED_BRANCH_INSTRUCTIONS successfully.
+Stopped RETIRED_MISPREDICTED_BRANCH_INSTRUCTIONS successfully.
+Removed RETIRED_MISPREDICTED_BRANCH_INSTRUCTIONS successfully.
+Added RETIRED_TAKEN_BRANCH_INSTRUCTIONS successfully.
+Stopped RETIRED_TAKEN_BRANCH_INSTRUCTIONS successfully.
+Removed RETIRED_TAKEN_BRANCH_INSTRUCTIONS successfully.
+Added RETIRED_TAKEN_BRANCH_INSTRUCTIONS_MISPREDICTED successfully.
+Stopped RETIRED_TAKEN_BRANCH_INSTRUCTIONS_MISPREDICTED successfully.
+Removed RETIRED_TAKEN_BRANCH_INSTRUCTIONS_MISPREDICTED successfully.
+Added RETIRED_FAR_CONTROL_TRANSFERS successfully.
+Stopped RETIRED_FAR_CONTROL_TRANSFERS successfully.
+Removed RETIRED_FAR_CONTROL_TRANSFERS successfully.
+Added RETIRED_BRANCH_RESYNCS successfully.
+Stopped RETIRED_BRANCH_RESYNCS successfully.
+Removed RETIRED_BRANCH_RESYNCS successfully.
+Added RETIRED_NEAR_RETURNS successfully.
+Stopped RETIRED_NEAR_RETURNS successfully.
+Removed RETIRED_NEAR_RETURNS successfully.
+Added RETIRED_NEAR_RETURNS_MISPREDICTED successfully.
+Stopped RETIRED_NEAR_RETURNS_MISPREDICTED successfully.
+Removed RETIRED_NEAR_RETURNS_MISPREDICTED successfully.
+Added RETIRED_INDIRECT_BRANCHES_MISPREDICTED successfully.
+Stopped RETIRED_INDIRECT_BRANCHES_MISPREDICTED successfully.
+Removed RETIRED_INDIRECT_BRANCHES_MISPREDICTED successfully.
+Added RETIRED_MMX_AND_FP_INSTRUCTIONS:X87 successfully.
+Stopped RETIRED_MMX_AND_FP_INSTRUCTIONS:X87 successfully.
+Removed RETIRED_MMX_AND_FP_INSTRUCTIONS:X87 successfully.
+Added RETIRED_MMX_AND_FP_INSTRUCTIONS:MMX_AND_3DNOW successfully.
+Stopped RETIRED_MMX_AND_FP_INSTRUCTIONS:MMX_AND_3DNOW successfully.
+Removed RETIRED_MMX_AND_FP_INSTRUCTIONS:MMX_AND_3DNOW successfully.
+Added RETIRED_MMX_AND_FP_INSTRUCTIONS:PACKED_SSE_AND_SSE2 successfully.
+Stopped RETIRED_MMX_AND_FP_INSTRUCTIONS:PACKED_SSE_AND_SSE2 successfully.
+Removed RETIRED_MMX_AND_FP_INSTRUCTIONS:PACKED_SSE_AND_SSE2 successfully.
+Added RETIRED_MMX_AND_FP_INSTRUCTIONS:ALL successfully.
+Stopped RETIRED_MMX_AND_FP_INSTRUCTIONS:ALL successfully.
+Removed RETIRED_MMX_AND_FP_INSTRUCTIONS:ALL successfully.
+Added RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:POSITION_0 successfully.
+Stopped RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:POSITION_0 successfully.
+Removed RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:POSITION_0 successfully.
+Added RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:POSITION_1 successfully.
+Stopped RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:POSITION_1 successfully.
+Removed RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:POSITION_1 successfully.
+Added RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:POSITION_2 successfully.
+Stopped RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:POSITION_2 successfully.
+Removed RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:POSITION_2 successfully.
+Added RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:ALL successfully.
+Stopped RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:ALL successfully.
+Removed RETIRED_FASTPATH_DOUBLE_OP_INSTRUCTIONS:ALL successfully.
+Added INTERRUPTS_MASKED_CYCLES successfully.
+Stopped INTERRUPTS_MASKED_CYCLES successfully.
+Removed INTERRUPTS_MASKED_CYCLES successfully.
+Added INTERRUPTS_MASKED_CYCLES_WITH_INTERRUPT_PENDING successfully.
+Stopped INTERRUPTS_MASKED_CYCLES_WITH_INTERRUPT_PENDING successfully.
+Removed INTERRUPTS_MASKED_CYCLES_WITH_INTERRUPT_PENDING successfully.
+Added INTERRUPTS_TAKEN successfully.
+Stopped INTERRUPTS_TAKEN successfully.
+Removed INTERRUPTS_TAKEN successfully.
+Added DECODER_EMPTY successfully.
+Stopped DECODER_EMPTY successfully.
+Removed DECODER_EMPTY successfully.
+Added DISPATCH_STALLS successfully.
+Stopped DISPATCH_STALLS successfully.
+Removed DISPATCH_STALLS successfully.
+Added DISPATCH_STALL_FOR_BRANCH_ABORT successfully.
+Stopped DISPATCH_STALL_FOR_BRANCH_ABORT successfully.
+Removed DISPATCH_STALL_FOR_BRANCH_ABORT successfully.
+Added DISPATCH_STALL_FOR_SERIALIZATION successfully.
+Stopped DISPATCH_STALL_FOR_SERIALIZATION successfully.
+Removed DISPATCH_STALL_FOR_SERIALIZATION successfully.
+Added DISPATCH_STALL_FOR_SEGMENT_LOAD successfully.
+Stopped DISPATCH_STALL_FOR_SEGMENT_LOAD successfully.
+Removed DISPATCH_STALL_FOR_SEGMENT_LOAD successfully.
+Added DISPATCH_STALL_FOR_REORDER_BUFFER_FULL successfully.
+Stopped DISPATCH_STALL_FOR_REORDER_BUFFER_FULL successfully.
+Removed DISPATCH_STALL_FOR_REORDER_BUFFER_FULL successfully.
+Added DISPATCH_STALL_FOR_RESERVATION_STATION_FULL successfully.
+Stopped DISPATCH_STALL_FOR_RESERVATION_STATION_FULL successfully.
+Removed DISPATCH_STALL_FOR_RESERVATION_STATION_FULL successfully.
+Added DISPATCH_STALL_FOR_FPU_FULL successfully.
+Stopped DISPATCH_STALL_FOR_FPU_FULL successfully.
+Removed DISPATCH_STALL_FOR_FPU_FULL successfully.
+Added DISPATCH_STALL_FOR_LS_FULL successfully.
+Stopped DISPATCH_STALL_FOR_LS_FULL successfully.
+Removed DISPATCH_STALL_FOR_LS_FULL successfully.
+Added DISPATCH_STALL_WAITING_FOR_ALL_QUIET successfully.
+Stopped DISPATCH_STALL_WAITING_FOR_ALL_QUIET successfully.
+Removed DISPATCH_STALL_WAITING_FOR_ALL_QUIET successfully.
+Added DISPATCH_STALL_FOR_FAR_TRANSFER_OR_RSYNC successfully.
+Stopped DISPATCH_STALL_FOR_FAR_TRANSFER_OR_RSYNC successfully.
+Removed DISPATCH_STALL_FOR_FAR_TRANSFER_OR_RSYNC successfully.
+Added FPU_EXCEPTIONS:X87_RECLASS_MICROFAULTS successfully.
+Stopped FPU_EXCEPTIONS:X87_RECLASS_MICROFAULTS successfully.
+Removed FPU_EXCEPTIONS:X87_RECLASS_MICROFAULTS successfully.
+Added FPU_EXCEPTIONS:SSE_RETYPE_MICROFAULTS successfully.
+Stopped FPU_EXCEPTIONS:SSE_RETYPE_MICROFAULTS successfully.
+Removed FPU_EXCEPTIONS:SSE_RETYPE_MICROFAULTS successfully.
+Added FPU_EXCEPTIONS:SSE_RECLASS_MICROFAULTS successfully.
+Stopped FPU_EXCEPTIONS:SSE_RECLASS_MICROFAULTS successfully.
+Removed FPU_EXCEPTIONS:SSE_RECLASS_MICROFAULTS successfully.
+Added FPU_EXCEPTIONS:SSE_AND_X87_MICROTRAPS successfully.
+Stopped FPU_EXCEPTIONS:SSE_AND_X87_MICROTRAPS successfully.
+Removed FPU_EXCEPTIONS:SSE_AND_X87_MICROTRAPS successfully.
+Added FPU_EXCEPTIONS:ALL successfully.
+Stopped FPU_EXCEPTIONS:ALL successfully.
+Removed FPU_EXCEPTIONS:ALL successfully.
+Added DR0_BREAKPOINT_MATCHES successfully.
+Stopped DR0_BREAKPOINT_MATCHES successfully.
+Removed DR0_BREAKPOINT_MATCHES successfully.
+Added DR1_BREAKPOINT_MATCHES successfully.
+Stopped DR1_BREAKPOINT_MATCHES successfully.
+Removed DR1_BREAKPOINT_MATCHES successfully.
+Added DR2_BREAKPOINT_MATCHES successfully.
+Stopped DR2_BREAKPOINT_MATCHES successfully.
+Removed DR2_BREAKPOINT_MATCHES successfully.
+Added DR3_BREAKPOINT_MATCHES successfully.
+Stopped DR3_BREAKPOINT_MATCHES successfully.
+Removed DR3_BREAKPOINT_MATCHES successfully.
+Added DRAM_ACCESSES_PAGE:HIT successfully.
+Error Starting DRAM_ACCESSES_PAGE:HIT : PAPI_ESYS
+Removed DRAM_ACCESSES_PAGE:HIT successfully.
+Added DRAM_ACCESSES_PAGE:MISS successfully.
+Error Starting DRAM_ACCESSES_PAGE:MISS : PAPI_ESYS
+Removed DRAM_ACCESSES_PAGE:MISS successfully.
+Added DRAM_ACCESSES_PAGE:CONFLICT successfully.
+Error Starting DRAM_ACCESSES_PAGE:CONFLICT : PAPI_ESYS
+Removed DRAM_ACCESSES_PAGE:CONFLICT successfully.
+Added DRAM_ACCESSES_PAGE:DCT1_PAGE_HIT successfully.
+Error Starting DRAM_ACCESSES_PAGE:DCT1_PAGE_HIT : PAPI_ESYS
+Removed DRAM_ACCESSES_PAGE:DCT1_PAGE_HIT successfully.
+Added DRAM_ACCESSES_PAGE:DCT1_PAGE_MISS successfully.
+Error Starting DRAM_ACCESSES_PAGE:DCT1_PAGE_MISS : PAPI_ESYS
+Removed DRAM_ACCESSES_PAGE:DCT1_PAGE_MISS successfully.
+Added DRAM_ACCESSES_PAGE:DCT1_PAGE_CONFLICT successfully.
+Error Starting DRAM_ACCESSES_PAGE:DCT1_PAGE_CONFLICT : PAPI_ESYS
+Removed DRAM_ACCESSES_PAGE:DCT1_PAGE_CONFLICT successfully.
+Added DRAM_ACCESSES_PAGE:WRITE_REQUEST successfully.
+Error Starting DRAM_ACCESSES_PAGE:WRITE_REQUEST : PAPI_ESYS
+Removed DRAM_ACCESSES_PAGE:WRITE_REQUEST successfully.
+Added DRAM_ACCESSES_PAGE:READ_REQUEST successfully.
+Error Starting DRAM_ACCESSES_PAGE:READ_REQUEST : PAPI_ESYS
+Removed DRAM_ACCESSES_PAGE:READ_REQUEST successfully.
+Added DRAM_ACCESSES_PAGE:ALL successfully.
+Error Starting DRAM_ACCESSES_PAGE:ALL : PAPI_ESYS
+Removed DRAM_ACCESSES_PAGE:ALL successfully.
+Added MEMORY_CONTROLLER_PAGE_TABLE_OVERFLOWS:DCT0_PAGE_TABLE_OVERFLOW successfully.
+Error Starting MEMORY_CONTROLLER_PAGE_TABLE_OVERFLOWS:DCT0_PAGE_TABLE_OVERFLOW : PAPI_ESYS
+Removed MEMORY_CONTROLLER_PAGE_TABLE_OVERFLOWS:DCT0_PAGE_TABLE_OVERFLOW successfully.
+Added MEMORY_CONTROLLER_PAGE_TABLE_OVERFLOWS:DCT1_PAGE_TABLE_OVERFLOW successfully.
+Error Starting MEMORY_CONTROLLER_PAGE_TABLE_OVERFLOWS:DCT1_PAGE_TABLE_OVERFLOW : PAPI_ESYS
+Removed MEMORY_CONTROLLER_PAGE_TABLE_OVERFLOWS:DCT1_PAGE_TABLE_OVERFLOW successfully.
+Added MEMORY_CONTROLLER_PAGE_TABLE_OVERFLOWS:ALL successfully.
+Error Starting MEMORY_CONTROLLER_PAGE_TABLE_OVERFLOWS:ALL : PAPI_ESYS
+Removed MEMORY_CONTROLLER_PAGE_TABLE_OVERFLOWS:ALL successfully.
+Added MEMORY_CONTROLLER_SLOT_MISSES:DCT0_COMMAND_SLOTS_MISSED successfully.
+Error Starting MEMORY_CONTROLLER_SLOT_MISSES:DCT0_COMMAND_SLOTS_MISSED : PAPI_ESYS
+Removed MEMORY_CONTROLLER_SLOT_MISSES:DCT0_COMMAND_SLOTS_MISSED successfully.
+Added MEMORY_CONTROLLER_SLOT_MISSES:DCT1_COMMAND_SLOTS_MISSED successfully.
+Error Starting MEMORY_CONTROLLER_SLOT_MISSES:DCT1_COMMAND_SLOTS_MISSED : PAPI_ESYS
+Removed MEMORY_CONTROLLER_SLOT_MISSES:DCT1_COMMAND_SLOTS_MISSED successfully.
+Added MEMORY_CONTROLLER_SLOT_MISSES:ALL successfully.
+Error Starting MEMORY_CONTROLLER_SLOT_MISSES:ALL : PAPI_ESYS
+Removed MEMORY_CONTROLLER_SLOT_MISSES:ALL successfully.
+Added MEMORY_CONTROLLER_TURNAROUNDS:CHIP_SELECT successfully.
+Error Starting MEMORY_CONTROLLER_TURNAROUNDS:CHIP_SELECT : PAPI_ESYS
+Removed MEMORY_CONTROLLER_TURNAROUNDS:CHIP_SELECT successfully.
+Added MEMORY_CONTROLLER_TURNAROUNDS:READ_TO_WRITE successfully.
+Error Starting MEMORY_CONTROLLER_TURNAROUNDS:READ_TO_WRITE : PAPI_ESYS
+Removed MEMORY_CONTROLLER_TURNAROUNDS:READ_TO_WRITE successfully.
+Added MEMORY_CONTROLLER_TURNAROUNDS:WRITE_TO_READ successfully.
+Error Starting MEMORY_CONTROLLER_TURNAROUNDS:WRITE_TO_READ : PAPI_ESYS
+Removed MEMORY_CONTROLLER_TURNAROUNDS:WRITE_TO_READ successfully.
+Added MEMORY_CONTROLLER_TURNAROUNDS:DCT1_DIMM successfully.
+Error Starting MEMORY_CONTROLLER_TURNAROUNDS:DCT1_DIMM : PAPI_ESYS
+Removed MEMORY_CONTROLLER_TURNAROUNDS:DCT1_DIMM successfully.
+Added MEMORY_CONTROLLER_TURNAROUNDS:DCT1_READ_TO_WRITE_TURNAROUND successfully.
+Error Starting MEMORY_CONTROLLER_TURNAROUNDS:DCT1_READ_TO_WRITE_TURNAROUND : PAPI_ESYS
+Removed MEMORY_CONTROLLER_TURNAROUNDS:DCT1_READ_TO_WRITE_TURNAROUND successfully.
+Added MEMORY_CONTROLLER_TURNAROUNDS:DCT1_WRITE_TO_READ_TURNAROUND successfully.
+Error Starting MEMORY_CONTROLLER_TURNAROUNDS:DCT1_WRITE_TO_READ_TURNAROUND : PAPI_ESYS
+Removed MEMORY_CONTROLLER_TURNAROUNDS:DCT1_WRITE_TO_READ_TURNAROUND successfully.
+Added MEMORY_CONTROLLER_TURNAROUNDS:ALL successfully.
+Error Starting MEMORY_CONTROLLER_TURNAROUNDS:ALL : PAPI_ESYS
+Removed MEMORY_CONTROLLER_TURNAROUNDS:ALL successfully.
+Added MEMORY_CONTROLLER_BYPASS:HIGH_PRIORITY successfully.
+Error Starting MEMORY_CONTROLLER_BYPASS:HIGH_PRIORITY : PAPI_ESYS
+Removed MEMORY_CONTROLLER_BYPASS:HIGH_PRIORITY successfully.
+Added MEMORY_CONTROLLER_BYPASS:LOW_PRIORITY successfully.
+Error Starting MEMORY_CONTROLLER_BYPASS:LOW_PRIORITY : PAPI_ESYS
+Removed MEMORY_CONTROLLER_BYPASS:LOW_PRIORITY successfully.
+Added MEMORY_CONTROLLER_BYPASS:DRAM_INTERFACE successfully.
+Error Starting MEMORY_CONTROLLER_BYPASS:DRAM_INTERFACE : PAPI_ESYS
+Removed MEMORY_CONTROLLER_BYPASS:DRAM_INTERFACE successfully.
+Added MEMORY_CONTROLLER_BYPASS:DRAM_QUEUE successfully.
+Error Starting MEMORY_CONTROLLER_BYPASS:DRAM_QUEUE : PAPI_ESYS
+Removed MEMORY_CONTROLLER_BYPASS:DRAM_QUEUE successfully.
+Added MEMORY_CONTROLLER_BYPASS:ALL successfully.
+Error Starting MEMORY_CONTROLLER_BYPASS:ALL : PAPI_ESYS
+Removed MEMORY_CONTROLLER_BYPASS:ALL successfully.
+Added THERMAL_STATUS_AND_ECC_ERRORS:CLKS_DIE_TEMP_TOO_HIGH successfully.
+Error Starting THERMAL_STATUS_AND_ECC_ERRORS:CLKS_DIE_TEMP_TOO_HIGH : PAPI_ESYS
+Removed THERMAL_STATUS_AND_ECC_ERRORS:CLKS_DIE_TEMP_TOO_HIGH successfully.
+Added THERMAL_STATUS_AND_ECC_ERRORS:CLKS_TEMP_THRESHOLD_EXCEEDED successfully.
+Error Starting THERMAL_STATUS_AND_ECC_ERRORS:CLKS_TEMP_THRESHOLD_EXCEEDED : PAPI_ESYS
+Removed THERMAL_STATUS_AND_ECC_ERRORS:CLKS_TEMP_THRESHOLD_EXCEEDED successfully.
+Added THERMAL_STATUS_AND_ECC_ERRORS:STC_TRIP_POINTS_CROSSED successfully.
+Error Starting THERMAL_STATUS_AND_ECC_ERRORS:STC_TRIP_POINTS_CROSSED : PAPI_ESYS
+Removed THERMAL_STATUS_AND_ECC_ERRORS:STC_TRIP_POINTS_CROSSED successfully.
+Added THERMAL_STATUS_AND_ECC_ERRORS:CLOCKS_HTC_P_STATE_INACTIVE successfully.
+Error Starting THERMAL_STATUS_AND_ECC_ERRORS:CLOCKS_HTC_P_STATE_INACTIVE : PAPI_ESYS
+Removed THERMAL_STATUS_AND_ECC_ERRORS:CLOCKS_HTC_P_STATE_INACTIVE successfully.
+Added THERMAL_STATUS_AND_ECC_ERRORS:CLOCKS_HTC_P_STATE_ACTIVE successfully.
+Error Starting THERMAL_STATUS_AND_ECC_ERRORS:CLOCKS_HTC_P_STATE_ACTIVE : PAPI_ESYS
+Removed THERMAL_STATUS_AND_ECC_ERRORS:CLOCKS_HTC_P_STATE_ACTIVE successfully.
+Added THERMAL_STATUS_AND_ECC_ERRORS:ALL successfully.
+Error Starting THERMAL_STATUS_AND_ECC_ERRORS:ALL : PAPI_ESYS
+Removed THERMAL_STATUS_AND_ECC_ERRORS:ALL successfully.
+Added CPU_IO_REQUESTS_TO_MEMORY_IO:I_O_TO_I_O successfully.
+Error Starting CPU_IO_REQUESTS_TO_MEMORY_IO:I_O_TO_I_O : PAPI_ESYS
+Removed CPU_IO_REQUESTS_TO_MEMORY_IO:I_O_TO_I_O successfully.
+Added CPU_IO_REQUESTS_TO_MEMORY_IO:I_O_TO_MEM successfully.
+Error Starting CPU_IO_REQUESTS_TO_MEMORY_IO:I_O_TO_MEM : PAPI_ESYS
+Removed CPU_IO_REQUESTS_TO_MEMORY_IO:I_O_TO_MEM successfully.
+Added CPU_IO_REQUESTS_TO_MEMORY_IO:CPU_TO_I_O successfully.
+Error Starting CPU_IO_REQUESTS_TO_MEMORY_IO:CPU_TO_I_O : PAPI_ESYS
+Removed CPU_IO_REQUESTS_TO_MEMORY_IO:CPU_TO_I_O successfully.
+Added CPU_IO_REQUESTS_TO_MEMORY_IO:CPU_TO_MEM successfully.
+Error Starting CPU_IO_REQUESTS_TO_MEMORY_IO:CPU_TO_MEM : PAPI_ESYS
+Removed CPU_IO_REQUESTS_TO_MEMORY_IO:CPU_TO_MEM successfully.
+Added CPU_IO_REQUESTS_TO_MEMORY_IO:TO_REMOTE_NODE successfully.
+Error Starting CPU_IO_REQUESTS_TO_MEMORY_IO:TO_REMOTE_NODE : PAPI_ESYS
+Removed CPU_IO_REQUESTS_TO_MEMORY_IO:TO_REMOTE_NODE successfully.
+Added CPU_IO_REQUESTS_TO_MEMORY_IO:TO_LOCAL_NODE successfully.
+Error Starting CPU_IO_REQUESTS_TO_MEMORY_IO:TO_LOCAL_NODE : PAPI_ESYS
+Removed CPU_IO_REQUESTS_TO_MEMORY_IO:TO_LOCAL_NODE successfully.
+Added CPU_IO_REQUESTS_TO_MEMORY_IO:FROM_REMOTE_NODE successfully.
+Error Starting CPU_IO_REQUESTS_TO_MEMORY_IO:FROM_REMOTE_NODE : PAPI_ESYS
+Removed CPU_IO_REQUESTS_TO_MEMORY_IO:FROM_REMOTE_NODE successfully.
+Added CPU_IO_REQUESTS_TO_MEMORY_IO:FROM_LOCAL_NODE successfully.
+Error Starting CPU_IO_REQUESTS_TO_MEMORY_IO:FROM_LOCAL_NODE : PAPI_ESYS
+Removed CPU_IO_REQUESTS_TO_MEMORY_IO:FROM_LOCAL_NODE successfully.
+Added CPU_IO_REQUESTS_TO_MEMORY_IO:ALL successfully.
+Error Starting CPU_IO_REQUESTS_TO_MEMORY_IO:ALL : PAPI_ESYS
+Removed CPU_IO_REQUESTS_TO_MEMORY_IO:ALL successfully.
+Added CACHE_BLOCK:VICTIM_WRITEBACK successfully.
+Error Starting CACHE_BLOCK:VICTIM_WRITEBACK : PAPI_ESYS
+Removed CACHE_BLOCK:VICTIM_WRITEBACK successfully.
+Added CACHE_BLOCK:DCACHE_LOAD_MISS successfully.
+Error Starting CACHE_BLOCK:DCACHE_LOAD_MISS : PAPI_ESYS
+Removed CACHE_BLOCK:DCACHE_LOAD_MISS successfully.
+Added CACHE_BLOCK:SHARED_ICACHE_REFILL successfully.
+Error Starting CACHE_BLOCK:SHARED_ICACHE_REFILL : PAPI_ESYS
+Removed CACHE_BLOCK:SHARED_ICACHE_REFILL successfully.
+Added CACHE_BLOCK:READ_BLOCK_MODIFIED successfully.
+Error Starting CACHE_BLOCK:READ_BLOCK_MODIFIED : PAPI_ESYS
+Removed CACHE_BLOCK:READ_BLOCK_MODIFIED successfully.
+Added CACHE_BLOCK:READ_TO_DIRTY successfully.
+Error Starting CACHE_BLOCK:READ_TO_DIRTY : PAPI_ESYS
+Removed CACHE_BLOCK:READ_TO_DIRTY successfully.
+Added CACHE_BLOCK:ALL successfully.
+Error Starting CACHE_BLOCK:ALL : PAPI_ESYS
+Removed CACHE_BLOCK:ALL successfully.
+Added SIZED_COMMANDS:NON_POSTED_WRITE_BYTE successfully.
+Error Starting SIZED_COMMANDS:NON_POSTED_WRITE_BYTE : PAPI_ESYS
+Removed SIZED_COMMANDS:NON_POSTED_WRITE_BYTE successfully.
+Added SIZED_COMMANDS:NON_POSTED_WRITE_DWORD successfully.
+Error Starting SIZED_COMMANDS:NON_POSTED_WRITE_DWORD : PAPI_ESYS
+Removed SIZED_COMMANDS:NON_POSTED_WRITE_DWORD successfully.
+Added SIZED_COMMANDS:POSTED_WRITE_BYTE successfully.
+Error Starting SIZED_COMMANDS:POSTED_WRITE_BYTE : PAPI_ESYS
+Removed SIZED_COMMANDS:POSTED_WRITE_BYTE successfully.
+Added SIZED_COMMANDS:POSTED_WRITE_DWORD successfully.
+Error Starting SIZED_COMMANDS:POSTED_WRITE_DWORD : PAPI_ESYS
+Removed SIZED_COMMANDS:POSTED_WRITE_DWORD successfully.
+Added SIZED_COMMANDS:READ_BYTE_4_BYTES successfully.
+Error Starting SIZED_COMMANDS:READ_BYTE_4_BYTES : PAPI_ESYS
+Removed SIZED_COMMANDS:READ_BYTE_4_BYTES successfully.
+Added SIZED_COMMANDS:READ_DWORD_1_16_DWORDS successfully.
+Error Starting SIZED_COMMANDS:READ_DWORD_1_16_DWORDS : PAPI_ESYS
+Removed SIZED_COMMANDS:READ_DWORD_1_16_DWORDS successfully.
+Added SIZED_COMMANDS:ALL successfully.
+Error Starting SIZED_COMMANDS:ALL : PAPI_ESYS
+Removed SIZED_COMMANDS:ALL successfully.
+Added PROBE:MISS successfully.
+Error Starting PROBE:MISS : PAPI_ESYS
+Removed PROBE:MISS successfully.
+Added PROBE:HIT_CLEAN successfully.
+Error Starting PROBE:HIT_CLEAN : PAPI_ESYS
+Removed PROBE:HIT_CLEAN successfully.
+Added PROBE:HIT_DIRTY_NO_MEMORY_CANCEL successfully.
+Error Starting PROBE:HIT_DIRTY_NO_MEMORY_CANCEL : PAPI_ESYS
+Removed PROBE:HIT_DIRTY_NO_MEMORY_CANCEL successfully.
+Added PROBE:HIT_DIRTY_WITH_MEMORY_CANCEL successfully.
+Error Starting PROBE:HIT_DIRTY_WITH_MEMORY_CANCEL : PAPI_ESYS
+Removed PROBE:HIT_DIRTY_WITH_MEMORY_CANCEL successfully.
+Added PROBE:UPSTREAM_DISPLAY_REFRESH_READS successfully.
+Error Starting PROBE:UPSTREAM_DISPLAY_REFRESH_READS : PAPI_ESYS
+Removed PROBE:UPSTREAM_DISPLAY_REFRESH_READS successfully.
+Added PROBE:UPSTREAM_NON_DISPLAY_REFRESH_READS successfully.
+Error Starting PROBE:UPSTREAM_NON_DISPLAY_REFRESH_READS : PAPI_ESYS
+Removed PROBE:UPSTREAM_NON_DISPLAY_REFRESH_READS successfully.
+Added PROBE:UPSTREAM_WRITES successfully.
+Error Starting PROBE:UPSTREAM_WRITES : PAPI_ESYS
+Removed PROBE:UPSTREAM_WRITES successfully.
+Added PROBE:UPSTREAM_NON_ISOC_WRITES successfully.
+Error Starting PROBE:UPSTREAM_NON_ISOC_WRITES : PAPI_ESYS
+Removed PROBE:UPSTREAM_NON_ISOC_WRITES successfully.
+Added PROBE:ALL successfully.
+Error Starting PROBE:ALL : PAPI_ESYS
+Removed PROBE:ALL successfully.
+Added GART:APERTURE_HIT_FROM_CPU successfully.
+Error Starting GART:APERTURE_HIT_FROM_CPU : PAPI_ESYS
+Removed GART:APERTURE_HIT_FROM_CPU successfully.
+Added GART:APERTURE_HIT_FROM_IO successfully.
+Error Starting GART:APERTURE_HIT_FROM_IO : PAPI_ESYS
+Removed GART:APERTURE_HIT_FROM_IO successfully.
+Added GART:MISS successfully.
+Error Starting GART:MISS : PAPI_ESYS
+Removed GART:MISS successfully.
+Added GART:REQUEST_HIT_TABLE_WALK successfully.
+Error Starting GART:REQUEST_HIT_TABLE_WALK : PAPI_ESYS
+Removed GART:REQUEST_HIT_TABLE_WALK successfully.
+Added GART:DEV_HIT successfully.
+Error Starting GART:DEV_HIT : PAPI_ESYS
+Removed GART:DEV_HIT successfully.
+Added GART:DEV_MISS successfully.
+Error Starting GART:DEV_MISS : PAPI_ESYS
+Removed GART:DEV_MISS successfully.
+Added GART:DEV_ERROR successfully.
+Error Starting GART:DEV_ERROR : PAPI_ESYS
+Removed GART:DEV_ERROR successfully.
+Added GART:MULTIPLE_TABLE_WALK successfully.
+Error Starting GART:MULTIPLE_TABLE_WALK : PAPI_ESYS
+Removed GART:MULTIPLE_TABLE_WALK successfully.
+Added GART:ALL successfully.
+Error Starting GART:ALL : PAPI_ESYS
+Removed GART:ALL successfully.
+Added MEMORY_CONTROLLER_REQUESTS:WRITE_REQUESTS successfully.
+Error Starting MEMORY_CONTROLLER_REQUESTS:WRITE_REQUESTS : PAPI_ESYS
+Removed MEMORY_CONTROLLER_REQUESTS:WRITE_REQUESTS successfully.
+Added MEMORY_CONTROLLER_REQUESTS:READ_REQUESTS successfully.
+Error Starting MEMORY_CONTROLLER_REQUESTS:READ_REQUESTS : PAPI_ESYS
+Removed MEMORY_CONTROLLER_REQUESTS:READ_REQUESTS successfully.
+Added MEMORY_CONTROLLER_REQUESTS:PREFETCH_REQUESTS successfully.
+Error Starting MEMORY_CONTROLLER_REQUESTS:PREFETCH_REQUESTS : PAPI_ESYS
+Removed MEMORY_CONTROLLER_REQUESTS:PREFETCH_REQUESTS successfully.
+Added MEMORY_CONTROLLER_REQUESTS:32_BYTES_WRITES successfully.
+Error Starting MEMORY_CONTROLLER_REQUESTS:32_BYTES_WRITES : PAPI_ESYS
+Removed MEMORY_CONTROLLER_REQUESTS:32_BYTES_WRITES successfully.
+Added MEMORY_CONTROLLER_REQUESTS:64_BYTES_WRITES successfully.
+Error Starting MEMORY_CONTROLLER_REQUESTS:64_BYTES_WRITES : PAPI_ESYS
+Removed MEMORY_CONTROLLER_REQUESTS:64_BYTES_WRITES successfully.
+Added MEMORY_CONTROLLER_REQUESTS:32_BYTES_READS successfully.
+Error Starting MEMORY_CONTROLLER_REQUESTS:32_BYTES_READS : PAPI_ESYS
+Removed MEMORY_CONTROLLER_REQUESTS:32_BYTES_READS successfully.
+Added MEMORY_CONTROLLER_REQUESTS:64_BYTES_READS successfully.
+Error Starting MEMORY_CONTROLLER_REQUESTS:64_BYTES_READS : PAPI_ESYS
+Removed MEMORY_CONTROLLER_REQUESTS:64_BYTES_READS successfully.
+Added MEMORY_CONTROLLER_REQUESTS:READ_REQUESTS_WHILE_WRITES_REQUESTS successfully.
+Error Starting MEMORY_CONTROLLER_REQUESTS:READ_REQUESTS_WHILE_WRITES_REQUESTS : PAPI_ESYS
+Removed MEMORY_CONTROLLER_REQUESTS:READ_REQUESTS_WHILE_WRITES_REQUESTS successfully.
+Added MEMORY_CONTROLLER_REQUESTS:ALL successfully.
+Error Starting MEMORY_CONTROLLER_REQUESTS:ALL : PAPI_ESYS
+Removed MEMORY_CONTROLLER_REQUESTS:ALL successfully.
+Added CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_0 successfully.
+Error Starting CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_0 : PAPI_ESYS
+Removed CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_0 successfully.
+Added CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_1 successfully.
+Error Starting CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_1 : PAPI_ESYS
+Removed CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_1 successfully.
+Added CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_2 successfully.
+Error Starting CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_2 : PAPI_ESYS
+Removed CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_2 successfully.
+Added CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_3 successfully.
+Error Starting CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_3 : PAPI_ESYS
+Removed CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_3 successfully.
+Added CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_4 successfully.
+Error Starting CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_4 : PAPI_ESYS
+Removed CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_4 successfully.
+Added CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_5 successfully.
+Error Starting CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_5 : PAPI_ESYS
+Removed CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_5 successfully.
+Added CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_6 successfully.
+Error Starting CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_6 : PAPI_ESYS
+Removed CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_6 successfully.
+Added CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_7 successfully.
+Error Starting CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_7 : PAPI_ESYS
+Removed CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_7 successfully.
+Added CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:ALL successfully.
+Error Starting CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:ALL : PAPI_ESYS
+Removed CPU_TO_DRAM_REQUESTS_TO_TARGET_NODE:ALL successfully.
+Added IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_0 successfully.
+Error Starting IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_0 : PAPI_ESYS
+Removed IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_0 successfully.
+Added IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_1 successfully.
+Error Starting IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_1 : PAPI_ESYS
+Removed IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_1 successfully.
+Added IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_2 successfully.
+Error Starting IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_2 : PAPI_ESYS
+Removed IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_2 successfully.
+Added IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_3 successfully.
+Error Starting IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_3 : PAPI_ESYS
+Removed IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_3 successfully.
+Added IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_4 successfully.
+Error Starting IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_4 : PAPI_ESYS
+Removed IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_4 successfully.
+Added IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_5 successfully.
+Error Starting IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_5 : PAPI_ESYS
+Removed IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_5 successfully.
+Added IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_6 successfully.
+Error Starting IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_6 : PAPI_ESYS
+Removed IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_6 successfully.
+Added IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_7 successfully.
+Error Starting IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_7 : PAPI_ESYS
+Removed IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:LOCAL_TO_7 successfully.
+Added IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:ALL successfully.
+Error Starting IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:ALL : PAPI_ESYS
+Removed IO_TO_DRAM_REQUESTS_TO_TARGET_NODE:ALL successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:READ_BLOCK successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:READ_BLOCK : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:READ_BLOCK successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:READ_BLOCK_SHARED successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:READ_BLOCK_SHARED : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:READ_BLOCK_SHARED successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:READ_BLOCK_MODIFIED successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:READ_BLOCK_MODIFIED : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:READ_BLOCK_MODIFIED successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:CHANGE_TO_DIRTY successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:CHANGE_TO_DIRTY : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:CHANGE_TO_DIRTY successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_0 successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_0 : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_0 successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_1 successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_1 : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_1 successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_2 successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_2 : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_2 successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_3 successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_3 : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:LOCAL_TO_3 successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:ALL successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:ALL : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_0_3:ALL successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:READ_BLOCK successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:READ_BLOCK : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:READ_BLOCK successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:READ_BLOCK_SHARED successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:READ_BLOCK_SHARED : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:READ_BLOCK_SHARED successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:READ_BLOCK_MODIFIED successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:READ_BLOCK_MODIFIED : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:READ_BLOCK_MODIFIED successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:CHANGE_TO_DIRTY successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:CHANGE_TO_DIRTY : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:CHANGE_TO_DIRTY successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_0 successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_0 : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_0 successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_1 successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_1 : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_1 successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_2 successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_2 : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_2 successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_3 successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_3 : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:LOCAL_TO_3 successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:ALL successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:ALL : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_0_3:ALL successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:READ_BLOCK successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:READ_BLOCK : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:READ_BLOCK successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:READ_BLOCK_SHARED successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:READ_BLOCK_SHARED : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:READ_BLOCK_SHARED successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:READ_BLOCK_MODIFIED successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:READ_BLOCK_MODIFIED : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:READ_BLOCK_MODIFIED successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:CHANGE_TO_DIRTY successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:CHANGE_TO_DIRTY : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:CHANGE_TO_DIRTY successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_4 successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_4 : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_4 successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_5 successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_5 : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_5 successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_6 successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_6 : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_6 successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_7 successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_7 : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:LOCAL_TO_7 successfully.
+Added CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:ALL successfully.
+Error Starting CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:ALL : PAPI_ESYS
+Removed CPU_READ_COMMAND_LATENCY_TO_TARGET_NODE_4_7:ALL successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:READ_BLOCK successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:READ_BLOCK : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:READ_BLOCK successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:READ_BLOCK_SHARED successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:READ_BLOCK_SHARED : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:READ_BLOCK_SHARED successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:READ_BLOCK_MODIFIED successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:READ_BLOCK_MODIFIED : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:READ_BLOCK_MODIFIED successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:CHANGE_TO_DIRTY successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:CHANGE_TO_DIRTY : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:CHANGE_TO_DIRTY successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_4 successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_4 : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_4 successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_5 successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_5 : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_5 successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_6 successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_6 : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_6 successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_7 successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_7 : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:LOCAL_TO_7 successfully.
+Added CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:ALL successfully.
+Error Starting CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:ALL : PAPI_ESYS
+Removed CPU_READ_COMMAND_REQUESTS_TO_TARGET_NODE_4_7:ALL successfully.
+Added CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:READ_SIZED successfully.
+Error Starting CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:READ_SIZED : PAPI_ESYS
+Removed CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:READ_SIZED successfully.
+Added CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:WRITE_SIZED successfully.
+Error Starting CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:WRITE_SIZED : PAPI_ESYS
+Removed CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:WRITE_SIZED successfully.
+Added CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:VICTIM_BLOCK successfully.
+Error Starting CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:VICTIM_BLOCK : PAPI_ESYS
+Removed CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:VICTIM_BLOCK successfully.
+Added CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:NODE_GROUP_SELECT successfully.
+Error Starting CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:NODE_GROUP_SELECT : PAPI_ESYS
+Removed CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:NODE_GROUP_SELECT successfully.
+Added CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_0_4 successfully.
+Error Starting CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_0_4 : PAPI_ESYS
+Removed CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_0_4 successfully.
+Added CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_1_5 successfully.
+Error Starting CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_1_5 : PAPI_ESYS
+Removed CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_1_5 successfully.
+Added CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_2_6 successfully.
+Error Starting CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_2_6 : PAPI_ESYS
+Removed CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_2_6 successfully.
+Added CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_3_7 successfully.
+Error Starting CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_3_7 : PAPI_ESYS
+Removed CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_3_7 successfully.
+Added CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:ALL successfully.
+Error Starting CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:ALL : PAPI_ESYS
+Removed CPU_COMMAND_LATENCY_TO_TARGET_NODE_0_3_4_7:ALL successfully.
+Added CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:READ_SIZED successfully.
+Error Starting CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:READ_SIZED : PAPI_ESYS
+Removed CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:READ_SIZED successfully.
+Added CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:WRITE_SIZED successfully.
+Error Starting CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:WRITE_SIZED : PAPI_ESYS
+Removed CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:WRITE_SIZED successfully.
+Added CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:VICTIM_BLOCK successfully.
+Error Starting CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:VICTIM_BLOCK : PAPI_ESYS
+Removed CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:VICTIM_BLOCK successfully.
+Added CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:NODE_GROUP_SELECT successfully.
+Error Starting CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:NODE_GROUP_SELECT : PAPI_ESYS
+Removed CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:NODE_GROUP_SELECT successfully.
+Added CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_0_4 successfully.
+Error Starting CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_0_4 : PAPI_ESYS
+Removed CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_0_4 successfully.
+Added CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_1_5 successfully.
+Error Starting CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_1_5 : PAPI_ESYS
+Removed CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_1_5 successfully.
+Added CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_2_6 successfully.
+Error Starting CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_2_6 : PAPI_ESYS
+Removed CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_2_6 successfully.
+Added CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_3_7 successfully.
+Error Starting CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_3_7 : PAPI_ESYS
+Removed CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:LOCAL_TO_3_7 successfully.
+Added CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:ALL successfully.
+Error Starting CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:ALL : PAPI_ESYS
+Removed CPU_REQUESTS_TO_TARGET_NODE_0_3_4_7:ALL successfully.
+Added HYPERTRANSPORT_LINK0:COMMAND_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK0:COMMAND_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK0:COMMAND_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK0:DATA_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK0:DATA_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK0:DATA_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK0:BUFFER_RELEASE_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK0:BUFFER_RELEASE_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK0:BUFFER_RELEASE_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK0:NOP_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK0:NOP_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK0:NOP_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK0:ADDRESS_EXT_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK0:ADDRESS_EXT_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK0:ADDRESS_EXT_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK0:PER_PACKET_CRC_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK0:PER_PACKET_CRC_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK0:PER_PACKET_CRC_SENT successfully.
+Added HYPERTRANSPORT_LINK0:SUBLINK_MASK successfully.
+Error Starting HYPERTRANSPORT_LINK0:SUBLINK_MASK : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK0:SUBLINK_MASK successfully.
+Added HYPERTRANSPORT_LINK0:ALL successfully.
+Error Starting HYPERTRANSPORT_LINK0:ALL : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK0:ALL successfully.
+Added HYPERTRANSPORT_LINK1:COMMAND_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK1:COMMAND_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK1:COMMAND_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK1:DATA_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK1:DATA_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK1:DATA_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK1:BUFFER_RELEASE_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK1:BUFFER_RELEASE_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK1:BUFFER_RELEASE_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK1:NOP_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK1:NOP_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK1:NOP_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK1:ADDRESS_EXT_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK1:ADDRESS_EXT_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK1:ADDRESS_EXT_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK1:PER_PACKET_CRC_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK1:PER_PACKET_CRC_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK1:PER_PACKET_CRC_SENT successfully.
+Added HYPERTRANSPORT_LINK1:SUBLINK_MASK successfully.
+Error Starting HYPERTRANSPORT_LINK1:SUBLINK_MASK : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK1:SUBLINK_MASK successfully.
+Added HYPERTRANSPORT_LINK1:ALL successfully.
+Error Starting HYPERTRANSPORT_LINK1:ALL : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK1:ALL successfully.
+Added HYPERTRANSPORT_LINK2:COMMAND_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK2:COMMAND_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK2:COMMAND_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK2:DATA_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK2:DATA_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK2:DATA_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK2:BUFFER_RELEASE_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK2:BUFFER_RELEASE_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK2:BUFFER_RELEASE_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK2:NOP_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK2:NOP_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK2:NOP_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK2:ADDRESS_EXT_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK2:ADDRESS_EXT_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK2:ADDRESS_EXT_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK2:PER_PACKET_CRC_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK2:PER_PACKET_CRC_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK2:PER_PACKET_CRC_SENT successfully.
+Added HYPERTRANSPORT_LINK2:SUBLINK_MASK successfully.
+Error Starting HYPERTRANSPORT_LINK2:SUBLINK_MASK : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK2:SUBLINK_MASK successfully.
+Added HYPERTRANSPORT_LINK2:ALL successfully.
+Error Starting HYPERTRANSPORT_LINK2:ALL : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK2:ALL successfully.
+Added HYPERTRANSPORT_LINK3:COMMAND_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK3:COMMAND_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK3:COMMAND_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK3:DATA_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK3:DATA_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK3:DATA_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK3:BUFFER_RELEASE_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK3:BUFFER_RELEASE_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK3:BUFFER_RELEASE_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK3:NOP_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK3:NOP_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK3:NOP_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK3:ADDRESS_EXT_DWORD_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK3:ADDRESS_EXT_DWORD_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK3:ADDRESS_EXT_DWORD_SENT successfully.
+Added HYPERTRANSPORT_LINK3:PER_PACKET_CRC_SENT successfully.
+Error Starting HYPERTRANSPORT_LINK3:PER_PACKET_CRC_SENT : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK3:PER_PACKET_CRC_SENT successfully.
+Added HYPERTRANSPORT_LINK3:SUBLINK_MASK successfully.
+Error Starting HYPERTRANSPORT_LINK3:SUBLINK_MASK : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK3:SUBLINK_MASK successfully.
+Added HYPERTRANSPORT_LINK3:ALL successfully.
+Error Starting HYPERTRANSPORT_LINK3:ALL : PAPI_ESYS
+Removed HYPERTRANSPORT_LINK3:ALL successfully.
+Added READ_REQUEST_TO_L3_CACHE:READ_BLOCK_EXCLUSIVE successfully.
+Error Starting READ_REQUEST_TO_L3_CACHE:READ_BLOCK_EXCLUSIVE : PAPI_ESYS
+Removed READ_REQUEST_TO_L3_CACHE:READ_BLOCK_EXCLUSIVE successfully.
+Added READ_REQUEST_TO_L3_CACHE:READ_BLOCK_SHARED successfully.
+Error Starting READ_REQUEST_TO_L3_CACHE:READ_BLOCK_SHARED : PAPI_ESYS
+Removed READ_REQUEST_TO_L3_CACHE:READ_BLOCK_SHARED successfully.
+Added READ_REQUEST_TO_L3_CACHE:READ_BLOCK_MODIFY successfully.
+Error Starting READ_REQUEST_TO_L3_CACHE:READ_BLOCK_MODIFY : PAPI_ESYS
+Removed READ_REQUEST_TO_L3_CACHE:READ_BLOCK_MODIFY successfully.
+Added READ_REQUEST_TO_L3_CACHE:CORE_0_SELECT successfully.
+Error Starting READ_REQUEST_TO_L3_CACHE:CORE_0_SELECT : PAPI_ESYS
+Removed READ_REQUEST_TO_L3_CACHE:CORE_0_SELECT successfully.
+Added READ_REQUEST_TO_L3_CACHE:CORE_1_SELECT successfully.
+Error Starting READ_REQUEST_TO_L3_CACHE:CORE_1_SELECT : PAPI_ESYS
+Removed READ_REQUEST_TO_L3_CACHE:CORE_1_SELECT successfully.
+Added READ_REQUEST_TO_L3_CACHE:CORE_2_SELECT successfully.
+Error Starting READ_REQUEST_TO_L3_CACHE:CORE_2_SELECT : PAPI_ESYS
+Removed READ_REQUEST_TO_L3_CACHE:CORE_2_SELECT successfully.
+Added READ_REQUEST_TO_L3_CACHE:CORE_3_SELECT successfully.
+Error Starting READ_REQUEST_TO_L3_CACHE:CORE_3_SELECT : PAPI_ESYS
+Removed READ_REQUEST_TO_L3_CACHE:CORE_3_SELECT successfully.
+Added READ_REQUEST_TO_L3_CACHE:ALL successfully.
+Error Starting READ_REQUEST_TO_L3_CACHE:ALL : PAPI_ESYS
+Removed READ_REQUEST_TO_L3_CACHE:ALL successfully.
+Added L3_CACHE_MISSES:READ_BLOCK_EXCLUSIVE successfully.
+Error Starting L3_CACHE_MISSES:READ_BLOCK_EXCLUSIVE : PAPI_ESYS
+Removed L3_CACHE_MISSES:READ_BLOCK_EXCLUSIVE successfully.
+Added L3_CACHE_MISSES:READ_BLOCK_SHARED successfully.
+Error Starting L3_CACHE_MISSES:READ_BLOCK_SHARED : PAPI_ESYS
+Removed L3_CACHE_MISSES:READ_BLOCK_SHARED successfully.
+Added L3_CACHE_MISSES:READ_BLOCK_MODIFY successfully.
+Error Starting L3_CACHE_MISSES:READ_BLOCK_MODIFY : PAPI_ESYS
+Removed L3_CACHE_MISSES:READ_BLOCK_MODIFY successfully.
+Added L3_CACHE_MISSES:CORE_0_SELECT successfully.
+Error Starting L3_CACHE_MISSES:CORE_0_SELECT : PAPI_ESYS
+Removed L3_CACHE_MISSES:CORE_0_SELECT successfully.
+Added L3_CACHE_MISSES:CORE_1_SELECT successfully.
+Error Starting L3_CACHE_MISSES:CORE_1_SELECT : PAPI_ESYS
+Removed L3_CACHE_MISSES:CORE_1_SELECT successfully.
+Added L3_CACHE_MISSES:CORE_2_SELECT successfully.
+Error Starting L3_CACHE_MISSES:CORE_2_SELECT : PAPI_ESYS
+Removed L3_CACHE_MISSES:CORE_2_SELECT successfully.
+Added L3_CACHE_MISSES:CORE_3_SELECT successfully.
+Error Starting L3_CACHE_MISSES:CORE_3_SELECT : PAPI_ESYS
+Removed L3_CACHE_MISSES:CORE_3_SELECT successfully.
+Added L3_CACHE_MISSES:ALL successfully.
+Error Starting L3_CACHE_MISSES:ALL : PAPI_ESYS
+Removed L3_CACHE_MISSES:ALL successfully.
+Added L3_FILLS_CAUSED_BY_L2_EVICTIONS:SHARED successfully.
+Error Starting L3_FILLS_CAUSED_BY_L2_EVICTIONS:SHARED : PAPI_ESYS
+Removed L3_FILLS_CAUSED_BY_L2_EVICTIONS:SHARED successfully.
+Added L3_FILLS_CAUSED_BY_L2_EVICTIONS:EXCLUSIVE successfully.
+Error Starting L3_FILLS_CAUSED_BY_L2_EVICTIONS:EXCLUSIVE : PAPI_ESYS
+Removed L3_FILLS_CAUSED_BY_L2_EVICTIONS:EXCLUSIVE successfully.
+Added L3_FILLS_CAUSED_BY_L2_EVICTIONS:OWNED successfully.
+Error Starting L3_FILLS_CAUSED_BY_L2_EVICTIONS:OWNED : PAPI_ESYS
+Removed L3_FILLS_CAUSED_BY_L2_EVICTIONS:OWNED successfully.
+Added L3_FILLS_CAUSED_BY_L2_EVICTIONS:MODIFIED successfully.
+Error Starting L3_FILLS_CAUSED_BY_L2_EVICTIONS:MODIFIED : PAPI_ESYS
+Removed L3_FILLS_CAUSED_BY_L2_EVICTIONS:MODIFIED successfully.
+Added L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_0_SELECT successfully.
+Error Starting L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_0_SELECT : PAPI_ESYS
+Removed L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_0_SELECT successfully.
+Added L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_1_SELECT successfully.
+Error Starting L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_1_SELECT : PAPI_ESYS
+Removed L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_1_SELECT successfully.
+Added L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_2_SELECT successfully.
+Error Starting L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_2_SELECT : PAPI_ESYS
+Removed L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_2_SELECT successfully.
+Added L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_3_SELECT successfully.
+Error Starting L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_3_SELECT : PAPI_ESYS
+Removed L3_FILLS_CAUSED_BY_L2_EVICTIONS:CORE_3_SELECT successfully.
+Added L3_FILLS_CAUSED_BY_L2_EVICTIONS:ALL successfully.
+Error Starting L3_FILLS_CAUSED_BY_L2_EVICTIONS:ALL : PAPI_ESYS
+Removed L3_FILLS_CAUSED_BY_L2_EVICTIONS:ALL successfully.
+Added L3_EVICTIONS:SHARED successfully.
+Error Starting L3_EVICTIONS:SHARED : PAPI_ESYS
+Removed L3_EVICTIONS:SHARED successfully.
+Added L3_EVICTIONS:EXCLUSIVE successfully.
+Error Starting L3_EVICTIONS:EXCLUSIVE : PAPI_ESYS
+Removed L3_EVICTIONS:EXCLUSIVE successfully.
+Added L3_EVICTIONS:OWNED successfully.
+Error Starting L3_EVICTIONS:OWNED : PAPI_ESYS
+Removed L3_EVICTIONS:OWNED successfully.
+Added L3_EVICTIONS:MODIFIED successfully.
+Error Starting L3_EVICTIONS:MODIFIED : PAPI_ESYS
+Removed L3_EVICTIONS:MODIFIED successfully.
+Added L3_EVICTIONS:ALL successfully.
+Error Starting L3_EVICTIONS:ALL : PAPI_ESYS
+Removed L3_EVICTIONS:ALL successfully.
+
+
+Successfully found, added, and removed 412 events.
+all_native_events.c                      PASSED
+TACC: Cleaning up after job: 1002920
+TACC: Done.

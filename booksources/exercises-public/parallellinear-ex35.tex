@@ -1,0 +1,26 @@
+  Let $A$ be the tridiagonal matrix
+\[ A=
+\begin{pmatrix}
+  2&-1&&&\emptyset\\ -1&2&-1\\ &\ddots&\ddots&\ddots\\
+  &&&&-1\\ \emptyset&&&-1&2
+\end{pmatrix}
+\]
+of the one-dimensional \ac{BVP} from section~\ref{sec:1dbvp}.
+\begin{enumerate}
+\item Recall the definition of diagonal dominance in
+  section~\ref{sec:pivoting}. Is this matrix diagonally dominant?
+\item Show that the pivots in an LU factorization of this matrix
+  (without pivoting) satisfy a recurrence.  Hint: show that after $n$
+  elimination steps ($n\geq0$) the remaining matrix looks like
+\[ A^{(n)}=
+\begin{pmatrix}
+  d_n&-1&&&\emptyset\\ -1&2&-1\\ &\ddots&\ddots&\ddots\\
+  &&&&-1\\ \emptyset&&&-1&2
+\end{pmatrix}
+\]
+  and show the relation between $d_{n+1}$ and~$d_n$.
+\item Show that the sequence $n\mapsto d_n$ is descending, and derive
+  the limit value.
+\item Write out the $L$ and $U$ factors in terms of the $d_n$ pivots.
+\item Are the $L$ and $U$ factors diagonally dominant?
+\end{enumerate}

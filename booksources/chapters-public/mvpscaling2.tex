@@ -1,0 +1,581 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012
+%%%%
+%%%% This book is distributed under a Creative Commons Attribution 3.0
+%%%% Unported (CC BY 3.0) license and made possible by funding from
+%%%% The Saylor Foundation \url{http://www.saylor.org}.
+%%%%
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input chapters-public/robertmacros
+
+In this section, we will give a full analysis of the parallel
+computation of $ y \becomes A x $, where $ x, y \in \Rn $ and $ A \in
+\Rnxn $.  We will assume that $ p $ nodes will be used, but we make no
+assumptions on their connectivity. We will see that the way the matrix
+is distributed makes a big difference for the scaling of the
+algorithm; for the original research
+see~\cite{HeWo:94,Schreiber:scalability92,Stewart90}, and see
+section~\ref{sec:scaling} for the definitions of the various forms of
+scaling.
+
+An important part of this discussion is a thorough analysis of
+collective operations, so we start with this.
+
+\Level 2 {Collective operations}
+\index{collective communication|(}
+\index{collective operation|(}
+\label{sec:collective-cost}
+
+\input chapters-public/collective
+
+\index{collective communication|)}
+\index{collective operation|)}
+
+\Level 2 {Matrix-vector product, partitioning by rows}
+\label{sec:mvp-by-rows}
+
+Partition
+\[
+A \rightarrow \defcolvector{A}{p} 
+\quad
+x \rightarrow \defcolvector{x}{p} ,
+\quad
+\mbox{and}
+\quad
+y \rightarrow \defcolvector{y}{p} ,
+\]
+where $ A_i \in \R^{m_i \times n} $ and $ x_i, y_i \in \R^{m_i} $ with
+$ \sum_{i=0}^{p-1} m_i = n $ and $ m_i \approx n / p $.
+We will start by assuming
+that $ A_i $, $ x_i $, and $ y_i $ are originally assigned to $ {\cal P}_i $.
+
+The computation is characterized by the fact that each processor needs
+the whole vector~$x$, but owns only an $n/p$ fraction of it. Thus, we
+execute an \indexterm{allgather} of~$x$. After this, the processor can
+execute the local product $y_i\becomes A_ix$; no further communication
+is needed after that.
+
+An algorithm with cost computation
+for $ y = A x $ in parallel is then given by
+
+\[ \vcenter{\hskip\unitindent
+\setbox0=\hbox{Allgather $ x_i $ so that $ x $ is available on all nodes
+}
+\dimen0=\wd0
+\setbox1=\hbox{$ \lceil \log_2(p)\rceil \alpha + \frac{p-1}{p} n \beta$ }
+\dimen1=\wd1
+\begin{tabular}{| p{\dimen0} |  p{\dimen1} |}\hline
+Step & Cost (lower bound) \\ \whline
+Allgather $ x_i $ so that $ x $ is available on all nodes & 
+$ \lceil \log_2(p)\rceil \alpha + \frac{p-1}{p} n \beta$\\
+&$ \approx \log_2(p) \alpha + n \beta $ \\
+Locally compute $ y_i = A_i x $ &
+$ \approx 2 \frac{n^2}{p} \gamma $ \\ \hline
+\end{tabular}
+}
+\]
+
+\paragraph*{Cost analysis}
+
+The total cost of the algorithm is given by, approximately,
+\[
+T_p(n) = T_p^{\mbox{1D-row}}(n) = 
+2 \frac{n^2}{p} \gamma + 
+\begin{array}[t]{c}
+\underbrace{\log_2(p) \alpha + n \beta.}
+\\
+\mbox{Overhead}
+\end{array}
+\]
+Since the sequential cost is $ T_1(n) = 2 n^2 \gamma $, the speedup is given by
+\[
+S_p^{\mbox{1D-row}}(n) = 
+\frac{T_1(n)}
+{T_p^{\mbox{1D-row}}(n)} = 
+\frac{2 n^2 \gamma}
+{ 2 \frac{n^2}{p} \gamma + 
+\log_2(p) \alpha + n \beta}
+= 
+\frac{p}
+{ 1 + \frac{p \log_2(p)}{2 n^2} \frac{\alpha}{\gamma} 
++ \frac{p}{2 n} \frac{\beta}{\gamma} }
+\]
+and the parallel efficiency by
+\[
+E_p^{\mbox{1D-row}}(n) = 
+\frac{S_p^{\mbox{1D-row}}(n)}{p}
+= 
+\frac{1}
+{ 1 + \frac{p \log_2(p)}{2 n^2} \frac{\alpha}{\gamma} 
++ \frac{p}{2 n} \frac{\beta}{\gamma} }.
+\]
+
+\paragraph*{An optimist's view}
+
+Now, if one fixes $ p $ and lets $ n $ get large,
+\[
+\lim_{n \rightarrow \infty} E_p( n ) =
+\lim_{n \rightarrow \infty}
+\left[
+\frac{1}
+{ 1 + \frac{p \log_2(p)}{2 n^2} \frac{\alpha}{\gamma} 
++ \frac{p}{2 n} \frac{\beta}{\gamma} }
+\right]
+=
+1.
+\]
+Thus, if one can make the problem large enough, eventually the parallel
+efficiency is nearly perfect. However, this assumes unlimited memory,
+so this analysis is not practical.
+
+
+
+\paragraph*{A pessimist's view}
+
+In a \indextermsub{strong}{scalability} analysis,
+one fixes $ n $ and lets $ p $ get large, to get
+\[
+\lim_{p \rightarrow \infty} E_p( n ) =
+\lim_{p \rightarrow \infty}
+\left[
+\frac{1}
+{1 + \frac{p \log_2(p)}{2 n^2} \frac{\alpha}{\gamma} 
++ \frac{p}{2 n} \frac{\beta}{\gamma} }
+\right]
+=
+0.
+\]
+Thus, eventually the parallel efficiency becomes nearly nonexistent.
+
+\paragraph*{A realist's view}
+
+In a more realistic view we increase the number of processors with the
+amount of data. This is called \indextermsub{weak}{scalability}, and 
+it makes the amount of memory that is available to
+store the problem scale linearly with~$ p $.  
+
+Let $ M $ equal the
+number of floating point numbers that can be stored in a single node's
+memory.  Then the aggregate memory is given by $ M p $.  Let $
+n_{\max}(p) $ equal the largest problem size that can be stored
+in the aggregate memory of $ p $ nodes.  Then, if {\em all} memory can
+be used for the matrix,
+\[
+(n_{\max}(p))^2 = M p
+\quad
+\mbox{or}
+\quad
+n_{\max}(p) = \sqrt{Mp}.
+\]
+The question now becomes what the parallel 
+efficiency for the largest problem that can be stored on $ p $ nodes:
+\[ 
+\begin{array}{r@{{}={}}l}
+E_p^{\mbox{1D-row}}(n_{\max}(p)) &
+\frac{1}
+{1 + \frac{p \log_2(p)}{2 (n_{\max}(p))^2} \frac{\alpha}{\gamma} 
++ \frac{p}{2 n_{\max}(p)} \frac{\beta}{\gamma} }
+\\
+&
+\frac{1}
+{ 1 + \frac{\log_2(p)}{2 M} \frac{\alpha}{\gamma} 
++ \frac{\sqrt{p}}{2 \sqrt{M}} \frac{\beta}{\gamma} }.
+\end{array}
+\]
+Now, if one analyzes what happens when the number of nodes
+becomes large, one finds that
+\[
+\lim_{p \rightarrow \infty} E_p( n_{\max}(p) ) 
+=
+\lim_{p \rightarrow \infty}
+\left[
+\frac{1}
+{1 + \frac{\log_2(p)}{2 M} \frac{\alpha}{\gamma} 
++ \frac{\sqrt{p}}{2 \sqrt{M}} \frac{\beta}{\gamma} }
+\right]
+=
+0.
+\]
+Thus, this parallel algorithm for matrix-vector multiplication does
+not scale. 
+
+If you take a close look at this expression for efficiency,
+you'll see that the main problem is the $1/\sqrt p$ part of the
+expression. This terms involves a factor~$\beta$, and if you follow
+the derivation backward you see that it comes from the time to send
+data between the processors. Informally this can be described as
+saying that the message size is too large to make the problem
+scalable. In fact, the message size is constant~$n$, regardless the
+number of processors.
+
+Alternatively, a realist realizes that there is a limited amount of time,
+$ T_{\max} $, to get a computation done.
+Under the best of circumstances, 
+that is, with zero communication overhead, the largest problem
+that we can solve in time $ T_{\max} $ is given by
+\[ 
+T_p(n_{\max}(p)) = 2 \frac{(n_{\max}(p))^2}{p} \gamma = T_{\max} .
+\]
+Thus
+\[
+(n_{\max}(p))^2 = \frac{T_{\max} p}{2 \gamma}
+\quad
+\mbox{or}
+\quad
+n_{\max}(p) = \frac{\sqrt{T_{\max}} \sqrt{p}}{\sqrt{2 \gamma}}.
+\]
+Then the parallel efficiency that is attained by the algorithm for the largest
+problem that can be solved in time $ T_{\max} $ is given by
+\[
+  E_{p,n_{\max}}=\frac1
+  {1+\frac{\log_2p}T\alpha+\sqrt{\frac pT\frac \beta\gamma}}
+\]
+and the parallel efficiency as the number of nodes becomes large approaches
+\[
+\lim_{p\rightarrow\infty}E_p= \sqrt{\frac{T\gamma}{p\beta}}.
+\]
+Again, efficiency cannot be maintained as the number of processors
+increases and the execution time is capped.
+
+\Level 2 {Matrix-vector product, partitioning by columns}
+
+Partition
+\[
+A \rightarrow \defrowvector{A}{p} 
+\quad
+x \rightarrow \defcolvector{x}{p} ,
+\quad
+\mbox{and}
+\quad
+y \rightarrow \defcolvector{y}{p} ,
+\]
+where $ A_j \in \R^{n \times n_j} $ and $ x_j, y_j \in \R^{n_j} $ with
+$ \sum_{j=0}^{p-1} n_j = n $ and $ n_j \approx n / p $.
+
+We will start by assuming that $ A_j $, $ x_j $, and $ y_j $ are
+originally assigned to $ {\cal P}_j $ (but now $ A_i $ is a block of
+columns). In this algorithm by columns, processor~$i$ can compute the
+length~$n$ vector $A_ix_i$ without prior communication. These partial
+results then have to be added together
+\[ y\leftarrow \sum_i A_ix_i \]
+in a \indexterm{reduce-scatter} operation: each processor~$i$ scatters
+a part $(A_ix_i)_j$ of its result to processor~$j$. The receiving
+processors then perform a reduction, adding all these fragments: 
+\[ y_j = \sum_i (A_ix_i)_j. \]
+
+The algorithm with costs is then given by:
+
+\[ \vcenter{\hskip\unitindent
+\setbox0=\hbox{Reduce-scatter the $ y^{(j)} $s so that $ y_i = \sum_{j=0}^{p-1}
+y_i^{(j)} $ is on $ {\cal P}_i $ }
+\dimen0=\wd0
+\setbox1=\hbox{$ \lceil \log_2(p)\rceil \alpha + \frac{p-1}{p} n \beta
++ \frac{p-1}{p} n \gamma $ }
+\dimen1=\wd1
+\begin{tabular}{| p{\dimen0} |  p{\dimen1} |}\hline
+Step & Cost (lower bound) \\ \whline
+Locally compute $ y^{(j)} = A_j x_j $ &
+$ \approx 2 \frac{n^2}{p} \gamma $ \\ 
+Reduce-scatter the $ y^{(j)} $s so that $ y_i = \sum_{j=0}^{p-1}
+y_i^{(j)} $ is on $ {\cal P}_i $ & 
+$ \lceil \log_2(p)\rceil \alpha + \frac{p-1}{p} n \beta
++ \frac{p-1}{p} n \gamma $\\
+& $ \approx \log_2(p) \alpha + n ( \beta + \gamma ) $ \\
+\hline
+\end{tabular}
+}
+\]
+
+\paragraph*{Cost analysis}
+
+The total cost of the algorithm is given by, approximately,
+\[
+T_p^{\mbox{1D-col}}(n) = 
+2 \frac{n^2}{p} \gamma + 
+\begin{array}[t]{c}
+\underbrace{\log_2(p) \alpha + n ( \beta + \gamma ).}
+\\
+\mbox{Overhead}
+\end{array}
+\]
+Notice that this is identical to the cost  
+$ T_p^{\mbox{1D-row}}(n)  $, except with $ \beta $ replaced by $ (\beta + \gamma )$.  It is not hard to see that the conclusions about scalability 
+are the same.
+
+
+\Level 2 {Two-dimensional partitioning}
+\label{sec:mvp-2d}
+
+Next,
+partition
+\[
+A \rightarrow \defmatrix{A}{p}{p}
+\quad
+x \rightarrow \defcolvector{x}{p} ,
+\quad
+\mbox{and}
+\quad
+y \rightarrow \defcolvector{y}{p} ,
+\]
+where $ A_{ij} \in \R^{n_i \times n_j} $ and $ x_i, y_i \in \R^{n_i} $ with
+$ \sum_{i=0}^{p-1} n_i = N $ and $ n_i \approx N / \sqrt P $.
+
+We will view the nodes as an $ r \times c $ mesh, with $ P = r c $,
+and index them as $p_{ij}$, with $ i=0, \ldots, r-1 $ and $ j = 0,
+\ldots, c-1 $.  The following illustration for a $12\times12$ matrix
+on a $3\times4$ processor grid
+illustrates the assignment of data to nodes, where the $ i,j$
+``cell'' shows the matrix and vector elements owned by  $ p_{ij} $:
+
+{\footnotesize
+\[
+\begin{array}{| c | c | c | c |} \hline
+% 0,0
+\begin{array}{c c c c}
+x_0\\
+a_{00} & a_{01} &a_{02} & y_0\\
+a_{10} & a_{11} &a_{12} & \\
+a_{20} & a_{21} &a_{22} & \\
+a_{30} & a_{31} &a_{32} & \\
+\end{array}
+&
+% 0,1
+\begin{array}{c c c c}
+x_3\\
+a_{03} & a_{04} &a_{05} & \\
+a_{13} & a_{14} &a_{15} & y_1\\
+a_{23} & a_{24} &a_{25} & \\
+a_{33} & a_{34} &a_{35} & \\
+\end{array}
+&
+% 0,2
+\begin{array}{c c c c}
+x_6\\
+a_{06} & a_{07} &a_{08} & \\
+a_{16} & a_{17} &a_{18} & \\
+a_{26} & a_{27} &a_{28} & y_2 \\
+a_{37} & a_{37} &a_{38} & \\
+\end{array}
+&
+% 0,3
+\begin{array}{c c c c}
+x_9\\
+a_{09} & a_{0,10} & a_{0,11} & \\
+a_{19} & a_{1,10} & a_{1,11} & \\
+a_{29} & a_{2,10} & a_{2,11} & \\
+a_{39} & a_{3,10} & a_{3,11} & y_3 \\
+\end{array}
+\\ \hline
+% 1,0
+\begin{array}{c c c c}
+& x_1\\
+a_{40} & a_{41} &a_{42} & y_4\\
+a_{50} & a_{51} &a_{52} & \\
+a_{60} & a_{61} &a_{62} & \\
+a_{70} & a_{71} &a_{72} & \\
+\end{array}
+&
+% 1,1
+\begin{array}{c c c c}
+& x_4\\
+a_{43} & a_{44} &a_{45} & \\
+a_{53} & a_{54} &a_{55} & y_5\\
+a_{63} & a_{64} &a_{65} & \\
+a_{73} & a_{74} &a_{75} & \\
+\end{array}
+&
+% 1,2
+\begin{array}{c c c c}
+& x_7\\
+a_{46} & a_{47} &a_{48} & \\
+a_{56} & a_{57} &a_{58} & \\
+a_{66} & a_{67} &a_{68} & y_6 \\
+a_{77} & a_{77} &a_{78} & \\
+\end{array}
+&
+% 1,3
+\begin{array}{c c c c}
+& x_{10}\\
+a_{49} & a_{4,10} & a_{4,11} & \\
+a_{59} & a_{5,10} & a_{5,11} & \\
+a_{69} & a_{6,10} & a_{6,11} & \\
+a_{79} & a_{7,10} & a_{7,11} & y_7 \\
+\end{array}
+\\ \hline
+% 0,0
+\begin{array}{c c c c}
+&&x_2\\
+a_{80} &  a_{81} &  a_{82} & y_8\\
+a_{90} &  a_{91}   &a_{92} & \\
+a_{10,0} &a_{10,1} &a_{10,2} & \\
+a_{11,0} &a_{11,1} &a_{11,2} & \\
+\end{array}
+&
+% 0,1
+\begin{array}{c c c c}
+&&x_5\\
+a_{83} &   a_{84} &  a_{85} & \\
+a_{93} &   a_{94} &  a_{95} & y_9\\
+a_{10,3} & a_{10,4} &a_{10,5} & \\
+a_{11,3} & a_{11,4} &a_{11,5} & \\
+\end{array}
+&
+% 0,2
+\begin{array}{c c c c}
+&&x_8\\
+a_{86} &   a_{87} &  a_{88} & \\
+a_{96} &   a_{97} &  a_{98} & \\
+a_{10,6} & a_{10,7} &a_{10,8} & y_{10} \\
+a_{11,7} & a_{11,7} &a_{11,8} & \\
+\end{array}
+&
+% 0,3
+\begin{array}{c c c c}
+&&x_{11}\\
+a_{89} &   a_{8,10} &  a_{8,11} & \\
+a_{99} &   a_{9,10} &  a_{9,11} & \\
+a_{10,9} & a_{10,10} & a_{10,11} & \\
+a_{11,9} & a_{11,10} & a_{11,11} & y_{11} \\
+\end{array}
+\\ \hline
+\end{array}
+\]
+}
+
+In other words, $ p_{ij} $ owns the matrix block $A_{ij}$
+and parts of $x$ and~$y$. This makes possible the following algorithm:
+\begin{itemize}
+\item Since $x_j$ is distributed over the $j$th column, the algorithm starts
+  by collecting $x_j$ on each processor $p_{ij}$ by an
+  \indexterm{allgather} inside the processor columns.
+\item Each processor $p_{ij}$ then computes $y_{ij} = A_{ij}x_j$. This
+  involves no further communication.
+\item The result $y_i$ is then collected by gathering together the
+  pieces $y_{ij}$ in each processor row to form~$y_i$, and this is then
+  distributed over the processor row. These two operations are in fact
+  combined to form a \indexterm{reduce-scatter}.
+\item If $r=c$, we can transpose the $y$ data over the processors, so
+  that it can function as the input for a subsequent matrix-vector
+  product. If, on the other hand, we are computing $A^tAx$, then $y$
+  is now correctly distributed for the $A^t$ product.
+\end{itemize}
+
+
+\paragraph*{Algorithm}
+
+The algorithm with cost analysis is
+\[ \vcenter{\hskip\unitindent
+\setbox0=\hbox{Perform local matrix-vector multiply }
+\dimen0=\wd0
+\setbox1=\hbox{$ \lceil \log_2(c)\rceil \alpha + \frac{c-1}{p} n \beta +
+\frac{c-1}{p} n \gamma $ }
+\dimen1=\wd1
+\begin{tabular}{| p{\dimen0} |  p{\dimen1} |}\hline
+Step & Cost (lower bound) \\ \whline
+Allgather $ x_i $'s  within columns & 
+$ \lceil \log_2(r)\rceil \alpha + \frac{r-1}{p} n \beta$\\
+& $ \approx \log_2(r) \alpha + \frac{n}{c} \beta $ \\
+Perform local matrix-vector multiply &
+$ \approx 2 \frac{n^2}{p} \gamma $ \\ 
+Reduce-scatter $ y_i $'s  within rows & 
+$ \lceil \log_2(c)\rceil \alpha + \frac{c-1}{p} n \beta +
+\frac{c-1}{p} n \gamma $\\
+& $ \approx \log_2(c) \alpha + \frac{n}{c} \beta + \frac{n}{c} \gamma
+$ \\ 
+\hline
+\end{tabular}
+}
+\]
+
+\paragraph*{Cost analysis}
+
+The total cost of the algorithm is given by, approximately,
+\[
+T_p^{r \times c}(n) = T_p^{r \times c}( n) = 
+2 \frac{n^2}{p} \gamma + 
+\begin{array}[t]{c}
+\underbrace{\log_2(p) \alpha + \left( \frac{n}{c} + \frac{n}{r} \right) \beta + \frac{n}{r} \gamma.}
+\\
+\mbox{Overhead}
+\end{array}
+\]
+We will now make the simplification that $ r = c = \sqrt{p} $ so that
+\[
+T_p^{\sqrt{p} \times \sqrt{p}}(n) = T_p^{\sqrt{p} \times \sqrt{p}}( n) = 
+2 \frac{n^2}{p} \gamma + 
+\begin{array}[t]{c}
+\underbrace{\log_2(p) \alpha + \frac{n}{\sqrt{p}}\left( 2 \beta+ \gamma \right) 
+}
+\\
+\mbox{Overhead}
+\end{array}
+\]
+
+Since the sequential cost is $ T_1(n) = 2 n^2 \gamma $, the speedup is given by
+\[
+S_p^{\sqrt{p} \times \sqrt{p}}(n) = 
+\frac{T_1(n)}
+{T_p^{\sqrt{p} \times \sqrt{p}}(n)} = 
+\frac{2 n^2 \gamma}
+{ 2 \frac{n^2}{p} \gamma + \frac{n}{\sqrt{p}}
+\left( 2 \beta + \gamma \right)}
+= 
+\frac{p}
+{ 1 + \frac{p \log_2(p)}{2 n^2} \frac{\alpha}{\gamma} 
++ \frac{\sqrt{p}}{2n}\frac{
+\left( 2 \beta + \gamma \right)}{\gamma}}
+\]
+and the parallel efficiency by
+\[
+E_p^{\sqrt{p} \times \sqrt{p}}(n) = 
+\frac{1}
+{ 1 + \frac{p \log_2(p)}{2 n^2} \frac{\alpha}{\gamma} 
++ \frac{\sqrt{p}}{2n}\frac{
+\left( 2 \beta + \gamma \right)}{\gamma}}
+\]
+
+We again ask the question what the parallel 
+efficiency for the largest problem that can be stored on $ p $ nodes is.
+\begin{eqnarray*}
+E_p^{\sqrt{p} \times \sqrt{p}}(n_{\max}(p)) &=& 
+\frac{1}
+{ 1 + \frac{p \log_2(p)}{2 n^2} \frac{\alpha}{\gamma} 
++ \frac{\sqrt{p}}{2n}\frac{
+\left( 2 \beta + \gamma \right)}{\gamma}}
+\\
+&=&
+\frac{1}
+{ 1 + \frac{\log_2(p)}{2 M} \frac{\alpha}{\gamma} 
++ \frac{1}{2\sqrt{M}}\frac{
+\left( 2 \beta + \gamma \right)}{\gamma}}
+\end{eqnarray*}
+so that still
+\begin{eqnarray*}
+\lim_{p \rightarrow \infty}
+E_p^{\sqrt{p} \times \sqrt{p}}(n_{\max}(p)) &=& 
+\lim_{p \rightarrow \infty}
+\frac{1}
+{ 1 + \frac{\log_2(p)}{2 M} \frac{\alpha}{\gamma} 
++ \frac{1}{2\sqrt{M}}\frac{
+\left( 2 \beta + \gamma \right)}{\gamma}}
+=
+0.
+\end{eqnarray*}
+However, $ \log_2{p} $ grows very slowly with $ p $ and is therefore
+considered to act much like a constant.  In this case 
+$ E_p^{\sqrt{p}\times \sqrt{p}}( n_{\rm max}(p) ) $ decreases very slowly and the algorithm is considered to be scalable for practical purposes.
+
+
+Note that when $ r = p $ the 2D algorithm becomes the "partitioned by
+rows" algorithm and when $ c = p $ it becomes the "partitioned by
+columns" algorithm.  It is not hard to show that the 2D algorithm is
+scalable in the sense of the above analysis
+when $ r = c $, as long as $ r / c
+$ is kept constant.

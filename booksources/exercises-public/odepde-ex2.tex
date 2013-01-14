@@ -1,0 +1,34 @@
+  Consider the initial value problem $y'(t)=y(t)(1-y(t))$.
+Observe that $y\equiv 0$ and $y\equiv 1$ are solutions. These are called `equilibrium solutions'.
+\begin{enumerate}
+\item A solution is stable, if perturbations `converge back to the
+  solution', meaning that for $\epsilon$ small enough,
+  \[ \hbox{if  $y(t)=\epsilon$ for some~$t$, then
+    $\lim_{t\rightarrow\infty}y(t)=0$} \]
+  and
+  \[ \hbox{if  $y(t)=1+\epsilon$ for some~$t$, then
+    $\lim_{t\rightarrow\infty}y(t)=1$} \]
+  This requires for instance that \[ y(t)=\epsilon\Rightarrow y'(t)<0. \]
+  Investigate this behaviour. Is zero a stable solution? Is one?
+\item Consider the explicit method
+  \[ y_{k+1}=y_k+\Delta t y_k(1-y_k) \]
+  for computing a numerical solution
+  to the differential equation. Show that
+  \[ y_k\in(0,1)\Rightarrow y_{k+1}>y_k,\qquad
+     y_k>1\Rightarrow y_{k+1}<y_k \]
+\item Write a small program to investigate the behaviour of the
+  numerical solution under various choices for $\Delta t$. Include
+  program listing and a couple of runs in your homework submission.
+\item You see from running your program that the numerical solution
+  can oscillate. Derive a condition on $\Delta t$ that makes the
+  numerical solution monotone. It is enough to show that
+  $y_k<1\Rightarrow y_{k+1}<1$, and $y_k>1\Rightarrow y_{k+1}>1$.
+\item Now consider the implicit method
+  \[ y_{k+1}-\Delta t y_{k+1}(1-y_{k+1})=y_k \]
+  and show that $y_{k+1}$ is
+  easily computed from~$y_k$. Write a program, and investigate the
+  behaviour of the numerical solution under various choices
+  for~$\Delta t$.
+\item Show that the numerical solution of the implicit scheme is
+  monotone for all choices of~$\Delta t$.
+\end{enumerate}

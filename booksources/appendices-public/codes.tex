@@ -1,0 +1,111 @@
+This section contains several simple codes that illustrate various
+issues relating to the performance of a single CPU. The explanations
+can be found in section~\ref{sec:performance-programming}.
+
+\Level 1 {Hardware event counting}
+\label{sec:papi}
+
+The codes in this chapter make calls to a library named PAPI for
+`Performance Application Programming
+Interface'~\cite{papi,papi-homepage}. This is a portable set of calls
+to query the hardware counters that are built into most
+processors. Since these counters are part of the processor hardware,
+they can measure detailed events such as cache misses without this
+measurement process disturbing the phenomenon it is supposed to
+observe.
+
+While using hardware counters is fairly straightforward, the question
+of whether what they are reporting is what you actually meant to
+measure is another matter altogether. For instance, the presence of
+hardware prefetch streams (section~\ref{sec:prefetch}) implies that
+data can be loaded into cache without this load being triggered by a
+cache miss. Thus, the counters may report numbers that seem off, or
+even impossible, under a naive interpretation.
+
+\Level 1 {Cache size}
+\label{sec:cachesize-code}
+
+This code demonstrates the fact that operations are more efficient if
+data is found in L1 cache, than in L2, L3, or main memory. To make
+sure we do not measure any unintended data movement, we perform one
+iteration to bring data in the cache before we start the timers.
+
+\begingroup\small
+\verbatiminput{code/papi/size.c}
+\endgroup
+
+\Level 1 {Cachelines}
+\label{sec:cacheline-code}
+
+This code illustrates the need for small strides in vector code. The
+main loop operates on a vector, progressing by a constant stride. As
+the stride increases, runtime will increase, since the number of
+cachelines transferred increases, and the bandwidth is the dominant
+cost of the computation.
+
+There are some subtleties to this code: in order to prevent accidental
+reuse of data in cache, the computation is preceded by a loop that
+accesses at least twice as much data as will fit in cache. As a
+result, the array is guaranteed not to be in cache.
+
+\begingroup\small
+\verbatiminput{code/papi/line.c}
+\endgroup
+
+Note that figure~\ref{fig:cacheline} in
+section~\ref{sec:coding-cacheline} only plots up to stride~8, while
+the code computes to~16. In fact, at stride~12 the prefetch behaviour
+of the Opteron changes, leading to peculiarities in the timing, as
+shown in figure~\ref{fig:cacheline16}.
+\begin{figure}[ht]
+  \includegraphics[scale=.5]{graphics-public/cacheline16}
+  \caption{Run time in kcycles and L1 reuse as a function of stride}
+  \label{fig:cacheline16}
+\end{figure}
+
+\Level 1 {Cache associativity}
+\label{sec:assoc-code}
+
+This code illustrates the effects of cache associativity;see sections
+\ref{sec:associative} and~\ref{sec:assoc-coding} for a detailed
+explanation. A~number of vectors (dependent on the inner loop
+variable~\n{i}) is traversed simultaneously.  Their lengths are
+chosen to induce cache conflicts. If the number of vectors is low
+enough, cache associativity will resolve these conflicts; for higher
+values of~\n{m} the runtime will quickly increase. By allocating the
+vectors with a larger size, the cache conflicts go away.
+
+\begingroup\small
+\verbatiminput{code/papi/assoc.c}
+\endgroup
+
+\Level 1 {TLB}
+\label{sec:tlb-code}
+
+This code illustrates the behaviour of a \indexac{TLB}; see sections
+\ref{sec:tlb} and~\ref{sec:coding-tlb} for a thorough
+explanation. A~two-dimensional array is declared in column-major
+ordering (Fortran style). This means that striding through the data by
+varying the $i$~coordinate will have a high likelihood of TLB hits,
+since all elements on a page are accessed consecutively. The number of
+TLB entries accessed equals the number of elements divided by the page
+size. Striding through the array by the $j$ coordinate will have each
+next element hitting a new page, so TLB misses will ensue when the
+number of columns is larger than the number of TLB entries.
+
+\begingroup\small
+\verbatiminput{code/papi/tlb.c}
+\endgroup
+
+\Level 1 {Unrepresentible numbers}
+\label{sec:fraction-code}
+
+Section~\ref{sec:arith-intro} mentioned that many fractions are not
+representible in binary. This code illustrates that by dividing a
+number first by~7, then multiplying it by~7 and dividing
+by~49. Compile and execute this code, and see that an input of~$3.5$
+gives equality, but $3.6$ doesn't.
+
+\begingroup\small
+\verbatiminput{code/snippets/fraction.c}
+\endgroup

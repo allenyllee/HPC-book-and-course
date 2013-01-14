@@ -1,0 +1,8 @@
+  The listing has a call to \n{VecSet} to set the vector elements to a
+  constant value. Remove this line.
+  Use the \n{myfirst,mylast} variables and the PETSc routine
+  \n{VecSetValue} to let every process set its
+  local vector elements to the processor number. (The last argument of
+  \n{VecSetValue} should be \n{INSERT_VALUES}.) That is, if the
+  vector is six elements long and there are three processors, the
+  resulting vector should be $(0,0,1,1,2,2)$.
