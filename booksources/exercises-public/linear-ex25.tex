@@ -1,11 +1,16 @@
-  Let us take a look at what happens with a matrix~$A$ when the nodes
-  of its graph $G=\langle V,E,W\rangle$ are renumbered. As a simple example,
-  we number the nodes backwards; that is, with $n$ the number of
-  nodes, we map node~$i$ to $n+1-i$.
-  Correspondingly, we find a new graph
-  $G'=\langle V,E',W'\rangle$ where
-  \[ (i,j)\in E'\Leftrightarrow (n+1-i,n+1-j)\in E,\qquad
-  w'_{ij}=w_{n+1-i,n+1-j}.\]
-  What does this renumbering imply for the matrix~$A'$ that
-  corresponds to~$G'$? If you exchange the labels $i,j$ on two nodes,
-  what is the effect on the matrix~$A$?
+The operations described so far are fairly simple, in that they never
+make changes to the sparsity structure of the matrix. The CRS format,
+as described above, does not allow you to add new nonzeros to the
+matrix, but it is not hard to make an extension that does allow it.
+
+Let numbers $p_i, i=1\ldots n$, describing the number of nonzeros in
+the $i$-th row, be given.  Design an extension to CRS that gives each
+row space for $q$ extra elements. Implement this scheme and test it:
+construct a matrix with $p_i$ nonzeros in the $i$-th row, and check
+the correctness of the matrix-vector product before and after adding
+new elements, up to $q$ elements per row.
+
+Now assume that the matrix will never have more than a total of $qn$
+nonzeros. Alter your code so that it can deal with starting with an
+empty matrix, and gradually adding nonzeros in random places. Again,
+check the correctness.

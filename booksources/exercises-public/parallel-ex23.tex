@@ -1,2 +1,9 @@
-  If you consider the long latency and limited bandwidth of memory as
-  two separate problems, does multi-threading address them both?
+  Show that this algorithm ignores some serious issues about memory
+  usage:
+  \begin{itemize}
+  \item If the matrix is kept in shared memory, how many simultaneous
+    reads from each memory locations are performed?
+  \item If the processors keep the input and output to the local
+    computations in  local storage, how much duplication
+    is there of the matrix elements?
+  \end{itemize}

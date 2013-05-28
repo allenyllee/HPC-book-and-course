@@ -1,6 +1,5 @@
-  Analyze this example. When is \n{x} brought into cache, when is it
-  reused, and when is it flushed? What is the required cache size in
-  this example? Rewrite this example, using a constant
-\begin{verbatim}
-#define L1SIZE 65536
-\end{verbatim}
+  To arrive at the blocked code, the loop over \n{j} was split into a
+  loop over blocks and an inner loop over the elements of the block;
+  the outer loop over \n{i} was then exchanged with the loop over the
+  blocks. In this particular example you could also simply exchange
+  the \n{i} and \n{j} loops. Why may this not be optimal for performance?

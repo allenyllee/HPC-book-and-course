@@ -1,9 +1,11 @@
-  \label{ex:rb-tridiagonal}
-  Let $A$ be the tridiagonal matrix of the one-dimensional \ac{BVP}
-  (see section~\ref{sec:1dbvp}) of size~$n$ with $n$~odd. What does
-  the graph of~$A$ look like?  Consider the permutation that results
-  from putting the nodes in the following sequence:
-  $1,3,5,\ldots,n,2,4,\allowbreak6,\ldots,\allowbreak n-\nobreak
-  1$. What does the sparsity pattern of the permuted matrix look like?
-  Renumbering strategies such as this will be discussed in more detail
-  in section~\ref{sec:redblackgreen}.
+  Let us take a look at what happens with a matrix~$A$ when the nodes
+  of its graph $G=\langle V,E,W\rangle$ are renumbered. As a simple example,
+  we number the nodes backwards; that is, with $n$ the number of
+  nodes, we map node~$i$ to $n+1-i$.
+  Correspondingly, we find a new graph
+  $G'=\langle V,E',W'\rangle$ where
+  \[ (i,j)\in E'\Leftrightarrow (n+1-i,n+1-j)\in E,\qquad
+  w'_{ij}=w_{n+1-i,n+1-j}.\]
+  What does this renumbering imply for the matrix~$A'$ that
+  corresponds to~$G'$? If you exchange the labels $i,j$ on two nodes,
+  what is the effect on the matrix~$A$?

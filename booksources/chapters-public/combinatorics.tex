@@ -1,3 +1,4 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
@@ -205,30 +206,8 @@ speedup.
 \index{quicksort|)}
 \index{sorting|)}
 
-\Level 0 {Graph problems}
-
-Various problems in scientific computing can be formulated as graph
-problems (for
-an introduction to graph theory see Appendix~\ref{app:graph}); for
-instance, you have 
-encountered the problem of load
-balancing (section~\ref{sec:graph-loadbalancing}) and finding
-independent sets (section~\ref{sec:redblackgreen}).
-%
-Many traditional graph algorithms are
-not immediately, or at least not efficiently, applicable, since the
-graphs are often distributed, and traditional graph theory assume global
-knowledge of the whole graph. 
-
-Recently, new types of graph computations in have arisen in scientific
-computing. Here the graph are no longer tools, but objects of study
-themselves. Examples are the \indexterm{World Wide Web} or the
-\indextermsub{social}{graph} of \indexterm{Facebook}, or the graph
-of all possible \indexterm{protein interactions} in a living organism.
-
-For this reason, combinatorial computational
-science is becoming a discipline in its own right.  We will look at
-some specific graph problems in this chapter.
+\Level 0 {Graph analytics}
+\input chapters-public/graphalgorithms
 
 \Level 1 {`Real world' graphs}
 
@@ -466,6 +445,9 @@ parallelism arguments as for a dense matrix: the matrix has to be
 distributed two-dimensionally~\cite{OgAi:sparsestorage}.
 
 \index{PageRank|)}
+
+\Level 1 {Large-scale computational graph theory}
+\input chapters-public/graphcompute
 
 \endinput
 

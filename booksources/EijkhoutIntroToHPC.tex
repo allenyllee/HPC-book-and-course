@@ -36,10 +36,12 @@
 
 \usepackage[algo2e,noline,noend]{algorithm2e}
 \newenvironment{displayalgorithm}
- {\begin{algorithm2e}[H]\leftskip=\unitindent \DontPrintSemicolon
+ {\par
+  \begin{algorithm2e}[H]\leftskip=\unitindent \parskip=0pt\relax
+  \DontPrintSemicolon
   \SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
  }
- {\end{algorithm2e}}
+ {\end{algorithm2e}\par}
 \newenvironment{displayprocedure}[2]
  {\everymath{\strut}
   \begin{procedure}[H]\leftskip=\unitindent\caption{#1(#2)}}
@@ -48,7 +50,7 @@
 % for edmond
 \usepackage{subfigure,algorithmic,algorithm}
 
-\def\svnrev{446}
+\def\svnrev{485}
 \edef\revision{\svnrev}
 \def\lulurevision{4, October 2011}
 
@@ -220,6 +222,9 @@
 \CHAPTER{Molecular dynamics}{md}
 \CHAPTER{Combinatorics}{combinatorics}
 \CHAPTER{Discrete systems}{discrete}
+\begin{notready}
+\CHAPTER{Computational biology}{bio}
+\end{notready}
 \begin{montecarlo}
 \CHAPTER{Monte Carlo Methods}{montecarlo}
 \end{montecarlo}
@@ -251,7 +256,7 @@
 \begin{notready}
 \APPENDIX{Fourier Transforms}{Fourier Transform}{fft}
 \end{notready}
-\APPENDIXac{Finite State Automatons}{FSA}{fsa}
+\APPENDIXac{Automata theory}{FSA}{fsa}
 
 \begin{tutorials}
 \Level 0 {Practical tutorials}
@@ -263,7 +268,7 @@
 \TUTORIAL{Unix intro}{unix}
 \TUTORIAL{Compilers and libraries}{compile}
 \TUTORIAL{Managing projects with Make}{gnumake}
-\TUTORIAL{Source control}{svn}
+\TUTORIAL{Source code control}{svn}
 \TUTORIAL{Scientific Data Storage}{hdf5}
 \TUTORIAL{Scientific Libraries}{petsc}
 \TUTORIAL{Plotting with GNUplot}{gnuplot}
@@ -280,6 +285,7 @@
 \PROJECT{Cache simulation and analysis}{cache}
 \PROJECT{Evaluation of Bulk Synchronous Programming}{bsp}
 \PROJECT{Heat equation}{heat}
+\PROJECT{The memory wall}{wall}
 
 \end{tutorials}
 
@@ -304,6 +310,7 @@
 \acitem{AMR}{Adaptive Mesh Refinement}
 \acitem{AVX}{Advanced Vector Extensions}
 \acitem{BEM}{Boundary Element Method}
+\acitem{BFS}{Breadth-First Search}
 \acitem{BSP}{Bulk Synchronous Parallel}
 \acitem{BLAS}{Basic Linear Algebra Subprograms}
 \acitem{BVP}{Boundary Value Problem}
@@ -320,6 +327,7 @@
 \acitem{FDM}{Finite Difference Method}
 \acitem{FEM}{Finite Element Method}
 \acitem{FFT}{Fast Fourier Transform}
+\acitem{FMA}{Fused Multiply-Add}
 \begin{fmm}
 \acitem{FMM}{Fast Multipole Method}
 \end{fmm}
@@ -344,6 +352,7 @@
 \acitemi{MIC}{Many Integrated Cores}{Intel!MIC}
 \acitem{MIMD}{Multiple Instruction Multiple Data}
 \acitem{MPI}{Message Passing Interface}
+\acitem{MSI}{Modified-Shared-Invalid}
 \acitem{MTA}{Multi-Threaded Architecture}
 \acitem{NUMA}{Non-Uniform Memory Access}
 \acitem{ODE}{Ordinary Diffential Equation}

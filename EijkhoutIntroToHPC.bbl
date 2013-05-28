@@ -203,6 +203,11 @@ Edsger~W. Dijkstra.
 \newblock Programming as a discipline of mathematical nature.
 \newblock {\em Am. Math. Monthly}, 81:608--612, 1974.
 
+\bibitem{EWD:EWD117}
+Edsger~W. Dijkstra.
+\newblock Programming considered as a human activity.
+\newblock published as {\cite EWD:EWD117pub}, n.d.
+
 \bibitem{pvm-1}
 J.~Dongarra, A.~Geist, R.~Manchek, and V.~Sunderam.
 \newblock {Integrated PVM Framework Supports Heterogeneous Network Computing}.
@@ -647,6 +652,12 @@ Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
 \newblock {\em The {\LaTeX} Companion, 2nd edition}.
 \newblock Addison-Wesley, 2004.
 
+\bibitem{NeedlemanWunsch}
+Saul~B. Needleman and Christian~D. Wunsch.
+\newblock A general method applicable to the search for similarities in the
+  amino acid sequence of two proteins.
+\newblock {\em Journal of Molecular Biology}, 48(3):443 -- 453, 1970.
+
 \bibitem{Oetiker:LaTeXintro}
 Tobi Oetiker.
 \newblock The not so short introductino to {\LaTeX}{}.
@@ -855,6 +866,11 @@ J.H. Wilkinson.
 \newblock {\em Rounding Errors in Algebraic Processes}.
 \newblock Prentice-Hall, Englewood Cliffs, N.J., 1963.
 
+\bibitem{Wulf:memory-wall}
+Wm.~A. Wulf and Sally~A. McKee.
+\newblock Hitting the memory wall: implications of the obvious.
+\newblock {\em SIGARCH Comput. Archit. News}, 23(1):20--24, March 1995.
+
 \bibitem{YandBrent:bicgstab}
 L.~T. Yand and R.~Brent.
 \newblock The improved bicgstab method for large and sparse unsymmetric linear
@@ -866,6 +882,15 @@ L.~T. Yand and R.~Brent.
 Randy Yates.
 \newblock Fixed point: an introduction.
 \newblock \url{http://www.digitalsignallabs.com/fp.pdf}, 2007.
+
+\bibitem{Yoo:2005:scalable-bfs}
+Andy Yoo, Edmond Chow, Keith Henderson, William McLendon, Bruce Hendrickson,
+  and Umit Catalyurek.
+\newblock A scalable distributed parallel breadth-first search algorithm on
+  bluegene/l.
+\newblock In {\em Proceedings of the 2005 ACM/IEEE conference on
+  Supercomputing}, SC '05, pages 25--, Washington, DC, USA, 2005. IEEE Computer
+  Society.
 
 \bibitem{Young:thesis}
 David~M. Young.

@@ -157,8 +157,10 @@ In the previous sections we considered two aspects of load balancing:
 making sure all processors have an approximately equal amount of work,
 and letting the distribution reflect the structure of the problem so
 that communication is kept within reason. We can phrase the second
-point as follows: we try to preserve the locality of the problem when
-we distribute it over a parallel machine.
+point trying to preserve the locality of the problem when
+distributed over a parallel machine: points in space that are close together
+are likely to interact, so they should be on the same processor, or
+at least one not too far away.
 
 Striving to preserve locality is not obviously the right strategy. In
 \ac{BSP} (see section~\ref{sec:bsp}) a statistical argument is made
@@ -186,7 +188,7 @@ to a different processor.
 
 For instance, some problems are adaptively
 refined\index{refinement!adaptive}\footnote{For a detailed
-  discussion see~\cite{Campbell:octree}.}. This is illustrated in
+  discussion, see~\cite{Campbell:octree}.}. This is illustrated in
 figure~\ref{fig:octree1}.
 \begin{figure}[ht]
 %  \includegraphics[scale=1]{graphics-public/octree1}

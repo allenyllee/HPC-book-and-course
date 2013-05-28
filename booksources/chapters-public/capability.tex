@@ -22,9 +22,20 @@ measure of success, is known as \indexterm{capability computing}.
 
 On the other hand, many problems need less than a whole supercomputer
 to solve, so typically a computing center will set up a machine so
-that it serves a continuous stream of user problems, each
-smaller than the full machine. In this mode, the measure of success is
-the sustained performance per unit cost. This is known as
-\indexterm{capacity computing}, and it requires a finely tuned job
-scheduling strategy. This topic, while interesting, is not further
-discussed in this book.
+that it serves a continuous stream of user problems, each smaller than
+the full machine. In this mode, the measure of success is the
+sustained performance per unit cost. This is known as
+\indexterm{capacity computing}, and it requires a finely tuned
+\indextermsub{job}{scheduling} strategy. 
+
+A~popular scheme is
+\indextermsub{fair-share}{scheduling}, which tries to allocate resources
+equally between users, rather than between processes. This means
+that it will lower a user's priority if the user had recent jobs, and it will 
+give higher priority to short or small jobs. Examples of schedulers 
+on this principle are \indexterm{SGE} and \indexterm{Slurm}.
+
+Jobs can have dependencies, which makes scheduling harder. In fact,
+under many realistic conditions scheduling problems are
+\indexterm{NP-complete}, so in practice heuristics will be used.
+This topic, while interesting, is not further discussed in this book.

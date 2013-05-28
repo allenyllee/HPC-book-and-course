@@ -1,3 +1,25 @@
-  Show that in equation~\eqref{eq:5starmatrix} the original matrix has
-  $O(N)=O(n^2)$ nonzero elements, $O(N^2)=O(n^4)$~elements in total,
-  and the factorization has $O(nN)=O(n^3)=O(N^{3/2})$ nonzeros.
+\label{ex:skyline}
+  Prove the following statements.
+  \begin{enumerate}
+  \item Assume that the matrix $A$ has a
+    \indexterm{halfbandwidth}~$p$, that is, $a_{ij}=0$ if
+    $|i-j|>p$. Show that, after a factorization without pivoting,
+    $L+U$ has the same halfbandwidth.
+  \item Show that, after a factorization with partial pivoting,
+    $L$~has a left halfbandwidth of~$p$, whereas $U$~has a
+    right halfbandwidth of~$2p$.
+  \item Assuming no pivoting, show that the fill-in can be
+    characterized as follows:
+    \begin{quote}
+      Consider row~$i$. Let $j_{\min}$ be the leftmost nonzero in
+      row~$i$, that is $a_{ij}=0$ for $j<j_{\min}$. Then there will be
+      no fill-in in row~$i$ to the left of
+      column~$j_{\min}$. Likewise, if $i_{\min}$ is the topmost
+      nonzero in column~$j$, there will be no fill-in in column~$j$
+      above row~$i_{\min}$.
+    \end{quote}
+    As a result, $L$~and~$U$ have a `skyline' profile. Given a sparse
+    matrix, it is now easy to allocate enough storage to fit a
+    factorization without pivoting: this is knows as
+    \indexterm{skyline storage}.
+  \end{enumerate}

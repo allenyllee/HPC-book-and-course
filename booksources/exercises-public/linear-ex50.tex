@@ -1,4 +1,13 @@
-  Do a flop count of the various operations in one iteration of the
-  \ac{CG} method. Assume that $A$~is the matrix of a five-point
-  stencil and that the preconditioner $M$ is an incomplete
-  factorization of~$A$ (section~\ref{sec:ilu}). Let $N$ be the matrix size.
+    Write a simple program to experiment with linear system
+    solving. Take the matrix from the 1D BVP (use an efficient storage
+    scheme) and program an iterative
+    method using the choice $K=D_A$. Experiment with stopping tests on
+    the residual and the distance between iterates.
+    How does the number of iterations
+    depend on the size of the matrix?
+
+    Change the matrix construction so that a certain quantity is
+    added the diagonal, that is, add $\alpha I$ to the original
+    matrix. What happens when $\alpha>0$? What happens when
+    $\alpha<0$? Can you find the value where the behaviour changes?
+    Does that value depend on the matrix size?

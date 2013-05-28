@@ -4,7 +4,7 @@
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
 %%%% by Victor Eijkhout, copyright 2012
-%%%%
+%%%% THIS FILE NO LONGER USED
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
 %%%% The Saylor Foundation \url{http://www.saylor.org}.
@@ -363,3 +363,30 @@ independent threads. The semantics of this update, that is, the
 precise definition of how conflicts such as simultaneous writes are
 resolved, is defined by \indexterm{sequential consistency}; see
 section~\ref{sec:seq-consist}.
+
+\Level 2 {Hyperthreading versus multi-threading}
+\label{sec:hyperthread}
+\index{hyperthreading|(}
+
+In the above examples you saw that the threads that are spawned during one 
+program run essentially execute the same code, and have access to the same data.
+Thus, at a hardware level, a thread is uniquely determined by a small number of
+local variables, such as its location in the code (the \indexterm{program counter})
+and intermediate results of the current computation it is engaged in.
+
+Hyperthreading is an Intel technology to let multiple threads use the
+processor truly simulateneously, so that part of the processor would
+be optimally used; see figure~\ref{fig:hyperthread}.
+\begin{figure}
+\includegraphics{graphics-public/hyperthread_image1}
+\caption{Illustration of processor utilization under hyperthreading.}
+\end{figure}
+
+If a processor switches between executing one thread and another, it saves this
+local information of the one thread, and loads the information of the other.
+The cost of doing this is modest compared to running a whole program, but 
+can be expensive compared to the cost of a single instruction. Thus,
+hyperthreading may not always give a performance improvement.
+
+\index{hyperthreading|)}
+

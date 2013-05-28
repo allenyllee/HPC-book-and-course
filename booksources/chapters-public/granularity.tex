@@ -136,6 +136,13 @@ follows:
     spawn a new task on it}
 \end{displayalgorithm}
 
+(There is a subtle distinction between the two previous
+pseudo-codes. In the first, tasks were self-scheduling: each task
+spawned off two new ones. The second code is an example of
+the \indexterm{master-worker paradigm}: there is one central task which
+lives for the duration of the code, and which spawns and assigns the
+worker tasks.)
+
 Unlike in the data parallel example above, the assignment of data to
 processor is not determined in advance in such a scheme. Therefore,
 this mode of parallelism is most suited for thread-programming, for
@@ -213,6 +220,7 @@ be run for many inputs. In this case, the overall calculation
 is referred to as a \indexterm{parameter sweep}. 
 
 \Level 1 {Medium-grain data parallelism}
+\label{sec:medium-grain}
 
 The above strict realization of data parallelism assumes that there
 are as many processors as data elements. In practice, processors will
@@ -232,3 +240,47 @@ operation performed is identical on a large number of data items. It
 can also be viewed as task parallelism, since each processor executes
 a larger section of code, and does not necessarily operate on equal
 sized chunks of data.
+
+\Level 1 {Task granularity}
+\index{granularity|(}
+
+In the previous subsections we considered different level of finding
+parallel work, or different ways of dividing up work so as to find
+parallelism. There is another way of looking at this: we define
+the \emph{granularity} of a parallel scheme as the amount of work (or
+the task size) that a processing element can perform before having to
+communicate or synchronize with other processing elements.
+
+In \ac{ILP} we are dealing with very fine-grained parallelism, on the
+order of a single instruction or just a few instructions. In true task
+parallelism the granularity is much coarser.
+
+The interesting case here is data parallelism, where we have the
+freedom to choose the task sizes. On \ac{SIMD} machines we can choose
+a granularity of a single instruction, but, as you saw in
+section~\ref{sec:medium-grain}, operations can be grouped into
+medium-sized tasks. Thus, operations that are data parallel can be
+executed on distributed memory clusters, given the right balance
+between the number of processors and total problem size.
+
+\begin{exercise}
+  Discuss choosing the right granularity for a data parallel operation
+  such as averaging on a two-dimensional grid. Show that there is a
+  \indexterm{surface-to-volume} effect: the amount of communication is
+  of a lower order than the computation. This means that, even if
+  communication is much slower than computation, increasing the task
+  size will still give a balanced execution.
+\end{exercise}
+
+Unfortunately, choosing a large task size to overcome slow
+communication may aggrevate another problem: aggregating these
+operations may give tasks with varying running time, causing
+\indextermbus{load}{unbalance}.  One solution here is to use an
+\indexterm{over-decomposition} of the problem: create more tasks then
+there are processing elements, and assign multiple tasks to a
+processor (or assign tasks dynamically) to even out irregular running
+times. Above you already saw \indextermsub{dynamic}{scheduling}; 
+an example of \indexterm{over-decomposition} in linear algebra is
+discussed in section~\ref{sec:LUscaling}.
+
+\index{granularity|)}

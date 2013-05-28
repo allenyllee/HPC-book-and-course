@@ -1,4 +1,4 @@
-  Suppose arrays of complex numbers are stored the Fortran
-  way. Analyze the memory access pattern of pairwise multiplying the
-  arrays, that is, $\forall_i\colon c_i\leftarrow a_i\cdot b_i$, where
-  \texttt{a(), b(), c()} are arrays of complex numbers.
+  There is still a step missing in our reasoning. We have shown that
+  in adding two subsequent terms, the smaller one is not
+  ignored. However, during the calculation we add partial sums to the
+  next term in the sequence. Show that this does not worsen the situation.

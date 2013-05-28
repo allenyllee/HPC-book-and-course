@@ -256,7 +256,8 @@ website~\cite{matrix-market} uses a variant of this scheme.
 In this section we will look at the form
 some algorithms take in \ac{CRS}.
 
-The most common operation is the matrix-vector product:
+First we consider the \emph{implementation of the sparse matrix-vector
+  product}.\index{sparse!matrix-vector product!implementation}
 \begin{verbatim}
 for (row=0; row<nrows; row++) {
    s = 0;
@@ -272,6 +273,14 @@ where the inner product is taken of each row~$A_{i*}$ and the input
 vector~$x$. However, note that the inner loop no long has the column
 number as index, but rather the location where that number is to be
 found. This extra step is known as \indexterm{indirect addressing}.
+
+\begin{exercise}
+  Compare the data locality of the dense matrix-vector product, executed by rows,
+  with the sparse product given just now. Show that, for general sparse matrices,
+  the spatial locality in addressing\index{sparse!matrix-vector product!locality in}
+  the input vector~$x$ has now disappeared. Are there matrix structures for which
+  you can still expect some spatial locality?
+\end{exercise}
 
 Now, how about if you wanted to compute the product $y=A^tx$? In that
 case you need rows of~$A^t$, or, equivalently, columns of~$A$. Finding

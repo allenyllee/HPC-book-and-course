@@ -22,6 +22,37 @@ data can be loaded into cache without this load being triggered by a
 cache miss. Thus, the counters may report numbers that seem off, or
 even impossible, under a naive interpretation.
 
+\Level 1 {Test setup}
+
+In the next sections you will see several codes that try to do 
+precise timings on some phenomenon. This requires some care if you
+want to be sure you are actuallying timing what you're interested in, and
+not something else. 
+
+First of all, of course you perform your experiment 
+multiple times to get a good average timing. If the individual timings
+are too far apart, you can decide to throw away outliers, or maybe
+rethink your experiment: there may be a variable that you haven't accounted
+for.
+
+Let's assume that your timings are all within an acceptable spread;
+next you have to compensate for cache effects stemming from the fact that
+you are doing an experiment multiple times. If your problem sizes is small,
+the first timing will bring all data in cache, and the second run
+will find it there, leading to much faster runtimes. You can solve this 
+problem by, in between any pair of timings, touching an array
+that is larger than the cache size. This has the effect of flushing
+all experiment data from the cache.
+
+On the other hand, if you want to time something that happens on data
+in cache, you want to be sure that your data is in cache, so you could
+for instance write to the array, bringing it in cache, prior to your
+experiment. This is sometimes referred to
+as \indextermbus{cache}{warming}, and a cache that contains the
+problem data is called a \indextermsub{hot}{cache}. Failure to warm
+the cache leads to an results where the first run takes appreciably 
+longer than the rest.
+
 \Level 1 {Cache size}
 \label{sec:cachesize-code}
 

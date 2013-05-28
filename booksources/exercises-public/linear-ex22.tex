@@ -1,3 +1,5 @@
-  Write out the code for the transpose product $y=A^tx$ where $A$~is
-  stored in \ac{CRS} format. Write a simple test program and confirm
-  that your code computes the right thing.
+  Compare the data locality of the dense matrix-vector product, executed by rows,
+  with the sparse product given just now. Show that, for general sparse matrices,
+  the spatial locality in addressing\index{sparse!matrix-vector product!locality in}
+  the input vector~$x$ has now disappeared. Are there matrix structures for which
+  you can still expect some spatial locality?

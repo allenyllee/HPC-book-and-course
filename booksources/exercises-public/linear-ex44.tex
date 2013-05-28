@@ -1,18 +1,2 @@
-  The Jacobi iteration for the linear system $Ax=b$ is defined as
-\[ x_{i+1}=x_i-K^{-1}(Ax_i-b) \]
-where $K$ is the diagonal of~$A$. Show that you can transform the
-linear system (that is, find a different coefficient matrix and right
-hand side vector that will still have the same solution) so that you
-can compute the same $x_i$ vectors but with $K=I$, the identity
-matrix.
-
-What are the implications of this strategy, in terms of storage and
-operation counts? Are there special implications if $A$ is a sparse
-matrix?
-
-Suppose $A$ is symmetric. Give a simple example to show that $K^{-1}A$
-does not have to be symmetric. Can you come up with a different
-transformation of the system so that symmetry of the coefficient
-matrix is preserved and that
-has the same advantages as the transformation above? You can
-assume that the matrix has positive diagonal elements.
+  What is the extra cost of a few steps of iterative refinement over a
+  single system solution, assuming a dense system?

@@ -1,4 +1,10 @@
-  Argue that with a large enough problem and an \ac{LRU} replacement policy
-  (section~\ref{sec:lru}) essentially all data in the L1 will be
-  replaced in every iteration of the outer loop. Can you write an
-  example code that will let some of the L1 data stay resident?
+  There are more algorithms for computing the product $C\leftarrow
+  A\cdot B$. Consider the following:
+\begin{verbatim}
+for k=1..n:
+  for i=1..n:
+    for j=1..n:
+      c[i,j] += a[i,k]*b[k,j]
+\end{verbatim}
+Analyze the memory traffic for the matrix~$C$, and show that it is
+worse than the two algorithms given above.

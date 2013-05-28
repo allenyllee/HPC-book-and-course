@@ -80,6 +80,23 @@ built out of an elementary `butterfly'
   \left\{ \begin{array}{r}x+y\\x-y\end{array} \right.
 \]
 
+Let $\omega_n$ be the $n$-th root of unity: \[ \omega_n=e^{-2\pi i/n} \]
+which has the property that $\omega_{n/2}=\omega_n^2$.
+
+The Fourier sum
+\[ Y_k=\sum_{j=0}^{n-1} \omega_n^{jk} y_j \]
+If $n$ is even and $k\leq n/2-1$:
+\[
+\begin{array}{r@{{}={}}l}
+Y_k
+&\sum_{\mathrm{even}\,j} \omega_n^{jk} y_j + \sum_{\mathrm{odd}\,j} \omega_n^{jk} y_j \\
+&\sum_{j=0}^{n/2-1} \omega_n^{2jk} y_{2j} + \omega_n \sum_{j=0}^{n/2-1} \omega_n^{2jk} y_{2j+1} \\
+&\sum_{j=0}^{n/2-1} \omega_{n/2}^{jk} y_{2j} + \omega_n \sum_{j=0}^{n/2-1} \omega_{n/2}^{jk} y_{2j+1}
+\end{array}
+\]
+so the length-$n$ Fourier transform consists of two length-$n/2$ transforms and a single multiplication
+by~$\omega_n$.
+
 \endinput
 
 Define 

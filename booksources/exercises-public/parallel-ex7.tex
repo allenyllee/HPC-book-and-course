@@ -1,5 +1,11 @@
-  Analyze the discussion in the last item above. Assume that the
-  bandwidth between the two nodes is only enough to sustain one
-  message at a time. What is the cost savings of the hybrid model over
-  the purely distributed model? Hint: consider bandwidth and latency
-  separately.
+Let's say there are $t$ threads, and your code looks like
+\begin{verbatim}
+for (i=0; i<N; i++) {
+  a[i] = // some calculation
+}
+\end{verbatim}
+If you specify a chunksize of~1,
+iterations $0,t,2t,\ldots$ go to the first thread,
+$1,1+t,1+2t,\ldots$ to the second, et cetera. Discuss why this is a bad
+strategy from a performance point of view. Hint: look up the definition of
+\indexterm{false sharing}. What would be a good chunksize?

@@ -940,6 +940,7 @@ implicit schemes, with similar conclusions about the
 resulting stability.
 
 \Level 2 {Explicit scheme}
+\label{fig:explicit-heat}
 
 With explicit time stepping we approximate the time derivative as
 \begin{equation}
@@ -986,9 +987,9 @@ where
     2&-1\\ -1&2&-1\\ &\ddots&\ddots&\ddots
   \end{pmatrix},\qquad
   T^k=
-  \begin{matrix}
+  \begin{pmatrix}
     T^k_1\\ \vdots \\ T^k_n
-  \end{matrix}.
+  \end{pmatrix}.
 \]
 The important observation here is that the dominant computation for
 deriving the vector $T^{k+1}$ 
@@ -1002,6 +1003,11 @@ computer programs using an explicit method often do not form the
 matrix, but evaluate the equation~\eqref{eq:bivp-explicit}. However,
 the linear algebra formulation~\eqref{eq:bivp-explicit-vector}
 is more insightful for purposes of analysis.
+
+In later chapters we will consider parallel execution of operations.
+For now, we note that the explicit scheme is trivially parallel: 
+each point can be updated with just the information of a few surrounding
+points.
 
 \Level 2 {Implicit scheme}
 
@@ -1058,6 +1064,11 @@ implicit method actually form the coefficient matrix, and solve the
 system~\eqref{eq:bivp-implicit-vector} as such. Solving linear systems
 will be the focus of much of chapters \ref{ch:linear}
 and~\ref{ch:parallellinear}.
+
+In contrast to the explicit scheme, we now have no 
+obvious parallelization strategy. The parallel solution of linear
+systems will occupy us in sections \ref{sec:iterative-computational}
+and on.
 
 \begin{exercise}
   Show that the flop count for a time step of the implicit method is

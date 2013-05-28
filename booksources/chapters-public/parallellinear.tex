@@ -353,7 +353,7 @@ for k=1..n
 
 \index{matrix!storage, dense|(}
 
-For this reason, an \indexterm{overdecomposition} is used, where
+For this reason, an \indexterm{over-decomposition} is used, where
 the matrix is divided in more blocks than there are processors,
 and each processor stores several, non-contiguous, sub-matrices. 
 \begin{figure}[ht]
@@ -424,6 +424,31 @@ processor~0 the \emph{block} rows $0,c,2c,\ldots$.
 \index{sparse!linear algebra|(}
 \input chapters-public/spmvp
 \index{sparse!linear algebra|)}
+
+\begin{notready}
+\Level 0 {Parallelism in solving linear systems from \acp{PDE}}
+
+The numerical solution of \acp{PDE} is an important activity,
+and the precision required often makes it a prime candidate for
+parallel treatment. If we wonder just how parallel we can be,
+and in particular what sort of a speedup is attainable,
+we need to distinguish between various aspects of the question.
+
+First of all we can ask if there is any intrinsic parallelism
+in the problem. On a global level this will typically not be the case
+(if parts of the problem were completely uncoupled, then they would be
+separate problems, right?) but on a smaller level there may be
+parallelism. 
+
+For instance, looking at time-dependent problems, and referring to
+section~\ref{sec:region-influence}, we can say that every next time
+step is of course dependent on the previous one, but not every
+individual point on the next time step is dependent on every point in
+the previous step: there is a \indexterm{region of influence}. 
+Thus it may be possible to partition the problem domain and
+obtain parallelism.
+\end{notready}
+
 
 \Level 0 {Computational aspects of iterative methods}
 \label{sec:iterative-computational}
@@ -763,6 +788,20 @@ happen, but there may be some load inbalance.
 \Level 0 {Ordering strategies and parallelism}
 \label{sec:ordering}
 
+In the foregoing we have remarked on the fact that solving
+a linear system of equations is inherently a recursive activity.
+For dense systems, the number of operations is large enough
+compared to the recursion length that finding parallelism 
+is fairly straightforward. Sparse systems, on the other hand,
+take more sophistication. In this section we will look at 
+a number of strategies for reordering the equations (or, equivalently,
+permuting the matrix) that will increase the available parallelism.
+
+These strategies can all be considered as variants of Gaussian elimination.
+By making incomplete variants of them (see section~\ref{sec:ilu}),
+all these strategies also apply to constructing preconditioners
+for iterative solution methods.
+
 \Level 1 {Nested dissection}
 \label{sec:dissection}
 \index{nested dissection|(}
@@ -833,6 +872,114 @@ section~\ref{sec:implicit-becomes-explicit}.
 
 \Level 0 {Parallelism and implicit operations}
 \input chapters-public/implicit
+
+\Level 0 {Grid updates}
+
+One of the conclusions of chapter~\ref{ch:odepde} was that explicit methods
+for time-dependent problems are computationally easier than implicit ones.
+For instance,
+they typically involve a matrix-vector product rather than a system solution,
+and
+parallelizing explicit operations is fairly simple: each result value of the 
+matrix-vector product can be computed independently. That does not mean that
+there are other computational aspects worth remarking on.
+
+Since we are dealing with sparse matrices, stemming from some computational stencil,
+we take the operator point of view. In figures \ref{fig:laplaceparallel} 
+and~\ref{fig:ghost} you saw how applying a stencil in each point of the domain 
+induces certain relations between processors: in order to evaluate the matrix-vector
+product $y\leftarrow Ax$ on a processor, that processor needs to obtain the $x$-values
+of its \indexterm{ghost region}. Under reasonable assumptions on the partitioning
+of the domain over the processors, the number of messages involved will be fairly
+small.
+
+\begin{exercise}
+Reason that, in a \ac{FEM} or \ac{FDM} context,
+the number of messages is $O(1)$ as~$h\downarrow\nobreak 0$.
+\end{exercise}
+
+In section~\ref{sec:reuse} you saw that the matrix-vector product has
+little data reuse, though there is some locality to the computation;
+in section~\ref{sec:crs-mvp} it was pointed out that the locality of the 
+sparse matrix-vector product is even worse because of
+indexing schemes that the sparsity necessitates. This means that the sparse
+product is largely a \emph{bandwidth-bound algorithm}. 
+
+Looking at just a
+single product there is not much we can do about that. 
+However, 
+often we do a number of such products in a row, for instance as the steps
+in a time-dependent process. In that case there may be rearrangements
+of the operations that lessen the bandwidth demands. Consider as a simple example
+\[ \forall_i\colon x^{(n+1)}_i = 
+    f\bigl( x^{(n)}_i, x^{(n)}_{i-1}, x^{(n)}_{i+1} \bigr)
+\]
+and let's assume that the set $\{x^{(n)}_i\}_i$ is too large to fit 
+in cache.
+This is a model for, for instance, the explicit scheme for the heat
+equation in one space dimension; section~\ref{fig:explicit-heat}.
+Schematically:
+\[
+\begin{array}{ccccc}
+  x^{(n)}_0&x^{(n)}_1&x^{(n)}_2\\
+  \downarrow\,\swarrow&\searrow\,\downarrow\,\swarrow&\searrow\,\downarrow\,\swarrow\\
+  x^{(n+1)}_0&x^{(n+1)}_1&x^{(n+1)}_2\\
+  \downarrow\,\swarrow&\searrow\,\downarrow\,\swarrow&\searrow\,\downarrow\,\swarrow\\
+  x^{(n+2)}_0&x^{(n+2)}_1&x^{(n+2)}_2\\
+\end{array}
+\]
+In the ordinary computation, where we first compute all~$x^{(n+1)}_i$, 
+then all~$x^{(n+2)}_i$, the intermediate values at level~$n+1$
+will be flushed from the cache
+after they were generated, and then brought back into cache as input for the
+level $n+2$ quantities.
+
+However,
+if we compute not one, but two iterations, the intermediate values
+may stay in cache.
+Consider $x^{(n+2)}_0$: it requires $x^{(n+1)}_0,x^{(n+1)}_1$,
+which in turn require $x^{(n)}_0,\ldots,x^{(n)}_2$.
+
+Now suppose that we are not interested in the intermediate results, but
+only the final iteration. Figure~\ref{fig:grid-update-overlap} shows
+a simple example.
+\begin{figure}[ht]
+\includegraphics[scale=.1]{graphics-public/grid-update-overlap}
+\caption{Computation of blocks of grid points over multiple iterations}
+\label{fig:grid-update-overlap}
+\end{figure}
+The first processor computes 4~points on level $n+2$. For this it needs 5~points
+from level $n+1$, and these need to be computed too, from 6~points on level~$n$.
+We see that a processor apparently needs to collect a \indexterm{ghost region}
+of width two, as opposed to just one for the regular single step update.
+One of the points computed by the first processor is $x^{(n+2)}_3$,
+which needs $x^{(n+1)}_4$. This point is also needed for the computation
+of $x^{(n+2)}_4$, which belongs to the second processor.
+
+The easiest solution is to let this sort of point on the intermediate
+level \emph{redundantly computed}\index{redundant computation}, in 
+both the computation of both blocks where it is needed.
+
+\begin{exercise}
+  Can you think of cases where a point would be redundantly computed by
+  more than two processors?
+\end{exercise}
+
+We can give several interpretations to this scheme of computing multiple
+update steps by blocks. First of all, as we motivated above, doing this 
+on a single processor increases locality: if all points in a coloured block
+(see the figure) fit in cache, we get reuse of the intermediate points.
+
+Secondly, if we consider this as a scheme for distributed memory computation,
+it reduces message traffic. Normally, for every update step the processors
+need to exchange their boundary data. If we accept some redundant duplication
+of work, we can now eliminate the data exchange for the intermediate levels.
+The decrease in communication will typically outweigh the increase in work.
+
+\begin{exercise}
+  Discuss the case of using this strategy for multicore computation.
+  What are the savings? What are the potential pitfalls?
+\end{exercise}
 
 \Level 0 {Block algorithms on multicore architectures}
 \label{sec:multicore-block}

@@ -230,8 +230,10 @@ appendix~\ref{sec:fraction-code}.
 Whether a fraction repeats depends on the number system. (How would
 you write $1/3$ in ternary, base~3, arithmetic?) In binary computers
 this means that fractions such as $1/10$, which in decimal arithmetic
-are terminating, are repeating. See section~\ref{sec:bcd} for why some
-people care about this and what was done about it.
+are terminating, are repeating. Since decimal arithmetic is important
+in financial calculations, some
+people care about this kind of arithmetic right;
+see section~\ref{sec:bcd} for what was done about it.
 
 \Level 1 {Representation of real numbers}
 \label{sec:float-representation}
@@ -355,20 +357,9 @@ too large or too small in the following ways.
   \indexterm{overflow}.
 \item[Underflow]The number closest to zero is $\beta^{-(t-1)}\cdot
   \beta^L$. A computation that has a result less than that (in
-  absolute value) causes a condition called \indexterm{underflow}. In
-  fact, most computers use \indexterm{normalized floating point
-    numbers}: the first digit $d_1$ is taken to be nonzero; see
-  section~\ref{sec:machine-eps} for more about this. In this case, any
-  number less than $1\cdot\beta^L$ causes underflow. Trying
-  to compute a number less than that in absolute value is sometimes
-  handled by using \indexterm{unnormalized floating point numbers}
-  (a~process known as \indexterm{gradual underflow}), but this is
-  typically tens or hundreds of times slower than computing with
-  regular floating point numbers\footnote{In real-time applications
-    such as audio processing this phenomenon is especially noticable;
-    see \url{http://phonophunk.com/articles/pentium4-denormalization.php?pg=3}.}. At
-  the time of this writing, only the IBM\index{IBM} Power6 has
-  hardware support for gradual underflow.
+  absolute value) causes a condition called \indexterm{underflow}. 
+  (See section~\ref{sec:normal-unnormal} 
+  for \indextermsub{gradual}{underflow}.)
 \end{itemize}
 The fact that only a small number of real numbers can be represented
 exactly is the basis of the field of round-off error analysis. We will
@@ -380,14 +371,15 @@ the essay by Goldberg~\cite{goldberg:floatingpoint}. For extensive
 discussions of round-off error analysis in algorithms, see the books
 by Higham~\cite{Higham:2002:ASN} and Wilkinson~\cite{Wilkinson:roundoff}.
 
-\Level 1 {Normalized numbers}
+\Level 1 {Normalized and unnormalized numbers}
+\label{sec:normal-unnormal}
 
 The general definition of floating point numbers,
 equation \eqref{eq:floatingpoint-def}, leaves us with the problem that numbers
 have more than one representation. For instance,
 $.5\times10^{2}=.05\times 10^3$. Since this would make computer
 arithmetic needlessly complicated, for instance in testing equality of
-numbers, we use \indexterm{normalized floating point
+numbers, we use \indextermsub{normalized}{floating point
   numbers}. A~number is normalized if its first digit is nonzero.
 The implies that the mantissa\index{mantissa} part is $\beta> x_m\geq 1$.
 
@@ -395,7 +387,28 @@ A practical implication in the case of binary numbers is that the
 first digit is always~1, so we do not need to store it explicitly.
 In the IEEE 754 standard, this means that every floating point number
 is of the form
-\[ 1.d_1d_2\ldots d_t\times 2^{\mathrm exp}.\]
+\[ 1.d_1d_2\ldots d_t\times 2^{\mathrm exp}\]
+and only the digits $d_1d_2\ldots d_t$ are stored.
+
+\index{denormal|see{floating point numbers, unnormalized}}
+Another implication of this scheme is that we have to amend the
+definition of underflow (see section~\ref{sec:exceptions} above):
+instead of having a smallest number~$-(\beta-\beta^{-(t-1)}$,
+and number less than $1\cdot\beta^L$ now causes underflow. Trying
+  to compute a number less than that in absolute value is sometimes
+  handled by using \indextermsub{unnormalized}{floating point numbers},
+  a~process known as \indextermsub{gradual}{underflow}. In this case, a~special
+value of the exponent indicates that the number is no longer normalized.
+In the case IEEE standard arithmetic (section~\ref{sec:ieee754})
+this is done through a zero exponent field.
+
+However, this is typically tens or hundreds of times slower than
+computing with regular floating point numbers\footnote{In real-time
+applications such as audio processing this phenomenon is especially
+noticable;
+see \url{http://phonophunk.com/articles/pentium4-denormalization.php?pg=3}.}. 
+At the time of this writing, only the IBM\index{IBM} Power6 has
+hardware support for gradual underflow.
 
 \Level 1 {Representation error}
 
@@ -573,7 +586,7 @@ using a storage sequence of sign bit, exponent, mantissa.
 %%   \url{http://en.wikipedia.org/wiki/Endianness} for details.}.
 
 The standard also declared the rounding behaviour
-to be \indexterm{correct rounding}: the result of an operation should be the
+to be \indextermsub{correct}{rounding}: the result of an operation should be the
 rounded version of the exact result. There will be much more on the
 influence of rounding (and truncation) on numerical computations, below.
 
@@ -614,14 +627,14 @@ figure~\ref{fig:single-precision} to interpret it as a floating point
 number. Explain that it will be an unnormalized number\footnote{This
   is one of those errors you won't forget after you make it. In the
   future, whenever you see a number on the order of $10^{-305}$ you'll
-  recognize that you made this error.}.
+  recognize that you probably made this error.}.
 \end{exercise}
 
-These days, almost all processors adhere to the IEEE 754 standard,
-with only occasional exceptions. For instance, Nvidia Tesla
-\indexac{GPU}s are not standard-conforming in single precision;
-see~\url{http://en.wikipedia.org/wiki/Nvidia_Tesla}. The justification
-for this is that single precision is more likely used for graphics,
+These days, almost all processors adhere to the IEEE 754 standard.
+Early generations of the \indextermbus{NVidia}{Tesla}
+\indexac{GPU}s were not standard-conforming in single precision.
+The justification
+for this was that single precision is more likely used for graphics,
 where exact compliance matters less. For many scientific computations,
 double precision is necessary, since the precision of calculations
 gets worse with increasing problem size or runtime. This is true for
@@ -680,6 +693,23 @@ giving a final result of~$0.1$, which is almost double the correct result.
 One guard digit is not enough to guarantee correct rounding. An
 analysis that we will not reproduce here shows that three extra bits
 are needed~\cite{Goldberg:arithmetic}.
+
+\Level 2 {Mul-Add operations}
+
+In 2008, the IEEE~754 standard was revised to include the behaviour
+of \indexacf{FMA} operations, that is, operations of the
+form \n{a*b+c}.  The standard here defines correct rounding to be that
+the result of this combined computation should be the rounded correct
+result. A~naive implementation of this operations would involve two
+roundings: one after the multiplication and one after the addition.
+
+\begin{exercise}
+  Can you come up with an example where correct rounding of
+  an \ac{FMA} is considerably more accurate than rounding the
+  multiplication and addition seperately? Hint: let the \n{c} term be
+  of opposite sign as \n{a*b}, and try to force cancellation in the
+  subtraction.
+\end{exercise}
 
 \Level 1 {Addition}
 
@@ -969,19 +999,34 @@ of study in itself; see for instance the book by
 Higham~\cite{Higham:2002:ASN}.
 
 \Level 1 {Roundoff error in parallel computations}
+\label{sec:roundoff-parallel}
+\index{round-off error analysis!in parallel computing|(}
 
 From the above example of summing a series we saw that addition in
 computer arithmetic is not \emph{associative}\index{floating point
   arithmetic!associativity of}. A~similar fact holds for
 multiplication.  This has an interesting consequence for parallel
 computations: the way a computation is spread over parallel processors
-influences the result. For instance, consider computing the sum of a
-large number~$N$ of terms. With $P$~processors at our disposition, we
-can let each compute $N/P$ terms, and combine the partial results. We
-immediately see that for no two values of~$P$ will the results be
-identical. This means that reproducibility of results in a parallel
-context is elusive.
+influences the result. 
 
+As a very simple example, consider computing the sum of four numbers $a+b+c+d$.
+On a single processor, ordinary execution corresponds to the following associativity:
+\[ ((a+b)+c)+d. \]
+On the other hand, spreading this computation over two processors, 
+where processor~0 has $a,b$ and processor~1 has~$c,d$,
+corresponds to
+\[ ((a+b)+(c+d)). \]
+Generalizing this, we see that reduction operations will most likely
+give a different result on different numbers of processors. (The MPI
+standard declares that two program runs on the same set of processors
+should give the same result.)
+
+It is possible to circumvent this problem by replace a reduction operation
+by a \indexterm{gather} operation to all processors, which subsequently 
+do a local reduction. However, this increases the memory requirements for the 
+processors.
+
+\index{round-off error analysis!in parallel computing|)}
 \index{round-off error analysis|)}
 
 \Level 0 {More about floating point arithmetic}

@@ -1,15 +1,4 @@
-  Consider the following pseudocode of an algorithm for summing $n$
-  numbers $x[i]$ where $n$ is a power of~2:
-\begin{verbatim}
-for s=2,4,8,...,n/2,n:
-  for i=0 to n-1 with steps s:
-    x[i] = x[i] + x[i+s/2]
-sum = x[0]
-\end{verbatim}
-  Analyze the spatial and temporal locality of this algorithm, and
-  contrast it with the standard algorithm
-\begin{verbatim}
-sum = 0
-for i=0,1,2,...,n-1
-  sum = sum + x[i]
-\end{verbatim}
+  The matrix-matrix product, considered \emph{as operation}, clearly
+  has data reuse by the above definition. Argue that this reuse is not
+  trivially attained by a simple implementation. What determines
+  whether the naive implementation has  reuse of data that is in cache?

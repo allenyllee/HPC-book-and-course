@@ -1,3 +1,4 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
@@ -67,13 +68,17 @@ execute, store' cycle'\footnote{This model with a prescribed sequence
 This setup distinguishes modern processors for the very earliest, and
 some special purpose contemporary, designs where the program was
 hard-wired. It also allows programs to modify themselves or generate
-other programs, since
-instructions and data are in the same storage. This allows us to have
-editors and compilers: the computer treats program code as data to
-operate on. In this book we will not explicitly discuss compilers, the
-programs that translate high level languages to machine
-instructions. However, on occasion we will discuss how a program at
-high level can be written to ensure efficiency at the low level.
+other programs, since instructions and data are in the same
+storage. This allows us to have editors and compilers: the computer
+treats program code as data to operate on\footnote{At one time, the
+  stored program concept was include as an essential component the
+  ability for a running program to modify its own source. However, it
+  was quickly recognized that this leads to unmaintainable code, and
+  is rarely done in practice~\cite{EWD:EWD117}.}. In this book we will
+not explicitly discuss compilers, the programs that translate high
+level languages to machine instructions. However, on occasion we will
+discuss how a program at high level can be written to ensure
+efficiency at the low level.
 
 In scientific computing, however, we typically do not pay much
 attention to program code, focusing almost exclusively on data and how
@@ -337,13 +342,14 @@ processor in the sense that it processed 4 bit chunks. These days,
 We will now refine the picture of the Von Neuman architecture, in
 which data is loaded immediately from memory to the processors, where
 it is operated on. This picture is unrealistic because of the
-so-called \indextermbus{memory}{wall}: the memory is too slow to load data
-into the process at the rate the processor can absorb
-it. Specifically, a single load can take 1000 cycles, while a
-processor can perform several operations per cycle. (After this long
-wait for a load, the next load can come faster, but still too slow for
-the processor. This matter of wait time versus throughput will be
-addressed below in section~\ref{sec:latencybandwidth}.)
+so-called \indextermbus{memory}{wall}~\cite{Wulf:memory-wall}: the
+memory is too slow to load data into the process at the rate the
+processor can absorb it. Specifically, a single load can take 1000
+cycles, while a processor can perform several operations per
+cycle. (After this long wait for a load, the next load can come
+faster, but still too slow for the processor. This matter of wait time
+versus throughput will be addressed below in
+section~\ref{sec:latencybandwidth}.)
 
 In reality, there will be various memory levels in between the
 \ac{FPU} and the main memory: the registers\index{register}
@@ -417,7 +423,7 @@ at a regular amount per time period.
   execution' of instructions, allowing them to perform other
   operations while waiting for the requested data. Programmers can
   take this into account, and code in a way that achieves
-  \indexterm{latency hiding}. 
+  \indextermbus{latency}{hiding}. 
   \acp{GPU} 
 \begin{gpu}
   (see section~\ref{sec:gpu})  
@@ -603,6 +609,7 @@ especially in sections \ref{sec:locality} and
 influence cache use indirectly.
 
 \Level 2 {Cache levels, speed and size}
+\label{sec:cache-level}
 
 The caches are called `level~1' and `level~2' (or, for short, L1 and
 L2) cache; some processors can have an L3 cache.  The L1 and L2 caches
@@ -675,6 +682,37 @@ of this chapter.
   the L2 is smaller than the L3. Give a practical and a theoretical
   reason why this is so.  
 \end{exercise}
+
+\Level 2 {Types of cache misses}
+\label{sec:cache-miss}
+
+There are three types of cache misses.
+
+As you saw in the example above, the first time you reference data you
+will always incur a cache miss. This is known as a \emph{compulsory
+cache miss}\index{cache!miss, compulsory} since these are unavoidable.
+
+The next type of cache misses is due to the size of your working set:
+a \emph{capacity cache miss}\index{cache!miss, capacity} is caused by
+data having been overwritten because the cache can simply not contain
+all your problem data. If you want to avoid this type of misses, you
+need to partition your problem in chunks that are small enough that
+data can stay in cache for an appreciable time. Of course, this
+presumes that data items are operated on multiple times, so that there
+is actually a point in keeping it in cache; this is discussed in
+section~\ref{sec:reuse}.
+
+Finally, there are \emph{conflict misses}\index{cache!miss, conflict}
+caused by one data item being mapped to the same cache location
+as another, while both are still needed for the computation, and
+there would have been better candidates to evict. This is discussed
+in section~\ref{sec:associative}.
+
+In a \indexterm{multicore} context there is a further type of cache miss:
+the \emph{invalidation miss}\index{cache!miss, invalidation}. This happens
+if an item in cache has become invalid because another core
+changed the value of the corresponding memory address. The core will then
+have to reload this address.
 
 \Level 2 {Reuse is the name of the game}
 
@@ -930,8 +968,16 @@ this case, a data item can go to any of $k$ cache locations. Code
 would have to have a $k+1$-way conflict before data would be flushed
 prematurely as in the above example. In that example, a value of $k=2$
 would suffice, but in practice higher values are often encountered.
+\begin{figure}[ht]
+\includegraphics[scale=.12]{graphics-public/assoc-mapping}
+\caption{Two caches of 12 elements: direct mapped (left) and 3-way associative (right)}
+\label{fig:assoc-mapping}
+\end{figure}
+Figure~\ref{fig:assoc-mapping} illustrates the mapping of memory
+addresses to cache locations for a direct mapped and a 3-way associative
+cache.
 
-For instance, the 
+As a practical example, the
 \indextermbus{Intel}{Woodcrest} processor has
 \begin{itemize}
 \item an L1 cache of 32K bytes, that is 8-way set associative with a 64
@@ -1165,11 +1211,12 @@ One of the ways of getting a higher utilization out of a single
 processor chip is then to move from a strategy of further
 sophistication of the single processor, to a division of the chip into
 multiple processing `cores'\footnote{Another solution is Intel\index{Intel}'s
-  \indexterm{Hyperthreading}, which lets a processor mix the instructions of
+  \indexterm{hyperthreading}, which lets a processor mix the instructions of
   several instruction streams. The benefits of this are strongly
   dependent on the individual case. However, this same mechanism is
   exploited with great success in GPUs; see
-  section~\ref{sec:gpu}.}. The separate cores can work on unrelated
+  section~\ref{sec:gpu}. For a discussion see section~\ref{sec:hyperthread}}.
+The separate cores can work on unrelated
 tasks, or, by introducing what is in effect data parallelism
 (section~\ref{sec:simd}), collaborate on a common task at a higher
 overall efficiency.
@@ -1268,20 +1315,23 @@ cache, which contains copies of data from memory, so conflicting
 copies can occur.  This situation arises in particular in multicore
 designs.
 
-Suppose that
-two cores have a copy of the same data item in their (private) L1
-cache, and one modifies its copy. Now the other has cached data that is no
-longer an accurate copy of its counterpart: the processor will
-\emph{invalidate}\index{cacheline!invalidation} that copy of the item,
-and in fact its whole cacheline. When the process needs access to the
-item again, it needs to reload that cacheline.
-This is known as \emph{maintaining
-  cache coherence}, and it is done on a very low level of the
-processor, with no programmer involvement needed. (This makes updating
-memory locations an \indexterm{atomic operation}; more about this in section~\ref{sec:shared-lock}.)
-However, it will slow down the computation,
-and it wastes bandwidth to the core that could otherwise be used for
-loading or storing operands.
+Suppose that two cores have a copy of the same data item in their
+(private) L1 cache, and one modifies its copy. Now the other has
+cached data that is no longer an accurate copy of its counterpart: the
+processor will \emph{invalidate}\index{cacheline!invalidation} that
+copy of the item, and in fact its whole cacheline. When the process
+needs access to the item again, it needs to reload that cacheline.
+The alternative is for any core that alters data to send thhat
+cacheline to the other cores. This strategy probably has a higher overhead,
+since other cores are not likely to have a copy of a cacheline.
+
+This process of updating or invalidating cachelines
+is known as \emph{maintaining cache coherence}, and it is done on
+a very low level of the processor, with no programmer involvement
+needed. (This makes updating memory locations an \indexterm{atomic
+  operation}; more about this in section~\ref{sec:shared-lock}.)
+However, it will slow down the computation, and it wastes bandwidth to
+the core that could otherwise be used for loading or storing operands.
 
 The state of a cache line with respect to a data item in main memory
 is usually described as one of the following:
@@ -1297,6 +1347,27 @@ is usually described as one of the following:
   modified its copy of the data.
 \end{itemize}
 
+A simpler variant of this is the \acf{MSI} coherence protocol, where a
+cache line can be in the following states on a given core:
+\begin{itemize}
+\item [Modified:] the cacheline has been modified, and needs to be
+  written to the backing store. This writing can be done when the line
+  is \indexterm{evicted}, or it is done immediately, depending on the
+  write-back policy.
+\item [Shared:] the line is present in at least one cache and is unmodified.
+\item [Invalid:] the line is not present in the current cache, or it
+  is present but a copy in another cache has been modified.
+\end{itemize}
+
+These states control the movement of cachelines between memory and the
+caches. For instance, suppose a core does a read to a cacheline that
+is invalid on that core. It can then load it from memory or get it
+from another cache, which may be faster. (Finding whether a line exists
+(in state M or~S) on another cache is called \indexterm{snooping}; an alternative
+is to maintain cache directories.) If
+the line is Shared, it can now simply be copied; if it is in state~M in
+the other cache, that core first needs to write it back to memory.
+
 \begin{exercise}
   Consider two processors, a data item $x$ in memory, and cachelines
   $x_1$,$x_2$ in the private caches of the two processors to which $x$
@@ -1305,6 +1376,22 @@ is usually described as one of the following:
   indicate which actions cause memory bandwidth to be used. (This list
   of transitions is a \indexacf{FSA}; see section~\ref{app:fsa}.)
 \end{exercise}
+
+Variants of the \ac{MSI} protocal add an `Exclusive' or `Owned' state
+for increased efficiency.
+
+\Level 2 {Snooping}
+
+The \indexterm{snooping} mechanism can also be used as follows: if a core
+`listens in' on all bus traffic, it can invalidate or update its own cacheline 
+copies when another core modifies its copy. Invalidating is cheaper than updating
+since it is a bit operation, while updating involves copying the whole cacheline.
+
+\begin{exercise}
+  When would updating pay off? Write a simple cache simulator to evaluate this question.
+\end{exercise}
+
+\Level 2 {False sharing}
 
 The cache coherence problem can even appear if the cores access
 different items. For instance, a declaration
@@ -1683,6 +1770,33 @@ the program is executed in parallel.
 \index{power!consumption|(}
 \input chapters-public/power
 \index{power!consumption|)}
+
+\Level 0 {Review questions}
+
+For the true/false questions, give short explanation if you choose the `false' answer.
+
+\begin{exercise}
+  True or false. The code
+\begin{verbatim}
+for (i=0; i<N; i++)
+  a[i] = b[i]+1;
+\end{verbatim}
+touches every element of \n{a} and~\n{b} once, so there will be a cache miss
+for each element.
+\end{exercise}
+
+\begin{exercise}
+  Give an example of a code fragment where a 3-way associative cache will
+  have conflicts, but a 4-way cache will not.
+\end{exercise}
+
+\begin{exercise}
+  Consider the matrix-vector product with an $N\times N$ matrix.
+  What is the needed cache size to execute this operation with only
+  compulsory cache misses? Your answer depends on how the operation
+  is implemented: answer seperately for rowwise and columnwise traversal
+  of the matrix, where you can assume that the matrix is always stored by rows.
+\end{exercise}
 
 \endinput
 

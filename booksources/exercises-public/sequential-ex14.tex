@@ -1,5 +1,4 @@
-  To arrive at the blocked code, the loop over \n{j} was split into a
-  loop over blocks and an inner loop over the elements of the block;
-  the outer loop over \n{i} was then exchanged with the loop over the
-  blocks. In this particular example you could also simply exchange
-  the \n{i} and \n{j} loops. Why may this not be optimal for performance?
+  Argue that with a large enough problem and an \ac{LRU} replacement policy
+  (section~\ref{sec:lru}) essentially all data in the L1 will be
+  replaced in every iteration of the outer loop. Can you write an
+  example code that will let some of the L1 data stay resident?

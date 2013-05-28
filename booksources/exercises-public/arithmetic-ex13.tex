@@ -1,5 +1,4 @@
-  Show that an $n\times n$ linear system $Ax=b$ over the complex numbers
-  can be written as a $2n\times 2n$ system over the real
-  numbers. Hint: split the matrix and the vectors in their real and
-  imaginary parts. Argue for the efficiency of storing arrays of
-  complex numbers as separate arrays for the real and imaginary parts.
+  Suppose arrays of complex numbers are stored the Fortran
+  way. Analyze the memory access pattern of pairwise multiplying the
+  arrays, that is, $\forall_i\colon c_i\leftarrow a_i\cdot b_i$, where
+  \texttt{a(), b(), c()} are arrays of complex numbers.
