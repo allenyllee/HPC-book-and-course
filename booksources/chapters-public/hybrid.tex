@@ -80,3 +80,7 @@ This hybrid strategy may sound like a good idea but the truth is complicated.
   separately.
 \end{exercise}
 
+The MPI library is explicit about what sort of threading it supports:
+you can query whether multi-threading is supported at all, whether all MPI 
+calls have to originate from one thread or one thread at-a-time, or whether 
+there is complete freedom in making MPI calls from threads.

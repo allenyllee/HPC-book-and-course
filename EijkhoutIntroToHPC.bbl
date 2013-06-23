@@ -206,7 +206,7 @@ Edsger~W. Dijkstra.
 \bibitem{EWD:EWD117}
 Edsger~W. Dijkstra.
 \newblock Programming considered as a human activity.
-\newblock published as {\cite EWD:EWD117pub}, n.d.
+\newblock published as {EWD:EWD117pub}, n.d.
 
 \bibitem{pvm-1}
 J.~Dongarra, A.~Geist, R.~Manchek, and V.~Sunderam.
@@ -651,12 +651,6 @@ Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
   Rowley.
 \newblock {\em The {\LaTeX} Companion, 2nd edition}.
 \newblock Addison-Wesley, 2004.
-
-\bibitem{NeedlemanWunsch}
-Saul~B. Needleman and Christian~D. Wunsch.
-\newblock A general method applicable to the search for similarities in the
-  amino acid sequence of two proteins.
-\newblock {\em Journal of Molecular Biology}, 48(3):443 -- 453, 1970.
 
 \bibitem{Oetiker:LaTeXintro}
 Tobi Oetiker.

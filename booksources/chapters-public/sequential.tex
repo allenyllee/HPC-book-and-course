@@ -691,6 +691,9 @@ There are three types of cache misses.
 As you saw in the example above, the first time you reference data you
 will always incur a cache miss. This is known as a \emph{compulsory
 cache miss}\index{cache!miss, compulsory} since these are unavoidable.
+Does that mean that you will always be waiting for a data item, the first
+time you need it? Not necessarily: section~\ref{sec:prefetch} explains
+how the hardware tries to help you by predicting what data is needed next.
 
 The next type of cache misses is due to the size of your working set:
 a \emph{capacity cache miss}\index{cache!miss, capacity} is caused by

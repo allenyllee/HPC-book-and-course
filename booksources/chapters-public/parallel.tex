@@ -12,6 +12,7 @@
 %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% -*- latex -*-
 
 The largest and most powerful computers are sometimes called
 `supercomputers'. For the last two decades, this has, without
@@ -2248,6 +2249,19 @@ the code is fully parallelizable, that is, $F_p=1$. We then find that
 For this to be close to~$p$, we need $T_c\ll T_1/p$ or $p\ll
 T_1/T_c$. In other words, the number of processors should not grow
 beyond the ratio of scalar execution time and communication overhead.
+
+%% \begin{exercise}
+%%   The assumption of a fixed communication overhead may in fact be 
+%%   unrealistically modest. Assume you have a perfectly parallelizable 
+%%   array operation, but which includes finding the maximum array value.
+%%   Argue
+%%   \begin{enumerate}
+%%   \item that finding a maximum value in parallel takes a time $O(\log_2p)$,
+%%   \item that communication therefore is an increasing function of the 
+%%     number of processors, and
+%%   \item that speedup will therefore be a decreasing function of problem size.
+%%   \end{enumerate}
+%% \end{exercise}
 
 \Level 2 {Gustafson's law}
 \index{Gustafson's law|(}
