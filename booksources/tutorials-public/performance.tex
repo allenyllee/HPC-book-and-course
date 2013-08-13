@@ -64,10 +64,15 @@ assembly language, such as the Intel \n{RDTSC} (ReaD Time Stamp
 Counter)
 instruction~\url{http://developer.intel.com/drg/pentiumII/appnotes/RDTSCPM1.HTM}. However,
 this approach of using processor-specific timers is not portable. For
-this reason, the PAPI package (\url{http://icl.cs.utk.edu/papi/})
-provides a uniform interface to timers and other performance
-counters. You can see this package in action in the codes in
+this reason, the \indexterm{PAPI} package (\url{http://icl.cs.utk.edu/papi/})
+provides a uniform interface to \indexterm{hardware counters}.
+You can see this package in action in the codes in
 appendix~\ref{app:codes}.
+
+In addition to timing, hardware counters can give you information about 
+such things as cache misses and instruction counters. A~processor typically
+has only a limited number of counters, but they can be assigned to various tasks.
+Additionally, PAPI has the concept of \emph{derived metrics}.
 
 \Level 0 {Profiling tools}
 

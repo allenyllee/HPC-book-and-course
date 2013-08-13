@@ -181,6 +181,13 @@ structurally symmetric, so we use lines instead of arrows in the
 graphs. There is an edge on each vertex corresponding to the diagonal
 element; this edge will often be left out of illustrations.
 
+For graphs with edge weights, we set the elements of the adjacency
+matrix to the weights:
+\[ 
+  M_{ij}=
+  \begin{cases}w_{ij}&(i,j)\in E\\ 0&\mbox{otherwise}\end{cases}
+\]
+
 If a matrix has no zero elements, its adjacency graph has an edge
 between each pair of vertices. Such a graph is called a
 \indexterm{clique}.
@@ -188,7 +195,43 @@ If the graph is undirected, the adjacency matrix is symmetric, and
 conversely, if a matrix is \indexterm{structurally symmetric}, its
 adjacency graph is undirected.
 
-As an example of graph concepts that can easily be read from the
+\Level 1 {Permutation}
+
+Graphs are often used to indicate relations between objects in the 
+real world. One example would be `friend-of' relations in Facebook.
+In such cases, the nodes in a graph do not have a natural numbering:
+they are identified by a name and any numbering is artificial.
+Thus, we could wonder which graph properties remain invariant,
+and which ones change, if we apply a different numbering.
+
+Renumbering a set of objects can be modeled algebraically by
+applying a \indextermsub{permutation}{matrix}.
+\begin{definition}
+A permutation matrix is a square matrix where each row and column
+has exactly one element equal to~one; all other elements are zero.
+\end{definition}
+
+\begin{exercise}
+Let a set of $N$ objects $x_1,\ldots,x_N$ be given. What is the 
+permutation matrix that orders them as $x_1,x_3,\ldots,x_2,x_4,\ldots$?
+That is, find the matrix $P$ such that
+\[
+\begin{pmatrix}
+x_1\\x_3\\\vdots\\x_2\\x_4\\\vdots
+\end{pmatrix} = P
+\begin{pmatrix}
+x_1\\\vdots\\x_N
+\end{pmatrix}
+\]
+\end{exercise}
+
+\begin{exercise}
+Show that the eigenvalues of a matrix are invariant under permutation.
+\end{exercise}
+
+\Level 1 {Irreducibility}
+
+As an example of graph concepts that has an easy interpretation in the
 adjacency matrix, consider reducibility.
 
 \begin{definition}
@@ -208,12 +251,12 @@ reducible if it is not irreducible.
   graph of which this is the adjacency matrix.
 \end{exercise}
 
-For graphs with edge weights, we set the elements of the adjacency
-matrix to the weights:
-\[ 
-  M_{ij}=
-  \begin{cases}w_{ij}&(i,j)\in E\\ 0&\mbox{otherwise}\end{cases}
-\]
+If we permute graph, its reducibility or irreducibility is not
+changed. However, it may now no longer be apparent from looking 
+at the adjacency matrix.
+
+\Level 1 {Graph closure}
+
 Here is another example of how adjacency matrices can simplify
 reasoning about graphs.
 \begin{exercise}
@@ -227,25 +270,83 @@ reasoning about graphs.
   elements: $1\cdot1=1$, $1+1=1$.
 \end{exercise}
 
+\Level 1 {Graph operations in linear algebra}
+
+The view of a graph as an adjacency matrix can be used to formulate
+graph algorithms through linear algebra. As a simple example, if $G$ 
+is an adjacency matrix, and $e$ the vector of all~$1$s, then $Ge$ is 
+the vector that with the degrees of the nodes.
+
+Other operations are a little harder to formulate. Consider a weighted graph~$G$.
+Finding for each node~$i$ the largest weight~$g_{ij}$ can be described as
+\[ y=G\otimes e\qquad\hbox{where}\qquad
+   y_i=\max_j g_{ij}\cdot 1
+\]
+This looks like the regular matrix-vector product $Ge$, but with
+the sum replaced by a maximum calculation.
+
+Motivated by this, we define a general product
+\[ y = G \mathop{\oplus\cdot_\otimes} x \]
+where $\otimes$ is a binary operator, and $\oplus$~a~reduction operator,
+as
+\[ y_i = \bigoplus_j (g_{ij} \otimes x_j ). \]
+In this notation, finding the largest weight would be
+\[ w= G\mathop{\max\cdot_\times} e. \]
+
+This will be used in several algorithms in section~\ref{sec:graph-analytics};
+for other applications see~\cite{Kung:pegasus2009}.
+
 \Level 0 {Spectral graph theory}
 \label{app:fiedler}
 
-With a graph $G$ and its adjacency matrix~$A_G$, we can define a
+With a graph $G$\footnote{This section owes much to Dan Spielman's course
+on spectral graph theory~\url{http://www.cs.yale.edu/homes/spielman/561/}.}
+and its adjacency matrix~$A_G$, we can define a
 \indexterm{stochastic matrix} or \indexterm{Markov matrix} by scaling
-$A_G$ to have unit column sums\footnote{A~definition using unit row
-  sums is possible too, in that case every product $Ax$ appearing in
-  algorithms is replaced by $x^tA$.}:
+$A_G$ to have unit row sums:
 \[ W_G = D_G\inv A_G\qquad \hbox{where $(D_G)_{ii}=\deg(i)$}. \]
-This matrix describes random walks through the graph. Interpret the
-vertices of the graph as locations or states, meaning you can be in
-exactly one of them at any time. Let a vector
-$p$ be a description of the 
-probabilities of being in the nodes of~$G$, then $e^tp=1$.
-Now we interpret the edge weights as the probabilities of making a
-transition to another node. Mathematically,
-$tW_Gp$ describes the probabilities after a single transition. Note
-that normalizing the column sums means that these transition
-probabilities add up to~1.
+To see how we interpret this, let's look at a simple example.
+Let's take an unweighted graph with an adjacency matrix
+\[
+A_G = \begin{pmatrix}
+1& &1&1\\
+ & &1&1\\
+1& &1&1\\
+ &1&1& \\
+\end{pmatrix}
+\]
+and look at the second row, which says that there are edges $(2,3)$ 
+and $(2,4)$. This means that if you are on node~2, you can go 
+to nodes 3 and~4. Scaling this matrix we get
+\[
+W_G = \begin{pmatrix}
+1/3&   &1/3&1/3\\
+   &   &1/2&1/2\\
+1/3&   &1/3&1/3\\
+   &1/2&1/2&   \\
+\end{pmatrix}
+\]
+and now the second row says that from node~2 you can get
+with equal probability to nodes 3 and~4.
+You can also derive this statement mathematically:
+\[
+\begin{pmatrix}
+0&1&0&0
+\end{pmatrix} W_G =
+\begin{pmatrix}
+  0&  0&1/2&1/2\\
+\end{pmatrix}
+\]
+It is simple to extrapolate that: if $p$ is a vector where the $i$-th
+component gives the probability of being in node~$i$, then $(p^tW_G)_i$
+is the probability of being in node~$i$ if you take one more
+step along a graph edge.
+
+\begin{exercise}
+Prove that $p^tW_G$ is indeed a vector of probabilities. Hint: 
+you can express that $p$ is a probability vector as $p^te=e$,
+where $e$ is the vector of all ones.
+\end{exercise}
 
 Another matrix to associate with a graph is the
 \indextermbus{graph}{Laplacian}

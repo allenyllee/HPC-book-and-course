@@ -267,12 +267,6 @@ Paul Erd\"os and A.~Rényi.
 \newblock {\em Publications of the Mathematical Institute of the Hungarian
   Academy of Sciences}, 5:17–--61, 1960.
 
-\bibitem{fama84}
-V.~Faber and T.~A. Manteuffel.
-\newblock Necessary and sufficient conditions for the existence of a conjugate
-  gradient method.
-\newblock {\em SIAM J. Numer. Anal.}, 21(2):352--362, 1984.
-
 \bibitem{Falgout:scalable-hypre}
 R.D. Falgout, J.E. Jones, and U.M. Yang.
 \newblock Pursuing scalability for hypre's conceptual interfaces.
@@ -461,11 +455,6 @@ Jonathan. Hill, Bill Mccoll, Dan~C. Stefanescu, Mark~W. Goudreau, Kevin Lang,
 \newblock {BSPlib}: The {BSP} programming library.
 \newblock {\em Parallel Computing}, 24(14):1947--1980, 1998.
 
-\bibitem{Hoare1969axiomatic}
-C.~A.~R. Hoare.
-\newblock An axiomatic basis for computer programming.
-\newblock {\em Communications of the ACM}, 12:576--580, 1969.
-
 \bibitem{ieee754-webpage}
 {IEEE} 754: Standard for binary floating-point arithmetic.
 \newblock \url{http://grouper.ieee.org/groups/754}.
@@ -537,6 +526,12 @@ Milind Kulkarni, Martin Burtscher, Rajasekhar Inkulu, Keshav Pingali, and Calin
 Vipin Kumar, Ananth Grama, Anshul Gupta, and George Karypis.
 \newblock {\em Introduction to Parallel Computing}.
 \newblock Benjamin Cummings, 1994.
+
+\bibitem{Kung:pegasus2009}
+U.~Kung, Charalampos~E. Tsourakakis, and Christos Faloutsos.
+\newblock Pegasus: A peta-scale graph mining system - implementation and
+  observations.
+\newblock In {\em Proc. Intl. Conf. Data Mining}, pages 229--238, 2009.
 
 \bibitem{Lamport:sequential}
 L.~Lamport.
@@ -859,6 +854,12 @@ Barry Wilkinson and Michael Allen.
 J.H. Wilkinson.
 \newblock {\em Rounding Errors in Algebraic Processes}.
 \newblock Prentice-Hall, Englewood Cliffs, N.J., 1963.
+
+\bibitem{Williams:2009:roofline}
+Samuel Williams, Andrew Waterman, and David Patterson.
+\newblock Roofline: an insightful visual performance model for multicore
+  architectures.
+\newblock {\em Commun. ACM}, 52:65--76, April 2009.
 
 \bibitem{Wulf:memory-wall}
 Wm.~A. Wulf and Sally~A. McKee.

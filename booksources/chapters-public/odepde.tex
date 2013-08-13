@@ -493,8 +493,9 @@ every other point, no matter how little. The \indexterm{Poisson
 this type.
 \end{itemize}
 
-\Level 1 {The Poisson equation}
+\Level 1 {The Poisson equation in one space dimension}
 \label{sec:poisson}
+\label{sec:1dbvp}
 
 We call the operator $\Delta$, defined by
 \[ \Delta u = u_{xx}+u_{yy}, \]
@@ -512,13 +513,13 @@ the unit square.
 Second order \acp{PDE} are quite common, describing many phenomena in
 fluid and heat flow and structural mechanics.
 
-\Level 2 {One-dimensional case}
-\label{sec:1dbvp}
-
 At first, for simplicity, we consider the one-dimensional Poisson
 equation
 \[ -u_{xx}=f(x). 
 \]
+and we consider the two-dimensional case below; the extension to three
+dimensions will then be clear.
+
 In order to find a numerical scheme we use Taylor series as before,
 expressing $u(x+h)$ and $u(x-h)$ in terms of $u$ and its derivatives
 at~$x$. Let $h>0$, then
@@ -659,13 +660,16 @@ hand, does not have a single nonzero. Although we will not prove it,
 this sort of statement holds for most sparse matrices. Therefore, we
 want to solve $Au=f$ in a way that does not require $O(n^2)$ storage.
 
-\Level 2 {Two-dimensional \ac{BVP}s}
+\Level 1 {The Poisson equation in two space dimensions}
 \label{sec:2dbvp}
 
 The one-dimensional \ac{BVP} above was atypical in a number of ways,
 especially related to the resulting linear algebra problem. In this
-section we will see a two-dimensional problem, which displays some new
-aspects.
+section we will investigate the two-dimensional Poisson problem.
+You'll see that it constitutes a non-trivial generalization of the one-dimensional problem.
+The three-dimensional case is very much like the two-dimensional case,
+so we will not discuss it. (For one essential difference, see the discussion
+in section~\ref{sec:dissection}.)
 
 The one-dimensional problem above had a function $u=u(x)$, which now becomes
 $u=u(x,y)$ in two dimensions. 
@@ -806,7 +810,7 @@ this course. Here we only focus on the numerical aspects of the
 matrices. In the  chapter on linear algebra, we will come back to the
 \ac{BVP}, since solving the linear system is mathematically interesting.
 
-\Level 2 {Difference stencils}
+\Level 1 {Difference stencils}
 
 The discretization \eqref{eq:5-point-star} is often phrased as
 applying the \indexterm{difference stencil}
@@ -861,7 +865,7 @@ equations as $-u_{xx}-u_{yy}-u_{zz}=f$. The straightforward
 generalization of the 5-point stencil, for instance, becomes a 7-point
 stencil in three dimensions.
 
-\Level 2 {Other discretization techniques}
+\Level 1 {Other discretization techniques}
 \label{sec:fem}
 
 In the above, we used the \ac{FDM} to find a numerical solution

@@ -359,7 +359,7 @@ wall problem by making recently used data available quicker than it
 would be from main memory. Of course, this presupposes that the
 algorithm and its implementation allow for data to be used multiple
 times.  Such questions of \indexterm{data reuse} will be discussed in
-more detail below.
+more detail in section~\ref{sec:reuse}.
 
 Both registers and caches are faster to a degree
 than main memory; unfortunately, the faster the memory on a certain
@@ -423,7 +423,7 @@ at a regular amount per time period.
   execution' of instructions, allowing them to perform other
   operations while waiting for the requested data. Programmers can
   take this into account, and code in a way that achieves
-  \indextermbus{latency}{hiding}. 
+  \indextermbus{latency}{hiding}; see also section~\ref{sec:intensity}.
   \acp{GPU} 
 \begin{gpu}
   (see section~\ref{sec:gpu})  
@@ -1439,28 +1439,48 @@ dynamics (chapter~\ref{ch:md}) there is no such intrinsic locality
 because all particles interact with all others,
 and considerable programming cleverness is needed to get high performance.
 
-\Level 1 {Data reuse}
+\Level 1 {Data reuse and arithmetic intensity}
 \label{sec:reuse}
 \label{sec:gemm}
+\label{sec:intensity}
 
-In this section we will take a look at \indexterm{data reuse}: are
-data items involved in a calculation used more than once, so that
-caches and registers can be exploited? What precisely is the ratio
-between the number of operations and the amount of data transferred.
+In the previous sections you learned that processor design is somewhat unbalanced:
+loading data is slower than executing the actual operations.
+This imbalance is large for main memory and less for the various cache levels.
+Thus we are motivated to keep data in cache and 
+keep the amount of \indexterm{data reuse}  as high as possible.
 
-We define the data reuse ratio of an algorithm as follows:
+Of course, we need to determine first if the computation allows for data to be
+reused.
+For this we define the \indextermbus{arithmetic}{intensity} 
+of an algorithm as follows:
 \begin{quote}
   If $n$ is the number of data items that an algorithm operates on, and
-  $f(n)$ the number of operations it takes, then the reuse ratio is
+  $f(n)$ the number of operations it takes, then the arithmetic intensity is
   $f(n)/n$.
 \end{quote}
+(We can measure data items in either floating point numbers or bytes.
+The latter possibility makes it easier to relate arithmetic intensity
+to hardware specifications of a processor.)
+
+Arithmetic intensity is also related to \indextermbus{latency}{hiding}:
+the concept that you can mitigate the negative performance impact
+of data loading
+behind computational activity going on.
+%
+For this to work, you need more computations than data loads to make
+this hiding effective. And that is the very definition of
+computational intensity: a high ratio of operations per
+byte/word/number loaded.
+
+\Level 2 {Examples}
 
 Consider for example the vector addition 
 \[ \forall_i\colon x_i\leftarrow x_i+y_i.
 \]
 This involves three memory accesses (two loads and one store) 
 and one operation per iteration,
-giving a data reuse of~$1/3$. The \indexterm{axpy} (for
+giving a arithmetic intensity of~$1/3$. The \indexterm{axpy} (for
 `\emph{a}~times \emph{x} plus~\emph{y}) operation 
 \[ \forall_i\colon x_i\leftarrow x_i+a\cdot y_i
 \]
@@ -1483,7 +1503,7 @@ loop. The reuse here is~$1$.
 Next, consider the matrix-matrix product:
 \[ \forall_{i,j}\colon c_{ij} = \sum_k a_{ik}b_{kj}. \] This involves
 $3n^2$ data items and $2n^3$ operations, which is of a
-higher order. The data reuse is~$O(n)$, meaning that every data item
+higher order. The arithmetic intensity is~$O(n)$, meaning that every data item
 will be used $O(n)$ times.  This has the implication that, with
 suitable programming, this operation has the potential of overcoming
 the bandwidth/clock speed gap by keeping data in fast cache memory.
@@ -1514,6 +1534,70 @@ memory bandwidth and, for parallel computers, properties of the
 network. Typically, computers will attain 60--90\% of their
 \indexterm{peak performance} on the Linpack benchmark. Other benchmark
 may give considerably lower figures.
+
+\Level 2 {The roofline model}
+\label{sec:roofline}
+\index{roofline model|(}
+
+There is an elegant way of talking about how arithemtic intensity,
+which is a statement about the ideal algorithm, not its implementation,
+interacts with hardware parameters and the actual implementation
+to determine performance.
+This is known as the \emph{roofline model}~\cite{Williams:2009:roofline},
+and it expresses the basic fact that performance is bounded by two factors,
+illustrated in the left graph of figure~\ref{fig:roofline}.
+\begin{figure}
+  \hbox{%
+  \includegraphics[scale=.25]{graphics-public/roofline1}
+  \includegraphics[scale=.25]{graphics-public/roofline2}
+  \includegraphics[scale=.25]{graphics-public/roofline3}
+  }
+  \caption{Illustration of factors determining performance in the roofline model}
+  \label{fig:roofline}
+\end{figure}
+\begin{enumerate}
+\item The \indexterm{peak performance}, indicated by the horizontal
+  line at the top of the graph, is an absolute bound on the
+  performance\footnote {An old joke states that the peak performance
+    is that number that the manufacturer guarantees you will never
+    exceed}, achieved only if every aspect of a CPU (pipelines,
+  multiple floating point units) are perfectly used. The calculation
+  of this number is purely based on CPU properties and clock cycle; it
+  is assumed that memory bandwidth is not a limiting factor.
+\item The number of operations per second is also limited by the
+  product of the bandwidth, an absolute number, and the arithmetic
+  intensity:
+  \[ \frac{\hbox{\it operations}}{\hbox{\it second}}=
+  \frac{\hbox{\it operations}}{\hbox{\it data item}}\cdot
+  \frac{\hbox{\it data items}}{\hbox{\it second}}
+  \]
+  This is depicted by the linearly increasing line in the graph.
+\end{enumerate}
+The roofline model is an elegant way of expressing that various
+factors lower the ceiling.  For instance, if an algorithm fails to use
+the full \indextermbus{SIMD}{width}, this inbalance lowers the
+attainable peak.  The second graph in figure~\ref{fig:roofline}
+indicates various factors that lower the ceiling.
+%
+There are also various factors that lower the available bandwidth,
+such as imperfect data hiding. This is indicated by a lowering of the 
+sloping roofline in the third graph.
+
+For a given arithmetic intensity, the performance is determined by
+where its vertical line intersects the roof line. If this is at the
+horizontal part, the computation is called \indexterm{compute-bound}:
+performance is determined by characteristics of the processor, and
+bandwidth is not an issue. On the other hand, if that vertical line
+intersects the sloping part of the roof, the computation is called
+\indexterm{bandwidth-bound}: performance is determined by the memory
+subsystem, and the full capacity of the processor is not used.
+
+\index{roofline model|)}
+
+\begin{exercise}
+  How would you determine whether a given program kernel is bandwidth
+  or compute bound?
+\end{exercise}
 
 \Level 1 {Locality}
 \label{sec:locality}

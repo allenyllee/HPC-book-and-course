@@ -50,7 +50,7 @@
 % for edmond
 \usepackage{subfigure,algorithmic,algorithm}
 
-\def\svnrev{485}
+\def\svnrev{542}
 \edef\revision{\svnrev}
 \def\lulurevision{4, October 2011}
 
@@ -97,18 +97,18 @@
 \Level 0 {#1}\label{ch:#2}
 \def\chapshortname{#2}
 {\SetBaseLevel 1 \input chapters-public/#2
-\write\chapterlist{\chapshortname}
-\openout\nx=exercises-public/\chapshortname-nx.tex
-\write\nx{\arabic{excounter}}
-\closeout\nx
-\SetBaseLevel 0
+ \write\chapterlist{\chapshortname}
+ \openout\nx=exercises-public/\chapshortname-nx.tex
+ \write\nx{\arabic{excounter}}
+ \closeout\nx
+ \SetBaseLevel 0
 }}
 
 \includecomment{tutorials}
 \newcommand\TUTORIAL[2]{
-\vfill\pagebreak \Level 1 {#1}\label{tut:#2}
+\vfill\pagebreak \Level 0 {#1}\label{tut:#2}
 \def\chapshortname{#2}\setcounter{excounter}0\relax
-{\SetBaseLevel 2 \input tutorials-public/#2
+{\SetBaseLevel 1 \input tutorials-public/#2
 \write\chapterlist{\chapshortname}
 \openout\nx=exercises-public/\chapshortname-nx.tex
 \write\nx{\arabic{excounter}}
@@ -118,9 +118,9 @@
 \newif\ifprojects\projectsfalse
 \newcommand\PROJECT[2]{
 \ifprojects \vfill\pagebreak \else \projectstrue \fi
-\Level 1 {#1}\label{prj:#2}
+\Level 0 {#1}\label{prj:#2}
 \def\chapshortname{#2}
-{\SetBaseLevel 2 \input projects-public/#2
+{\SetBaseLevel 1 \input projects-public/#2
 \write\chapterlist{\chapshortname}
 \openout\nx=exercises-public/\chapshortname-nx.tex
 \write\nx{\arabic{excounter}}
@@ -128,9 +128,9 @@
 \SetBaseLevel 0
 }}
 \newcommand\APPENDIX[3]{
-  \vfill\pagebreak \Level 1 {#1}\label{app:#3}
+  \vfill\pagebreak \Level 0 {#1}\label{app:#3}
   \def\chapshortname{#3}
-  {\SetBaseLevel 2 {\index{#2|(}}
+  {\SetBaseLevel 1 {\index{#2|(}}
    \setcounter{excounter}0
    \input appendices-public/#3 {\index{#2|)}}
    \write\chapterlist{\chapshortname}
@@ -138,11 +138,12 @@
    \write\nx{\arabic{excounter}}
    \closeout\nx
    \SetBaseLevel 0
-}}
+  }
+}
 \newcommand\APPENDIXac[3]{
-  \vfill\pagebreak \Level 1 {#1}\label{app:#3}
+  \vfill\pagebreak \Level 0 {#1}\label{app:#3}
   \def\chapshortname{#3}
-  {\SetBaseLevel 2 {\indexacstart{#2}}
+  {\SetBaseLevel 1 {\indexacstart{#2}}
    \setcounter{excounter}0
    \input appendices-public/#3 {\indexacend{#2}}
    \write\chapterlist{\chapshortname}
@@ -210,6 +211,9 @@
 \tableofcontents
 \setcounter{tocdepth}{2}
 }
+
+\part{Theory}
+
 \CHAPTER{Sequential Computing}{sequential}
 \CHAPTER{Parallel Computing}{parallel}
 \CHAPTER{Computer Arithmetic}{arithmetic}
@@ -219,15 +223,21 @@
 \CHAPTER{Numerical treatment of differential equations}{odepde}
 \CHAPTER{Numerical linear algebra}{linear}
 \CHAPTER{High performance linear algebra}{parallellinear}
+
+\part{Applications}
+
 \CHAPTER{Molecular dynamics}{md}
-\CHAPTER{Combinatorics}{combinatorics}
+%\CHAPTER{Combinatorics}{combinatorics}
+\CHAPTER{Sorting}{sorting}
+\CHAPTER{Graph analytics}{graphalgorithms}
 \CHAPTER{Discrete systems}{discrete}
-\begin{notready}
-\CHAPTER{Computational biology}{bio}
-\end{notready}
 \begin{montecarlo}
 \CHAPTER{Monte Carlo Methods}{montecarlo}
 \end{montecarlo}
+\begin{notready}
+\CHAPTER{Computational biology}{bio}
+\CHAPTER{Lattice-Boltzmann methods}{lbm}
+\end{notready}
 
 \begin{comment}
 %%\CHAPTER{Performance measurement and optimization}{performance}
@@ -235,16 +245,17 @@
 %%\CHAPTER{Scientific Programming}{programming}
 \end{comment}
 
-\vfill\pagebreak
-\appendix
-\makeatletter
-%\renewcommand\theexcounter{\@arabic\c@section.\@arabic\c@excounter}
-\renewcommand\exercisenumber{\Alph{chapter}.\arabic{section}.\arabic{excounter}}
-\makeatother
+\part{Appendices}
 \setcounter{tocdepth}{1}
-\addcontentsline{toc}{toc}{Appendices}
+%\vfill\pagebreak
+%\appendix
+%\makeatletter
+%\renewcommand\theexcounter{\@arabic\c@section.\@arabic\c@excounter}
+%\renewcommand\exercisenumber{\Alph{chapter}.\arabic{section}.\arabic{excounter}}
+%\makeatother
+%\addcontentsline{toc}{toc}{Appendices}
 
-\Level 0 {Theoretical background}
+%\Level 0 {Theoretical background}
 
 \input appendices-public/blurb
 
@@ -259,11 +270,12 @@
 \APPENDIXac{Automata theory}{FSA}{fsa}
 
 \begin{tutorials}
-\Level 0 {Practical tutorials}
+\part{Tutorials}
+%\Level 0 {Practical tutorials}
 \label{app:practical}
 
 \input tutorials-public/blurb
-\minitoc
+%\minitoc
 
 \TUTORIAL{Unix intro}{unix}
 \TUTORIAL{Compilers and libraries}{compile}
@@ -347,6 +359,7 @@
 \acitem{ILU}{Incomplete LU}
 \acitem{IVP}{Initial Value Problem}
 \acitem{LAN}{Local Area Network}
+\acitem{LBM}{Lattice-Boltzmann Methods}
 \acitem{LRU}{Least Recently Used}
 \acitemi{MGS}{Modified Gram-Schmidt}{Gram-Schmidt!modified}
 \acitemi{MIC}{Many Integrated Cores}{Intel!MIC}
@@ -380,10 +393,12 @@
 \end{description}
 \end{multicols}
 
+\index{CPU-bound|see{compute-bound}}
 \index{halo|see{ghost region}}
 \index{irreducible|see{reducible}}
 \index{modified Gramm-Schmidt|see{Gram-Schmidt, modified}}
 \index{Roadrunner|see{IBM!Roadrunner}}
+\index{cluster!node|see{node}}
 \printindex
 
 \newpage

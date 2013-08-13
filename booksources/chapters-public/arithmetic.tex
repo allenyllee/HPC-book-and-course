@@ -13,6 +13,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\index{arithmetic!computer|(}
+
 Of the various types of data that one normally encounters, the ones we
 are concerned with in the context of scientific computing are the
 numerical types: integers (or whole numbers)
@@ -30,11 +32,15 @@ instance, for integers only a range is stored. In the case of real
 numbers, even storing a range is not possible since any interval $[a,b]$
 contains infinitely many numbers. Therefore, any
 \indextermsub{representation of}{real numbers} will cause gaps between the
-numbers that are stored. As a result, any computation that results in
-a number that is not representable will have to be dealt with by issuing an
+numbers that are stored. 
+
+Calculations in a computer are sometimes
+described as \indextermsub{finite precision}{arithmetic}.
+Since many resulsts are not representible, any computation that results in
+such a number will have to be dealt with by issuing an
 error or by approximating the result. In this chapter we will look at
 the ramifications of such approximations of the `true' outcome of
-numerical calculations.
+numerical calculations. 
 
 \Level 0 {Integers}
 
@@ -1199,3 +1205,4 @@ function of problem parameters, such as the number of terms evaluted,
 or is worse behaviour possible? We will not address such questions in
 further detail in this book.
 
+\index{arithmetic!computer|)}

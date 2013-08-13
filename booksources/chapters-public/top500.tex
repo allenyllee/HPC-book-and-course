@@ -28,11 +28,11 @@ The LU factorization operation is one that has great opportunity for
 cache reuse, since it is based on the matrix-matrix multiplication
 kernel discussed in section~\ref{sec:gemm}. It also has the property
 that the amount of work outweighs the amount of communication:
-$O(n^3)$ versus~$O(n^2)$.
-As a result, the 
-Linpack benchmark is likely to run at a substantial fraction of the
-peak speed of the machine. Another way of phrasing this is to say that
-the Linpack benchmark is a \indexterm{CPU-bound algorithm}.
+$O(n^3)$ versus~$O(n^2)$.  As a result, the Linpack benchmark is
+likely to run at a substantial fraction of the peak speed of the
+machine. Another way of phrasing this is to say that the Linpack
+benchmark is a \emph{CPU-bound} or \indexterm{compute-bound}
+algorithm.
 
 Typical efficiency figures are between 60 and 90 percent. However, it
 should be noted that many scientific codes do not feature the dense

@@ -15,6 +15,7 @@
 
 As a preliminary to OpenMP (section~\ref{sec:openmp}), we will briefly
 go into `threads'.
+
 A~\emph{thread} is an independent instruction stream,
 but as part of a Unix process.  While processes can belong to
 different users, or be different programs that a single user is
@@ -42,9 +43,10 @@ section~\ref{sec:shared-lock}.
 
 \Level 2 {Threads example}
 \label{sec:thread-example}
+\index{pthreads|(}
 
 The following example\footnote{This is strictly Unix-centric and will
-  not work on Windows.} uses the \indexterm{pthreads} library to spawn
+  not work on Windows.} uses the \emph{pthreads} library to spawn
 a number of tasks that all update a global counter. Since threads
 share the same memory space, they indeed see and update the same
 memory location.
@@ -114,6 +116,8 @@ interfere with each other's update.
 For more information on pthreads, see for instance
 \url{https://computing.llnl.gov/tutorials-public/pthreads}.
 
+\index{pthreads|)}
+
 \Level 2 {Atomic operations}
 \index{atomic operation|(}
 \index{atomicity|see{atomic operation}}
@@ -156,6 +160,8 @@ write the variable. Here are three scenarios:
   \multicolumn{2}{|c|}{$\n{I}=3$}& \multicolumn{2}{|c|}{$\n{I}=2$}&
   \multicolumn{2}{|c|}{$\n{I}=5$}\\ \hline
 \end{tabular}
+Such a scenario, where the final result depends on which thread
+executes first, is known as a \indexterm{race condition}.
 
 A very practical example of such conflicting updates is the inner
 product calculation:

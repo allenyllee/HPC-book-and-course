@@ -299,7 +299,7 @@ section~\ref{sec:pipeline}.
 
 While supercomputers based on pipeline processors are in a distinct
 minority, pipelining is now mainstream in the superscalar CPUs that
-are the basis for clusters. A~typical CPU has pipelined floating point
+are the basis for \indexterm{clusters}. A~typical CPU has pipelined floating point
 units, often with separate units for addition and multiplication; see
 section~\ref{sec:pipeline}.
 
@@ -403,8 +403,8 @@ differing ways of programming these machines. We will see all these
 aspects below. Many machines these days are 
 called \indexterm{clusters}. They can be built out of custom or
 commodity processors (if they consist of PCs, running Linux, and
-connected with Ethernet, they are referred to as Beowulf
-clusters~\cite{Gropp:BeowulfBook}); since the processors are
+connected with Ethernet, they are referred to as \indextermsub{Beowulf}
+{clusters}~\cite{Gropp:BeowulfBook}); since the processors are
 independent they are examples of the \ac{MIMD} or \ac{SPMD} model.
 
 \indexacend{MIMD}
@@ -574,8 +574,9 @@ processors. On the other hand, this is also the hardest kind of
 parallel system to program.
 
 Various kinds of hybrids between the above types exist. For instance,
-the \indexterm{Columbia} computer at NASA consists of twenty nodes,
-connected by a switch, where each node is an NUMA architecture of 512
+the \indexterm{Columbia} computer at NASA consists of twenty 
+nodes,
+connected by a switch, where each \indexterm{node} is an NUMA architecture of 512
 processors.
 
 \Level 1 {Latency hiding}
@@ -1696,7 +1697,8 @@ figure~\ref{fig:torus}.
 
 Some computer designs claim to be a grid of high dimensionality, for
 instance~5D, but not all dimensional are equal here. For instance a 3D
-grid where each node is quad-socket quad-core can be considered as a
+grid where each \indexterm{node} is a quad-socket 
+quad-core can be considered as a
 5D grid. However, the last two dimensions are fully connected.
 
 \Level 1 {Hypercubes}
@@ -2121,6 +2123,7 @@ $\log P$, where $P$~is the total number of processors, so it can never
 be very large anyway.
 
 \Level 0 {Efficiency of parallel computing}
+\label{sec:speedup-efficiency}
 
 There are two important reasons for using a parallel computer: to have
 access to more memory or to obtain higher performance. It is easy to
@@ -2131,6 +2134,7 @@ theoretical measures for expressing and judging the gain in execution
 speed from going to a parallel architecture.
 
 \Level 1 {Definitions}
+\label{sec:speedup}
 
 A~simple approach to defining speedup is to let the same program run on a
 single processor, and on a parallel machine with $p$ processors, and
@@ -2245,23 +2249,13 @@ where $T_c$ is a fixed communication time.
 
 To assess the influence of this communication overhead, we assume that
 the code is fully parallelizable, that is, $F_p=1$. We then find that
-\[ S_p=\frac{T_1}{T_1/p+T_c}. \]
+\begin{equation}
+    S_p=\frac{T_1}{T_1/p+T_c}.
+    \label{eq:amdahl-comm}
+\end{equation}
 For this to be close to~$p$, we need $T_c\ll T_1/p$ or $p\ll
 T_1/T_c$. In other words, the number of processors should not grow
 beyond the ratio of scalar execution time and communication overhead.
-
-%% \begin{exercise}
-%%   The assumption of a fixed communication overhead may in fact be 
-%%   unrealistically modest. Assume you have a perfectly parallelizable 
-%%   array operation, but which includes finding the maximum array value.
-%%   Argue
-%%   \begin{enumerate}
-%%   \item that finding a maximum value in parallel takes a time $O(\log_2p)$,
-%%   \item that communication therefore is an increasing function of the 
-%%     number of processors, and
-%%   \item that speedup will therefore be a decreasing function of problem size.
-%%   \end{enumerate}
-%% \end{exercise}
 
 \Level 2 {Gustafson's law}
 \index{Gustafson's law|(}
@@ -2288,6 +2282,17 @@ This gives us a speedup of
 \]
 That is, speedup is now a function that decreases from $p$, linearly
 with~$p$.
+
+As with Amdahl's law, we can investigate the behaviour of Gustafson's
+law if we include communication overhead. Let's go back to
+equation~\eqref{eq:amdahl-comm} for a perfectly parallelizable
+problem, and approximate it as
+\[ S_p = p(1-\frac{T_c}{T_1}p). \]
+Now, under the assumption of a problem that is gradually being scaled up,
+$T_c,T_1$ become functions of~$p$. We see that if $T_1(p)\sim pT_c(p)$,
+we get linear speedup that is a constant fraction away from~$1$.
+In general we can not take this analysis further; in section~\ref{sec:densescaling}
+you'll see a detailed analysis of an example. 
 
 \index{Gustafson's law|)}
 
@@ -2376,6 +2381,20 @@ section~\ref{sec:densescaling} you will find an analysis of the
 matrix-vector product operation: distributing a matrix by block rows
 turns out not to be scalable, but a two-dimensional distribution by
 submatrices is.
+
+\begin{exercise}
+  In the above discussion we always implicitly compared a sequential 
+  algorithm and the parallel form of that same algorithm. However, 
+  in section~\ref{sec:speedup} we noted that sometimes speedup is defined
+  as a comparison of a parallel algorithm with the \textbf{best} sequential
+  algorithm for the same problem. With that in mind, compare a parallel sorting
+  algorithm with runtime $(\log n)^2$ (for instance, \indexterm{bitonic sort};
+  section~\ref{sec:sorting}) to the best serial algorithm, which has 
+  a running time of $n\log n$.
+
+  Show that in the weak scaling case of $n=p$ speedup is $p/\log p$.
+  Show that in the strong scaling case speedup is a descending function of~$n$.
+\end{exercise}
 
 \index{scaling|)}\index{scalability|)}
 

@@ -113,6 +113,30 @@ This is illustrated in figure~\ref{fig:wave_right_3}, and we see that
 \end{figure}
 the execution is now parallel.
 
+\begin{exercise}
+  Take another look at figure~\ref{fig:par-sum-graph} of a parallel
+  reduction. The basic actions are:
+  \begin{itemize}
+  \item receive data from a neighbour
+  \item add it to your own data
+  \item send the result on.
+  \end{itemize}
+  As you see in the diagram, there is at least one processor who does
+  not send data on, and others may do a variable number of receives
+  before they send their result on.
+
+  Write node code so that an \ac{SPMD} program realizes the
+  distributed reduction. Hint: write each processor number in
+  binary. The algorithm uses a number of steps that is equal to the
+  length of this bitstring.
+  \begin{itemize}
+  \item Assuming that a processor receives a message, express the
+    distance to the origin of that message in the step number.
+  \item Every processor sends at most one message. Express the step 
+    where this happens in terms of the binary processor number.
+  \end{itemize}
+\end{exercise}
+
 \Level 2 {Blocking and non-blocking communication}
 
 The reason for blocking instructions is to prevent accumulation of
@@ -147,4 +171,3 @@ send(buffer1,1);  // send to processor 1
 ...
 // wait for completion of all send operations.
 \end{verbatim}
-
