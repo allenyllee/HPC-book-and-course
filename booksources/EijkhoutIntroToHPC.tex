@@ -118,9 +118,9 @@
 \newif\ifprojects\projectsfalse
 \newcommand\PROJECT[2]{
 \ifprojects \vfill\pagebreak \else \projectstrue \fi
-\Level 0 {#1}\label{prj:#2}
+\Level 1 {#1}\label{prj:#2}
 \def\chapshortname{#2}
-{\SetBaseLevel 1 \input projects-public/#2
+{\SetBaseLevel 2 \input projects-public/#2
 \write\chapterlist{\chapshortname}
 \openout\nx=exercises-public/\chapshortname-nx.tex
 \write\nx{\arabic{excounter}}
@@ -236,8 +236,12 @@
 \end{montecarlo}
 \begin{notready}
 \CHAPTER{Computational biology}{bio}
-\CHAPTER{Lattice-Boltzmann methods}{lbm}
 \end{notready}
+
+% not for public consumption
+\begin{victor}
+\CHAPTER{Lattice-Boltzmann methods}{lbm}
+\end{victor}
 
 \begin{comment}
 %%\CHAPTER{Performance measurement and optimization}{performance}
@@ -291,6 +295,8 @@
 \end{notready}
 \TUTORIAL{C/Fortran interoperability}{language}
 \TUTORIAL{\LaTeX{} for scientific documentation}{latex}
+
+\part{Projects, codes, index}
 
 \Level 0 {Class projects}
 

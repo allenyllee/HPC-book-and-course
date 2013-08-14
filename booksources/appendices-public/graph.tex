@@ -366,10 +366,26 @@ This Laplacian matrix gives us a quadratic form:
 \label{sec:fiedler-vector}
 
 There are various interesting theorems connected with the graph
-adjacency and Laplacian matrix. We will not give any proofs;
-see~\cite{Spielman:spectral-graph-theory}.
+adjacency and Laplacian matrix. 
+We start by remarking that the following theorems may not seem
+intuitive, but they closely resemble some simple facts
+about \acp{PDE}. 
 
-First we give \indexterm{Fiedler's theorem}.
+Connected with the \indexterm{Laplace equation}
+$-\Delta u=f$ is an operator ${\cal L}u=-\Delta u$. 
+On the unit interval $[0,1]$ the eigenfunctions
+of this operator, that is, the functions for which ${\cal L}u=\lambda u$,
+are $u_n(x)=\sin n\pi x$ for $n>0$. These have the property that $u_n(x)$
+has $n-1$ zeros in the interior of the interval, and they divide the interval
+in $n$ connected regions where the function is positive of negative.
+Thus, if you wanted to divide a domain $\Omega$ over $p$ processors, you could
+consider the $p$-th eigenfunction of the Laplacian on~$\Omega$, and find
+the connected regions where it is positive or negative.
+
+This statement about \ac{PDE} has a graph equivalent in two versions
+of \indexterm{Fiedler's theorem}. (We will not give any proofs
+in this section;
+see~\cite{Spielman:spectral-graph-theory}.)
 \begin{theorem}
   Let $G$ be a weighted path graph on $n$ vertices, let $L_P$ have
   eigenvalues $0 = \lambda_1 < \lambda_2\leq\ldots\leq\lambda_n$, and let
@@ -377,7 +393,7 @@ First we give \indexterm{Fiedler's theorem}.
   $k-1$ times.
 \end{theorem}
 
-Another theorem by Fiedler~\cite{Fiedler:75-property}:
+The second theorem is more useful~\cite{Fiedler:75-property}:
 \begin{theorem}
   Let $G = (V,E,w)$ be a weighted connected graph, and let $L_G$ be
   its Laplacian matrix. Let $0 = \lambda_1 < \lambda_2 \leq \cdots
