@@ -593,13 +593,6 @@ J.D.C. Little.
 \newblock A proof of the queueing formula {$L=\lambda W$}.
 \newblock {\em Ope. Res.}, pages 383--387, 1961.
 
-\bibitem{Liu:cudasw2009}
-Yongchao Liu, Douglas~L. Maskell, and Bertil Schmidt.
-\newblock {CUDASW++}: optimizing {Smith-Waterman} sequence database searches
-  for {CUDA}-enabled graphics processing units.
-\newblock {\em BMC Res Notes}, 2:73, 2009.
-\newblock PMID- 19416548.
-
 \bibitem{Luby:parallel}
 M.~Luby.
 \newblock A simple parallel algorithm for the maximal independent set problem.
@@ -653,12 +646,6 @@ Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
   Rowley.
 \newblock {\em The {\LaTeX} Companion, 2nd edition}.
 \newblock Addison-Wesley, 2004.
-
-\bibitem{NeedlemanWunsch}
-Saul~B. Needleman and Christian~D. Wunsch.
-\newblock A general method applicable to the search for similarities in the
-  amino acid sequence of two proteins.
-\newblock {\em Journal of Molecular Biology}, 48(3):443 -- 453, 1970.
 
 \bibitem{Oetiker:LaTeXintro}
 Tobi Oetiker.

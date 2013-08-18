@@ -50,74 +50,81 @@
 %%     {\end{quotation}\bigskip\noindent\ignorespaces}
 
 \usepackage{acronym}
-\acrodef{AMR}{Adaptive Mesh Refinement}
-\acrodef{AVX}{Advanced Vector Extensions}
-\acrodef{BEM}{Boundary Element Method}
-\acrodef{BFS}{Breadth-First Search}
-\acrodef{BLAS}{Basic Linear Algebra Subprograms}
-\acrodef{BSP}{Bulk Synchronous Parallel}
-\acrodef{BVP}{Boundary Value Problem}
-\acrodef{CAF}{Co-array Fortran}
-\acrodef{CCS}{Compressed Column Storage}
-\acrodef{CG}{Conjugate Gradients}
-\acrodef{CGS}{Classical Gram-Schmidt}
-\acrodef{COO}{Coordinate Storage}
-\acrodef{CRS}{Compressed Row Storage}
-%\acrodef{CSV}{comma-separated values}
-\acrodef{DAG}{Directed Acyclic Graph}
-\acrodef{DSP}{Digital Signal Processing}
-\acrodef{FD}{Finite Difference}
-\acrodef{FDM}{Finite Difference Method}
-\acrodef{FEM}{Finite Element Method}
-\acrodef{FMM}{Fast Multipole Method}
-\acrodef{FOM}{Full Orthogonalization Method}
-\acrodef{FPU}{Floating Point Unit}
-\acrodef{FFT}{Fast Fourier Transform}
-\acrodef{FSA}{Finite State Automaton}
-\acrodef{FSB}{Front-Side Bus}
-\acrodef{FPGA}{Field-Programmable Gate Array}
-\acrodef{GMRES}{Generalized Minimum Residual}
-\acrodef{GPU}{Graphics Processing Unit}
-\acrodef{GPGPU}{General Purpose Graphics Processing Unit}
-\acrodef{GS}{Gram-Schmidt}
-\acrodef{HPC}{High-Performance Computing}
-\acrodef{HPF}{High Performance Fortran}
-\acrodef{IBVP}{Initial Boundary Value Problem}
-\acrodef{ILP}{Instruction Level Parallelism}
-\acrodef{ILU}{Incomplete LU}
-\acrodef{IVP}{Initial Value Problem}
-\acrodef{LAN}{Local Area Network}
-\acrodef{LRU}{Least Recently Used}
-\acrodef{MIC}{Many Integrated Cores}
-\acrodef{MIMD}{Multiple Instruction Multiple Data}
-\acrodef{MGS}{Modified Gram-Schmidt}
-\acrodef{MPI}{Message Passing Interface}
-\acrodef{MSI}{Modified-Shared-Invalid}
-\acrodef{MTA}{Multi-Threaded Architecture}
-\acrodef{NUMA}{Non-Uniform Memory Access}
-\acrodef{ODE}{Ordinary Diffential Equation}
-\acrodef{OS}{Operating System}
-\acrodef{PGAS}{Partitioned Global Address Space}
-\acrodef{PDE}{Partial Diffential Equation}
-\acrodef{PRAM}{Parallel Random Access Machine}
-\acrodef{RDMA}{Remote Direct Memory Access}
-\acrodef{SAN}{Storage Area Network}
-\acrodef{SaaS}{Software as-a Service}
-\acrodef{SFC}{Space-Filling Curve}
-\acrodef{SIMD}{Single Instruction Multiple Data}
-\acrodef{SIMT}{Single Instruction Multiple Thread}
-\acrodef{SM}{Streaming Multiprocessor}
-\acrodef{SMP}{Symmetric Multi Processing}
-\acrodef{SOR}{Successive Over-Relaxation}
-\acrodef{SP}{Streaming Processor}
-\acrodef{SPMD}{Single Program Multiple Data}
-\acrodef{SPD}{symmetric positive definite}
-\acrodef{SSE}{SIMD Streaming Extensions}
-\acrodef{TLB}{Translation Look-aside Buffer}
-\acrodef{UMA}{Uniform Memory Access}
-\acrodef{UPC}{Unified Parallel C}
-\acrodef{WAN}{Wide Area Network}
+\newwrite\acrowrite
+\openout\acrowrite=acronyms.tex
+\def\acroitem#1#2{\acrodef{#1}{#2}
+    \write\acrowrite{\message{defining #1}\noexpand\acitem{#1}{#2}}
+}
+\acroitem{AMR}{Adaptive Mesh Refinement}
+\acroitem{AVX}{Advanced Vector Extensions}
+\acroitem{BEM}{Boundary Element Method}
+\acroitem{BFS}{Breadth-First Search}
+\acroitem{BLAS}{Basic Linear Algebra Subprograms}
+\acroitem{BSP}{Bulk Synchronous Parallel}
+\acroitem{BVP}{Boundary Value Problem}
+\acroitem{CAF}{Co-array Fortran}
+\acroitem{CCS}{Compressed Column Storage}
+\acroitem{CG}{Conjugate Gradients}
+\acroitem{CGS}{Classical Gram-Schmidt}
+\acroitem{COO}{Coordinate Storage}
+\acroitem{CRS}{Compressed Row Storage}
+%\acroitem{CSV}{comma-separated values}
+\acroitem{DAG}{Directed Acyclic Graph}
+\acroitem{DSP}{Digital Signal Processing}
+\acroitem{FD}{Finite Difference}
+\acroitem{FDM}{Finite Difference Method}
+\acroitem{FEM}{Finite Element Method}
+\acroitem{FMM}{Fast Multipole Method}
+\acroitem{FOM}{Full Orthogonalization Method}
+\acroitem{FPU}{Floating Point Unit}
+\acroitem{FFT}{Fast Fourier Transform}
+\acroitem{FSA}{Finite State Automaton}
+\acroitem{FSB}{Front-Side Bus}
+\acroitem{FPGA}{Field-Programmable Gate Array}
+\acroitem{GMRES}{Generalized Minimum Residual}
+\acroitem{GPU}{Graphics Processing Unit}
+\acroitem{GPGPU}{General Purpose Graphics Processing Unit}
+\acroitem{GS}{Gram-Schmidt}
+\acroitem{HPC}{High-Performance Computing}
+\acroitem{HPF}{High Performance Fortran}
+\acroitem{IBVP}{Initial Boundary Value Problem}
+\acroitem{ILP}{Instruction Level Parallelism}
+\acroitem{ILU}{Incomplete LU}
+\acroitem{IVP}{Initial Value Problem}
+\acroitem{LAN}{Local Area Network}
+\acroitem{LBM}{Lattice Boltzmann Method}
+\acroitem{LRU}{Least Recently Used}
+\acroitem{MIC}{Many Integrated Cores}
+\acroitem{MIMD}{Multiple Instruction Multiple Data}
+\acroitem{MGS}{Modified Gram-Schmidt}
+\acroitem{MPI}{Message Passing Interface}
+\acroitem{MSI}{Modified-Shared-Invalid}
+\acroitem{MTA}{Multi-Threaded Architecture}
+\acroitem{NUMA}{Non-Uniform Memory Access}
+\acroitem{ODE}{Ordinary Diffential Equation}
+\acroitem{OS}{Operating System}
+\acroitem{PGAS}{Partitioned Global Address Space}
+\acroitem{PDE}{Partial Diffential Equation}
+\acroitem{PRAM}{Parallel Random Access Machine}
+\acroitem{RDMA}{Remote Direct Memory Access}
+\acroitem{SAN}{Storage Area Network}
+\acroitem{SaaS}{Software as-a Service}
+\acroitem{SFC}{Space-Filling Curve}
+\acroitem{SIMD}{Single Instruction Multiple Data}
+\acroitem{SIMT}{Single Instruction Multiple Thread}
+\acroitem{SM}{Streaming Multiprocessor}
+\acroitem{SMP}{Symmetric Multi Processing}
+\acroitem{SOR}{Successive Over-Relaxation}
+\acroitem{SP}{Streaming Processor}
+\acroitem{SPMD}{Single Program Multiple Data}
+\acroitem{SPD}{symmetric positive definite}
+\acroitem{SSE}{SIMD Streaming Extensions}
+\acroitem{TLB}{Translation Look-aside Buffer}
+\acroitem{UMA}{Uniform Memory Access}
+\acroitem{UPC}{Unified Parallel C}
+\acroitem{WAN}{Wide Area Network}
 \acresetall
+\closeout\acrowrite
 
 \newcommand{\indexterm}[1]{\emph{#1}\index{#1}}
 \newcommand{\indextermp}[1]{\emph{#1s}\index{#1}}

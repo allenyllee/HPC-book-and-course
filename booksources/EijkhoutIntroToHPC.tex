@@ -239,9 +239,9 @@
 \end{notready}
 
 % not for public consumption
-\begin{victor}
+\begin{notready}
 \CHAPTER{Lattice-Boltzmann methods}{lbm}
-\end{victor}
+\end{notready}
 
 \begin{comment}
 %%\CHAPTER{Performance measurement and optimization}{performance}
@@ -296,6 +296,8 @@
 \TUTORIAL{C/Fortran interoperability}{language}
 \TUTORIAL{\LaTeX{} for scientific documentation}{latex}
 
+\end{tutorials}
+
 \part{Projects, codes, index}
 
 \Level 0 {Class projects}
@@ -304,8 +306,6 @@
 \PROJECT{Evaluation of Bulk Synchronous Programming}{bsp}
 \PROJECT{Heat equation}{heat}
 \PROJECT{The memory wall}{wall}
-
-\end{tutorials}
 
 \Level 0 {Codes}
 \label{app:codes}
@@ -318,84 +318,88 @@
 \vfill\pagebreak
 
 \Level 0 {Index and list of acronyms}
-\def\acitem#1#2{\item[#1]{#2}\index{#1|see{#2}}}
+%\def\acitem#1#2{\item[#1]{#2}\index{#1|see{#2}}}
+%\def\acitemi#1#2#3{\item[#1]{#2}\index{#1|see{#3}}}
+
+\def\acitem#1#2{\item[#1] #2}
 \def\acitemi#1#2#3{\item[#1]{#2}\index{#1|see{#3}}}
 
-\hbox{}\vskip-1in\hbox{}
+%\hbox{}\vskip-1in\hbox{}
 
 \begin{multicols}{2}
 \begin{description}
-\acitem{AMR}{Adaptive Mesh Refinement}
-\acitem{AVX}{Advanced Vector Extensions}
-\acitem{BEM}{Boundary Element Method}
-\acitem{BFS}{Breadth-First Search}
-\acitem{BSP}{Bulk Synchronous Parallel}
-\acitem{BLAS}{Basic Linear Algebra Subprograms}
-\acitem{BVP}{Boundary Value Problem}
-\acitem{CAF}{Co-array Fortran}
-\acitem{CCS}{Compressed Column Storage}
-\acitem{CG}{Conjugate Gradients}
-\acitem{CGS}{Classical Gram-Schmidt}
-\acitem{COO}{Coordinate Storage}
-\acitem{CRS}{Compressed Row Storage}
-%\acitem{CSV}{comma-separated values}
-\acitem{DAG}{Directed Acyclic Graph}
-\acitem{DSP}{Digital Signal Processing}
-\acitem{FD}{Finite Difference}
-\acitem{FDM}{Finite Difference Method}
-\acitem{FEM}{Finite Element Method}
-\acitem{FFT}{Fast Fourier Transform}
-\acitem{FMA}{Fused Multiply-Add}
-\begin{fmm}
-\acitem{FMM}{Fast Multipole Method}
-\end{fmm}
-\acitem{FOM}{Full Orthogonalization Method}
-\acitem{FPGA}{Field-Programmable Gate Array}
-\acitem{FPU}{Floating Point Unit}
-\acitem{FSA}{Finite State Automaton}
-\acitem{FSB}{Front-Side Bus}
-\acitem{GMRES}{Generalized Minimum Residual}
-\acitem{GPGPU}{General Purpose Graphics Processing Unit}
-\acitem{GPU}{Graphics Processing Unit}
-\acitem{GS}{Gram-Schmidt}
-\acitem{HPC}{High Performance Computing}
-\acitem{HPF}{High Performance Fortran}
-\acitem{IBVP}{Initial Boundary Value Problem}
-\acitem{ILP}{Instruction Level Parallelism}
-\acitem{ILU}{Incomplete LU}
-\acitem{IVP}{Initial Value Problem}
-\acitem{LAN}{Local Area Network}
-\acitem{LBM}{Lattice-Boltzmann Methods}
-\acitem{LRU}{Least Recently Used}
-\acitemi{MGS}{Modified Gram-Schmidt}{Gram-Schmidt!modified}
-\acitemi{MIC}{Many Integrated Cores}{Intel!MIC}
-\acitem{MIMD}{Multiple Instruction Multiple Data}
-\acitem{MPI}{Message Passing Interface}
-\acitem{MSI}{Modified-Shared-Invalid}
-\acitem{MTA}{Multi-Threaded Architecture}
-\acitem{NUMA}{Non-Uniform Memory Access}
-\acitem{ODE}{Ordinary Diffential Equation}
-\acitem{OS}{Operating System}
-\acitem{PGAS}{Partitioned Global Address Space}
-\acitem{PDE}{Partial Diffential Equation}
-\acitem{PRAM}{Parallel Random Access Machine}
-\acitem{RDMA}{Remote Direct Memory Access}
-\acitem{SAN}{Storage Area Network}
-\acitem{SaaS}{Software as-a Service}
-\acitem{SFC}{Space-Filling Curve}
-\acitem{SIMD}{Single Instruction Multiple Data}
-\acitem{SIMT}{Single Instruction Multiple Thread}
-\acitem{SM}{Streaming Multiprocessor}
-\acitem{SMP}{Symmetric Multi Processor}
-\acitem{SOR}{Successive Over-Relaxation}
-\acitem{SP}{Streaming Processor}
-\acitem{SPMD}{Single Program Multiple Data}
-\acitem{SPD}{symmetric positive definite}
-\acitem{SSE}{SIMD Streaming Extensions}
-\acitem{TLB}{Translation Look-aside Buffer}
-\acitem{UMA}{Uniform Memory Access}
-\acitem{UPC}{Unified Parallel C}
-\acitem{WAN}{Wide Area Network}
+\input acronyms
+%% \acitem{AMR}{Adaptive Mesh Refinement}
+%% \acitem{AVX}{Advanced Vector Extensions}
+%% \acitem{BEM}{Boundary Element Method}
+%% \acitem{BFS}{Breadth-First Search}
+%% \acitem{BSP}{Bulk Synchronous Parallel}
+%% \acitem{BLAS}{Basic Linear Algebra Subprograms}
+%% \acitem{BVP}{Boundary Value Problem}
+%% \acitem{CAF}{Co-array Fortran}
+%% \acitem{CCS}{Compressed Column Storage}
+%% \acitem{CG}{Conjugate Gradients}
+%% \acitem{CGS}{Classical Gram-Schmidt}
+%% \acitem{COO}{Coordinate Storage}
+%% \acitem{CRS}{Compressed Row Storage}
+%% %\acitem{CSV}{comma-separated values}
+%% \acitem{DAG}{Directed Acyclic Graph}
+%% \acitem{DSP}{Digital Signal Processing}
+%% \acitem{FD}{Finite Difference}
+%% \acitem{FDM}{Finite Difference Method}
+%% \acitem{FEM}{Finite Element Method}
+%% \acitem{FFT}{Fast Fourier Transform}
+%% \acitem{FMA}{Fused Multiply-Add}
+%% \begin{fmm}
+%% \acitem{FMM}{Fast Multipole Method}
+%% \end{fmm}
+%% \acitem{FOM}{Full Orthogonalization Method}
+%% \acitem{FPGA}{Field-Programmable Gate Array}
+%% \acitem{FPU}{Floating Point Unit}
+%% \acitem{FSA}{Finite State Automaton}
+%% \acitem{FSB}{Front-Side Bus}
+%% \acitem{GMRES}{Generalized Minimum Residual}
+%% \acitem{GPGPU}{General Purpose Graphics Processing Unit}
+%% \acitem{GPU}{Graphics Processing Unit}
+%% \acitem{GS}{Gram-Schmidt}
+%% \acitem{HPC}{High Performance Computing}
+%% \acitem{HPF}{High Performance Fortran}
+%% \acitem{IBVP}{Initial Boundary Value Problem}
+%% \acitem{ILP}{Instruction Level Parallelism}
+%% \acitem{ILU}{Incomplete LU}
+%% \acitem{IVP}{Initial Value Problem}
+%% \acitem{LAN}{Local Area Network}
+%% \acitem{LBM}{Lattice-Boltzmann Methods}
+%% \acitem{LRU}{Least Recently Used}
+%% \acitemi{MGS}{Modified Gram-Schmidt}{Gram-Schmidt!modified}
+%% \acitemi{MIC}{Many Integrated Cores}{Intel!MIC}
+%% \acitem{MIMD}{Multiple Instruction Multiple Data}
+%% \acitem{MPI}{Message Passing Interface}
+%% \acitem{MSI}{Modified-Shared-Invalid}
+%% \acitem{MTA}{Multi-Threaded Architecture}
+%% \acitem{NUMA}{Non-Uniform Memory Access}
+%% \acitem{ODE}{Ordinary Diffential Equation}
+%% \acitem{OS}{Operating System}
+%% \acitem{PGAS}{Partitioned Global Address Space}
+%% \acitem{PDE}{Partial Diffential Equation}
+%% \acitem{PRAM}{Parallel Random Access Machine}
+%% \acitem{RDMA}{Remote Direct Memory Access}
+%% \acitem{SAN}{Storage Area Network}
+%% \acitem{SaaS}{Software as-a Service}
+%% \acitem{SFC}{Space-Filling Curve}
+%% \acitem{SIMD}{Single Instruction Multiple Data}
+%% \acitem{SIMT}{Single Instruction Multiple Thread}
+%% \acitem{SM}{Streaming Multiprocessor}
+%% \acitem{SMP}{Symmetric Multi Processor}
+%% \acitem{SOR}{Successive Over-Relaxation}
+%% \acitem{SP}{Streaming Processor}
+%% \acitem{SPMD}{Single Program Multiple Data}
+%% \acitem{SPD}{symmetric positive definite}
+%% \acitem{SSE}{SIMD Streaming Extensions}
+%% \acitem{TLB}{Translation Look-aside Buffer}
+%% \acitem{UMA}{Uniform Memory Access}
+%% \acitem{UPC}{Unified Parallel C}
+%% \acitem{WAN}{Wide Area Network}
 \end{description}
 \end{multicols}
 
