@@ -873,6 +873,71 @@ section~\ref{sec:implicit-becomes-explicit}.
 \Level 0 {Parallelism and implicit operations}
 \input chapters-public/implicit
 
+\Level 0 {Simulation scaling}
+
+In section~\ref{sec:scaling} we considered weak scaling,
+and we assumed that the amount of work and 
+the amount of storage are linearly related. This is not always the case; for instance
+the operation complexity of a matrix-matrix product is $N^3$ for $N^2$ data.
+If you linearly increase the number of processors, the work will go up with a higher power.
+
+A similar effect comes into play if you similate time-dependent \acp{PDE}.
+Here, the total work is a product of the work per time step and the number of 
+time steps. These two numbers are related; in section~\ref{sec:fd-ode} you
+saw that the time step has a certain minimum size as a function of the 
+space discretization. Thus, the number of time steps will go up as the work per
+time step goes up.
+
+Rather than investigating scalability from the point of the running
+of an algorithm, in this section we will look at the case where the simulated time~$S$
+and the running time~$T$ are constant, and we look at how this influences the amount of
+memory we need. This corresponds to the following real-life scenario: 
+you have a simulation that models a certain amount of real-world time 
+in a certain amount of running time; now you buy a bigger computer, and you wonder
+what size problem you can solve in the same running time and maintaining
+the same simulated time.
+
+Let $m$ be the memory per processor, and $P$ the number of processors, giving:
+\[ M=Pm\qquad\hbox{total memory.} \]
+If $d$ is the number of space dimensions of the problem, typically 2~or~3,
+we get
+\[ \Delta x = 1/M^{1/d}\qquad\hbox{grid spacing.} \]
+For stability this limits the time step $\Delta t$ to
+\[ \Delta t=
+\begin{cases}
+\Delta x=1\bigm/M^{1/d}&\hbox{hyperbolic case}\\
+\Delta x^2=1\bigm/M^{2/d}&\hbox{parabolic case}
+\end{cases}
+\]
+(noting that the hyperbolic case was not discussed in chapter~\ref{ch:odepde}.)
+With a simulated time $S$, we find
+\[ k=S/\Delta t\qquad \hbox{time steps.} \]
+If we assume that the individual time steps are perfectly parallelizable,
+that is, we use explicit methods, or implicit methods with optimal solvers,
+we find a running time
+\[ T=kM/P=\frac{S}{\Delta t}m. \]
+Setting $T/S=C$, we find
+\[ m=C\Delta t, \]
+that is, the amount of memory per processor goes down as we increase the processor
+count. (What is the missing step in that last sentence?)
+
+Further analyzing this result, we find
+\[ m=C\Delta t = c
+\begin{cases}
+1\bigm/M^{1/d}&\hbox{hyperbolic case}\\
+1\bigm/M^{2/d}&\hbox{parabolic case}
+\end{cases}
+\]
+Substituting $M=Pm$, we find ultimately
+\[ m = C
+\begin{cases}
+1\bigm/P^{1/(d+1)}&\hbox{hyperbolic}\\
+1\bigm/P^{2/(d+2)}&\hbox{parabolic}
+\end{cases}
+\]
+that is, the memory per processor that we can use
+goes down as a higher power of the number of processors.
+
 \Level 0 {Grid updates}
 
 One of the conclusions of chapter~\ref{ch:odepde} was that explicit methods

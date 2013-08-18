@@ -107,7 +107,7 @@
     \subitem blocking, \hyperpage{46}, \hyperpage{51}, \hyperpage{183}
     \subitem coherence, \hyperpage{24}, \hyperpage{33}, 
 		\hyperpage{35--36}, \hyperpage{42}, \hyperpage{66}, 
-		\hyperpage{260}
+		\hyperpage{261}
     \subitem hierarchy, \hyperpage{24}, \hyperpage{55}
     \subitem hit, \hyperpage{24}
     \subitem hot, \hyperpage{452}
@@ -144,7 +144,7 @@
     \subitem constant, \hyperpage{324}
     \subitem inequality, \hyperpage{324}
   \item chess, \hyperpage{71}
-  \item Cholesky factorization, \hyperpage{178}, \hyperpage{258}
+  \item Cholesky factorization, \hyperpage{178}, \hyperpage{259}
   \item Chomsky hierarchy, \hyperpage{326}
   \item Cilk, \hyperpage{78}
   \item cleanup code, \hyperpage{44}
@@ -195,7 +195,7 @@
   \item Connection Machine, \hyperpage{131}
   \item contention, \hyperpage{100}
   \item context switch, \hyperpage{117}, \hyperpage{119}
-  \item control flow, \hyperpage{12}, \hyperpage{259}
+  \item control flow, \hyperpage{12}, \hyperpage{260}
   \item conveniently paralllel, \hyperpage{71}
   \item coordinate storage, \hyperpage{188}
   \item coordination language, \hyperpage{97}
@@ -218,7 +218,7 @@
     \subitem Y/MP, \hyperpage{64}
   \item Cray Inc., \hyperpage{117}
   \item Cray Research, \hyperpage{117}
-  \item critical path, \hyperpage{260}
+  \item critical path, \hyperpage{261}
   \item critical section, \hyperpage{75}
   \item crossbar, \hyperpage{65}, \hyperpage{105}
   \item CUDA, \hyperpage{62}, \hyperpage{110}, \hyperpage{118}, 
@@ -230,7 +230,7 @@
   \indexspace
 
   \item data decomposition, \hyperpage{217}
-  \item data flow, \hyperpage{12}, \hyperpage{259}
+  \item data flow, \hyperpage{12}, \hyperpage{260}
   \item data parallel, \hyperpage{117, 118}, \hyperpage{120}
   \item data parallelism, \hyperpage{118}
   \item data reuse, \hyperpage{19}, \hyperpage{37}
@@ -258,7 +258,7 @@
   \item differential operator, \hyperpage{158}
   \item Dijkstra's shortest path algorithm, \hyperpage{289}
   \item direct mapping, \hyperpage{28}
-  \item \acl {DAG} (DAG), \hyperpage{259}, \hyperpage{319}
+  \item \acl {DAG} (DAG), \hyperpage{261}, \hyperpage{319}
   \item directories, \hyperpage{329}
   \item Dirichlet boundary condition, \hyperpage{157}, \hyperpage{160}
   \item discretization, \hyperpage{154}
@@ -343,8 +343,8 @@
   \item gdb, \hyperpage{416--424}
   \item \acl {GPGPU} (GPGPU), \hyperpage{118}
   \item \acl {GMRES} (GMRES), \hyperpage{212}
-  \item ghost region, \hyperpage{97}, \hyperpage{231}, 
-		\hyperpage{256, 257}, \hyperpage{301}
+  \item ghost region, \hyperpage{97}, \hyperpage{231}, \hyperpage{258}, 
+		\hyperpage{301}
   \item Global Arrays, \hyperpage{92}
   \item GNU, \hyperpage{416}
     \subitem gdb, \hyperindexformat{\see{gdb}}{416}
@@ -567,7 +567,7 @@
   \item multi-threading, \hyperpage{78}, \hyperpage{117}
   \item multicore, \hyperpage{18}, \hyperpage{25}, \hyperpage{33--36}, 
 		\hyperpage{56}, \hyperpage{65}, \hyperpage{183}, 
-		\hyperpage{258}
+		\hyperpage{259}
   \item multigrid, \hyperpage{207}
   \item \acl {MIMD} (MIMD), \hyperpage{64}
   \item MUMPS, \hyperpage{449}
@@ -629,7 +629,7 @@
   \item partial derivates, \hyperpage{312}
   \item \acl {PDE} (PDE), \hyperpage{157--170}
   \item partial differential equations, \hyperpage{312--313}
-  \item partial ordering, \hyperpage{259}
+  \item partial ordering, \hyperpage{261}
   \item partial pivoting, \hyperpage{175}
   \item \acl {PGAS} (PGAS), \hyperpage{66}, \hyperpage{92--97}
   \item path (graph theory), \hyperpage{318}
@@ -698,7 +698,7 @@
     \subitem under multi-threading, \hyperpage{76}
   \item reduction operations, \hyperpage{80}
   \item redundancy, \hyperpage{101}
-  \item redundant computation, \hyperpage{258}
+  \item redundant computation, \hyperpage{259}
   \item refinement
     \subitem adaptive, \hyperpage{123}
   \item region of influence, \hyperpage{158}
@@ -748,7 +748,7 @@
   \item separable problem, \hyperpage{202}
   \item separator, \hyperpage{241}, \hyperpage{289}
   \item Sequent Symmetry, \hyperpage{35}
-  \item sequential consistency, \hyperpage{77, 78}, \hyperpage{259}
+  \item sequential consistency, \hyperpage{77, 78}, \hyperpage{261}
   \item sequential fraction, \hyperpage{114}
   \item serialized execution, \hyperpage{82}
   \item SGE, \hyperpage{128}

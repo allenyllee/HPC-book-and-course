@@ -2362,6 +2362,20 @@ execution time is constant as the number of processors grows.
   Argue that the code is indeed weakly scalable.
 \end{exercise}
 
+\begin{exercise}
+  In the above discussion we always implicitly compared a sequential 
+  algorithm and the parallel form of that same algorithm. However, 
+  in section~\ref{sec:speedup} we noted that sometimes speedup is defined
+  as a comparison of a parallel algorithm with the \textbf{best} sequential
+  algorithm for the same problem. With that in mind, compare a parallel sorting
+  algorithm with runtime $(\log n)^2$ (for instance, \indexterm{bitonic sort};
+  section~\ref{sec:sorting}) to the best serial algorithm, which has 
+  a running time of $n\log n$.
+
+  Show that in the weak scaling case of $n=p$ speedup is $p/\log p$.
+  Show that in the strong scaling case speedup is a descending function of~$n$.
+\end{exercise}
+
 Although in industry parlance the term `scalability' is sometimes
 applied to architectures or whole computer systems\footnote {``A
   scalable computer is a computer designed from a small number of
@@ -2381,20 +2395,6 @@ section~\ref{sec:densescaling} you will find an analysis of the
 matrix-vector product operation: distributing a matrix by block rows
 turns out not to be scalable, but a two-dimensional distribution by
 submatrices is.
-
-\begin{exercise}
-  In the above discussion we always implicitly compared a sequential 
-  algorithm and the parallel form of that same algorithm. However, 
-  in section~\ref{sec:speedup} we noted that sometimes speedup is defined
-  as a comparison of a parallel algorithm with the \textbf{best} sequential
-  algorithm for the same problem. With that in mind, compare a parallel sorting
-  algorithm with runtime $(\log n)^2$ (for instance, \indexterm{bitonic sort};
-  section~\ref{sec:sorting}) to the best serial algorithm, which has 
-  a running time of $n\log n$.
-
-  Show that in the weak scaling case of $n=p$ speedup is $p/\log p$.
-  Show that in the strong scaling case speedup is a descending function of~$n$.
-\end{exercise}
 
 \index{scaling|)}\index{scalability|)}
 
