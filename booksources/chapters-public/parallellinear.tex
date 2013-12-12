@@ -1,3 +1,4 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
@@ -353,7 +354,7 @@ for k=1..n
 
 \index{matrix!storage, dense|(}
 
-For this reason, an \indexterm{over-decomposition} is used, where
+For this reason, an \indexterm{overdecomposition} is used, where
 the matrix is divided in more blocks than there are processors,
 and each processor stores several, non-contiguous, sub-matrices. 
 \begin{figure}[ht]
@@ -976,9 +977,11 @@ However,
 often we do a number of such products in a row, for instance as the steps
 in a time-dependent process. In that case there may be rearrangements
 of the operations that lessen the bandwidth demands. Consider as a simple example
-\[ \forall_i\colon x^{(n+1)}_i = 
-    f\bigl( x^{(n)}_i, x^{(n)}_{i-1}, x^{(n)}_{i+1} \bigr)
-\]
+\begin{equation}
+\forall_i\colon x^{(n+1)}_i = f\bigl( x^{(n)}_i, x^{(n)}_{i-1}, x^{(n)}_{i+1} \bigr)
+\label{eq:3p-average}
+\end{equation}
+
 and let's assume that the set $\{x^{(n)}_i\}_i$ is too large to fit 
 in cache.
 This is a model for, for instance, the explicit scheme for the heat
@@ -1045,6 +1048,78 @@ The decrease in communication will typically outweigh the increase in work.
   Discuss the case of using this strategy for multicore computation.
   What are the savings? What are the potential pitfalls?
 \end{exercise}
+
+Let's analyze the algorithm we have just sketched.  As in
+equation~\eqref{eq:3p-average} we limit ourselves to a 1D set of
+points and a function of three points. The parameters describing the
+problem are these:
+\begin{itemize}
+\item $N$ is the number of points to be updated, and $M$~denotes the
+  number of update steps. Thus, we perform $MN$ function evaluations.
+\item $\alpha,\beta,\gamma$ are the usual parameters describing
+  latency, transmission time of a single point, and time for an
+  operation (here taken to be an $f$ evaluation).
+\item $b$ is the number of steps we block together.
+\end{itemize}
+Each halo communication consists of $b$ points, and we do this $\sqrt
+N/b$ many times.  The work performed consists of the $MN/p$ local
+updates, plus the redundant work because of the halo. The latter term
+consists of $b^2/2$ operations, performed both on the left and right
+side of the processor domain.
+
+Adding all these terms together, we find a cost of
+\[ \frac Mb\alpha+M\beta+\left(\frac {MN}p+Mb\right)\gamma. \]
+We observe that the overhead of $\alpha M/b+\gamma Mb$ is independent of~$p$,
+\begin{exercise}
+  Compute the optimal value of~$b$, and remark that it only depends on
+  the architectural parameters $\alpha,\beta,\gamma$ but not on the
+  problem parameters.
+\end{exercise}
+
+We can make this algorithm more efficient by overlapping the
+communication and computation. As illustrated in
+figure~\ref{fig:grid-update-local}, each processor start by
+communicating its halo, and overlapping this communication with the
+part of the communication that can be done locally. The values that
+depend on the halo will then be computed last.
+
+\begin{figure}[ht]
+\includegraphics[scale=.1]{graphics-public/grid-update-local}
+\caption{Computation of blocks of grid points over multiple iterations}
+\label{fig:grid-update-local}
+\end{figure}
+
+\begin{exercise}
+  What is a great practical problem with organizing your code (with
+  the emphasis on `code'!) this way?
+\end{exercise}
+
+If the number of points per processor is large enough, the amount of
+communication is low relative to the computation, and you could take
+$b$ fairly large. However, these grid updates are mostly used in
+iterative methods such as the \indexac{CG} method
+(section~\ref{sec:cg}), and in that case considerations of roundoff
+prevent you from taking $b$ too large\cite{ChGe:sstep}.
+
+\begin{exercise}
+  Go through the complexity analysis for the non-overlapping algorithm
+  in case the points are organized in a 2D grid. Assume that each
+  point update involves four neighbours, two in each coordinate
+  direction.
+\end{exercise}
+
+A further refinement of the above algorithm is possible.
+Figure~\ref{fig:grid-update-minimal} illustrates that it is possible
+to use a halo region that uses different points from different time steps.
+\begin{figure}[ht]
+\includegraphics[scale=.1]{graphics-public/grid-update-minimal}
+\caption{Computation of blocks of grid points over multiple iterations}
+\label{fig:grid-update-minimal}
+\end{figure}
+This algorithm (see~\cite{Demmel2008IEEE:avoiding}) cuts down on the amount
+of redundant computation. However, now the halo values that are communicated
+first need to be computed, so this requires splitting the local communication
+into two phases.
 
 \Level 0 {Block algorithms on multicore architectures}
 \label{sec:multicore-block}

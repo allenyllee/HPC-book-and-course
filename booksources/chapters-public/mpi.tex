@@ -311,3 +311,104 @@ doing an actual receive instruction. We will have a short discussion
 in section~\ref{sec:one-sided} below.
 
 
+\Level 2 {One-sided communication}
+\index{one-sided communication|(}
+\label{sec:one-sided}
+
+The MPI way of writing matching send and receive instructions is not
+ideal for a number of reasons. First of all, it requires the
+programmer to give the same data description twice, once in the send
+and once in the receive call. Secondly, it requires a rather precise
+orchestration of communication if deadlock is to be avoided; the
+alternative of using asynchronous calls is tedious to program,
+requiring the program to manage a lot of buffers.
+Lastly, it requires a receiving processor to know how many incoming
+messages to expect, which can be tricky in irregular applications.
+Life would be so much easier if it was
+possible to pull data from another processor, or conversely to put it
+on another processor, without that other processor being explicitly
+involved. 
+
+This style of programming is further encouraged by the
+existence of \indexacf{RDMA} support on some hardware. An early example was
+the  \indextermbus{Cray}{T3E}. 
+These days, one-sided communication is widely available through its
+incorporation in the MPI-2 library; section~\ref{sec:mpi-1-2}.
+
+Let us take a brief look at one-sided communication in MPI-2, using
+averaging of array values as an example:
+\[ \forall_i\colon a_i\leftarrow (a_i+a_{i-1}+a_{i+1})/3. \]
+The MPI parallel code will look like
+\begin{verbatim}
+// do data transfer
+a_local = (a_local+left+right)/3
+\end{verbatim}
+It is clear what the transfer has to accomplish: the \n{a_local}
+variables needs to become the \n{left} variable on the processor with
+the next higher rank, and the \n{right} variables on the one with the
+next lower rank.
+
+First of all, processors need to declare explicitly what memory area
+is available for one-sided transfer, the so-called `window'. In this
+example, that consists of the \n{a_local}, \n{left}, and \n{right}
+variables on the processors:
+\begin{verbatim}
+MPI_Win_create(&a_local,...,&data_window);
+MPI_Win_create(&left,....,&left_window);
+MPI_Win_create(&right,....,&right_window);
+\end{verbatim}
+The code now has two options: it is possible to push data out
+\begin{verbatim}
+target = my_tid-1;
+MPI_Put(&a_local,...,target,right_window);
+target = my_tid+1;
+MPI_Put(&a_local,...,target,left_window);
+\end{verbatim}
+or to pull it in
+\begin{verbatim}
+data_window = a_local;
+source = my_tid-1;
+MPI_Get(&right,...,data_window);
+source = my_tid+1;
+MPI_Get(&left,...,data_window);
+\end{verbatim}
+The above code will have the right semantics if the Put and Get calls
+are blocking; see section~\ref{sec:blocking}. However, part of the
+attraction of one-sided communication is that it makes it easier to
+express communication, and for this, a non-blocking semantics is
+assumed. 
+
+The problem with non-blocking one-sided calls is that it becomes
+necessary to ensure explicitly that communication is successfully
+completed. For instance, if one processor does a one-sided \emph{put}
+operation on another, the other processor has no way of checking that
+the data has arrived, or indeed that transfer has begun at
+all. Therefore it is necessary to insert a global barrier in the program,
+for which every package has its own implementation. In MPI-2 the
+relevant call is the 
+\n{MPI_Win_fence} routine. These barriers in effect divide the program
+execution in \indexterm{supersteps}; see section~\ref{sec:bsp}.
+
+Another form of one-sided communication is used in the Charm++
+package; see section~\ref{sec:charm++}.
+
+\index{one-sided communication|)}
+
+\Level 3 {The Global Arrays library}
+\index{Global Arrays|(}
+
+The Global Arrays library (\url{http://www.emsl.pnl.gov/docs/global/})
+is another example of \indexterm{one-sided communication}, and in fact
+it predates MPI. This library has as its prime data structure
+\indexterm{cartesian product} arrays\footnote{This means that if the
+  array is three-dimensional, it can be described by three integers
+  $n_1,n_2,n_3$, and each point has a coordinate $(i_1,i_2,i_3)$ with
+  $1\leq i_1\leq n_1$ et cetera.}, distributed over a processor grid
+of the same or lower dimension. Through library calls, any processor
+can access any sub-brick out of the array in either a \n{put} or
+\n{get} operation. These operations are non-collective. As with any
+one-sided protocol, a barrier sync is necessary to ensure completion
+of the sends/receives.
+
+\index{Global Arrays|)}
+

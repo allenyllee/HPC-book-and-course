@@ -72,9 +72,14 @@ variable, time. It is an \ac{IVP} since it describes the development
 in time, starting with some initial conditions.  As an \ac{ODE}, it is
 `of second order' since it involves a second derivative, We can reduce
 this to first order, involving only first derivatives, if we allow
-vector quantities. Defining $u(t)=(x(t),x'(t))^t$\footnote{We use the
+vector quantities. 
+
+We introduce a two-component vector~$u$ that combines the location~$x$ and
+velocity~$x'$~\footnote{We use the
   prime symbol to indicate differentiation in case of functions of a
-  single variable.}, we find for $u$:
+  single variable.}:
+\[ u(t)=(x(t),x'(t))^t,\]
+Newton's equation expressed in $u$ then becomes:
 \[ u'=Au+B,\qquad A=
 \begin{pmatrix}
   0&1\\ 0& 0
@@ -86,10 +91,23 @@ vector quantities. Defining $u(t)=(x(t),x'(t))^t$\footnote{We use the
 
 For simplicity, in this course we will only consider scalar equations;
 our reference equation is then
-\begin{equation} u'(t)=f(t,u(t)),\qquad u(0)=u_0,\qquad t>0,
+\begin{equation} u'(t)=f(t,u(t)),\qquad u(0)=u_0,\qquad t>0.
     \label{eq:ode-nonauton}
 \end{equation}
-and in this section we will consider numerical methods for its solution.
+Equation~\eqref{eq:ode-nonauton} allows for an explicit time dependence
+of the process, but in general we only consider equations that 
+do not have this explicit dependence,
+the  so-called `autonomous'  \acp{ODE} of the form
+\begin{equation}
+  \label{eq:ode}
+  u'(t)=f(u(t))
+\end{equation}
+in which the right hand side does not explicitly depend
+on~$t$\footnote
+{Non-autonomous \ac{ODE}s can be transformed to autonomous
+  ones, so this is no limitation. If $u=u(t)$ is a scalar function and
+  $f=f(t,u)$, we define $u_2(t)=t$ and consider the equivalent
+autonomous system $\big({u'\atop u'_2}\bigr)=\bigl({f(u_2,u)\atop 1}\bigr)$}.
 
 Typically, the initial value in some starting point (often
 chosen as $t=0$) is given: $u(0)=u_0$ for some value~$u_0$, and we are
@@ -101,6 +119,7 @@ The equation~\eqref{eq:ode-nonauton} can be solved analytically for some
 choices of~$f$, but we will not consider this. Instead, we only
 consider the numerical solution and the accuracy of this process.
 
+We will now consider numerical methods for the solution
 In a numerical method, we consider discrete size time steps to
 approximate the solution of the continuous time-dependent
 process. Since this introduces a certain amount of error, we will
@@ -119,17 +138,6 @@ differential equation `stable' if solutions corresponding to different
 initial values~$u_0$ converge to one another
 as~$t\rightarrow\nobreak\infty$. 
 
-Let us limit ourselves to the  so-called `autonomous'  \ac{ODE}
-\begin{equation}
-  \label{eq:ode}
-  u'(t)=f(u(t))
-\end{equation}
-in which the right hand side does not explicitly depend
-on~$t$\footnote
-{Non-autonomous \ac{ODE}s can be transformed to autonomous
-  ones, so this is no limitation. If $u=u(t)$ is a scalar function and
-  $f=f(t,u)$, we define $u_2(t)=t$ and consider the equivalent
-autonomous system $\big({u'\atop u'_2}\bigr)=\bigl({f(u_2,u)\atop 1}\bigr)$}.
 A~sufficient criterium for stability is:
   \[ \frac\partial{\partial u}f(u)=
   \begin{cases}

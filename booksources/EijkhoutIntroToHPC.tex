@@ -31,7 +31,7 @@
 \usepackage{amssymb}
 \usepackage[fleqn]{amsmath}
 \usepackage{graphicx,undertilde,arydshln,wrapfig}
-\usepackage{outliner,times,makeidx,multirow,multicol}
+\usepackage{times,makeidx,multirow,multicol}
 \usepackage{dirtree}
 
 \usepackage[algo2e,noline,noend]{algorithm2e}
@@ -159,6 +159,7 @@
 }
 \renewcommand\maillink[3]{}
 
+\usepackage{outliner}
 \OutlineLevelStart0{\chapter{#1}
   \maillink{arabic{chapter} "#1"}{#1}{chapter}
 }
@@ -227,7 +228,6 @@
 \part{Applications}
 
 \CHAPTER{Molecular dynamics}{md}
-%\CHAPTER{Combinatorics}{combinatorics}
 \CHAPTER{Sorting}{sorting}
 \CHAPTER{Graph analytics}{graphalgorithms}
 \CHAPTER{Discrete systems}{discrete}
@@ -318,10 +318,9 @@
 \vfill\pagebreak
 
 \Level 0 {Index and list of acronyms}
-%\def\acitem#1#2{\item[#1]{#2}\index{#1|see{#2}}}
-%\def\acitemi#1#2#3{\item[#1]{#2}\index{#1|see{#3}}}
 
-\def\acitem#1#2{\item[#1] #2}
+%\def\acitem#1#2{\item[#1] #2}
+\def\acitem#1#2{\item[#1]{#2}\index{#1|see{#2}}}
 \def\acitemi#1#2#3{\item[#1]{#2}\index{#1|see{#3}}}
 
 %\hbox{}\vskip-1in\hbox{}
@@ -404,6 +403,7 @@
 \end{multicols}
 
 \index{CPU-bound|see{compute-bound}}
+\index{directives|see{compiler, directives}}
 \index{halo|see{ghost region}}
 \index{irreducible|see{reducible}}
 \index{modified Gramm-Schmidt|see{Gram-Schmidt, modified}}

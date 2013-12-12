@@ -1,3 +1,4 @@
+% -*- latex -*-
 \label{sec:sorting}
 \index{sorting|(}
 
@@ -7,25 +8,48 @@ biological (for instance in sequence alignment). However, it sometimes
 comes up, for instance in \indexac{AMR} and other applications where
 significant manipulations of data structures occurs.
 
-In this section we will briefly look at the QuickSort
-algorithm and how it can be done in parallel. For more details,
+In this section we will briefly look at some basic 
+algorithms and how they can be done in parallel. For more details,
 see~\cite{Kumar:parcomp-book} and the references therein.
 
 \Level 0 {Brief introduction to sorting}
 
-There are many sorting algorithms. One way to distinguish them is by
+There are many sorting algorithms. Traditionally, they have 
+been distinguished by
 their computational complexity, that is, given an array of $n$
 elements, how many operations does it take to sort them, as a function
-of~$n$. For some sorting algorithms, the answer to this question is
-not simple to give. While some algorithms work largely independent of
-the state of the input data, for others, the operation count does
-depend on it. One could imagine that a sorting algorithm would make a
-pass over the data to check if it was already sorted. In that case,
-the complexity is~$n$ operations for a sorted list, and something
+of~$n$. 
+
+Theoretically one can show that a sorting algorithm has to have at
+least complexity~$O(n\log n)$\footnote{One can consider a sorting
+  algorithm as a decision tree: a first comparison is made, depending
+  on it two other comparisons are made, et cetera. Thus, an actual
+  sorting becomes a path through this decision tree. If every path has
+  running time~$h$, the tree has $2^h$ nodes. Since a sequence of $n$
+  elements can be ordered in $n!$ ways, the tree needs to have enough
+  paths to accomodate all of these; in other words, $2^h\geq
+  n!$. Using Stirling's formula, this means that $n\geq O(n\log
+  n)$}. There are indeed several algorithms that are guaranteed to
+attain this complexity, but a very popular algorithm, called
+\indexterm{Quicksort} has only an `expected' complexity of~$O(n\log
+n)$, and a worst case complexity of~$O(n^2)$.
+
+There is another way of looking at sorting algorithms,
+distinguishing them by whether they work independent of
+the state of the input data, or not.
+As an example of an algorithm that depends on its input data,
+imagine a sorting algorithm that makes a
+pass over the data to check if it was already sorted. This algorithm
+has linear complexity (that is, $n$~operations for $n$ elements)
+for a sorted list, and something
 higher for an unsorted list.
 
-The so-called \indexterm{bubble sort} algorithm has a complexity
-independent of the data to be sorted. This algorithm is given by:
+The popular Quicksort algorithm has such data dependencies,
+since it involves finding `pivot' elements.
+
+On the other hand, the so-called \indexterm{bubble sort} algorithm
+can be described
+independently of the data to be sorted. This algorithm is given by:
 
 \begin{displayalgorithm}
   \For{$t$ from $n-1$ down to $1$}{
@@ -39,25 +63,21 @@ independent of the data to be sorted. This algorithm is given by:
 
 It is easy to see that this algorithm has a complexity of~$O(n^2)$:
 the inner loop does $t$ comparisons and up to $t$ exchanges. Summing
-this from $1$ to $n-1$ gives approximately $n^2/2$ comparisons and a
+this from $1$ to $n-1$ gives approximately $n^2/2$ comparisons and
 at most the same number of exchanges.
 
-Theoretically one can show that a sorting algorithm has to have at
-least complexity~$O(n\log n)$\footnote{One can consider a sorting
-  algorithm as a decision tree: a first comparison is made, depending
-  on it two other comparisons are made, et cetera. Thus, an actual
-  sorting becomes a path through this decision tree. If every path has
-  running time~$h$, the tree has $2^h$ nodes. Since a sequence of $n$
-  elements can be ordered in $n!$ ways, the tree needs to have enough
-  paths to accomodate all of these; in other words, $2^h\geq
-  n!$. Using Stirling's formula, this means that $n\geq O(n\log
-  n)$}. There are indeed several algorithms that are guaranteed to
-attain this complexity, but a very popular algorithm, called
-\indexterm{quicksort} has only an `expected' complexity of~$O(n\log
-n)$, and a worst case complexity of~$O(n^2)$.
+Such data-independent sorting algorithms are sometimes
+called \indextermbus{sorting}{networks}. They can be considered
+as custom hardware that implements just one algorithm. The 
+basic hardware element is the \indexterm{compare-and-swap}
+element, which has two inputs and two outputs. For two inputs $x,y$
+the outputs are $\max(x,y)$ and $\min(x,y)$.
 
-\Level 0 {Quicksort} 
-\index{quicksort|(}
+Below we will consider the \indexterm{Bitonic sort} algorithm
+as a prime example of a sorting network.
+
+\Level 0 {Quicksort}
+\index{Quicksort|(}
 
 Quicksort is a recursive algorithm, that, unlike bubble sort, is not
 deterministic. It is a two step procedure, based on a reordering of
@@ -102,7 +122,7 @@ which  is (again without proof) $O(n\log n)$.
 
 We will now consider parallel implementations of quicksort.
 
-\Level 0 {Quicksort in shared memory}
+\Level 1 {Quicksort in shared memory}
 
 A simple parallelization of the quicksort algorithm can be achieved by
 executing the two recursive calls in parallel. This is easiest
@@ -126,7 +146,7 @@ Since shared memory is not the most interesting case, we will forego
 trying to make the thread implementation more efficient, and we will
 move on straight away to distributed memory parallelization.
 
-\Level 0 {Quicksort on a hypercube}
+\Level 1 {Quicksort on a hypercube}
 
 As was apparent from the previous section, for an efficient
 parallelization of the quicksort algorithm, we need to make the Dutch
@@ -155,7 +175,7 @@ is susceptible to load imbalance if the chosen pivots are far from the
 median. Moreover, this load imbalance is not lessened during the sort
 process.
 
-\Level 0 {Quicksort on a general parallel processor}
+\Level 1 {Quicksort on a general parallel processor}
 
 Quicksort can also be done on any parallel machine that has a linear
 ordering of the processors. We assume at first that every processor
@@ -181,6 +201,76 @@ elements in the subtrees, which is $O(\log n)$ on the top level,
 $O(\log n/2)$~on the next, et cetera. This makes for almost perfect
 speedup.
 
-\index{quicksort|)}
+\index{Quicksort|)}
+
+\Level 0 {Bitonic sort}
+\index{bitonic sorting|(}
+
+
+To motivate bitonic sorting,
+suppose a sequence $x=\langle x_0,\ldots,x_n-1\rangle$
+consists of an ascending
+followed by a descending part.
+\begin{figure}[h]
+\includegraphics[scale=.5]{bitonic1}
+\caption{Illustration of a splitting a bitonic sequence}
+\end{figure}
+Now split this sequence into two subsequences of equal length
+defined by:
+\begin{equation}
+\begin{array}{cc}
+s_1 = \langle \min\{x_0,x_{n/2}\},\ldots \min\{ x_{n/2-1},x_{n-1}\}\\
+s_2 = \langle \max\{x_0,x_{n/2}\},\ldots \max\{ x_{n/2-1},x_{n-1}\}\\
+\end{array}
+\label{eq:bitonic-split}
+\end{equation}
+From the picture it is easy to see that $s_1,s_2$ are again 
+sequences with an ascending and descending part. Moreover,
+all the elements in $s_1$ are less than all the elements in~$s_2$.
+
+We call \eqref{eq:bitonic-split} an ascending bitonic sorter, sinc the
+second subsequence contains elements larger than in the
+first. Likewise we can construct a descending sorter by reversing the
+roles of maximum and minimum.
+
+It's not hard to imagine that this is a step in a sorting algorithm:
+starting out with a sequence on this form, recursive application 
+of formula~\eqref{eq:bitonic-split} gives a sorted sequence.
+\begin{figure}[h]
+\includegraphics[scale=.5]{bitonic2}
+\caption{Illustration of a  bitonic network that sorts a bitonic sequence of length~16}
+\label{fig:bitonic8421}
+\end{figure}
+Figure~\ref{fig:bitonic8421} shows how 4 bitonic sorters, over
+distances 8,4,2,1 respectively, will sort a sequence of length~16.
+
+The actual definition of a \indexterm{bitonic sequence} is slightly more
+complicated. A~sequence is bitonic if it conists of an ascending part followed 
+by a descending part, or is a cyclic permutation of such a sequence.
+\begin{exercise}
+Prove that splitting a bitonic sequence according to
+formula~\eqref{eq:bitonic-split} gives two bitonic sequences.
+\end{exercise}
+
+So the question is how to get a bitonic sequence. The answer is to
+use larger and larger bitonic networks.
+\begin{itemize}
+\item A bitonic sort of two elements gives you a sorted sequence.
+\item If you have two sequences of length two, one sorted up, the
+  other sorted down, that is a bitonic sequence.
+\item So this sequence of length four can be sorted in two bitonic steps.
+\item And two sorted sequences of length four form a bitonic sequence of length;
+\item which can be sorted in three bitonic steps; et cetera.
+\end{itemize}
+\begin{figure}[ht]
+  \includegraphics[scale=.4]{full-bitonic}
+  \caption{Full bitonic sort for 16 elements}
+  \label{fig:full-bitonic}
+\end{figure}
+From this description you see that you $\log_2N$ stages to sort $N$
+elements, where the $i$-th stage is of length~$\log_2i$. This makes
+the total \indextermbus{sequential complexity of}{bitonic sorting}~$(\log_2N)^2$.
+\index{bitonic sorting|)}
+
 \index{sorting|)}
 

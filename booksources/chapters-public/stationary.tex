@@ -150,9 +150,14 @@ The iteration scheme is then:
   \>update $x_{i+1}=x_i-e_i$
 \end{tabbing}
   \end{quote}
-The scheme we have given here is called \indexterm{stationary iteration},
-where every update is performed the same way, without any dependence
-on the iteration number. It has a simple analysis, but
+We call the basic scheme
+\begin{equation}
+  x_{i+1}=x_i-K\inv r_1
+  \label{eq:stat-it}
+\end{equation}
+a \indexterm{stationary iteration}. It is stationary
+because every update is performed the same way, without any dependence
+on the iteration number. This scheme has a simple analysis, but
 unfortunately limited applicability.
 
 There are several questions we need to answer about iterative schemes:
@@ -218,34 +223,43 @@ Above, in section~\ref{sec:stationary}, we derived stationary
 iteration as a process that involves multiplying by~$A$ and solving
 with~$K$. However, in some cases a simpler implementation is
 possible. Consider the case where $A=K-N$, and we know both $K$
-and~$N$. Then we write
-\[ Ax=b\Rightarrow Kx=Nx+b \]
-and we observe that $x$ is a fixed point of the iteration
-\[ Kx_{i+1}=Nx_i+b. \]
+and~$N$. Then we write $Ax=b$ as
+\begin{equation}
+  Kx=Nx+b
+  \label{eq:kx=nx}
+\end{equation}
+and we observe that an $x$ satisfying~\eqref{eq:kx=nx}
+is a fixed point of the iteration
+\[ Kx^{(n+1)}=Nx^{(i)}+b. \]
 It is easy to see that this is a stationary iteration:
 \[
 \begin{array}{r@{{}={}}l}
-  Kx_{i+1}&Nx_i+b\\ &Kx_i-Ax_i+b\\ &Kx_i-r_i\\
-  \Rightarrow x_{i+1} & x_i-K\inv r_i.
+  Kx^{(n+1)}&Nx^{(i)}+b\\ &Kx^{(n)}-Ax^{(n)}+b\\ &Kx^{(n)}-r^{(n)}\\
+  \Rightarrow x^{(n+1)} & x^{(n)}-K\inv r^{(n)}.
 \end{array}
 \]
-
-The congence criterium $|\lambda(I-AK\inv)|<1$ (see
+which is the basic form of equation~\eqref{eq:stat-it}.
+%
+The convergence criterium $|\lambda(I-AK\inv)|<1$ (see
 above) now simplifies to
 $|\lambda(NK\inv)|<\nobreak1$.
 
-Let us consider some cases. First of all, let $K=D_A$, that
+Let us consider some special cases. First of all, let $K=D_A$, that
 is, the matrix containing the diagonal part of~$A$: $k_{ii}=a_{ii}$
-and $k_{ij}=0$ for all~\mbox{$i\not=j$}. This is known as the
+and $k_{ij}=0$ for all~\mbox{$i\not=j$}. 
+Likewise, $n_{ii}=0$ and $n_{ij}=-a_{ij}$ for all $i\not=\nobreak j$.
+
+This is known as the
 \indexterm{Jacobi method} method. The iteration scheme
-becomes
+$Kx^{(n+1)}=Nx^{(n)}+b$
+now becomes
 \begin{quote}
   \begin{tabbing}
-    for \=$k=1,\ldots$ until convergence, do:\\
+    for \=$t=1,\ldots$ until convergence, do:\\
     \>for \=$i=1\ldots n$:\\
-    \>\>{\tt //} $a_{ii}x^{(k+1)}_i = \sum_{j\not=i}
-    a_{ij}x^{(k)}_j+b_i$ becomes:\\
-    \>\>$x^{(k+1)}_i = a_{ii}\inv(\sum_{j\not=i} a_{ij}x^{(k)}_j+b_i)$
+    \>\>{\tt //} $a_{ii}x^{(t+1)}_i = \sum_{j\not=i}
+    a_{ij}x^{(t)}_j+b_i$ becomes:\\
+    \>\>$x^{(t+1)}_i = a_{ii}\inv(\sum_{j\not=i} a_{ij}x^{(t)}_j+b_i)$
   \end{tabbing}
 \end{quote}
 (Bearing in mind that divisions are relatively costly,
@@ -253,14 +267,14 @@ section~\ref{sec:fp}, we would actually store the $a_{ii}\inv$
 quantities explicitly, and replace the division by a multiplication.)
 
 This requires us to have one vector $x$ for the current iterate
-$x^{(k)}$, and one temporary~$t$ for the next vector~$x^{(k+1)}$. The
+$x^{(t)}$, and one temporary~$u$ for the next vector~$x^{(t+1)}$. The
 easiest way to write this is probably:
 \begin{quote}
   \begin{tabbing}
-    for \=$k=1,\ldots$ until convergence, do:\\
+    for \=$t=1,\ldots$ until convergence, do:\\
     \>for \=$i=1\ldots n$:\\
-    \>\>$t_i = a_{ii}\inv (-\sum_{j\not=i} a_{ij}x_j+b_i)$\\
-    \>copy $x\leftarrow t$
+    \>\>$u_i = a_{ii}\inv (-\sum_{j\not=i} a_{ij}x_j+b_i)$\\
+    \>copy $x\leftarrow u$
   \end{tabbing}
 \end{quote}
 For the simple case of a one-dimensional problem this is illustrated
@@ -277,28 +291,28 @@ all the $x_i$ points are independent, this can be done
 in parallel on a parallel computer.
 
 But, you might think, in the sum $\sum_{j\not=i} a_{ij}x_j$ why
-not use the $x^{(k+1)}$ values for as far as already computed?
-In terms of the vectors $x^{(k)}$ this means
+not use the $x^{(t+1)}$ values for as far as already computed?
+In terms of the vectors $x^{(t)}$ this means
 \begin{quote}
   \begin{tabbing}
     for \=$k=1,\ldots$ until convergence, do:\\
     \>for \=$i=1\ldots n$:\\
-    \>\>$x^{(k+1)}_i = a_{ii}\inv (-\sum_{j<i} a_{ij}x_j^{(k+1)} -
-                      \sum_{j>i} a_{ij}x_j^{(k)}+b_i)$\\
+    \>\>$x^{(t+1)}_i = a_{ii}\inv (-\sum_{j<i} a_{ij}x_j^{(t+1)} -
+                      \sum_{j>i} a_{ij}x_j^{(t)}+b_i)$\\
   \end{tabbing}
 \end{quote}
 Surprisingly, the implementation is simpler than of the Jacobi method:
 \begin{quote}
   \begin{tabbing}
-    for \=$k=1,\ldots$ until convergence, do:\\
+    for \=$t=1,\ldots$ until convergence, do:\\
     \>for \=$i=1\ldots n$:\\
     \>\>$x_i = a_{ii}\inv (-\sum_{j\not=i} a_{ij}x_j +b_i)$\\
   \end{tabbing}
 \end{quote}
 If you write this out as a matrix equation, you see that
-the newly computed elements elements $x^{(k+1)}_i$ are 
+the newly computed elements elements $x^{(t+1)}_i$ are 
 multiplied with elements of $D_A+L_A$,
-and the old elements $x^{(k)}_j$ by~$U_A$, giving
+and the old elements $x^{(t)}_j$ by~$U_A$, giving
 \[ (D_A+L_A)x^{(k+1)}=-U_Ax^{(k)}+b \]
 which is called the \indexterm{Gauss-Seidel} method.
 
@@ -320,11 +334,11 @@ Finally, we can insert a damping parameter into the Gauss-Seidel
 scheme, giving the \indexacf{SOR} method:
 \begin{quote}
   \begin{tabbing}
-    for \=$k=1,\ldots$ until convergence, do:\\
+    for \=$t=1,\ldots$ until convergence, do:\\
     \>for \=$i=1\ldots n$:\\
-    \>\>$x^{(k+1)}_i = \omega a_{ii}\inv (-\sum_{j<i} a_{ij}x_j^{(k+1}) -
-                      \sum_{j>i} a_{ij}x_j^{(k)} + b_i)
-        +(1-\omega)x^{(k)}$\\
+    \>\>$x^{(t+1)}_i = \omega a_{ii}\inv (-\sum_{j<i} a_{ij}x_j^{(t+1)} -
+                      \sum_{j>i} a_{ij}x_j^{(t)} + b_i)
+        +(1-\omega)x^{(t)}$\\
   \end{tabbing}
 \end{quote}
 Surprisingly for something that looks like an interpolation, the

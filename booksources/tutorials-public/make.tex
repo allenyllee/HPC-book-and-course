@@ -228,7 +228,7 @@ make FC="gfortran -g"
   you see the difference in your screen output?}
   {The compile lines now show the added compiler option \n{-O2} or \n{-g}.}{}
 
-\emph{Make} also has built-in variables:
+\emph{Make} also has \emph{automatic variables}\index{Make!automatic variables}:
 \begin{itemize}
 \item [\n{\$@}] The target. Use this in the link line for the main
   program. % (See section \ref{sec:target-prereq} for some trickery
@@ -237,6 +237,7 @@ make FC="gfortran -g"
   line for the program.
 \item [\n{\$<}] The first prerequisite. Use this in the compile
   commands for the individual object files.
+\item [\n{\$*}] The stem of the target by stripping any extension.
 \end{itemize}
 Using these variables, the rule for \n{fooprog} becomes
 \begin{verbatim}
@@ -280,7 +281,8 @@ foo.o : foo.c bar.h
 \end{verbatim}
   where the object file depends on the source file and another file.
 \end{itemize}
-We can take the commonalities and summarize them in one rule\footnote
+We can take the commonalities and summarize them in one 
+\emph{template rule}\index{Make!template rules}\footnote
 {This mechanism is the first instance you'll see that only exists in
   GNU make, though in this particular case there is a similar
   mechanism in standard make. That will not be the case for the

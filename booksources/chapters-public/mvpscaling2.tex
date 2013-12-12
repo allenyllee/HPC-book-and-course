@@ -329,12 +329,16 @@ where $ A_{ij} \in \R^{n_i \times n_j} $ and $ x_i, y_i \in \R^{n_i} $ with
 $ \sum_{i=0}^{p-1} n_i = N $ and $ n_i \approx N / \sqrt P $.
 
 We will view the nodes as an $ r \times c $ mesh, with $ P = r c $,
-and index them as $p_{ij}$, with $ i=0, \ldots, r-1 $ and $ j = 0,
-\ldots, c-1 $.  The following illustration for a $12\times12$ matrix
-on a $3\times4$ processor grid
+and index them as $p_{ij}$, 
+%
+with $ i=0, \ldots, r-1 $ and $ j = 0,\ldots, c-1 $.
+%
+Figure~\ref{fig:2dmatrix}, for a $12\times12$ matrix
+on a $3\times4$ processor grid,
 illustrates the assignment of data to nodes, where the $ i,j$
-``cell'' shows the matrix and vector elements owned by  $ p_{ij} $:
+`cell' shows the matrix and vector elements owned by  $ p_{ij} $.
 
+\begin{figure}[ht]
 {\footnotesize
 \[
 \begin{array}{| c | c | c | c |} \hline
@@ -449,9 +453,18 @@ a_{11,9} & a_{11,10} & a_{11,11} & y_{11} \\
 \end{array}
 \]
 }
+\caption{Distribution of matrix and vector elements for a problem of size 12 on a $4\times 3$ processor grid}
+\end{figure}
 
 In other words, $ p_{ij} $ owns the matrix block $A_{ij}$
-and parts of $x$ and~$y$. This makes possible the following algorithm:
+and parts of $x$ and~$y$. This makes possible the following algorithm\footnote
+{This figure shows a partitioning of the matrix into contiguous blocks,
+and the vector distribution seem to be what is necessary to work with this 
+matrix distribution. You could also look at this story the other way:
+start with a distribution of input and output vector, and then decide what
+that implies for the matrix distribution. For instance, if you distributed
+$x$ and~$y$ the same way, you would arrive at a different matrix distribution,
+but otherwise the product algorithm would be much the same; see~\cite{Flame:PBMD-report}.}:
 \begin{itemize}
 \item Since $x_j$ is distributed over the $j$th column, the algorithm starts
   by collecting $x_j$ on each processor $p_{ij}$ by an

@@ -1,3 +1,18 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012/3
+%%%%
+%%%% This book is distributed under a Creative Commons Attribution 3.0
+%%%% Unported (CC BY 3.0) license and made possible by funding from
+%%%% The Saylor Foundation \url{http://www.saylor.org}.
+%%%%
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:graph-analytics}
 
 Various problems in scientific computing can be formulated as graph
@@ -7,11 +22,13 @@ instance, you have
 encountered the problem of load
 balancing (section~\ref{sec:graph-loadbalancing}) and finding
 independent sets (section~\ref{sec:redblackgreen}).
-%
+
 Many traditional graph algorithms are
 not immediately, or at least not efficiently, applicable, since the
 graphs are often distributed, and traditional graph theory assume global
-knowledge of the whole graph. 
+knowledge of the whole graph. Moreover, graph theory is often concerned
+with finding the optimal algorithm, which is usually not a parallel one.
+Therefore, parallel graph algorithms are a field of study by themselves.
 
 Recently, new types of graph computations in have arisen in scientific
 computing. Here the graph are no longer tools, but objects of study
@@ -26,7 +43,16 @@ computations on large graphs. We start by discussing some classic
 algorithms, but we give them in an algebraic framework that will
 make parallel implementation much easier.
 
-\Level 0 {Shortest path algorithms}
+\Level 0 {Traditional graph algorithms}
+
+We start by looking at a few `classic' graph algorithms, and we
+discuss how they can be implemented in parallel. The connection
+between graphs and sparse matrices (see Appendix~\ref{app:graph}) will
+be crucial here: many graph algorithms have the structure of
+a \emph{sparse matrix-vector
+multiplication}\index{sparse!matrix-vector product!in graph theory}.
+
+\Level 1 {Shortest path algorithms}
 
 There are several types of shortest path algorithms. For instance,
 in the \indextermsub{single source}{shortest path} algorithm
@@ -97,7 +123,8 @@ the product as
   y_i = \min\bigl\{ x_i, \min_{j\colon G_{ij}\not=0} x_j+g_{ij} \bigr\},
 \]
 
-\Level 0 {Floyd-Warshall all-pairs shortest path}
+\Level 1 {Floyd-Warshall all-pairs shortest path}
+\label{sec:floyd}
 
 The \indexterm{Floyd-Warshall algorithm} is an example of an all-pairs
 shortest paths algorithm. It is a \indexterm{dynamic programming}
@@ -153,7 +180,7 @@ path between $i$ and~$j$.
 %% For more pointers,
 %% see~\url{http://en.wikipedia.org/wiki/Floyd\%E2\%80\%93Warshall_algorithm}.
 
-\Level 0 {Spanning trees}
+\Level 1 {Spanning trees}
 
 In an undirected graph $G=\langle V,E\rangle$, we call $T\subset E$ a~`tree'
 if it is connected and acyclic. It is called a \indexterm{spanning tree}
@@ -451,6 +478,7 @@ distributed two-dimensionally~\cite{OgAi:sparsestorage}.
 \index{PageRank|)}
 
 \Level 0 {Large-scale computational graph theory}
+\label{sec:random-graph-product}
 
 In the preceding sections you have seen that many graph algorithms
 have a computational structure that makes the matrix-vector product
@@ -458,11 +486,25 @@ their most important kernel. Since most graphs are of low degree
 relative to the number of nodes, the product is a \emph{sparse}
 matrix-vector product.
 
-You might think then, that as in section~\ref{sec:pspmvp} we could
-make a one-dimensional distribution of the matrix, perhaps
-corresponding to a clustered distribution of the vertices in the
-graph. In this case that does not make sense.
+In many cases we can then, as in section~\ref{sec:pspmvp},
+make a one-dimensional distribution of the matrix,
+induced by a distribution of the graph nodes: if a processor
+owns a graph node~$i$, it owns all the edges~$i,j$.
 
+However, often the computation is very unbalanced. For instance,
+in the single-source shortest path algorithm only the vertices
+along the front are active. For this reason, sometimes a distribution
+of edges rather than vertices makes sense. For an even balancing
+of the load even random distributions can be used.
+
+The \indextermsub{parallelization of the}{Floyd-Warshall algorithm}
+(section~\ref{sec:floyd}) proceeds along different lines. Here we don't
+compute a quantity per node, but a quantity that is a function of pairs
+of nodes, that is, a matrix-like quantity. Thus, instead of distributing
+the nodes, we distribute the pair distances.
+
+Sometimes we need to go beyond a one-dimensional decomposition in dealing
+with sparse graph matrices.
 Let's assume that we're dealing with a graph that has a structure that
 is more or less random, for instance in the sense that the chance of
 there being an edge is the same for any pair of vertices. Also
