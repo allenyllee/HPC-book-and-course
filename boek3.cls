@@ -874,11 +874,11 @@
   \fi}
 \else
    \newcommand*\l@part{%
-     \ifnum \c@tocdepth >-2\relax
+     %\ifnum \c@tocdepth >-2\relax
      \addpenalty{-\@highpenalty}%
      \addvspace{2.25em \@plus \p@}%
      \@regtocline{0}%
-   \fi}
+   }
 \fi
 \if@oldtoc
 \newcommand*\l@chapter[2]{%

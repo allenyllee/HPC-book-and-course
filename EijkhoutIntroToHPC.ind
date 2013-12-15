@@ -364,6 +364,7 @@
   \item flushed, \hyperpage{26}
   \item flushing
     \subitem pipeline, \hyperpage{75}
+  \item FMA, \hyperindexformat{\see{Fused Multiply-Add}}{488}
   \item FMM, \hyperindexformat{\see{Fast Multipole Method}}{488}
   \item FOM, 
 		\hyperindexformat{\see{Full Orthogonalization Method}}{488}
@@ -383,6 +384,7 @@
   \item fully associative, \hyperpage{29}
   \item fully connected, \hyperpage{101}
   \item functional programming, \hyperpage{130--131}
+  \item \acl {FMA} (FMA), \hyperpage{144}
 
   \indexspace
 
@@ -487,7 +489,8 @@
     \subitem parallel, \hyperpage{242--244}
   \item independent sets, \hyperpage{329}
   \item indirect addressing, \hyperpage{190}
-  \item \acl {IBVP} (IBVP), \hyperpage{160}, \hyperpage{168--172}
+  \item \acl {IBVP} (IBVP), \hyperpage{168--172}
+  \item \aclp {IBVP} (IBVP), \hyperpage{160}
   \item \acl {IVP} (IVP), \hyperpage{153--159}
   \item inner products, \hyperpage{239}
   \item instruction issue, \hyperpage{62}
@@ -536,6 +539,7 @@
   \item latency, \hyperpage{20}, \hyperpage{112}, \hyperpage{222}
     \subitem hiding, \hyperpage{20}, \hyperpage{37}
   \item latency hiding, \hyperpage{100}
+  \item \aclp {LBM} (LBM), \hyperpage{143}
   \item LBM, \hyperindexformat{\see{Lattice Boltzmann Method}}{488}
   \item leaf nodes, \hyperpage{329}
   \item level sets, \hyperpage{197}
@@ -898,7 +902,7 @@
   \item SOA, \hyperindexformat{\see{Structure-Of-Arrays}}{488}
   \item socket, \hyperpage{33}, \hyperpage{90}, \hyperpage{133}
   \item \acl {SaaS} (SaaS), \hyperpage{127}
-  \item SOR, \hyperindexformat{\see{Successive Over-Relaxation}}{488}
+  \item SOR, \hyperindexformat{\see{Successive Over-Relaxation}}{489}
   \item sorting, \hyperpage{286--291}
     \subitem networks, \hyperpage{287}
   \item source code control, \hyperpage{379}

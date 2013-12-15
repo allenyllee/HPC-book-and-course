@@ -400,7 +400,7 @@ and only the digits $d_1d_2\ldots d_t$ are stored.
 Another implication of this scheme is that we have to amend the
 definition of underflow (see section~\ref{sec:exceptions} above):
 instead of having a smallest number~$-(\beta-\beta^{-(t-1)}$,
-and number less than $1\cdot\beta^L$ now causes underflow. Trying
+any number less than $1\cdot\beta^L$ now causes underflow. Trying
   to compute a number less than that in absolute value is sometimes
   handled by using \indextermsub{unnormalized}{floating point numbers},
   a~process known as \indextermsub{gradual}{underflow}. In this case, a~special
@@ -615,7 +615,8 @@ complicated~\cite{goldberg:floatingpoint}.
 
 An inventory of the meaning of all bit patterns in IEEE
 754 double precision is given in figure~\ref{fig:single-precision}.
-Note that for normalized numbers the first nonzero digit is a~1, which
+Recall from section~\ref{sec:normal-unnormal} above
+that for normalized numbers the first nonzero digit is a~1, which
 is not stored, so the bit pattern $d_1d_2\ldots d_t$ is interpreted as
 $1.d_1d_2\ldots d_t$.
 
@@ -649,7 +650,7 @@ where exact compliance matters less. For many scientific computations,
 double precision is necessary, since the precision of calculations
 gets worse with increasing problem size or runtime. This is true for
 the sort of calculations in chapter~\ref{ch:odepde}, but not for
-others such as Lattice-Boltzmann.
+others such as \indexacp{LBM}
 
 \Level 0 {Round-off error analysis}
 \index{round-off error analysis|(}

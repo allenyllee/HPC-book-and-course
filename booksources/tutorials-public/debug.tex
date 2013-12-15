@@ -283,14 +283,22 @@ and run it:
 %% ./roots
 sum: nan
 \end{verbatim}
-Start it in gdb as follows:
+Start it in gdb as before:
 \begin{verbatim}
 %% gdb roots
-GNU gdb 6.3.50-20050815 (Apple version gdb-1469) (Wed May  5 04:36:56 UTC 2010)
+GNU gdb 6.3.50-20050815 
 Copyright 2004 Free Software Foundation, Inc.
 ....
+\end{verbatim}
+but before you run the program, you set a \indexterm{breakpoint}
+at \n{main}.
+This tells the execution to stop, or `break', in the main program.
+\begin{verbatim}
 (gdb) break main
 Breakpoint 1 at 0x100000ea6: file root.c, line 14.
+\end{verbatim}
+Now the program will stop at the first executable statement in \n{main}:
+\begin{verbatim}
 (gdb) run
 Starting program: tutorials-public/gdb/c/roots
 Reading symbols for shared libraries +. done
@@ -298,14 +306,7 @@ Reading symbols for shared libraries +. done
 Breakpoint 1, main () at roots.c:14
 14        float x=0;
 \end{verbatim}
-Here you have done the following:
-\begin{itemize}
-\item Before calling \n{run} you set a \indexterm{breakpoint} at the
-  main program, meaning that the execution will stop when it reaches
-  the main program.
-\item You then call \n{run} and the program execution starts;
-\item The execution stops at the first instruction in main.
-\end{itemize}
+
 If execution is stopped at a breakpoint, you can do various things,
 such as issuing the \n{step} command:
 \begin{verbatim}
@@ -330,18 +331,6 @@ Rerun the program after you set a breakpoint on the line with the
 \n{sqrt} call. When the execution stops there do \n{where} and
 \n{list}.
 
-\begin{itemize}
-\item If you set many breakpoints, you can find out what they are with
-  \n{info breakpoints}. 
-\item You can remove breakpoints with \n{delete n} where \n{n} is the
-  number of the breakpoint.
-\item If you restart your program with \n{run} without leaving gdb,
-  the breakpoints stay in effect.
-\item If you leave gdb, the breakpoints are cleared but you can save
-  them: \n{save breakpoints <file>}. Use \n{source <file>} to read
-  them in on the next gdb run.
-\end{itemize}
-
 \Level 0 {Inspecting values}
 
 Run the previous program again in gdb: set a breakpoint at the line
@@ -352,6 +341,9 @@ the program stop?
 If you want to repair a variable, you can do \n{set var=value}. Change
 the variable \n{n} and confirm that the square root of the new value
 is computed. Which commands do you do?
+
+\Level 0 {Breakpoints}
+\index{breakpoint|(}
 
 If a problem occurs in a loop, it can be tedious keep typing \n{cont}
 and inspecting the variable with \n{print}. Instead you can add a
@@ -371,6 +363,39 @@ Remove the existing breakpoint, redefine it with the condition \n{n<0}
 and rerun your program. When the program breaks, find for what value
 of the loop variable it happened. What is the sequence of commands you use?
 
+You can set a breakpoint in various ways:
+\begin{itemize}
+\item \n{break foo.c} to stop when code in a certain file is reached;
+\item \n{break 123} to stop at a certain line in the current file;
+\item \n{break foo} to stop at subprogram \n{foo}
+\item or various combinations, such as \n{break foo.c:123}.
+\item Finally, 
+\end{itemize}
+
+\begin{itemize}
+\item If you set many breakpoints, you can find out what they are with
+  \n{info breakpoints}. 
+\item You can remove breakpoints with \n{delete n} where \n{n} is the
+  number of the breakpoint.
+\item If you restart your program with \n{run} without leaving gdb,
+  the breakpoints stay in effect.
+\item If you leave gdb, the breakpoints are cleared but you can save
+  them: \n{save breakpoints <file>}. Use \n{source <file>} to read
+  them in on the next gdb run.
+\end{itemize}
+
+Finally, you can execute commands at a breakpoint:
+\begin{verbatim}
+break 45
+command
+print x
+cont
+end
+\end{verbatim}
+This states that at line 45 variable~\n{x} is to be printed, and execution
+should immediately continue.
+
+\index{breakpoint|)}
 \index{gdb|)}
 
 \Level 0 {Further reading}

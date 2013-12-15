@@ -119,6 +119,11 @@ Barbara Chapman, Gabriele Jost, and Ruud van~der Pas.
   volume~10 of {\em Scientific Computation Series}.
 \newblock MIT Press, ISBN 0262533022, 9780262533027, 2008.
 
+\bibitem{ChenDoolen:LBM}
+Shiyi Chen and Gary~D. Doolen.
+\newblock Lattice {Boltzmann} method for fluid flows.
+\newblock {\em Annual Review of Fluid Mechanics}, 30(1):329--364, 1998.
+
 \bibitem{scalapack}
 Yaeyoung Choi, Jack~J. Dongarra, Roldan Pozo, and David~W. Walker.
 \newblock Scalapack: a scalable linear algebra library for distributed memory
@@ -173,6 +178,12 @@ J.~Demmel, M.~Heath, and H.~{Van der Vorst}.
 \newblock Parallel numerical linear algebra.
 \newblock In {\em Acta Numerica 1993}. Cambridge University Press, Cambridge,
   1993.
+
+\bibitem{Demmel2008IEEE:avoiding}
+James Demmel, Mark Hoemmen, Marghoob Mohiyuddin, and Katherine Yelick.
+\newblock Avoiding communication in sparse matrix computations.
+\newblock In {\em IEEE International Parallel and Distributed Processing
+  Symposium}, 2008.
 
 \bibitem{DemEtAl:ieeeproc2004}
 Jim Demmel, Jack Dongarra, Victor Eijkhout, Erika Fuentes, Antoine Petitet,
@@ -249,6 +260,12 @@ I.~S. Duff, R.~G. Grimes, and J.~G. Lewis.
   (release~{I}).
 \newblock Technical Report RAL 92-086, Rutherford Appleton Laboratory, 1992.
 
+\bibitem{Flame:PBMD-report}
+C.~Edwards, P.~Geng, A.~Patra, and R.~van~de Geijn.
+\newblock Parallel matrix distributions: have we been doing it all wrong?
+\newblock Technical Report {TR}-95-40, {D}epartment of {C}omputer {S}ciences,
+  {T}he {U}niversity of {T}exas at {A}ustin, 1995.
+
 \bibitem{Eij:general}
 Victor Eijkhout.
 \newblock A general formulation for incomplete blockwise factorizations.
@@ -266,6 +283,12 @@ Paul Erd\"os and A.~Rényi.
 \newblock On the evolution of random graphs.
 \newblock {\em Publications of the Mathematical Institute of the Hungarian
   Academy of Sciences}, 5:17–--61, 1960.
+
+\bibitem{FaberManteuffel:conditions-for-existence}
+V.~Faber and T.~Manteuffel.
+\newblock Necessary and sufficient conditions for the existence of a conjugate
+  gradient method.
+\newblock {\em SIAM J. Numer. Anal.}, 21:352--362, 1984.
 
 \bibitem{Falgout:scalable-hypre}
 R.D. Falgout, J.E. Jones, and U.M. Yang.
@@ -455,6 +478,11 @@ Jonathan. Hill, Bill Mccoll, Dan~C. Stefanescu, Mark~W. Goudreau, Kevin Lang,
 \newblock {BSPlib}: The {BSP} programming library.
 \newblock {\em Parallel Computing}, 24(14):1947--1980, 1998.
 
+\bibitem{Hoare1969axiomatic}
+C.~A.~R. Hoare.
+\newblock An axiomatic basis for computer programming.
+\newblock {\em Communications of the ACM}, pages 576--580, October 1969.
+
 \bibitem{ieee754-webpage}
 {IEEE} 754: Standard for binary floating-point arithmetic.
 \newblock \url{http://grouper.ieee.org/groups/754}.
@@ -593,6 +621,13 @@ J.D.C. Little.
 \newblock A proof of the queueing formula {$L=\lambda W$}.
 \newblock {\em Ope. Res.}, pages 383--387, 1961.
 
+\bibitem{Liu:cudasw2009}
+Yongchao Liu, Douglas~L. Maskell, and Bertil Schmidt.
+\newblock {CUDASW++}: optimizing {Smith-Waterman} sequence database searches
+  for {CUDA}-enabled graphics processing units.
+\newblock {\em BMC Res Notes}, 2:73, 2009.
+\newblock PMID- 19416548.
+
 \bibitem{Luby:parallel}
 M.~Luby.
 \newblock A simple parallel algorithm for the maximal independent set problem.
@@ -646,6 +681,12 @@ Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
   Rowley.
 \newblock {\em The {\LaTeX} Companion, 2nd edition}.
 \newblock Addison-Wesley, 2004.
+
+\bibitem{NeedlemanWunsch}
+Saul~B. Needleman and Christian~D. Wunsch.
+\newblock A general method applicable to the search for similarities in the
+  amino acid sequence of two proteins.
+\newblock {\em Journal of Molecular Biology}, 48(3):443 -- 453, 1970.
 
 \bibitem{Oetiker:LaTeXintro}
 Tobi Oetiker.
@@ -778,6 +819,12 @@ Dan Spielman.
 V.~Strassen.
 \newblock Gaussian elimination is not optimal.
 \newblock {\em Numer. Math.}, 13:354--356, 1969.
+
+\bibitem{Tara:MLbiology}
+AL~Tarca, VJ~Carey, XW~Chen, R~Romero, and S~Dr\v{a}ghici.
+\newblock Machine learning and its applications to biology.
+\newblock {\em PLoS Comput Biol}, 3, 2007.
+\newblock doi:10.1371/ journal.pcbi.0030116.
 
 \bibitem{UKTeXFAQ}
 {\TeX} frequently asked questions.
