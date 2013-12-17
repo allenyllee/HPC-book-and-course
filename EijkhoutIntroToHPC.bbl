@@ -119,11 +119,6 @@ Barbara Chapman, Gabriele Jost, and Ruud van~der Pas.
   volume~10 of {\em Scientific Computation Series}.
 \newblock MIT Press, ISBN 0262533022, 9780262533027, 2008.
 
-\bibitem{ChenDoolen:LBM}
-Shiyi Chen and Gary~D. Doolen.
-\newblock Lattice {Boltzmann} method for fluid flows.
-\newblock {\em Annual Review of Fluid Mechanics}, 30(1):329--364, 1998.
-
 \bibitem{scalapack}
 Yaeyoung Choi, Jack~J. Dongarra, Roldan Pozo, and David~W. Walker.
 \newblock Scalapack: a scalable linear algebra library for distributed memory
@@ -621,13 +616,6 @@ J.D.C. Little.
 \newblock A proof of the queueing formula {$L=\lambda W$}.
 \newblock {\em Ope. Res.}, pages 383--387, 1961.
 
-\bibitem{Liu:cudasw2009}
-Yongchao Liu, Douglas~L. Maskell, and Bertil Schmidt.
-\newblock {CUDASW++}: optimizing {Smith-Waterman} sequence database searches
-  for {CUDA}-enabled graphics processing units.
-\newblock {\em BMC Res Notes}, 2:73, 2009.
-\newblock PMID- 19416548.
-
 \bibitem{Luby:parallel}
 M.~Luby.
 \newblock A simple parallel algorithm for the maximal independent set problem.
@@ -681,12 +669,6 @@ Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
   Rowley.
 \newblock {\em The {\LaTeX} Companion, 2nd edition}.
 \newblock Addison-Wesley, 2004.
-
-\bibitem{NeedlemanWunsch}
-Saul~B. Needleman and Christian~D. Wunsch.
-\newblock A general method applicable to the search for similarities in the
-  amino acid sequence of two proteins.
-\newblock {\em Journal of Molecular Biology}, 48(3):443 -- 453, 1970.
 
 \bibitem{Oetiker:LaTeXintro}
 Tobi Oetiker.
@@ -819,12 +801,6 @@ Dan Spielman.
 V.~Strassen.
 \newblock Gaussian elimination is not optimal.
 \newblock {\em Numer. Math.}, 13:354--356, 1969.
-
-\bibitem{Tara:MLbiology}
-AL~Tarca, VJ~Carey, XW~Chen, R~Romero, and S~Dr\v{a}ghici.
-\newblock Machine learning and its applications to biology.
-\newblock {\em PLoS Comput Biol}, 3, 2007.
-\newblock doi:10.1371/ journal.pcbi.0030116.
 
 \bibitem{UKTeXFAQ}
 {\TeX} frequently asked questions.
