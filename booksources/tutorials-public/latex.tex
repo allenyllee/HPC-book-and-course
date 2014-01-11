@@ -324,6 +324,46 @@ Bulleted and numbered lists are provided through an environment.
   to it.}
 {Again, the \n{\\label} and \n{\\ref} commands work as before.}{}
 
+\Level 1 {Source code and algorithms}
+
+As a computer scientist, you will often want to include 
+algorithms in your writings; sometimes even source code.
+
+In this tutorial so far you have seen that some characters
+have special meaning to \LaTeX{}, and just can not just type them
+and expect them to show up in the output. Since funny characters
+appear quite regularly in programming languages, we need a tool for this:
+the \indexterm{verbatim mode}.
+
+To display bits of code inside a paragraph, you use the \verb+\verb+
+command.  This command delimits its argument with two identical
+characters that can not appear in the verbatim text. For instance,
+the output
+\verb+if (x%5>0) { ... }+ is produced by \verb/\verb+if (x%5>0) { ... }+/.
+(Exercise: how did the author of this book get that verbatim command
+in the text?)
+
+For longer stretches of verbatim text, that need to be displayed
+by themselves you use
+\begin{quote}
+\leavevmode\noindent\parindent=0pt
+\hbox{\verb+\begin{verbatim}+}\\
+\hbox{\verb+stuff+}\\
+\hbox{\verb+\end{verbatim}+}
+\end{quote}
+Finally, in order to include a whole file as verbatim listing, use
+\begin{verbatim}
+\verbatiminput{path/filename}
+\end{verbatim}
+
+Verbatim text is one way of displaying algorithms, but there are
+more elegant solutions. For instance, in this book the following is
+used:
+\begin{verbatim}
+\usepackage[algo2e,noline,noend]{algorithm2e}
+\end{verbatim}
+The result can be seen, for instance, on page~\pageref{fig:taskqueue}.
+
 \Level 1 {Graphics}
 
 Since you can not immediately see the output of what you are typing,

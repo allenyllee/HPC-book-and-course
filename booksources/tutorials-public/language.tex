@@ -1,4 +1,4 @@
-{applications,approximation,discrete,namd,performance,programming}.texMost of the time, a program is written is written in a single
+Most of the time, a program is written is written in a single
 language, but in some circumstances it is necessary or desirable to
 mix sources in more than one language for a single executable. One
 such case is when a library is written in one language, but used by a
@@ -9,14 +9,16 @@ will focus on the common case of interfacing between C/C++ and
 Fortran.
 
 \Level 0 {Arrays}
-\label{sec:arrays}
+\label{sec:CFarrays}
+\index{C!array layout|(}
+\index{Fortran!array layout|(}
 
 C and Fortran have different conventions for storing multi-dimensional
 arrays. You need to be aware of this when you pass an array between
 routines written in different languages. 
 
 Fortran stores multi-dimensional arrays in \indexterm{column-major}
-order. For two dimensional arrays (\texttt{A(i,j)}) this means that
+order. For two dimensional arrays \texttt{A(i,j)} this means that
 the elements in each column are stored contiguously: a $2\times2$
 array is stored as \texttt{A(1,1), A(2,1), A(1,2), A(2,2)}. Three and
 higher dimensional arrays are an obvious extension: it is sometimes
@@ -24,7 +26,7 @@ said that `the left index varies quickest'.
 
 C arrays are stored in \indexterm{row-major} order: elements in each
 row are stored contiguous, and columns are then placed sequentially in
-memory. A~$2\times2$ array \texttt{A[2][2]} is then stored as
+memory. A~$2\times2$ array \texttt{A[2][2]} is stored as
 \texttt{A[1][1], A[1][2], A[2][1], A[2][2]}. 
 
 A number of remarks about arrays in~C.
@@ -61,6 +63,9 @@ for (i=0; i<m; i++)
     .... A[SUB(i,j,m,n)] ....
 \end{verbatim}
 where for interoperability we store the elements in column-major fashion.
+
+\index{C!array layout|)}
+\index{Fortran!array layout|)}
 
 \Level 0 {Strings}
 

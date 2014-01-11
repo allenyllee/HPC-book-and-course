@@ -308,6 +308,7 @@ general has a higher
 complexity~\cite{LiRoTa:dissection}.
 
 \Level 2 {Parallelism}
+\label{sec:dissect-parallel}
 
 The nested dissection method clearly introduces a lot of parallelism,
 and we can characterize it as task parallelism
@@ -324,6 +325,7 @@ Mapping these tasks to processors is not trivial. First of all, if we
 are dealing with shared memory we can use a simple task queue:
 
 \begin{displayalgorithm}
+  \label{fig:taskqueue}
   $\mbox{Queue}\leftarrow\{\}$\;
   \For{all bottom level subdomains $d$}{add $d$ to the Queue}
   \While{Queue is not empty}
