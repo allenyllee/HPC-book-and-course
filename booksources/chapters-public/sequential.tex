@@ -180,24 +180,93 @@ prominent, so in this chapter we will devote plenty of attention to
 the process that moves data from memory to the processor, and we will
 devote relatively little attention to the actual processor.
 
-\Level 0 {Modern floating point units}
+\Level 0 {Modern processors}
 \label{sec:fp}
 
-In the Von Neumann model no distinction is made between one type of
-instruction and another. In scientific computing, we are mostly
-interested in floating point instructions, so we will now consider the
-\acf{FPU} of the processor in some detail.
+Modern processors are quite complicated, and in this section we will
+give a short tour of what their constituent parts.
+\begin{figure}[ht]
+  \includegraphics[scale=.3]{sandy-bridge-die-map_sm}
+  \caption{The Intel Sandybridge processor die}
+  \label{fig:sandybridge}
+\end{figure}
+Figure~\ref{fig:sandybridge} is a picture of the \indexterm{die}
+of an \indextermbus{Intel}{Sandy Bridge} processor\footnote
+{This is the consumer chip: the server chip has eight cores.}.
+This chip is about two inches in diameter and contains close
+to a billion transistors.
 
-Many modern processors are capable of doing multiple operations
-simultaneously, and this holds in particular for the arithmetic
-part. For instance, often there are separate addition and
+\Level 1 {Caches: on-chip memory}
+
+The bulk of computer memory is in chips that are separate from the processor.
+However, there is usually a small amount (typically a few megabytes)
+of on-chip memory, called the \indexterm{cache}. This will be 
+explained in detail in section~\ref{sec:cache}.
+
+\Level 1 {Graphics, controllers, special purpose hardware}
+
+As you can see in figure~\ref{fig:sandybridge}, considerable real-estate
+on the processor chip is dedicated to graphics. Other parts of the processor
+are dedicated to communicating with memory or the \indexterm{I/O subsystem}.
+We will not discuss those aspects in this book.
+
+\Level 1 {The cores}
+\index{core|(textbf}
+
+In the Von Neuman model there is a single entity that executes instructions.
+This has not been the case in increasing measure since the early 2000s.
+The Sandy Bridge pictured above has four \emph{cores}, each of which
+is an independent unit executing a stream of instructions.
+In this chapter we will mostly discuss aspects of a single core; 
+section~\ref{sec:multicore} will discuss the integration aspects 
+of the multiple cores.
+
+\begin{figure}[ht]
+  \includegraphics[scale=.6]{sandybridge_pipeline}
+  \caption{Block diagram of the Intel Sandy Bridge core}
+  \label{fig:sandycore}
+\end{figure}
+
+\Level 2 {Instruction handling}
+
+\index{out-of-order|see{instruction, handling, out-of-order}} The Von
+Neuman model is also unrealistic in that it assumes that all
+instructions are executed strictly in sequence.  Increasingly, over
+the last twenty years, processor have used
+\emph{out-of-order}\index{instruction!handling!out-of-order}
+instruction handling, where instructions can be processed
+in a different order than the user program specifies. 
+Of course the processor is only allowed to re-order instructions
+if that leaves the result of the execution intact!
+
+In the block diagram (figure~\ref{fig:sandycore}) you see various
+units that are concerned with instrunction handling: This cleverness
+actually costs considerable energy, as well as sheer amount of
+transistors. For this reason, processors such as the
+\indextermbus{Intel}{Xeon Phi} use
+\emph{in-order}\index{instruction!handling!in-order} instruction
+handling.
+
+\Level 2 {Floating point units}
+\index{floating point!unit|(textbf}
+
+In scientific computing we are mostly interested in what a processor
+does with floating point data. Computing with integers or booleans 
+is typically of less interest. For this reason, cores have
+considerable sophistication for dealing with numerical data.
+
+For instance, while past processors had just a single \acf{FPU},
+these days they will have multiple, capable of executing
+simultaneously.
+
+For instance, often there are separate addition and
 multiplication units; if the compiler can find addition and
 multiplication operations that are independent, it can schedule them
 so as to be executed simultaneously, thereby doubling the performance
 of the processor. In some cases, a processor will have multiple
 addition or multiplication units.
 
-Another way to increase performance is to have a `fused multiply-add'
+Another way to increase performance is to have a \indexacf{FMA}
 unit, which can execute the instruction $x\leftarrow ax+b$ in the same
 amount of time as a separate addition or multiplication. Together with
 pipelining (see below), this means that a processor has an asymptotic
@@ -224,6 +293,8 @@ nearly as much optimized in a modern CPU as the additions and
 multiplications are. Division operations can take 10 or 20 clock
 cycles, while a CPU can have multiple addition and/or multiplication
 units that (asymptotically) can produce a result per cycle.
+
+\index{floating point!unit|)textbf}
 
 \Level 1 {Pipelining}
 \label{sec:pipeline}
@@ -472,7 +543,7 @@ computers, when we talk about sending data from one processor to the
 next.
 
 \Level 1 {Registers}
-\index{register|(}
+\index{register|(textbf}
 
 Every processor has a small amount of memory that is internal to the
 processor: the \emph{registers}, or together the
@@ -557,7 +628,8 @@ hold~\n{c[k]}.
 \index{register|)}
 
 \Level 1 {Caches}
-\index{cache|(}
+\label{sec:cache}
+\index{cache|(textbf}
 
 In between the registers, which contain the immediate input and output
 data for instructions, and the main memory where lots of data can reside for a
@@ -1195,7 +1267,7 @@ behaviour of the \ac{TLB}.
 
 \Level 0 {Multicore architectures}
 \label{sec:multicore}
-\index{multicore|(}
+\index{multicore|(textbf}
 
 In recent years, the limits of performance have been reached for the
 traditional processor chip design.
@@ -1395,6 +1467,7 @@ since it is a bit operation, while updating involves copying the whole cacheline
 \end{exercise}
 
 \Level 2 {False sharing}
+\label{sec:falseshare}
 
 The cache coherence problem can even appear if the cores access
 different items. For instance, a declaration
@@ -1406,6 +1479,11 @@ there is a high chance they fall on the same cacheline. Now if one
 core updates~\n{x} and the other~\n{y}, this cacheline will
 continuously be moved between the cores. This is called
 \indexterm{false sharing|underline}.
+The most common case of false sharing happens when
+threads update consecutive locations of an array:
+\begin{verbatim}
+local_results[thread_num] = ....
+\end{verbatim}
 
 \index{cache!coherence|)}
 

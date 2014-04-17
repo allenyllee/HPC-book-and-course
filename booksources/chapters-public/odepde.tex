@@ -171,8 +171,8 @@ problem is stable if~$\lambda>0$.
 In order to solve the problem numerically, we turn the continuous
 problem into a discrete one by looking at finite time/space steps.
 Assuming all functions are sufficiently smooth, a straightforward
-Taylor expansion\footnote{See appendix~\ref{app:taylor} if you are
-  unfamiliar with this.} gives:
+\indexterm{Taylor series} expansion\footnote{See appendix~\ref{app:taylor} 
+if you are unfamiliar with this.} gives:
 \[ u(t+\Delta t)=u(t)+u'(t)\Delta t+u''(t)\frac{\Delta t^2}{2!}
 + u'''(t)\frac{\Delta t^3}{3!}+\cdots \]
 This gives for $u'$:
@@ -737,6 +737,11 @@ and the linear system looks like
     &        &      &&&\ddots  &        &        &&  &\ddots\\
   \end{array}\right)
 \end{equation}
+As in the one-dimensional case, we see that a \ac{BVP}
+gives rise to a \emph{sparse matrix}\index{sparse!matrix!from PDEs}.
+
+It may seem the natural thing to consider
+this system of linear equations in its matrix form.
 However, it can be more insightful to render these equations in a way
 that makes clear the two-dimensional connections of the unknowns. For this,
 \begin{figure}

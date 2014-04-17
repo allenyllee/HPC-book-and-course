@@ -37,6 +37,9 @@ possible. This is made possible by supporting many threads
 them. While one thread is waiting for data from memory, another thread
 that already has its data can proceed with its computations.
 
+\Level 2 {SIMD-type programming with kernels}
+\label{sec:gpu-kernel}
+
 Present day \acp{GPU}\footnote{The most popular GPUs today are made by
   NVidia, and are programmed in \indexterm{CUDA}, an extension of the
   C language.}%
@@ -131,13 +134,13 @@ then execute their code. This may induce a severe performance penalty.
 
 \acp{GPU} rely on large amount of data parallelism and the ability to
 do a fast
-\indexterm{context switch}. This means that they will thrive in
+\indextermbus{context}{switch}. This means that they will thrive in
 graphics and scientific applications, where there is lots of data
 parallelism. However they are unlikely to do well on `business
 applications' and operatings systems, where the parallelism is of the
 \acf{ILP} type, which is usually limited.
 
-\Level 1 {GPUs versus CPUs}
+\Level 2 {GPUs versus CPUs}
 
 These are some of the  differences between \acp{GPU} and regular CPUs:
 \begin{itemize}
@@ -164,7 +167,7 @@ These are some of the  differences between \acp{GPU} and regular CPUs:
   perform efficiently.
 \end{itemize}
 
-\Level 1 {Expected benefit from GPUs}
+\Level 2 {Expected benefit from GPUs}
 
 \acp{GPU} have rapidly gained a reputation for achieving high
 performance, highly cost effectively. Stories abound of codes that

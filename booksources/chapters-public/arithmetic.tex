@@ -1170,7 +1170,8 @@ r = 2._k9; print *, sqrt(r) ! prints 1.4142135623730
 \Level 1 {Other computer arithmetic systems}
 
 Other systems have been proposed to dealing with the problems of
-inexact arithmetic on computers. One solution is extended precision
+inexact arithmetic on computers. One solution is 
+\indexterm{extended precision}
 arithmetic, where numbers are stored in more bits than usual. A common
 use of this is in the calculation of inner products of vectors: the
 accumulation is internally performed in extended precision, but
@@ -1183,6 +1184,18 @@ arithmetic'~\cite{wikipedia:interval-arithmetic}, where for each
 calculation interval bounds are maintained. While this has been
 researched for considerable time, it is not practically used other
 than through specialized libraries~\cite{boost:interval-arithmetic}.
+
+\Level 1 {Extended precision}
+\label{sec:ext-prec}
+
+When the IEEE 754 standard was drawn up, it was envisioned that 
+processors could have a whole range of precisions. In practice,
+only single and double precision as defined have been used.
+However, one instance of \indextermdef{extended precision} still survives:
+processors sometimes have 80-bit registers for storing intermediate results.
+(This goes back to the \indextermbus{Intel}{80287 co-processor}.)
+This strategy makes sense in \indexac{FMA} instructions, 
+and in the accumulation of inner products.
 
 \Level 1 {Fixed-point arithmetic}
 

@@ -1,3 +1,4 @@
+% -*- latex -*-
 Most of the time, a program is written is written in a single
 language, but in some circumstances it is necessary or desirable to
 mix sources in more than one language for a single executable. One
@@ -7,6 +8,13 @@ have made it easy for you to use the library; this section is for the
 case that you find yourself in the place of the library writer. We
 will focus on the common case of interfacing between C/C++ and
 Fortran.
+
+This issue is complicated by the fact that both languages have
+been around for a long time, and various recent language standards
+have introduced mechanisms to facilitate interoperability.
+However, there is still a lot of old code around, and not all compilers
+support the latest standards. Therefore, we discuss both the old 
+and the new solutions.
 
 \Level 0 {Arrays}
 \label{sec:CFarrays}
@@ -139,18 +147,42 @@ with using multiple languages is then that compilers have different
 notions of how to translate function names from the source file to the
 binary file.
 
-The most common case of language interoperability is between C and
-Fortran. The problems are platform dependent, but commonly
+Let's look at codes:
+\begin{verbatim}
+// C:
+      Subroutine foo()
+      Return
+      End Subroutine
+! Fortran
+void foo() {
+  return;
+}
+\end{verbatim}
+(you can find example files in \n{tutorials-public/linking}) after compilation you can use 
+\indexterm{nm} to investigate the binary \indexterm{object file}:
+\begin{verbatim}
+%% nm fprog.o
+0000000000000000 T _foo_
+....
+%% nm cprog.o
+0000000000000000 T _foo
+....
+\end{verbatim}
+You see that internally the \n{foo} routine has different names. This makes
+it hard to call a Fortran routine from~C, or vice versa.
+The possible name mismatches are:
 \begin{itemize}
-\item The Fortran compiler attaches a trailing underscore to function
-  names in the object file.
-\item The C compiler takes the function name as it is in the source.
+\item The Fortran compiler appends an underscore. This is the most common case.
+\item Sometimes it can append two underscores.
+\item Typically the routine name is lowercase in the object file, but uppercase
+      is a possibility too.
 \end{itemize}
-Since C is a popular language to write libraries in, this means we can
-solve the problem by either
+
+Since C is a popular language to write libraries in, this means
+that the problem is often solved in the C library by:
 \begin{itemize}
 \item Appending an underscore to all C function names; or
-\item Include a simple wrapper call:
+\item Including a simple wrapper call:
 \begin{verbatim}
 int SomeCFunction(int i,float f)
 {

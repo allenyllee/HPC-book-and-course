@@ -1,3 +1,4 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
@@ -16,26 +17,72 @@
 As a preliminary to OpenMP (section~\ref{sec:openmp}), we will briefly
 go into `threads'.
 
-A~\emph{thread} is an independent instruction stream,
-but as part of a Unix process.  While processes can belong to
-different users, or be different programs that a single user is
-running concurrently, and therefore have their own data space, threads
-are part of one process and therefore share each other's data. Threads
-do have a possibility of having private data, for instance by have
-their own data stack, but their main characteristic is that they can
-collaborate on the same data. 
+To explain what a \emph{thread} is, we first need to get
+technical about what a \indexterm{process} is.
+A~unix process corresponds to the execution of a single program.
+Thus, it has in memory:
+\begin{itemize}
+\item The program code, in the form of machine language instructions;
+\item A \indexterm{heap}, containing for instance arrays that were
+  created with \indextermtt{malloc};
+\item A stack with quick-changing information, such as the
+  \indexterm{program counter} that indicates what instruction is
+  currently being executed, and data items with local scope, as well
+  as intermediate results from computations.
+\end{itemize}
+This process can have multiple threads; these are similar
+in that they see the same program code and heap, 
+but they have their own stack. Thus, a thread is an independent
+`strand' of execution through a process.
 
-Threads have long existed, even on a single processor.
-By having more than one thread on a single processor, a higher
-  processor utilization can result, since the instructions of one
-  thread can be processed while another thread is waiting for data.
-  On traditional CPUs, switching between threads is fairly expensive
-  (an exception is the \indexterm{hyper-threading} mechanism)
-  but on \acp{GPU} it is not, and in fact they \emph{need} many
-  threads to attain high performance.
+Processes can belong to different users, or be different
+programs that a single user is running concurrently, so they
+have their own data space.
+On the other hand, threads are part of one process and
+therefore share the process heap.
+Threads can have some
+private data, for instance by have their own data stack, but
+their main characteristic is that they can collaborate on the same
+data. 
+
+\Level 2 {The fork-join mechanism}
+
+Threads are dynamic, in the sense that they can be created during program 
+execution. (This is different from the MPI model, where every processor
+run one process, and they are all created and destroyed at the same time.)
+When a program starts, there is one thread active: the \indextermsub{master}{thread}.
+Other threads are created by \indextermbusdef{thread}{spawning}, and
+the master thread can wait for their completion.
+\begin{figure}[ht]
+\includegraphics[scale=.08]{fork-join}
+\caption{Thread creation and deletion during parallel execution}
+\label{fig:forkjoin}
+\end{figure}
+This is known as the \indexterm{fork-join} model; it is illustrated
+in figure~\ref{fig:forkjoin}. A~group of threads that is 
+forked from the same thread and active simultaneously is known
+as a \indextermbus{thread}{team}.
+
+\Level 2 {Threads and parallel computing}
+
+Since threads share data, they are one possible mechanism for parallel programming.
+Of course, for this to be faster than sequential single-threaded execution,
+this assumes that the hardware can work on more than one
+thread at the same time. This can happen in two main circumstances:
+a multicore processor can accomodate one thread per core,
+and secondly, some cores have hardware support for executing more
+than one thread.
+
+The thread mechanism has long existed, even on a single processor. By having more
+than one thread on a single processor, a higher processor utilization
+can result, since the instructions of one thread can be processed
+while another thread is waiting for data.  On traditional CPUs,
+switching between threads is somewhat expensive (an exception is the
+\indexterm{hyper-threading} mechanism) but on \acp{GPU} it is not, and
+in fact they \emph{need} many threads to attain high performance.
 
 In the context of parallel processing we are also interested in
-threads, sinc in a shared memory context multiple threads running on
+threads, since in a shared memory context multiple threads running on
 multiple processors or processor cores can be an easy way to
 parallelize a computation. The shared memory allows the threads to all
 see the same data. This can also lead to problems; see
@@ -46,7 +93,8 @@ section~\ref{sec:shared-lock}.
 \index{pthreads|(}
 
 The following example\footnote{This is strictly Unix-centric and will
-  not work on Windows.} uses the \emph{pthreads} library to spawn
+  not work on Windows.} is a clear illustration of the \indexterm{fork-join} model.
+It uses the \emph{pthreads} library to spawn
 a number of tasks that all update a global counter. Since threads
 share the same memory space, they indeed see and update the same
 memory location.
@@ -92,7 +140,7 @@ void adder() {
 Now all threads read out the value of \n{sum}, wait a while
 (presumably calculating something) and then update.
 
-This can be fixed by having a lock on the code region that should be
+This can be fixed by having a \indexterm{lock} on the code region that should be
 `mutually exclusive':
 \begin{verbatim}
 pthread_mutex_t lock;
@@ -117,6 +165,43 @@ For more information on pthreads, see for instance
 \url{https://computing.llnl.gov/tutorials-public/pthreads}.
 
 \index{pthreads|)}
+
+\Level 2 {Contexts}
+\label{sec:context}
+\index{context|(textbf}
+
+In the above example and its version with the \n{sleep} command
+we glanced over the fact that there were two types of data involved.
+First of all, the variable~\n{s} was created outside the thread spawning
+part. Thus, this variable was \emph{shared}\index{thread!shared data}.
+
+On the other hand, the variable~\n{t} was created once in each spawned thread.
+We call this \emph{private}\index{thread!private data} data.
+
+The totality of all data that a thread can access is called
+its \emph{context}.  It contains private and shared data, as well as
+temporary results of computations that the thread is working
+on\footnote{It also contains the program counter and stack pointer. If
+you don't know what those are, don't worry.}.
+
+It is quite possible to create more threads than a processor has cores,
+so a processor may need to switch between the execution of different threads.
+This is known as a \indextermbusdef{context}{switch}.
+
+Context switches are not for free on regular CPUs, so they only pay off
+if the \indexterm{granularity} of the threaded work is high enough.
+The exceptions to this story are:
+\begin{itemize}
+\item CPUs that have hardware support for multiple threads, for
+  instance through \indexterm{hyperthreading}
+  (section~\ref{sec:hyperthread}), or as in the
+  \indextermbus{Intel}{Xeon Phi} (section~\ref{sec:copprocessor});
+\item \acp{GPU}, which in fact rely on fast context switching (section~\ref{sec:gpu});
+\item certain other `exotic' architectures such as the \indextermbus{Cray}{XMT}
+  (section~\ref{sec:mta}).
+\end{itemize}
+
+\index{context|)}
 
 \Level 2 {Atomic operations}
 \index{atomic operation|(}
@@ -161,7 +246,11 @@ write the variable. Here are three scenarios:
   \multicolumn{2}{|c|}{$\n{I}=5$}\\ \hline
 \end{tabular}
 Such a scenario, where the final result depends on which thread
-executes first, is known as a \indexterm{race condition}.
+executes first, is known as a \indexterm{race condition}\footnote
+{Even more subtle issues come into play if you consider
+the \indextermbus{memory}{model} that a processor uses. For instance, one
+thread can execute \texttt{A=1; print B;} and print~0, while the other
+executes \texttt{B=1; print A;} and also prints~0.}.
 
 A very practical example of such conflicting updates is the inner
 product calculation:
@@ -199,7 +288,7 @@ semaphore, allowing one of the waiting processes to enter the critical
 section.
 
 The other way to resolve common access to shared data is to set a 
-temporary \indexterm{lock} on certain memory areas. This solution may
+temporary \indextermdef{lock} on certain memory areas. This solution may
 be preferable, if common execution of the critical section is likely,
 for instance if it implements writing to a database or hash table. In
 this case, one process entering a
@@ -271,6 +360,35 @@ for (i=1; i<ndata; i+=2) // use odd indices
 In this second example, either the program has to be transformed, or
 the programmer has to maintain in effect a \indextermbus{task}{queue}.
 
+It is natural to think of affinity to think in terms of `put the
+execution where the data is'. However, in practice the opposite view
+sometimes makes sense.  For instance, figure~\ref{fig:ranger-numa}
+showed how the shared memory of a cluster node can actually be
+distributed. Thus, a thread can be attached to a socket, but data can
+be allocated by the \ac{OS} on any of the sockets.  The mechanism that
+is often used by the \ac{OS} is called the \indexterm{first-touch
+policy}:
+\begin{itemize}
+\item When the program allocates data, the \ac{OS} does not actually
+  create it;
+\item instead, the memory area for the data is created the first
+  time a thread accesses it;
+\item thus, the first thread to touch the area in effect causes the
+  data to be allocated on the memory of its socket.
+\end{itemize}
+
+\begin{exercise}
+  Explain the problem with the following code:
+\begin{verbatim}
+// serial initialization
+for (i=0; i<N; i++)
+  a[i] = 0.;
+#pragma omp parallel for
+for (i=0; i<N; i++)
+  a[i] = b[i] + c[i];
+\end{verbatim}
+\end{exercise}
+
 \index{affinity|)}
 
 \Level 2 {Sequential consistency}
@@ -282,7 +400,7 @@ function directly, and \indexterm{OpenMP} programs (see below) only
 differ from sequential programs in directives that are hidden in
 comments and pragmas. Thus, it has been proposed to solve the problem
 of conflicts such a described above by enforcing \indexterm{sequential
-  consistency}~\cite{Lamport:sequential}: a~parallel program should
+consistency}~\cite{Lamport:sequential}: a~parallel program should
 compute the same result as when its source is executed sequentially,
 with all the parallel statements in sequence.
 
@@ -310,11 +428,16 @@ inefficient code.
 
 In this book, we discuss threads in the context of scientific
 computing. However, threads also facilitate parallelism in other contexts,
-such as operating systems. In this case, the term
+such as \acfp{OS}. In this case, the term
 \indexterm{concurrency} is often used, rather than `parallelism'.
-Concurrent tasks are typically asynchronous, rather than tightly coupled.
+Concurrent tasks are tasks that are not dependent on each other; 
+therefore, they can be executed in any order, or indeed in parallel.
+Parallel tasks, on the other hand, are tasks that are indeed running 
+simultaneously.
 
-Concurrency has been studied for a long time. Often, the question
+Concurrency has been studied for a long time. Since a lot of
+this research came from \indexac{OS} research,
+the question
 addressed is that of \indexterm{resource contention}: what if two
 processes, for instance users on the same system, request access to
 the same resource, for instance a printer. This means that the system
@@ -384,8 +507,9 @@ Hyperthreading is an Intel technology to let multiple threads use the
 processor truly simulateneously, so that part of the processor would
 be optimally used; see figure~\ref{fig:hyperthread}.
 \begin{figure}
-\includegraphics{graphics-public/hyperthread_image1}
+\includegraphics[scale=.6]{hyperthreading_image1}
 \caption{Illustration of processor utilization under hyperthreading.}
+\label{fig:hyperthread}
 \end{figure}
 
 If a processor switches between executing one thread and another, it saves this
@@ -393,6 +517,14 @@ local information of the one thread, and loads the information of the other.
 The cost of doing this is modest compared to running a whole program, but 
 can be expensive compared to the cost of a single instruction. Thus,
 hyperthreading may not always give a performance improvement.
+
+Certain architectures have support
+for \indexterm{multi-threading}. This means that the hardware actually
+has explicit storage for the local information of multiple threads,
+and switching between the threads can be very fast. This is the case
+on \acp{GPU} (section~\ref{sec:gpu}), and on
+the \indextermbus{Intel}{Xeon Phi} architecture, where each core can
+support up to four threads.
 
 \index{hyperthreading|)}
 

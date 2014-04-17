@@ -50,9 +50,7 @@
 % for edmond
 \usepackage{subfigure,algorithmic,algorithm}
 
-\def\svnrev{542}
-\edef\revision{\svnrev}
-\def\lulurevision{4, October 2011}
+\def\lulurevision{2014}
 
 \usepackage{minitoc}
 \dominitoc[n]
@@ -82,12 +80,7 @@
 \fancyhead[RO]{\rightmark}
 \fancyfoot[RO]{\thepage}
 \fancyfoot[RE]{\footnotesize\sl Introduction to High Performance
-  Scientific Computing -- r\revision}
-\begin{lulu}
-\fancyfoot[RE]{\footnotesize\sl Introduction to High Performance
-  Scientific Computing%\\release \lulurevision
-}
-\end{lulu}
+  Scientific Computing}
 \fancyfoot[LO]{\footnotesize\sl Victor Eijkhout}
 
 \input exmacs-public
@@ -187,10 +180,9 @@
 %\tracingcommands=2
 
 \def\publicdraft{{\bf\normalsize \\Evolving Copy - open for comments}}
-\def\revdate{\escapechar-1\relax 2nd edition 2014\ --\ \string\revision \revision}
+\def\revdate{2nd edition 2014}
 \begin{lulu}
 \def\publicdraft{}
-\def\revdate{2nd edition 2014}
 \end{lulu}
 \author{Victor Eijkhout\\ with\\Edmond Chow, Robert van de Geijn}
 \title{Introduction to High Performance Scientific Computing
@@ -236,6 +228,7 @@
 \end{montecarlo}
 \begin{notready}
 \CHAPTER{Computational biology}{bio}
+\CHAPTER{Big data}{analytics}
 \end{notready}
 
 % not for public consumption
@@ -411,7 +404,5 @@
 \index{cluster!node|see{node}}
 \printindex
 
-\newpage
-\verbatiminput{CHANGES}
 \closeout\chapterlist
 \end{document}

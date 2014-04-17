@@ -1,3 +1,4 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
@@ -12,7 +13,6 @@
 %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% -*- latex -*-
 
 The largest and most powerful computers are sometimes called
 `supercomputers'. For the last two decades, this has, without
@@ -281,8 +281,9 @@ strong SIMD component. While early SIMD architectures were motivated
 by minimizing the number of transistors necessary, these modern
 co-processors are motivated by \indextermbus{power}{efficiency}
 considerations. Processing instructions (known as
-\indexterm{instruction issue}) is actually expensive compared to a
-floating point operation. Using SIMD is then a way to economize.
+\indextermbus{instruction}{issue}) is actually expensive compared to a
+floating point operation, in time, energy, and chip real estate needed.
+Using SIMD is then a way to economize on the last two measures.
 
 \Level 2 {Pipelining}
 \label{sec:vector}
@@ -374,9 +375,7 @@ Array processing on a larger scale can be found in
 processors, ordered in groups of~32, typically. Each processor group
 is limited to executing the same instruction. Thus, this is true
 example of~\ac{SIMD} processing.
-\begin{gpu}
 For further discussion, see section~\ref{sec:gpu}.
-\end{gpu}
 
 \Level 1 {MIMD / SPMD computers}
 \label{sec:mimd}\label{sec:spmd}
@@ -491,6 +490,7 @@ a different type: the cores typically have a
 \indextermsub{shared}{cache}, typically the L3 or L2 cache.
 
 \Level 1 {Non-Uniform Memory Access}
+\label{sec:numa}
 
 The \ac{UMA} approach based on shared memory 
 is obviously limited to a small number of
@@ -573,11 +573,9 @@ scale up to large numbers of processors: the
 processors. On the other hand, this is also the hardest kind of
 parallel system to program.
 
-Various kinds of hybrids between the above types exist. For instance,
-the \indexterm{Columbia} computer at NASA consists of twenty 
-nodes,
-connected by a switch, where each \indexterm{node} is an NUMA architecture of 512
-processors.
+Various kinds of hybrids between the above types exist. In fact,
+most modern clusters will have \ac{NUMA} nodes, but a distributed
+memory network between nodes.
 
 \Level 0 {Granularity of parallelism}
 \input chapters-public/granularity
@@ -623,393 +621,9 @@ discuss the MPI library.
 
 \Level 1 {Thread parallelism}
 \label{sec:threads}
-\index{thread|(}
-As a preliminary to OpenMP (section~\ref{sec:openmp}), we will briefly
-go into `threads'.
-A~\emph{thread} is an independent instruction stream,
-but as part of a Unix process.  While processes can belong to
-different users, or be different programs that a single user is
-running concurrently, and therefore have their own data space, threads
-are part of one process and therefore share each other's data. Threads
-do have a possibility of having private data, for instance by have
-their own data stack, but their main characteristic is that they can
-collaborate on the same data. 
-
-Threads have long existed, even on a single processor.
-By having more than one thread on a single processor, a higher
-  processor utilization can result, since the instructions of one
-  thread can be processed while another thread is waiting for data.
-  On traditional CPUs, switching between threads is fairly expensive
-  (an exception is the \indexterm{hyper-threading} mechanism)
-  but on \acp{GPU} it is not, and in fact they \emph{need} many
-  threads to attain high performance.
-
-In the context of parallel processing we are also interested in
-threads, sinc in a shared memory context multiple threads running on
-multiple processors or processor cores can be an easy way to
-parallelize a computation. The shared memory allows the threads to all
-see the same data. This can also lead to problems; see
-section~\ref{sec:shared-lock}.
-
-\Level 2 {Threads example}
-\label{sec:thread-example}
-
-The following example\footnote{This is strictly Unix-centric and will
-  not work on Windows.} uses the \indexterm{pthreads} library to spawn
-a number of tasks that all update a global counter. Since threads
-share the same memory space, they indeed see and update the same
-memory location.
-\begin{verbatim}
-#include <stdlib.h>
-#include <stdio.h>
-#include "pthread.h"
-
-int sum=0;
-
-void adder() {
-  sum = sum+1;
-  return;
-}
-
-#define NTHREADS 50
-int main() {
-  int i;
-  pthread_t threads[NTHREADS];
-  printf("forking\n");
-  for (i=0; i<NTHREADS; i++)
-    if (pthread_create(threads+i,NULL,&adder,NULL)!=0) return i+1;
-  printf("joining\n");
-  for (i=0; i<NTHREADS; i++)
-    if (pthread_join(threads[i],NULL)!=0) return NTHREADS+i+1;
-  printf("Sum computed: %d\n",sum);
-
-  return 0;
-}
-\end{verbatim}
-The fact that this code gives the right result is a
-coincidence: it
-only happens because updating the variable is so much quicker than
-creating the thread. (On a multicore processor the chance of errors
-will greatly increase.) If we artificially increase the time for the
-update, we will no longer get the right result:
-\begin{verbatim}
-void adder() {
-  int t = sum; sleep(1); sum = t+1;
-  return;
-}
-\end{verbatim}
-Now all threads read out the value of \n{sum}, wait a while
-(presumably calculating something) and then update.
-
-This can be fixed by having a lock on the code region that should be
-`mutually exclusive':
-\begin{verbatim}
-pthread_mutex_t lock;
-
-void adder() {
-  int t,r;
-  pthread_mutex_lock(&lock);
-  t = sum; sleep(1); sum = t+1; 
-  pthread_mutex_unlock(&lock);
-  return;
-}
-
-int main() {
-  ....
-  pthread_mutex_init(&lock,NULL);
-
-\end{verbatim}
-The lock and unlock commands guarantee that no two threads can
-interfere with each other's update.
-
-For more information on pthreads, see for instance
-\url{https://computing.llnl.gov/tutorials-public/pthreads}.
-
-\Level 2 {Atomic operations}
-\index{atomic operation|(}
-\index{atomicity|see{atomic operation}}
-\label{sec:shared-lock}
-
-Shared memory makes life easy for the programmer, since every
-processor has access to all of the data: no explicit data traffic
-between the processor is needed. On the other hand, multiple
-processes/processors can also write to the same variable, which is a
-source of potential problems.
-
-Suppose that two processes both try to increment an integer
-variable~\texttt{I}:
-\begin{tabbing}
-  process 1: \texttt{I=I+2}\\
-  process 2: \texttt{I=I+3}
-\end{tabbing}
-This is a legitimate activity if the variable is an accumulator for
-values computed by independent processes.
-The result of these two updates
-depends on the sequence in which the processors read and
-write the variable. Here are three scenarios:
-
-\begin{tabular}{|rr|rr|rr|}
-  \hline
-  \multicolumn{2}{|c|}{scenario 1.}& \multicolumn{2}{|c|}{scenario 2.}&
-  \multicolumn{2}{|c|}{scenario 3.}\\ \hline
-  \multicolumn{6}{|c|}{$\n{I}=0$}\\ \hline
-  read $\n{I}=0$&read $\n{I}=0$&
-    read $\n{I}=0$&read $\n{I}=0$&
-      read $\n{I}=0$& \\
-  compute $\n{I}=2$&compute $\n{I}=3$& 
-    compute $\n{I}=2$&compute $\n{I}=3$&
-      compute $\n{I}=2$& \\
-  write $\n{I}=2$& & &write $\n{I}=3$&write $\n{I}=2$& \\
-  &write $\n{I}=3$&write $\n{I}=2$& & &read $\n{I}=2$\\
-  &&&&&compute $\n{I}=5$\\
-  &&&&&write $\n{I}=5$\\
-  \hline
-  \multicolumn{2}{|c|}{$\n{I}=3$}& \multicolumn{2}{|c|}{$\n{I}=2$}&
-  \multicolumn{2}{|c|}{$\n{I}=5$}\\ \hline
-\end{tabular}
-
-A very practical example of such conflicting updates is the inner
-product calculation:
-\begin{verbatim}
-for (i=0; i<1000; i++)
-   sum = sum+a[i]*b[i];
-\end{verbatim}
-Here the products are truly independent, so we could choose to have
-the loop iterations do them in parallel, for instance by their own
-threads. However, all threads need to update the same variable~\n{sum}.
-
-There are essentially two ways of solving this problem. 
-One is that we declare such updates of a shared variable a
-\indexterm{critical section} of code. This means that the instructions
-in the critical section (in the inner product example `read \n{sum}
-from memory, update it, write back to memory') can be executed by only
-one thread at a time. In particular, they need to be executed
-entirely by one thread before any other thread can start them so the
-ambiguity problem above will not arise. Of course, the above code
-fragment is so common that systems like OpenMP
-(section~\ref{sec:openmp}) have a dedicated mechanism for it, by
-declaring it a \emph{reduction}\index{reduction!under multi-threading}
-operation.
-
-Critical sections can for instance be implemented through the 
-\indexterm{semaphore}
-mechanism~\cite{Dijkstra:semaphores}. Surrounding each critical
-section there will be two atomic operations controlling a semaphore, a
-sign post.
-The first process to encounter the semaphore will lower it, and start
-executing the critical section. Other processes see the lowered
-semaphore, and wait. When the first process finishes the critical
-section, it executes the second instruction which raises the
-semaphore, allowing one of the waiting processes to enter the critical
-section.
-
-The other way to resolve common access to shared data is to set a 
-temporary \indexterm{lock} on certain memory areas. This solution may
-be preferable, if common execution of the critical section is likely,
-for instance if it implements writing to a database or hash table. In
-this case, one process entering a
-critical section would prevent any other process from writing
-to the data, even if they might be writing to different locations;
-locking the specific data item being accessed is then a better
-solution.
-
-The problem with locks is that they typically exist on the operating
-system level. This means that they are relatively slow. Since we hope that
-iterations of the inner product loop above would be executed at the
-speed of the floating point unit, or at least that of the memory bus,
-this is unacceptable.
-
-One implementation of
-this is \indexterm{transactional memory}, where the hardware itself
-supports atomic operations; the term derives from database
-transactions, which have a similar integrity problem. In transactional
-memory, a process will perform a normal memory update, unless the
-processor detects a conflict with an update from another process. In
-that case, the updates (`transactions') are aborted and retried with
-one processor locking the memory and the other waiting for the
-lock. This is an elegant solution; however, aborting the transaction
-may carry a certain cost of \indextermsub{pipeline}{flushing}
-(section~\ref{sec:pipelinecpu}) and
-cache line invalidation (section~\ref{sec:coherence}).
-
-\index{atomic operation|)}
-
-\Level 2 {Affinity}
-\index{affinity|(}
-
-Thread programming is very flexible, effectively creating parallelism
-as needed. However, a large part of this book is about the importance
-of data movement in scientific computations, and that aspect can not
-be ignored in thread programming.
-
-In the context of a multicore processor, any thread can be scheduled
-to any core, and there is no immediate problem with this. The problem
-in cases where we have two subsequent regions that are handled with
-thread-level parallelism. If the first region computes data, and the
-second uses that data, then we have to make sure that the thread
-producing a particular data item and the thread consuming (or
-updating) it are scheduled to the same core.
-
-We call \emph{affinity} the maintaining of a fixed mapping between
-threads (\emph{thread affinity}\index{thread!affinity|see{affinity}})
-or processes (\emph{process
-  affinity}\index{process!affinity|see{affinity}}) and cores.
-
-Maintaining thread affinity is easy in some cases. If the loop
-structure that is being parallelized stays the same, a fixed mapping
-of threads to cores makes sense:
-\begin{verbatim}
-for (i=0; i<ndata; i++) // this loop will be done by threads
-  x[i] = ....
-for (i=0; i<ndata; i++) // as will this one
-  ... = .... x[i] ...
-\end{verbatim}
-In other cases a fixed mapping is not the right solution:
-\begin{verbatim}
-for (i=0; i<ndata; i++) // produces loop
-  x[i] = ....
-for (i=0; i<ndata; i+=2) // use even indices
-  ... = ... x[i] ...
-for (i=1; i<ndata; i+=2) // use odd indices
-  ... = ... x[i] ...
-\end{verbatim}
-In this second example, either the program has to be transformed, or
-the programmer has to maintain in effect a \indextermbus{task}{queue}.
-
-\index{affinity|)}
-
-\Level 2 {Sequential consistency}
-\label{sec:seq-consist}
-
-Thread programs often look very much like fully sequential
-programs. Creating a thread for a function is much like invoking that
-function directly, and \indexterm{OpenMP} programs (see below) only
-differ from sequential programs in \indexterm{directives} that are hidden in
-comments and pragmas. Thus, it has been proposed to solve the problem
-of conflicts such a described above by enforcing \indexterm{sequential
-  consistency}~\cite{Lamport:sequential}: a~parallel program should
-compute the same result as when its source is executed sequentially,
-with all the parallel statements in sequence.
-
-This means that a program
-\begin{verbatim}
-integer n
-n = 0
-!$omp parallel shared(n)
-n = n + 1
-!$omp end parallel
-\end{verbatim}
-should have the same effect as
-\begin{verbatim}
-n = 0
-n = n+1 ! for processor 0
-n = n+1 ! for processoe 1
-        ! et cetera
-\end{verbatim}
-With sequential consistency it is no longer necessary to declare
-atomic operations or critical sections; however, this puts strong
-demands on the implementation of the model, so it may lead to
-inefficient code.
-
-\Level 2 {Concurrency}
-
-In this book, we discuss threads in the context of scientific
-computing. However, threads also facilitate parallelism in other contexts,
-such as operating systems. In this case, the term
-\indexterm{concurrency} is often used, rather than `parallelism'.
-Concurrent tasks are typically asynchronous, rather than tightly coupled.
-
-Concurrency has been studied for a long time. Often, the question
-addressed is that of \indexterm{resource contention}: what if two
-processes, for instance users on the same system, request access to
-the same resource, for instance a printer. This means that the system
-call to print is another example of a critical section of code; see
-section~\ref{sec:shared-lock} above. Another problem with concurrency
-is that two processes can both request access to \emph{two} devices
-with exclusive use, for instance a printer and some hardware input
-device. If one process gets hold of the one resource first, and the
-other process the other resource, we have another case of
-\indexterm{deadlock}.
-
-\Level 2 {Cilk}
-
-Other programming models based on threads exist. For instance,
-\indexterm{Cilk} is a set of extensions of C/C++ with which a
-programmer can create threads.
-
-\hbox{%
-  \kern.5\unitindent
-  \begin{minipage}{2in}\tt
-    \begin{tabbing}
-      \textit{Sequential code:}\\  
-      int \=fib(int n)\{ \\
-      \>if (n<2) return 1;\\
-      \>else \=\{\\
-      \>\>int rst=0;\\
-      \>\>rst += fib(n-1);\\
-      \>\>rst += fib(n-2);\\
-      \>\>return rst;\\
-      \}\\
-    \end{tabbing}
-      \end{minipage}
-  \kern.5\unitindent
-  \begin{minipage}{2in}\tt
-    \begin{tabbing}
-      \textit{Cilk code:}\\  
-      cilk int \=fib(int n)\{ \\
-      \>if (n<2) return 1;\\
-      \>else \=\{\\
-      \>\>int rst=0;\\
-      \>\>rst += spawn fib(n-1);\\
-      \>\>rst += spawn fib(n-2);\\
-      \>\>sync;\\
-      \>\>return rst;\\
-      \}\\
-    \end{tabbing}
-      \end{minipage}
-}
-
-In this example, the variable \n{rst} is updated by two, potentially
-independent threads. The semantics of this update, that is, the
-precise definition of how conflicts such as simultaneous writes are
-resolved, is defined by \indexterm{sequential consistency}; see
-section~\ref{sec:seq-consist}.
-
-\Level 2 {Hyperthreading versus multi-threading}
-\label{sec:hyperthread}
-\index{hyperthreading|(}
-
-In the above examples you saw that the threads that are spawned during one 
-program run essentially execute the same code, and have access to the same data.
-Thus, at a hardware level, a thread is uniquely determined by a small number of
-local variables, such as its location in the code (the \indexterm{program counter})
-and intermediate results of the current computation it is engaged in.
-
-Hyperthreading is an Intel technology to let multiple threads use the
-processor truly simulateneously, so that part of the processor would
-be optimally used; see figure~\ref{fig:hyperthread}.
-\begin{figure}
-\includegraphics[scale=.5]{graphics-public/hyperthreading_image1}
-\caption{Illustration of processor utilization under hyperthreading.}
-\label{fig:hyperthread}
-\end{figure}
-If a processor switches between executing one thread and another, it saves this
-local information of the one thread, and loads the information of the other.
-The cost of doing this is modest compared to running a whole program, but 
-can be expensive compared to the cost of a single instruction. Thus,
-hyperthreading may not always give a performance improvement.
-
-Certain architectures have support
-for \indexterm{multi-threading}. This means that the hardware actually
-has explicit storage for the local information of multiple threads,
-and switching between the threads can be very fast. This is the case
-on \acp{GPU} (section~\ref{sec:gpu}), and on
-the \indextermsub{Intel}{MIC} architecture, where each core can
-support up to four threads.
-
-\index{hyperthreading|)}
-
-\index{thread|)}
+\index{thread|(textbf}
+\input threads
+\index{thread|)textbf}
 
 \Level 1 {OpenMP}
 \label{sec:openmp}
@@ -1021,12 +635,14 @@ Its main approach to parallelism is the parallel execution of loops:
 based on \indextermbus{compiler}{directives}, a preprocessor can schedule the parallel
 execution of the loop iterations.
 
-The amount of parallelism is flexible: the user merely specifies a
-parallel region, indicating that all iterations are independent to
-some extent, and the runtime system will then use whatever resources
-are available. Because of this dynamic nature, and because no data
-distribution is specified, OpenMP can only work with threads on shared
-memory.
+Since OpenMP is based on \emph{threads}\index{thread!use in OpenMP},
+it features \indextermsub{dynamic}{parallelism}: the number of
+execution streams operating in parallel can vary from one part of the
+code to another. Parallelism is declared by creating
+parallel regions, for instance indicating that all iterations 
+of a loop nest are independent,
+and the runtime system will then use whatever resources
+are available.
 
 OpenMP is not a language, but an extension to the existing C and
 Fortran languages. It mostly operates by inserting
@@ -1034,6 +650,12 @@ directives into source code, which are interpreted by the
 compiler. It also has a modest number of library calls, but these are
 not the main point, unlike in MPI (section~\ref{sec:mpi}). Finally,
 there is a runtime system that manages the parallel execution.
+
+OpenMP has an important advantage over MPI in its programmability:
+it is possible to start with a sequential code and transform
+it by \indextermsub{incremental}{parallelization}. By contrast,
+turning a sequential code into a distributed memory MPI program
+is an all-or-nothing affair.
 
 Many compilers, such as GCC\index{GCC} or the Intel compiler, support
 the OpenMP extensions. In Fortran, OpenMP directives are placed in
@@ -1044,11 +666,8 @@ does not support OpenMP. Programs need to be linked to an OpenMP
 runtime library, and their behaviour can be controlled through
 environment variables.
 
-OpenMP features \indextermsub{dynamic}{parallelism}: the number of
-execution streams operating in parallel can vary from one part of the
-code to another.
-
-For more information about OpenMP, see~\cite{Chapman2008:OpenMPbook}.
+For more information about OpenMP, see~\cite{Chapman2008:OpenMPbook}
+and \url{http://openmp.org/wp/}.
 
 \Level 2 {OpenMP examples}
 
@@ -1483,6 +1102,7 @@ In this section we will see a number of schemes that \emph{can} be
 increased to large numbers of processors.
 
 \Level 1 {Some graph theory}
+\label{sec:graph-theory}
 
 The network that connects the processors in a parallel computer can
 conveniently be described with some elementary graph theory
@@ -1987,64 +1607,38 @@ This type of switching network is one case of a \indexterm{Clos
 
 \index{fat tree|)}
 
-\Level 1 {Co-processors}
+\Level 1 {Cluster networks}
 
-Current CPUs are built to be moderately efficient at just about any
-conceivable computation. This implies that by restricting the
-functionality of a processor it may be possible to raise its
-efficiency, or lower its power consumption at similar
-efficiency. Thus, the idea of incorporating a \indexterm{co-processor}
-has been explored many times. For instance, Intel's 8086 chip, which
-powered the first generation of IBM PCs, could have a numerical
-co-processor, the 80287, added to it. This processor was very
-efficient at transcendental functions and it also incorporated
-\ac{SIMD} technology. Using a separate processor for graphics has also
-been popular\footnote{Further examples are the use of co-processors
-  for \ac{DSP} instructions, as well as \ac{FPGA} boards which can be
-  reconfigured to accomodate specific needs. We will not go into
-  these.}, leading to the \indexac{SSE} instructions for the x86 processor,
-and separate \ac{GPU} units to be attached to the PCI-X bus.
+The above discussion was somewhat abstract, but in real-life clusters
+you can actually see the network designs reflected. For instance,
+\emph{fat tree cluster networks}\index{fat tree!clusters based on}
+\begin{figure}[th]
+  \hbox{%
+    \includegraphics[scale=.08]{rangerswitch}\kern1cm
+    \includegraphics[scale=.08]{stampedeswitches}%
+  }
+  \caption{Networks switches for the TACC Ranger and Stampede clusters}
+  \label{fig:taccswitches}
+\end{figure}
+will have a central cabinet corresponding to the top level in the tree.
+Figure~\ref{fig:taccswitches} shows the switches of the TACC
+\emph{Ranger}\index{TACC!ranger cluster} (no longer in service)
+and \emph{Stampede}\index{TACC!stampede cluster} clusters.
+In the second picture it can be seen that there are actually
+multiple redundant fat-tree networks.
 
-Co-processors can be programmed in two different ways: sometimes 
-it is seamlessly integrated, and certain instructions are
-automatically executed there, rather than on the `host' processor. On
-the other hahd, it is also possible that co-processor functions need
-to be explicitly invoked, and it may even be possible to overlap
-co-processor functions with host functions. The latter case may sound
-attractive from an efficiency point of view, but it raises a serious
-problem of programmability. The programmer now needs to identify
-explicitly two streams of work: one for the host processor and one for
-the co-processor.
-
-Some notable parallel machines with co-processors where:
-\begin{itemize}
-\item The \indextermbus{Intel}{Paragon} (1993) had two processors per
-  node, one for communication and the other for computation. These
-  were in fact identical, the \indextermbus{Intel}{i860}Intel i860
-  processor. In a later revision, it became possible to pass data and
-  function pointers to the communication processors.
-\item The \indextermbus{IBM}{Roadrunner} at Los Alamos was the first
-  machine to reach a PetaFlop\footnote{The \indexterm{Grape computer}
-    had reached this point earlier, but that was a special purpose
-    machine for molecular dynamics calculations.}. It achieved this
-  speed through the use of Cell\index{Cell processor}
-  co-processors. Incidentally, the Cell processor is in essence the
-  engine of the Sony Playstation3, showing again the commoditization
-  of supercomputers (section~\ref{sec:commodity}).
-\item The Chinese \indexterm{Tianhe-1A} topped the Top 500 list in
-  2010, reaching about 2.5 PetaFlops through the use of
-  NVidia\index{NVidia} \acp{GPU}.
-\end{itemize}
-The Roadrunner and Tianhe-1A are examples of co-processors that are
-very powerful, and that need to be explicitly programmed independently
-of the host CPU. For instance, code runing on the the \acp{GPU} of the
-Tianhe-1A is programmed in \indexterm{CUDA} and compiled separately.
-
-In both cases the programmability problem is further exacerbated by
-the fact that the co-processor can not directly talk to the network.
-To send data from one co-processor to another it has to be passed to a
-host processor, from there through the network to the other host
-processor, and only then moved to the target co-processor.
+On the other hand, clusters such as the \indextermbus{IBM}{BlueGene},
+which is based on a \emph{torus-based cluster}\index{torus!clusters based on},
+will look like a collection of identical cabinets, since each contains
+\begin{figure}[th]
+  \includegraphics[scale=.5]{bluegenellnl}
+  \caption{A BlueGene computer}
+%  \includegraphics[scale=.5]{bluegene_topview}
+%  \caption{An IBM BlueGene/P (Photo: Kimberly White/Reuters)}
+  % https://www.llnl.gov/news/newscentercontacts.html
+  \label{fig:bluegenep}
+\end{figure}
+an identical part of the network; see figure~\ref{fig:bluegenep}.
 
 \Level 1 {Bandwidth and latency}
 \label{sec:bwlatency}
@@ -2102,6 +1696,41 @@ so we will ignore it here. Also, in fat-tree networks
 (section~\ref{sec:fat-tree}) the number of hops is of the order of
 $\log P$, where $P$~is the total number of processors, so it can never
 be very large anyway.
+
+\Level 1 {Locality in parallel computing}
+\label{sec:parallel-local}
+\index{locality!in parallel computing|(}
+
+In section~\ref{sec:locality} you found a discussion of 
+locality concepts in single-processor computing.
+The concept of \emph{locality in parallel computing}
+comprises all this and a few levels more.
+
+\heading{Between cores; private cache} Cores on modern processors have
+private coherent caches. This means that
+ it looks like you don't have to worry about locality, since data
+  is accessible no matter what cache it is in. However, maintaining coherence
+  costs bandwidth, so it is best to keep access localized.
+
+\heading{Between cores; shared cache} The cache that is shared between cores
+is one place where you don't have to worry about locality: this is memory that
+is truly symmetric between the processing cores.
+
+\heading{Between sockets} The sockets on a node (or motherboard)
+appear to the programmer to have shared memory, but this is really 
+\indexac{NUMA} access (section~\ref{sec:numa}) since the memory is
+associated with specific sockets.
+
+\heading{Through the network structure} Some networks have clear locality effects.
+You saw a simple example in section~\ref{sec:graph-theory}, and 
+in general it is clear that any grid-type network will favour communication
+between `nearby' processors. Networks based on fat-trees seem free of such
+contention issues, but the levels induce a different form of locality.
+One level higher than the locality on a node, small groups of nodes
+are often connected by a \indextermsub{leaf}{switch}, 
+which prevents data from going to the central switch.
+
+\index{locality!in parallel computing|)}
 
 \Level 0 {Efficiency of parallel computing}
 \label{sec:speedup-efficiency}
@@ -2210,6 +1839,14 @@ parts, one per processor, each processor now has to deal with loop
 overhead: calculation of bounds, and the test for completion. This
 overhead is replicated as many times as there are processors. In
 effect, loop overhead acts as a sequential part of the code.
+
+\begin{exercise}
+  Let's do a specific example. Assume that a code has a setup that
+  takes 1~second and a parallelizable section that takes 1000~seconds
+  on one processor. What are the speedup and efficiency if the code is
+  executed with 100 processors? What are they for 500~processors?
+  Express your answer to at most two significant digits.
+\end{exercise}
 
 \begin{exercise}
   Investigate the implications of Amdahls's law: if the number of
@@ -2383,13 +2020,136 @@ submatrices is.
 \label{sec:mta}
 \input chapters-public/mta
 
-\begin{gpu}
-\Level 0 {GPU computing}
+\Level 0 {Co-processors}
+\label{sec:copprocessor}
+\index{co-processor|(textbf}
+
+Current CPUs are built to be moderately efficient at just about any
+conceivable computation. This implies that by restricting the
+functionality of a processor it may be possible to raise its
+efficiency, or lower its power consumption at similar
+efficiency. Thus, the idea of incorporating a \emph{co-processor}
+attached to the \indexterm{host process}
+has been explored many times. For instance, Intel's 8086 chip, which
+powered the first generation of IBM PCs, could have a numerical
+co-processor, the 80287, added to it. This processor was very
+efficient at transcendental functions and it also incorporated
+\ac{SIMD} technology. Using separate functionality for graphics has also
+been popular, leading to the \indexac{SSE} instructions for the x86 processor,
+and separate \ac{GPU} units to be attached to the PCI-X bus.
+
+Further examples are the use of co-processors
+  for \ac{DSP} instructions, as well as \ac{FPGA} boards which can be
+  reconfigured to accomodate specific needs.
+Early \indexterm{array processors}
+such as the \indextermbus{ICL}{DAP} were also co-processors.
+
+In this section we look briefly at some modern incarnations of this idea,
+in particular \acp{GPU}.
+
+\Level 1 {A little history}
+
+Co-processors can be programmed in two different ways: sometimes 
+it is seamlessly integrated, and certain instructions are
+automatically executed there, rather than on the `host' processor. On
+the other hahd, it is also possible that co-processor functions need
+to be explicitly invoked, and it may even be possible to overlap
+co-processor functions with host functions. The latter case may sound
+attractive from an efficiency point of view, but it raises a serious
+problem of programmability. The programmer now needs to identify
+explicitly two streams of work: one for the host processor and one for
+the co-processor.
+
+Some notable parallel machines with co-processors where:
+\begin{itemize}
+\item The \indextermbus{Intel}{Paragon} (1993) had two processors per
+  node, one for communication and the other for computation. These
+  were in fact identical, the \indextermbus{Intel}{i860}Intel i860
+  processor. In a later revision, it became possible to pass data and
+  function pointers to the communication processors.
+\item The \indextermbus{IBM}{Roadrunner} at Los Alamos was the first
+  machine to reach a PetaFlop\footnote{The \indexterm{Grape computer}
+    had reached this point earlier, but that was a special purpose
+    machine for molecular dynamics calculations.}. It achieved this
+  speed through the use of Cell\index{Cell processor}
+  co-processors. Incidentally, the Cell processor is in essence the
+  engine of the Sony Playstation3, showing again the commoditization
+  of supercomputers (section~\ref{sec:commodity}).
+\item The Chinese \indexterm{Tianhe-1A} topped the Top 500 list in
+  2010, reaching about 2.5 PetaFlops through the use of
+  NVidia\index{NVidia} \acp{GPU}.
+\end{itemize}
+The Roadrunner and Tianhe-1A are examples of co-processors that are
+very powerful, and that need to be explicitly programmed independently
+of the host CPU. For instance, code runing on the the \acp{GPU} of the
+Tianhe-1A is programmed in \indexterm{CUDA} and compiled separately.
+
+In both cases the programmability problem is further exacerbated by
+the fact that the co-processor can not directly talk to the network.
+To send data from one co-processor to another it has to be passed to a
+host processor, from there through the network to the other host
+processor, and only then moved to the target co-processor.
+
+\index{co-processor|)textbf}
+
+\Level 1 {Bottlenecks}
+
+Co-processors often have their own memory, and the
+\indextermbus{Intel}{Xeon Phi} can run programs independently, but
+more often there is the question of how to access the memory of the
+host processor. A~popular solution is to connect the co-processor
+through a \indexterm{PCI bus}. Accessing host memory this way is
+slower than the direct connection that the host processor has. For
+instance, the \emph{Intel Xeon Phi} has a
+\emph{bandwidth}\index{Intel!Xeon Phi!bandwidth} of 512-bit wide at
+5.5GT per second (we will get to that `GT' in a second), while its
+connection to host memory is 5.0GT/s, but only 16-bit wide.
+
+\heading{GT measure} We are used to seeing bandwidth
+measured in gigabits per second. For a \indexterm{PCI bus} one often
+see the \emph{GT}\index{bandwidth!measure in GT/s} measure. This stands
+for giga-transfer, and it measures how fast the bus can change state
+between zero and~one.
+Normally, every state transition would correspond to a bit, except that
+the bus has to provide its own clock information, and if you would send a stream
+of identical bits the clock would get confused. Therefore, every 8~bits
+are encoded in 10~bits, to prevent such streams. However, this means
+that the effective bandwidth is lower than the theoretical number,
+by a factor of~$4/5$ in this case.
+
+And since manufacturers like to give a positive spin on things,
+they report the higher number.
+
+\Level 1 {GPU computing}
 \label{sec:gpu}
 \indexacstart{GPU}
 \input chapters-public/gpu
 \indexacend{GPU}
-\end{gpu}
+
+\Level 1 {Intel Xeon Phi}
+\index{Intel!Xeon Phi|(}
+
+Recently, Intel has released a co-processor, the \emph{Intel Xeon Phi}
+(also known by its architecture design as \ac{MIC})
+which is expressly designed for numerical computing.
+It has both differencies and similarities with \acp{GPU}.
+\begin{itemize}
+\item Both are connected through a \indexterm{PCI-X} bus, which means
+  that operations on the device have a considerable latency in
+  starting up.
+\item The Xeon Phi has general purpose cores, so that it can run whole
+  programs; \acp{GPU} has that only to a limited extent (see
+  section~\ref{sec:gpu-kernel}).
+\item The Xeon Phi accepts ordinary C code.
+\item Both architectures require a large amount of SIMD-style
+  parallelism, in the case of the Xeon Phi because of the 8-wide
+  \indexac{AVX} instructions.
+\item Both devices work, or can work, through \indexterm{offloading}
+  from a host program. In the case of the Xeon Phi this can happen
+  with OpenMP constructs and \indexterm{MKL} calls.
+\end{itemize}
+
+\index{Intel!Xeon Phi|)}
 
 \Level 0 {Remaining topics}
 

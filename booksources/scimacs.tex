@@ -130,10 +130,14 @@
 \closeout\acrowrite
 
 \newcommand{\indexterm}[1]{\emph{#1}\index{#1}}
+\newcommand{\indextermtt}[1]{\texttt{\emph{#1}}\index{#1|texttt}}
+\newcommand{\indextermdef}[1]{\emph{#1}\index{#1|textbf}}
 \newcommand{\indextermp}[1]{\emph{#1s}\index{#1}}
 \newcommand{\indextermsub}[2]{\emph{#1 #2}\index{#2!#1}}
+\newcommand{\indextermsubdef}[2]{\emph{#1 #2}\index{#2!#1|textbf}}
 \newcommand{\indextermsubp}[2]{\emph{#1 #2s}\index{#2!#1}}
 \newcommand{\indextermbus}[2]{\emph{#1 #2}\index{#1!#2}}
+\newcommand{\indextermbusdef}[2]{\emph{#1 #2}\index{#1!#2|textbf}}
 \newcommand{\indextermstart}[1]{\emph{#1}\index{#1|(}}
 \newcommand{\indextermend}[1]{\index{#1|)}}
 \newcommand{\indexstart}[1]{\index{#1|(}}

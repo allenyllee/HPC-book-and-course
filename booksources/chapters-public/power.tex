@@ -27,6 +27,24 @@ to keep the electric field in the transistor constant, the length and
 width of the channel, the oxide thickness, substrate concentration
 density and the operating voltage are all scaled by the same factor.
 
+\Level 1 {Derivation}
+
+A circuit has a certain capacitance~$C$, and if you apply a voltage~$V$,
+it can hold a total charge of~$q$:
+\[ q = CV. \]
+Work~$W$ is raising the charge from zero to~$q$:
+\[ W = qV, \]
+so 
+\[ W = CV^2. \]
+Power~$P$ is work divided by time, and if you measure this by the oscillations
+of a circuit, power becomes proportional to the frequency:
+\begin{equation}
+P = CV^2F.
+\label{eq:power}
+\end{equation}
+
+\Level 1 {Scaling}
+
 This is known as \emph{constant field scaling}\index{field scaling} or
 \indexterm{Dennard scaling}~\cite{Bohr:30yearDennard,Dennard:scaling},
 and it can be considered the driving force behing \indexterm{Moore's
@@ -71,10 +89,32 @@ is also the reason \acp{GPU} with their simplified processor design
 and hence lower energy consumption
 are attractive; the same holds for \acp{FPGA}.
 
-%% We can characterize this shift as one from larger cores, higher
-%% frequency, and higher power, to one where process technology, larger
-%% integration, and new micro-architectures come together for more
-%% power-efficient performance~\cite{Bohr:ISSCC2009}.
+\Level 1 {Multicore}
+
+One solution to the power wall problem is introduction
+of \emph{multicore}\index{multicore!motivated by power} processors.
+Recall equation~\ref{eq:power}, and compare a single processor to two 
+processors at half the frequency. That should have the same computing power, right?
+Since we lowered the frequency, we can lower the voltage if we stay with the same 
+process technology.
+
+The total electric power for the two processors (cores) is, ideally,
+\[ \left.
+\begin{array}{c}
+C_{\mathrm{multi}} = 2C\\
+F_{\mathrm{multi}} = F/2\\
+V_{\mathrm{multi}} = V/2\\
+\end{array}\right\} \Rightarrow
+P_{\mathrm{multi}} = P/4.
+\]
+In practice the capacitance will go up by a little over~2, and the voltage can not quite be dropped by~2,
+so it is more likely that $P_{\mathrm{multi}} \approx 0.4\times P$~\cite{Chandrakasa:transformations}.
+Of course the integration aspects are a little more complicated in practice~\cite{Bohr:ISSCC2009};
+the important conclusion is that now, in order to lower the power (or, conversely, to allow
+further increase in performance while keeping the power constant) we now have to start programming 
+in parallel.
+
+\Level 1 {Total computer power}
 
 The total power consumption of a parallel computer is determined by
 the consumption per processor and the number of processors in the full

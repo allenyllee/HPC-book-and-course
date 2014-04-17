@@ -293,14 +293,48 @@ vector~$y^{(p)}$ for each process:
 after which we sum $y\leftarrow\sum_py^{(p)}$.
 
 \Level 1 {Setup of the sparse matrix-vector product}
+\index{sparse!matrix-vector product!parallel setup|(}
 
-While in the square
-domain case it was easy for a processor to decide which are its
-neighbours, in the sparse case this is not so simple. The
-straightforward way to proceed is to have a preprocessing stage:
+While the dense matrix-vector product relies on collectives
+(see section~\ref{sec:parallel-dense-mvp}),
+the sparse case uses point-to-point communication\footnote
+{This makes sense for the type of sparse matrices
+that come from \acp{PDE}
+which have a clear structure, as you saw 
+in section~\ref{sec:2dbvp}. However, there are 
+sparse matrices that are so random that you essentially
+have to use dense techniques; see section~\ref{sec:random-graph-product}.}
+%
+Every processor sends to just a few neighbours, and receives
+from just a few.
+
+However, there is an asymmetry between sending and receiving.
+It is fairly easy for a processor to find out what other processors
+it will be receiving from.
+
+\begin{exercise}
+  Assume that the matrix is divided over the processors by block rows;
+  see figure~\ref{fig:distmvp2} for an illustration. Also assume that each processor
+  knows which rows each other processor stores. (How would you implement that knowledge?)
+
+  Sketch the algorithm by which a processor can find out who it will
+  be receiving from; this algorithm should not involve any
+  communication itself.
+\end{exercise}
+
+Discovering who to send \emph{to} is harder.
+
+\begin{exercise}
+  Argue that this is easy in the case of a 
+  \indextermsub{structurally symmetric}{matrix}:
+  $a_{ij}\not=0\Leftrightarrow a_{ji}\not=0$.
+\end{exercise}
+
+In the general case, a~processor can in principle be asked to send to any other,
+so the simple algorithm is as follows:
 \begin{itemize}
 \item Each processor makes an inventory of what non-local indices it
-  needs; assuming that each processor knows what range of indices each
+  needs. Under the above assumption that it knows what range of indices each
   other processor owns, it then decides which indices to get from what
   neighbours.
 \item Each processor sends a list of indices to each of its
@@ -312,16 +346,26 @@ straightforward way to proceed is to have a preprocessing stage:
 You will note that, even though the communication during the
 matrix-vector product involves only a few neighbours for each
 processor, giving a cost that is $O(1)$ in the number of processors,
-the setup involves all-to-all communications, which is $O(P)$ in the number of
-processors.
-The setup can be reduced to $O(\log P)$ with some
-trickery~\cite{Falgout:scalable-hypre}.
+the setup involves all-to-all communications, which 
+have time complexity~$O(\alpha P)$
 
-\begin{exercise}
-  The above algorithm for determining the communication part of the
-  sparse matrix-vector product can be made far more efficient if we
-  assume a matrix that is \indexterm{structurally symmetric}:
-  $a_{ij}\not=0\Leftrightarrow a_{ji}\not=0$. Show that in this case
-  no communication is needed to determine the communication pattern.
-\end{exercise}
+If a processor has only a few neighbours, the above algorithm is wasteful. 
+Ideally, you would want space and running time proportional to the number of neighbours.
+We could bring the receive time in the setup if we knew how many messages
+were to be expected. That number can be found:
+\begin{itemize}
+\item Each processor makes an array \n{need} of length~$P$, where \n{need[i]}
+  is~1 if the processor needs any data from processor~$i$, and zero otherwise.
+\item A \indexterm{reduce-scatter} collective on this array, with a
+  sum operator, then leaves on each processor a number indicating how
+  many processors need data from it.
+\item The processor can execute that many receive calls.
+\end{itemize}
+The reduce-scatter call has time complexity $\alpha\log P+\beta P$,
+which is of the same order as the previous algorithm, but 
+probably with a lower proportionality constant.
 
+The time and space needed for the setup can be reduced to $O(\log P)$ with some
+sophisticated trickery~\cite{Falgout:scalable-hypre,Hoefler:2010:SCP}.
+
+\index{sparse!matrix-vector product!parallel setup|)}

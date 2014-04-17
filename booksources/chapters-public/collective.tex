@@ -36,10 +36,10 @@ The main implication of the architectural model above is that the
 number of active processors can only double in each step of an
 algorithm. For instance, to do a broadcast, first processor~0 sends
 to~1, then 0~and~1 can send to 2~and~3, then 0--3 send to 4--7, et
-cetera. This cascade of messages is called a \indexterm{minimum
-  spanning tree} of the processor network, and it follows that any
-collective algorithm has at least $\alpha\log_2p$ cost associated with
-the accumulated latencies.
+cetera. This cascade of messages is called
+a \indextermbus{minimum}{spanning tree} of the processor network, and
+it follows that any collective algorithm has at least $\alpha\log_2p$
+cost associated with the accumulated latencies.
 
 \Level 2 {Broadcast}
 \index{broadcast|(}

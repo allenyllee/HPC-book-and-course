@@ -98,7 +98,8 @@ We can formalize this: Let the vectors $x$ and~$y$ be distributed
 disjointly over the processors, and define uniquely $P(i)$ as the
 processor that owns index~$i$. Then there is an edge $(P,Q)$ if there
 is a nonzero element~$a_{ij}$ with $P=P(i)$ and $Q=P(j)$. This graph
-is undirected if the matrix is \indexterm{structurally symmetric},
+is undirected in the case of a
+\indextermsub{structurally symmetric}{matrix},
 that is $a_{ij}\not=0\Leftrightarrow a_{ji}\not=0$.
 
 The distribution of indices over the processors now gives us vertex

@@ -1,3 +1,4 @@
+% -*- latex -*-
 \Level 0 {Mercurial or hg}
 \index{mercurial|(}
 \index{hg|see{mercurial}}
@@ -246,11 +247,14 @@ file \n{.hg/hgrc}.
 The main sources of information about the repository are \n{hg log}
 and \n{hg id}. The latter gives you global information, depending
 on what option you use. For instance, \n{hg id -n} gives the local revision
-number
-
-The output of \n{hg log} is a list of all changesets so far. Used
-as \n{hg log -r 5} or \n{hg log -r 6:8} it gives information on one or
-more changesets.
+number.
+\begin{itemize}
+\item [\texttt{hg log}] gives you a list of all changesets so far,
+  with the comments you entered.
+\item [\texttt{hg log -v}] tells you what files were affected in each changeset.
+\item [\texttt{hg log -r 5}] or \n{hg log -r 6:8} gives information on
+  one or more changesets.
+\end{itemize}
 
 To see differences in various revisions of individual files, use
 \n{hg diff}. First 

@@ -148,10 +148,10 @@ as an approach that combines the two.
 \begin{figure}[htbp]
 \begin{center}
 \subfigure[Cell list method.]{
-\includegraphics[clip=true,viewport=70 70 362  362,scale=.5]{mdchapter/fig-nb-cellpdf}
+\includegraphics[clip=true,viewport=70 70 362  362,scale=.5]{mdchapter/fig-nb-cell}
 } \qquad
 \subfigure[Verlet neighbor list method.]{
-\includegraphics[clip=true,viewport=70 70 362  362,scale=.5]{mdchapter/fig-nb-verletpdf}
+\includegraphics[clip=true,viewport=70 70 362  362,scale=.5]{mdchapter/fig-nb-verlet}
 }
 \caption{Computing nonbonded forces within a cutoff, $r_c$.  To compute 
 forces involving the highlighted particle, only particles in the shaded
@@ -551,8 +551,8 @@ region, especially if the import region is large compared to the cutoff radius.
 
 \begin{figure}[htbp]
 \begin{center}
-\subfigure[Decomposition into 64 cells.]{\includegraphics[clip=true,viewport=70 70 506 506,scale=.40]{mdchapter/fig-spatial1pdf}} \qquad
-\subfigure[Import region for one cell.]{\includegraphics[clip=true,viewport=70 70 506 506,scale=.40]{mdchapter/fig-spatial2pdf}}
+\subfigure[Decomposition into 64 cells.]{\includegraphics[clip=true,viewport=70 70 506 506,scale=.40]{mdchapter/fig-spatial1}} \qquad
+\subfigure[Import region for one cell.]{\includegraphics[clip=true,viewport=70 70 506 506,scale=.40]{mdchapter/fig-spatial2}}
 \caption{Spatial decomposition, showing particles in a 2-D computational box, (a) partitioned into
 64 cells, (b) import region for one cell.}
 \label{fig:spatial}
@@ -623,7 +623,7 @@ each processor is small compared to the cutoff radius.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[clip=true,viewport=70 70 506 506,scale=.40]{mdchapter/fig-ntmethodpdf}
+\includegraphics[clip=true,viewport=70 70 506 506,scale=.40]{mdchapter/fig-ntmethod}
 \caption{Neutral territory method, showing particles in a 2-D computational box
 and the import region (shaded) for one cell (center square).  This Figure can
 be compared directly to the spatial decomposition case of Fig.~\ref{fig:spatial}(b).
@@ -727,7 +727,7 @@ before and after the transpose are identical.
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[clip=true,viewport=144 85 576 540,scale=.5]{mdchapter/fig-fft-firstpdf}
+\includegraphics[clip=true,viewport=144 85 576 540,scale=.5]{mdchapter/fig-fft-first}
 \caption{Data flow diagram for 1-D FFT for 16 points.  The shaded
 regions show a decomposition for 4 processors (one processor per region).
 In this parallelization, 
@@ -739,8 +739,8 @@ do have communication.}
 
 \begin{figure}[htb]
 \begin{center}
-\subfigure[Data flow diagram (shown without horizontal lines for clarity) for 1-D FFT for 16 points.]{\includegraphics[clip=true,viewport=144 85 648 522,scale=.5]{mdchapter/fig-fft-secondpdf}} \quad
-\subfigure[Partitioning of the indices before (left) and after (right) the transpose.]{\includegraphics[clip=true,viewport=100 190 436 360,scale=.3]{mdchapter/fig-fft-thirdpdf}}
+\subfigure[Data flow diagram (shown without horizontal lines for clarity) for 1-D FFT for 16 points.]{\includegraphics[clip=true,viewport=144 85 648 522,scale=.5]{mdchapter/fig-fft-second}} \quad
+\subfigure[Partitioning of the indices before (left) and after (right) the transpose.]{\includegraphics[clip=true,viewport=100 190 436 360,scale=.3]{mdchapter/fig-fft-third}}
 \caption{1-D FFT with transpose.  The first two stages do not involve communication.  The data is then transposed among the processors.  As a result, the second two stages also do not involve communication.}
 \label{fig:fft2}
 \end{center}
@@ -788,9 +788,9 @@ the entire 3-D FFT computation.
 
 \begin{figure}[htbp]
 \begin{center}
-\subfigure[Block Decomposition]{\includegraphics[clip=true,viewport=100 300 330 490,scale=.6]{mdchapter/fig-fft1pdf}}% \quad
-\subfigure[Slab Decomposition]{\includegraphics[clip=true,viewport=100 300 330 490,scale=.6]{mdchapter/fig-fft2pdf}}% \quad
-\subfigure[Pencil Decomposition]{\includegraphics[clip=true,viewport=100 300 330 490,scale=.6]{mdchapter/fig-fft3pdf}}
+\subfigure[Block Decomposition]{\includegraphics[clip=true,viewport=100 300 330 490,scale=.6]{mdchapter/fig-fft1}}% \quad
+\subfigure[Slab Decomposition]{\includegraphics[clip=true,viewport=100 300 330 490,scale=.6]{mdchapter/fig-fft2}}% \quad
+\subfigure[Pencil Decomposition]{\includegraphics[clip=true,viewport=100 300 330 490,scale=.6]{mdchapter/fig-fft3}}
 \caption{Three data decompositions for 3-D FFTs.}
 \label{fig:fft3}
 \end{center}

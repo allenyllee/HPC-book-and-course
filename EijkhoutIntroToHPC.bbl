@@ -77,6 +77,11 @@ Mark Bohr.
 \newblock {\em Solid-State Circuits Newsletter, IEEE}, 12(1):11 --13, winter
   2007.
 
+\bibitem{Bohr:ISSCC2009}
+Mark Bohr.
+\newblock The new era of scaling in an soc world.
+\newblock In {\em ISSCC}, pages 23--28, 2009.
+
 \bibitem{Bolz:GPUsparse}
 Jeff Bolz, Ian Farmer, Eitan Grinspun, and Peter Schr\"{o}oder.
 \newblock Sparse matrix solvers on the gpu: conjugate gradients and multigrid.
@@ -108,6 +113,12 @@ Ernie Chan, Marcel Heimlich, Avi Purkayastha, and Robert van~de Geijn.
 \newblock Collective communication: theory, practice, and experience.
 \newblock {\em Concurrency and Computation: Practice and Experience},
   19:1749--1783, 2007.
+
+\bibitem{Chandrakasa:transformations}
+A.~P. Chandrakasan, R.~Mehra, M.~Potkonjak, J.~Rabaey, and R.~W. Brodersen.
+\newblock Optimizing power using transformations.
+\newblock {\em IEEE Transaction on Computer Aided Design of Integrated Circuits
+  and Systems}, pages 13--32, January 1995.
 
 \bibitem{Chapel:homepage}
 Chapel programming language homepage.
@@ -468,7 +479,7 @@ Nicholas~J. Higham.
   USA, second edition, 2002.
 
 \bibitem{BSPlib}
-Jonathan. Hill, Bill Mccoll, Dan~C. Stefanescu, Mark~W. Goudreau, Kevin Lang,
+Jonathan. Hill, Bill McColl, Dan~C. Stefanescu, Mark~W. Goudreau, Kevin Lang,
   Satish~B. Rao, Torsten Suel, Thanasis Tsantilas, and Rob~H. Bisseling.
 \newblock {BSPlib}: The {BSP} programming library.
 \newblock {\em Parallel Computing}, 24(14):1947--1980, 1998.
@@ -477,6 +488,11 @@ Jonathan. Hill, Bill Mccoll, Dan~C. Stefanescu, Mark~W. Goudreau, Kevin Lang,
 C.~A.~R. Hoare.
 \newblock An axiomatic basis for computer programming.
 \newblock {\em Communications of the ACM}, pages 576--580, October 1969.
+
+\bibitem{Hoefler:2010:SCP}
+Torsten Hoefler, Christian Siebert, and Andrew Lumsdaine.
+\newblock Scalable communication protocols for dynamic sparse data exchange.
+\newblock {\em SIGPLAN Not.}, 45(5):159--168, January 2010.
 
 \bibitem{ieee754-webpage}
 {IEEE} 754: Standard for binary floating-point arithmetic.
@@ -624,7 +640,7 @@ M.~Luby.
 \bibitem{Pregel:podc2009}
 Grzegorz Malewicz, Matthew~H. Austern, Aart~J.C. Bik, James~C. Dehnert, Ilan
   Horn, Naty Leiser, and Grzegorz Czajkowski.
-\newblock Pregel: a system for large-scale graph processing - "abstract".
+\newblock Pregel: a system for large-scale graph processing.
 \newblock In {\em Proceedings of the 28th ACM symposium on Principles of
   distributed computing}, PODC '09, pages 6--6, New York, NY, USA, 2009. ACM.
 
@@ -778,7 +794,7 @@ D.~E. Shaw.
 \newblock {\em J. Comput. Chem.}, 26:1318--1328, 2005.
 
 \bibitem{Skillicorn96questionsand}
-D.~B. Skillicorn, Jonathan M.~D. Hill, and W.~F. Mccoll.
+D.~B. Skillicorn, Jonathan M.~D. Hill, and W.~F. McColl.
 \newblock Questions and answers about {BSP}, 1996.
 
 \bibitem{mpi-reference}
@@ -905,7 +921,7 @@ Randy Yates.
 Andy Yoo, Edmond Chow, Keith Henderson, William McLendon, Bruce Hendrickson,
   and Umit Catalyurek.
 \newblock A scalable distributed parallel breadth-first search algorithm on
-  bluegene/l.
+  {BlueGene/L}.
 \newblock In {\em Proceedings of the 2005 ACM/IEEE conference on
   Supercomputing}, SC '05, pages 25--, Washington, DC, USA, 2005. IEEE Computer
   Society.
