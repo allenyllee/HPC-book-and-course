@@ -44,6 +44,7 @@ algorithms, but we give them in an algebraic framework that will
 make parallel implementation much easier.
 
 \Level 0 {Traditional graph algorithms}
+\label{sec:graph-alg}
 
 We start by looking at a few `classic' graph algorithms, and we
 discuss how they can be implemented in parallel. The connection
@@ -76,19 +77,43 @@ paths in an unweighted graph. This is simple to do with a \acf{BFS}:
     Let $V$ the neighbours of $U$ that are not themselves in $U$\;
     \If{$V=\emptyset$}{We're done}\Else{
     Set $d(v)=c+1$ for all $v\in V$.\;
+    $U\leftarrow U\cup V$\;
     Increase $c\leftarrow c+1$
     }
   }
 \end{displayalgorithm}
 
+This way of formulating an algorithm is useful for theoretical purposes:
+typically you can formulate a \indexterm{predicate} that is true
+for every iteration of the while loop. This then allows you to prove
+that the algorithm terminates and that it computes what you intended it to compute.
+And on a traditional processor this would indeed be how you program 
+a graph algorithm. However, these days graphs such as from Facebook 
+can be enormous, and you want to program your graph algorithm in parallel.
+
+In that case, the traditional formulations fall short:
+\begin{itemize}
+\item They are often based on queues to which nodes are added or subtracted; this means
+  that there is some form of shared memory.
+\item Statements about nodes and neighbours are made without wondering if these
+  satisfy any sort of spatial locality; if a node is touched more than once there is
+  no guarantee of temporal locality.
+\end{itemize}
+We will now show that graph algorithms can often be considered as sparse-matrix
+algorithms, which means that we can apply all the concepts and analysis we have developed for these.
+
 If $G$ is the \indextermsub{adjacency}{matrix} of the graph, we can
-also formulate this algorithm analogous to a series of matrix-vector
-multiplications. Let $x$ be the vector with only a zero in
-location~$s$ and infinity elsewhere, and define a product as
-\[ y=Gx\equiv \forall_i\colon
-  y_i = \min_{j\colon G_{ij}\not=0} x_j+1,
+also formulate the shortest path algorithm analogous to a series of
+matrix-vector multiplications (see appendix
+section~\ref{app:graph-mult}). Let $x$ be the vector tabulating distances
+from the source, that is, $x_i$~is the distance of node~$i$ from the source.
+For any neighbour $j$ of~$i$, the distance to the source is then $x_i+G_{ij}$,
+unless a shorter distance was already known.
+In other words, we can define a product
+\[ y^t=x^tG\equiv \forall_i\colon
+  y_j = \min\bigl\{ x_j, \min_{i\colon G_{ij}\not=0} \{x_i+1\} \bigr\},
 \]
-then the iterations of the above while-loop correspond to subsequent
+and the iterations of the above while-loop correspond to subsequent
 matrix-vector products under this definition.
 
 This algorithm works because we can set $d(v)$ to its final value
@@ -109,8 +134,9 @@ of the weights of the stages. Here is the Bellman-Ford algorithm:
   }
 \end{displayalgorithm}
 
-This algorithm is correct since, for a given node~$u$, after $k$ steps of the outer iteration
-it has considered all path $s\rightarrow u$ of $k$ stages.
+This algorithm is correct since, for a given node~$u$, after $k$ steps
+of the outer iteration it has considered all path $s\rightarrow u$ of
+$k$ stages.
 
 \begin{exercise}
   What is the complexity of this algorithm? Can the length of the
@@ -119,11 +145,31 @@ it has considered all path $s\rightarrow u$ of $k$ stages.
 
 We can again write this as a series of matrix-vector products, if we define
 the product as
-\[ y=Gx\equiv \forall_i\colon
-  y_i = \min\bigl\{ x_i, \min_{j\colon G_{ij}\not=0} x_j+g_{ij} \bigr\},
+\[ y^t=x^tG\equiv \forall_i\colon
+  y_j = \min\bigl\{ x_j, \min_{i\colon G_{ij}\not=0} \{x_i+g_{ij}\} \bigr\},
 \]
+This has essentially the same basis as above: the minimum distance to~$j$
+is minimum of an already computed distance, or the minimum distance to any node~$i$
+plus the transition~$g_{ij}$.
 
-\heading{Parallelization}
+\Level 1 {Parallelization}
+
+Graph algorithms in their traditional formulation can be parallelized.
+Typically there are macro steps that are sequential, but in which 
+a number of variables are considered independently. Thus there is indeed
+parallelism to be exploited.
+
+However, these traditional formulations often feature sets of variables
+that are gradually built up or depleted. This is implementable by
+using a \indextermbus{task}{queue}, but this limits the 
+implementation to some form of shared memory. Also, assignment of tasks 
+to processing elements is completely arbitrary, so the algorithm
+will have little spatial or temporal locality.
+
+For these reasons, a linear algebra formulation can be preferable.
+We definitely need this approach once distributed memory is considered,
+but even on multicore architectures it can pay off to 
+encourage locality.
 
 In section~\ref{sec:pspmvp} we discussed the parallel evaluation
 of the sparse matrix-vector product. Because of the sparsity, 
@@ -179,7 +225,7 @@ except that there the inner loop would be `for all $u,v>k$'.
 Algebraically:
 \begin{displayalgorithm}
   \For {$k$ from zero to $|V|$} {
-    $D\leftarrow D._{\min} [D(:,k) \mathbin{\min\cdot_+} D(k,:) ]$
+    $D\leftarrow D._{\min} \bigl[D(:,k) \mathbin{\min\cdot_+} D(k,:)  \bigr]$
   }
 \end{displayalgorithm}
 

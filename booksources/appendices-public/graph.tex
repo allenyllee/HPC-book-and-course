@@ -256,6 +256,7 @@ changed. However, it may now no longer be apparent from looking
 at the adjacency matrix.
 
 \Level 1 {Graph closure}
+\label{app:graph-closure}
 
 Here is another example of how adjacency matrices can simplify
 reasoning about graphs.
@@ -271,19 +272,53 @@ reasoning about graphs.
 \end{exercise}
 
 \Level 1 {Graph operations in linear algebra}
+\label{app:graph-mult}
 
-The view of a graph as an adjacency matrix can be used to formulate
-graph algorithms through linear algebra. As a simple example, if $G$ 
-is an adjacency matrix, and $e$ the vector of all~$1$s, then $Ge$ is 
-the vector that with the degrees of the nodes.
+In most of the above, the adjacency matrix was nothing more than a table.
+We will now show that we can actually do linear algebra with it,
+making it deserving of the name `matrix'. As a simple example
+of using linear algebra on an adjacency matrix~$G$,
+let $e$ the vector of all~$1$s, then $Ge$ is 
+the vector that lists the degrees of the nodes.
 
-Other operations are a little harder to formulate. Consider a weighted graph~$G$.
+We can do many operations this way. Consider a weighted graph~$G$.
 Finding for each node~$i$ the largest weight~$g_{ij}$ can be described as
 \[ y=G\otimes e\qquad\hbox{where}\qquad
    y_i=\max_j g_{ij}\cdot 1
 \]
 This looks like the regular matrix-vector product $Ge$, but with
 the sum replaced by a maximum calculation.
+
+In many cases we actually need the left product, that is, multiplying
+the adjacency matrix from the left by a row vector. Let for example $e_i$~be 
+the vector with a~$1$ in location~$i$ and zero elsewhere. Then $e_i^tG$
+has a one in every~$j$ that is a neighbour of~$i$ in the adjacency graph of~$G$.
+
+\Level 2 {Markov chains}
+
+This left matrix-vector product has a neat application: \indextermbus{Markov}{chains}.
+Suppose we have a system (see for instance~\ref{app:fsa}) that can be
+in any of $n$~states. We can then use the adjacency matrix to model
+state transitions.
+
+Let $G$ by an adjacency matrix with the property that all elements are
+non-negative, and the elements in each row sum to~1. We now interpret
+$g_{ij}$ as the probability of going from state $i$ to state~$j$. Let
+$x$~be a probability vector, that is, $x_i$~is the nonegative probability 
+of being in state~$i$, then $y^t=x^tG$ describes these probabilities,
+after one state transition.
+
+\begin{exercise}
+For a vector $x$ to be a proper probability vector, its elements
+need to sum to~1. Show that the elements of~$y$ again sum to~1.
+\end{exercise}
+
+\Level 2 {General matrix-vector product}
+
+The examples above showed that sometimes we perform an operation
+on an adjacency matrix that has the structure of a matrix-vector product,
+but may not necessarily use addition and multiplication. (Many more examples 
+of this can be found in section~\ref{sec:graph-alg}.)
 
 Motivated by this, we define a general product
 \[ y = G \mathop{\oplus\cdot_\otimes} x \]
@@ -293,7 +328,7 @@ as
 In this notation, finding the largest weight would be
 \[ w= G\mathop{\max\cdot_\times} e. \]
 
-This will be used in several algorithms in section~\ref{sec:graph-analytics};
+This will be used in several algorithms in chapter~\ref{ch:graphalgorithms};
 for other applications see~\cite{Kung:pegasus2009}.
 
 \Level 0 {Spectral graph theory}
@@ -302,7 +337,7 @@ for other applications see~\cite{Kung:pegasus2009}.
 With a graph $G$\footnote{This section owes much to Dan Spielman's course
 on spectral graph theory~\url{http://www.cs.yale.edu/homes/spielman/561/}.}
 and its adjacency matrix~$A_G$, we can define a
-\indexterm{stochastic matrix} or \indexterm{Markov matrix} by scaling
+\indexterm{stochastic matrix} or \indextermbus{Markov}{matrix} by scaling
 $A_G$ to have unit row sums:
 \[ W_G = D_G\inv A_G\qquad \hbox{where $(D_G)_{ii}=\deg(i)$}. \]
 To see how we interpret this, let's look at a simple example.

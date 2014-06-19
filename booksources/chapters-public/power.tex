@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012/3/4
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -27,36 +27,53 @@ to keep the electric field in the transistor constant, the length and
 width of the channel, the oxide thickness, substrate concentration
 density and the operating voltage are all scaled by the same factor.
 
-\Level 1 {Derivation}
+\Level 1 {Derivation of scaling properties}
 
-A circuit has a certain capacitance~$C$, and if you apply a voltage~$V$,
-it can hold a total charge of~$q$:
-\[ q = CV. \]
-Work~$W$ is raising the charge from zero to~$q$:
-\[ W = qV, \]
-so 
-\[ W = CV^2. \]
-Power~$P$ is work divided by time, and if you measure this by the oscillations
-of a circuit, power becomes proportional to the frequency:
-\begin{equation}
-P = CV^2F.
-\label{eq:power}
-\end{equation}
+The properties of \emph{constant field scaling}\index{field scaling} or
+\indexterm{Dennard scaling}~\cite{Bohr:30yearDennard,Dennard:scaling}
+are an ideal-case description of the properties of a circuit
+as it is miniaturized. One important result is that power density 
+stays constant as chip features get smaller, and the frequency 
+is simultaneously increased. 
 
-\Level 1 {Scaling}
+The basic properties derived from circuit theory are that,
+if we scale feature size down by~$s$:
+\[
+\begin{array}{|l|c|}\hline
+\hbox{Feature size}&\sim s\\
+\hbox{Voltage}&\sim s\\
+\hbox{Current}&\sim s \\ 
+\hbox{Frequency}&\sim s\\
+\hline
+\end{array}
+\]
 
-This is known as \emph{constant field scaling}\index{field scaling} or
-\indexterm{Dennard scaling}~\cite{Bohr:30yearDennard,Dennard:scaling},
-and it can be considered the driving force behing \indexterm{Moore's
+Then we can derive that 
+\[ \hbox{Power} = V\cdot I \sim s^2, \]
+and because the total size of the circuit also goes down with~$s^2$,
+the power density stays the same.
+Thus, it also becomes possible to
+put more transistors on a circuit, and essentially not change the cooling
+problem.
+
+This result can be considered
+the driving force behing \indexterm{Moore's
   law}, which states that the number of transistors in a processor
 doubles every 18 months.
 
-The net result
-is that the dynamic power consumption $P$ is scaled to~$s^2P$ ,
-circuit delay $T$ is scaled to~$sT$, and operating frequency $F$ is
-changed to~$F/s$.Correspondingly, the energy consumption is scaled
-by~$s^3$, and this gives us the space to put more components on a
-chip.
+The frequency-dependent part of the power a processor needs
+comes from charging and discharing the capacitance of the circuit, so
+\begin{equation}
+\begin{array}{|l|l|} \hline
+\hbox{Charge}&q=CV\\
+\hbox{Work}&W=qV=CV^2\\
+\hbox{Power}&W/\hbox{time}=WF=CV^2F \\ \hline
+\end{array}
+\label{eq:power}
+\end{equation}
+This analysis can be used to justify the introduction of multicore processors.
+
+\Level 1 {Multicore}
 
 At the time of this writing (circa~2010), miniaturization of
 components has almost come to a standstill, because further lowering
@@ -88,9 +105,6 @@ parallelism. This development has led to the current generation of
 is also the reason \acp{GPU} with their simplified processor design
 and hence lower energy consumption
 are attractive; the same holds for \acp{FPGA}.
-
-\Level 1 {Multicore}
-
 One solution to the power wall problem is introduction
 of \emph{multicore}\index{multicore!motivated by power} processors.
 Recall equation~\ref{eq:power}, and compare a single processor to two 
@@ -107,12 +121,15 @@ V_{\mathrm{multi}} = V/2\\
 \end{array}\right\} \Rightarrow
 P_{\mathrm{multi}} = P/4.
 \]
-In practice the capacitance will go up by a little over~2, and the voltage can not quite be dropped by~2,
-so it is more likely that $P_{\mathrm{multi}} \approx 0.4\times P$~\cite{Chandrakasa:transformations}.
-Of course the integration aspects are a little more complicated in practice~\cite{Bohr:ISSCC2009};
-the important conclusion is that now, in order to lower the power (or, conversely, to allow
-further increase in performance while keeping the power constant) we now have to start programming 
-in parallel.
+In practice the capacitance will go up by a little over~2, and the
+voltage can not quite be dropped by~2, so it is more likely that
+$P_{\mathrm{multi}} \approx 0.4\times
+P$~\cite{Chandrakasa:transformations}.  Of course the integration
+aspects are a little more complicated in
+practice~\cite{Bohr:ISSCC2009}; the important conclusion is that now,
+in order to lower the power (or, conversely, to allow further increase
+in performance while keeping the power constant) we now have to start
+programming in parallel.
 
 \Level 1 {Total computer power}
 

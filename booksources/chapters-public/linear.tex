@@ -464,14 +464,16 @@ and likewise
     \end{matrix}\right)
   \]
 and even more remarkable:
-  \[ L_1^{-1}L_2^{-1} = \left(
+\[ L_1^{-1}L_2^{-1} = \left(
     \begin{matrix}
       1&0&0\\ 2&1&0\\ 1/2&3&1
     \end{matrix}\right),
-  \]
+\]
 that is, $L_1^{-1}L_2^{-1}$~contains the off-diagonal elements of
 $L_1^{-1},L_2^{-1}$ unchanged, and they in turn contain the
-elimination coefficients.
+elimination coefficients. (This is a special case of \emph{Householder
+reflectors}\index{Householder reflectors!in LU factorization}; see~\ref{app:reflector}.)
+
 \begin{exercise}
   Show that a similar statement holds, even if there are elements
   above the diagonal.
@@ -885,6 +887,10 @@ we find that this is $2/3n^3$ plus some lower
 order terms. This is of a higher order than solving the linear system:
 as the system size grows, the cost of constructing the $LU$
 factorization completely dominates.
+
+A further point to mention here is that both the factorization
+and forward/backward solution involve recursion, so they are not trivial 
+to parallelize. We will say more about that later on.
 
 \index{complexity!computational|)}
 

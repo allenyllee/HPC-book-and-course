@@ -469,11 +469,11 @@ char *stringify_granularity(int granularity)
 
 void tests_quiet(int argc, char **argv)
 {
-  if ((argc > 1) && (strcasecmp(argv[1], "TESTS_QUIET") == 0))
-    {
-      TESTS_QUIET = 1;
-    }
-  else
+  /* if ((argc > 1) && (strcasecmp(argv[1], "TESTS_QUIET") == 0)) */
+  /*   { */
+  /*     TESTS_QUIET = 1; */
+  /*   } */
+  /* else */
     {
       int retval;
       
@@ -672,9 +672,10 @@ int enum_add_native_events(int *num_events, int **evtcodes)
 	int i = 0, k, event_code, retval;
 	unsigned int counters, event_found = 0;
 	PAPI_event_info_t info;
-	const PAPI_substrate_info_t *s = NULL;
 
-	s = PAPI_get_substrate_info();
+	// This is version 3 stuff.
+	/* const PAPI_substrate_info_t *s = NULL; */
+	/* s = PAPI_get_substrate_info(); */
 
 	counters = (unsigned int)PAPI_num_hwctrs();
 	(*evtcodes) = (int *)calloc(counters, sizeof(int));
@@ -691,7 +692,7 @@ int enum_add_native_events(int *num_events, int **evtcodes)
 	do {
 		retval = PAPI_get_event_info(i, &info);
 
-		if (s->cntr_umasks) {
+		if (0 /* s->cntr_umasks */ ) {
 			k = i;
 			if (PAPI_enum_event(&k, PAPI_NTV_ENUM_UMASKS) == PAPI_OK) {
 				do {

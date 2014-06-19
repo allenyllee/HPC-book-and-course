@@ -318,3 +318,33 @@ lies in such a circle. This is the Gershgorin theorem.
 
 We can conclude that the eigenvalues are in the interior of these
 discs, if the constant vector is not an eigenvector.
+
+\Level 0 {Householder reflectors}
+\index{Householder reflectors|(}
+\label{app:reflector}
+
+In some contexts the question comes up how to transform one subspace into another.
+\emph{Householder reflectors} are in a sense the minimal solution to this. Consider
+a unit vector~$u$, and let \[ H= I-2uu^t. \] You can easily check that $Hu=-u$,
+and if $u\perp v$, then $Hv=v$. In other words, the subspace of multiples of~$u$ is 
+flipped, and the orthogonal subspace stays invariant.
+
+Now for the original problem of mapping one space into another. Let the original space be spanned
+by a vector~$x$ and the resulting by~$y$, then note that 
+\[ 
+\begin{cases}
+x = (x+y)/2 + (x-y)/2\\ y = (x+y)/2 - (x-y)/2
+\end{cases}
+\]
+In other words, we can map $x$ into~$y$ with the reflector based on $u=(x-y)/2$.
+
+We can generalize Householder reflectors to a form \[ H=I-2uv^t. \]
+The matrices $L_i$ used in LU factorization (see section~\ref{sec:lu-fact})
+can then be seen to be of the form $L_i = I-\ell_ie_i^t$ where $e_i$~has a single one
+in the $i$-th location, and $\ell_i$~only has nonzero below that location.
+That form also makes it easy to see that $L_i\inv = I+\ell_ie_i^t$:
+\[ (I-uv^t)(I+uv^t) = I-uv^tuv^t = 0 \]
+if $v^tu=0$.
+
+\index{Householder reflectors|)}
+

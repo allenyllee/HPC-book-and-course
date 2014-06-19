@@ -6,8 +6,7 @@ this section we will take a brief look at the PETSc library for sparse
 matrix computations, and the BLAS/Lapack libraries for dense
 computations.
 
-\Level 0 {The Portable Extendable Toolkit for Scientific
-  Computing}
+\Level 0 {The Portable Extendable Toolkit for Scientific Computing}
 \index{linear algebra!software!sparse|(}
 \index{PETSc|(}
 
@@ -219,7 +218,8 @@ for (i=myfirst; i<mylast; i++) {
   PetscInt j[3]; PetscReal v[3];
   j[0] = i-1; j[1] = i; j[2] = i+1;
   v[0] = --vm-1; v[1] = 2*vm; v[2] = -vm+1;
-  ierr = MatSetValues(A,1,&i,3,j,v,INSERT_VALUES); CHKERRQ(ierr);
+  ierr = MatSetValues
+            (A,1,&i,3,j,v,INSERT_VALUES); CHKERRQ(ierr);
 }
 \end{verbatim}
 However, this code is not entirely correct. Edit the program using

@@ -112,12 +112,14 @@ First we need to have a repository. In practice, you will often use
 one that has been set up by a sysadmin, but there are several ways to
 set up a repository yourself.
 \begin{itemize}
-\item There are commercial and free hosting services such as
-  \url{http://code.google.com/projecthosting} (open source only) or 
-  \url{http://unfuddle.com/about/tour/plans}. Once you create a
+\item There are commercial and free hosting services such as 
+  \indextermbus{Google}{code}
+  \url{http://code.google.com/projecthosting} (open source only) or
+  \indexterm{BitBucket} \url{https://bitbucket.org/}
+  (this has favourable academic licenses). Once you create a
   repository there, you can make a local copy on your computer:
 \begin{verbatim}
-%% svn co http://yourname.unfuddle.com/svn/yourname_yourproject/ project
+%% svn co http://yourservice.com//yourproject/ project
 Checked out revision 0.
 \end{verbatim}
 where \n{co} is short for `check out'\footnote{Alternatively, you can create a repository in the local file system with \n{svnadmin create ./repository --fs-type=fsfs} and check it out with \n{svn co file://path.../}; we will not go into this.}.

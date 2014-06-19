@@ -1,3 +1,5 @@
+\index{N-body problems|(}
+
 In chapter \ref{ch:odepde} we looked at continuous phenomena, such as
 the behaviour of a heated rod in the entire interval $[0,1]$ over a
 certain time period. There are also applications where you may be
@@ -5,9 +7,16 @@ interested in a finite number of points. One such application is the
 study of collections of particles, possibly very big particles such as
 planets or stars, under the influence of a force such as gravity or
 the electrical force. (There can also be external forces, which we
-will ignore; also we assume there are no collisions, otherwise we need to incorporate nearest-neighbour interactions.) This type of
-problems is known as N-body problems.
+will ignore; also we assume there are no collisions, otherwise we need
+to incorporate nearest-neighbour interactions.) This type of problems
+is known as N-body problems.
 
+\begin{wrapfigure}{r}{2.5in}
+\includegraphics[scale=.4]{nbody}
+\caption{Summing all forces on a particle}
+\hbox{}\kern-1.5in\hbox{}
+\end{wrapfigure}
+%
 A basic algorithm for this problem is easy enough:
 \begin{itemize}
 \item choose some small time interval,
@@ -68,14 +77,15 @@ figure~\ref{fig:bh-quadrants}.
     indicated (left); actual subdivision with one particle per box (right)}
   \label{fig:bh-quadrants}
 \end{figure}
+
 The algorithm is then as follows. First total mass and center of mass
 are computed for all cells on all levels:
 \begin{quotation}
   \begin{tabbing}
     for \=each level $\ell$, from fine to coarse:\\
     \>for \=each cell $c$ on level $\ell$:\\
-    \>\> compute \=the total mass and center of mass for cell $c$\\
-    \>\>\> by considering its children\\
+    \>\> compute \=the total mass and center of mass\\
+    \>\>\> for cell $c$ by considering its children\\
     \> if there are no particles in this cell,\\
     \>\> set its mass to zero
   \end{tabbing}
@@ -90,11 +100,21 @@ Then the levels are used to compute the interaction with each particle:
     \>\>otherwise consider the children of $c$
   \end{tabbing}
 \end{quotation}
+
+\begin{wrapfigure}{r}{2.5in}
+\includegraphics[scale=.08]{bh-quadrants-ratio}
+\caption{Boxes with constant distance/diameter ratio}
+%\hbox{}\kern-2in\hbox{}
+\label{fig:bh-cellratio}
+\end{wrapfigure}
+%
 The test on whether a cell is far enough away is typically implemented
 as the ratio of its diameter to its distance being small enough. This
-is sometimes referred to as the `cell opening criterium'.
+is sometimes referred to as the `cell opening criterium'. In this manner, 
+each particle interacts with a number of concentric rings of cells,
+each next ring of double width; see figure~\ref{fig:bh-cellratio}.
 
-It is clear that this algorithm is easy to realize if the cells are
+This algorithm is easy to realize if the cells are
 organized in a tree. In the three-dimensional case, each cell has
 eight children, so this is known as an \indexterm{octtree}.
 
@@ -216,6 +236,8 @@ tasks than processor cores, this will all even out. With distributed
 memory we lack the possibility to assign work to arbitrary processors,
 so we need to assign load carefully. \acfp{SFC} can be used here 
 to good effect (see section~\ref{sec:space-filling}).
+
+\index{N-body problems|)}
 
 \endinput 
 

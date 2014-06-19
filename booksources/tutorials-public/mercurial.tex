@@ -35,7 +35,8 @@ on Bitbucket. Both students can then clone it:
 \begin{verbatim}
 %% hg clone https://YourName@bitbucket.org/YourName/your-project
 updating to branch default
-0 files updated, 0 files merged, 0 files removed, 0 files unresolved
+0 files updated, 0 files merged, 0 files removed, 
+    0 files unresolved
 \end{verbatim}
 You now have an empty directory \n{your-project}.
 
@@ -91,12 +92,14 @@ remote: bb/acl: YourName is allowed. accepted payload.
 \end{verbatim}
 In the \n{push} step you were probably asked for your password. You can
 prevent that by having some lines in your \verb+$HOME/.hgrc+ file:
+{\footnotesize
 \begin{verbatim}
 [paths]
 projectrepo = https://YourName:yourpassword@bitbucket.org/YourName/my-project
 [ui]
 username=Your Name <you@somewhere.youruniversity.edu>
 \end{verbatim}
+}
 Now the command \n{hg push projectrepo} will push the local changes
 to the global repository without asking for your password. Of course,
 now you have a file with a cleartext password, so you should set the
@@ -140,6 +143,7 @@ abort: push creates new remote head b0d31ea209b3!
 \end{verbatim}
 The solution is to get the other edit, and commit again. This takes a 
 couple of commands:
+{\small
 \begin{verbatim}
 %% hg pull myproject
 searching for changes
@@ -158,7 +162,8 @@ merging firstfile
 M firstfile
 %% hg commit -m ``my edit again''
 %% hg push test
-pushing to https://VictorEijkhout:***@bitbucket.org/VictorEijkhout/my-project
+pushing to https://VictorEijkhout:***@bitbucket.org/
+                       VictorEijkhout/my-project
 searching for changes
 remote: adding changesets
 remote: adding manifests
@@ -166,6 +171,7 @@ remote: adding file changes
 remote: added 2 changesets with 2 changes to 1 files
 remote: bb/acl: VictorEijkhout is allowed. accepted payload.
 \end{verbatim}
+}
 
 This may seem complicated, but you see that Mercurial prompts you 
 for what commands to execute, and the workflow is clear, if you refer
@@ -180,6 +186,7 @@ longer resolve the conflicts. For instance, let one student insert a
 line between the first and the second, and let the second student edit
 the second line. Whoever tries to push second, will get messages
 like this:
+{\small
 \begin{verbatim}
 %% hg pull test
 added 3 changesets with 3 changes to 1 files (+1 heads)
@@ -187,10 +194,13 @@ added 3 changesets with 3 changes to 1 files (+1 heads)
 %% hg merge
 merging firstfile
 warning: conflicts during merge.
-merging firstfile incomplete! (edit conflicts, then use 'hg resolve --mark')
+merging firstfile incomplete! 
+    (edit conflicts, then use 'hg resolve --mark')
 0 files updated, 0 files merged, 0 files removed, 1 files unresolved
-use 'hg resolve' to retry unresolved file merges or 'hg update -C .' to abandon
+use 'hg resolve' to retry unresolved file merges 
+    or 'hg update -C .' to abandon
 \end{verbatim}
+}
 Mercurial will give you several options. It is easiest to resolve the
 conflict with a text editor. If you open the file that has the conflict
 you'll see something like:

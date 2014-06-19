@@ -298,7 +298,7 @@ These two version of the \ac{FOM} algorithm are
 equivalent in exact arithmetic, but differ in practical circumstances
 in two ways:
 \begin{itemize}
-\item The modified Gramm-Schmidt method is more numerically stable;
+\item The modified Gram-Schmidt method is more numerically stable;
 \item The unmodified method allows you to compute all inner products
   simultaneously. We discuss this below in
   section~\ref{sec:iterative-computational}.
@@ -402,7 +402,7 @@ Combining these relations gives us, for instance,
     r_1^tK\inv r_2=0\\   r_2=r_1-\delta_iAK\inv p_1
   \end{array}
   \right\} \Rightarrow
-  \delta_1 = \frac{r_1^tr_1}{r_1^tAK\inv p_1}.
+  \delta_1 = \frac{r_1^tr_1}{r_1^tK\inv Ap_1}.
 \]
 Finding $\upsilon_{12},u_{02}$ is a little harder. For this, we start by
 summarizing the relations for the residuals and search directions

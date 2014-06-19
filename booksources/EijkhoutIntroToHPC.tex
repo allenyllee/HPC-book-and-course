@@ -15,9 +15,6 @@
 \documentclass[11pt,letterpaper,twoside,openany]{boek3}
 %\documentclass{book}
 
-\usepackage[pdftex,colorlinks]{hyperref}
-\usepackage[all]{hypcap}
-
 \usepackage{comment,verbatim}
 \makeatletter
 \def\verbatim@startline{\verbatim@line{\leavevmode\kern\unitindent\relax}}
@@ -27,6 +24,14 @@
 \IncludeAnswersfalse
 \input inex
 \includecomment{gpu}
+
+\begin{notlulu}
+  \usepackage[pdftex,colorlinks]{hyperref}
+  \usepackage[all]{hypcap}
+\end{notlulu}
+\begin{lulu}
+  \usepackage{url}
+\end{lulu}
 
 \usepackage{amssymb}
 \usepackage[fleqn]{amsmath}
@@ -207,7 +212,7 @@
 
 \part{Theory}
 
-\CHAPTER{Sequential Computing}{sequential}
+\CHAPTER{Single-processor Computing}{sequential}
 \CHAPTER{Parallel Computing}{parallel}
 \CHAPTER{Computer Arithmetic}{arithmetic}
 \begin{comment}
@@ -222,7 +227,7 @@
 \CHAPTER{Molecular dynamics}{md}
 \CHAPTER{Sorting}{sorting}
 \CHAPTER{Graph analytics}{graphalgorithms}
-\CHAPTER{Discrete systems}{discrete}
+\CHAPTER{N-body problems}{discrete}
 \begin{montecarlo}
 \CHAPTER{Monte Carlo Methods}{montecarlo}
 \end{montecarlo}
@@ -233,7 +238,7 @@
 
 % not for public consumption
 \begin{notready}
-\CHAPTER{Lattice-Boltzmann methods}{lbm}
+\CHAPTER{Other physics applications}{lbm}
 \end{notready}
 
 \begin{comment}
@@ -403,6 +408,9 @@
 \index{Roadrunner|see{IBM!Roadrunner}}
 \index{cluster!node|see{node}}
 \printindex
+
+\hbox{}\vfill
+\includegraphics{isbn_barcode}
 
 \closeout\chapterlist
 \end{document}

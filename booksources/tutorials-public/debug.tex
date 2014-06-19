@@ -140,16 +140,19 @@ Apparently the error occurred in a function \n{__svfscanf_l}, which is
 not one of ours, but a system function. Using the \n{backtrace}
 (or~\n{bt}, also \n{where} or~\n{w}) command we quickly find out how
 this came to be called:
+{\small
 \begin{verbatim}
 (gdb) backtrace
 #0  0x00007fff824295ca in __svfscanf_l ()
 #1  0x00007fff8244011b in fscanf ()
 #2  0x0000000100000e89 in main (argc=1, argv=0x7fff5fbfc7c0) at square.c:7
 \end{verbatim}
+}
 We take a close look at line~7, and see that we need to
 change \n{nmax} to~\n{&nmax}.
 
 There is still an error in our program:
+{\small
 \begin{verbatim}
 (gdb) run
 50000
@@ -159,6 +162,7 @@ Reason: KERN_PROTECTION_FAILURE at address: 0x000000010000f000
 0x0000000100000ebe in main (argc=2, argv=0x7fff5fbfc7a8) at square1.c:9
 9           squares[i] = 1./(i*i); sum += squares[i];
 \end{verbatim}
+}
 We investigate further:
 \begin{verbatim}
 (gdb) print i
@@ -190,7 +194,8 @@ Running the program in gdb quickly tells you where the problem lies:
 Starting program: tutorials-public/gdb//fsquare 
 Reading symbols for shared libraries ++++. done
 
-Program received signal EXC_BAD_INSTRUCTION, Illegal instruction/operand.
+Program received signal EXC_BAD_INSTRUCTION,
+Illegal instruction/operand.
 0x0000000100000da3 in square () at square.F:7
 7                sum = sum + squares(i)
 \end{verbatim}

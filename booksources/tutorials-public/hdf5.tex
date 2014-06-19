@@ -73,7 +73,8 @@ parameter, so it would be a good idea to create a file
 \begin{verbatim}
 #include "hdf5.h"
 #define H5REPORT(e) \
-  {if (e<0) {printf("\nHDF5 error on line %d\n\n",__LINE__); return e;}}
+  {if (e<0) {printf("\nHDF5 error on line %d\n\n",__LINE__); \
+   return e;}}
 \end{verbatim}
 and use this as:
 \begin{verbatim}
@@ -109,7 +110,7 @@ like a directory tree.
   the include and library directories, respectively.
 \end{istc}
 
-\verbatiminput{tutorials-public/hdf5/create.c}
+{\small \verbatiminput{tutorials-public/hdf5/create.c} }
 
 You can display the created file on the commandline:
 \begin{verbatim}
@@ -140,7 +141,7 @@ Note that datasets and dataspaces need to be closed, just like files.
   code below}{This creates a file \n{dset.h} that can be displayed
   with \n{h5dump}.}{}
 
-\verbatiminput{tutorials-public/hdf5/dataset.c}
+{\small \verbatiminput{tutorials-public/hdf5/dataset.c} }
 
 We again view the created file online:
 \begin{verbatim}
@@ -177,7 +178,7 @@ parameter was it generated.
   running the \n{parmwrite.c} code below.}{A new file \n{wdset.h5}
   is created.}{}
 
-\verbatiminput{tutorials-public/hdf5/parmdataset.c}
+{\small \verbatiminput{tutorials-public/hdf5/parmdataset.c} }
 
 \begin{verbatim}
 %% h5dump wdset.h5 
@@ -209,6 +210,7 @@ GROUP "/" {
 The datasets you created allocate the space in the hdf5 file. Now you
 need to put actual data in it. This is done with the \n{H5Dwrite} call.
 
+{\small
 \begin{verbatim}
 /* Write floating point data */
 for (i=0; i<24; i++) data[i] = i+.5;
@@ -248,6 +250,7 @@ GROUP "/" {
 }
 }
 \end{verbatim}
+}
 
 If you look closely at the source and the dump, you see that the data
 types are declared as `native', but rendered as \n{LE}.  The `native'
@@ -277,7 +280,7 @@ corresponding \n{H5Dwrite}.
   \n{(1,2)} data point of the array.}{Make sure that you run
   \n{parmwrite} to create the input file.}
 
-\verbatiminput{tutorials-public/hdf5/allread.c}
+{\small \verbatiminput{tutorials-public/hdf5/allread.c} }
 
 \begin{verbatim}
  %% ./allread

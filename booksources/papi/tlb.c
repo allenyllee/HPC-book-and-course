@@ -6,7 +6,9 @@
 #include "papi_test.h"
 extern int TESTS_QUIET;         /* Declared in test_utils.c */
 
-#define PCHECK(e) if (e!=PAPI_OK) {printf("Problem in papi call, line %d\n",__LINE__); return 1;}
+#define PCHECK(e) if (e!=PAPI_OK) \
+        {printf("Problem in papi call, line %d\n",__LINE__); \
+         return 1;}
 #define NEVENTS 2
 /* we are assuming array storage in Fortran column mode */
 #define INDEX(i,j,m,n) i+j*m
@@ -49,7 +51,8 @@ void do_operation_wrong(int m,int n) {
 #define ROW 2
 int main(int argc, char **argv)
 {
-   int events[NEVENTS] = {PAPI_TLB_DM,PAPI_TOT_CYC}; long_long values[NEVENTS];
+   int events[NEVENTS] = {PAPI_TLB_DM,PAPI_TOT_CYC}; 
+   long_long values[NEVENTS];
    int retval,order=COL;
    PAPI_event_info_t info, info1;
    const PAPI_hw_info_t *hwinfo = NULL;
@@ -89,8 +92,9 @@ int main(int argc, char **argv)
        else
 	 do_operation_wrong(m,n);
        retval = PAPI_stop_counters(values,NEVENTS); PCHECK(retval);
-       printf("m,n=%d,%d\n#elements:\t%d\nTot cycles: %d\nTLB misses:\t%d\nmisses per column:\t%9.5f\n\n",
-	      m,n,m*n,values[1],values[0],values[0]/(1.*n));
+       printf("m,n=%d,%d\n#elements:\t%d\n",m,n,m*n);
+       printf("Tot cycles: %d\nTLB misses:\t%d\nmisses per column:\t%9.5f\n\n",
+	      values[1],values[0],values[0]/(1.*n));
      }
      free(array);
    }

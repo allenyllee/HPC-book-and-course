@@ -2,20 +2,23 @@ info ::
 	@echo "make examples, or make any of <${EXAMPLES}>"
 	@echo "  [OPTFLAGS=....]"
 
-EXAMPLES = all_native_events tlb assoc line size inner1 inner2 thread thread2
+EXAMPLES = all_native_events tlb assoc line size inner1 inner2 thread thread2 \
+    unroll
 examples : ${EXAMPLES}
 
-CFLAGS = ${OPTFLAGS} -I${TACC_PAPI_INC} -I. ${CDEFS}
-OPTFLAGS = -O3
+CC = icc
+CFLAGS = ${OPTFLAGS} -I${TACC_PAPI_INC} -I. ${CDEFS} -AVX
+OPTFLAGS = -O2
 CDEFS = 
 PTHREAD_thread = -lpthread
 PTHREAD_thread2 = -lpthread
 % : %.c # delete!
 %.o : %.c
-	icc -c ${CFLAGS} -DWAY=${WAY} $<
-% : %.o test_utils.o
-	icc -o $@ $^ \
+	${CC} -c -std=c99 ${CFLAGS} -DWAY=${WAY} $<
+% : %.o 
+	${CC} -o $@ $^ \
 	  -Wl,-rpath,${TACC_PAPI_LIB} -L${TACC_PAPI_LIB} -lpapi ${PTHREAD_$@}
+# test_utils.o
 
 PROGRAM = tlb
 ARGS = 

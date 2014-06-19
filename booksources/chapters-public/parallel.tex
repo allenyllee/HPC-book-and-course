@@ -223,6 +223,13 @@ detail below:
 \Level 1 {SIMD}
 \label{sec:simd}
 
+\begin{wrapfigure}{r}{2in}
+  \includegraphics[scale=.3]{maspar2}
+  \caption{Architecture of the MasPar 2 array processors}
+  \label{fig:maspar}
+  \vskip-1.5in
+\end{wrapfigure}
+%
 Parallel computers of the SIMD type apply the same operation
 simultaneously to a number of data items. The design of the CPUs of
 such a computer can be quite simple, since the arithmetic unit does
@@ -257,13 +264,15 @@ The programming model where identical operations are applied to a
 number of data items simultaneously, is known as
 \indextermsub{data}{parallelism}.
 
-Such array operations  can occur in the context of physics simulations, but
-another important source is graphics applications. For this application,
-the processors in an array processor can be much weaker than the
-processor in a PC: often they are in fact bit processors, capable of
-operating on only a single bit at a time. Along these lines, \emph{ICL}\index{ICL!DAP}
-had the 4096 processor DAP~\cite{DAP:79a} in the 1980s, and \emph{Goodyear}\index{Goodyear!MPP}
-built a 16K processor MPP~\cite{Batcher:85a} in the 1970s.
+Such array operations can occur in the context of physics simulations,
+but another important source is graphics applications. For this
+application, the processors in an array processor can be much weaker
+than the processor in a PC: often they are in fact bit processors,
+capable of operating on only a single bit at a time. Along these
+lines, \emph{ICL}\index{ICL!DAP} had the 4096 processor
+DAP~\cite{DAP:79a} in the 1980s, and
+\emph{Goodyear}\index{Goodyear!MPP} built a 16K processor
+MPP~\cite{Batcher:85a} in the 1970s.
 
 Later, the \indexterm{Connection Machine} (CM-1, CM-2, CM-5) were quite popular.
 While the first Connection Machine had bit processors (16 to a chip),
@@ -271,7 +280,9 @@ the later models had traditional processors capable of floating point
 arithmetic, and were not true SIMD architectures. All were based on a
 hyper-cube interconnection network; see section~\ref{sec:hypercube}. Another
 manufacturer that had a commercially successful array processor was
-MasPar.
+\indexterm{MasPar}; figure~\ref{fig:maspar} illustrates the architecture.
+You clearly see the single control unit for a square array of processors,
+plus a network for doing global operations.
 
 Supercomputers based on array processing do not exist anymore, but the
 notion of SIMD lives on in various guises. For instance, \acp{GPU}
@@ -533,21 +544,24 @@ the content of the one memory location, the behaviour of the program
 can become undetermined.
 
 Keeping copies of a memory location synchronized is known as
-\indextermbus{cache}{coherence} (see section~\ref{sec:coherence};
+\indextermbus{cache}{coherence} (see section~\ref{sec:coherence} for further details);
 a multi-processor system using it is sometimes called a
 `cache-coherent NUMA' or \indexterm{ccNUMA} architecture.
 
-Cache coherence is obviously desirable, since it facilitates parallel
-programming. However, it carries costs on several levels. It probably
-requires hardware support from the processors and the network and it
-complicates the Operating System software. Moreover, keeping caches
-coherent means that there is data traveling through the network,
-taking up precious bandwidth.
+Taking NUMA to its extreme, it is possible to have a software layer
+that makes network-connected processors appear to operate on shared memory.
+This is known as \indextermsub{distributed shared}{memory} 
+or \indextermsub{virtual shared}{memory}. In this approach
+a \indexterm{hypervisor} offers a shared memory API, by translating
+system calls to distributed memory management. This shared memory 
+API can be utilized by the \indextermbus{Linux}{kernel}, which
+can support 4096 threads.
 
 Among current vendors only SGI (the \emph{UV}\index{SGI!UV} line) and
 Cray (the \emph{XE6}\index{Cray!XE6}) market products with large scale
 NUMA. Both offer strong support for \indexac{PGAS} languages; see
-section~\ref{sec:pgas}.
+section~\ref{sec:pgas}. There are vendors, such as \indexterm{ScaleMP},
+that offer a software solution to distributed shared memory on regular clusters.
 
 \Level 1 {Logically and physically distributed memory}
 
@@ -622,7 +636,7 @@ discuss the MPI library.
 \Level 1 {Thread parallelism}
 \label{sec:threads}
 \index{thread|(textbf}
-\input threads
+\input chapters-public/threads
 \index{thread|)textbf}
 
 \Level 1 {OpenMP}
@@ -780,6 +794,7 @@ parallel code is written.
 \Level 2 {The global versus the local view in distributed programming}
 \label{sec:distributed-programming}
 \input chapters-public/localglobal
+
 \Level 2 {The MPI library}
 \indexacstart{MPI}
 \label{sec:mpi}
@@ -1010,7 +1025,8 @@ so each processor~$p$ executes
 Since $x$ is also distributed, we can write this as
 \[ \forall_{i\in I_p}\colon y_i=
   \left(\sum_{\mbox{\small $j$ local}}
-    +\sum_{\mbox{\small $j$ not local}} \right) a_{ij}x_j. \]
+    +\sum_{\mbox{\small $j$ not local}} \right) a_{ij}x_j. 
+\]
 This scheme is illustrated in figure~\ref{fig:distmvp}.
 \begin{figure}
   \begin{quote}
@@ -1051,7 +1067,8 @@ If a number of processors are working together on a single task, most
 likely they need to communicate data. For this reason there needs to
 be a way for data to make it from any processor to any other. In this
 section we will discuss some of the possible schemes to connect the
-processors in a parallel machine.
+processors in a parallel machine. Such a scheme is called a
+(processor) \indexterm{topology}.
 
 In order to get an appreciation for the fact that there is a genuine
 problem here, consider two
@@ -1105,12 +1122,13 @@ increased to large numbers of processors.
 \label{sec:graph-theory}
 
 The network that connects the processors in a parallel computer can
-conveniently be described with some elementary graph theory
-concepts. We describe the parallel machine with a graph where each
-processor is a node, and two nodes are connected\footnote{We assume
-  that connections are symmetric, so that the network
-  is an \indextermsub{undirected}{graph}.} if
-there is a direct connection between them. 
+conveniently be described with some elementary \emph{graph
+  theory}\index{graph!theory!of parallel computers} concepts. We
+describe the parallel machine with a graph where each processor is a
+node, and two nodes are connected\footnote{We assume that connections
+  are symmetric, so that the network is an
+  \indextermsub{undirected}{graph}.} if there is a direct connection
+between them.
 
 We can then analyze two
 important concepts of this graph.
@@ -1200,6 +1218,21 @@ processors times the bandwidth of a connection times the number of
 simultaneous sends a processor can perform. This can be quite
 a high number, and it is typically not representative of the
 communication rate that is achieved in actual applications.
+
+\Level 1 {Busses}
+
+The first interconnect design we consider is to have all processors
+on the same \indextermsub{memory}{bus}. This design connects
+all processors directly to the same memory pool, so it offers
+a \indexac{UMA} or \indexac{SMP} model.
+
+The main disadvantage of using a bus is the limited scalability,
+since only one processor at a time can do a memory access. To over this,
+we need to assume that processors are slower than memory,
+or that the processors have cache or other local memory to operate out of.
+In the latter case, maintaining \indextermbus{cache}{coherence}
+is easy with a bus by letting processors listen to all the memory traffic
+on the bus~-- a~process known as \indexterm{snooping}.
 
 \Level 1 {Linear arrays and rings}
 
@@ -1326,12 +1359,19 @@ figure~\ref{fig:hypercube}.
   \label{fig:hypercube}
 \end{figure}
 
-\begin{figure}[ht]
-  \centering
-  \includegraphics[scale=.1]{graphics-public/hypercubenumber}
+%% \begin{figure}[ht]
+%%   \centering
+%%   \includegraphics[scale=.1]{graphics-public/hypercubenumber}
+%%   \caption{Numbering of the nodes of a hypercube}
+%%   \label{fig:cubenumber}
+%% \end{figure}
+
+\begin{wrapfigure}{r}{3in}
+  \includegraphics[scale=.081]{graphics-public/hypercubenumber}
   \caption{Numbering of the nodes of a hypercube}
   \label{fig:cubenumber}
-\end{figure}
+\end{wrapfigure}
+%
 An easy way to describe this is to give each processor an address
 consisting of $d$~bits: we give each node of a hypercube a number that
 is the bit pattern describing its location in the cube; see
@@ -1386,22 +1426,7 @@ it's possible to walk through a hypercube, touching
 every corner exactly once, which is equivalent to embedding a 1D mesh
 in the hypercube.
 
-The basic concept here is a (binary reflected) \indexterm{Gray
-  code}~\cite{Gray:graycodepatent}. This is a way of ordering the
-binary numbers $0\ldots2^d-\nobreak1$ as $g_0,\ldots g_{2^d-1}$ so that $g_i$
-and $g_{i+1}$ differ in only one bit. Clearly, the ordinary binary
-numbers do not satisfy this: the binary representations for 1~and~2
-already differ in two bits. Why do Gray codes help us? Well, since
-$g_i$ and $g_{i+1}$ differ only in one bit, it means they are the
-numbers of nodes in the hypercube that are directly connected.
-
-Figure~\ref{fig:graycode} illustrates how to construct a Gray
-code. The procedure is recursive, and can be described informally as
-`divide the cube into two subcubes, number the one subcube, cross over
-to the other subcube, and number its nodes in the reverse order of the
-first one'.
-
-\begin{figure}[h]
+\begin{figure}[ht]
 \hbox{\fbox{1D Gray code}:
 $\vcenter{$
 \begin{array}{rll}
@@ -1429,6 +1454,27 @@ $}
   \caption{Gray codes}
   \label{fig:graycode}
 \end{figure}
+
+\begin{wrapfigure}{r}{3in}
+  \includegraphics[scale=.081]{graphics-public/hypercubegraynumber}
+  \caption{Gray code numbering of the nodes of a hypercube}
+  \label{fig:cubegraynumber}
+\end{wrapfigure}
+%
+The basic concept here is a (binary reflected) \indexterm{Gray
+  code}~\cite{Gray:graycodepatent}. This is a way of ordering the
+binary numbers $0\ldots2^d-\nobreak1$ as $g_0,\ldots g_{2^d-1}$ so that $g_i$
+and $g_{i+1}$ differ in only one bit. Clearly, the ordinary binary
+numbers do not satisfy this: the binary representations for 1~and~2
+already differ in two bits. Why do Gray codes help us? Well, since
+$g_i$ and $g_{i+1}$ differ only in one bit, it means they are the
+numbers of nodes in the hypercube that are directly connected.
+
+Figure~\ref{fig:graycode} illustrates how to construct a Gray
+code. The procedure is recursive, and can be described informally as
+`divide the cube into two subcubes, number the one subcube, cross over
+to the other subcube, and number its nodes in the reverse order of the
+first one'. The result for a 2D cube is in figure~\ref{fig:cubegraynumber}.
 
 Since a Gray code offers us a way to embed a one-dimensional `mesh'
 into a hypercube, we can now work our way up.
@@ -1473,6 +1519,12 @@ inputs the vertical as outputs, this is clearly a way of having $n$
 inputs be mapped to $n$ outputs. Every combination of inputs and
 outputs (sometimes called a `permutation') is allowed.
 
+One advantage of this type of network is that no connection 
+blocks another.
+The main disadvantage  is that the number of 
+switching elements is~$n^2$, a~fast growing function of the
+number of processors~$n$.
+
 \Level 2 {Butterfly exchange}
 
 \begin{figure}[ht]
@@ -1491,12 +1543,13 @@ shows a one-stage butterfly used to implement both shared memory and
 distributed (or distributed shared) memory, and the extension of the
 latter to two stages.
 
-As you can see in
-figure~\ref{fig:butterflyroute}, butterfly exchanges allow several processors to
-access memory simultaneously. Also, their access times are identical, 
-so exchange networks are a way of implementing a \indexac{UMA}
-architecture; see section~\ref{sec:uma}. One computer that was based
-on a Butterfly exchange network was the \indextermbus{BBN}{Butterfly}\footnote{\url{http://en.wikipedia.org/wiki/BBN_Butterfly}}.
+As you can see in figure~\ref{fig:butterflyroute}, butterfly exchanges
+allow several processors to access memory simultaneously. Also, their
+access times are identical, so exchange networks are a way of
+implementing a \indexac{UMA} architecture; see
+section~\ref{sec:uma}. One computer that was based on a Butterfly
+exchange network was the
+\indextermbus{BBN}{Butterfly}\footnote{\url{http://en.wikipedia.org/wiki/BBN_Butterfly}}.
 
 \begin{figure}[ht]
   \begin{quote}
@@ -1544,15 +1597,23 @@ messages going through just one wire into the root, and similarly out
 through one wire.  A fat-tree is a tree network where each level has
 the same total bandwidth, so that this congestion problem does not
 occur: the root will actually have $2^{k-1}$ incoming and outgoing
-wires attached~\cite{Greenberg89randomizedrouting}; see
-figure~\ref{fig:fattree}.
+wires attached~\cite{Greenberg89randomizedrouting}.
+Figure~\ref{fig:fattree} shows this structure on the left;
 \begin{figure}
-  \begin{quote}
+  %\begin{quote}
+\hbox{%
   \includegraphics[scale=.12]{graphics-public/fattree5}
-  \end{quote}
-  \caption{A fat tree with a three-level interconnect}
+  \kern20pt
+  \includegraphics{stampede_leaf}
+}
+  %\end{quote}
+  \caption{A fat tree with a three-level interconnect (left);
+  the leaf switches in a cabinet of the Stampede cluster (right)}
   \label{fig:fattree}
 \end{figure}
+on the right is shown a cabinet of the \index{TACC}{Stampede cluster},
+with a \indextermsub{leaf}{switch} for top and bottom half of the cabinet.
+
 The first successful computer
 architecture based on a fat-tree was the Connection Machines CM5.
 
@@ -1886,14 +1947,18 @@ a way of scaling up a problem (in chapter~\ref{ch:odepde} you will
 learn the concept of `discretization'), and one
 tailors the size of the problem to the number of available processors.
 
-A more realistic assumption would be to say that the sequential
-fraction is independent of the problem size, and the parallel fraction
-can be arbitrarily extended.  To formalize this, instead of starting
+A more realistic assumption would be to say that there is a  sequential
+fraction independent of the problem size, and parallel fraction that
+can be arbitrarily replicated.  To formalize this, instead of starting
 with the execution time of the sequential program, let us start with
 the execution time of the parallel program, and say that
-\[ T_p=F_s+F_p\equiv 1, \]
-and the execution time of this problem on a sequential processor would
-then be \[ T_1=F_s+p\cdot F_p. \]
+\[ T_p=T(F_s+F_p) \qquad\hbox{with $F_s+F_p=1$}. \]
+Now we have two possible definitions of~$T_1$. First of all, there is the $T_1$ 
+you get from setting $p=1$ in~$T_p$. (Convince yourself that that is actually 
+the same as~$T_p$.) However, what we need is $T_1$ describing the time
+to do all the operations of the parallel program.
+This is:
+\[ T_1=F_sT+p\cdot F_pT. \]
 This gives us a speedup of
 \[ S_p=\frac{T_1}{T_p}=\frac{F_s+p\cdot F_p}{F_s+F_p}
    = F_s+p\cdot F_p = p-(p-1)\cdot F_s. 
@@ -1974,6 +2039,17 @@ the amount of data per processor is kept constant, and report that parallel
 execution time is constant as the number of processors grows.
 
 \begin{exercise}
+  We can formulate strong scaling as a runtime that is inversely
+  proportional to the number of processors: \[ t=c/p. \]
+  Show that on a log-log plot, that is, you plot the logarithm of the
+  runtime against the logarithm of the number of processors,
+  you will get a straight line with slope~$-1$.
+
+  Can you suggest a way of dealing with a non-parallelizable
+  section, that is, with a runtime $t=c_1+c_2/p$?
+\end{exercise}
+
+\begin{exercise}
   Suppose you are investigating the weak scalability of a code.
   After running it for a couple of sizes and corresponding numbers
   of processes, you find that in each case the flop rate is roughly the same.
@@ -2013,6 +2089,72 @@ section~\ref{sec:densescaling} you will find an analysis of the
 matrix-vector product operation: distributing a matrix by block rows
 turns out not to be scalable, but a two-dimensional distribution by
 submatrices is.
+
+\Level 1 {Simulation scaling}
+
+In most discussions of weak scaling
+we assume that the amount of work and 
+the amount of storage are linearly related. This is not always the case; for instance
+the operation complexity of a matrix-matrix product is $N^3$ for $N^2$ data.
+If you linearly increase the number of processors, the work will go up with a higher power.
+
+A similar effect comes into play if you similate time-dependent \acp{PDE}\footnote
+{This uses concepts from chapter~\ref{ch:odepde}.}.
+Here, the total work is a product of the work per time step and the number of 
+time steps. These two numbers are related; in section~\ref{sec:fd-ode} you
+saw that the time step has a certain minimum size as a function of the 
+space discretization. Thus, the number of time steps will go up as the work per
+time step goes up.
+
+Rather than investigating scalability from the point of the running
+of an algorithm, in this section we will look at the case where the simulated time~$S$
+and the running time~$T$ are constant, and we look at how this influences the amount of
+memory we need. This corresponds to the following real-life scenario: 
+you have a simulation that models a certain amount of real-world time 
+in a certain amount of running time; now you buy a bigger computer, and you wonder
+what size problem you can solve in the same running time and maintaining
+the same simulated time.
+
+Let $m$ be the memory per processor, and $P$ the number of processors, giving:
+\[ M=Pm\qquad\hbox{total memory.} \]
+If $d$ is the number of space dimensions of the problem, typically 2~or~3,
+we get
+\[ \Delta x = 1/M^{1/d}\qquad\hbox{grid spacing.} \]
+For stability this limits the time step $\Delta t$ to
+\[ \Delta t=
+\begin{cases}
+\Delta x=1\bigm/M^{1/d}&\hbox{hyperbolic case}\\
+\Delta x^2=1\bigm/M^{2/d}&\hbox{parabolic case}
+\end{cases}
+\]
+(noting that the hyperbolic case was not discussed in chapter~\ref{ch:odepde}.)
+With a simulated time $S$, we find
+\[ k=S/\Delta t\qquad \hbox{time steps.} \]
+If we assume that the individual time steps are perfectly parallelizable,
+that is, we use explicit methods, or implicit methods with optimal solvers,
+we find a running time
+\[ T=kM/P=\frac{S}{\Delta t}m. \]
+Setting $T/S=C$, we find
+\[ m=C\Delta t, \]
+that is, the amount of memory per processor goes down as we increase the processor
+count. (What is the missing step in that last sentence?)
+
+Further analyzing this result, we find
+\[ m=C\Delta t = c
+\begin{cases}
+1\bigm/M^{1/d}&\hbox{hyperbolic case}\\
+1\bigm/M^{2/d}&\hbox{parabolic case}
+\end{cases}
+\]
+Substituting $M=Pm$, we find ultimately
+\[ m = C
+\begin{cases}
+1\bigm/P^{1/(d+1)}&\hbox{hyperbolic}\\
+1\bigm/P^{2/(d+2)}&\hbox{parabolic}
+\end{cases}
+\]
+that is, the memory per processor that we can use
+goes down as a higher power of the number of processors.
 
 \index{scaling|)}\index{scalability|)}
 
@@ -2159,8 +2301,7 @@ It has both differencies and similarities with \acp{GPU}.
 \input chapters-public/load
 \index{load!balancing|)}
  
-\Level 1 {Distributed computing, grid computing, cloud
-  computing}
+\Level 1 {Distributed computing, grid computing, cloud computing}
 \label{sec:cloud}
 \index{cloud computing|(}
 \index{distributed computing|(}

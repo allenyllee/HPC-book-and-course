@@ -37,14 +37,22 @@
 \newcommand\argmin{\mathop{\mathrm {argmin}}}
 \newcommand\defined{
   \mathrel{\lower 5pt \hbox{${\equiv\atop\mathrm{\scriptstyle D}}$}}}
+\newcommand\lulubreak{\message{Hard page break!}\pagebreak\relax}
 
 \newcommand\bbP{\mathbb{P}}
 \newcommand\bbR{\mathbb{R}}
 
 \newtheorem{remark}{Remark}
-\newtheorem{definition}{Definition}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
+\expandafter\ifx\csname definition\endcsname\relax
+    \newtheorem{definition}{Definition}
+\fi
+
+\expandafter\ifx\csname theorem\endcsname\relax
+    \newtheorem{theorem}{Theorem}
+\fi
+\expandafter\ifx\csname lemma\endcsname\relax
+    \newtheorem{lemma}{Lemma}
+\fi
 %% \newenvironment{highermath}
 %%     {\bigskip\begin{quotation}\noindent\emph{MMM}}
 %%     {\end{quotation}\bigskip\noindent\ignorespaces}
@@ -71,6 +79,7 @@
 \acroitem{CRS}{Compressed Row Storage}
 %\acroitem{CSV}{comma-separated values}
 \acroitem{DAG}{Directed Acyclic Graph}
+\acroitem{DRAM}{Dynamic Random-Access Memory}
 \acroitem{DSP}{Digital Signal Processing}
 \acroitem{FD}{Finite Difference}
 \acroitem{FMA}{Fused Multiply-Add}
@@ -121,6 +130,7 @@
 \acroitem{SP}{Streaming Processor}
 \acroitem{SPMD}{Single Program Multiple Data}
 \acroitem{SPD}{symmetric positive definite}
+\acroitem{SRAM}{Static Random-Access Memory}
 \acroitem{SSE}{SIMD Streaming Extensions}
 \acroitem{TLB}{Translation Look-aside Buffer}
 \acroitem{UMA}{Uniform Memory Access}

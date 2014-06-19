@@ -16,6 +16,146 @@ However, there is still a lot of old code around, and not all compilers
 support the latest standards. Therefore, we discuss both the old 
 and the new solutions.
 
+\Level 0 {Linker conventions}
+
+As explained above, a compiler turns a source file into a binary,
+which no longer has any trace of the source language: it contains in
+effect functions in machine language. The linker will then match up
+calls and definitions, which can be in different files. The problem
+with using multiple languages is then that compilers have different
+notions of how to translate function names from the source file to the
+binary file.
+
+Let's look at codes (you can find example files in \n{tutorials-public/linking}):
+\begin{verbatim}
+// C:
+      Subroutine foo()
+      Return
+      End Subroutine
+! Fortran
+void foo() {
+  return;
+}
+\end{verbatim}
+After compilation you can use 
+\indexterm{nm} to investigate the binary \indexterm{object file}:
+\begin{verbatim}
+%% nm fprog.o
+0000000000000000 T _foo_
+....
+%% nm cprog.o
+0000000000000000 T _foo
+....
+\end{verbatim}
+You see that internally the \n{foo} routine has different names:
+the Fortran name has an underscore appended. This makes
+it hard to call a Fortran routine from~C, or vice versa.
+The possible name mismatches are:
+\begin{itemize}
+\item The Fortran compiler appends an underscore. This is the most common case.
+\item Sometimes it can append two underscores.
+\item Typically the routine name is lowercase in the object file, but uppercase
+      is a possibility too.
+\end{itemize}
+
+Since C is a popular language to write libraries in, this means
+that the problem is often solved in the C library by:
+\begin{itemize}
+\item Appending an underscore to all C function names; or
+\item Including a simple wrapper call:
+\begin{verbatim}
+int SomeCFunction(int i,float f)
+{
+  .....
+}
+int SomeCFunction_(int i,float f)
+{
+  return SomeCFunction(i,f);
+}
+\end{verbatim}
+\end{itemize}
+
+\Level 1 {C bindings in Fortran 2003}
+ 
+With the latest Fortran standard there are explicit
+\emph{C bindings}\index{Fortran!iso C bindings},
+making
+it possible to declare the
+external name of variables and routines:
+\verbatiminput{tutorials-public/linking/fbind.F90}
+\begin{verbatim}
+%% ifort -c fbind.F90
+%% nm fbind.o
+.... T _s
+.... C _x
+\end{verbatim}
+
+It is also possible to declare data types to be C-compatible:
+\verbatiminput{tutorials-public/linking/fdata.F90}
+
+\Level 1 {C++ linking}
+\index{C++!linking to|(}
+
+Libraries written in C++ offer further problems.
+The C++ compiler makes external symbols by combining
+the names a class and its methods, in a process known
+as \emph{name mangling}\index{C++!name mangling}.
+You can force the compiler to
+generate names that are intelligible to other languages by
+\begin{verbatim}
+#ifdef __cplusplus
+  extern"C" {
+#endif
+  .
+  .
+  place declarations here
+  .
+  .
+#ifdef __cplusplus
+  }
+#endif
+\end{verbatim}
+
+Example:
+compiling
+\begin{verbatim}
+#include <stdlib.h>
+
+int foo(int x) {
+  return x;
+}
+\end{verbatim}
+and inspecting the output with \n{nm} gives:
+\begin{verbatim}
+0000000000000010 s EH_frame1
+0000000000000000 T _foo
+\end{verbatim}
+On the other hand, the identical program compiled as C++ gives
+\begin{verbatim}
+0000000000000010 s EH_frame1
+0000000000000000 T __Z3fooi
+\end{verbatim}
+You see that the name for \n{foo} is something mangled, so you can not call 
+this routine from a program in a different language. On the other hand,
+if you add the \n{extern} declaration:
+\begin{verbatim}
+#include <stdlib.h>
+
+#ifdef __cplusplus
+  extern"C" {
+#endif
+int foo(int x) {
+  return x;
+}
+#ifdef __cplusplus
+  }
+#endif
+\end{verbatim}
+you again get the same linker symbols as for~C, so that the routine
+can be called from both C and~Fortran.
+
+\index{C++!linking to|)}
+
 \Level 0 {Arrays}
 \label{sec:CFarrays}
 \index{C!array layout|(}
@@ -26,9 +166,15 @@ arrays. You need to be aware of this when you pass an array between
 routines written in different languages. 
 
 Fortran stores multi-dimensional arrays in \indexterm{column-major}
-order. For two dimensional arrays \texttt{A(i,j)} this means that
+order; see figure~\ref{fig:cf-arrays}.
+For two dimensional arrays \texttt{A(i,j)} this means that
 the elements in each column are stored contiguously: a $2\times2$
 array is stored as \texttt{A(1,1), A(2,1), A(1,2), A(2,2)}. Three and
+\begin{figure}[ht]
+  \includegraphics[scale=.13]{cf-arrays}
+  \caption{Fortran and C array storage by columns and rows respectively}
+  \label{fig:cf-arrays}
+\end{figure}
 higher dimensional arrays are an obvious extension: it is sometimes
 said that `the left index varies quickest'.
 
@@ -94,14 +240,26 @@ As you can see, passing strings between different languages is fraught
 with peril. This situation is made even worse by the fact that passing
 strings as subroutine arguments is not standard.
 
-Unless you are writing a text processor, it is therefore best not to
-use strings in your program. The next best solution is to use
-null-terminated strings throughout; some compilers support extensions
+Example: the main program in Fortran passes a string
+\verbatiminput{tutorials-public/linking/fstring.F90}
+and the C routine accepts a character string and its length:
+\verbatiminput{tutorials-public/linking/cstring.c}
+which produces:
+\begin{verbatim}
+length = 5
+<<Word >>
+\end{verbatim}
+
+To pass a Fortran string to a C program you need to append a null
+character:
+\begin{verbatim}
+call cfunction ('A string'//CHAR(0))
+\end{verbatim}
+Some compilers support extensions
 to facilitate this, for instance writing
 \begin{verbatim}
 DATA forstring /'This is a null-terminated string.'C/
 \end{verbatim}
-
 Recently, the `C/Fortran interoperability standard' has
 provided a systematic solution to this.
 
@@ -112,7 +270,7 @@ needs its value, and \texttt{float*} if the function has to modify the
 value of the variable in the calling environment. Fortran has no such
 distinction: every variable is passed \indexterm{by reference}. This
 has some strange consequences: if you pass a literal value
-(\texttt{37.5}) to a subroutine, the compiler will allocate a nameless
+\texttt{37} to a subroutine, the compiler will allocate a nameless
 variable with that value, and pass the address of it, rather than the
 value\footnote{With a bit of cleverness and the right compiler, you
   can have a program that says \texttt{print *,7} and
@@ -137,90 +295,6 @@ can not be called from Fortran. There is a hack to get around this
 \texttt{VecGetValues}) and with more cleverness you can use
 \texttt{POINTER} variables for this.
 
-\Level 0 {Linker conventions}
-
-As explained above, a compiler turns a source file into a binary,
-which no longer has any trace of the source language: it contains in
-effect functions in machine language. The linker will then match up
-calls and definitions, which can be in different files. The problem
-with using multiple languages is then that compilers have different
-notions of how to translate function names from the source file to the
-binary file.
-
-Let's look at codes:
-\begin{verbatim}
-// C:
-      Subroutine foo()
-      Return
-      End Subroutine
-! Fortran
-void foo() {
-  return;
-}
-\end{verbatim}
-(you can find example files in \n{tutorials-public/linking}) after compilation you can use 
-\indexterm{nm} to investigate the binary \indexterm{object file}:
-\begin{verbatim}
-%% nm fprog.o
-0000000000000000 T _foo_
-....
-%% nm cprog.o
-0000000000000000 T _foo
-....
-\end{verbatim}
-You see that internally the \n{foo} routine has different names. This makes
-it hard to call a Fortran routine from~C, or vice versa.
-The possible name mismatches are:
-\begin{itemize}
-\item The Fortran compiler appends an underscore. This is the most common case.
-\item Sometimes it can append two underscores.
-\item Typically the routine name is lowercase in the object file, but uppercase
-      is a possibility too.
-\end{itemize}
-
-Since C is a popular language to write libraries in, this means
-that the problem is often solved in the C library by:
-\begin{itemize}
-\item Appending an underscore to all C function names; or
-\item Including a simple wrapper call:
-\begin{verbatim}
-int SomeCFunction(int i,float f)
-{
-  .....
-}
-int SomeCFunction_(int i,float f)
-{
-  return SomeCFunction(i,f);
-}
-\end{verbatim}
-\end{itemize}
-
-With the latest Fortran standard it is possible to declare the
-external name of variables and routines:
-\begin{verbatim}
-%% cat t.f
-module operator
-  real, bind(C) :: x
-contains
-  subroutine s(), bind(C,name='_s')
-  return
-  end subroutine
-  ...
-end module
-%% ifort -c t.f
-%% nm t.o
-.... T _s
-.... C _x
-\end{verbatim}
-
-It is also possible to declare data types to be C-compatible:
-\begin{verbatim}
-  type, bind(C) :: c_comp
-    real (c_float)  :: data
-    integer (c_int) :: i
-    type (c_ptr)    :: ptr
-  end type
-\end{verbatim}
 \Level 0 {Input/output}
 
 Both languages have their own system for handling input/output, and it

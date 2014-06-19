@@ -8,7 +8,9 @@
 #include "papi_test.h"
 extern int TESTS_QUIET;         /* Declared in test_utils.c */
 
-#define PCHECK(e) if (e!=PAPI_OK) {printf("Problem in papi call, line %d\n",__LINE__); return 1;}
+#define PCHECK(e) if (e!=PAPI_OK) \
+        {printf("Problem in papi call, line %d\n",__LINE__); \
+         return 1;}
 #define NEVENTS 2
 #define MAXN 20000
 
@@ -21,7 +23,8 @@ extern int TESTS_QUIET;         /* Declared in test_utils.c */
 
 int main(int argc, char **argv)
 {
-   int events[NEVENTS] = {PAPI_L1_DCM,PAPI_TOT_CYC}; long_long values[NEVENTS];
+   int events[NEVENTS] = {PAPI_L1_DCM,PAPI_TOT_CYC}; 
+   long_long values[NEVENTS];
    PAPI_event_info_t info, info1;
    const PAPI_hw_info_t *hwinfo = NULL;
    int retval,event_code, m,n, i,j;
@@ -70,8 +73,10 @@ int main(int argc, char **argv)
      for (i=1; i<=m; i++)
        array[INDEX(0,j,m+1,n)] += array[INDEX(i,j,m+1,n)];
    retval = PAPI_stop_counters(values,NEVENTS); PCHECK(retval);
-   printf("m,n=%d,%d\n#elements:\t%d\nTot cycles: %d\nL1 misses:\t%d\nmisses per accumulation:\t%9.5f\n\n",
-	  m,n,m*n,values[1],values[0],values[0]/(1.*n));
+   printf("m,n=%d,%d\n#elements:\t%d\nTot cycles: %d\n",
+	  m,n,m*n,values[1]);
+   printf("L1 misses:\t%d\nmisses per accumulation:\t%9.5f\n\n",
+	  values[0],values[0]/(1.*n));
 
      }
    }

@@ -186,7 +186,7 @@ devote relatively little attention to the actual processor.
 Modern processors are quite complicated, and in this section we will
 give a short tour of what their constituent parts.
 \begin{figure}[ht]
-  \includegraphics[scale=.3]{sandy-bridge-die-map_sm}
+  \includegraphics[scale=.18]{sandybridge-eightcore}
   \caption{The Intel Sandybridge processor die}
   \label{fig:sandybridge}
 \end{figure}
@@ -205,8 +205,11 @@ explained in detail in section~\ref{sec:cache}.
 
 \Level 1 {Graphics, controllers, special purpose hardware}
 
-As you can see in figure~\ref{fig:sandybridge}, considerable real-estate
-on the processor chip is dedicated to graphics. Other parts of the processor
+One difference between `consumer' and `server' type processors
+is that the consumer chips devote considerable real-estate
+on the processor chip to graphics. Processors for cell phones and tablets
+can even have dedicated circuitry for security or mp3 playback.
+Other parts of the processor
 are dedicated to communicating with memory or the \indexterm{I/O subsystem}.
 We will not discuss those aspects in this book.
 
@@ -274,16 +277,24 @@ speed of several floating point operations per clock cycle.
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{p{2.5in}lll}
-Processor&floating point units&max operations per cycle\\ \hline
-Intel Pentium4&2 add or 2 mul&2\\ % simd
-Intel Woodcrest, AMD Barcelona&2 add + 2 mul&4 \\  %SIMD FADD, FMUL
-IBM POWER4, POWER5, POWER6&    2 FMA & 4 \\
-IBM BG/L, BG/P & 1 SIMD FMA & 4 \\
-SPARC IV & 1 add + 1 mul& 2 \\
-Itanium2 &  2 FMA & 4 
+  \begin{tabular}{p{2in}llll}
+Processor&year&add/mult/fma units  &daxpy cycles\\
+         &    &(count$\times$width)&(arith vs load/store)\\
+\hline
+MIPS R10000       &1996 &$1\times1+1\times1+0$ &8/24 \\
+Alpha EV5         &1996 &$1\times1+1\times1+0$ &8/12 \\
+IBM Power5        &2004 &$0+0+2\times1       $ &4/12 \\
+AMD Bulldozer     &2011 &$2\times2+2\times2+0$ &2/4  \\
+Intel Sandy Bridge&2012 &$1\times4+1\times4+0$ &2/4  \\
+Intel Haswell     &2014 &$0+0+2\times 4      $ &1/2  \\
+%Intel Woodcrest, AMD Barcelona&2 add + 2 mul&4 \\  %SIMD FADD, FMUL
+%IBM POWER4, POWER5, POWER6&    2 FMA & 4 \\
+%IBM BG/L, BG/P & 1 SIMD FMA & 4 \\
+%SPARC IV & 1 add + 1 mul& 2 \\
+%Itanium2 &  2 FMA & 4 
   \end{tabular}
-  \caption{Floating point capabilities of several current processor architectures}
+  \caption{Floating point capabilities of several processor architectures,
+  and DAXPY cycle number for 8 operands}
   \label{tab:chipfloats}
 \end{table}
 
@@ -309,7 +320,7 @@ clock cycle.
 
 \index{pipeline|)}
 
-\Level 1 {Peak performance}
+\Level 2 {Peak performance}
 
 Thanks to pipelining, for modern CPUs there is a simple relation
 between the \indexterm{clock speed} and the \indexterm{peak performance}.
@@ -321,7 +332,7 @@ abbreviated \indexterm{flops}. Considering the speed of computers
 these days, you will mostly hear floating point performance being
 expressed in `gigaflops': multiples of $10^9$ flops.
 
-\Level 1 {Pipelining beyond arithmetic: instruction-level parallelism}
+\Level 2 {Pipelining beyond arithmetic: instruction-level parallelism}
 \label{sec:pipelinecpu}
 
 In fact, nowadays, the whole CPU is pipelined. Not only floating point
@@ -332,7 +343,8 @@ instructions: the notion of pipeline is now generalized to any stream
 of partially executed instructions that are simultaneously ``in
 flight''.
 
-This concept is also known as \indexacf{ILP}, and it is facilitated by various mechanisms:
+This concept is also known as \indexacf{ILP}, and it is facilitated by
+various mechanisms:
 \begin{itemize}
 \item multiple-issue: instructions that are independent can be started
   at the same time;
@@ -432,9 +444,10 @@ algorithm and its implementation allow for data to be used multiple
 times.  Such questions of \indexterm{data reuse} will be discussed in
 more detail in section~\ref{sec:reuse}.
 
-Both registers and caches are faster to a degree
-than main memory; unfortunately, the faster the memory on a certain
-level, the smaller it will be. This leads to interesting programming
+Both registers and caches are faster
+than main memory to various degrees; unfortunately, the faster the memory on a certain
+level, the smaller it will be.
+These differences in size and access speed lead to interesting programming
 problems, which we will discuss later in this chapter, and
 particularly section~\ref{sec:performance-programming}.
 
@@ -450,9 +463,10 @@ architecture, this is called the `north bridge', as opposed to the
 `south bridge' which connects to external devices, with the exception
 of the graphics controller.
 
-\begin{quote}
+\begin{figure}[ht]
 \includegraphics[scale=.1]{graphics-public/bridges}
-\end{quote}
+\caption{Bus structure of a processor}
+\end{figure}
 
 The bus is typically slower than the processor, operating with clock
 frequencies slightly in excess of~1GHz, which is a fraction of the CPU
@@ -557,18 +571,21 @@ is actually implemented as
 \item load the value of \n{b} from memory into a register,
 \item load the value of \n{c} from memory into another register,
 \item compute the sum and write that into yet another register, and
-\item write the sum value back to the memory location of~\n{c}.
+\item write the sum value back to the memory location of~\n{a}.
 \end{itemize}
 Looking at assembly code (for instance the output of a compiler), you
 see the explicit load, compute, and store instructions.
+
 Compute instructions such as add or multiply only operate on
-registers; for instance
+registers. For instance, in \indextermbus{assembly}{language}
+you will see instructions such as
 \begin{verbatim}
 addl	%eax, %edx
 \end{verbatim}
-is an instruction to add the content of one register to
+which adds the content of one register to
 another. As you see in this sample instruction, registers are not
-numbered in memory, but have distinct names that are referred to in
+numbered, as opposed to memory addresses,
+but have distinct names that are referred to in
 the assembly instruction. Typically, a processor has 16 or 32
 floating point registers; the \indextermbus{Intel}{Itanium} was
 exceptional with 128 floating point registers.
@@ -623,7 +640,11 @@ for k=1,nvectors
     a[i,k] = b[i,k] * c[k]
 \end{verbatim}
 it is a good idea to introduce explicitly a temporary variable to
-hold~\n{c[k]}.
+hold~\n{c[k]}. In~C, you can give a hint to the compiler
+to keep a veriable in register by declaring it as a \indextermbus{register}{variable}:
+\begin{verbatim}
+register double t;
+\end{verbatim}
 
 \index{register|)}
 
@@ -635,7 +656,11 @@ In between the registers, which contain the immediate input and output
 data for instructions, and the main memory where lots of data can reside for a
 long time, are various levels of \emph{cache} memory, that have
 lower latency and higher bandwidth than main memory and where data are
-kept for an intermediate amount of time.  Data from
+kept for an intermediate amount of time.  Caches typically
+consist of \indexac{SRAM}, which is faster than then \indexac{DRAM}
+used for the main memory, but is also more expensive.
+
+Data from
 memory travels through the caches to wind up in registers. The
 advantage to having cache memory is that if a data item is reused
 shortly after it was first needed, it will still be in cache, and
@@ -702,42 +727,39 @@ it is loaded from main memory. Finding data in cache is called a
 
 Figure \ref{fig:hierarchy} illustrates the basic facts of the
 \indextermbus{cache}{hierarchy}, in
-this case for the \indextermbus{AMD}{Opteron} chip: the
+this case for the \indextermbus{Intel}{Sandy Bridge} chip: the
 closer caches are to the \acp{FPU}, the faster, but also the
 smaller they are.
-\begin{figure}
+\begin{figure}[ht]
   \begin{quote}
-  \includegraphics[scale=.15]{graphics-public/hierarchy}
+  \includegraphics[scale=.11]{graphics-public/hierarchysb}
   \end{quote}
-  \caption{Memory hierarchy of an AMD Xeon, characterized by speed and size.}
+  \caption{Memory hierarchy of an Intel Sandy Bridge, characterized by speed and size.}
   \label{fig:hierarchy}
 \end{figure}
 Some points about this figure.
 \begin{itemize}
 \item Loading data from registers is so fast that it does not
   constitute a limitation on algorithm execution speed. On the other
-  hand, there are few registers. The Opteron\footnote{Specifically the
-    server chip used in the Ranger supercomputer; desktop versions
-    may have different specifications.} has 16 general purpose
-  registers, 8 media and floating point registers, and 16 SIMD
-  registers.
+  hand, there are few registers. Each core has 16 general purpose
+  registers, and 16 SIMD registers.
 \item The L1 cache is small, but sustains a bandwidth of 32 bytes,
   that is 4 double precision number, per cycle. This is enough to load
-  two operands each for two operations, but note that the Opteron can
+  two operands each for two operations, but note that the core can
   actually perform 4 operations per cycle. Thus, to achieve peak
-  speed, certain operands need to stay in register. The latency from
-  L1 cache is around 3 cycles.
-\item The bandwidth from L2 and L3 cache is not documented and hard to
-  measure due to cache policies (see below). Latencies are around 15
-  cycles for L2 and 50 for~L3.
+  speed, certain operands need to stay in register: typically, L1 
+  bandwidth is enough for about half of peak performance.
+\item The bandwidth of the L2 and L3 cache is nominally the same as
+  of L1. However, this bandwidth is partly wasted on coherence issues.
 \item Main memory access has a latency of more than 100 cycles, and a
   bandwidth of 4.5 bytes per cycle, which is about $1/7$th of the L1
-  bandwidth. However, this bandwidth is shared by the 4 cores of the
-  opteron chip, so effectively the bandwidth is a quarter of this
-  number. In a machine like Ranger, which has 4 chips per node,
-  some bandwidth is spent on maintaining \indextermbus{cache}{coherence} (see
-  section~\ref{sec:multicore}) reducing the bandwidth for each chip
-  again by half.
+  bandwidth. However, this bandwidth is shared by the multiple cores
+  of a processor chip, so effectively the bandwidth is a fraction of
+  this number. Most clusters will also have more than one
+  \indexterm{socket} (processor chip) per node, typically 2~or~4, so
+  some bandwidth is spent on maintaining
+  \indextermbus{cache}{coherence} (see section~\ref{sec:multicore}),
+  again reducing the bandwidth available for each chip.
 \end{itemize}
 
 On level~1, there are separate caches for instructions and data; the
@@ -770,7 +792,8 @@ how the hardware tries to help you by predicting what data is needed next.
 The next type of cache misses is due to the size of your working set:
 a \emph{capacity cache miss}\index{cache!miss, capacity} is caused by
 data having been overwritten because the cache can simply not contain
-all your problem data. If you want to avoid this type of misses, you
+all your problem data. (Section~\ref{sec:lru} discusses how the processor
+decides what data to overwrite.) If you want to avoid this type of misses, you
 need to partition your problem in chunks that are small enough that
 data can stay in cache for an appreciable time. Of course, this
 presumes that data items are operated on multiple times, so that there
@@ -865,6 +888,8 @@ efficient program then tries to use the other items on the cache line,
 since access to them is effectively free. This phenomenon is visible in
 code that accesses arrays by \indexterm{stride}: elements are read or
 written at regular intervals.
+
+\lulubreak
 
 \begin{wrapfigure}{r}{3in}
   \includegraphics[scale=.07]{graphics-public/stride-1}
@@ -966,7 +991,12 @@ they can address 4G bytes\footnote{We implicitly use the convention
 cache has 8K words, that is, 64K~bytes, needing 16 bits to address.
 Direct mapping then takes from each memory address the last (`least
 significant') 16~bits,
-and uses these as the address of the data item in cache.
+\begin{figure}
+  \includegraphics[scale=.1]{directmap}
+  \caption{Direct mapping of 32-bit addresses into a 64K cache}
+  \label{fig:directmap}
+\end{figure}
+and uses these as the address of the data item in cache; see figure~\ref{fig:directmap}.
 
 Direct mapping is very efficient because of its address calculations
 can be performed very quickly, leading to low latency, but it
@@ -1054,12 +1084,10 @@ cache.
 
 As a practical example, the
 \indextermbus{Intel}{Woodcrest} processor has
-\begin{itemize}
-\item an L1 cache of 32K bytes, that is 8-way set associative with a 64
-  byte cache line size;
-\item an L2 cache of 4M bytes, that is 8-way set associative with a 64
+an L1 cache of 32K bytes that is 8-way set associative with a 64
+  byte cache line size, and
+an L2 cache of 4M bytes that is 8-way set associative with a 64
   byte cache line size.
-\end{itemize}
 On the other hand, the \indextermbus{AMD}{Barcelona} chip
 has 2-way associativity for the L1 cache, and 8-way for
 the~L2. A~higher associativity (`way-ness') is obviously desirable,
@@ -1103,7 +1131,13 @@ implementing this model would make a separate request for each new
 operand. In practice, often subsequent data items are adjacent or
 regularly spaced in memory. The memory system can try to detect such
 data patterns by looking at cache miss points,
-and request a \indexterm{prefetch data stream}. 
+and request a \indexterm{prefetch data stream}
+\begin{figure}
+  \includegraphics[scale=.09]{prefetch}
+  \caption{Prefetch stream generated by equally spaced requests}
+  \label{fig:prefetch}
+\end{figure}
+(figure~\ref{fig:prefetch}).
 
 In its simplest form, the CPU will detect that consecutive loads come
 from two consecutive cache lines, and automatically issue a request
@@ -1125,7 +1159,8 @@ them or not.
 
 Since prefetch is controlled by the hardware, it is also described as
 \indexterm{hardware prefetch}.  Prefetch streams can sometimes be
-controlled from software, though often it takes assembly code
+controlled from software, though often it takes assembly code,
+for instance \indextermsub{inline}{assembly} instructions in your C~code,
 to do so. On the \indextermbus{IBM}{BlueGene Q} prefetch can be
 activated by program directives.
 
@@ -1167,7 +1202,7 @@ prefetch mechanism (section~\ref{sec:prefetch}) will issue some memory
 requests ahead of time, but typically not enough. Thus, in order to
 use the available bandwidth, multiple streams of data need to be under
 way simultaneously. Therefore, we can also phrase Little's law as
-\[ \mathrm{Effective throughput}=\mathrm{Expressed concurrency} / \mathrm{Latency}. \]
+\[ \mathrm{Effective\ throughput}=\mathrm{Expressed\ concurrency} / \mathrm{Latency}. \]
 
 \Level 1 {Memory banks}
 \label{sec:banks}
@@ -1309,7 +1344,7 @@ While the first multicore CPUs
 were simply two processors on the same die, later generations
 incorporated L3 or L2 caches that were shared between the two
 processor cores; see figure~\ref{fig:core-caches}
-\begin{figure}
+\begin{figure}[ht]
   \includegraphics[scale=.18]{graphics-public/cache-hierarchy}
   \caption{Cache hiearchy in a single-core and dual-core chip}
   \label{fig:core-caches}
@@ -1337,7 +1372,7 @@ fig~\ref{fig:rockcreek}. This chip has a structure with 24 dual-core
 tiles are connected to a memory controller, others can not reach
 memory other than through the on-chip network.
 
-\begin{figure}
+\begin{figure}[ht]
   \begin{quote}
   \includegraphics[scale=.5]{graphics-public/ScCC-1}
   \includegraphics[scale=.4]{graphics-public/ScCC-2}
@@ -1578,7 +1613,7 @@ loop. The reuse here is~$1$.
 
 %\Level 1 {Matrix-matrix product}
 
-Next, consider the matrix-matrix product:
+Next, consider the \emph{matrix-matrix product}\index{matrix-matrix product!reuse in}:
 \[ \forall_{i,j}\colon c_{ij} = \sum_k a_{ik}b_{kj}. \] This involves
 $3n^2$ data items and $2n^3$ operations, which is of a
 higher order. The arithmetic intensity is~$O(n)$, meaning that every data item
@@ -1624,12 +1659,12 @@ to determine performance.
 This is known as the \emph{roofline model}~\cite{Williams:2009:roofline},
 and it expresses the basic fact that performance is bounded by two factors,
 illustrated in the left graph of figure~\ref{fig:roofline}.
-\begin{figure}
-  \hbox{%
-  \includegraphics[scale=.25]{graphics-public/roofline1}
-  \includegraphics[scale=.25]{graphics-public/roofline2}
-  \includegraphics[scale=.25]{graphics-public/roofline3}
-  }
+\begin{figure}[p]
+
+  \includegraphics[scale=.1]{graphics-public/roofline1}
+  \includegraphics[scale=.1]{graphics-public/roofline2}
+  \includegraphics[scale=.1]{graphics-public/roofline3}
+
   \caption{Illustration of factors determining performance in the roofline model}
   \label{fig:roofline}
 \end{figure}
@@ -1771,8 +1806,6 @@ for (i=0; i<N*s; i+=s) {
   misses are very costly; see also section~\ref{sec:coding-tlb}.
 \end{itemize}
 
-\Level 2 {Examples of locality}
-
 \begin{exercise}
   Consider the following pseudocode of an algorithm for summing $n$
   numbers $x[i]$ where $n$ is a power of~2:
@@ -1790,6 +1823,32 @@ for i=0,1,2,...,n-1
   sum = sum + x[i]
 \end{verbatim}
 \end{exercise}
+
+\begin{exercise}
+Consider the following code, and assume that \n{nvectors} is small
+compared to the cache size, and \n{length} large.
+\begin{verbatim}
+for (k=0; k<nvectors; k++)
+  for (i=0; i<length; i++)
+    a[k,i] = b[i] * c[k]
+\end{verbatim}
+How do the following concepts relate to the performance of this code:
+\begin{itemize}
+\item Reuse
+\item Cache size
+\item Associativity
+\end{itemize}
+
+Would the following code where the loops are exchanged
+perform better or worse, and why?
+\begin{verbatim}
+for (i=0; i<length; i++)
+  for (k=0; k<nvectors; k++)
+    a[k,i] = b[i] * c[k]
+\end{verbatim}
+\end{exercise}
+
+\Level 2 {Examples of locality}
 
 Let us examine locality issues for a realistic example. The
 matrix-matrix multiplication $C\leftarrow A\cdot B$ can be computed

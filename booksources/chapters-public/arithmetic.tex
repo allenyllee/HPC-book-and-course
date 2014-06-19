@@ -117,7 +117,7 @@ as $n-B$ where $B$ is some plausible base, for instance~$2^{31}$.
   2^{31}&\ldots&2^{32}-1\\ \hline
   \hbox{interpretation as shifted int}&
   -2^{31}&\ldots&-1&
-  0&\ldots&-2^{31}+1\\ \hline
+  0&\ldots&2^{31}-1\\ \hline
 \end{array}
 \]
 
@@ -191,7 +191,7 @@ Suppose we have an algorithm for adding and subtracting unsigned
 We start by observing that the integer subtraction $m-n$ becomes the
 unsigned addition $m+(2^{32}-n)$.
 \begin{itemize}
-\item Case: $m<n$. In this case, $m-n$ is negative and $1\leq
+\item Case: $m<{n}$. In this case, $m-n$ is negative and $1\leq
   |m-n|\leq 2^{31}$, so the bit pattern for $m-n$ is that of
   $2^{32}-(n-m)$. Now, $2^{32}-(n-m)=m+(2^{32}-n)$, so we can compute
   $m-n$ in 2's complement by adding the bit patterns of $m$ and $-n$ as
@@ -274,7 +274,7 @@ where the components are
   (decimal point in decimal numbers) is implicitly assumed to the
   immediately following the first digit;
 \item $t$ is the length of the mantissa;
-\item $e\in [L,U]$ exponent; typically $L<0<U$ and $L\approx-U$.
+\item $e\in [L,U]$ exponent; typically $L<{0}<{U} $ and $L\approx-U$.
 \end{itemize}
 
 Note that there is an explicit sign bit for the whole number; the sign
