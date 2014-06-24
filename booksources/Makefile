@@ -3,9 +3,9 @@ info ::
 	@echo "to format the book"
 
 pdf :
-	pdflatex EijkhoutIntroToHPC
-	pdflatex EijkhoutIntroToHPC
-	pdflatex EijkhoutIntroToHPC
+	TEXINPUTS=${TEXINPUTS}:graphics-public pdflatex EijkhoutIntroToHPC
+	TEXINPUTS=${TEXINPUTS}:graphics-public pdflatex EijkhoutIntroToHPC
+	TEXINPUTS=${TEXINPUTS}:graphics-public pdflatex EijkhoutIntroToHPC
 	cp EijkhoutIntroToHPC.pdf ../
 
 info ::
