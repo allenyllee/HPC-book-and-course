@@ -336,7 +336,13 @@ by a vector~$x$ and the resulting by~$y$, then note that
 x = (x+y)/2 + (x-y)/2\\ y = (x+y)/2 - (x-y)/2
 \end{cases}
 \]
-In other words, we can map $x$ into~$y$ with the reflector based on $u=(x-y)/2$.
+\begin{figure}[ht]
+  \includegraphics[scale=.1]{reflector}
+  \caption{Householder reflector}
+  \label{fig:reflector}
+\end{figure}
+In other words, we can map $x$ into~$y$ with the reflector based on
+$u=(x-y)/2$.
 
 We can generalize Householder reflectors to a form \[ H=I-2uv^t. \]
 The matrices $L_i$ used in LU factorization (see section~\ref{sec:lu-fact})

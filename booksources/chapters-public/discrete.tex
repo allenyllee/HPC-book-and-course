@@ -9,7 +9,8 @@ planets or stars, under the influence of a force such as gravity or
 the electrical force. (There can also be external forces, which we
 will ignore; also we assume there are no collisions, otherwise we need
 to incorporate nearest-neighbour interactions.) This type of problems
-is known as N-body problems.
+is known as N-body problems; for an introduction
+see \url{http://www.scholarpedia.org/article/N-body_simulations_(gravitational)}.
 
 \begin{wrapfigure}{r}{2.5in}
 \includegraphics[scale=.4]{nbody}
@@ -138,6 +139,17 @@ the center of mass.
 
 However, computationally the \ac{FMM} is much like the Barnes-Hut
 method so we will discuss their implementation jointly.
+
+\Level 0 {Full computation}
+
+Despite the above methods for judicious approximation, there are also
+efforts at full calculation of the $N^2$ interactions; see for
+instance the \indexterm{NBODY6} code of Sverre Aarseth;
+see \url{http://www.ast.cam.ac.uk/~sverre/web/pages/home.htm}.
+Such codes use high order integrators and adaptive time steps.
+Fast implementation on the \indexterm{Grape computer} exist;
+general parallelization is typically hard because of the need
+for regular load balancing.
 
 \Level 0 {Implementation}
 

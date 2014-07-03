@@ -18,9 +18,9 @@
     \leavevmode
     \framebox[4.5in]{\vbox{
         \begin{tabbing}
-          Compute $r^{(0)} = b - Ax^{(0)}$ for some initial guess $x^{(0)}$ \\
+          Compute $r^{(0)} = Ax^{(0)} - b$ for some initial guess $x^{(0)}$ \\
           {\bf for } \= $ i = 1, 2, \ldots$ \\
-          \> {\bf solve} $Mz^{(i-1)}=r^{(i-1)}$\\
+          \> {\bf solve} $Kz^{(i-1)}=r^{(i-1)}$\\
           \> $\rho_{i-1}=r^{(i-1)^T}z^{(i-1)}$\\
           \> {\bf if} \= $i = 1$ \\
           \> \> $p^{(1)} = z^{(0)}$ \\
@@ -29,9 +29,9 @@
           \> \>$p^{(i)} = z^{(i-1)} + \beta_{i-1}p^{(i-1)} $ \\
           \>{\bf endif} \\
           \> $q^{(i)}=Ap^{(i)}$ \\
-          \>$\alpha_i = \rho_{i-1}/p^{(i)^T}q^{(i)}$ \\
-          \>$x^{(i)} = x^{(i-1)} + \alpha_ip^{(i)} $ \\
-          \>$r^{(i)} = r^{(i-1)} - \alpha_iq^{(i)} $ \\
+          \>$\delta_i = \rho_{i-1}/p^{(i)^T}q^{(i)}$ \\
+          \>$x^{(i)} = x^{(i-1)} - \delta_ip^{(i)} $ \\
+          \>$r^{(i)} = r^{(i-1)} - \delta_iq^{(i)} $ \\
           \>check convergence; continue if necessary \\
           {\bf end}
         \end{tabbing}
@@ -40,8 +40,3 @@
     \label{fig:pcg}
   \end{center}
 \end{figure}
-
-% Local Variables: 
-% mode: latex
-% TeX-master: "report"
-% End: 

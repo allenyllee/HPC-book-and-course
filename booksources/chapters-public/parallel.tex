@@ -2202,7 +2202,7 @@ problem of programmability. The programmer now needs to identify
 explicitly two streams of work: one for the host processor and one for
 the co-processor.
 
-Some notable parallel machines with co-processors where:
+Some notable parallel machines with co-processors are:
 \begin{itemize}
 \item The \indextermbus{Intel}{Paragon} (1993) had two processors per
   node, one for communication and the other for computation. These
@@ -2220,10 +2220,12 @@ Some notable parallel machines with co-processors where:
 \item The Chinese \indexterm{Tianhe-1A} topped the Top 500 list in
   2010, reaching about 2.5 PetaFlops through the use of
   NVidia\index{NVidia} \acp{GPU}.
+\item The \indexterm{Tianhe-2} and the \indextermbus{TACC}{Stampede cluster}
+  use \indextermbus{Intel}{Xeon Phi} co-processors.
 \end{itemize}
 The Roadrunner and Tianhe-1A are examples of co-processors that are
 very powerful, and that need to be explicitly programmed independently
-of the host CPU. For instance, code runing on the the \acp{GPU} of the
+of the host CPU. For instance, code runing on the \acp{GPU} of the
 Tianhe-1A is programmed in \indexterm{CUDA} and compiled separately.
 
 In both cases the programmability problem is further exacerbated by
