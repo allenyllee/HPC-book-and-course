@@ -191,29 +191,11 @@ give a short tour of what their constituent parts.
   \label{fig:sandybridge}
 \end{figure}
 Figure~\ref{fig:sandybridge} is a picture of the \indexterm{die}
-of an \indextermbus{Intel}{Sandy Bridge} processor\footnote
-{This is the consumer chip: the server chip has eight cores.}.
+of an \indextermbus{Intel}{Sandy Bridge} processor.
 This chip is about two inches in diameter and contains close
 to a billion transistors.
 
-\Level 1 {Caches: on-chip memory}
-
-The bulk of computer memory is in chips that are separate from the processor.
-However, there is usually a small amount (typically a few megabytes)
-of on-chip memory, called the \indexterm{cache}. This will be 
-explained in detail in section~\ref{sec:cache}.
-
-\Level 1 {Graphics, controllers, special purpose hardware}
-
-One difference between `consumer' and `server' type processors
-is that the consumer chips devote considerable real-estate
-on the processor chip to graphics. Processors for cell phones and tablets
-can even have dedicated circuitry for security or mp3 playback.
-Other parts of the processor
-are dedicated to communicating with memory or the \indexterm{I/O subsystem}.
-We will not discuss those aspects in this book.
-
-\Level 1 {The cores}
+\Level 1 {The processing cores}
 \index{core|(textbf}
 
 In the Von Neuman model there is a single entity that executes instructions.
@@ -307,7 +289,7 @@ units that (asymptotically) can produce a result per cycle.
 
 \index{floating point!unit|)textbf}
 
-\Level 1 {Pipelining}
+\Level 2 {Pipelining}
 \label{sec:pipeline}
 \index{pipeline|(}
 
@@ -331,57 +313,6 @@ point performance is `floating point operations per second',
 abbreviated \indexterm{flops}. Considering the speed of computers
 these days, you will mostly hear floating point performance being
 expressed in `gigaflops': multiples of $10^9$ flops.
-
-\Level 2 {Pipelining beyond arithmetic: instruction-level parallelism}
-\label{sec:pipelinecpu}
-
-In fact, nowadays, the whole CPU is pipelined. Not only floating point
-operations, but any sort of instruction will be put in the
-\indexterm{instruction pipeline}\index{pipeline!instruction} as soon
-as possible. Note that this pipeline is no longer limited to identical
-instructions: the notion of pipeline is now generalized to any stream
-of partially executed instructions that are simultaneously ``in
-flight''.
-
-This concept is also known as \indexacf{ILP}, and it is facilitated by
-various mechanisms:
-\begin{itemize}
-\item multiple-issue: instructions that are independent can be started
-  at the same time;
-\item pipelining: already mentioned, arithmetic units can deal with
-  multiple operations in various stages of completion;
-\item branch prediction and speculative execution: a compiler can
-  `guess' whether a conditional instruction will evaluate to true, and
-  execute those instructions accordingly;
-\item out-of-order execution: instructions can be rearranged if they
-  are not dependent on each other, and if the resulting execution will
-  be more efficient;
-\item prefetching: data can be speculatively requested before any
-  instruction needing it is actually encountered (this is discussed
-  further in section~\ref{sec:prefetch}).
-\end{itemize}
-
-As clock frequency has gone up, the processor pipeline has grown in
-length to make the segments executable in less time. You have already
-seen that longer pipelines have a larger $n_{1/2}$, so more
-independent instructions are needed to make the pipeline run at full
-efficiency. As the limits to instruction-level parallelism are
-reached, making pipelines longer\index{pipeline!length} (sometimes
-called `deeper'\index{pipeline!depth}) no longer pays off. This is
-generally seen as the reason that chip designers have moved to
-\indexterm{multicore} architectures as a way of more efficiently
-using the transistors on a chip; section~\ref{sec:multicore}.
-
-There is a second problem with these longer pipelines: if the code
-comes to a branch point (a conditional or the test in a loop), it is
-not clear what the next instruction to execute is. At that point the
-pipeline can \emph{stall}\index{pipeline!stall}. CPUs have taken to
-\indexterm{speculative execution} for instance, by always assuming
-that the test will turn out true. If the code then takes the other
-branch (this is called a \indexterm{branch misprediction}), the
-pipeline has to be \emph{flushed}\index{pipeline!flush} and
-restarted. The resulting delay in the execution stream is called the
-\indexterm{branch penalty}.
 
 \Level 1 {8-bit, 16-bit, 32-bit, 64-bit}
 
@@ -418,6 +349,83 @@ original Apple Macintosh) had a 32-bit CPU, but 16-bit data busses.
 The first Intel\index{Intel} microprocessor, the 4004, was a 4-bit
 processor in the sense that it processed 4 bit chunks. These days,
 64 bit processors are becoming the norm.
+
+\Level 1 {Caches: on-chip memory}
+
+The bulk of computer memory is in chips that are separate from the processor.
+However, there is usually a small amount (typically a few megabytes)
+of on-chip memory, called the \indexterm{cache}. This will be 
+explained in detail in section~\ref{sec:cache}.
+
+\Level 1 {Graphics, controllers, special purpose hardware}
+
+One difference between `consumer' and `server' type processors
+is that the consumer chips devote considerable real-estate
+on the processor chip to graphics. Processors for cell phones and tablets
+can even have dedicated circuitry for security or mp3 playback.
+Other parts of the processor
+are dedicated to communicating with memory or the \indexterm{I/O subsystem}.
+We will not discuss those aspects in this book.
+
+\Level 1 {Superscalar processing and instruction-level parallelism}
+\label{sec:pipelinecpu}
+
+In the von Neumann model processors operate through \indextermdef{control flow}:
+instructions follow each other linearly or with branches without regard for what
+data they involve. As processors became more powerful and capable of executing
+more than one instruction at a time, it became necessary to switch to the
+\indextermdef{data flow} model. Such \indextermdef{superscalar} processors
+analyze several instructions to find data dependencies, and execute
+instructions in parallel that do not depend on each other.
+
+This concept is also known as \indexacf{ILP}, and it is facilitated by
+various mechanisms:
+\begin{itemize}
+\item multiple-issue: instructions that are independent can be started
+  at the same time;
+\item pipelining: already mentioned, arithmetic units can deal with
+  multiple operations in various stages of completion;
+\item branch prediction and speculative execution: a compiler can
+  `guess' whether a conditional instruction will evaluate to true, and
+  execute those instructions accordingly;
+\item out-of-order execution: instructions can be rearranged if they
+  are not dependent on each other, and if the resulting execution will
+  be more efficient;
+\item prefetching: data can be speculatively requested before any
+  instruction needing it is actually encountered (this is discussed
+  further in section~\ref{sec:prefetch}).
+\end{itemize}
+
+Above, you saw pipelining in the context of floating point
+operations. Nowadays, the whole CPU is pipelined. Not only floating point
+operations, but any sort of instruction will be put in the
+\indexterm{instruction pipeline}\index{pipeline!instruction} as soon
+as possible. Note that this pipeline is no longer limited to identical
+instructions: the notion of pipeline is now generalized to any stream
+of partially executed instructions that are simultaneously ``in
+flight''.
+
+As clock frequency has gone up, the processor pipeline has grown in
+length to make the segments executable in less time. You have already
+seen that longer pipelines have a larger $n_{1/2}$, so more
+independent instructions are needed to make the pipeline run at full
+efficiency. As the limits to instruction-level parallelism are
+reached, making pipelines longer\index{pipeline!length} (sometimes
+called `deeper'\index{pipeline!depth}) no longer pays off. This is
+generally seen as the reason that chip designers have moved to
+\indexterm{multicore} architectures as a way of more efficiently
+using the transistors on a chip; section~\ref{sec:multicore}.
+
+There is a second problem with these longer pipelines: if the code
+comes to a branch point (a conditional or the test in a loop), it is
+not clear what the next instruction to execute is. At that point the
+pipeline can \emph{stall}\index{pipeline!stall}. CPUs have taken to
+\indexterm{speculative execution} for instance, by always assuming
+that the test will turn out true. If the code then takes the other
+branch (this is called a \indexterm{branch misprediction}), the
+pipeline has to be \emph{flushed}\index{pipeline!flush} and
+restarted. The resulting delay in the execution stream is called the
+\indexterm{branch penalty}.
 
 \Level 0 {Memory Hierarchies}
 \label{sec:hierarchy}

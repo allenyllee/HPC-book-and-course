@@ -195,11 +195,15 @@ For quite a while now, the top computers have been
 some sort of parallel computer, that is, an architecture that allows
 the simultaneous execution of multiple instructions or instruction
 sequences. One way of characterizing the various forms this can take
-is due to Flynn~\cite{flynn:taxonomy}. Flynn's taxonomy distinguishes
-between whether one or more different instructions are executed
-simultaneously, and between whether that happens on one or more data
-items. The following four types result, which we will discuss in more
-detail below:
+is due to Flynn~\cite{flynn:taxonomy}. \indexterm{Flynn's taxonomy} 
+characterizes architectures by whether the \indexterm{data flow}
+and \indexterm{control flow} are shared or independent.
+The following four types result (see also figure~\ref{fig:flynn}):
+\begin{figure}[t]
+  \includegraphics[scale=.12]{Flynn}
+  \caption{The four classes of the Flynn's taxonomy}
+  \label{fig:flynn}
+\end{figure}
 \begin{description}
 \item[SISD] Single Instruction Single Data: this is the traditional
   CPU architecture: at any one time only a single instruction is
@@ -219,10 +223,6 @@ detail below:
   type.
 \end{description}
 
-
-\Level 1 {SIMD}
-\label{sec:simd}
-
 \begin{wrapfigure}{r}{2in}
   \includegraphics[scale=.3]{maspar2}
   \caption{Architecture of the MasPar 2 array processors}
@@ -230,6 +230,11 @@ detail below:
   \vskip-1.5in
 \end{wrapfigure}
 %
+We will now discuss SIMD and MIMD architectures in more detail.
+
+\Level 1 {SIMD}
+\label{sec:simd}
+
 Parallel computers of the SIMD type apply the same operation
 simultaneously to a number of data items. The design of the CPUs of
 such a computer can be quite simple, since the arithmetic unit does
