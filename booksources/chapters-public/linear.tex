@@ -391,6 +391,7 @@ Also, several of the computed eigenvalues have an imaginary component,
 which the exact eigenvalues do not have.
 
 \Level 0 {LU factorization}
+\index{LU factorization|(textbf}
 \label{sec:lu-fact}
 
 So far, we have looked at eliminating unknowns in the context of
@@ -481,7 +482,7 @@ reflectors}\index{Householder reflectors!in LU factorization}; see~\ref{app:refl
 \end{exercise}
 
 If we define $L=L_1\inv L_2\inv$, we now have $A=LU$; this is called
-an \indexterm{LU factorization}.
+an \emph{LU factorization}.
 We see that the
 coefficients of~$L$ below the diagonal
 are the negative of the coefficients used during
@@ -1008,6 +1009,8 @@ upper triangular', and not strictly upper triangular.
   uniqueness of $LU$ factorizations then proves that the block
   algorithm computes the scalar result.
 \end{exercise}
+
+\index{LU factorization|)}
 
 \Level 0 {Sparse matrices}
 \label{sec:sparse}

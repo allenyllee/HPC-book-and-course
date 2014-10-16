@@ -66,8 +66,8 @@ the inner loop does $t$ comparisons and up to $t$ exchanges. Summing
 this from $1$ to $n-1$ gives approximately $n^2/2$ comparisons and
 at most the same number of exchanges.
 
-Such data-independent sorting algorithms are sometimes
-called \indextermbus{sorting}{networks}. They can be considered
+Such a data-independent sorting algorithm is sometimes
+called \indextermbus{sorting}{network}. It can be considered
 as custom hardware that implements just one algorithm. The 
 basic hardware element is the \indexterm{compare-and-swap}
 element, which has two inputs and two outputs. For two inputs $x,y$
@@ -142,9 +142,22 @@ the first thread.
   this way?
 \end{exercise}
 
-Since shared memory is not the most interesting case, we will forego
-trying to make the thread implementation more efficient, and we will
-move on straight away to distributed memory parallelization.
+Is there a way to make splitting the array more efficient?
+As it turns out, yes, and the key is to use a parallel \indexterm{prefix
+operation}; see appendix~\ref{app:prefix}. If the array of values
+is $x_1,\ldots,x_n$, we use a parallel prefix to compute
+how many elements are less than the pivot~$\pi$:
+\[ X_i=\#\{ x_j\colon j<i\wedge x_j<\pi \}. \]
+With this, if a processor looks at~$x_i$, and $x_i$~is less
+than the pivot, it needs to be moved to location~$X_i+1$
+in the array where elements are split according to the pivot.
+%
+Similarly, one would could how many elements there are over the pivot,
+and move those accordingly.
+
+This shows that each pivoting step can be done in $O(\log n)$ time,
+and since there $\log n$ steps to the sorting algorithm, the
+total algorithm runs in $O((\log n)^2)$ time.
 
 \Level 1 {Quicksort on a hypercube}
 
@@ -270,6 +283,12 @@ use larger and larger bitonic networks.
 From this description you see that you $\log_2N$ stages to sort $N$
 elements, where the $i$-th stage is of length~$\log_2i$. This makes
 the total \indextermbus{sequential complexity of}{bitonic sorting}~$(\log_2N)^2$.
+
+The sequence of operations in figure~\ref{fig:full-bitonic}
+is called a \indextermbus{sorting}{network}, built up out of simple 
+\indexterm{compare-and-swap} elements. There is no dependence 
+on the value of the data elements, as is the case with quicksort.
+
 \index{bitonic sorting|)}
 
 \index{sorting|)}

@@ -1,4 +1,7 @@
 % -*- latex -*-
+\index{interoperability!C to Fortran|(}
+\index{language interoperability|see{interoperability}}
+
 Most of the time, a program is written is written in a single
 language, but in some circumstances it is necessary or desirable to
 mix sources in more than one language for a single executable. One
@@ -6,7 +9,7 @@ such case is when a library is written in one language, but used by a
 program in another. In such a case, the library writer will probably
 have made it easy for you to use the library; this section is for the
 case that you find yourself in the place of the library writer. We
-will focus on the common case of interfacing between C/C++ and
+will focus on the common case of \emph{interoperability} between C/C++ and
 Fortran.
 
 This issue is complicated by the fact that both languages have
@@ -153,6 +156,12 @@ int foo(int x) {
 \end{verbatim}
 you again get the same linker symbols as for~C, so that the routine
 can be called from both C and~Fortran.
+
+If your main program is in~C, you can use the C++ compiler as linker.
+If the main program is in Fortran, you need to use the Fortran
+compiler as linker. It is then necessary to link in extra
+libraries for the C++ system routines. For instance, with the 
+Intel compiler \n{-lstdc++ -lc} needs to be added to the link line.
 
 \index{C++!linking to|)}
 
@@ -317,3 +326,5 @@ INTEGER,KIND(C_SHORT) :: i
   which are just addresses.
 \item Fortran derived types can be made compatible with C~structures.
 \end{itemize}
+
+\index{interoperability!C to Fortran|)}

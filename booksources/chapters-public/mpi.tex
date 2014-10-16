@@ -393,22 +393,3 @@ Another form of one-sided communication is used in the Charm++
 package; see section~\ref{sec:charm++}.
 
 \index{one-sided communication|)}
-
-\Level 3 {The Global Arrays library}
-\index{Global Arrays|(}
-
-The Global Arrays library (\url{http://www.emsl.pnl.gov/docs/global/})
-is another example of \indexterm{one-sided communication}, and in fact
-it predates MPI. This library has as its prime data structure
-\indexterm{cartesian product} arrays\footnote{This means that if the
-  array is three-dimensional, it can be described by three integers
-  $n_1,n_2,n_3$, and each point has a coordinate $(i_1,i_2,i_3)$ with
-  $1\leq i_1\leq n_1$ et cetera.}, distributed over a processor grid
-of the same or lower dimension. Through library calls, any processor
-can access any sub-brick out of the array in either a \n{put} or
-\n{get} operation. These operations are non-collective. As with any
-one-sided protocol, a barrier sync is necessary to ensure completion
-of the sends/receives.
-
-\index{Global Arrays|)}
-

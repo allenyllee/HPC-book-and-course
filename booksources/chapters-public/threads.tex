@@ -449,10 +449,11 @@ device. If one process gets hold of the one resource first, and the
 other process the other resource, we have another case of
 \indexterm{deadlock}.
 
-\Level 2 {Cilk}
+\Level 2 {Cilk Plus}
 
 Other programming models based on threads exist. For instance,
-\indexterm{Cilk} is a set of extensions of C/C++ with which a
+Intel \indexterm{Cilk Plus} (\url{http://www.cilkplus.org/})
+is a set of extensions of C/C++ with which a
 programmer can create threads.
 
 \hbox{%
@@ -478,9 +479,9 @@ programmer can create threads.
       \>if (n<2) return 1;\\
       \>else \=\{\\
       \>\>int rst=0;\\
-      \>\>rst += spawn fib(n-1);\\
-      \>\>rst += spawn fib(n-2);\\
-      \>\>sync;\\
+      \>\>rst += cilk\_spawn fib(n-1);\\
+      \>\>rst += cilk\_spawn fib(n-2);\\
+      \>\>cilk\_sync;\\
       \>\>return rst;\\
       \}\\
     \end{tabbing}
@@ -505,12 +506,13 @@ and intermediate results of the current computation it is engaged in.
 
 Hyperthreading is an Intel technology to let multiple threads use the
 processor truly simulateneously, so that part of the processor would
-be optimally used; see figure~\ref{fig:hyperthread}.
-\begin{figure}
-\includegraphics[scale=.6]{hyperthreading_image1}
-\caption{Illustration of processor utilization under hyperthreading.}
-\label{fig:hyperthread}
-\end{figure}
+be optimally used.
+%% ; see figure~\ref{fig:hyperthread}.
+%% \begin{figure}
+%% \includegraphics[scale=.6]{hyperthreading_image1}
+%% \caption{Illustration of processor utilization under hyperthreading.}
+%% \label{fig:hyperthread}
+%% \end{figure}
 
 If a processor switches between executing one thread and another, it saves this
 local information of the one thread, and loads the information of the other.

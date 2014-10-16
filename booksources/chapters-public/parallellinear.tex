@@ -27,6 +27,259 @@ bandwidth and finite connectivity. This chapter will conclude with
 various short remarks regarding complications in algorithms that arise
 due to parallel execution.
 
+\Level 0 {Collective operations}
+\label{sec:collective}
+\index{collective communication|(}
+\index{collective operation|(}
+\label{sec:collective-cost}
+
+Collective operations play an important part in linear algebra
+operations. In fact, the scalability of the operations can depend on
+the cost of these collectives as you will see below.  Here we give a
+short discussion of the essential ideas; see~\cite{Chan2007Collective}
+for details.
+
+\index{3@$\alpha$|see{latency}}
+\index{3@$\beta$|see{bandwidth}}
+\index{3@$\gamma$|see{computation rate}}
+
+In computing the cost of a collective operation, three architectural
+constants are enough to give lower bounds: $\alpha$,~the \index{latency} of
+sending a single message, $\beta$,~the inverse of the \index{bandwidth} for
+sending data (see section~\ref{sec:latencybandwidth}), and $\gamma$,
+the inverse of the \index{computation rate}, the
+time for performing an arithmetic operation. Sending $n$ data
+items then takes time $\alpha +\beta n$. We further assume that a
+processor can only send one message at a time. We make no assumptions
+about the connectivity of the processors; thus, the lower bounds
+derived here will hold for a wide range of architectures.
+
+The main implication of the architectural model above is that the
+number of active processors can only double in each step of an
+algorithm. For instance, to do a broadcast, first processor~0 sends
+to~1, then 0~and~1 can send to 2~and~3, then 0--3 send to 4--7, et
+cetera. This cascade of messages is called
+a \indextermbus{minimum}{spanning tree} of the processor network, and
+it follows that any collective algorithm has at least $\alpha\log_2p$
+cost associated with the accumulated latencies.
+
+\Level 1 {Broadcast}
+\index{broadcast|(}
+
+In a \emph{broadcast} operation, a single processor has $n$ data elements
+that is needs to send to all others: the other processors need a full
+copy of all $n$ elements.  By
+the above doubling argument, we conclude that a broadcast to $p$
+processors takes time at least $\lceil\log_2 p\rceil$ steps with a
+total latency of $\lceil\log_2 p\rceil \alpha$. Since $n$ elements are
+sent, this adds at least a time $n\beta$ for all elements to leave the
+sending processor, giving a total cost lower bound of
+\[ \lceil\log_2 p\rceil \alpha+n\beta. \]
+
+We can illustrate the spanning tree method as follows:
+\[
+\begin{array}{|c|ccc|}
+\hline
+  &t=1&t=2&t=3\\ \hline
+p_0&x_0\downarrow,x_1\downarrow,x_2\downarrow,x_3\downarrow
+   &x_0\downarrow,x_1\downarrow,x_2\downarrow,x_3\downarrow
+   &x_0,x_1,x_2,x_3\\
+p_1&&x_0\downarrow,x_1\downarrow,x_2\downarrow,x_3\downarrow
+   &x_0,x_1,x_2,x_3\\
+p_2&&&x_0,x_1,x_2,x_3\\
+p_3&&&x_0,x_1,x_2,x_3\\
+\hline
+\end{array}
+\]
+(On $t=1$, $p_0$ sends to $p_1$; on $t=2$ $p_0,p_1$ send to $p_2,p_3$.)
+This algorithm has the correct $\log_2p\cdot\alpha$ term, but processor~0 repeatedly
+sends the whole vector, so the bandwidth cost is $\log_2p\cdot n\beta$.
+If $n$ is small, the latency cost dominates, so we may characterize this 
+as a \indextermsub{short vector}{collective operation}
+
+The following algorithm implements the broadcast as a combination of a scatter
+and a \indexterm{bucket brigade algorithm}:
+\[
+\begin{array}{|c|lll|}
+\hline
+  &t=0&t=1&et cetera\\ \hline
+p_0&x_0\downarrow\hphantom{,x_1\downarrow,x_2\downarrow,x_3\downarrow}
+   &x_0\hphantom{\downarrow,x_1\downarrow,x_2\downarrow,}x_3\downarrow
+   &x_0,\hphantom{x_1,}x_2,x_3\\
+p_1&\hphantom{x_0\downarrow,}x_1\downarrow\hphantom{,x_2\downarrow,x_3\downarrow}
+   &x_0\downarrow,x_1\hphantom{\downarrow,x_2\downarrow,x_3\downarrow}
+   &x_0,x_1,\hphantom{x_2,}x_3\\
+p_2&\hphantom{x_0\downarrow,x_1\downarrow,}x_2\downarrow\hphantom{,x_3\downarrow}
+   &\hphantom{x_0\downarrow,}x_1\downarrow,x_2\hphantom{\downarrow,x_3\downarrow}
+   &x_0,x_1,x_2\hphantom{,x_3}\\
+p_3&\hphantom{x_0\downarrow,x_1\downarrow,x_2\downarrow,}x_3\downarrow
+   &\hphantom{x_0\downarrow,x_1\downarrow,}x_2\downarrow,x_3\hphantom{\downarrow}
+   &\hphantom{x_0,}x_1,x_2,x_3\\
+\hline
+\end{array}
+\]
+The complexity now becomes \[ p\alpha+\beta n(p-1)/p \]
+which is not optimal in latency, but is a better algorithm if $n$ is large,
+making this a \indextermsub{long vector}{collective operation}.
+
+\index{broadcast|)}
+
+\Level 1 {Reduction}
+\index{reduction|(}
+
+In a \emph{reduction} operation, each processor has $n$ data elements, and
+one processor needs to combine them elementwise, for instance
+computing $n$ sums or products.
+
+By running the broadcast backwards in time, we see that a reduction
+operation has the same lower bound on the communication of
+$\lceil\log_2 p\rceil \alpha+n\beta$.  A~reduction operation also
+involves computation, which would take a total time of $(p-1)\gamma n$
+sequentially: each of
+$n$ items gets reduced over $p$ processors. Since these operations can
+potentially be parallelized, the lower bound on the computation is
+$\frac{p-1}p \gamma n$, giving a total of
+    \[ \lceil\log_2 p\rceil \alpha+n\beta +\frac{p-1}p \gamma n. \]
+
+We illustrate the spanning tree algorithm,
+using the notation $x_i^{(j)}$ for the data item~$i$
+that was originally on processor~$j$, and $x_i^{(j:k)}$ for the sum of
+the items~$i$ of processors $j\ldots k$.
+\[
+\begin{array}{|c|ccc|}
+\hline
+  &t=1&t=2&t=3\\ \hline
+p_0&x_0^{(0)},x_1^{(0)},x_2^{(0)},x_3^{(0)}
+   &x_0^{(0:1)},x_1^{(0:1)},x_2^{(0:1)},x_3^{(0:1)}
+   &x_0^{(0:3)},x_1^{(0:3)},x_2^{(0:3)},x_3^{(0:3)}\\
+p_1&x_0^{(1)}\uparrow,x_1^{(1)}\uparrow,x_2^{(1)}\uparrow,x_3^{(1)}\uparrow
+   &&\\
+p_2&x_0^{(2)},x_1^{(2)},x_2^{(2)},x_3^{(2)}
+   &x_0^{(2:3)}\uparrow,x_1^{(2:3)}\uparrow,x_2^{(2:3)}\uparrow,x_3^{(2:3)}\uparrow
+   &\\
+p_3&x_0^{(3)}\uparrow,x_1^{(3)}\uparrow,x_2^{(3)}\uparrow,x_3^{(3)}\uparrow
+   &&\\
+\hline
+\end{array}
+\]
+On time $t=1$ processors $p_0,p_2$ receive from $p_1,p_3$, and on
+$t=2$ $p_0$ receives from~$p_2$.
+
+As with the broadcast above, 
+this algorithm does not achieve the lower bound; instead it has a complexity
+\[ \lceil\log_2 p\rceil (\alpha+n\beta +\frac{p-1}p \gamma n). \]
+For short vectors the $\alpha$ term dominates, so this algorithm is sufficient.
+For long vectors one can, as above, use other algorithms~\cite{Chan2007Collective}.
+
+\index{reduction|)}
+
+\Level 1 {Allreduce}
+\index{allreduce|(}
+
+An \emph{allreduce} operation computes the same elementwise reduction of $n$
+elements on each processor, but leaves the result on each processor,
+rather than just on the root of the spanning tree. This could be
+implemented as a reduction followed by a broadcast, but more clever
+algorithms exist.
+
+The lower bound on the cost of an allreduce is, somewhat remarkably,
+almost the same as of a simple reduction: since in a reduction not all
+processors are active at the same time, we assume that the extra work
+can be spread out perfectly. This means that the lower bound on the
+latency and computation stays the same. For the bandwidth we reason as
+follows: in order for the communication to be perfectly parallelized,
+$\frac{p-1}p n$ items have to arrive at, and leave each
+processor. Thus we have a total time of
+\[ \lceil \log_2 p\rceil\alpha +2\frac{p-1}pn\beta
+    +\frac{p-1}pn\gamma. \]
+
+\index{allreduce|)}
+
+\Level 1 {Allgather}
+\index{allgather|(}
+
+In a \indexterm{gather} operation on $n$ elements, each processor has
+$n/p$ elements, and one processor collects them all, without combining
+them as in a reduction. The \emph{allgather} computes the same gather,
+but leaves the result on all processors.
+
+Again we assume that gathers with multiple
+targets are active simultaneously. Since every processor originates a
+minimum spanning tree, we have $\log_2p\alpha$ latency; since each
+processor receives $n/p$ elements from $p-1$ processors, there is
+$(p-1)\times(n/p)\beta$ bandwidth cost. The total cost for constructing a
+length~$n$ vector by allgather is then
+\[ \lceil \log_2 p\rceil\alpha +\frac{p-1}pn\beta. \]
+We illustrate this:
+\[
+\begin{array}{|c|ccc|}
+\hline
+  &t=1&t=2&t=3\\ \hline
+p_0&x_0\downarrow&x_0x_1\downarrow&x_0x_1x_2x_3\\
+p_1&x_1\uparrow&x_0x_1\downarrow&x_0x_1x_2x_3\\
+p_2&x_2\downarrow&x_2x_3\uparrow&x_0x_1x_2x_3\\
+p_3&x_3\uparrow&x_2x_3\uparrow&x_0x_1x_2x_3\\
+\hline
+\end{array}
+\]
+At time $t=1$, there is an exchange between neighbours $p_0,p_1$ and
+likewise $p_2,p_3$; at $t=2$ there is an exchange over distance two
+between $p_0,p_2$ and likewise~$p_1,p_3$.
+
+\index{allgather|)}
+
+\Level 1 {Reduce-scatter}
+\index{reduce-scatter|(}
+
+In a \indexterm{reduce-scatter} operation, each processor has $n$
+elements, and an $n$-way reduction is done on them. Unlike in the
+reduce or allreduce, the result is then broken up, and distributed as
+in a scatter operation.
+
+Formally, processor~$i$ has an
+item~$x_i^{(i)}$, and it needs $\sum_j x_i^{(j)}$. We could implement
+this by doing a size~$p$ reduction, collecting the vector $(\sum_i
+x_0^{(i)},\sum_i x_1^{(i)},\ldots)$ on one processor, and scattering
+the results. However it is possible to combine these operations in a
+so-called \indexterm{bidirectional exchange} algorithm:
+
+\[
+\begin{array}{|c|ccc|}
+\hline
+  &t=1&t=2&t=3\\ \hline
+p_0&x_0^{(0)},x_1^{(0)},x_2^{(0)}\downarrow,x_3^{(0)}\downarrow
+   &x_0^{(0:2:2)},x_1^{(0:2:2)}\downarrow
+    \hphantom{x_0^{(0:2:2)},x_1^{(0:2:2)}\downarrow}
+   &x_0^{(0:3)}
+    \hphantom{x_3^{(0:3)}x_3^{(0:3)}x_3^{(0:3)}}\\
+p_1&x_0^{(1)},x_1^{(1)},x_2^{(1)}\downarrow,x_3^{(1)}\downarrow
+   &x_0^{(1:3:2)}\uparrow,x_1^{(1:3:2)}
+    \hphantom{x_0^{(0:2:2)},x_1^{(0:2:2)}\downarrow}
+   &\hphantom{x_3^{(0:3)}} x_1^{(0:3)}
+    \hphantom{x_3^{(0:3)}x_3^{(0:3)}} \\
+p_2&x_0^{(2)}\uparrow,x_1^{(2)}\uparrow,x_2^{(2)},x_3^{(2)}
+   &\hphantom{x_0^{(0:2:2)},x_1^{(0:2:2)}\downarrow}
+    x_2^{(0:2:2)},x_3^{(0:2:2)}\downarrow
+   &\hphantom{x_3^{(0:3)}x_3^{(0:3)}} x_2^{(0:3)}
+    \hphantom{x_3^{(0:3)}}\\
+p_3&x_0^{(3)}\uparrow,x_1^{(3)}\uparrow,x_2^{(3)},x_3^{(3)}
+   &\hphantom{x_0^{(0:2:2)},x_1^{(0:2:2)}\downarrow}
+    x_0^{(1:3:2)}\uparrow,x_1^{(1:3:2)}
+   &\hphantom{x_3^{(0:3)}x_3^{(0:3)}x_3^{(0:3)}}
+    x_3^{(0:3)}\\
+\hline
+\end{array}
+\]
+
+The reduce-scatter can be considered as a allgather run in reverse,
+with arithmetic added, so the cost is 
+\[ \lceil \log_2 p\rceil\alpha +\frac{p-1}pn(\beta+\gamma). \]
+
+\index{reduce-scatter|)}
+
+\index{collective communication|)}
+\index{collective operation|)}
+
 \Level 0 {The sparse matrix-vector product}
 \label{sec:spmvp-performance}
 
@@ -332,234 +585,6 @@ algorithm; for the original research
 see~\cite{HeWo:94,Schreiber:scalability92,Stewart90}, and see
 section~\ref{sec:scaling} for the definitions of the various forms of
 scaling.
-
-An important part of this discussion is a thorough analysis of
-collective operations, so we start with this.
-
-\Level 2 {Collective operations}
-\label{sec:collective}
-\index{collective communication|(}
-\index{collective operation|(}
-\label{sec:collective-cost}
-
-%\input chapters-public/collective
-
-Collective operations play an important part in linear algebra
-operations. In fact, the scalability of the operations can depend on
-the cost of these collectives. (See~\cite{Chan2007Collective} for
-details.)
-
-\index{3@$\alpha$|see{latency}}
-\index{3@$\beta$|see{bandwidth}}
-\index{3@$\gamma$|see{computation rate}}
-
-In computing the cost of a collective operation, three architectural
-constants are enough to give lower bounds: $\alpha$,~the \index{latency} of
-sending a single message, $\beta$,~the inverse of the \index{bandwidth} for
-sending data (see section~\ref{sec:latencybandwidth}), and $\gamma$,
-the inverse of the \index{computation rate}, the
-time for performing an arithmetic operation. Sending $n$ data
-items then takes time $\alpha +\beta n$. We further assume that a
-processor can only send one message at a time. We make no assumptions
-about the connectivity of the processors; thus, the lower bounds
-derived here will hold for a wide range of architectures.
-
-The main implication of the architectural model above is that the
-number of active processors can only double in each step of an
-algorithm. For instance, to do a broadcast, first processor~0 sends
-to~1, then 0~and~1 can send to 2~and~3, then 0--3 send to 4--7, et
-cetera. This cascade of messages is called
-a \indextermbus{minimum}{spanning tree} of the processor network, and
-it follows that any collective algorithm has at least $\alpha\log_2p$
-cost associated with the accumulated latencies.
-
-\Level 2 {Broadcast}
-\index{broadcast|(}
-
-In a \emph{broadcast} operation, a single processor has $n$ data elements
-that is needs to send to all others: the other processors need a full
-copy of all $n$ elements.  By
-the above doubling argument, we conclude that a broadcast to $p$
-processors takes time at least $\lceil\log_2 p\rceil$ steps with a
-total latency of $\lceil\log_2 p\rceil \alpha$. Since $n$ elements are
-sent, this adds at least a time $n\beta$ for all elements to leave the
-sending processor, giving a total cost lower bound of
-\[ \lceil\log_2 p\rceil \alpha+n\beta. \]
-
-We can illustrate the spanning tree method as follows:
-\[
-\begin{array}{|c|ccc|}
-\hline
-  &t=1&t=2&t=3\\ \hline
-p_0&x_0\downarrow,x_1\downarrow,x_2\downarrow,x_3\downarrow
-   &x_0\downarrow,x_1\downarrow,x_2\downarrow,x_3\downarrow
-   &x_0,x_1,x_2,x_3\\
-p_1&&x_0\downarrow,x_1\downarrow,x_2\downarrow,x_3\downarrow
-   &x_0,x_1,x_2,x_3\\
-p_2&&&x_0,x_1,x_2,x_3\\
-p_3&&&x_0,x_1,x_2,x_3\\
-\hline
-\end{array}
-\]
-On $t=1$, $p_0$ sends to $p_1$; on $t=2$ $p_0,p_1$ send to $p_2,p_3$.
-
-\index{broadcast|)}
-
-\Level 2 {Reduction}
-\index{reduction|(}
-
-In a \emph{reduction} operation, each processor has $n$ data elements, and
-one processor needs to combine them elementwise, for instance
-computing $n$ sums or products.
-
-By running the broadcast backwards in time, we see that a reduction
-operation has the same lower bound on the communication of
-$\lceil\log_2 p\rceil \alpha+n\beta$.  A~reduction operation also
-involves computation, which would take a total time of $(p-1)\gamma n$
-sequentially: each of
-$n$ items gets reduced over $p$ processors. Since these operations can
-potentially be parallelized, the lower bound on the computation is
-$\frac{p-1}p \gamma n$, giving a total of
-    \[ \lceil\log_2 p\rceil \alpha+n\beta +\frac{p-1}p \gamma n. \]
-
-We illustrate the spanning tree algorithm,
-using the notation $x_i^{(j)}$ for the data item~$i$
-that was originally on processor~$j$, and $x_i^{(j:k)}$ for the sum of
-the items~$i$ of processors $j\ldots k$.
-\[
-\begin{array}{|c|ccc|}
-\hline
-  &t=1&t=2&t=3\\ \hline
-p_0&x_0^{(0)},x_1^{(0)},x_2^{(0)},x_3^{(0)}
-   &x_0^{(0:1)},x_1^{(0:1)},x_2^{(0:1)},x_3^{(0:1)}
-   &x_0^{(0:3)},x_1^{(0:3)},x_2^{(0:3)},x_3^{(0:3)}\\
-p_1&x_0^{(1)}\uparrow,x_1^{(1)}\uparrow,x_2^{(1)}\uparrow,x_3^{(1)}\uparrow
-   &&\\
-p_2&x_0^{(2)},x_1^{(2)},x_2^{(2)},x_3^{(2)}
-   &x_0^{(2:3)}\uparrow,x_1^{(2:3)}\uparrow,x_2^{(2:3)}\uparrow,x_3^{(2:3)}\uparrow
-   &\\
-p_3&x_0^{(3)}\uparrow,x_1^{(3)}\uparrow,x_2^{(3)}\uparrow,x_3^{(3)}\uparrow
-   &&\\
-\hline
-\end{array}
-\]
-On time $t=1$ processors $p_0,p_2$ receive from $p_1,p_3$, and on
-$t=2$ $p_0$ receives from~$p_2$.
-
-This algorithm does not achieve the lower bound; instead it has a complexity
-\[ \lceil\log_2 p\rceil (\alpha+n\beta +\frac{p-1}p \gamma n). \]
-For short vectors the $\alpha$ term dominates, so this algorithm is sufficient.
-For long vectors one can resort to other,
-more complicated, algorithms~\cite{Chan2007Collective}.
-
-\index{reduction|)}
-
-\Level 2 {Allreduce}
-\index{allreduce|(}
-
-An \emph{allreduce} operation computes the same elementwise reduction of $n$
-elements on each processor, but leaves the result on each processor,
-rather than just on the root of the spanning tree. This could be
-implemented as a reduction followed by a broadcast, but more clever
-algorithms exist.
-
-The lower bound on the cost of an allreduce is, somewhat remarkably,
-almost the same as of a simple reduction: since in a reduction not all
-processors are active at the same time, we assume that the extra work
-can be spread out perfectly. This means that the lower bound on the
-latency and computation stays the same. For the bandwidth we reason as
-follows: in order for the communication to be perfectly parallelized,
-$\frac{p-1}p n$ items have to arrive at, and leave each
-processor. Thus we have a total time of
-\[ \lceil \log_2 p\rceil\alpha +2\frac{p-1}pn\beta
-    +\frac{p-1}pn\gamma. \]
-
-\index{allreduce|)}
-
-\Level 2 {Allgather}
-\index{allgather|(}
-
-In a \indexterm{gather} operation on $n$ elements, each processor has
-$n/p$ elements, and one processor collects them all, without combining
-them as in a reduction. The \emph{allgather} computes the same gather,
-but leaves the result on all processors.
-
-Again we assume that gathers with multiple
-targets are active simultaneously. Since every processor originates a
-minimum spanning tree, we have $\log_2p\alpha$ latency; since each
-processor receives $n/p$ elements from $p-1$ processors, there is
-$(p-1)\times(n/p)\beta$ bandwidth cost. The total cost for constructing a
-length~$n$ vector by allgather is then
-\[ \lceil \log_2 p\rceil\alpha +\frac{p-1}pn\beta. \]
-We illustrate this:
-\[
-\begin{array}{|c|ccc|}
-\hline
-  &t=1&t=2&t=3\\ \hline
-p_0&x_0\downarrow&x_0x_1\downarrow&x_0x_1x_2x_3\\
-p_1&x_1\uparrow&x_0x_1\downarrow&x_0x_1x_2x_3\\
-p_2&x_2\downarrow&x_2x_3\uparrow&x_0x_1x_2x_3\\
-p_3&x_3\uparrow&x_2x_3\uparrow&x_0x_1x_2x_3\\
-\hline
-\end{array}
-\]
-At time $t=1$, there is an exchange between neighbours $p_0,p_1$ and
-likewise $p_2,p_3$; at $t=2$ there is an exchange over distance two
-between $p_0,p_2$ and likewise~$p_1,p_3$.
-
-\index{allgather|)}
-
-\Level 2 {Reduce-scatter}
-\index{reduce-scatter|(}
-
-In a \indexterm{reduce-scatter} operation, each processor has $n$
-elements, and an $n$-way reduction is done on them. Unlike in the
-reduce or allreduce, the result is then broken up, and distributed as
-in a scatter operation.
-
-Formally, processor~$i$ has an
-item~$x_i^{(i)}$, and it needs $\sum_j x_i^{(j)}$. We could implement
-this by doing a size~$p$ reduction, collecting the vector $(\sum_i
-x_0^{(i)},\sum_i x_1^{(i)},\ldots)$ on one processor, and scattering
-the results. However it is possible to combine these operations in a
-so-called \indexterm{bidirectional exchange} algorithm:
-
-\[
-\begin{array}{|c|ccc|}
-\hline
-  &t=1&t=2&t=3\\ \hline
-p_0&x_0^{(0)},x_1^{(0)},x_2^{(0)}\downarrow,x_3^{(0)}\downarrow
-   &x_0^{(0:2:2)},x_1^{(0:2:2)}\downarrow
-    \hphantom{x_0^{(0:2:2)},x_1^{(0:2:2)}\downarrow}
-   &x_0^{(0:3)}
-    \hphantom{x_3^{(0:3)}x_3^{(0:3)}x_3^{(0:3)}}\\
-p_1&x_0^{(1)},x_1^{(1)},x_2^{(1)}\downarrow,x_3^{(1)}\downarrow
-   &x_0^{(1:3:2)}\uparrow,x_1^{(1:3:2)}
-    \hphantom{x_0^{(0:2:2)},x_1^{(0:2:2)}\downarrow}
-   &\hphantom{x_3^{(0:3)}} x_1^{(0:3)}
-    \hphantom{x_3^{(0:3)}x_3^{(0:3)}} \\
-p_2&x_0^{(2)}\uparrow,x_1^{(2)}\uparrow,x_2^{(2)},x_3^{(2)}
-   &\hphantom{x_0^{(0:2:2)},x_1^{(0:2:2)}\downarrow}
-    x_2^{(0:2:2)},x_3^{(0:2:2)}\downarrow
-   &\hphantom{x_3^{(0:3)}x_3^{(0:3)}} x_2^{(0:3)}
-    \hphantom{x_3^{(0:3)}}\\
-p_3&x_0^{(3)}\uparrow,x_1^{(3)}\uparrow,x_2^{(3)},x_3^{(3)}
-   &\hphantom{x_0^{(0:2:2)},x_1^{(0:2:2)}\downarrow}
-    x_0^{(1:3:2)}\uparrow,x_1^{(1:3:2)}
-   &\hphantom{x_3^{(0:3)}x_3^{(0:3)}x_3^{(0:3)}}
-    x_3^{(0:3)}\\
-\hline
-\end{array}
-\]
-
-The reduce-scatter can be considered as a allgather run in reverse,
-with arithmetic added, so the cost is 
-\[ \lceil \log_2 p\rceil\alpha +\frac{p-1}pn(\beta+\gamma). \]
-
-\index{reduce-scatter|)}
-
-\index{collective communication|)}
-\index{collective operation|)}
 
 \Level 2 {Matrix-vector product, partitioning by rows}
 \label{sec:mvp-by-rows}
@@ -1118,11 +1143,75 @@ when $ r = c $, as long as $ r / c
 $ is kept constant.
 %\input chapters-public/mvpscaling2
 
-\Level 0 {Scalability of LU factorization}
+\Level 0 {LU factorization in parallel}
+
+The matrix-vector and matrix-product are easy to parallelize in one sense.
+The elements of the output can all be computed independently and in any order,
+so we have many degrees of freedom in parallelizing the algorithm.
+This does not hold for computing an LU factorization, or solving a linear system
+with the factored matrix.
+
+\Level 1 {Solving a triangular system}
+\index{LU factorization!solution in parallel|(}
+
+The solution of a triangular system $y=L\inv x$ (with $L$~is lower triangular)
+is a matrix-vector operation, so
+it has its $O(N^2)$ complexity in common with the matrix-vector product.
+However, unlike the product operation, this solution process contains a recurrence
+relation between the output elements: 
+\[ y_{i} = \ell_{ii}\inv ( x_i-\sum_{j<i} \ell_{ij}x_j ). \]
+This means that parallelization is not trivial.
+In the case of a sparse matrix special strategies may be possible; see section~\ref{sec:parallel-implicit}.
+Here we will make a few remarks about general, dense case.
+
+Let us assume for simplicity that communication takes no time, and
+that all arithmetic operations take the same unit time.
+First we consider the matrix distribution by rows,
+meaning that processor~$p$ stores the elements~$\ell_{p*}$.
+With this we can implement the triangular solution as:
+\begin{itemize}
+\item Processor 1 solves $y_1=\ell_{11}\inv x_1$ and sends its value to the next processor.
+\item In general, processor $p$ gets the values $y_1,\ldots,y_{p-1}$
+  from processor~$p-\nobreak1$, and computes~$y_p$;
+\item Each processor $p$ then sends $y_1,\ldots,y_p$ to $p+1$.
+\end{itemize}
+
+\begin{exercise}
+  Show that this algorithm takes time $2N^2$, just like the sequential algorithm.
+\end{exercise}
+
+This algorithm has each processor passing all computed $y_i$ values to its successor, in a pipeline fashion.
+However, this means that processor~$p$ receives~$y_1$ only at the last moment, whereas that value was computed
+already in the first step. We can formulate the solution algorithm in such a way that computed elements
+are made available as soon as possible:
+\begin{itemize}
+\item Processor~1 solve $y_1$, and sends it to all later processors.
+\item In general, processor~$p$ waits for individual messages with values $y_q$ for~$q<p$.
+\item Processor $p$ then computes $y_p$ and sends it to processors~$q$ with $q>p$.
+\end{itemize}
+
+Under the assumption that communication time is negligible, this algorithm can be much faster.
+For instance, all processors~$p>1$ receive~$y_1$ simultaneously, and can compute $\ell_{p1}y_1$
+simultaneously.
+
+\begin{exercise}
+  Show that this algorithm variant takes a time $O(N)$.
+\end{exercise}
+
+\begin{exercise}
+  Now consider the matrix distribution by columns: processor~$p$ stores~$\ell_{*p}$.
+  Outline the triangular solution algorithm with this distribution, and show that the
+  parallel solve time is~$O(N)$.
+\end{exercise}
+
+\index{LU factorization!solution in parallel|)}
+
+\Level 1 {Factorization}
+\index{LU factorization!computation in parallel|(}
 \label{sec:LUscaling}
 
 A full analysis of the scalability of dense LU factorization is quite
-involved, so we will state without further proof that again a
+involved, so we will state without further proof that as in the matrix-vector case a
 two-dimensional distribution is needed. However, we can identify a
 further complication. Since factorizations of any
 type\footnote{Gaussian elimination can be performed in right-looking,
@@ -1213,6 +1302,8 @@ processor~0 the \emph{block} rows $0,c,2c,\ldots$.
 \end{exercise}
 
 \index{matrix!storage, dense|)}
+
+\index{LU factorization!computation in parallel|)}
 
 \index{Dense linear algebra|)}
 
@@ -1355,6 +1446,11 @@ Here are some of the approaches that have been taken.
   when it is allowed to use the classic \ac{GS} method~\cite{Langou:thesis}.
 \end{itemize}
 
+Since computer arithmetic is not associative, inner products are a prime
+source of results that differ when the same calculation is executed of
+two different processor configurations. In section~\ref{sec:roundoff-parallel}
+we sketched a solution.
+
 \index{inner products|)}
 
 \Level 1 {Finite element matrix construction}
@@ -1405,7 +1501,7 @@ matrix element.
 \Level 0 {Parallel preconditioners}
 \label{sec:parallel-prec}
 
-Above (sections \ref{sec:preconditioner} and \ref{sec:ilu}) we saw a
+Above (section~\ref{sec:preconditioner} and in particular~\ref{sec:ilu}) we saw a
 couple of different choices of~$K$. In this section we will begin the
 discussion of parallelization strategies. The discussion is continued
 in detail in the next sections.
@@ -1560,7 +1656,7 @@ write the usual algorithm (section~\ref{sec:lu-solve}) as
 \end{exercise}
 
 \begin{figure}
-  \includegraphics[scale=.1]{graphics-public/pilu}
+  \includegraphics[scale=.12]{graphics-public/pilu}
   \caption{A partitioned domain with coloured nodes}
   \label{fig:pilu}
 \end{figure}
@@ -1569,7 +1665,7 @@ sequential\ldots Well, it is true that the outer loop over the colours
 is sequential, but all the points of one colour are independent of
 each other, so they can be solved at the same time.
 \begin{figure}
-  \includegraphics[scale=.12]{graphics-public/pilu-solve}
+  \includegraphics[scale=.13]{graphics-public/pilu-solve}
   \caption{Solving a parallel multicolour ILU in four steps}
   \label{fig:pilu-solve}
 \end{figure}
@@ -1669,18 +1765,18 @@ solve, by an explicit operation; see
 section~\ref{sec:implicit-becomes-explicit}.
 
 \Level 0 {Parallelism and implicit operations}
+\label{sec:parallel-implicit}
 \input chapters-public/implicit
 
 \Level 0 {Grid updates}
 
-One of the conclusions of chapter~\ref{ch:odepde} was that explicit methods
-for time-dependent problems are computationally easier than implicit ones.
-For instance,
-they typically involve a matrix-vector product rather than a system solution,
-and
-parallelizing explicit operations is fairly simple: each result value of the 
-matrix-vector product can be computed independently. That does not mean that
-there are other computational aspects worth remarking on.
+One of the conclusions of chapter~\ref{ch:odepde} was that explicit
+methods for time-dependent problems are computationally easier than
+implicit ones.  For instance, they typically involve a matrix-vector
+product rather than a system solution, and parallelizing explicit
+operations is fairly simple: each result value of the matrix-vector
+product can be computed independently. That does not mean that there
+are other computational aspects worth remarking on.
 
 Since we are dealing with sparse matrices, stemming from some computational stencil,
 we take the operator point of view. In figures \ref{fig:laplaceparallel} 
@@ -1758,7 +1854,7 @@ of $x^{(n+2)}_4$, which belongs to the second processor.
 
 The easiest solution is to let this sort of point on the intermediate
 level \emph{redundantly computed}\index{redundant computation}, in 
-both the computation of both blocks where it is needed.
+the computation of both blocks where it is needed, on two different processors.
 
 \begin{exercise}
   Can you think of cases where a point would be redundantly computed by
@@ -1766,20 +1862,24 @@ both the computation of both blocks where it is needed.
 \end{exercise}
 
 We can give several interpretations to this scheme of computing multiple
-update steps by blocks. First of all, as we motivated above, doing this 
+update steps by blocks. 
+\begin{itemize}
+\item First of all, as we motivated above, doing this 
 on a single processor increases locality: if all points in a coloured block
 (see the figure) fit in cache, we get reuse of the intermediate points.
-
-Secondly, if we consider this as a scheme for distributed memory computation,
+\item Secondly, if we consider this as a scheme for distributed memory computation,
 it reduces message traffic. Normally, for every update step the processors
 need to exchange their boundary data. If we accept some redundant duplication
 of work, we can now eliminate the data exchange for the intermediate levels.
 The decrease in communication will typically outweigh the increase in work.
+\end{itemize}
 
 \begin{exercise}
   Discuss the case of using this strategy for multicore computation.
   What are the savings? What are the potential pitfalls?
 \end{exercise}
+
+\Level 1 {Analysis}
 
 Let's analyze the algorithm we have just sketched.  As in
 equation~\eqref{eq:3p-average} we limit ourselves to a 1D set of
@@ -1808,8 +1908,11 @@ We observe that the overhead of $\alpha M/b+\gamma Mb$ is independent of~$p$,
   problem parameters.
 \end{exercise}
 
-We can make this algorithm more efficient by overlapping the
-communication and computation. As illustrated in
+\Level 1 {Communication and work minimizing strategy}
+
+We can make this algorithm more efficient by 
+\indextermsub{overlapping computation with}{communication}.
+As illustrated in
 figure~\ref{fig:grid-update-local}, each processor start by
 communicating its halo, and overlapping this communication with the
 part of the communication that can be done locally. The values that

@@ -34,9 +34,6 @@ In this chapter, we will analyze this more explicit type of
 parallelism, the hardware that supports it, the programming that
 enables it, and the concepts that analyze it.
 
-For further reading, a good introduction to parallel computers and
-parallel programming is Wilkinson and Allen~\cite{WilkinsonAllen}. 
-
 \Level 0 {Introduction}
 \label{sec:parallel-intro}
 
@@ -189,6 +186,454 @@ These matters of algorithm adaptation, efficiency, and communication,
 are crucial to all of parallel computing. We will return to these
 issues in various guises throughout this chapter.
 
+\Level 0 {Quantifying parallelism}
+\label{sec:speedup-efficiency}
+
+There are two important reasons for using a parallel computer: to have
+access to more memory or to obtain higher performance. It is easy to
+characterize the gain in memory, as the total memory is the sum of the
+individual memories. The speed of a parallel computer is harder to
+characterize. This section will have an extended discussion on
+theoretical measures for expressing and judging the gain in execution
+speed from going to a parallel architecture.
+
+\Level 1 {Definitions}
+\label{sec:speedup}
+
+\Level 2 {Speedup and efficiency}
+
+A~simple approach to defining speedup is to let the same program run on a
+single processor, and on a parallel machine with $p$ processors, and
+to compare runtimes.
+With $T_1$ the execution time on a single processor and
+$T_p$ the time on $p$ processors, we define the \indextermdef{speedup} as
+$S_p=T_1/T_p$. (Sometimes $T_1$ is defined as `the best time to solve the
+problem on a single processor', which allows for using a different
+algorithm on a single processor than in parallel.)
+In the ideal case, $T_p=T_1/p$, but in practice we don't expect to
+attain that, so $S_P\leq p$. To measure how far we are from the ideal
+speedup, we introduce the \indextermdef{efficiency} $E_p=S_p/p$. Clearly,
+$0< E_p\leq 1$.
+
+There is a practical problem with
+this definition: a problem that can be solved on a parallel machine
+may be too large to fit on any single processor. Conversely,
+distributing a single processor problem
+over many processors may give a distorted picture since very little
+data will wind up on each processor. Below we will discuss more
+realistic measures of speed-up.
+
+There are various reasons why the actual speed is less than~$P$. For
+one, using more than one processors necessitates communication, which
+is overhead that was not part of the original computation. Secondly,
+if the processors do not have exactly the same amount of work to do,
+they may be idle part of the time (this is known as
+\indextermbus{load}{unbalance}), again lowering the actually attained
+speedup. Finally, code may have sections that are inherently
+sequential.
+
+Communication between processors is an important source of a loss of
+efficiency. Clearly, a problem that can be solved without
+communication will be very efficient. Such problems, in effect
+consisting of a number of completely independent calculations, is
+called \indexterm{embarassingly parallel}; it will have close to a perfect
+speedup and efficiency.
+
+\begin{exercise}
+  The case of speedup larger than the number of processors is called
+  \indexterm{superlinear speedup}. Give a theoretical argument why
+  this can never happen.
+\end{exercise}
+
+In practice, superlinear speedup can happen. For instance, suppose a 
+problem is too large to fit in memory, and a single processor can only
+solve it by swapping data to disc. If the same problem fits in the
+memory of two processors, the speedup may well be larger than~$2$
+since disc swapping no longer occurs. Having less, or more localized,
+data may also improve the cache behaviour of a code.
+
+\Level 2 {Critical path}
+
+The above definitions of speedup and efficiency made an implicit assumption
+that parallel work can be arbitrarily subdivided.
+As you saw in the summing example in section~\ref{sec:parallel-intro},
+this may not always be the case: there can be dependencies between
+operations, which limits the amount of parallelism that can be
+employed.
+
+In order to take this into account, we define the following concepts:
+\begin{definition}
+  \[ 
+  \begin{array}{l@{\colon}l}
+    T_1&\hbox{the time the computation takes on a single processor}\\
+    T_p&\hbox{the time the computation takes with $p$ processors}\\
+    T_\infty&\hbox{the time the computation takes if unlimited processors are available}\\
+    P_\infty&\hbox{the value of $p$ for which $T_p=T_\infty$}
+  \end{array}  
+  \]
+\end{definition}
+
+We will now give a few illustrations by showing a graph of tasks and their dependencies.
+We assume for simplicity that each task takes time~$\equiv1$.
+We define \indextermsub{average}{parallelism} as $T_1/T_\infty$.
+
+\begin{minipage}{\textwidth}
+  \begin{minipage}{.25\textwidth}
+    \includegraphics[scale=.07]{critical1}
+  \end{minipage}
+  \begin{minipage}{.75\textwidth}
+    The maximum number of processors that can be used is~2 and the
+    average parallelism is~$4/3$:
+    \[
+    \begin{array}{l}
+      T_1=4,\quad T_\infty=3 \quad\Rightarrow T_1/T_\infty=4/3\\
+      T_2=3,\quad S_2=4/3,\quad E_2=2/3\\
+      P_\infty=2
+    \end{array}
+    \]
+  \end{minipage}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+  \begin{minipage}{.25\textwidth}
+    \includegraphics[scale=.07]{critical2}
+  \end{minipage}
+  \begin{minipage}{.75\textwidth}
+    The maximum number of processors that can be used is~3 and the
+    average parallelism is~$9/5$; efficiency is maximal for~$p=2$:
+    \[
+    \begin{array}{l}
+      T_1=9,\quad T_\infty=5 \quad\Rightarrow T_1/T_\infty=9/5\\
+      T_2=6,\quad S_2=3/2,\quad E_2=3/4\\
+      T_3=5,\quad S_3=9/5,\quad E_3=3/5
+      P_\infty=3
+    \end{array}
+    \]
+  \end{minipage}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+  \begin{minipage}{.4\textwidth}
+    \includegraphics[scale=.07]{critical3}
+  \end{minipage}
+  \begin{minipage}{.6\textwidth}
+    The maximum number of processors that can be used is~4
+    and that is also the average parallelism;
+    the figure illustrates a parallelization with $P=3$ that
+    has efficiency~$\equiv1$:
+    \[
+    \begin{array}{l}
+      T_1=12,\quad T_\infty=4 \quad\Rightarrow T_1/T_\infty=3\\
+      T_2=6,\quad S_2=2,\quad E_2=1\\
+      T_3=4,\quad S_3=3,\quad E_3=1\\
+      T_4=3,\quad S_4=4,\quad E_4=1\\
+      P_\infty=4
+    \end{array}
+    \]
+  \end{minipage}
+\end{minipage}
+
+\Level 1 {Asymptotics}
+\label{sec:asymptotics}
+\input chapters-public/asymptotics
+
+\Level 1 {Amdahl's law}
+\label{sec:amdahl}
+\index{Amdahl's law|(}
+
+One reason for less than perfect speedup is that parts of a code can
+be inherently sequential. This limits the parallel efficiency as
+follows. Suppose that $5\%$ of a code is sequential, then the time for
+that part can not be reduced, no matter how many processors are
+available. Thus, the speedup on that code is limited to a factor
+of~$20$. This phenomenon is known as \emph{Amdahl's
+  Law}~\cite{amd:law}, which we will now formulate.
+
+Let $F_s$ be the
+\indexterm{sequential fraction} and
+$F_p$ be the \indexterm{parallel fraction} 
+(or more strictly: the `parallelizable'
+fraction) of a code, respectively. Then $F_p+F_s=1$. The parallel
+execution time $T_p$ on $p$ processors
+is the sum of the part that is sequential
+$T_1F_s$ and the part that can be parallelized $T_1F_p/P$:
+\begin{equation}
+  T_P=T_1(F_s+F_p/P).
+  \label{eq:amdahl}
+\end{equation}
+As the number of processors grows
+$P\rightarrow\infty$, the parallel execution time now approaches that
+of the sequential fraction of the code: $T_P\downarrow
+T_1F_s$. We conclude that speedup is limited by $S_P\leq 1/F_s$ and
+efficiency is a decreasing function $E\sim 1/P$.
+
+The sequential fraction of a code can consist of things such as I/O
+operations. However, there are also parts of a code that in effect act
+as sequential. Consider a program that executes a single loop, where
+all iterations can be computed independently. Clearly, this code is
+easily parallelized. However, by splitting the loop in a number of
+parts, one per processor, each processor now has to deal with loop
+overhead: calculation of bounds, and the test for completion. This
+overhead is replicated as many times as there are processors. In
+effect, loop overhead acts as a sequential part of the code.
+
+\begin{exercise}
+  Let's do a specific example. Assume that a code has a setup that
+  takes 1~second and a parallelizable section that takes 1000~seconds
+  on one processor. What are the speedup and efficiency if the code is
+  executed with 100 processors? What are they for 500~processors?
+  Express your answer to at most two significant digits.
+\end{exercise}
+
+\begin{exercise}
+  Investigate the implications of Amdahls's law: if the number of
+  processors~$P$ increases, how does the parallel fraction of a code
+  have to increase to maintain a fixed efficiency?
+\end{exercise}
+
+
+\Level 2 {Amdahl's law with communication overhead}
+
+In a way, Amdahl's law, sobering as it is, is even optimistic.
+Parallelizing a code will give a certain speedup, but it also
+introduces \indextermbus{communication}{overhead} that will lower the
+speedup attained. Let us refine our model of
+equation~\eqref{eq:amdahl} (see~\cite[p.~367]{Landau:comp-phys}):
+\[ T_p= T_1(F_s+F_p/P) +T_c, \]
+where $T_c$ is a fixed communication time.
+
+To assess the influence of this communication overhead, we assume that
+the code is fully parallelizable, that is, $F_p=1$. We then find that
+\begin{equation}
+    S_p=\frac{T_1}{T_1/p+T_c}.
+    \label{eq:amdahl-comm}
+\end{equation}
+For this to be close to~$p$, we need $T_c\ll T_1/p$ or $p\ll
+T_1/T_c$. In other words, the number of processors should not grow
+beyond the ratio of scalar execution time and communication overhead.
+
+\Level 2 {Gustafson's law}
+\index{Gustafson's law|(}
+
+Amdahl's law was thought to show that large numbers of processors
+would never pay off. However, the implicit assumption in Amdahl's law
+is that there is a fixed computation which gets executed on more and
+more processors. In practice this is not the case: typically there is
+a way of scaling up a problem (in chapter~\ref{ch:odepde} you will
+learn the concept of `discretization'), and one
+tailors the size of the problem to the number of available processors.
+
+A more realistic assumption would be to say that there is a  sequential
+fraction independent of the problem size, and parallel fraction that
+can be arbitrarily replicated.  To formalize this, instead of starting
+with the execution time of the sequential program, let us start with
+the execution time of the parallel program, and say that
+\[ T_p=T(F_s+F_p) \qquad\hbox{with $F_s+F_p=1$}. \]
+Now we have two possible definitions of~$T_1$. First of all, there is the $T_1$ 
+you get from setting $p=1$ in~$T_p$. (Convince yourself that that is actually 
+the same as~$T_p$.) However, what we need is $T_1$ describing the time
+to do all the operations of the parallel program.
+This is:
+\[ T_1=F_sT+p\cdot F_pT. \]
+This gives us a speedup of
+\[ S_p=\frac{T_1}{T_p}=\frac{F_s+p\cdot F_p}{F_s+F_p}
+   = F_s+p\cdot F_p = p-(p-1)\cdot F_s. 
+\]
+That is, speedup is now a function that decreases from $p$, linearly
+with~$p$.
+
+As with Amdahl's law, we can investigate the behaviour of Gustafson's
+law if we include communication overhead. Let's go back to
+equation~\eqref{eq:amdahl-comm} for a perfectly parallelizable
+problem, and approximate it as
+\[ S_p = p(1-\frac{T_c}{T_1}p). \]
+Now, under the assumption of a problem that is gradually being scaled up,
+$T_c,T_1$ become functions of~$p$. We see that if $T_1(p)\sim pT_c(p)$,
+we get linear speedup that is a constant fraction away from~$1$.
+In general we can not take this analysis further; in section~\ref{sec:densescaling}
+you'll see a detailed analysis of an example. 
+
+\index{Gustafson's law|)}
+
+\Level 2 {Amdahl's law and hybrid programming}
+
+Above, you learned about hybrid programming, a mix between distributed
+and shared memory programming. This leads to a new form of Amdahl's
+law.
+
+Suppose we have $p$ nodes with $c$ cores each, and $F_p$ describes the fraction
+of the code that uses $c$-way thread parallelism. We assume that the
+whole code is fully parallel over the $p$ nodes.
+The ideal speed up would be $p c$, and the ideal parallel running
+time $T_1/(pc)$, but the actual running time is 
+\[
+  T_{p,c} = T_1 \left(\frac {F_s}{p} + \frac{F_p}{p c}\right)
+  = \frac{T_1}{pc}\left( F_sc+F_p\right) 
+  = \frac{T_1}{pc}\left( 1+ F_s(c-1)\right).
+\]
+\begin{exercise}
+  Show that the speedup $T_1/T_{p,c}$ can be approximated by~$p/F_s$.
+\end{exercise}
+In the original Amdahl's law, speedup was limited by the sequential
+portion to a fixed number~$1/F_s$, in hybrid programming it is limited
+by the task parallel portion to~$p/F_s$.
+
+\index{Amdahl's law|)}
+
+\Level 1 {Scalability}
+\label{sec:scaling}
+\index{scaling|(}\index{scalability|(}
+
+Above, we remarked that splitting a given problem over more and more
+processors does not make sense: at a certain point there is just not
+enough work for each processor to operate efficiently. Instead, in
+practice, users of a parallel code will either choose the number of
+processors to match the problem size, or they will solve a series of
+increasingly larger problems on correspondingly growing numbers of
+processors. In both cases it is hard to talk about speedup. Instead,
+the concept of \indexterm{scalability} is used.
+
+We distinguish two types of scalability. So-called
+\indextermsub{strong}{scalability} is in effect the same as speedup,
+discussed above. We say that a program shows strong scalability if,
+partitioned over more and more processors, it shows perfect or near
+perfect speedup. Typically, one encounters statements like `this
+problem scales up to 500 processors', meaning that up to 500
+processors the speedup will not noticeably decrease from optimal. It
+is not necessary for this problem to fit on a single processors: often
+a smaller number such as 64 processors is used as the baseline from
+which scalability is judged.
+
+More interestingly, \indextermsub{weak}{scalability} is a more vaguely
+defined term. It describes that, as problem size and number of
+processors grow in such a way that the amount of data per processor
+stays constant, the speed in operations per second of each processor
+also stays constant. This measure is somewhat hard to report, since
+the relation between the number of operations and the amount of data
+can be complicated. If this relation is linear, one could state that
+the amount of data per processor is kept constant, and report that parallel
+execution time is constant as the number of processors grows.
+
+\begin{exercise}
+  We can formulate strong scaling as a runtime that is inversely
+  proportional to the number of processors: \[ t=c/p. \]
+  Show that on a log-log plot, that is, you plot the logarithm of the
+  runtime against the logarithm of the number of processors,
+  you will get a straight line with slope~$-1$.
+
+  Can you suggest a way of dealing with a non-parallelizable
+  section, that is, with a runtime $t=c_1+c_2/p$?
+\end{exercise}
+
+\begin{exercise}
+  Suppose you are investigating the weak scalability of a code.
+  After running it for a couple of sizes and corresponding numbers
+  of processes, you find that in each case the flop rate is roughly the same.
+  Argue that the code is indeed weakly scalable.
+\end{exercise}
+
+\begin{exercise}
+  In the above discussion we always implicitly compared a sequential 
+  algorithm and the parallel form of that same algorithm. However, 
+  in section~\ref{sec:speedup} we noted that sometimes speedup is defined
+  as a comparison of a parallel algorithm with the \textbf{best} sequential
+  algorithm for the same problem. With that in mind, compare a parallel sorting
+  algorithm with runtime $(\log n)^2$ (for instance, \indexterm{bitonic sort};
+  section~\ref{sec:sorting}) to the best serial algorithm, which has 
+  a running time of $n\log n$.
+
+  Show that in the weak scaling case of $n=p$ speedup is $p/\log p$.
+  Show that in the strong scaling case speedup is a descending function of~$n$.
+\end{exercise}
+
+Although in industry parlance the term `scalability' is sometimes
+applied to architectures or whole computer systems\footnote {``A
+  scalable computer is a computer designed from a small number of
+  basic components, without a single bottleneck component, so that
+  the computer can be incrementally expanded over its designed scaling
+  range, delivering linear incremental performance for a well-defined
+  set of scalable applications.  General-purpose scalable computers
+  provide a wide range of processing, memory size, and I/O
+  resources.  Scalability is the degree to which performance
+  increments of a scalable computer are linear''~\cite{Bell:outlook}.},
+%
+in scientific computing
+scalability is a property of an algorithm and the way it is
+parallelized on an architecture, in
+particular noting the way data is distributed. In
+section~\ref{sec:densescaling} you will find an analysis of the
+matrix-vector product operation: distributing a matrix by block rows
+turns out not to be scalable, but a two-dimensional distribution by
+submatrices is.
+
+\Level 1 {Simulation scaling}
+
+In most discussions of weak scaling
+we assume that the amount of work and 
+the amount of storage are linearly related. This is not always the case; for instance
+the operation complexity of a matrix-matrix product is $N^3$ for $N^2$ data.
+If you linearly increase the number of processors, the work will go up with a higher power.
+
+A similar effect comes into play if you similate time-dependent \acp{PDE}\footnote
+{This uses concepts from chapter~\ref{ch:odepde}.}.
+Here, the total work is a product of the work per time step and the number of 
+time steps. These two numbers are related; in section~\ref{sec:fd-ode} you
+saw that the time step has a certain minimum size as a function of the 
+space discretization. Thus, the number of time steps will go up as the work per
+time step goes up.
+
+Rather than investigating scalability from the point of the running
+of an algorithm, in this section we will look at the case where the simulated time~$S$
+and the running time~$T$ are constant, and we look at how this influences the amount of
+memory we need. This corresponds to the following real-life scenario: 
+you have a simulation that models a certain amount of real-world time 
+in a certain amount of running time; now you buy a bigger computer, and you wonder
+what size problem you can solve in the same running time and maintaining
+the same simulated time.
+
+Let $m$ be the memory per processor, and $P$ the number of processors, giving:
+\[ M=Pm\qquad\hbox{total memory.} \]
+If $d$ is the number of space dimensions of the problem, typically 2~or~3,
+we get
+\[ \Delta x = 1/M^{1/d}\qquad\hbox{grid spacing.} \]
+For stability this limits the time step $\Delta t$ to
+\[ \Delta t=
+\begin{cases}
+\Delta x=1\bigm/M^{1/d}&\hbox{hyperbolic case}\\
+\Delta x^2=1\bigm/M^{2/d}&\hbox{parabolic case}
+\end{cases}
+\]
+(noting that the hyperbolic case was not discussed in chapter~\ref{ch:odepde}.)
+With a simulated time $S$, we find
+\[ k=S/\Delta t\qquad \hbox{time steps.} \]
+If we assume that the individual time steps are perfectly parallelizable,
+that is, we use explicit methods, or implicit methods with optimal solvers,
+we find a running time
+\[ T=kM/P=\frac{S}{\Delta t}m. \]
+Setting $T/S=C$, we find
+\[ m=C\Delta t, \]
+that is, the amount of memory per processor goes down as we increase the processor
+count. (What is the missing step in that last sentence?)
+
+Further analyzing this result, we find
+\[ m=C\Delta t = c
+\begin{cases}
+1\bigm/M^{1/d}&\hbox{hyperbolic case}\\
+1\bigm/M^{2/d}&\hbox{parabolic case}
+\end{cases}
+\]
+Substituting $M=Pm$, we find ultimately
+\[ m = C
+\begin{cases}
+1\bigm/P^{1/(d+1)}&\hbox{hyperbolic}\\
+1\bigm/P^{2/(d+2)}&\hbox{parabolic}
+\end{cases}
+\]
+that is, the memory per processor that we can use
+goes down as a higher power of the number of processors.
+
+\index{scaling|)}\index{scalability|)}
+
 \Level 0 {Parallel Computers Architectures}
 
 For quite a while now, the top computers have been
@@ -223,13 +668,6 @@ The following four types result (see also figure~\ref{fig:flynn}):
   type.
 \end{description}
 
-\begin{wrapfigure}{r}{2in}
-  \includegraphics[scale=.3]{maspar2}
-  \caption{Architecture of the MasPar 2 array processors}
-  \label{fig:maspar}
-  \vskip-1.5in
-\end{wrapfigure}
-%
 We will now discuss SIMD and MIMD architectures in more detail.
 
 \Level 1 {SIMD}
@@ -269,6 +707,13 @@ The programming model where identical operations are applied to a
 number of data items simultaneously, is known as
 \indextermsub{data}{parallelism}.
 
+\begin{wrapfigure}{r}{2in}
+  \includegraphics[scale=.3]{maspar2}
+  \caption{Architecture of the MasPar 2 array processors}
+  \label{fig:maspar}
+  %\vskip-1.5in
+\end{wrapfigure}
+%
 Such array operations can occur in the context of physics simulations,
 but another important source is graphics applications. For this
 application, the processors in an array processor can be much weaker
@@ -827,7 +1272,7 @@ Kendall Square computer~\cite{KSRallcache} had an architecture name
 processor. Instead, all data was considered to be cached on a
 processor, and moved through the network on demand, much like data is
 moved from main memory to cache in a regular CPU. This idea 
-is analogous to the numa support in current SGI architectures.
+is analogous to the \ac{NUMA} support in current SGI architectures.
 
 \Level 1 {Active messages}
 \label{sec:charm++}
@@ -890,7 +1335,7 @@ all_processors[myid-1].incorporate_neighbour_data(local_x_data);
 \Level 1 {Bulk synchronous parallelism}
 \label{sec:bsp}
 
-The MPI library (section~\ref{sec:mpi} can lead to very efficient
+The MPI library (section~\ref{sec:mpi}) can lead to very efficient
 code. The price for this is that the programmer needs to spell out the
 communication in great detail. On the other end of the spectrum, PGAS
 languages (section~\ref{sec:pgas}) ask very little of the programmer,
@@ -930,8 +1375,9 @@ instance because there are $\log p$ processes on each processor, the maximum
 number of accesses is $3\log p$ with high probability. This means the load balance 
 is within a constant factor of perfect.
 
-The \ac{BSP} model is implemented in BSPlib~\cite{BSPlib}, and
-recently was also used for Google\index{Google}'s
+The \ac{BSP} model is implemented in BSPlib~\cite{BSPlib}.
+Other system can be said to be BSP-like in that they use the concept
+of supersteps; for instance Google\index{Google}'s
 \indexterm{Pregel}~\cite{Pregel:podc2009}.
 
 \Level 1 {Program design for parallelism}
@@ -1351,12 +1797,18 @@ above-mentioned broadcast. For this reason, it is desirable to have a
 network with a smaller diameter than a mesh. On the other hand we want
 to avoid the complicated design of a fully connected network.
 
+\begin{wrapfigure}{r}{3in}
+  \includegraphics[scale=.081]{graphics-public/hypercubenumber}
+  \caption{Numbering of the nodes of a hypercube}
+  \label{fig:cubenumber}
+\end{wrapfigure}
+%
 A good intermediate solution is the \indexterm{hypercube} design. An
 $n$-dimensional hypercube computer has $2^n$ processors, with each
 processor connected to one other in each dimension; see
 figure~\ref{fig:hypercube}. 
 
-\begin{figure}[ht]
+\begin{figure}[t]
   \begin{quote}
   \includegraphics[scale=.12]{graphics-public/hypercubes}
   \end{quote}
@@ -1371,12 +1823,6 @@ figure~\ref{fig:hypercube}.
 %%   \label{fig:cubenumber}
 %% \end{figure}
 
-\begin{wrapfigure}{r}{3in}
-  \includegraphics[scale=.081]{graphics-public/hypercubenumber}
-  \caption{Numbering of the nodes of a hypercube}
-  \label{fig:cubenumber}
-\end{wrapfigure}
-%
 An easy way to describe this is to give each processor an address
 consisting of $d$~bits: we give each node of a hypercube a number that
 is the bit pattern describing its location in the cube; see
@@ -1509,13 +1955,14 @@ connect any two processors by a path through the network.
 
 \Level 2 {Cross bar}
 
-\begin{figure}[ht]
-  \begin{quote}
+\begin{wrapfigure}{r}{2.5in}%[ht]
+%  \begin{quote}
   \includegraphics[scale=.7]{graphics-public/crossbar}
-  \end{quote}
+%  \end{quote}
   \caption{A simple cross bar connecting 6 inputs to 6 outputs}
   \label{fig:crossbar}
-\end{figure}
+\end{wrapfigure}
+%
 The simplest switching network is a cross bar, an arrangement of $n$
 horizontal and vertical lines, with a switch element on each
 intersection that determines whether the lines are connected; see
@@ -1798,371 +2245,6 @@ which prevents data from going to the central switch.
 
 \index{locality!in parallel computing|)}
 
-\Level 0 {Efficiency of parallel computing}
-\label{sec:speedup-efficiency}
-
-There are two important reasons for using a parallel computer: to have
-access to more memory or to obtain higher performance. It is easy to
-characterize the gain in memory, as the total memory is the sum of the
-individual memories. The speed of a parallel computer is harder to
-characterize. This section will have an extended discussion on
-theoretical measures for expressing and judging the gain in execution
-speed from going to a parallel architecture.
-
-\Level 1 {Definitions}
-\label{sec:speedup}
-
-A~simple approach to defining speedup is to let the same program run on a
-single processor, and on a parallel machine with $p$ processors, and
-to compare runtimes.
-With $T_1$ the execution time on a single processor and
-$T_p$ the time on $p$ processors, we define the \indexterm{speedup} as
-$S_p=T_1/T_p$. (Sometimes $T_1$ is defined as `the best time to solve the
-problem on a single processor', which allows for using a different
-algorithm on a single processor than in parallel.)
-In the ideal case, $T_p=T_1/p$, but in practice we don't expect to
-attain that, so $S_P\leq p$. To measure how far we are from the ideal
-speedup, we introduce the \indexterm{efficiency} $E_p=S_p/p$. Clearly,
-$0< E_p\leq 1$.
-
-There is a practical problem with
-this definition: a problem that can be solved on a parallel machine
-may be too large to fit on any single processor. Conversely,
-distributing a single processor problem
-over many processors may give a distorted picture since very little
-data will wind up on each processor. Below we will discuss more
-realistic measures of speed-up.
-
-There are various reasons why the actual speed is less than~$P$. For
-one, using more than one processors necessitates communication, which
-is overhead that was not part of the original computation. Secondly,
-if the processors do not have exactly the same amount of work to do,
-they may be idle part of the time (this is known as
-\indextermbus{load}{unbalance}), again lowering the actually attained
-speedup. Finally, code may have sections that are inherently
-sequential.
-
-Communication between processors is an important source of a loss of
-efficiency. Clearly, a problem that can be solved without
-communication will be very efficient. Such problems, in effect
-consisting of a number of completely independent calculations, is
-called \indexterm{embarassingly parallel}; it will have close to a perfect
-speedup and efficiency.
-
-\begin{exercise}
-  The case of speedup larger than the number of processors is called
-  \indexterm{superlinear speedup}. Give a theoretical argument why
-  this can never happen.
-\end{exercise}
-
-In practice, superlinear speedup can happen. For instance, suppose a 
-problem is too large to fit in memory, and a single processor can only
-solve it by swapping data to disc. If the same problem fits in the
-memory of two processors, the speedup may well be larger than~$2$
-since disc swapping no longer occurs. Having less, or more localized,
-data may also improve the cache behaviour of a code.
-
-\Level 1 {Asymptotics}
-\label{sec:asymptotics}
-\input chapters-public/asymptotics
-
-\Level 1 {Amdahl's law}
-\label{sec:amdahl}
-\index{Amdahl's law|(}
-
-One reason for less than perfect speedup is that parts of a code can
-be inherently sequential. This limits the parallel efficiency as
-follows. Suppose that $5\%$ of a code is sequential, then the time for
-that part can not be reduced, no matter how many processors are
-available. Thus, the speedup on that code is limited to a factor
-of~$20$. This phenomenon is known as \emph{Amdahl's
-  Law}~\cite{amd:law}, which we will now formulate.
-
-Let $F_s$ be the
-\indexterm{sequential fraction} and
-$F_p$ be the \indexterm{parallel fraction} 
-(or more strictly: the `parallelizable'
-fraction) of a code, respectively. Then $F_p+F_s=1$. The parallel
-execution time $T_p$ on $p$ processors
-is the sum of the part that is sequential
-$T_1F_s$ and the part that can be parallelized $T_1F_p/P$:
-\begin{equation}
-  T_P=T_1(F_s+F_p/P).
-  \label{eq:amdahl}
-\end{equation}
-As the number of processors grows
-$P\rightarrow\infty$, the parallel execution time now approaches that
-of the sequential fraction of the code: $T_P\downarrow
-T_1F_s$. We conclude that speedup is limited by $S_P\leq 1/F_s$ and
-efficiency is a decreasing function $E\sim 1/P$.
-
-The sequential fraction of a code can consist of things such as I/O
-operations. However, there are also parts of a code that in effect act
-as sequential. Consider a program that executes a single loop, where
-all iterations can be computed independently. Clearly, this code is
-easily parallelized. However, by splitting the loop in a number of
-parts, one per processor, each processor now has to deal with loop
-overhead: calculation of bounds, and the test for completion. This
-overhead is replicated as many times as there are processors. In
-effect, loop overhead acts as a sequential part of the code.
-
-\begin{exercise}
-  Let's do a specific example. Assume that a code has a setup that
-  takes 1~second and a parallelizable section that takes 1000~seconds
-  on one processor. What are the speedup and efficiency if the code is
-  executed with 100 processors? What are they for 500~processors?
-  Express your answer to at most two significant digits.
-\end{exercise}
-
-\begin{exercise}
-  Investigate the implications of Amdahls's law: if the number of
-  processors~$P$ increases, how does the parallel fraction of a code
-  have to increase to maintain a fixed efficiency?
-\end{exercise}
-
-
-\Level 2 {Amdahl's law with communication overhead}
-
-In a way, Amdahl's law, sobering as it is, is even optimistic.
-Parallelizing a code will give a certain speedup, but it also
-introduces \indexterm{communication overhead} that will lower the
-speedup attained. Let us refine our model of
-equation~\eqref{eq:amdahl} (see~\cite[p.~367]{Landau:comp-phys}):
-\[ T_p= T_1(F_s+F_p/P) +T_c, \]
-where $T_c$ is a fixed communication time.
-
-To assess the influence of this communication overhead, we assume that
-the code is fully parallelizable, that is, $F_p=1$. We then find that
-\begin{equation}
-    S_p=\frac{T_1}{T_1/p+T_c}.
-    \label{eq:amdahl-comm}
-\end{equation}
-For this to be close to~$p$, we need $T_c\ll T_1/p$ or $p\ll
-T_1/T_c$. In other words, the number of processors should not grow
-beyond the ratio of scalar execution time and communication overhead.
-
-\Level 2 {Gustafson's law}
-\index{Gustafson's law|(}
-
-Amdahl's law was thought to show that large numbers of processors
-would never pay off. However, the implicit assumption in Amdahl's law
-is that there is a fixed computation which gets executed on more and
-more processors. In practice this is not the case: typically there is
-a way of scaling up a problem (in chapter~\ref{ch:odepde} you will
-learn the concept of `discretization'), and one
-tailors the size of the problem to the number of available processors.
-
-A more realistic assumption would be to say that there is a  sequential
-fraction independent of the problem size, and parallel fraction that
-can be arbitrarily replicated.  To formalize this, instead of starting
-with the execution time of the sequential program, let us start with
-the execution time of the parallel program, and say that
-\[ T_p=T(F_s+F_p) \qquad\hbox{with $F_s+F_p=1$}. \]
-Now we have two possible definitions of~$T_1$. First of all, there is the $T_1$ 
-you get from setting $p=1$ in~$T_p$. (Convince yourself that that is actually 
-the same as~$T_p$.) However, what we need is $T_1$ describing the time
-to do all the operations of the parallel program.
-This is:
-\[ T_1=F_sT+p\cdot F_pT. \]
-This gives us a speedup of
-\[ S_p=\frac{T_1}{T_p}=\frac{F_s+p\cdot F_p}{F_s+F_p}
-   = F_s+p\cdot F_p = p-(p-1)\cdot F_s. 
-\]
-That is, speedup is now a function that decreases from $p$, linearly
-with~$p$.
-
-As with Amdahl's law, we can investigate the behaviour of Gustafson's
-law if we include communication overhead. Let's go back to
-equation~\eqref{eq:amdahl-comm} for a perfectly parallelizable
-problem, and approximate it as
-\[ S_p = p(1-\frac{T_c}{T_1}p). \]
-Now, under the assumption of a problem that is gradually being scaled up,
-$T_c,T_1$ become functions of~$p$. We see that if $T_1(p)\sim pT_c(p)$,
-we get linear speedup that is a constant fraction away from~$1$.
-In general we can not take this analysis further; in section~\ref{sec:densescaling}
-you'll see a detailed analysis of an example. 
-
-\index{Gustafson's law|)}
-
-\Level 2 {Amdahl's law and hybrid programming}
-
-Above, you learned about hybrid programming, a mix between distributed
-and shared memory programming. This leads to a new form of Amdahl's
-law.
-
-Suppose we have $p$ nodes with $c$ cores each, and $F_p$ describes the fraction
-of the code that uses $c$-way thread parallelism. We assume that the
-whole code is fully parallel over the $p$ nodes.
-The ideal speed up would be $p c$, and the ideal parallel running
-time $T_1/(pc)$, but the actual running time is 
-\[
-  T_{p,c} = T_1 \left(\frac {F_s}{p} + \frac{F_p}{p c}\right)
-  = \frac{T_1}{pc}\left( F_sc+F_p\right) 
-  = \frac{T_1}{pc}\left( 1+ F_s(c-1)\right).
-\]
-\begin{exercise}
-  Show that the speedup $T_1/T_{p,c}$ can be approximated by~$p/F_s$.
-\end{exercise}
-In the original Amdahl's law, speedup was limited by the sequential
-portion to a fixed number~$1/F_s$, in hybrid programming it is limited
-by the task parallel portion to~$p/F_s$.
-
-\index{Amdahl's law|)}
-
-\Level 1 {Scalability}
-\label{sec:scaling}
-\index{scaling|(}\index{scalability|(}
-
-Above, we remarked that splitting a given problem over more and more
-processors does not make sense: at a certain point there is just not
-enough work for each processor to operate efficiently. Instead, in
-practice, users of a parallel code will either choose the number of
-processors to match the problem size, or they will solve a series of
-increasingly larger problems on correspondingly growing numbers of
-processors. In both cases it is hard to talk about speedup. Instead,
-the concept of \indexterm{scalability} is used.
-
-We distinguish two types of scalability. So-called
-\indextermsub{strong}{scalability} is in effect the same as speedup,
-discussed above. We say that a program shows strong scalability if,
-partitioned over more and more processors, it shows perfect or near
-perfect speedup. Typically, one encounters statements like `this
-problem scales up to 500 processors', meaning that up to 500
-processors the speedup will not noticeably decrease from optimal. It
-is not necessary for this problem to fit on a single processors: often
-a smaller number such as 64 processors is used as the baseline from
-which scalability is judged.
-
-More interestingly, \indextermsub{weak}{scalability} is a more vaguely
-defined term. It describes that, as problem size and number of
-processors grow in such a way that the amount of data per processor
-stays constant, the speed in operations per second of each processor
-also stays constant. This measure is somewhat hard to report, since
-the relation between the number of operations and the amount of data
-can be complicated. If this relation is linear, one could state that
-the amount of data per processor is kept constant, and report that parallel
-execution time is constant as the number of processors grows.
-
-\begin{exercise}
-  We can formulate strong scaling as a runtime that is inversely
-  proportional to the number of processors: \[ t=c/p. \]
-  Show that on a log-log plot, that is, you plot the logarithm of the
-  runtime against the logarithm of the number of processors,
-  you will get a straight line with slope~$-1$.
-
-  Can you suggest a way of dealing with a non-parallelizable
-  section, that is, with a runtime $t=c_1+c_2/p$?
-\end{exercise}
-
-\begin{exercise}
-  Suppose you are investigating the weak scalability of a code.
-  After running it for a couple of sizes and corresponding numbers
-  of processes, you find that in each case the flop rate is roughly the same.
-  Argue that the code is indeed weakly scalable.
-\end{exercise}
-
-\begin{exercise}
-  In the above discussion we always implicitly compared a sequential 
-  algorithm and the parallel form of that same algorithm. However, 
-  in section~\ref{sec:speedup} we noted that sometimes speedup is defined
-  as a comparison of a parallel algorithm with the \textbf{best} sequential
-  algorithm for the same problem. With that in mind, compare a parallel sorting
-  algorithm with runtime $(\log n)^2$ (for instance, \indexterm{bitonic sort};
-  section~\ref{sec:sorting}) to the best serial algorithm, which has 
-  a running time of $n\log n$.
-
-  Show that in the weak scaling case of $n=p$ speedup is $p/\log p$.
-  Show that in the strong scaling case speedup is a descending function of~$n$.
-\end{exercise}
-
-Although in industry parlance the term `scalability' is sometimes
-applied to architectures or whole computer systems\footnote {``A
-  scalable computer is a computer designed from a small number of
-  basic components, without a single bottleneck component, so that
-  the computer can be incrementally expanded over its designed scaling
-  range, delivering linear incremental performance for a well-defined
-  set of scalable applications.  General-purpose scalable computers
-  provide a wide range of processing, memory size, and I/O
-  resources.  Scalability is the degree to which performance
-  increments of a scalable computer are linear''~\cite{Bell:outlook}.},
-%
-in scientific computing
-scalability is a property of an algorithm and the way it is
-parallelized on an architecture, in
-particular noting the way data is distributed. In
-section~\ref{sec:densescaling} you will find an analysis of the
-matrix-vector product operation: distributing a matrix by block rows
-turns out not to be scalable, but a two-dimensional distribution by
-submatrices is.
-
-\Level 1 {Simulation scaling}
-
-In most discussions of weak scaling
-we assume that the amount of work and 
-the amount of storage are linearly related. This is not always the case; for instance
-the operation complexity of a matrix-matrix product is $N^3$ for $N^2$ data.
-If you linearly increase the number of processors, the work will go up with a higher power.
-
-A similar effect comes into play if you similate time-dependent \acp{PDE}\footnote
-{This uses concepts from chapter~\ref{ch:odepde}.}.
-Here, the total work is a product of the work per time step and the number of 
-time steps. These two numbers are related; in section~\ref{sec:fd-ode} you
-saw that the time step has a certain minimum size as a function of the 
-space discretization. Thus, the number of time steps will go up as the work per
-time step goes up.
-
-Rather than investigating scalability from the point of the running
-of an algorithm, in this section we will look at the case where the simulated time~$S$
-and the running time~$T$ are constant, and we look at how this influences the amount of
-memory we need. This corresponds to the following real-life scenario: 
-you have a simulation that models a certain amount of real-world time 
-in a certain amount of running time; now you buy a bigger computer, and you wonder
-what size problem you can solve in the same running time and maintaining
-the same simulated time.
-
-Let $m$ be the memory per processor, and $P$ the number of processors, giving:
-\[ M=Pm\qquad\hbox{total memory.} \]
-If $d$ is the number of space dimensions of the problem, typically 2~or~3,
-we get
-\[ \Delta x = 1/M^{1/d}\qquad\hbox{grid spacing.} \]
-For stability this limits the time step $\Delta t$ to
-\[ \Delta t=
-\begin{cases}
-\Delta x=1\bigm/M^{1/d}&\hbox{hyperbolic case}\\
-\Delta x^2=1\bigm/M^{2/d}&\hbox{parabolic case}
-\end{cases}
-\]
-(noting that the hyperbolic case was not discussed in chapter~\ref{ch:odepde}.)
-With a simulated time $S$, we find
-\[ k=S/\Delta t\qquad \hbox{time steps.} \]
-If we assume that the individual time steps are perfectly parallelizable,
-that is, we use explicit methods, or implicit methods with optimal solvers,
-we find a running time
-\[ T=kM/P=\frac{S}{\Delta t}m. \]
-Setting $T/S=C$, we find
-\[ m=C\Delta t, \]
-that is, the amount of memory per processor goes down as we increase the processor
-count. (What is the missing step in that last sentence?)
-
-Further analyzing this result, we find
-\[ m=C\Delta t = c
-\begin{cases}
-1\bigm/M^{1/d}&\hbox{hyperbolic case}\\
-1\bigm/M^{2/d}&\hbox{parabolic case}
-\end{cases}
-\]
-Substituting $M=Pm$, we find ultimately
-\[ m = C
-\begin{cases}
-1\bigm/P^{1/(d+1)}&\hbox{hyperbolic}\\
-1\bigm/P^{2/(d+2)}&\hbox{parabolic}
-\end{cases}
-\]
-that is, the memory per processor that we can use
-goes down as a higher power of the number of processors.
-
-\index{scaling|)}\index{scalability|)}
-
 \Level 0 {Multi-threaded architectures}
 \label{sec:mta}
 \input chapters-public/mta
@@ -2312,7 +2394,9 @@ It has both differencies and similarities with \acp{GPU}.
 \label{sec:cloud}
 \index{cloud computing|(}
 \index{distributed computing|(}
+\SetBaseLevel 1
 \input chapters-public/cloud
+\SetBaseLevel 0
 \index{cloud computing|)}
 \index{distributed computing|)}
 

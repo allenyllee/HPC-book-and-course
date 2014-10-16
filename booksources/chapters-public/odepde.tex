@@ -799,14 +799,13 @@ the linear system with $N\log N$ time complexity.
   sizes. Hint: start by sketching a small example. For $n=4$ you
   should get a $10\times 10$ matrix with a $4\times 4$ block structure.
 \end{exercise}
-
 For domains that are even more irregular, the matrix structure will
-\begin{figure}[ht]
-  \includegraphics[scale=.6]{graphics-public/drivencavity}
-  \caption{A matrix from an irregular problem}
-  \label{fig:driven}
-\end{figure}
-also be irregular; see figure~\ref{fig:driven} for an example.
+%% \begin{figure}[ht]
+%%   \includegraphics[scale=.6]{graphics-public/drivencavity}
+%%   \caption{A matrix from an irregular problem}
+%%   \label{fig:driven}
+%% \end{figure}
+also be irregular.%; see figure~\ref{fig:driven} for an example.
 
 The regular block structure is also caused by our decision to order
 the unknowns by rows and columns. This known as the \indexterm{natural
@@ -959,6 +958,14 @@ resulting stability.
 \Level 2 {Explicit scheme}
 \label{fig:explicit-heat}
 
+\begin{wrapfigure}{r}{2.5in}
+  \leavevmode\kern\unitindent 
+  \includegraphics[scale=.12]{graphics-public/euler-forwardpdf}
+  \caption{The difference stencil of the Euler forward method for the
+    heat equation}
+  \label{fig:Euler-forward-stencil}.
+\end{wrapfigure}
+%
 With explicit time stepping we approximate the time derivative as
 \begin{equation}
   \left.\frac\partial{\partial t}T(x_j,t)\right|_{t=t_k}
@@ -979,13 +986,6 @@ which we rewrite as
 \end{equation}
 Pictorially, we render this as a difference stencil in
 figure~\ref{fig:Euler-forward-stencil}.
-\begin{figure}
-  \leavevmode\kern\unitindent 
-  \includegraphics[scale=.15]{graphics-public/euler-forwardpdf}
-  \caption{The difference stencil of the Euler forward method for the
-    heat equation}
-  \label{fig:Euler-forward-stencil}.
-\end{figure}
 This expresses that the function value in each point is determined by
 a combination of points on the previous time level.
 
@@ -1042,6 +1042,15 @@ the time discretization this gives
   \frac{T_j^{k+1}-T_j^k}{\Delta t}.
   \label{eq:heat-time-explicit}
 \end{equation}
+
+\begin{wrapfigure}{r}{2.5in}
+  \leavevmode\kern\unitindent 
+  \includegraphics[scale=.20]{graphics-public/euler-backwardpdf}
+  \caption{The difference stencil of the Euler backward method for the
+    heat equation}
+  \label{fig:Euler-backward-stencil}.
+\end{wrapfigure}
+%
 The implicit time step discretization of the whole heat equation,
 evaluated in~$t_{k+1}$, now becomes:
 \[
@@ -1057,13 +1066,6 @@ or
 Figure~\ref{fig:Euler-backward-stencil} renders this as a stencil;
 this expresses that each point on the current time level influences a
 combination of points on the next level.
-\begin{figure}
-  \leavevmode\kern\unitindent 
-  \includegraphics[scale=.25]{graphics-public/euler-backwardpdf}
-  \caption{The difference stencil of the Euler backward method for the
-    heat equation}
-  \label{fig:Euler-backward-stencil}.
-\end{figure}
 Again we write this in vector form:
 \begin{equation}
   \label{eq:bivp-implicit-vector}

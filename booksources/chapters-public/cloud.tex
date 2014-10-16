@@ -1,3 +1,4 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
@@ -87,7 +88,7 @@ even if no large datasets are involved, since it absolves the user
 from the need of maintaining software on their local machine. Thus,
 Google Docs\index{Google!Google Docs} offers various `office'
 applications without the user actually installing any software. This
-idea is sometimes called \indexac{SaaS}, where
+idea is sometimes called \indexac{SAS}, where
 the user connects to an `application server', and accesses it through
 a client such as a web browser. In the case of Google Docs, there is
 no longer a large central dataset, but each user interacts with their
@@ -95,7 +96,7 @@ own data, maintained on Google's servers. This of course has the large
 advantage that the data is available from anywhere the user has access
 to a web browser.
 
-The \ac{SaaS} concept has several connections to earlier
+The \ac{SAS} concept has several connections to earlier
 technologies. For instance, after the mainframe and workstation eras,
 the so-called \indexterm{thin client} idea was briefly popular. Here,
 the user would have a workstation rather than a terminal, yet work on
@@ -104,50 +105,7 @@ Sun's \indextermbus{Sun}{Ray} (circa 1999) where users relied on a smartcard to
 establish their local environment on an arbitary, otherwise stateless,
 workstation.
 
-The term \indexterm{cloud computing} usually refers to the
-internet-based model of \ac{SaaS}
-where the data is not maintained by the user.
-However, it can span some or all of the above
-concepts, depending on who uses the term. Here is a list of
-characteristics:
-\begin{itemize}
-\item A cloud is centrally administered and maintained, involving
-  applications running on servers that are not owned by the user. The
-  user has local and homogeneous access to services on a subscription
-  basis, as pay-as-you-go.
-\item Cloud computing is typically associated with large amounts of
-  data, either a single central dataset such as on airline database
-  server, or many independent datasets such as for Google
-  Docs\index{Google!Google Docs}, each of which are used by a single
-  user or a small group of users. In the case of large datasets, they
-  are stored distributedly, with concurrent access for the clients.
-\item Cloud computing, like earlier grid computing, allows the user
-  freedom of choice in the client platform. In an extreme example,
-  Amazon's Kindle books allow one to read the same book on a PC, and a
-  smartphone; the cloud-stored book `remembers' where the reader left
-  off, regardless the platform.
-\item Cloud computing makes a whole datacenter appear as a single
-  computer to the user~\cite{Patterson2008datacenter}.
-\item The services offered by cloud computing are typically business
-  applications and IT services, rather than scientific
-  computing. Cloud service providers are starting to offer clusters
-  that allow tightly coupled parallelism, but tests show that this is
-  not yet efficient.
-\item Computing in a cloud is probably virtualized, or at least the
-  client interfaces to an abstract notion of a server. These
-  strategies often serve to `move the work to the data'.
-\item Server processes are loosely coupled, at best synchronized
-  through working on the same dataset.
-\item Cloud computing can be interfaced through a web browser; it can
-  involve a business model that is `pay as you go'.
-\end{itemize}
-
-Cloud computing clearly depends on the following factors:
-\begin{itemize}
-\item The ubiquity of the internet;
-\item Virtualization of servers;
-\item Commoditization of processors and hard drives.
-\end{itemize}
+\Level 1 {Usage scenarios}
 
 The model where services are available on demand is attractive for
 businesses, which increasingly are using cloud services. The
@@ -163,7 +121,7 @@ resources\footnote{Based on a blog post by Ricky Ho:
 \begin{itemize}
 \item Scaling. Here the cloud resources are used as a platform that
   can be expanded based on user demand. This can be considered
-  Platform-as-a-Service (PaaS): the cloud provides software and development platforms,
+  Platform-as-a-Service (PAS): the cloud provides software and development platforms,
   eliminating the administration and maintenance for the user. 
 
   We can distinguish between two cases: if the user is running single
@@ -174,12 +132,12 @@ resources\footnote{Based on a blog post by Ricky Ho:
   computing), resouces can be added as the queue grows.
 
   In HPC applications, users can consider the cloud resources as a
-  cluster; this falls under Infrastructure-as-a-Service (IaaS): the
+  cluster; this falls under Infrastructure-as-a-Service (IAS): the
   cloud service is a computing platforms allowing 
   customization at the operating system level.
 \item Multi-tenancy. Here the same software is offered to multiple
   users, giving each the opportunity for individual
-  customizations. This falls under Software-as-a-Service (SaaS):
+  customizations. This falls under Software-as-a-Service (SAS):
   software is provided on demand; the customer does not purchase
   software, but only pays for its use.
 \item Batch processing. This is a limited version of one of the Scaling
@@ -219,3 +177,50 @@ made available to astronomers as in a grid, together with compute
 resources to perform analysis on them, in a cloud-like
 manner. Interestingly, the cloud resources even take the form of
 user-configurable virtual clusters.
+
+\Level 1 {Characterization}
+
+Summarizing\footnote{The remainder of this section is based on the
+  NIST definition of cloud
+  computing~\url{http://csrc.nist.gov/publications/nistpubs/800-145/SP800-145.pdf}.}
+we have three \indextermbus{cloud computing}{service models}:
+\begin{description}
+  \item[Software as a Service] The consumer runs the provider's
+    application, typically through a thin client such as a browser;
+    the consumer does not install or administer software.
+    A~good example is Google Docs\index{Google!Google Docs}
+\item[Platform as a Service] The service offered to the consumer is
+  the capability to run applications developed by the consumer, who
+  does not otherwise manage the processing platform or data storage
+  involved.
+\item[Infrastructure as a Service] The provider offers to the consumer
+  both the capability to run software, and to manage storage and
+  networks. The consumer can be in charge of operating system choice
+  and network components such as firewalls.
+\end{description}
+These can be deployed as follows:
+\begin{description}
+  \item[Private cloud] The cloud infrastructure is managed by one organization for its own exclusive use.
+  \item[Public cloud] The cloud infrastracture is managed for use by a broad customer base.
+\end{description}
+One could also define hybrid models such as community clouds.
+
+The characteristics of cloud computing are then:
+\begin{description}
+  \item[On-demand and self service] The consumer can quickly request services
+    and change service levels, without requiring human interaction with the provider.
+  \item[Rapid elasticity] The amount of storage or computing power appears to the consumer
+    to be unlimited, subject only to budgeting constraints. Requesting extra facilities
+    is fast, in some cases automatic.
+  \item[Resource pooling] Virtualization mechanisms make a cloud
+    appear like a single entity, regardless its underlying
+    infrastructure. In some cases the cloud remembers the `state' of
+    user access; for instance, Amazon's Kindle books allow one to read
+    the same book on a PC, and a smartphone; the cloud-stored book
+    `remembers' where the reader left off, regardless the platform.
+  \item[Network access] Clouds are available through a variety of
+    network mechanisms, from web browsers to dedicated portals.
+  \item[Measured service] Cloud services are typically `metered', with the consumer
+    paying for computing time, storage, and bandwidth.
+\end{description}
+

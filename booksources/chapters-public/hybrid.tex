@@ -57,20 +57,18 @@ This hybrid strategy may sound like a good idea but the truth is complicated.
   of threads on that part. On the other hand, flexible handling of
   threads incurs a certain amount of \ac{OS} overhead that MPI does
   not have with its fixed processes.
-\item If a program reaches a point where all processes communicate,
-  then the hybrid approach offers some advantage since it bundles
-  messages. For instance, if two MPI processes on one node send
-  messages to each of two processes on another node there would be
-  four messages; in the hybrid model these would be bundled into one
-  message. The distributed sparse
-  matrix-vector product would be a good illustration of this scenario;
-  see section~\ref{sec:pspmvp}.
 \item Shared memory programming is conceptually simple, but there can
   be unexpected performance pitfalls. For instance, the performance of
   two processes now
   can impeded by the need for maintaining
   \indextermsub{cache}{coherence} and by \indexterm{false sharing}.
 \end{itemize}
+
+On the other hand, the hybrid approach offers some advantage since it
+bundles messages. For instance, if two MPI processes on one node send
+messages to each of two processes on another node there would be four
+messages; in the hybrid model these would be bundled into one
+message.
 
 \begin{exercise}
   Analyze the discussion in the last item above. Assume that the
@@ -79,6 +77,12 @@ This hybrid strategy may sound like a good idea but the truth is complicated.
   the purely distributed model? Hint: consider bandwidth and latency
   separately.
 \end{exercise}
+
+This bundling of MPI processes may have an advantage for a deeper
+technical reason. In order to support a \indexterm{handshake protocol},
+each MPI process needs a small amount of buffer space for each other process.
+With a larger number of processes this can be a limitation, so bundling
+is attractive on high core count processors such as the \indextermbus{Intel}{Xeon Phi}.
 
 The MPI library is explicit about what sort of threading it supports:
 you can query whether multi-threading is supported at all, whether all MPI 

@@ -32,7 +32,7 @@ displaying data files.
 In this section you will learn commands for displaying file contents.
 \end{purpose}
 
-The \n{ls} command gives you a listing of files that are in your
+The \indextermunix{ls} command gives you a listing of files that are in your
 present location. 
 
 \practical
@@ -42,13 +42,15 @@ present location.
   behaviour: no output does not mean that something went wrong, it
   only means that there is nothing to report.}{}
 
-The \n{cat} command is often used to display files, but it can also be
+The \indextermunix{cat} command is often used to display files, but it can also be
 used to create some simple content. 
 
 \practical
 {Type \n{cat > newfilename} (where you can pick any
-  filename) and type some text. Conclude with \n{Control-d} on a line by itself.
-Now use \n{cat} to view the contents of that file: \n{cat newfilename}.}
+  filename) and type some text. Conclude with \n{Control-d}
+  on a line by itself\footnote 
+  {Press the \texttt{Control} and hold it while you press the \texttt{d} key.}.
+  Now use \n{cat} to view the contents of that file: \n{cat newfilename}.}
 {In the first use of \n{cat}, text was con\n{cat}enated from the
   terminal to a file; in the second the file was cat'ed to the
   terminal output. You should see on your screen precisely what you
@@ -57,6 +59,12 @@ Now use \n{cat} to view the contents of that file: \n{cat newfilename}.}
   really get stuck, \n{Control-c} will usually get you out. Try this:
   start creating a file with \n{cat > filename} and hit \n{Control-c} in
   the middle of a line. What are the contents of your file?}
+
+  \begin{remark}
+  Instead of \n{Control-d} you will often see the notation~\n{^D}. 
+  The capital letter is for historic reasons: you use the control key
+  and the lowercase letter.
+  \end{remark}
 
 Above you used \n{ls} to get a directory listing. You can also use the
 \n{ls} command on specific files: 
@@ -148,7 +156,7 @@ session. Example:
 
 \dirdisplay{.1 /home/you/. .2 adirectory/. .2 afile. }
 
-The command for making a new directory is \n{mkdir}.
+The command for making a new directory is \indextermunix{mkdir}.
 
 \practical{Make a new directory with \n{mkdir newdir} and view the
   current directory with \n{ls}}
@@ -157,7 +165,7 @@ The command for making a new directory is \n{mkdir}.
 }{}
 
 The command for going into another directory, that is, making it your
-working directory, is \n{cd} (`change directory'). It can be used in
+working directory, is \indextermunix{cd} (`change directory'). It can be used in
 the following ways:
 \begin{itemize}
 \item \n{cd} Without any arguments, \n{cd} takes you to your home directory.
@@ -178,7 +186,7 @@ the following ways:
   The absolute path is \n{/home/you/newdir}.}{}
 
 \practical{Let's quickly create a file in this directory:
-\n{touch onefile}, and another directory: \n{mkdir otherdir}.
+\indextermunix{touch} \n{onefile}, and another directory: \n{mkdir otherdir}.
 Do \n{ls} and confirm that there are a new file and directory.}
 {You should now have:
 \dirdisplay{.1 /home/you/. .2 newdir/\DTcomment{you are here}. 
@@ -361,7 +369,7 @@ For this section you need at least one file that contains some amount
 of text. You can for instance get random text from
 \url{http://www.lipsum.com/feed/html}. 
 
-The \n{grep} command can be used to search for a text expression in a
+The \indextermunix{grep} command can be used to search for a text expression in a
 file.
 
 \practical{Search for the letter \n{q} in your text file with \n{grep
@@ -442,7 +450,7 @@ to search that actual character, you have to \indexterm{escape} it.
 \Level 1 {Stream editing with \protect\n{sed}}
 
 Unix has various tools for processing text files on a line-by-line
-basis. The stream editor \n{sed} is one example. If you have used the
+basis. The stream editor \indextermunix{sed} is one example. If you have used the
 \n{vi} editor, you are probably used to a syntax like
 \verb+s/foo/bar/+ for making changes. With \n{sed}, you can do this on
 the commandline. For instance
@@ -456,7 +464,7 @@ redirection.
 
 \Level 1 {Cutting up lines with \protect\n{cut}}
 
-Another tool for editing lines is \n{cut}, which will cut up a line
+Another tool for editing lines is \indextermunix{cut}, which will cut up a line
 and display certain parts of it. For instance,
 \begin{verbatim}
 cut -c 2-5 myfile
@@ -582,7 +590,7 @@ overwritten. (To append, use \n{grep text yourfile >> outfile}.)
 
 Unix has three standard files that handle input and output:
 \begin{itemize}
-\item [{\tt stdin}] is the file that provides input for processes.
+\item [{\tt stdin}\ ] is the file that provides input for processes.
 \item [{\tt stdout}] is the file where the output of a process is
   written.
 \item [{\tt stderr}] is the file where error output is written.
@@ -624,7 +632,7 @@ file name. Can you find a way to prevent that from happening?
 The Unix operating system can run many programs at the same time, by
 rotating through
 the list and giving each only a  fraction of a second to run each time.
-The command \n{ps} can tell you everything that is currently running.
+The command \indextermunix{ps} can tell you everything that is currently running.
 
 \practical{Type \n{ps}. How many programs are currently running? By
   default \n{ps} gives you only programs that you explicitly

@@ -125,10 +125,8 @@ void main()
 
 \indexacend{UPC}
 
-\Level 2 {Titanium}
-\index{Titanium}
-
-Titanium is comparable to \ac{UPC} in spirit, but based on Java rather
+%\Level 2 {Titanium}
+\index{Titanium} is comparable to \ac{UPC} in spirit, but based on Java rather
 than on~C.
 
 \Level 2 {High Performance Fortran}
@@ -174,25 +172,29 @@ taken directly from HPF.
 \acf{CAF} is an extension to the Fortran 95/2003 language.
 The main mechanism to support parallelism is an extension to the array
 declaration syntax, where an extra dimension indicates the parallel
-distribution. For instance,
+distribution. For instance, in
 \begin{verbatim}
-real,allocatable,dimension(:,:,:)[:,:] :: A
+Real,dimension(100),codimension[*] :: X
+Real :: Y(100)[*]
+Real :: Z(100,200)[10,0:9,*]
 \end{verbatim}
-declares an array that is three-dimensional on each processor, and
-that is distributed over a two-dimensional processor grid.
+arrays \n{X,Y} have 100 elements on each processor.
+Array \n{Z} behaves as if the available processors
+are on a three-dimensional grid, with two sides specified 
+and the third adjustable to accomodate the available processors.
 
 Communication between processors is now done through copies along the
-dimensions that describe the processor grid:
-\begin{verbatim}
-      COMMON/XCTILB4/ B(N,4)[*]
-      SAVE  /XCTILB4/
-C
-      CALL SYNC_ALL( WAIT=(/IMG_S,IMG_N/) )
-      B(:,3) = B(:,1)[IMG_S]
-      B(:,4) = B(:,2)[IMG_N]
-      CALL SYNC_ALL( WAIT=(/IMG_S,IMG_N/) )
-\end{verbatim}
-The Fortran 2008 standard will include co-arrays.
+(co-)dimensions that describe the processor grid.
+%% \begin{verbatim}
+%%       COMMON/XCTILB4/ B(N,4)[*]
+%%       SAVE  /XCTILB4/
+%% C
+%%       CALL SYNC_ALL( WAIT=(/IMG_S,IMG_N/) )
+%%       B(:,3) = B(:,1)[IMG_S]
+%%       B(:,4) = B(:,2)[IMG_N]
+%%       CALL SYNC_ALL( WAIT=(/IMG_S,IMG_N/) )
+%% \end{verbatim}
+The Fortran 2008 standard includes co-arrays.
 
 \indexacend{CAF}
 
@@ -338,4 +340,22 @@ know its provenance. Thus, Linda becomes one way of implementing
 \indexterm{one-sided communication}.
 
 \index{Linda|)}
+
+\Level 2 {The Global Arrays library}
+\index{Global Arrays|(}
+
+The Global Arrays library (\url{http://www.emsl.pnl.gov/docs/global/})
+is another example of \indexterm{one-sided communication}, and in fact
+it predates MPI. This library has as its prime data structure
+\indexterm{cartesian product} arrays\footnote{This means that if the
+  array is three-dimensional, it can be described by three integers
+  $n_1,n_2,n_3$, and each point has a coordinate $(i_1,i_2,i_3)$ with
+  $1\leq i_1\leq n_1$ et cetera.}, distributed over a processor grid
+of the same or lower dimension. Through library calls, any processor
+can access any sub-brick out of the array in either a \n{put} or
+\n{get} operation. These operations are non-collective. As with any
+one-sided protocol, a barrier sync is necessary to ensure completion
+of the sends/receives.
+
+\index{Global Arrays|)}
 

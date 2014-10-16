@@ -258,6 +258,7 @@ pipelining (see below), this means that a processor has an asymptotic
 speed of several floating point operations per clock cycle.
 
 \begin{table}[h]
+  \index{Intel!Sandy Bridge}\index{Intel!Haswell}\index{DEC!Alpha}\index{IBM!Power 5}
   \centering
   \begin{tabular}{p{2in}llll}
 Processor&year&add/mult/fma units  &daxpy cycles\\
@@ -291,7 +292,7 @@ units that (asymptotically) can produce a result per cycle.
 
 \Level 2 {Pipelining}
 \label{sec:pipeline}
-\index{pipeline|(}
+\index{pipeline|(textbf}
 
 The floating point add and multiply units of a processor are
 pipelined, which has the effect that a stream of independent
@@ -897,8 +898,6 @@ since access to them is effectively free. This phenomenon is visible in
 code that accesses arrays by \indexterm{stride}: elements are read or
 written at regular intervals.
 
-\lulubreak
-
 \begin{wrapfigure}{r}{3in}
   \includegraphics[scale=.07]{graphics-public/stride-1}
   \caption{Accessing 4 elements at stride 1}
@@ -945,7 +944,7 @@ Some applications naturally lead to strides greater than~1, for
 instance, accessing only the real parts of an array of complex
 numbers (for some remarks on the practical realization of complex
 numbers see section~\ref{sec:complex}). Also, methods that use
-\indexterm{recursive doubling} often have a code structure that
+\indextermdef{recursive doubling} often have a code structure that
 exhibits non-unit strides
 \begin{verbatim}
 for (i=0; i<N/2; i++)
@@ -1088,7 +1087,11 @@ would suffice, but in practice higher values are often encountered.
 \end{figure}
 Figure~\ref{fig:assoc-mapping} illustrates the mapping of memory
 addresses to cache locations for a direct mapped and a 3-way associative
-cache.
+cache. Both caches has 12 elements, but addressed diferently.
+The direct mapped cache (left)
+will have a conflict between memory address 0~and~12, but
+in the 3-way associative cache these two addresses can be mapped
+to any of three elements.
 
 As a practical example, the
 \indextermbus{Intel}{Woodcrest} processor has
@@ -2003,6 +2006,7 @@ the program is executed in parallel.
 \input chapters-public/power
 \index{power!consumption|)}
 
+\begin{notlulu}
 \Level 0 {Review questions}
 
 For the true/false questions, give short explanation if you choose the `false' answer.
@@ -2029,6 +2033,7 @@ for each element.
   is implemented: answer seperately for rowwise and columnwise traversal
   of the matrix, where you can assume that the matrix is always stored by rows.
 \end{exercise}
+\end{notlulu}
 
 \endinput
 

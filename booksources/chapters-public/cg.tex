@@ -535,12 +535,13 @@ The \indexac{GMRES} method is a popular implementation of such full
 orthogonalization schemes. In order to keep the computational costs
 within bounds, it is usually implemented as a \emph{restarted}
 method. That is, only a certain number (say $k=5$~or~20) of residuals
-is retained, and every $k$ iterations the method is restarted. The
-code can be found in figure~\ref{fig:pgmres}.
+is retained, and every $k$ iterations the method is restarted. 
+%% The
+%% code can be found in figure~\ref{fig:pgmres}.
 
-\input chapters-public/pgmres
+%% \input chapters-public/pgmres
 
-Other methods exist that do not have the storage demands of
+Other methods exist that do not have the growing storage demands of
 \ac{GMRES}, for instance QMR~\cite{FrNa:qmr} and
 BiCGstab~\cite{vdVorst1992:bicgstab}. Even though by the remark above
 these can not orthogonalize the residuals, they are still attractive

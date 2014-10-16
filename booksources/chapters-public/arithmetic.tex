@@ -13,7 +13,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\index{arithmetic!computer|(}
+\index{arithmetic!computer|see{floating point arithmetic}}
+\index{floating point arithmetic|(textbf}
 
 Of the various types of data that one normally encounters, the ones we
 are concerned with in the context of scientific computing are the
@@ -33,14 +34,20 @@ numbers, even storing a range is not possible since any interval $[a,b]$
 contains infinitely many numbers. Therefore, any
 \indextermsub{representation of}{real numbers} will cause gaps between the
 numbers that are stored. 
-
 Calculations in a computer are sometimes
 described as \indextermsub{finite precision}{arithmetic}.
 Since many resulsts are not representible, any computation that results in
 such a number will have to be dealt with by issuing an
-error or by approximating the result. In this chapter we will look at
+error or by approximating the result. 
+In this chapter we will look at
 the ramifications of such approximations of the `true' outcome of
 numerical calculations. 
+
+For detailed discussions, see the book by
+Overton~\cite{Overton:754book}; it is easy to find online copies of
+the essay by Goldberg~\cite{goldberg:floatingpoint}. For extensive
+discussions of round-off error analysis in algorithms, see the books
+by Higham~\cite{Higham:2002:ASN} and Wilkinson~\cite{Wilkinson:roundoff}.
 
 \Level 0 {Integers}
 
@@ -121,10 +128,11 @@ as $n-B$ where $B$ is some plausible base, for instance~$2^{31}$.
 \end{array}
 \]
 
-This shifted scheme does not suffer from the $\pm0$ problem, and addition now
-works properly. However, it would be nice if for positive numbers
-\n{int n} and \n{unsigned int n} had the same bit pattern. To get
-this, we flip the first and second half of the number line.
+This shifted scheme does not suffer from the $\pm0$ problem, and
+numbers are consistently ordered. However, if we compute $n-n$
+by operating on the bitstring that represents~$n$, we do not 
+get the bitstring for zero. To get we rotate the number line
+to put the pattern for zero back at zero.
 
 The resulting scheme, which is the one that is used most commonly, is
 called \indexterm{2's complement}. Using this scheme,
@@ -370,12 +378,6 @@ too large or too small in the following ways.
 The fact that only a small number of real numbers can be represented
 exactly is the basis of the field of round-off error analysis. We will
 study this in some detail in the following sections.
-
-For detailed discussions, see the book by
-Overton~\cite{Overton:754book}; it is easy to find online copies of
-the essay by Goldberg~\cite{goldberg:floatingpoint}. For extensive
-discussions of round-off error analysis in algorithms, see the books
-by Higham~\cite{Higham:2002:ASN} and Wilkinson~\cite{Wilkinson:roundoff}.
 
 \Level 1 {Normalized and unnormalized numbers}
 \label{sec:normal-unnormal}
@@ -1036,11 +1038,19 @@ Generalizing this, we see that reduction operations will most likely
 give a different result on different numbers of processors. (The MPI
 standard declares that two program runs on the same set of processors
 should give the same result.)
-
 It is possible to circumvent this problem by replace a reduction operation
 by a \indexterm{gather} operation to all processors, which subsequently 
 do a local reduction. However, this increases the memory requirements for the 
 processors.
+
+There is an intriguing other solution to the parallel summing problem.
+If we use a mantissa of 4000 bits to store a floating point number, we
+do not need an exponent, and all calculations with numbers thus stored
+are exact since they are a form of fixed-point
+calculation~\cite{Kulish:dotproduct,Kulisch:2011:VFE}.  While doing a
+whole application with such numbers would be very wasteful, reserving
+this solution only for an occasional inner product calculation may be
+the solution to the reproducibility problem.
 
 \index{round-off error analysis!in parallel computing|)}
 \index{round-off error analysis|)}
@@ -1312,4 +1322,5 @@ function of problem parameters, such as the number of terms evaluted,
 or is worse behaviour possible? We will not address such questions in
 further detail in this book.
 
-\index{arithmetic!computer|)}
+\index{floating point arithmetic|)}
+

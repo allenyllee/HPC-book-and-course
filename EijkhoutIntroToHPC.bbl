@@ -67,6 +67,13 @@ Fischer Black and Myron~S Scholes.
 \newblock The pricing of options and corporate liabilities.
 \newblock {\em Journal of Political Economy}, 81(3):637--54, May-June 1973.
 
+\bibitem{scalapack-users-guide}
+L.S. Blackford, J.~Choi, A.~Cleary, E.~D'Azevedo, J.~Demmel, I.~Dhillon,
+  J.~Dongarra, S.~Hammerling, G.~Henry, A.~Petitet, K.~Stanley, D.~Walker, and
+  R.C. Whaley.
+\newblock {\em {ScaLAPACK} Users' Guide}.
+\newblock SIAM, 1997.
+
 \bibitem{reference-blas}
 Netlib.org {BLAS} reference implementation.
 \newblock \url{http://www.netlib.org/blas}.
@@ -130,7 +137,12 @@ Barbara Chapman, Gabriele Jost, and Ruud van~der Pas.
   volume~10 of {\em Scientific Computation Series}.
 \newblock MIT Press, ISBN 0262533022, 9780262533027, 2008.
 
-\bibitem{scalapack}
+\bibitem{ChenDoolen:LBM}
+Shiyi Chen and Gary~D. Doolen.
+\newblock Lattice {Boltzmann} method for fluid flows.
+\newblock {\em Annual Review of Fluid Mechanics}, 30(1):329--364, 1998.
+
+\bibitem{Choi:scalapack}
 Yaeyoung Choi, Jack~J. Dongarra, Roldan Pozo, and David~W. Walker.
 \newblock Scalapack: a scalable linear algebra library for distributed memory
   concurrent computers.
@@ -554,6 +566,16 @@ Helmut Kopka and Patrick~W. Daly.
 \newblock {\em A Guide to {\LaTeX}}.
 \newblock Addison-Wesley, first published 1992.
 
+\bibitem{Kulisch:2011:VFE}
+Ulrich Kulisch.
+\newblock Very fast and exact accumulation of products.
+\newblock {\em Computing}, 91(4):397--405, April 2011.
+
+\bibitem{Kulish:dotproduct}
+Ulrich Kulisch and Van Snyder.
+\newblock The exact dot product as basic tool for long interval arithmetic.
+\newblock {\em Computing}, 91(3):307--313, 2011.
+
 \bibitem{Kulkami:howmuch}
 Milind Kulkarni, Martin Burtscher, Rajasekhar Inkulu, Keshav Pingali, and Calin
   Cascaval.
@@ -632,6 +654,13 @@ J.D.C. Little.
 \newblock A proof of the queueing formula {$L=\lambda W$}.
 \newblock {\em Ope. Res.}, pages 383--387, 1961.
 
+\bibitem{Liu:cudasw2009}
+Yongchao Liu, Douglas~L. Maskell, and Bertil Schmidt.
+\newblock {CUDASW++}: optimizing {Smith-Waterman} sequence database searches
+  for {CUDA}-enabled graphics processing units.
+\newblock {\em BMC Res Notes}, 2:73, 2009.
+\newblock PMID- 19416548.
+
 \bibitem{Luby:parallel}
 M.~Luby.
 \newblock A simple parallel algorithm for the maximal independent set problem.
@@ -686,6 +715,12 @@ Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
 \newblock {\em The {\LaTeX} Companion, 2nd edition}.
 \newblock Addison-Wesley, 2004.
 
+\bibitem{NeedlemanWunsch}
+Saul~B. Needleman and Christian~D. Wunsch.
+\newblock A general method applicable to the search for similarities in the
+  amino acid sequence of two proteins.
+\newblock {\em Journal of Molecular Biology}, 48(3):443 -- 453, 1970.
+
 \bibitem{Oetiker:LaTeXintro}
 Tobi Oetiker.
 \newblock The not so short introductino to {\LaTeX}{}.
@@ -725,11 +760,6 @@ V.~Ya. Pan.
 \bibitem{papi-homepage}
 Performance application programming interface.
 \newblock \url{http://icl.cs.utk.edu/papi/}.
-
-\bibitem{Patterson2008datacenter}
-David~A. Patterson.
-\newblock Technical perspective: the data center is the computer.
-\newblock {\em Commun. ACM}, 51(1):105--105, 2008.
 
 \bibitem{plimpton}
 S.~Plimpton.
@@ -792,6 +822,11 @@ D.~E. Shaw.
 \newblock A fast, scalable method for the parallel evaluation of
   distance-limited pairwise particle interactions.
 \newblock {\em J. Comput. Chem.}, 26:1318--1328, 2005.
+
+\bibitem{TAU:ijhpca}
+S.~Shende and A.~D. Malony.
+\newblock {\em International Journal of High Performance Computing
+  Applications}, 20:287--331, 2006.
 
 \bibitem{Skillicorn96questionsand}
 D.~B. Skillicorn, Jonathan M.~D. Hill, and W.~F. McColl.
@@ -883,11 +918,6 @@ O.~Widlund.
   for the solution of general elliptic problems.
 \newblock In D.J. Rose and R.A. Willoughby, editors, {\em Sparse matrices and
   their applications}, pages 121--134. Plenum Press, New York, 1972.
-
-\bibitem{WilkinsonAllen}
-Barry Wilkinson and Michael Allen.
-\newblock {\em Parallel Programming}.
-\newblock Prentice Hall, New Jersey, 1999.
 
 \bibitem{Wilkinson:roundoff}
 J.H. Wilkinson.

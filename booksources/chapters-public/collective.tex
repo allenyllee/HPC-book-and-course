@@ -1,3 +1,5 @@
+% this file is no longer used
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
@@ -69,7 +71,33 @@ p_3&&&&x_0,x_1,x_2,x_3\\
 \hline
 \end{array}
 \]
-On $t=1$, $p_0$ sends to $p_1$; on $t=2$ $p_0,p_1$ send to $p_2,p_3$.
+(On $t=1$, $p_0$ sends to $p_1$; on $t=2$ $p_0,p_1$ send to $p_2,p_3$.)
+This algorithm has the correct $\log_2p\cdot\alpha$ term, but processor~0 repeatedly
+sends the whole vector, so the bandwidth cost is $\log_2p\cdot n\beta$.
+
+The following algorithm implements the broadcast as a combination of a scatter
+and a \indexterm{bucket brigade algorithm}:
+\[
+\begin{array}{|c|lll|}
+\hline
+  &t=0&t=1&et cetera\\ \hline
+p_0&x_0\downarrow\hphantom{,x_1\downarrow,x_2\downarrow,x_3\downarrow}
+   &x_0\hphantom{\downarrow,x_1\downarrow,x_2\downarrow,}x_3\downarrow
+   &x_0,\hphantom{x_1,}x_2,x_3\\
+p_1&\hphantom{x_0\downarrow,}x_1\downarrow\hphantom{,x_2\downarrow,x_3\downarrow}
+   &x_0\downarrow,x_1\hphantom{\downarrow,x_2\downarrow,x_3\downarrow}
+   &x_0,x_1,\hphantom{x_2,}x_3\\
+p_2&\hphantom{x_0\downarrow,x_1\downarrow,}x_2\downarrow\hphantom{,x_3\downarrow}
+   &\hphantom{x_0\downarrow,}x_1\downarrow,x_2\hphantom{\downarrow,x_3\downarrow}
+   &x_0,x_1,x_2\hphantom{,x_3}\\
+p_3&\hphantom{x_0\downarrow,x_1\downarrow,x_2\downarrow,}x_3\downarrow
+   &\hphantom{x_0\downarrow,x_1\downarrow,}x_2\downarrow,x_3\hphantom{\downarrow}
+   &\hphantom{x_0,}x_1,x_2,x_3\\
+\hline
+\end{array}
+\]
+The complexity now becomes \[ p\alpha+\beta n(p-1)/p \]
+which is not optimal in latency, but is a better algorithm if $n$ is large.
 
 \index{broadcast|)}
 
