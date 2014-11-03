@@ -49,6 +49,29 @@ processor. However, we will not go into the actual cost of moving: our
 main concerns here are to balance the workload, and to preserve any
 locality in the original load distribution.
 
+\Level 2 {Load balancing versus data distribution}
+
+There is a duality between work and data: in many applications
+the distribution of data implies a distribution of work and
+the other way around. If an application updates a large array,
+each element of the array typically `lives' on a uniquely determined
+processor, and that processor takes care of all the updates to that
+element. This strategy is known as \indexterm{owner computes}.
+
+Thus, there is a direct relation between data and work,
+and, correspondingly, data distribution and load balancing go hand in hand.
+For instance, in section~\ref{sec:parallel-dense-mvp} we will talk about
+how data distribution influences the efficiency, but this immediately translates
+to concerns about load distribution:
+\begin{itemize}
+\item Load needs to be evenly distribution. This can often be done by
+  evenly distributing the data, but sometimes this relation is not linear.
+\item Tasks need to be placed to minimize the amount of traffice between them.
+  In the matrix-vector multiplication case this means that a two-dimensional distribution
+  is to be preferred over a one-dimensional one; the discussion about
+  \emph{space-filling curves}\index{space-filling curve} is similarly motivated.
+\end{itemize}
+
 \Level 2 {Load balancing of independent tasks}
 
 Let us first consider the case of a job that can be partitioned into
@@ -152,7 +175,7 @@ rebalancing that is aimed at preserving locality.
 
 \Level 2 {Load balancing with space-filling curves}
 \label{sec:space-filling}
-\index{space-filling curve|(}
+\index{space-filling curve|(textbf}
 
 In the previous sections we considered two aspects of load balancing:
 making sure all processors have an approximately equal amount of work,

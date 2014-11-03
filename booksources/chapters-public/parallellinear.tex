@@ -280,107 +280,6 @@ with arithmetic added, so the cost is
 \index{collective communication|)}
 \index{collective operation|)}
 
-\Level 0 {The sparse matrix-vector product}
-\label{sec:spmvp-performance}
-
-In linear system solving through iterative methods (see
-section~\ref{sec:iterative}) the matrix-vector product is
-computationally an important kernel, since it is executed in each of
-potentially hundreds of iterations. In this section we look at
-performance aspects of the matrix-vector product on a single
-processor; the multi-processor case will get our attention in later
-sections.
-
-We are not much worried about the dense matrix-vector product in the
-context of iterative methods, since one typically does not iterate on
-dense matrices. In the case that we are dealing with block matrices,
-refer to section~\ref{sec:mvp-opt} for an analysis of the dense
-product. The sparse product is a lot trickier, since most of that
-analysis does not apply.
-
-\heading{Data reuse in the sparse matrix-vector product}
-
-There are some similarities between the dense matrix-vector product,
-executed by rows, and the \ac{CRS} sparse product
-(section~\ref{sec:crs-mvp}). In both cases all matrix elements are
-used sequentially, so any cache line loaded is utilized
-fully. However, the \ac{CRS} product is worse at least the following
-ways:
-\begin{itemize}
-\item The indirect addressing requires loading the elements of an
-  integer vector. This implies that the sparse product has more memory
-  traffic for the same number of operations.
-\item The elements of the source vector are not loaded sequentially,
-  in fact they can be loaded in effectively a random order. This means
-  that a cacheline contains a source element will likely not be fully
-  utilized. Also, the prefetch logic of the memory subsystem
-  (section~\ref{sec:prefetch}) cannot assist here.
-\end{itemize}
-For these reasons, an application that is computationally dominated by
-the sparse matrix-vector product can very well be run at $\approx5\%$
-of the peak performance of the processor.
-
-It may be possible to improve this performance if the structure of the
-matrix is regular in some sense. One such case is where we are dealing
-with a \indexterm{block matrix} consisting completely of small dense
-blocks. This leads at least to a reduction in the amount of indexing
-information: if the matrix consists of $2\times2$ blocks we get a
-$4\times$ reduction in the amount of integer data transferred.
-\begin{exercise}
-  Give two more reasons why this strategy is likely to improve
-  performance. Hint: cachelines, and reuse.
-\end{exercise}
-Such a \indextermbus{matrix}{tesselation} may give a factor of~2 in
-performance improvement. Assuming such an improvement, we may adopt
-this strategy even if the matrix is not a perfect block matrix: if
-every $2\times2$ block will contain one zero element we may still get
-a factor of~$1.5$ performance
-improvement~\cite{vuduc:thesis,ButtEijkLang:spmvp}.
-
-\heading{Vectorization in the sparse product}
-
-In other circumstances bandwidth and reuse are not the dominant concerns:
-\begin{itemize}
-\item On old vector computers, such as old \indexterm{Cray} machines,
-  memory was fast enough for the processor, but vectorization was
-  paramount. This is a problem for sparse matrices, since the number
-  of zeros in a matrix row, and therefore the vector length, is
-  typically low.
-\item On \acp{GPU} memory bandwidth is fairly high, but it is
-  necessary to find large numbers of identical operations. Matrix can
-  be treated independently, but since the rows are likely of unequal
-  length this is not an appropriate source of parallelism.
-\end{itemize}
-For these reasons, a variation on the \indexterm{diagonal storage}
-scheme for sparse matrices has seen a revival
-recently. The observation here is that
-if you sort the matrix rows by the number of rows you get a small
-number of blocks of rows; each block will be fairly large, and in each
-block the rows have the same number of elements.
-
-A matrix with such a structure is good for vector
-architectures~\cite{DAzevedo2005:vector-mvp}. In this case the product
-is computed by diagonals.
-\begin{exercise}
-  Write pseudo-code for this case. How did the sorting of the rows
-  improve the situation?
-\end{exercise}
-
-This sorted storage scheme also solves the problem we noted on
-\acp{GPU}~\cite{Bolz:GPUsparse}. In this case we the traditional
-\ac{CRS} product algorithm, and we have an amount of parallelism equal
-to the number of rows in a block.
-
-Of course there is the complication that we have permuted the matrix:
-the input and output vectors will need to be permuted accordingly. If
-the product operation is part of an iterative method, doing this
-permutation back and forth in each iteration will probably negate any
-performance gain. Instead we could permute the whole linear system and
-iterate on the permuted system.
-\begin{exercise}
-  Can you think of reasons why this would work? Reasons why it wouldn't?
-\end{exercise}
-
 \Level 0 {Parallel dense matrix-vector product}
 \label{sec:parallel-dense-mvp}
 \index{Dense linear algebra|(}
@@ -1307,9 +1206,112 @@ processor~0 the \emph{block} rows $0,c,2c,\ldots$.
 
 \index{Dense linear algebra|)}
 
-\Level 0 {Parallel sparse matrix-vector product}
+\Level 0 {Sparse matrix-vector product}
 \label{sec:pspmvp}
 \index{matrix-vector product!sparse|see{sparse, matrix-vector product}}
+
+In linear system solving through iterative methods (see
+section~\ref{sec:iterative}) the matrix-vector product is
+computationally an important kernel, since it is executed in each of
+potentially hundreds of iterations. In this section we look at
+performance aspects of the matrix-vector product on a single
+processor first; the multi-processor case will get our attention in
+section~\ref{sec:pspmvp}.
+
+\Level 1 {The single-processor sparse matrix-vector product}
+\label{sec:spmvp-performance}
+
+We are not much worried about the dense matrix-vector product in the
+context of iterative methods, since one typically does not iterate on
+dense matrices. In the case that we are dealing with block matrices,
+refer to section~\ref{sec:mvp-opt} for an analysis of the dense
+product. The sparse product is a lot trickier, since most of that
+analysis does not apply.
+
+\heading{Data reuse in the sparse matrix-vector product}
+
+There are some similarities between the dense matrix-vector product,
+executed by rows, and the \ac{CRS} sparse product
+(section~\ref{sec:crs-mvp}). In both cases all matrix elements are
+used sequentially, so any cache line loaded is utilized
+fully. However, the \ac{CRS} product is worse at least the following
+ways:
+\begin{itemize}
+\item The indirect addressing requires loading the elements of an
+  integer vector. This implies that the sparse product has more memory
+  traffic for the same number of operations.
+\item The elements of the source vector are not loaded sequentially,
+  in fact they can be loaded in effectively a random order. This means
+  that a cacheline contains a source element will likely not be fully
+  utilized. Also, the prefetch logic of the memory subsystem
+  (section~\ref{sec:prefetch}) cannot assist here.
+\end{itemize}
+For these reasons, an application that is computationally dominated by
+the sparse matrix-vector product can very well be run at $\approx5\%$
+of the peak performance of the processor.
+
+It may be possible to improve this performance if the structure of the
+matrix is regular in some sense. One such case is where we are dealing
+with a \indexterm{block matrix} consisting completely of small dense
+blocks. This leads at least to a reduction in the amount of indexing
+information: if the matrix consists of $2\times2$ blocks we get a
+$4\times$ reduction in the amount of integer data transferred.
+\begin{exercise}
+  Give two more reasons why this strategy is likely to improve
+  performance. Hint: cachelines, and reuse.
+\end{exercise}
+Such a \indextermbus{matrix}{tesselation} may give a factor of~2 in
+performance improvement. Assuming such an improvement, we may adopt
+this strategy even if the matrix is not a perfect block matrix: if
+every $2\times2$ block will contain one zero element we may still get
+a factor of~$1.5$ performance
+improvement~\cite{vuduc:thesis,ButtEijkLang:spmvp}.
+
+\heading{Vectorization in the sparse product}
+
+In other circumstances bandwidth and reuse are not the dominant concerns:
+\begin{itemize}
+\item On old vector computers, such as old \indexterm{Cray} machines,
+  memory was fast enough for the processor, but vectorization was
+  paramount. This is a problem for sparse matrices, since the number
+  of zeros in a matrix row, and therefore the vector length, is
+  typically low.
+\item On \acp{GPU} memory bandwidth is fairly high, but it is
+  necessary to find large numbers of identical operations. Matrix can
+  be treated independently, but since the rows are likely of unequal
+  length this is not an appropriate source of parallelism.
+\end{itemize}
+For these reasons, a variation on the \indexterm{diagonal storage}
+scheme for sparse matrices has seen a revival
+recently. The observation here is that
+if you sort the matrix rows by the number of rows you get a small
+number of blocks of rows; each block will be fairly large, and in each
+block the rows have the same number of elements.
+
+A matrix with such a structure is good for vector
+architectures~\cite{DAzevedo2005:vector-mvp}. In this case the product
+is computed by diagonals.
+\begin{exercise}
+  Write pseudo-code for this case. How did the sorting of the rows
+  improve the situation?
+\end{exercise}
+
+This sorted storage scheme also solves the problem we noted on
+\acp{GPU}~\cite{Bolz:GPUsparse}. In this case we the traditional
+\ac{CRS} product algorithm, and we have an amount of parallelism equal
+to the number of rows in a block.
+
+Of course there is the complication that we have permuted the matrix:
+the input and output vectors will need to be permuted accordingly. If
+the product operation is part of an iterative method, doing this
+permutation back and forth in each iteration will probably negate any
+performance gain. Instead we could permute the whole linear system and
+iterate on the permuted system.
+\begin{exercise}
+  Can you think of reasons why this would work? Reasons why it wouldn't?
+\end{exercise}
+
+\Level 1 {The parallel sparse matrix-vector product}
 \index{sparse!matrix-vector product!parallel|(}
 \input chapters-public/spmvp
 \index{sparse!matrix-vector product!parallel|)}

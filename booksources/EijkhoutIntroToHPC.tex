@@ -22,8 +22,9 @@
 
 \newif\ifIncludeAnswers
 \IncludeAnswersfalse
+\excludecomment{booth}
 \input inex
-\includecomment{gpu}
+\includecomment{gpu} % VLE time to remove this environment
 
 \begin{notlulu}
   \usepackage[pdftex,colorlinks]{hyperref}
@@ -88,6 +89,12 @@
 \fancyfoot[RE]{\footnotesize\sl Introduction to High Performance
   Scientific Computing}
 \fancyfoot[LO]{\footnotesize\sl Victor Eijkhout}
+
+\begin{booth}
+  \usepackage{draftwatermark}
+  \SetWatermarkText{TACC Booth Copy}
+  \SetWatermarkScale{0.75}
+\end{booth}
 
 \input exmacs-public
 
