@@ -92,8 +92,8 @@
   \item BitBucket, \hyperpage{405}
   \item bitonic sequence, \hyperpage{306}
   \item Bitonic sort, \hyperpage{303}
-  \item bitonic sort, \hyperpage{75}
-  \item bitonic sorting, \hyperpage{305--307}
+  \item bitonic sort, \hyperpage{75}, 
+		\hyperindexformat{\textbf}{306--307}
   \item bits, \hyperpage{151}
   \item Bjam, \hyperpage{390}
   \item BLAS, 
@@ -780,6 +780,8 @@
   \item object file, \hyperpage{388}, \hyperpage{468}
   \item octtree, \hyperpage{320}
     \subitem hashed, \hyperpage{321}
+  \item odd-even transposition sort, \hyperpage{303}, 
+		\hyperindexformat{\textbf}{303}
   \item ODE, \hyperindexformat{\see{Ordinary Diffential Equation}}{516}
   \item offloading, \hyperpage{137}
   \item one-sided communication, \hyperpage{106--107}, 
@@ -874,7 +876,7 @@
   \item preconditioner, \hyperpage{218--220}
   \item predicate, \hyperpage{309}
   \item prefetch data stream, \hyperpage{33}
-  \item prefix operation, \hyperpage{273}, \hyperpage{304}, 
+  \item prefix operation, \hyperpage{273}, \hyperpage{305}, 
 		\hyperpage{362--363}
   \item Pregel, \hyperpage{116}
   \item Prim's algorithm, \hyperpage{312}
@@ -895,7 +897,7 @@
   \indexspace
 
   \item QR factorization, \hyperpage{337}
-  \item Quicksort, \hyperpage{302--305}
+  \item Quicksort, \hyperpage{302}, \hyperpage{304--306}
 
   \indexspace
 
@@ -976,8 +978,9 @@
   \item separable problem, \hyperpage{219}
   \item separator, \hyperpage{260}, \hyperpage{313}
   \item Sequent Symmetry, \hyperpage{37}
+  \item sequential complexity, \hyperpage{303}
   \item sequential complexity of
-    \subitem bitonic sorting, \hyperpage{306}
+    \subitem bitonic sort, \hyperpage{307}
   \item sequential consistency, \hyperpage{93}, \hyperpage{95}, 
 		\hyperpage{280}
   \item sequential fraction, \hyperpage{72}

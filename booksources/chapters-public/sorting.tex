@@ -14,6 +14,8 @@ see~\cite{Kumar:parcomp-book} and the references therein.
 
 \Level 0 {Brief introduction to sorting}
 
+\Level 1 {Complexity}
+
 There are many sorting algorithms. Traditionally, they have 
 been distinguished by
 their computational complexity, that is, given an array of $n$
@@ -33,6 +35,8 @@ least complexity~$O(n\log n)$\footnote{One can consider a sorting
 attain this complexity, but a very popular algorithm, called
 \indexterm{Quicksort} has only an `expected' complexity of~$O(n\log
 n)$, and a worst case complexity of~$O(n^2)$.
+
+\Level 1 {Sorting networks}
 
 There is another way of looking at sorting algorithms,
 distinguishing them by whether they work independent of
@@ -75,6 +79,41 @@ the outputs are $\max(x,y)$ and $\min(x,y)$.
 
 Below we will consider the \indexterm{Bitonic sort} algorithm
 as a prime example of a sorting network.
+
+\Level 1 {Parallel complexity}
+
+Above we remarked that sorting sequentially takes at least $O(N\log N)$ time.
+If we can have perfect speedup, using for simplicity $P=N$ processors,
+we would have parallel time~$O(\log N)$. If the parallel time
+is more than that, we define the \indexterm{sequential complexity}
+as the total number of operations. For instance, below you will see
+\indexterm{odd-even transposition sort}, which takes~$N$ steps,
+giving a sequential complexity of~$N^2$, and bitonic sort
+which has a parallel time of~$(\log N)^2$ and a
+sequential complexity of~$N(\log N)^2$.
+
+\Level 0 {Odd-even transposition sort}
+\index{odd-even transposition sort|(textbf}
+
+The \emph{odd-even transposition sort} algorithm is a simple
+algorithm, with as main virtue that it is easily implemented
+on a linear area of processors. A~single step of the
+algorithm consists of two substeps:
+\begin{itemize}
+\item Every even-numbered processor does a compare-and-swap
+  with its right neighbour; then
+\item Every odd-numbered processor does a compare-and-swap
+  with its right neighbour.
+\end{itemize}
+
+\begin{theorem}
+  After $N$ steps, each consisting of the two substeps just given,
+  a sequency is sorted.
+\end{theorem}
+
+With a parallel time of $2N$, this gives a sequential complexity~$O(N^2)$.
+
+\index{odd-even transposition sort|)textbf}
 
 \Level 0 {Quicksort}
 \index{Quicksort|(}
@@ -217,7 +256,7 @@ speedup.
 \index{Quicksort|)}
 
 \Level 0 {Bitonic sort}
-\index{bitonic sorting|(}
+\index{bitonic sort|(textbf}
 
 
 To motivate bitonic sorting,
@@ -282,14 +321,14 @@ use larger and larger bitonic networks.
 \end{figure}
 From this description you see that you $\log_2N$ stages to sort $N$
 elements, where the $i$-th stage is of length~$\log_2i$. This makes
-the total \indextermbus{sequential complexity of}{bitonic sorting}~$(\log_2N)^2$.
+the total \indextermbus{sequential complexity of}{bitonic sort}~$(\log_2N)^2$.
 
 The sequence of operations in figure~\ref{fig:full-bitonic}
 is called a \indextermbus{sorting}{network}, built up out of simple 
 \indexterm{compare-and-swap} elements. There is no dependence 
 on the value of the data elements, as is the case with quicksort.
 
-\index{bitonic sorting|)}
+\index{bitonic sort|)}
 
 \index{sorting|)}
 
