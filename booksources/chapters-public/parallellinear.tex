@@ -1204,6 +1204,44 @@ processor~0 the \emph{block} rows $0,c,2c,\ldots$.
 
 \index{LU factorization!computation in parallel|)}
 
+\Level 0 {Matrix-matrix product}
+\index{Cannon's algorithm|see{matrix-matrix product, Cannon's algorithm}}
+
+In section~\ref{sec:goto-gemm} we considered the high performance
+implementation of the single-processor \indexterm{matrix-matrix
+  product}.  We will now briefly consider the distributed memory
+version of this operation.
+
+One algorithm for this operation is known as
+\emph{Cannon's algorithm}\index{matrix-matrix product!Cannon's algorithm for}.
+It assumes a square processor grid where processor $(i,j)$ gradually
+accumulates the $(i,j)$ block $C_{i,j}=\sum_kA_{i,k}B_{k,j}$.
+
+If you start top-left, you see that processor $(0,0)$ has both
+$A_{00}$ and~$B_{00}$, so it can immediately start doing a local multiplication.
+However, processor $(0,1)$ has $A_{01}$ and~$B_{01}$, which are
+not needed together. However, if we rotate the second column of~$B$ up
+by one position, processor~$(0,1)$ will have $A_{01},B_{11}$ and those
+two do need to be multiplied. Similarly, we rotate the third column of~$B$
+up by two places so that $(0,2)$ contains $A_{02},B_{22}$.
+
+How does this story go in the second row? Processor~$(1,0)$ has
+$A_{10},B_{10}$ which are not needed together. If we rotate
+the second row of~$A$ one position to the left, it contains
+$A_{11},B_{10}$ which are needed for a partial product.
+And now processor~$(1,1)$ has $A_{11},B_{11}$.
+
+If we continue this story, we start with a matrix~$A$ of which the
+rows have been rotated left, and $B$ of which the columns have been rotated up.
+In this setup, processor~$(i,j)$ contains $A_{i,i+j}$ and~$B_{i+j,j}$,
+where the addition is done modulo the matrix size. This means that
+each processor can start by doing a local product.
+
+Now we observe that $C_{ij}=\sum_kA_{ik}B_{kj}$ implies that
+the next partial product term comes from increasing~$k$ by~$1$.
+The corresponding elements of $A,B$ can be moved into the processor
+by rotating the rows and columns by another location.
+
 \index{Dense linear algebra|)}
 
 \Level 0 {Sparse matrix-vector product}

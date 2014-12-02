@@ -1,3 +1,5 @@
+% This file is no longer used
+%
 The \indextermstart{Make} utility helps you manage the building of
 projects: its main task is to facilitate rebuilding only those parts 
 of a multi-file project that need to be recompiled or rebuilt.
@@ -258,11 +260,12 @@ and use this variable instead of the program name in your
 makefile. This makes it easier to change your mind about the name of
 the executable later. 
 
-\practical{Construct a commandline so that your makefile will build the
-  executable \n{fooprog\_v2}.}{You need to specify the \n{THEPROGRAM}
-  variable on the commandline using the syntax \n{make VAR=value}.}
-  {Make sure that there are no spaces around the equals sign in your
-    commandline.}
+\practical{Edit your makefile to add this variable definition, and use
+  it instead of the literal program name. Construct a commandline so
+  that your makefile will build the executable \n{fooprog\_v2}.}{You
+  need to specify the \n{THEPROGRAM} variable on the commandline using
+  the syntax \n{make VAR=value}.}  {Make sure that there are no spaces
+  around the equals sign in your commandline.}
 
 \Level 1 {Template rules}
 

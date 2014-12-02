@@ -110,6 +110,18 @@
  \SetBaseLevel 0
 }}
 
+\newwrite\nx
+\newcommand\APPLICATION[2]{
+\Level 0 {#1}\label{app:#2}
+\def\chapshortname{#2}
+{\SetBaseLevel 1 \input applications/#2
+ \write\chapterlist{\chapshortname}
+ \openout\nx=exercises-public/\chapshortname-nx.tex
+ \write\nx{\arabic{excounter}}
+ \closeout\nx
+ \SetBaseLevel 0
+}}
+
 \includecomment{tutorials}
 \newcommand\TUTORIAL[2]{
 \vfill\pagebreak \Level 0 {#1}\label{tut:#2}
@@ -232,21 +244,22 @@
 
 \part{Applications}
 
-\CHAPTER{Molecular dynamics}{md}
-\CHAPTER{Sorting}{sorting}
-\CHAPTER{Graph analytics}{graphalgorithms}
-\CHAPTER{N-body problems}{discrete}
+\APPLICATION{Molecular dynamics}{md}
+\APPLICATION{Sorting}{sorting}
+\APPLICATION{Graph analytics}{graphalgorithms}
+\APPLICATION{N-body problems}{discrete}
 \begin{montecarlo}
-\CHAPTER{Monte Carlo Methods}{montecarlo}
+\APPLICATION{Monte Carlo Methods}{montecarlo}
 \end{montecarlo}
 \begin{notready}
-\CHAPTER{Computational biology}{bio}
-\CHAPTER{Big data}{analytics}
+\APPLICATION{Computational biology}{bio}
+\APPLICATION{Big data}{analytics}
+\APPLICATION{Computer graphics}{graphics}
 \end{notready}
 
 % not for public consumption
 \begin{notready}
-\CHAPTER{Other physics applications}{lbm}
+\APPLICATION{Other physics applications}{lbm}
 \end{notready}
 
 \begin{comment}

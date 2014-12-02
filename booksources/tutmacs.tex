@@ -22,12 +22,12 @@
   \smallskip
   \def\next{#2}\def\empty{}
   \ifx\next\empty\else
-    {\sl Expected outcome. }#2\par
+    \begin{quotation}\small\noindent{\sl Expected outcome. }#2\end{quotation}
   \fi
   \def\next{#3}\def\empty{}
   \ifx\next\empty\else
     \smallskip
-    {\sl Caveats. }#3\par
+    \begin{quotation}\small\noindent{\sl Caveats. }#3\end{quotation}
   \fi
   \medskip
 }

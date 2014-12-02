@@ -53,6 +53,10 @@
 \expandafter\ifx\csname lemma\endcsname\relax
     \newtheorem{lemma}{Lemma}
 \fi
+\expandafter\ifx\csname proof\endcsname\relax
+ \newenvironment{proof}{\begin{quotation}\small\sl\noindent Proof.\ \ignorespaces}
+     {\end{quotation}}
+\fi
 %% \newenvironment{highermath}
 %%     {\bigskip\begin{quotation}\noindent\emph{MMM}}
 %%     {\end{quotation}\bigskip\noindent\ignorespaces}
@@ -140,8 +144,8 @@
 \closeout\acrowrite
 
 \newcommand{\indexterm}[1]{\emph{#1}\index{#1}}
-\newcommand{\indextermtt}[1]{\texttt{\emph{#1}}\index{#1|texttt}}
-\newcommand{\indextermunix}[1]{\texttt{\emph{#1}}\index{#1|texttt}}
+\newcommand{\indextermtt}[1]{\texttt{\textsl{#1}}\index{#1|texttt}}
+\newcommand{\indextermunix}[1]{{\ttfamily\slshape #1}\index{#1@\texttt{#1}}}
 \newcommand{\indextermdef}[1]{\emph{#1}\index{#1|textbf}}
 \newcommand{\indextermp}[1]{\emph{#1s}\index{#1}}
 \newcommand{\indextermsub}[2]{\emph{#1 #2}\index{#2!#1}}

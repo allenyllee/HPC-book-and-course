@@ -60,7 +60,7 @@ is the root of the maximal eigenvalue of~$A^tA$.
 
 The matrix \indexterm{condition number} is defined as
 \[ \kappa(A)=\|A\|\,\|A\inv\|. \]
-In the symmetric case this is the ratio between the largest and
+In the symmetric case, and using the 2-norm, this is the ratio between the largest and
 smallest eigenvalue.
 
 \index{matrix!norms|)}
@@ -93,7 +93,7 @@ successive applications of the above transformation:
     \> For \=$j=1,\ldots i-1$:\\
     \>\>let $c_{ji}=u_j^tu_i/u_j^tu_j$\\
     \> For \=$i=1,\ldots,n$:\\
-    \>\> update $u_i\leftarrow u_i-c_{ji}u_j$
+    \>\> update $u_i\leftarrow u_i-u_jc_{ji}$
   \end{tabbing}
 \end{quote}
 
@@ -125,8 +125,9 @@ perform better:
 \begin{quote}
   \begin{tabbing}
     For \=$i=1,\ldots,n$:\\
-    \>let $c_i=u_i^tv/u_i^tu_i$\\
-    \>update $v\leftarrow v-c_iu_i$
+    \> For \=$j=1,\ldots i-1$:\\
+    \>\>let $c_{ji}=u_j^tu_i/u_j^tu_j$\\
+    \>\> update $u_i\leftarrow u_i-u_jc_{ji}$
   \end{tabbing}
 \end{quote}
 

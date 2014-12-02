@@ -137,11 +137,6 @@ Barbara Chapman, Gabriele Jost, and Ruud van~der Pas.
   volume~10 of {\em Scientific Computation Series}.
 \newblock MIT Press, ISBN 0262533022, 9780262533027, 2008.
 
-\bibitem{ChenDoolen:LBM}
-Shiyi Chen and Gary~D. Doolen.
-\newblock Lattice {Boltzmann} method for fluid flows.
-\newblock {\em Annual Review of Fluid Mechanics}, 30(1):329--364, 1998.
-
 \bibitem{Choi:scalapack}
 Yaeyoung Choi, Jack~J. Dongarra, Roldan Pozo, and David~W. Walker.
 \newblock Scalapack: a scalable linear algebra library for distributed memory
@@ -654,13 +649,6 @@ J.D.C. Little.
 \newblock A proof of the queueing formula {$L=\lambda W$}.
 \newblock {\em Ope. Res.}, pages 383--387, 1961.
 
-\bibitem{Liu:cudasw2009}
-Yongchao Liu, Douglas~L. Maskell, and Bertil Schmidt.
-\newblock {CUDASW++}: optimizing {Smith-Waterman} sequence database searches
-  for {CUDA}-enabled graphics processing units.
-\newblock {\em BMC Res Notes}, 2:73, 2009.
-\newblock PMID- 19416548.
-
 \bibitem{Luby:parallel}
 M.~Luby.
 \newblock A simple parallel algorithm for the maximal independent set problem.
@@ -714,12 +702,6 @@ Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
   Rowley.
 \newblock {\em The {\LaTeX} Companion, 2nd edition}.
 \newblock Addison-Wesley, 2004.
-
-\bibitem{NeedlemanWunsch}
-Saul~B. Needleman and Christian~D. Wunsch.
-\newblock A general method applicable to the search for similarities in the
-  amino acid sequence of two proteins.
-\newblock {\em Journal of Molecular Biology}, 48(3):443 -- 453, 1970.
 
 \bibitem{Oetiker:LaTeXintro}
 Tobi Oetiker.
@@ -822,11 +804,6 @@ D.~E. Shaw.
 \newblock A fast, scalable method for the parallel evaluation of
   distance-limited pairwise particle interactions.
 \newblock {\em J. Comput. Chem.}, 26:1318--1328, 2005.
-
-\bibitem{TAU:ijhpca}
-S.~Shende and A.~D. Malony.
-\newblock {\em International Journal of High Performance Computing
-  Applications}, 20:287--331, 2006.
 
 \bibitem{Skillicorn96questionsand}
 D.~B. Skillicorn, Jonathan M.~D. Hill, and W.~F. McColl.

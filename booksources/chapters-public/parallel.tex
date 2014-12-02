@@ -786,7 +786,7 @@ both cases inspired by the parallelism that is needed in graphics
 applications.
 
 Modern CPUs from Intel\index{Intel} and AMD\index{AMD}, as well as
-PowerPC\index{PowerPC} chips, have instructions that can perform
+PowerPC\index{PowerPC} chips, have \indextermbusdef{vector}{instructions} that can perform
 multiple instances of an operation simultaneously. On Intel processors
 this is known as \indexacf{SSE} or \indexacf{AVX}. These extensions were
 originally intended for graphics processing, where often the same
@@ -1381,6 +1381,7 @@ of supersteps; for instance Google\index{Google}'s
 \indexterm{Pregel}~\cite{Pregel:podc2009}.
 
 \Level 1 {Program design for parallelism}
+\label{sec:aos-soa}
 
 A long time ago it was thought that some magic combination of 
 compiler and runtime system could transform an existing sequential 
@@ -1688,7 +1689,7 @@ on the bus~-- a~process known as \indexterm{snooping}.
 \Level 1 {Linear arrays and rings}
 
 A simple way to hook up multiple processors is to connect them in a
-\indexterm{linear array}: every processor has a number~$i$, and
+\emph{linear array}\index{linear array (of processors)}: every processor has a number~$i$, and
 processor~$P_i$ is connected to $P_{i-1}$ and~$P_{i+1}$. The first and
 last processor are possible exceptions: if they are connected to each
 other, we call the architecture a \indexterm{ring network}.

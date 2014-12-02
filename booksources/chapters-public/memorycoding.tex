@@ -547,8 +547,8 @@ that automatically uses all levels of the
 \indexterm{divide-and-conquer} strategy, that is, recursive
 subdivision of a problem.
 
-As a simple example of cache oblivious programming is the matrix
-transpose operation $B\leftarrow A^t$. First we observe that each
+As a simple example of cache oblivious programming is the \indextermbus{matrix}
+{transposition} operation $B\leftarrow A^t$. First we observe that each
 element of either matrix is accessed once, so the only reuse is in the
 utilization of cache lines. If both matrices are stored by
 rows and we traverse $B$ by rows, then $A$~is traversed by columns,
@@ -582,7 +582,7 @@ caches~\cite{GotoGeijn:2008:Anatomy}.
 \label{sec:mvp-opt}
 
 Let us consider in some detail
-the matrix-vector product
+the \indexterm{matrix-vector product}
 \[ \forall_{i,j}\colon y_i\leftarrow a_{ij}\cdot x_j \] This involves $2n^2$
 operations on $n^2+2n$ data items, so reuse is~$O(1)$: memory accesses
 and operations are of the same order. However, we note that there is a
@@ -653,10 +653,11 @@ or \indexterm{strip mining}. The amount by which you unroll
 loops is determined by the number of available registers.
 
 \Level 1 {Case study: Goto matrix-matrix product}
+\label{sec:goto-gemm}
 \index{matrix-matrix product!Goto implementation|(}
 
-In section~\ref{sec:gemm} we already argued that the matrix-matrix
-product (or \indextermtt{dgemm} in Blas terms) has a large amount of
+In section~\ref{sec:gemm} we already argued that the \indexterm{matrix-matrix
+product} (or \indextermtt{dgemm} in Blas terms) has a large amount of
 possible data reuse: there are $O(n^3)$ operations on $O(n^2)$ data.
 We will now consider an implementation, due
 to \indextermsub{Kazushige}{Goto}~\cite{GotoGeijn:2008:Anatomy}, that

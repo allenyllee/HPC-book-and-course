@@ -14,6 +14,24 @@ common to the various shells in existence.
 This short tutorial will get you going; 
 if you want to learn more about Unix and shell scripting,
 see for instance~\url{http://www.tldp.org/guides.html}.
+Most of this tutorial will work on any Unix-like platform,
+including \indexterm{Cygwin} on Windows.
+However, there is not just one Unix:
+\begin{itemize}
+\item Traditionally there are a few major flavours of Unix: ATT and BSD.
+  Apple has Darwin which is close to BSD; IBM and HP have their own
+  versions of Unix, and Linux is yet another variant. The differences between
+  these are deep down and if you are taking this tutorial you probably
+  won't see them for quite a while.
+\item Within Linux there are various \indextermbus{Linux}{distributions}
+  such as \indexterm{Red Hat} or \indexterm{Ubuntu}. These mainly differ
+  in the organization of system files and again you probably need not worry
+  about them.
+\item As mentioned just now, there are different shells, and they do differ
+  considerably. Here you will learn the bash shell, which for a variety of
+  reasons is to be preferred over the \indexterm{csh} or \indexterm{tcsh} shell.
+  Other shells are the \indexterm{ksh} and \indexterm{zsh}.
+\end{itemize}
 
 %\secttoc
 
@@ -98,7 +116,7 @@ The \n{ls} command can give you all sorts of information.
 to get online information about it. If you forget the name of a
 command, \n{man -k keyword} can help you find it.)
 
-The \n{touch} command creates an empty file, updates the timestamp of
+The \n{touch} command creates an empty file, or updates the timestamp of
 a file if it already exists. Use \n{ls -l} to confirm this behaviour.
 
 Three more useful commands for files are: \n{cp} for copying, \n{mv}
@@ -119,6 +137,10 @@ your system. Now experiment with the commands \n{head}, \n{tail},
   increasing and decreasing the amount of output. 
   The \n{wc} (`word count') command reports the number of words,
   characters, and lines in a file.}{}
+
+Another useful command is \indextermunix{which}: it tells you what
+type of file you are dealing with. See what it tells you about
+one of the text files you just created.
 
 \Level 1 {Directories}
 
@@ -298,7 +320,7 @@ Common codes are $7=\n{rwx}$ and $6=\n{rw}$. You will find
 many files that have permissions $755$ which stands for an executable
 that everyone can run, but only the owner can change, or $644$ which
 stands for a data file that everyone can see but again only the owner
-can alter. You can set permissions by 
+can alter. You can set permissions by the \indextermunix{chmod} command:
 \begin{verbatim}
   chmod <permissions> file         # just one file
   chmod -R <permissions> directory # directory, recursively
@@ -332,8 +354,13 @@ echo "Hello world!"
 This is a legitimate shell script. What happens when you type
 \n{./com}? Can you make the script executable?
 
-Adding or taking away permissions can be done with the following
-syntax:
+In the three permission categories it is who `you' and `others'
+refer to. How about `group'? The command \indextermunix{groups}
+tells you all the groups you are in, and \n{ls -l} tells you
+what group a file belongs to. Analogous to \n{chmod},
+you can use \indextermunix{chgrp} to change the group to
+which a file belongs, to share it with a user who is also in that group.
+Adding a user to a group sometimes needs system priviliges.
 
 \Level 1 {Wildcards}
 \label{sec:shell-wildcard}
@@ -460,7 +487,7 @@ sed 's/foo/bar/' myfile > mynewfile
 will apply the substitute command \n{s/foo/bar/} to every line of
 \n{myfile}. The output is shown on your screen so you should capture
 it in a new file; see section~\ref{sec:unixpipe} for more on output
-redirection.
+\indexterm{redirection}.
 
 \Level 1 {Cutting up lines with \protect\n{cut}}
 
@@ -509,7 +536,7 @@ with the same name, and which one gets executed depends on which one
 is found first.
 
 \practical{What you may think of as `Unix commands' are often just
-  executable files in a system directory. Do \n{which ls}, and do an
+  executable files in a system directory. Do \indextermunix{which}\n{ ls}, and do an
   \n{ls -l} on the result}
 {The location of \n{ls} is something like \n{/bin/ls}. If you
   \n{ls} that, you will see that it is probably owned by root. Its
@@ -551,6 +578,8 @@ commands.
 
 \Level 1 {Redirection and Pipelines}
 \label{sec:unixpipe}
+\index{input redirection|see{redirection}}
+\index{output redirection|see{redirection}}
 
 \begin{purpose}
   In this section you will learn how to feed one command into another,
@@ -563,16 +592,18 @@ went to your screen. There are other possibilities for providing input
 from a file, or for storing the output in a file.
 
 \Level 2 {Input redirection}
+\index{redirection|(textbf}
 
 The \n{grep} command had two arguments, the second being a file
 name. You can also write \n{grep string < yourfile}, where the
 less-than sign means that the input will come from the named file,
-\n{yourfile}.
+\n{yourfile}. This is known as \emph{input redirection}.
 
 \Level 2 {Output redirection}
 
-More usefully, \n{grep string yourfile > outfile} will take what
-normally goes to the terminal, and send it to \n{outfile}. The output
+Conversely, \n{grep string yourfile > outfile} will take what
+normally goes to the terminal, and \emph{redirect}
+the output to \n{outfile}. The output
 file is created if it didn't already exist, otherwise it is
 overwritten. (To append, use \n{grep text yourfile >> outfile}.)
 
@@ -585,6 +616,8 @@ overwritten. (To append, use \n{grep text yourfile >> outfile}.)
   string that does not occur in a file gives no terminal output. If
   you redirect the output of this \n{grep} to a file, it gives a zero size
   file. Check this with \n{ls} and \n{wc}.}{}
+
+\index{redirection|)}
 
 \Level 2 {Standard files}
 
@@ -600,6 +633,7 @@ terminal. Using input or output redirection then means that the input
 is taken or the output sent to a different file than the terminal.
 
 \Level 2 {Command redirection}
+\label{tut:unix-bq}
 
 Instead of taking input from a file, or sending output to a file, it
 is possible to connect two commands together, so that the second takes
@@ -888,7 +922,15 @@ x.bak
 \end{comment}
 
 The backquote mechanism (section~\ref{sec:unixpipe} above)
-is known as command substitution:
+is known as command substitution. It allows you to evalute part
+of a command and use it as input for another. For example,
+if you want to ask what type of file the command \n{ls} is, do
+\begin{verbatim}
+%% file `which ls`
+\end{verbatim}
+This first evalutes \n{which ls}, giving \n{/bin/ls}, and then
+evaluates \n{file /bin/ls}. As another example, here
+we backquote a whole pipeline, and do a test on the result:
 \begin{verbatim}
 %% echo 123 > w
 %% cat w
@@ -965,19 +1007,27 @@ so that the shell will not expand it. For instance, \n{find . -name
   *.c}.
 
 \Level 0 {The system and other users}
+\label{sec:users}
+
+Unix is a multi-user operating system. Thus, even if you use it
+on your own personal machine, you are a user with an \emph{account}\index{Unix!user account}
+and you may occasionally
+have to type in your username and password.
 
 If you are on your personal machine, you may be the only user logged
 in. On university machines or other servers, there will often be other
 users. Here are some commands relating to them.
 
 \begin{itemize}
-\item [{\tt whoami}] show your login name
-\item [{\tt who}] show the other currently logged in users
-\item [{\tt finger otherusername}] get information about another user
-\item [{\tt top}] which processes are running on the system; use
+\item [\indextermunix{whoami}] show your login name.
+\item [\indextermunix{who}] show the other users currently logged in.
+\item [\indextermunix{finger} {\tt otheruser}] get information about another user;
+  you can specify a user's login name here, or their real name,
+  or other identifying information the system knows about.
+\item [\indextermunix{top}] which processes are running on the system; use
   \n{top -u} to get this sorted the amount of cpu time they are
   currently taking. (On Linux, try also the \n{vmstat} command.)
-\item [{\tt uptime}] how long has your system been up?
+\item [\indextermunix{uptime}] how long has it been since your last reboot?
 \end{itemize}
 
 \Level 0 {The {\tt sed} and {\tt awk} tools}

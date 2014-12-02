@@ -211,7 +211,7 @@ the same directory.
 If you want \emph{Make} to use a different file as make file, use the
 syntax \n{make -f My_Makefile}.
 
-\Level 0 {Makefile power tools}
+\Level 0 {Variables and template rules}
 
 \begin{purpose}
   In this section you will learn various work-saving mechanisms in
@@ -255,7 +255,7 @@ make FC="gfortran -g"
   you see the difference in your screen output?}
   {The compile lines now show the added compiler option \n{-O2} or \n{-g}.}{}
 
-\emph{Make} also has built-in variables:
+\emph{Make} also has \emph{automatic variables}\index{Make!automatic variables}:
 \begin{itemize}
 \item [\n{\$@}] The target. Use this in the link line for the main
   program. % (See section \ref{sec:target-prereq} for some trickery
@@ -264,6 +264,7 @@ make FC="gfortran -g"
   line for the program.
 \item [\n{\$<}] The first prerequisite. Use this in the compile
   commands for the individual object files.
+\item [\n{\$*}] The stem of the target by stripping any extension.
 \end{itemize}
 Using these variables, the rule for \n{fooprog} becomes
 \begin{verbatim}
@@ -284,9 +285,12 @@ and use this variable instead of the program name in your
 makefile. This makes it easier to change your mind about the name of
 the executable later. 
 
-\practical{Construct a commandline so that your makefile will build the
-  executable \n{fooprog\_v2}.}{\n{make THEPROGRAM=fooprog\_v2}}
-  {}
+\practical{Edit your makefile to add this variable definition, and use
+  it instead of the literal program name. Construct a commandline so
+  that your makefile will build the executable \n{fooprog\_v2}.}{You
+  need to specify the \n{THEPROGRAM} variable on the commandline using
+  the syntax \n{make VAR=value}.}  {Make sure that there are no spaces
+  around the equals sign in your commandline.}
 
 \Level 1 {Template rules}
 
@@ -305,7 +309,8 @@ foo.o : foo.c bar.h
 \end{verbatim}
   where the object file depends on the source file and another file.
 \end{itemize}
-We can take the commonalities and summarize them in one rule\footnote
+We can take the commonalities and summarize them in one 
+\emph{template rule}\index{Make!template rules}\footnote
 {This mechanism is the first instance you'll see that only exists in
   GNU make, though in this particular case there is a similar
   mechanism in standard make. That will not be the case for the
@@ -341,8 +346,8 @@ template rule.
 
 \Level 1 {Wildcards}
 
-Your makefile now uses one general rule for compiling all your source
-files. Often, these source files will be all the \n{.c} or \n{.F}
+Your makefile now uses one general rule for compiling any source
+file. Often, your source files will be all the \n{.c} or \n{.F}
 files in your directory, so is there a way to state `compile
 everything in this directory'? Indeed there is. Add the following lines
 to your makefile, and use the variable \n{COBJECTS} or \n{FOBJECTS}
@@ -530,8 +535,8 @@ This can be used in the makefile.
 
 \practical {Edit the {\tt cp} command line so that the name of the
   backup file includes the current date.}{Hint: you need the
-  backquote. Consult the Unix tutorial if you do not remember what
-  backquotes do.}{}
+  backquote. Consult the Unix tutorial, section~\ref{tut:unix-bq}, if
+  you do not remember what backquotes do.}{}
 
 If you are defining shell variables in the command section of a
 makefile rule, you need to be aware of the following. Extend your
@@ -595,7 +600,7 @@ makefile is invoked with
   make pdf TEXTFILE=mainfile
 \end{verbatim}
 The \n{pdf} rule then uses some shell scripting to discover the
-include files (but not recursively), and it calls emph{Make} again,
+include files (but not recursively), and it calls \emph{Make} again,
 invoking another rule, and passing the dependencies explicitly.
 \verbatiminput{tutorials-public/makefiles/tex/Makefile}
 This shell scripting can also be done outside the makefile, generating

@@ -203,7 +203,7 @@ The exceptions to this story are:
 
 \index{context|)}
 
-\Level 2 {Atomic operations}
+\Level 2 {Thread safety and atomic operations}
 \index{atomic operation|(}
 \index{atomicity|see{atomic operation}}
 \label{sec:shared-lock}
@@ -261,6 +261,15 @@ for (i=0; i<1000; i++)
 Here the products are truly independent, so we could choose to have
 the loop iterations do them in parallel, for instance by their own
 threads. However, all threads need to update the same variable~\n{sum}.
+
+Code that behaves the same whether it's executed
+sequentially or threaded is called \indextermbusdef{thread}{safe}.
+As you can see from the above examples, a lack of thread safety is
+typically due to the treatment of shared data. This implies that
+the more your program uses local data, the higher the chance
+that it is thread safe. Unfortunately, sometimes the threads need
+to write to shared/global data, for instance when the program
+does a \emph{reduction}\index{reduction!and thread safety}.
 
 There are essentially two ways of solving this problem. 
 One is that we declare such updates of a shared variable a
@@ -399,7 +408,7 @@ programs. Creating a thread for a function is much like invoking that
 function directly, and \indexterm{OpenMP} programs (see below) only
 differ from sequential programs in directives that are hidden in
 comments and pragmas. Thus, it has been proposed to solve the problem
-of conflicts such a described above by enforcing \indexterm{sequential
+of conflicts such a described above by enforcing \indextermdef{sequential
 consistency}~\cite{Lamport:sequential}: a~parallel program should
 compute the same result as when its source is executed sequentially,
 with all the parallel statements in sequence.
@@ -423,6 +432,19 @@ With sequential consistency it is no longer necessary to declare
 atomic operations or critical sections; however, this puts strong
 demands on the implementation of the model, so it may lead to
 inefficient code.
+
+\begin{exercise}
+  In section~\ref{sec:shared-lock} you saw an example that needed
+  a critical section to get the right final result. Argue that
+  having a critical section is not enough for sequential consistency.
+  \begin{itemize}
+  \item Write a piece of sequential code that, when executed in parallel,
+    corresponds to the example in section~\ref{sec:shared-lock}.
+  \item Show that, using a critical section, there are two execution
+    orderings that give the correct result.
+  \item Show that one of these orderings is not sequentially consistent.
+  \end{itemize}
+\end{exercise}
 
 \Level 2 {Concurrency}
 

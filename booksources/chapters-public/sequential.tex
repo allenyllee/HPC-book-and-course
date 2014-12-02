@@ -400,7 +400,7 @@ various mechanisms:
 Above, you saw pipelining in the context of floating point
 operations. Nowadays, the whole CPU is pipelined. Not only floating point
 operations, but any sort of instruction will be put in the
-\indexterm{instruction pipeline}\index{pipeline!instruction} as soon
+\indextermbus{instruction}{pipeline} as soon
 as possible. Note that this pipeline is no longer limited to identical
 instructions: the notion of pipeline is now generalized to any stream
 of partially executed instructions that are simultaneously ``in
@@ -969,7 +969,7 @@ if ( (int)a % 8 != 0 ) { /* it is not 8-byte aligned */
   a = 8 * ( ( (int)a )/8 );
 }
 \end{verbatim}
-This code allocates a block of memory, and, if necessary, shfits it
+This code allocates a block of memory, and, if necessary, shifts it
 right to have a starting address that is a multiple of~8. This sort of
 alignment can sometimes be forced by compiler options.
 
@@ -1318,7 +1318,7 @@ behaviour of the \ac{TLB}.
 In recent years, the limits of performance have been reached for the
 traditional processor chip design.
 \begin{itemize}
-\item Clock frequency can not increased further, since it increases
+\item Clock frequency can not be increased further, since it increases
   energy consumption, heating the chips too
   much; see section~\ref{sec:power}. 
 \item It is not possible to extract more \acf{ILP}
@@ -1559,7 +1559,7 @@ interacts mostly with data that is close by in some sense, which will
 lead to data locality; section~\ref{sec:locality}. Often such locality
 derives from the nature of the application, as in the case of the \acp{PDE} you
 will see in chapter~\ref{ch:odepde}. In other cases such as molecular
-dynamics (chapter~\ref{ch:md}) there is no such intrinsic locality
+dynamics (chapter~\ref{app:md}) there is no such intrinsic locality
 because all particles interact with all others,
 and considerable programming cleverness is needed to get high performance.
 
