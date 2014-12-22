@@ -1,3 +1,4 @@
+% -*- latex -*-
 Dense linear algebra, that is linear algebra on matrices that are
 stored as two-dimensional arrays (as opposed to sparse linear algebra;
 see section~\ref{sec:sparse}, as well as the
@@ -178,6 +179,27 @@ eigen: simple \n{GGEV}, expert \n{GGEVX}
 
 svd: \n{GGSVD}
 
+\end{itemize}
+
+\Level 1 {Performance issues}
+
+The collection of BLAS and LAPACK routines are a \emph{de facto}
+standard: the \ac{API} is fixed, but the implementation is not.
+You can find reference implementations on the
+\indexterm{netlib} website (\texttt{netlib.org}), but
+these will be very low in performance.
+
+On the other hand, many LAPACK routines can be based on
+the matrix-matrix product (BLAS routine \texttt{gemm}),
+which you saw in section~\ref{sec:goto-gemm} has the potential
+for a substantial fraction of peak performance. To achieve
+this, you should use an optimized version, such as
+\begin{itemize}
+\item \indexterm{MKL}, the Intel math-kernel library;
+\item OpenBlas (\texttt{http://www.openblas.net/}), an open source
+  version of the original \emph{Goto BLAS}\index{matrix-matrix product!Goto implementation}; or
+\item \indexterm{blis} (\texttt{https://code.google.com/p/blis/}), a BLAS replacement and
+  extension project.
 \end{itemize}
 
 \index{Lapack|)}

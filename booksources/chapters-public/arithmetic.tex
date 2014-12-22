@@ -845,20 +845,37 @@ the `$+$' solution will be
 inaccurate. In this case it is better 
 to compute $x_-=\frac{-b-\sqrt{b^2-4ac}}{2a}$ and use $x_+\cdot x_-=-c/a$.
 
+%% \begin{exercise}
+%%   Program a simulator for decimal $d$-digit arithmetic and experiment with the
+%%   accuracy of the two ways of computing the solution of a quadratic
+%%   equation. Simulating $d$-digit decimal arithmetic can be done as
+%%   follows. Let $x$ be a floating point number, then:
+%%   \begin{itemize}
+%%   \item Normalize $x$ by finding an integer $e$ such that
+%%     $x'\mathrel{:=} |x|\cdot 10^e\in[.1,1)$. 
+%%     \item Now truncate this number to $d$ digits by 
+%%       multiplying $x'$ by $10^d$, truncating the result to an integer,
+%%       and multiplying that result again by~$10^{-d}$.
+%%     \item Multiply this truncated number by~$10^{-e}$ to revert the
+%%       normalization.
+%%   \end{itemize}
+%% \end{exercise}
+
 \begin{exercise}
-  Program a simulator for decimal $d$-digit arithmetic and experiment with the
-  accuracy of the two ways of computing the solution of a quadratic
-  equation. Simulating $d$-digit decimal arithmetic can be done as
-  follows. Let $x$ be a floating point number, then:
+  Write a program that computes the roots of the quadratic equation, both
+  the `textbook' way, and as described above. 
   \begin{itemize}
-  \item Normalize $x$ by finding an integer $e$ such that
-    $x'\mathrel{:=} |x|\cdot 10^e\in[.1,1)$. 
-    \item Now truncate this number to $d$ digits by 
-      multiplying $x'$ by $10^d$, truncating the result to an integer,
-      and multiplying that result again by~$10^{-d}$.
-    \item Multiply this truncated number by~$10^{-e}$ to revert the
-      normalization.
+  \item Let $b=1$ and $a=-c$, and $4ac\downarrow 0$ by taking progressively smaller
+    values for $a$ and~$c$.
+  \item Print out the computed root, the root using the stable computation,
+    and the value of $f(x)=ax^2+bx+c$ in the computed root.
   \end{itemize}
+  Now suppose that you don't care much about the actual value of the root:
+  you want to make sure the residual~$f(x)$ is small in the computed root.
+  Let $x^*$~be the exact root, then
+  \[ f(x^*+h)\approx f(x^*)+hf'(x^*) = hf'(x^*). \]
+  Now investigate separately the cases $a\downarrow 0,c=-1$ and $a=-1,c\downarrow0$.
+  Can you explain the difference?
 \end{exercise}
 
 \Level 2 {Summing series}

@@ -72,7 +72,43 @@ to concerns about load distribution:
   \emph{space-filling curves}\index{space-filling curve} is similarly motivated.
 \end{itemize}
 
+As a simple example of how the data distribution influences the load
+balance, consider a linear array where each point undergoes the same
+computation, and each computation takes the same amount of time.
+If the length of the array,~$N$, is perfectly divisible by the number
+of processors,~$p$, the work is perfectly evenly distributed.
+If the data is not evenly divisible, we start by assigning $\lfloor N/p\rfloor$
+points to each processor, and the remaining $N-p\lfloor N/p\rfloor$
+points to the last processors.
+
+\begin{exercise}
+In the worst case, how unbalanced does that make the processors' work?
+Compare this scheme to the option of assigning $\lceil N/p\rceil$
+points to all processors except one, which gets fewer; see the exercise above.
+\end{exercise}
+
+It is better to spread the surplus $r=N-p\lfloor N/p\rfloor$
+over $r$ processors than one. This could be done by giving one extra
+data point to the first or last $r$ processors. While this scheme
+is decently balanced, computing for instance to what processor
+a given point belongs is tricky. The following scheme makes
+such computations easier: let $f(i)=\lfloor iN/p\rfloor$, then processor~$i$
+gets points $f(i)$ up to~$f(i+1)$.
+
+\begin{exercise}
+Show that $\lfloor N/p\rfloor \leq f(i+1)-f(i)\leq \lceil N/p\rceil$.
+\end{exercise}
+
+Under this scheme, the processor that owns index~$i$ is
+$\lfloor (p(i+1)-1)/N \rfloor$.
+
 \Level 2 {Load balancing of independent tasks}
+
+In other cases, work load is not directly determined by data.
+This can happen if there is a pool of work to be done,
+and the processing time for each work item is not 
+or easily computed from its description. In such cases
+we may want some flexibility in assigning work to processes.
 
 Let us first consider the case of a job that can be partitioned into
 independent tasks that do not communicate. An example would be

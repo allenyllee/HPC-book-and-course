@@ -1212,10 +1212,17 @@ implementation of the single-processor \indexterm{matrix-matrix
   product}.  We will now briefly consider the distributed memory
 version of this operation.
 
+\begin{wrapfigure}{r}{4in}
+  \includegraphics[scale=.15]{cannon1}
+  \caption{Cannon's algorithm for matrix-matrix multiplication: (a) initial rotation of matrix rows and colums, (b)~resulting position in which processor~$(i,j)$ can start accumulating~$\sum_kA_{ik}B_{kj}$, (c)~subsequent rotation of $A,B$ for the next term.}
+  \label{fig:cannon}
+\end{wrapfigure}
+%
 One algorithm for this operation is known as
 \emph{Cannon's algorithm}\index{matrix-matrix product!Cannon's algorithm for}.
 It assumes a square processor grid where processor $(i,j)$ gradually
-accumulates the $(i,j)$ block $C_{i,j}=\sum_kA_{i,k}B_{k,j}$.
+accumulates the $(i,j)$ block $C_{i,j}=\sum_kA_{i,k}B_{k,j}$;
+see figure~\ref{fig:cannon}.
 
 If you start top-left, you see that processor $(0,0)$ has both
 $A_{00}$ and~$B_{00}$, so it can immediately start doing a local multiplication.
@@ -1537,6 +1544,59 @@ assemble certain matrix elements.
 For this reason, modern linear algebra libraries such as PETSc (see
 tutorial section~\ref{tut:petsc}) allow any processor to set any
 matrix element.
+
+\Level 1 {A simple model for iterative method performance}
+
+Above, we have already remarked that iterative methods have very little
+opportunity for data reuse, and they are therefore characterized as
+\indexterm{bandwidth-bound} algorithms. This allows us to make a simple
+prediction as to the \indextermsub{floating point performance of}{iterative methods}.
+Since the number of iterations of an iterative method is hard to predict,
+by performance here we mean the performance of a single iteration.
+Unlike with \indextermbus{direct methods}{for linear systems}
+(see for instance section~\ref{sec:dissection}),
+the number of flops to solution is very hard to establish in advance.
+
+First we argue that we can restrict ourselves to the \emph{performance of the sparse
+  matrix vector product}\index{sparse!matrix-vector product!performance of}:
+the time spent in this operation is considerably more than in the vector operations.
+Additionally, most preconditioners have a computational structure that is
+quite similar to the matrix-vector product.
+
+Let us then consider the \emph{performance of the CRS matrix-vector
+  product}\index{Compressed Row Storage (CRS)!performance of the
+  matrix-vector product}.
+\begin{itemize}
+\item First we observe that the arrays of matrix elements and column indices have no reuse,
+  so the performance of loading them is completely determined by the available bandwidth.
+  Caches and prefect streams only hide the latency, but do not improve the bandwidth.
+  For
+  each multiplication of matrix element times input vector element
+  we load one floating point number and one integer. Depending one whether the
+  indices are 32-bit or 64-bit, this means 12 or 16~bytes loaded for each multiplication.
+\item The demands for storing the result vector are less important: an output vector
+  element is written only once for each matrix row.
+\item The input vector can also be ignored in the bandwidth calculation.
+  At first sight you might think that indirect indexing
+  into the input vector is more or less random and therefore expensive.
+  However, let's take the operator view of a matrix-vector product
+  and consider the space domain of the \ac{PDE} from which the matrix stems;
+  see section~\ref{sec:2dbvp}. We now see that the seemingly random indexing
+  is in fact into vector elements that are grouped closely together.
+  This means that these vector elements will likely reside in L3 cache,
+  and therefore accessible with a higher bandwidth (say, by a factor of at least~5)
+  than data from main memory.
+\end{itemize}
+For the parallel performance of the sparse matrix-vector product we
+consider that in a \ac{PDE} context each processor communicates only
+with a few neighbours. Furthermore, a surface-to-volume argument
+shows that the message volume is of a lower order than the on-node
+computation.
+
+In sum, we conclude that a very simple model for the sparse matrix vector product,
+and thereby for the whole iterative solver, consists of measuring
+the effective bandwidth and computing the performance as one
+addition and one multiplication operation per 12 or 16~bytes loaded.
 
 \Level 0 {Parallel preconditioners}
 \label{sec:parallel-prec}
