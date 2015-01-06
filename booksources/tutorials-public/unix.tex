@@ -1,3 +1,4 @@
+% -*- latex -*-
 Unix is an \indexacf{OS}, that is, a layer of software
 between the user or a user program and the hardware. It takes care of
 files and screen output, and it makes sure that many processes can exist
@@ -747,7 +748,8 @@ customizations.
 The unix shells are also programming environments. You will learn more
 about this aspect of unix in this section.
 
-\Level 1 {Shell variables}
+\Level 1 {Shell environent variables}
+\index{environment variable|(textbf}
 
 Above you encountered \n{PATH}, which is an example of an
 shell, or environment, variable. These are variables that are known to the shell
@@ -757,15 +759,52 @@ full list of all variables known to the shell by typing \n{env}.
 You can get the value of a shell variable by prefixing it with
 a dollar sign. Type the following two commands and compare the output:
 \begin{verbatim}
-  echo PATH
-  echo $PATH
+echo PATH
+echo $PATH
 \end{verbatim}
 
 \practical{Check on the value of the \n{HOME} variable by typing
   \n{echo \$HOME}. Also find the value of \n{HOME} by piping \n{env}
   through \n{grep}.}{}{}
 
+Environment variables can be set in a number of ways. The simplest
+is by an assignment as in other programming languages.
+
+\practical{Type \n{a=5} on the commandline. This defines a variable
+  \n{a}; check on its value by using the \n{echo} command.}{The shell
+  will respond by typing the value~\n{5}.}{Beware not to have space
+  around the equals sign; also be sure to use the dollar sign to print
+  the value.}
+
+A variable set this way will be known to all subsequent commands
+you issue in this shell, but not to commands in new shells you start up.
+For that you need the \indextermtt{export} command.
+Reproduce the following session (the double percent sign is the command
+prompt):
+\begin{verbatim}
+%% a=20
+%% echo $a
+20
+%% /bin/bash
+%% echo $a
+
+%% exit
+exit
+%% export a=21
+%% /bin/bash
+%% echo $a
+21
+%% exit
+\end{verbatim}
+
+In  section~\ref{sec:shell-control} you will see that the \n{for} construct
+also defines a variable; section~\ref{sec:shell-scripting}
+shows some more built-in variables that apply in shell scripts.
+
+\index{environment variable|)}
+
 \Level 1 {Control structures}
+\label{sec:shell-control}
 
 Like any good programming system, the shell has some control
 structures. Their syntax takes a bit of getting used to. (Different
@@ -826,6 +865,7 @@ With this as a hint, write a loop that renames all your \n{.c} files
 to~\n{.x} files.
 
 \Level 1 {Scripting}
+\label{sec:shell-scripting}
 
 It is possible to write programs of unix shell commands. First you
 need to know how to put a program in a file and have it be

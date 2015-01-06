@@ -1,8 +1,11 @@
-\Level 0 {The idea behind \LaTeX, some history}
+\Level 0 {The idea behind \LaTeX, some history of \TeX}
+\index{LaTeX@{\LaTeX}|(}
+\index{LaTeX@{\LaTeX}|seealso{\TeX}}
+\index{TeX@{\TeX}|(}
 
 \TeX\ is a typesetting system that dates back to the late 1970s. In
-those days, graphics terminals were you could design a document layout
-and immediately view it, the way you can with Microsoft Word, were
+those days, graphics terminals where you could design a document layout
+and immediately view it, the way you can with for instance Microsoft Word, were
 rare.  Instead, \TeX\ uses a two-step workflow, where you first type
 in your document with formatting instructions in an ascii document,
 using your favourite text editor.
@@ -49,6 +52,8 @@ features, such as automatic cross-referencing, or generation of a
 table of contents. The most popular of these systems is \LaTeX. Since
 \TeX\ is an interpreted system, all of its mechanisms are still
 available to the user, even though \LaTeX\ is loaded on top of it.
+
+\index{TeX@{\TeX}|)}
 
 \Level 1 {Installing \LaTeX}
 
@@ -459,13 +464,18 @@ and format your document two more times. There should now be a
 bibliography in it, and a correct citation. You will also see that
 files \n{mydocument.bbl} and \n{mydocument.blg} have been created.
 
-\Level 1 {Styles and other customizations}
+\Level 1 {Environment variables}
 \label{sec:texinputs}
+\index{TeX@{\TeX}!environment variables|(}
 
-On Unix systems, \TeX\ investigates the \n{TEXINPUTS} environment
-variable when it tries to find an include file. Consequently, you can
+On Unix systems, \TeX\ investigates the \n{TEXINPUTS} \emph{environment
+variable} when it tries to find an include file. Consequently, you can
 create a directory for your styles and other downloaded include files,
 and set this variable to the location of that directory.
+Similarly, the \n{BIBINPUTS} variable indicates the location of
+bibliography files for bibtex (section~\ref{sec:bib-latex}).
+
+\index{TeX@{\TeX}!environment variables|)}
 
 \Level 0 {A worked out example}
 
@@ -522,3 +532,5 @@ you have mastered the following constructs:
 \end{exercise}
 
 \end{istc}
+
+\index{LaTeX@{\LaTeX}|)}

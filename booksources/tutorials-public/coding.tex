@@ -28,18 +28,56 @@ First we will have a look at runtime sanity checks, where you test
 for things that can not or should not
 happen. 
 
-Example 1: if a subprogram has an array argument, it is a good idea to
-test whether the actual argument is a null pointer.
+\Level 1 {Assertions}
+\index{assertions|(}
 
-Example 2: if you calculate a numerical result for which certain
-mathematical properties hold, for instance you are writing a sine function, for
-which the result has to be in $[-1,1]$, you should test whether this
-property indeed holds for the result.
+In the things that can go wrong with a program we can distinguish between
+errors and bugs. Errors are things that legitimately happen but that should
+not. File systems are common sources of errors: a program wants to open a file but
+the file doesn't exist because the user mistyped the name, or the program
+writes to a file but the disk is full. Other errors can come from arithmetic,
+such as \indexterm{overflow} errors.
 
-There are various ways to handle the case where the impossible
-happens.
+On the other hand, a \indexterm{bug} in a program is an occurence that cannot
+legitimately occur. Of course, `legitimately' here means `according to
+the programmer's intentions'. Bugs can often be described as `the computer
+always does what you ask, not necessarily what you want'.
 
-\Level 1 {The \protect\n{assert} macro}
+Assertions serve to detect bugs in your program: an \indextermdef{assertion}
+is a predicate that should be true at a certain point in your program.
+Thus, an assertion failing means that you didn't code what you intended to code.
+An assertion is typically a statement in your programming language,
+or a preprocessor macro; upon failure of the assertion, your program
+will take some abortive action.
+
+Some examples of assertions:
+\begin{itemize}
+\item If a subprogram has an array argument, it is a good idea to
+  test whether the actual argument is a null pointer before indexing
+  into the array.
+\item Similarly, you could test a dynamically allocated data structure
+  for not having a null pointer.
+\item If you calculate a numerical result for which certain
+  mathematical properties hold, for instance you are writing a sine function, for
+  which the result has to be in $[-1,1]$, you should test whether this
+  property indeed holds for the result.
+\end{itemize}
+
+Assertions are often disabled in a program once it's sufficiently tested.
+The reason for this is that assertions can be expensive to execute.
+For instance, 
+if you have a complicated data structure, you could write a complicated
+integrity test, and perform that test in an assertion, which you put
+after every access to the data structure.
+
+Because assertions are often disabled in the `production' version of a code,
+they should not affect any stored data . If they do, your code may
+behave differently when you're testing it with assertions, versus how you
+use it in practice without them. This is also formulated as `assertions
+should not have \indexterm{side-effects}'.
+
+
+\Level 2 {The C \protect\n{assert} macro}
 
 The C standard library has a file \n{assert.h} which provides an
 \n{assert()} macro. Inserting \n{assert(foo)} has the following
@@ -101,6 +139,8 @@ ASSERT(nItemsSet.gt.arraySize,"Too many elements set")
 \begin{notready}
 \Level 1 {Try-catch in C++}
 \end{notready}
+
+\index{assertions|)}
 
 \Level 1 {Use of error codes}
 

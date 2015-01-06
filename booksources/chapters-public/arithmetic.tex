@@ -180,7 +180,8 @@ Some observations:
 
 Adding two numbers with the same sign, or multiplying two numbers of
 any sign, may lead to a result that is too
-large or too small to represent. This is called \indexterm{overflow}.
+large or too small to represent. This is called \indexterm{overflow};
+see section~\ref{sec:exceptions} for details.
 
 \begin{exercise}
   Investigate what happens when you perform such a calculation. What
@@ -368,10 +369,10 @@ too large or too small in the following ways.
   and the smallest number (in an absolute
   sense) is $-(\beta-\beta^{-(t-1)}$; anything larger than the
   former or smaller than the latter causes a condition called
-  \indexterm{overflow}.
+  \indextermdef{overflow}.
 \item[Underflow]The number closest to zero is $\beta^{-(t-1)}\cdot
   \beta^L$. A computation that has a result less than that (in
-  absolute value) causes a condition called \indexterm{underflow}. 
+  absolute value) causes a condition called \indextermdef{underflow}. 
   (See section~\ref{sec:normal-unnormal} 
   for \indextermsub{gradual}{underflow}.)
 \end{itemize}
