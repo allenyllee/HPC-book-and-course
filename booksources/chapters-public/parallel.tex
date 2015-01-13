@@ -1858,12 +1858,24 @@ done by doubling it: other sizes than $2^p$ are not possible.
 
 \Level 2 {Embedding grids in a hypercube}
 
+\def\graycodepicture{
+\begin{wrapfigure}{r}{3in}
+  \includegraphics[scale=.081]{graphics-public/hypercubegraynumber}
+  \caption{Gray code numbering of the nodes of a hypercube}
+  \label{fig:cubegraynumber}
+\end{wrapfigure}
+}
+
 Above we made the argument that mesh-connected processors are a
 logical choice for many applications that model physical phenomena.
 Hypercubes do not look like a mesh, but they have enough
 connections that they can simply pretend to be a mesh by ignoring
 certain connections. 
 
+\begin{lulu}
+\graycodepicture  
+\end{lulu}
+%
 Let's say that we want the structure of a 1D array: we want processors
 with a numbering so that processor $i$ can directly send data to $i-1$
 and~$i+1$. We can not use the obvious numbering of
@@ -1907,11 +1919,9 @@ $}
   \label{fig:graycode}
 \end{figure}
 
-\begin{wrapfigure}{r}{3in}
-  \includegraphics[scale=.081]{graphics-public/hypercubegraynumber}
-  \caption{Gray code numbering of the nodes of a hypercube}
-  \label{fig:cubegraynumber}
-\end{wrapfigure}
+\begin{notlulu}
+  \graycodepicture
+\end{notlulu}
 %
 The basic concept here is a (binary reflected) \indexterm{Gray
   code}~\cite{Gray:graycodepatent}. This is a way of ordering the
@@ -1940,6 +1950,16 @@ into a hypercube, we can now work our way up.
 \Level 1 {Switched networks}
 \label{sec:crossbar}
 
+\def\crossbarfig{
+\begin{wrapfigure}{r}{2.5in}%[ht]
+%  \begin{quote}
+  \includegraphics[scale=.7]{graphics-public/crossbar}
+%  \end{quote}
+  \caption{A simple cross bar connecting 6 inputs to 6 outputs}
+  \label{fig:crossbar}
+\end{wrapfigure}
+}
+
 Above, we briefly discussed fully connected processors. They are
 impractical if the connection is made by making a large number of
 wires between all the processors. There is another possibility,
@@ -1956,13 +1976,9 @@ connect any two processors by a path through the network.
 
 \Level 2 {Cross bar}
 
-\begin{wrapfigure}{r}{2.5in}%[ht]
-%  \begin{quote}
-  \includegraphics[scale=.7]{graphics-public/crossbar}
-%  \end{quote}
-  \caption{A simple cross bar connecting 6 inputs to 6 outputs}
-  \label{fig:crossbar}
-\end{wrapfigure}
+\begin{notlulu}
+  \crossbarfig
+\end{notlulu}
 %
 The simplest switching network is a cross bar, an arrangement of $n$
 horizontal and vertical lines, with a switch element on each
@@ -1972,6 +1988,10 @@ inputs the vertical as outputs, this is clearly a way of having $n$
 inputs be mapped to $n$ outputs. Every combination of inputs and
 outputs (sometimes called a `permutation') is allowed.
 
+\begin{lulu}
+  \crossbarfig
+\end{lulu}
+%
 One advantage of this type of network is that no connection 
 blocks another.
 The main disadvantage  is that the number of 

@@ -348,7 +348,7 @@ the variable \n{n} and confirm that the square root of the new value
 is computed. Which commands do you do?
 
 \Level 0 {Breakpoints}
-\index{breakpoint|(}
+\index{breakpoint|(textbf}
 
 If a problem occurs in a loop, it can be tedious keep typing \n{cont}
 and inspecting the variable with \n{print}. Instead you can add a
@@ -405,6 +405,13 @@ end
 \end{verbatim}
 This states that at line 45 variable~\n{x} is to be printed, and execution
 should immediately continue.
+
+If you want to run repeated gdb sessions on the same program,
+you may want to save an reload breakpoints. This can be done with
+\begin{verbatim}
+save-breakpoint filename
+source filename
+\end{verbatim}
 
 \index{breakpoint|)}
 \index{gdb|)}

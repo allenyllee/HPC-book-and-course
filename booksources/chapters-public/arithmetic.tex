@@ -694,7 +694,7 @@ mantissa, the computation
 $1.0-\fp{9.4}{-1}=1.0-0.94=0.06=\fp{0.6}{-2}$. Note that in an
 intermediate step the mantissa $.094$ appears, which has one more
 digit than the two we declared for our number system. The extra digit
-is called a \indexterm{guard digit}.
+is called a \indextermdef{guard digit}.
 
 Without a guard digit, this operation would have proceeded as
 $1.0-\fp{9.4}{-1}$, where $\fp{9.4}{-1}$ would be rounded to~$0.9$,
@@ -819,12 +819,55 @@ IEEE arithmetic. Still, the correctness of a single operation does not
 imply that a sequence of operations containing it will be
 accurate. While the addition example showed only modest decrease of
 numerical accuracy, the cancellation in this example can have
-disastrous effects.
+disastrous effects. You'll see an example in section~\ref{sec:abc-formula}.
 
 \begin{comment}
 Exercise: sine function through power series. How to deal with the
 alternating signs?
 \end{comment}
+
+\Level 1 {Associativity}
+\label{sec:fp-associative}
+
+Another effect of the way floating point numbers are treated
+is on the \indextermbus{associativity}{of mathematical operations}.
+Operations such as addition and multiplication, that ought to be
+associative, are no longer so in computer arithmetic.
+
+Let's consider a simple example, showing how this can be caused
+by the rounding behaviour of floating point numbers.
+Let floating point numbers be stored as a single digit for the mantissa,
+one digit for the exponent, and one \indexterm{guard digit};
+now consider the computation of $4+6+7$.
+Evaluation left-to-right gives:
+\[ 
+\begin{array}{l@{{}\Rightarrow{}}lp{3in}}
+(4\cdot10^0 + 6\cdot10^0)+7\cdot10^0&10\cdot10^0+7\cdot10^0&addition\\
+&1\cdot 10^1 + 7\cdot10^0&rounding\\
+&1.0\cdot 10^1 + 0.7\cdot10^1&using guard digit\\
+&1.7\cdot 10^1\\
+&2\cdot10^1&rounding
+\end{array}
+\]
+On the other hand, evaluation right-to-left gives:
+\[ 
+\begin{array}{l@{{}\Rightarrow{}}lp{3in}}
+4\cdot10^0 + (6\cdot10^0 + 7\cdot10^0)&4\cdot 10^0 + 13\cdot10^0&addition\\
+&4\cdot 10^0 + 1\cdot10^1&rounding\\
+&0.4\cdot 10^1 + 1.0\cdot10^1&using guard digit\\
+&1.4\cdot 10^1\\
+&1\cdot10^1&rounding
+\end{array}
+\]
+The conclusion is that the sequence in which rounding and truncation is applied to
+intermediate results makes a difference. You can also observe that starting with the smaller
+numbers gives a more accurate result.
+In section~\ref{sec:fp-summing} you'll see a more elaborate example of this principle.
+
+Usually, the evaluation order of expressions is determined by the definition of the
+programming language, or at least by the compiler.
+In section~\ref{sec:roundoff-parallel} we will see how in parallel computations the associativity
+is not so uniquely determined.
 
 \Level 1 {Examples}
 
@@ -838,6 +881,7 @@ instability of matrix inversion. The interested reader is referred
 to~\cite{Wilkinson:roundoff,Higham:2002:ASN}.
 
 \Level 2 {The `abc-formula'}
+\label{sec:abc-formula}
 
 As a practical example, consider the quadratic equation $ax^2+bx+c=0$ 
 which has solutions $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$.
@@ -880,6 +924,7 @@ to compute $x_-=\frac{-b-\sqrt{b^2-4ac}}{2a}$ and use $x_+\cdot x_-=-c/a$.
 \end{exercise}
 
 \Level 2 {Summing series}
+\label{sec:fp-summing}
 
 The previous example was about preventing a large roundoff error in a
 single operation. This example shows that even gradual buildup of
@@ -1038,7 +1083,8 @@ Higham~\cite{Higham:2002:ASN}.
 \label{sec:roundoff-parallel}
 \index{round-off error analysis!in parallel computing|(}
 
-From the above example of summing a series we saw that addition in
+As we discused in section~\ref{sec:fp-associative}, and as you saw
+in the above example of summing a series, addition in
 computer arithmetic is not \emph{associative}\index{floating point
   arithmetic!associativity of}. A~similar fact holds for
 multiplication.  This has an interesting consequence for parallel

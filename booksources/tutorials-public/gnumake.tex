@@ -565,8 +565,34 @@ backup :
 when it scans the commandline. During the execution of the
 commandline, \n{\$f} then expands to the proper filename.)
 
+\Level 0 {Practical tips for using Make}
+Here are a couple of practical tips.
+
+\begin{itemize}
+\item \emph{Debugging}\index{Make!debugging} a makefile is often
+  frustratingly hard.  Just about the only tool is the \n{-p} option,
+  which prints out all the rules that Make is using, based on the
+  current makefile.
+\item You will often find yourself first typing a make command, and
+  then invoking the program. Most Unix shells allow you to use
+  commands from the \indextermbus{shell}{command history} by using the
+  up arrow key. Still, this may get tiresome, so you may be tempted to
+  write
+\begin{verbatim}
+make myprogram ; ./myprogram -options
+\end{verbatim}
+and keep repeating this.
+There is a danger in this: if the make fails, for instance because of
+compilation problems, your program will still be executed. Instead, write
+\begin{verbatim}
+make myprogram && ./myprogram -options
+\end{verbatim}
+which executes the program conditional upon make concluding successfully.
+\end{itemize}
+
 \Level 0 {A Makefile for \LaTeX}
 \label{sec:latex-make}
+\index{Make!and LaTeX@{and \LaTeX}|(}
 
 The \emph{Make} utility is typically used for compiling programs, but
 other uses are possible too. In this section, we will discuss a
@@ -606,4 +632,5 @@ invoking another rule, and passing the dependencies explicitly.
 This shell scripting can also be done outside the makefile, generating
 the makefile dynamically.
 
+\index{Make!and LaTeX@{and \LaTeX}|)}
 \index{Make|)}
