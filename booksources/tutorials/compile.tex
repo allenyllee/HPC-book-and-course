@@ -1,0 +1,179 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012/3/4/5
+%%%%
+%%%% This book is distributed under a Creative Commons Attribution 3.0
+%%%% Unported (CC BY 3.0) license and made possible by funding from
+%%%% The Saylor Foundation \url{http://www.saylor.org}.
+%%%%
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {An introduction to binary files}
+
+\begin{purpose}
+  In this section you will be introduced to the different types of
+  binary files that you encounter while programming.
+\end{purpose}
+
+One of the first things you become aware of when you start programming
+is the distinction between the readable source code, and the
+unreadable, but executable, program code. In this tutorial you will
+learn about a couple more file types:
+\begin{itemize}
+\item A source file can be compiled to an \emph{object file}, which is
+  a bit like a piece of an executable: by itself it does nothing, but
+  it can be combined with other object files to form an executable.
+\item A \emph{library} is a bundle of object files that can be used to
+  form an executable. Often, libraries are written by an expert and
+  contain code for specialized purposes such as linear algebra
+  manipulations. Libraries are important enough that they can be
+  commercial, to be bought if you need expert code for a certain purpose.
+\end{itemize}
+You will now learn how these types of files are created and used.
+
+\Level 0 {Simple compilation}
+
+\begin{purpose}
+  In this section you will learn about executables and object files.
+\end{purpose}
+
+Let's start with a simple program that has the whole source in one
+file.
+\listing{One file: \n{hello.c}}{tutorials/compile/c/hello.c}
+Compile this program with your favourite compiler; we will use \n{gcc}
+in this tutorial, but substitute your own as desired. As a result of
+the compilation, a file \n{a.out} is created, which is the executable.
+\begin{verbatim}
+%% gcc hello.c
+%% ./a.out
+hello world
+\end{verbatim}
+You can get a more sensible program name with the \n{-o} option:
+\begin{verbatim}
+%% gcc -o helloprog hello.c
+%% ./helloprog
+hello world
+\end{verbatim}
+
+Now we move on to a program that is in more than one source file.
+\listing{Main program: \n{fooprog.c}}{tutorials/compile/c/fooprog.c}
+\listing{Subprogram: \n{fooprog.c}}{tutorials/compile/c/foosub.c}
+As before, you can make the program with one command.
+\begin{verbatim}
+%% gcc -o foo fooprog.c foosub.c 
+%% ./foo
+hello world
+\end{verbatim}
+However, you can also do it in steps, compiling each file separately
+and then linking them together.
+\begin{verbatim}
+%% gcc -c fooprog.c
+%% gcc -c foosub.c
+%% gcc -o foo fooprog.o foosub.o
+%% ./foo
+hello world
+\end{verbatim}
+The \n{-c} option tells the compiler to compile the source file,
+giving an \indexterm{object file}. The third command than acts as the
+\indexterm{linker}, tieing together the object files into an
+executable. (With programs that are spread over several files there is
+always the danger of editing a subroutine definition and then
+forgetting to update all the places it is used. See the `make'
+tutorial, section~\ref{tut:gnumake}, for a way of dealing with this.) 
+
+\Level 0 {Libraries}
+\index{libraries!creating and using|(}
+
+\begin{purpose}
+  In this section you will learn about libraries.
+\end{purpose}
+
+If you have written some subprograms, and you want to share them with
+other people (perhaps by selling them), then handing over individual
+object files is inconvenient. Instead, the solution is to combine them
+into a library. First we look at \indexterm{static libraries}, for
+which the \indexterm{archive utility} \n{ar} is used. A~static library
+is linked into your executable, becoming part of it. This may lead to
+large executables; you will learn about shared libraries
+next, which do not suffer from this problem.
+
+Create a directory to contain your library (depending on what your
+library is for this can be a
+system directory such as \n{/usr/bin}), and create the library file
+there. 
+\begin{verbatim}
+%% mkdir ../lib
+%% ar cr ../lib/libfoo.a foosub.o
+\end{verbatim}
+The \indextermtt{nm} command tells you what's in the library:
+\begin{verbatim}
+%% nm ../lib/libfoo.a 
+
+../lib/libfoo.a(foosub.o):
+00000000 T _bar
+         U _printf
+\end{verbatim}
+Line with \n{T} indicate functions defined in the library file;
+a~\n{U} indicates a function that is used.
+
+The library can be linked into your executable by explicitly giving
+its name, or by specifying a library path:
+\begin{verbatim}
+%% gcc -o foo fooprog.o ../lib/libfoo.a
+# or
+%% gcc -o foo fooprog.o -L../lib -lfoo
+%% ./foo
+hello world
+\end{verbatim}
+A third possibility is to use the \n{LD_LIBRARY_PATH} shell
+variable. Read the man page of your compiler for its use, and give the
+commandlines that create the \n{foo} executable, linking the library
+through this path.
+ 
+Although they are somewhat more complicated to use, 
+\indexterm{shared libraries}
+have several advantages. For
+instance, since they are not linked into the executable but only
+loaded at runtime, they lead to (much) smaller executables. They are
+not created with \n{ar}, but through the compiler. For instance:
+\begin{verbatim}
+%% gcc -dynamiclib -o ../lib/libfoo.so foosub.o
+%% nm ../lib/libfoo.so 
+
+../lib/libfoo.so(single module):
+00000fc4 t __dyld_func_lookup
+00000000 t __mh_dylib_header
+00000fd2 T _bar
+         U _printf
+00001000 d dyld__mach_header
+00000fb0 t dyld_stub_binding_helper
+\end{verbatim}
+Shared libraries are not actually linked into the executable;
+instead, the executable will contain the information where the library
+is to be found at execution time:
+\begin{verbatim}
+%% gcc -o foo fooprog.o -L../lib -Wl,-rpath,`pwd`/../lib -lfoo
+%% ./foo
+hello world
+\end{verbatim}
+The link line now contains the library path twice:
+\begin{enumerate}
+\item once with the \n{-L} directive so that the linker can resolve
+  all references, and
+\item once with the linker directive \verb+-Wl,-rpath,`pwd`/../lib+ which
+  stores the path into the executable so that it can be found at runtime.
+\end{enumerate}
+Build the executable again, but without the \n{-Wl} directive. Where
+do things go wrong and why? You can also fix this problem by using
+\n{LD_LIBRARY_PATH}. Explore this.
+
+Use the command \n{ldd} to get information about what shared libraries
+your executable uses. (On Mac OS~X, use \n{otool -L} instead.)
+
+\index{libraries!creating and using|)}
+

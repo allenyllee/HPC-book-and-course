@@ -1,0 +1,72 @@
+% -*- latex -*-
+\index{graphics|(}
+
+Many problems in computer graphics can be
+considered as a case of \ac{SIMD} programming:
+an image is a square or rectangular array
+where each pixel can be manipulated independently,
+and often with the same operation.
+
+For instance, an image with $1024\times 1024$
+pixels, of 8~bits each, takes $2^20$~bytes or 1~megabyte.
+In the context of a movie with a framerate of 60~frames,
+and a processor with an average instruction rate
+of 1~GHz, this means that each operation can take about 16~nanoseconds.
+%
+(While this sounds like a reasonable operation rate,
+of course we also have to wonder about the bandwidth.)
+
+Examples of operations on a single pixel are
+thresholding and contrast stretching.
+
+Other operations involve several pixels at once:
+smoothing operations such as removing noise
+use a \indexterm{difference stencil}.
+A~typical averaging stencil would be 
+\[
+\begin{matrix}
+  1&1&1\\ 1&8&1\\ 1&1&1
+\end{matrix}
+\]
+The stencils you saw in Chapter~\ref{ch:odepde} represent
+differentiation; in graphics that can be used for operations
+such as edge detection. A~popular choice for a differentiation stencil is
+\[
+\hbox{$x$: }
+\begin{matrix}
+  -1&0&1\\ -2&0&2\\ -1&0&1
+\end{matrix}
+\qquad\hbox{$y$: }
+\begin{matrix}
+  -1&-2&-1\\ 0&0&0\\ -1&-2&-1
+\end{matrix}
+\]
+
+
+The sequential code for applying a $3\times 3$ stencil
+on an $N\times N$ image
+would be
+\begin{verbatim}
+for (i=0; i<N; i++) {
+  for (j=0; j<N; j++) {
+    s = 0;
+    for (ii=-1; ii<=1; ii++)
+      for (jj=-1; jj<=1; jj++)
+        s += frame[i+ii][j+jj];
+    avg[i,j] = s;
+  }
+}
+\end{verbatim}
+
+As discussed in section~\ref{sec:aos-soa}, this code structure
+is advantageous for certain types of parallelism. For instance,
+in \indexac{CUDA} one would write a \emph{kernel}\index{kernel!CUDA}
+containing the inner two loops, and instantiate this
+in parallel on each $[i,j]$ coordinate of the averages array.
+
+On the other hand, this code structure would not be right for
+\indextermbus{vector}{instructions} or \emph{pipeline
+  instructions}\index{pipeline!instruction} where the parallelism has
+to be in the inner loop, and preferably be as large as possible.
+
+\index{graphics|)}

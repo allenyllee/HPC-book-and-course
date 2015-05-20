@@ -1,0 +1,232 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012/3/4/5
+%%%%
+%%%% This book is distributed under a Creative Commons Attribution 3.0
+%%%% Unported (CC BY 3.0) license and made possible by funding from
+%%%% The Saylor Foundation \url{http://www.saylor.org}.
+%%%%
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we will discuss libraries for dense linear
+algebra operations.
+
+Dense linear algebra, that is linear algebra on matrices that are
+stored as two-dimensional arrays (as opposed to sparse linear algebra;
+see section~\ref{sec:sparse}, as well as the
+tutorial on PETSc~\ref{tut:petsc}) has been standardized for a
+considerable time. The basic operations are defined by the three
+levels of \indexac{BLAS}:
+\begin{itemize}
+\item Level~1 defines vector operations that are characterized by a
+  single loop~\cite{Lawson:blas}.
+\item Level~2 defines matrix vector operations, both explicit such as
+  the matrix-vector product, and implicit such as the solution of
+  triangular systems~\cite{BLAS2}.
+\item Level~3 defines matrix-matrix operations, most notably the
+  matrix-matrix product~\cite{BLAS3}.
+\end{itemize}
+The name `BLAS' suggests a certain amount of generality, but the
+original authors were clear~\cite{Lawson:blas} that these subprograms
+only covered dense linear algebra. Attempts to standardize sparse
+operations have never met with equal success.
+
+Based on these building blocks libraries have been built that tackle
+the more sophisticated problems such as solving linear systems, or
+computing eigenvalues or singular values.
+\indexterm{Linpack}\footnote{The linear system solver from this
+  package later became the \indextermbus{Linpack}{benchmark}; see
+  section~\ref{sec:top500}.} and \indexterm{Eispack} were the first to formalize
+these operations involved, using Blas Level~1 and Blas Level~2
+respectively.  A~later development, \indexterm{Lapack} uses the
+blocked operations of Blas Level~3. As you saw in
+section~\ref{sec:reuse}, this is needed to get high performance on
+cache-based CPUs. (Note: the reference implementation of the
+BLAS~\cite{reference-blas} will not give good performance with any
+compiler; most platforms have vendor-optimized implementations, such
+as the \indexterm{MKL} library from Intel.)
+
+With the advent of parallel computers, several projects arose that
+extended the Lapack functionality to distributed computing, most
+notably \indexterm{Scalapack}~\cite{Choi:scalapack,scalapack-users-guide},
+\indexterm{PLapack}~\cite{PLAPACK,PLAPACK:UG},
+and most recently Elemental~\cite{Elemental:TOMS}. These packages are
+harder to use than Lapack because of the need for a
+two-dimensional cyclic distribution; sections
+\ref{sec:densescaling} and~\ref{sec:LUscaling}. We will not go into
+the details here.
+
+\Level 1 {BLAS matrix storage}
+
+There are a few points to bear in mind about the way matrices are
+stored in the BLAS and LAPACK\footnote{We are not going into band
+  storage here.}:
+
+\Level 2 {Array indexing}
+
+Since these libraries originated in a Fortran environment, they
+  use 1-based indexing. Users of languages such as C/C++ are only
+  affected by this when routines use index arrays, such as the
+  location of pivots in LU factorizations.
+
+\Level 2 {Fortran column-major ordering}
+
+Since computer memory is one-dimensional, some conversion is needed
+from two-dimensional matrix coordinates to memory locations. The
+\indexterm{Fortran} language uses \indextermdef{column-major} storage, that is,
+elements in a column are stored consecutively; see
+figure~\ref{fig:densearray}.
+\begin{figure}
+  \includegraphics[scale=.14]{graphics/densearray}
+  \caption{Column-major storage of an array in Fortran}
+  \label{fig:densearray}
+\end{figure}
+This is also described informally as `the leftmost index varies
+quickest'.
+
+Arrays in~C, on the other hand, are laid out in \indexterm{row-major} order.
+How to create a C array that can be handled by Blas routines
+is discussed in section~\ref{sec:CFarrays}.
+
+\Level 2 {Submatrices and the {\tt LDA} parameter}
+
+Using the storage scheme described above, it is clear how to store an
+$m\times n$ matrix in $mn$ memory locations. However, there are many
+cases where software needs access to a matrix that is a subblock of
+another, larger, matrix. As you see in figure~\ref{fig:lda1}
+\begin{figure}[ht]
+  \includegraphics[scale=.14]{graphics/denselda}
+  \caption{A subblock out of a larger matrix}
+  \label{fig:lda1}
+\end{figure}
+such a subblock is no longer contiguous in memory. The way to describe
+this is by introducing a third parameter in addition to~{\tt M,N}: we
+let {\tt LDA} be the `leading dimension of~{\tt A}', that is, the
+allocated first dimension of the surrounding array. This is
+illustrated in figure~\ref{fig:lda2}.
+\begin{figure}
+  \includegraphics[scale=.14]{graphics/denselda2}
+  \caption{A subblock out of a larger matrix, using {\tt LDA}}
+  \label{fig:lda2}
+\end{figure}
+To pass the subblock to a routine, you would specify it as
+\begin{verbatim}
+call routine( A(3,2), /* M= */ 2, /* N= */ 3, /* LDA= */ Mbig, ... )
+\end{verbatim}
+
+\Level 1 {Organisation of routines}
+\index{Lapack|(}
+
+Lapack is organized with three levels of routines:
+\begin{itemize}
+\item Drivers. These are powerful top level routine for problems such
+  as solving linear systems or computing an SVD. There are simple and
+  expert drivers; the expert ones have more numerical sophistication.
+\item Computational routines. These are the routines that drivers are
+  built up out of\footnote{Ha! Take that, Winston.}. A~user may have
+  occasion to call them by themselves.
+\item Auxiliary routines.
+\end{itemize}
+
+Routines conform to a general naming scheme: \n{XYYZZZ} where
+\begin{description}
+\item[X] precision: \n{S,D,C,Z} stand for single and double, single
+  complex and double complex, respectively.
+\item[YY] storage scheme: general rectangular, triangular, banded.
+\item[ZZZ] operation. See the manual for a list.
+\end{description}
+Expert driver names end on 'X'.
+
+\Level 2 {Lapack data formats}
+
+Lapack and Blas use a number of data formats, including
+\begin{description}
+\item[GE] General matrix: stored two-dimensionally as \n{A(LDA,*)}
+\item[SY/HE] Symmetric/Hermitian: general storage; \n{UPLO} parameter
+  to indicate upper or lower (e.g. \n{SPOTRF})
+\item[GB/SB/HB] General/symmetric/Hermitian band; these formats use
+  column-major storage; in \n{SGBTRF} overallocation needed because of
+  pivoting
+\item[PB] Symmetric of Hermitian positive definite band; no
+  overallocation in \n{SPDTRF}
+\end{description}
+
+\Level 2 {Lapack operations}
+
+\begin{itemize}
+\item Linear system solving.
+Simple drivers: \n{-SV} (e.g., \n{DGESV}) 
+Solve $AX=B$, overwrite A with LU (with pivoting),
+overwrite B with X.
+
+Expert driver: \n{-SVX}
+Also transpose solve, condition estimation, refinement, equilibration
+\item Least squares problems.
+Drivers: 
+\begin{description}
+\item[\n{xGELS}] using QR or LQ under full-rank assumption
+\item[\n{xGELSY}] "complete orthogonal factorisation"
+\item[\n{xGELSS}] using SVD
+\item[\n{xGELSD}] using divide-conquer SVD
+(faster, but more workspace than \n{xGELSS})
+\end{description}
+
+Also: LSE \& GLM linear equality constraint \& general linear model
+
+\item Eigenvalue routines.
+Symmetric/Hermitian: \n{xSY} or \n{xHE} (also \n{SP}, \n{SB}, \n{ST})
+simple driver \n{-EV}
+expert driver \n{-EVX}
+divide and conquer \n{-EVD}
+relative robust representation \n{-EVR}
+
+General (only \n{xGE})
+Schur decomposition \n{-ES} and \n{-ESX}
+eigenvalues \n{-EV} and \n{-EVX}
+
+SVD (only \n{xGE})
+simple driver \n{-SVD}
+divide and conquer \n{SDD}
+
+Generalized symmetric (\n{SY} and \n{HE}; \n{SP}, \n{SB})
+simple driver \n{GV}
+expert \n{GVX}
+divide-conquer \n{GVD}
+
+Nonsymmetric
+Schur: simple \n{GGES}, expert \n{GGESX}
+eigen: simple \n{GGEV}, expert \n{GGEVX}
+
+svd: \n{GGSVD}
+
+\end{itemize}
+
+\Level 1 {Performance issues}
+
+The collection of BLAS and LAPACK routines are a \emph{de facto}
+standard: the \ac{API} is fixed, but the implementation is not.
+You can find reference implementations on the
+\indexterm{netlib} website (\texttt{netlib.org}), but
+these will be very low in performance.
+
+On the other hand, many LAPACK routines can be based on
+the matrix-matrix product (BLAS routine \texttt{gemm}),
+which you saw in section~\ref{sec:goto-gemm} has the potential
+for a substantial fraction of peak performance. To achieve
+this, you should use an optimized version, such as
+\begin{itemize}
+\item \indexterm{MKL}, the Intel math-kernel library;
+\item OpenBlas (\texttt{http://www.openblas.net/}), an open source
+  version of the original \emph{Goto BLAS}\index{matrix-matrix product!Goto implementation}; or
+\item \indexterm{blis} (\texttt{https://code.google.com/p/blis/}), a BLAS replacement and
+  extension project.
+\end{itemize}
+
+\index{Lapack|)}
+

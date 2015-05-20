@@ -1,0 +1,149 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012/3/4
+%%%%
+%%%% This book is distributed under a Creative Commons Attribution 3.0
+%%%% Unported (CC BY 3.0) license and made possible by funding from
+%%%% The Saylor Foundation \url{http://www.saylor.org}.
+%%%%
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Another important topic in high performance computers is their power
+consumption. Here
+we need to distinguish between the power consumption of a single
+processor chip, and that of a complete cluster.
+
+As the number of components on a chip grows, its power consumption
+would also grow. Fortunately, in a counter acting trend,
+miniaturization of the chip features has simultaneously been reducing
+the necessary power. Suppose that the feature size~$\lambda$ (think:
+thickness of wires) is scaled down to $s\lambda$ with~$s<1$. In order
+to keep the electric field in the transistor constant, the length and
+width of the channel, the oxide thickness, substrate concentration
+density and the operating voltage are all scaled by the same factor.
+
+\Level 1 {Derivation of scaling properties}
+
+The properties of \emph{constant field scaling}\index{field scaling} or
+\indexterm{Dennard scaling}~\cite{Bohr:30yearDennard,Dennard:scaling}
+are an ideal-case description of the properties of a circuit
+as it is miniaturized. One important result is that power density 
+stays constant as chip features get smaller, and the frequency 
+is simultaneously increased. 
+
+The basic properties derived from circuit theory are that,
+if we scale feature size down by~$s$:
+\[
+\begin{array}{|l|c|}\hline
+\hbox{Feature size}&\sim s\\
+\hbox{Voltage}&\sim s\\
+\hbox{Current}&\sim s \\ 
+\hbox{Frequency}&\sim s\\
+\hline
+\end{array}
+\]
+
+Then we can derive that 
+\[ \hbox{Power} = V\cdot I \sim s^2, \]
+and because the total size of the circuit also goes down with~$s^2$,
+the power density stays the same.
+Thus, it also becomes possible to
+put more transistors on a circuit, and essentially not change the cooling
+problem.
+
+This result can be considered
+the driving force behing \indexterm{Moore's
+  law}, which states that the number of transistors in a processor
+doubles every 18 months.
+
+The frequency-dependent part of the power a processor needs
+comes from charging and discharing the capacitance of the circuit, so
+\begin{equation}
+\begin{array}{|l|l|} \hline
+\hbox{Charge}&q=CV\\
+\hbox{Work}&W=qV=CV^2\\
+\hbox{Power}&W/\hbox{time}=WF=CV^2F \\ \hline
+\end{array}
+\label{eq:power}
+\end{equation}
+This analysis can be used to justify the introduction of multicore processors.
+
+\Level 1 {Multicore}
+
+At the time of this writing (circa~2010), miniaturization of
+components has almost come to a standstill, because further lowering
+of the voltage would give prohibitive leakage. Conversely, the
+frequency can not be scaled up since this would raise the heat
+production of the chip too far. 
+%
+\begin{figure}[ht]
+  \begin{quote}
+  \includegraphics[scale=.6]{graphics/chipheat0}
+  \end{quote}
+  \caption{Projected heat dissipation of a CPU if trends had
+    continued -- this graph courtesy Pat Helsinger}
+  \label{fig:chipheat}
+\end{figure}
+%
+Figure~\ref{fig:chipheat} gives a dramatic illustration of the heat
+that a chip would give off, if single-processor trends had
+continued.
+
+One conclusion is that computer design
+is running into a \indextermbus{power}{wall}, where the sophistication
+of a single core can not be increased any further (so we can for
+instance no longer increase \indexac{ILP} and
+\indextermbus{pipeline}{depth}) and the only way to increase
+performance is to increase the amount of explicitly visible
+parallelism. This development has led to the current generation of
+\indexterm{multicore} processors; see section~\ref{sec:multicore}. It
+is also the reason \acp{GPU} with their simplified processor design
+and hence lower energy consumption
+are attractive; the same holds for \acp{FPGA}.
+One solution to the power wall problem is introduction
+of \emph{multicore}\index{multicore!motivated by power} processors.
+Recall equation~\ref{eq:power}, and compare a single processor to two 
+processors at half the frequency. That should have the same computing power, right?
+Since we lowered the frequency, we can lower the voltage if we stay with the same 
+process technology.
+
+The total electric power for the two processors (cores) is, ideally,
+\[ \left.
+\begin{array}{c}
+C_{\mathrm{multi}} = 2C\\
+F_{\mathrm{multi}} = F/2\\
+V_{\mathrm{multi}} = V/2\\
+\end{array}\right\} \Rightarrow
+P_{\mathrm{multi}} = P/4.
+\]
+In practice the capacitance will go up by a little over~2, and the
+voltage can not quite be dropped by~2, so it is more likely that
+$P_{\mathrm{multi}} \approx 0.4\times
+P$~\cite{Chandrakasa:transformations}.  Of course the integration
+aspects are a little more complicated in
+practice~\cite{Bohr:ISSCC2009}; the important conclusion is that now,
+in order to lower the power (or, conversely, to allow further increase
+in performance while keeping the power constant) we now have to start
+programming in parallel.
+
+\Level 1 {Total computer power}
+
+The total power consumption of a parallel computer is determined by
+the consumption per processor and the number of processors in the full
+machine. At present, this is commonly several Megawatts. By the above
+reasoning, the increase in power needed from increasing the number of
+processors can no longer be offset by more power-effective processors,
+so power is becoming the overriding consideration as parallel
+computers move from the petascale (attained in 2008 by the
+\indextermbus{IBM}{Roadrunner}) to a projected exascale.
+
+In the most recent generations of processors, power is becoming an
+overriding consideration, with influence in unlikely places. For
+instance, the \ac{SIMD} design of processors (see
+section~\ref{sec:simd}, in particular section~\ref{sec:sse-avx}) is
+dictated by the power cost of instruction decoding.

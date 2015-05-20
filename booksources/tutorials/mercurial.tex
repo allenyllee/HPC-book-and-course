@@ -1,0 +1,371 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012/3/4/5
+%%%%
+%%%% This book is distributed under a Creative Commons Attribution 3.0
+%%%% Unported (CC BY 3.0) license and made possible by funding from
+%%%% The Saylor Foundation \url{http://www.saylor.org}.
+%%%%
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Mercurial or hg}
+\index{mercurial|(}
+\index{hg|see{mercurial}}
+
+Mercurial is one of a new generation of \indextermsub{distributed}{source
+code control} systems. Many of its commands are the same as for subversion,
+but there are some new ones, corresponding to the new level of 
+sophistication.
+
+A good introduction to Mercurial can be found
+at~\url{http://www.hginit.com/}.
+
+This lab should be done two people, to simulate a group
+of programmers working on a joint project. You can also do this on
+your own by using two clones of the repository, 
+preferably opening two windows on your computer.
+
+\Level 1 {Create and populate a repository}
+
+\begin{purpose}
+  In this section you will create a repository and make a local copy
+  to work on.
+\end{purpose}
+
+First we need to have a repository. In practice, you will often use
+one that has been previousy set up, but there are several ways to
+set up a repository yourself.
+There are commercial and free hosting services such as
+  \url{http://bitbucket.org}. (Academic users can have more private
+  repositories.)
+
+Let's assume that one student has created a repository \n{your-project}
+on Bitbucket. Both students can then clone it:
+\begin{verbatim}
+%% hg clone https://YourName@bitbucket.org/YourName/your-project
+updating to branch default
+0 files updated, 0 files merged, 0 files removed, 
+    0 files unresolved
+\end{verbatim}
+You now have an empty directory \n{your-project}.
+
+\practical{Go into the project directory and see if it is really
+  empty.}{There is a hidden directory \n{.hg}}{}
+
+\Level 1 {New files}
+\label{sec:hg-push}
+
+\begin{purpose}
+  In this section you will make some simple changes: editing an
+  existing file and creating a new file.
+\end{purpose}
+
+One student now makes a file to add to the repository:
+\begin{verbatim}
+%%  cat > firstfile
+a
+b
+c
+d
+e
+f
+^D
+\end{verbatim}
+(where \verb+^D+ stands for control-D, which terminates the input.)
+This file is unknown to \n{hg}:
+\begin{verbatim}
+%% hg status
+? firstfile
+\end{verbatim}
+We need to declare the file as belonging to the repository; a
+subsequent \n{hg commit} command then copies it into the repository.
+\begin{verbatim}
+%% hg add firstfile 
+%% hg status
+A firstfile
+%% hg commit -m "made a first file"
+\end{verbatim}
+Unlike with Subversion, the file has now only been copied into the 
+local repository, so that you can, for instance, roll back your
+changes. If you want this file added to the master repository,
+you need the \n{hg push} command:
+\begin{verbatim}
+%% hg push https://YourName@bitbucket.org/YourName/your-project
+pushing to https://YourName@bitbucket.org/YourName/your-project
+searching for changes
+remote: adding changesets
+remote: adding manifests
+remote: adding file changes
+remote: added 1 changesets with 1 changes to 1 files
+remote: bb/acl: YourName is allowed. accepted payload.
+\end{verbatim}
+In the \n{push} step you were probably asked for your password. You can
+prevent that by having some lines in your \verb+$HOME/.hgrc+ file:
+{\footnotesize
+\begin{verbatim}
+[paths]
+projectrepo = https://YourName:yourpassword@bitbucket.org/YourName/my-project
+[ui]
+username=Your Name <you@somewhere.youruniversity.edu>
+\end{verbatim}
+}
+Now the command \n{hg push projectrepo} will push the local changes
+to the global repository without asking for your password. Of course,
+now you have a file with a cleartext password, so you should set the
+permissions of this file correctly.
+
+The second student now needs to update their repository. Just like
+the upload took two commands, this pass also takes two. First you do \n{hg pull} to update your local repository. This does not update the local files you have: for that you need to do \n{hg update}.
+
+\practical{Do this and check that the contents of the file are
+  correct.}{In order to do the update command, you have to be in a
+  checked-out copy of the repository.}
+
+\practical{Let both students create a new directory with a few
+  files. Declare the directory and commit it. Pull and update to
+  obtain the changes the other mde.}{You can do \n{hg add} on the
+  directory, this will also add the files contained in it.}{}
+
+In order for Mercurial to keep track of your files, you should never do
+the shell commands
+\n{cp} or \n{mv} on files that are in the repository. Instead, do
+\n{hg cp} or \n{hg mv}. Likewise, there is a command \n{hg rm}.
+
+\Level 1 {Conflicts}
+
+\begin{purpose}
+  In this section you will learn about how do deal with conflicting
+  edits by two users of the same repository.
+\end{purpose}
+
+Now let's see what happens when two people edit the same file.
+Let both students make an edit to \verb+firstfile+, but one to the
+top, the other to the bottom. After one student commits the edit, the
+other can commit changes, after all, these only affect the local repository.
+However, trying to push that change gives an error:
+\begin{verbatim}
+%% emacs firstfile # make some change
+%% hg commit -m ``first again''
+%% hg push test
+abort: push creates new remote head b0d31ea209b3!
+(you should pull and merge or use push -f to force)
+\end{verbatim}
+The solution is to get the other edit, and commit again. This takes a 
+couple of commands:
+{\small
+\begin{verbatim}
+%% hg pull myproject
+searching for changes
+adding changesets
+adding manifests
+adding file changes
+added 1 changesets with 1 changes to 1 files (+1 heads)
+(run 'hg heads' to see heads, 'hg merge' to merge)
+
+%% hg merge
+merging firstfile
+0 files updated, 1 files merged, 0 files removed, 0 files unresolved
+(branch merge, don't forget to commit)
+
+%% hg status
+M firstfile
+%% hg commit -m ``my edit again''
+%% hg push test
+pushing to https://VictorEijkhout:***@bitbucket.org/
+                       VictorEijkhout/my-project
+searching for changes
+remote: adding changesets
+remote: adding manifests
+remote: adding file changes
+remote: added 2 changesets with 2 changes to 1 files
+remote: bb/acl: VictorEijkhout is allowed. accepted payload.
+\end{verbatim}
+}
+
+This may seem complicated, but you see that Mercurial prompts you 
+for what commands to execute, and the workflow is clear, if you refer
+to figure~\ref{fig:hg}.
+
+\practical{Do a \n{cat} on the file that both of you have been editing.
+You should find that both edits are incorporated. That is the `merge'
+that Mercurial referred to.}{}{}
+
+If both students make edits on the same part of the file, Mercurial can no
+longer resolve the conflicts. For instance, let one student insert a
+line between the first and the second, and let the second student edit
+the second line. Whoever tries to push second, will get messages
+like this:
+{\small
+\begin{verbatim}
+%% hg pull test
+added 3 changesets with 3 changes to 1 files (+1 heads)
+(run 'hg heads' to see heads, 'hg merge' to merge)
+%% hg merge
+merging firstfile
+warning: conflicts during merge.
+merging firstfile incomplete! 
+    (edit conflicts, then use 'hg resolve --mark')
+0 files updated, 0 files merged, 0 files removed, 1 files unresolved
+use 'hg resolve' to retry unresolved file merges 
+    or 'hg update -C .' to abandon
+\end{verbatim}
+}
+Mercurial will give you several options. It is easiest to resolve the
+conflict with a text editor. If you open the file that has the conflict
+you'll see something like:
+\begin{verbatim}
+<<<<<<< local
+aa
+bbbb
+=======
+aaa
+a2
+b
+>>>>>>> other
+c
+\end{verbatim}
+indicating the difference between the local version (`mine') and the
+other, that is the version that you pulled and tried to merge.
+You need to edit the file to resolve the conflict.
+
+After this, you tell hg that the conflict was resolved:
+\begin{verbatim}
+ hg resolve --mark
+%% hg status
+M firstfile
+? firstfile.orig
+\end{verbatim}
+After this you can commit and push again.
+The other student then needs to do another update to get the
+correction.
+
+Not all files can be merged: for binary files Mercurial will ask you:
+\begin{verbatim}
+%% hg merge
+merging proposal.tex
+merging summary.tex
+merking references.tex
+ no tool found to merge proposal.pdf
+keep (l)ocal or take (o)ther? o
+\end{verbatim}
+This means that the only choices are to keep your local version
+(type~\n{l} and hit return) or take the other version (type~\n{o} and
+hit return). In the case of a binary file that was obvious generated
+automatically, some people argue that they should not be in the
+repository to begin with.
+
+\Level 1 {Inspecting the history}
+
+\begin{purpose}
+  In this section, you will learn how to get information about the repository.
+\end{purpose}
+
+If you want to know where you cloned a repository from, look in the
+file \n{.hg/hgrc}.
+
+The main sources of information about the repository are \n{hg log}
+and \n{hg id}. The latter gives you global information, depending
+on what option you use. For instance, \n{hg id -n} gives the local revision
+number.
+\begin{itemize}
+\item [\texttt{hg log}] gives you a list of all changesets so far,
+  with the comments you entered.
+\item [\texttt{hg log -v}] tells you what files were affected in each changeset.
+\item [\texttt{hg log -r 5}] or \n{hg log -r 6:8} gives information on
+  one or more changesets.
+\end{itemize}
+
+To see differences in various revisions of individual files, use
+\n{hg diff}. First 
+make sure you are up to date. Now do \n{hg diff firstfile}. No
+output, right? Now make an edit in \n{firstfile} and do \n{hg diff
+  firstfile} again. This gives you the difference between the last
+commited version and the working copy.
+
+Check for yourself what happens when you do a commit but no push, and 
+you issue the above diff command.
+
+You can also ask for differences between committed versions with
+\n{hg diff -r 4:6 firstfile}.
+
+The output of this diff command is a bit cryptic, but you can
+understand it without too much trouble. There are also fancy GUI
+implementations of hg for every platform that show you differences in
+a much nicer way.
+
+If you simply want to see what a file used to look like, do \n{hg
+  cat -r 2 firstfile}. To get a copy of a certain revision of the
+repository, do \n{hg export -r 3 . ../rev3}, which exports the
+repository at the current directory (`dot') to the directory \n{../rev3}.
+
+If you save the output of \n{hg diff}, it is possible to apply it
+with the Unix \n{patch} command. This is a quick way to send patches
+to someone without them needing to check out the repository.
+
+\index{mercurial|)}
+
+\endinput
+\Level 1 {Shuffling files around}
+
+We now realize that we really wanted all these files in a subdirectory
+in the repository. First we create the directory, putting it under svn control:
+\begin{verbatim}
+%% svn mkdir trunk
+A         trunk
+\end{verbatim}
+Then we move all files there, again prefixing all comands with \n{svn}:
+\begin{verbatim}
+%% for f in firstfile otherfile myfile mysecondfile ; do \
+        svn mv $f trunk/ ; done
+A         trunk/firstfile
+D         firstfile
+A         trunk/otherfile
+D         otherfile
+A         trunk/myfile
+D         myfile
+A         trunk/mysecondfile
+D         mysecondfile
+\end{verbatim}
+Finally, we commit these changes:
+\begin{verbatim}
+%% svn commit -m "trunk created"
+Deleting       firstfile
+Adding         trunk/firstfile
+Deleting       myfile
+Deleting       mysecondfile
+Deleting       otherfile
+Adding         trunk
+Adding         trunk/myfile
+Adding         trunk/mysecondfile
+Adding         trunk/otherfile
+\end{verbatim}
+
+You probably now have picked up on the message that you always use
+\n{svn} to do file manipulations. Let's pretend this has slipped your
+mind.
+
+\practical{Create a file \n{somefile} and commit it to the repository.
+Then do \n{rm somefile}, thereby deleting a file without
+  \n{svn} knowing about it.
+What is the output of \n{svn status}?}{svn indicates with an
+  exclamation point that the file has disappeared.}{}
+
+You can fix this situation in a number of ways:
+\begin{itemize}
+\item \n{svn revert} restores the file to the state in which it was
+  last restored. For a deleted file, this means that it is brought
+  back into existence from the repository. This command is also useful to
+  undo any local edits, if you change your mind about something.
+\item \n{svn rm firstfile} is the official way to delete a file. You
+  can do this even if you have already deleted the file outside
+  \n{svn}.
+\item Sometimes \n{svn} will get confused about your attempts to
+  delete a file. You can then do \n{svn --force rm yourfile}.
+\end{itemize}
+

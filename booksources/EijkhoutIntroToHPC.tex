@@ -53,6 +53,8 @@
   \begin{procedure}[H]\leftskip=\unitindent\caption{#1(#2)}}
  {\end{procedure}}
 
+\def\verbatimsnippet#1{\verbatiminput{snippets/#1}}
+
 % for edmond
 \usepackage{subfigure,algorithmic,algorithm}
 
@@ -96,15 +98,15 @@
   \SetWatermarkScale{0.75}
 \end{booth}
 
-\input exmacs-public
+\input exmacs
 
 \newwrite\nx
 \newcommand\CHAPTER[2]{
 \Level 0 {#1}\label{ch:#2}
 \def\chapshortname{#2}
-{\SetBaseLevel 1 \input chapters-public/#2
+{\SetBaseLevel 1 \input chapters/#2
  \write\chapterlist{\chapshortname}
- \openout\nx=exercises-public/\chapshortname-nx.tex
+ \openout\nx=exercises/\chapshortname-nx.tex
  \write\nx{\arabic{excounter}}
  \closeout\nx
  \SetBaseLevel 0
@@ -116,7 +118,7 @@
 \def\chapshortname{#2}
 {\SetBaseLevel 1 \input applications/#2
  \write\chapterlist{\chapshortname}
- \openout\nx=exercises-public/\chapshortname-nx.tex
+ \openout\nx=exercises/\chapshortname-nx.tex
  \write\nx{\arabic{excounter}}
  \closeout\nx
  \SetBaseLevel 0
@@ -126,9 +128,9 @@
 \newcommand\TUTORIAL[2]{
 \vfill\pagebreak \Level 0 {#1}\label{tut:#2}
 \def\chapshortname{#2}\setcounter{excounter}0\relax
-{\SetBaseLevel 1 \input tutorials-public/#2
+{\SetBaseLevel 1 \input tutorials/#2
 \write\chapterlist{\chapshortname}
-\openout\nx=exercises-public/\chapshortname-nx.tex
+\openout\nx=exercises/\chapshortname-nx.tex
 \write\nx{\arabic{excounter}}
 \closeout\nx
 \SetBaseLevel 0
@@ -138,9 +140,9 @@
 \ifprojects \vfill\pagebreak \else \projectstrue \fi
 \Level 1 {#1}\label{prj:#2}
 \def\chapshortname{#2}
-{\SetBaseLevel 2 \input projects-public/#2
+{\SetBaseLevel 2 \input projects/#2
 \write\chapterlist{\chapshortname}
-\openout\nx=exercises-public/\chapshortname-nx.tex
+\openout\nx=exercises/\chapshortname-nx.tex
 \write\nx{\arabic{excounter}}
 \closeout\nx
 \SetBaseLevel 0
@@ -150,9 +152,9 @@
   \def\chapshortname{#3}
   {\SetBaseLevel 1 {\index{#2|(}}
    \setcounter{excounter}0
-   \input appendices-public/#3 {\index{#2|)}}
+   \input appendices/#3 {\index{#2|)}}
    \write\chapterlist{\chapshortname}
-   \openout\nx=exercises-public/\chapshortname-nx.tex
+   \openout\nx=exercises/\chapshortname-nx.tex
    \write\nx{\arabic{excounter}}
    \closeout\nx
    \SetBaseLevel 0
@@ -163,9 +165,9 @@
   \def\chapshortname{#3}
   {\SetBaseLevel 1 {\indexacstart{#2}}
    \setcounter{excounter}0
-   \input appendices-public/#3 {\indexacend{#2}}
+   \input appendices/#3 {\indexacend{#2}}
    \write\chapterlist{\chapshortname}
-   \openout\nx=exercises-public/\chapshortname-nx.tex
+   \openout\nx=exercises/\chapshortname-nx.tex
    \write\nx{\arabic{excounter}}
    \closeout\nx
    \SetBaseLevel 0
@@ -280,7 +282,7 @@
 
 %\Level 0 {Theoretical background}
 
-\input appendices-public/blurb
+\input appendices/blurb
 
 \APPENDIX{Linear algebra}{linear algebra}{norms}
 \APPENDIX{Complexity}{complexity}{complexity}
@@ -298,7 +300,7 @@
 %\Level 0 {Practical tutorials}
 \label{app:practical}
 
-\input tutorials-public/blurb
+\input tutorials/blurb
 %\minitoc
 
 \TUTORIAL{Unix intro}{unix}
@@ -314,7 +316,7 @@
 \TUTORIAL{Performance measurement}{performance}
 \end{notready}
 \TUTORIAL{C/Fortran interoperability}{language}
-\TUTORIAL{\LaTeX{} for scientific documentation}{latex}
+\TUTORIAL{LaTeX for scientific documentation}{latex}
 
 \end{tutorials}
 
@@ -329,15 +331,17 @@
 
 \Level 0 {Codes}
 \label{app:codes}
-\input appendices-public/codes
+\input appendices/codes
 
 \vfill\pagebreak
 
-\bibliography{scicompbook}
+\Level 0 {Bibliography, index, and list of acronyms}
+
+\Level 1 {Bibliography}
+
+\bibliography{vle}
 \bibliographystyle{plain}
 \vfill\pagebreak
-
-\Level 0 {Index and list of acronyms}
 
 %\def\acitem#1#2{\item[#1] #2}
 \def\acitem#1#2{\item[#1]{#2}\index{#1|see{#2}}}
@@ -345,11 +349,16 @@
 
 %\hbox{}\vskip-1in\hbox{}
 
+\Level 1 {List of acronyms}
+
 \begin{multicols}{2}
 \begin{description}
 \input acronyms
 \end{description}
 \end{multicols}
+\vfill\pagebreak
+
+\Level 1 {Index}
 
 \index{cluster!node|see{node}}
 \index{CPU-bound|see{compute-bound}}
@@ -359,7 +368,9 @@
 \index{modified Gramm-Schmidt|see{Gram-Schmidt, modified}}
 \index{parallel prefix|see{prefix operation}}
 \index{Roadrunner|see{IBM!Roadrunner}}
+\begin{multicols}{2}
 \printindex
+\end{multicols}
 
 \hbox{}\vfill
 \includegraphics{isbn_barcode}
