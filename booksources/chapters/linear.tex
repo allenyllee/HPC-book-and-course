@@ -854,8 +854,10 @@ us therefore take a closer look at the complexity\footnote{See
 that is, the number of operations as function of the problem size, of
 the use of an LU factorization in solving the linear system.
 
-The complexity of solving the linear system, given the $LU$
-factorization, is easy to compute. Looking at the lower and upper
+First we look at the computation of $x$ from $LUx=b$
+(`solving the linear system'; section~\ref{sec:lu-solve}), given that
+we already have the factorization $A=LU$.
+Looking at the lower and upper
 triangular part together, you see that you perform a multiplication
 with all off-diagonal elements (that is, elements $\ell_{ij}$
 or~$u_{ij}$ with $i\not=j$). Furthermore, the upper triangular solve
@@ -870,11 +872,12 @@ case you would compute the values $1/u_{ii}$, and store them instead.
 \end{exercise}
 
 Summing up, you see that, on a system of size $n\times n$, you perform
-$n^2$ multiplications and roughly the same number of additions. This
-is the same complexity as of a simple matrix-vector multiplication,
+$n^2$ multiplications and roughly the same number of additions.
+This shows that, given a factorization, solving a linear system
+has the same complexity as a simple matrix-vector multiplication,
 that is, of computing $Ax$ given $A$ and~$x$.
 
-The complexity of computing the $LU$ factorization is a bit more
+The complexity of constructing the $LU$ factorization is a bit more
 involved to compute. Refer to the algorithm in section~\ref{sec:lu-algorithm}.
 You see that in the $k$-th step two things happen: the computation of
 the multipliers, and the updating of the rows.
@@ -892,8 +895,12 @@ order terms. This is of a higher order than solving the linear system:
 as the system size grows, the cost of constructing the $LU$
 factorization completely dominates.
 
-A further point to mention here is that both the factorization
-and forward/backward solution involve recursion, so they are not trivial 
+Of course there is more to algorithm analysis than operation counting.
+While solving the linear system has the same complexity
+as a matrix-vector multiplication, the two operations
+are of a very different nature.
+One big difference is that both the factorization
+and forward/backward solution involve recursion, so they are not simple
 to parallelize. We will say more about that later on.
 
 \index{complexity!computational|)}

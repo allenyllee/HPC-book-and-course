@@ -1,3 +1,4 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
@@ -134,6 +135,15 @@ There are results that show that randomized assignment of tasks to
 processors is statistically close to optimal~\cite{KarpZhang88}, but
 this ignores the aspect that in scientific computing tasks typically
 communicate frequently.
+
+\begin{exercise}
+  Suppose you have tasks $\{T_i\}_{i=1,\ldots,N}$ with running
+  times~$t_i$, and an unlimited number of processors.  Look up
+  \indexterm{Brent's theorem} in section~\ref{sec:critical-path}, and
+  derive from it that the fastest execution scheme for the tasks can
+  be characterized as follows: there is one processor that
+  only executes the task with maximal $t_i$ value.
+\end{exercise}
 
 \Level 2 {Load balancing as graph problem}
 \label{sec:graph-loadbalancing}

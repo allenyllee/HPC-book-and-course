@@ -365,9 +365,14 @@ template rule.
 Your makefile now uses one general rule for compiling any source
 file. Often, your source files will be all the \n{.c} or \n{.F}
 files in your directory, so is there a way to state `compile
-everything in this directory'? Indeed there is. Add the following lines
+everything in this directory'? Indeed there is.
+
+
+Add the following lines
 to your makefile, and use the variable \n{COBJECTS} or \n{FOBJECTS}
 wherever appropriate.
+The command \indextermtt{wildcard} gives the result of \n{ls},
+and you can manipulate file names with \indextermtt{patsubst}.
 \begin{verbatim}
 # wildcard: find all files that match a pattern
 CSOURCES := ${wildcard *.c}

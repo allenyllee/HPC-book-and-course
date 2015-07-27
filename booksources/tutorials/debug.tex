@@ -132,7 +132,8 @@ Let us now consider some programs with errors.
 
 \Level 1 {C programs}
 
-\codelisting{tutorials/gdb/c/square.c}
+%\codelisting{tutorials/gdb/c/square.c}
+\verbatimsnippet{gdb-square}
 \begin{verbatim}
 %% cc -g -o square square.c
  %% ./square
@@ -185,18 +186,23 @@ We investigate further:
 $1 = 11237
 (gdb) print squares[i]
 Cannot access memory at address 0x10000f000
+(gdb) print squares
+$2 = (float *) 0x0
 \end{verbatim}
 and we quickly see that we forgot to allocate \n{squares}.
 
-By the way, we were lucky here: this sort of memory errors is not always
-detected. Starting our programm with a smaller input does not lead to
-an error:
+Memory errors can also occur if we have a legitimate array, but we access it
+outside its bounds.
+\verbatimsnippet{gdb-up}
 \begin{verbatim}
-(gdb) run
-50
-Sum: 1.625133e+00
-
-Program exited normally.
+Program received signal EXC_BAD_ACCESS, Could not access memory.
+Reason: KERN_INVALID_ADDRESS at address: 0x0000000100200000
+0x0000000100000f43 in main (argc=1, argv=0x7fff5fbfe2c0) at up.c:15
+15          s += array[i];
+(gdb) print array
+$1 = (double *) 0x100104d00
+(gdb) print i
+$2 = 128608
 \end{verbatim}
 
 \Level 1 {Fortran programs}

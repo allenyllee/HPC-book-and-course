@@ -634,10 +634,9 @@ Amy~N. Langville and Carl~D. Meyer.
 \newblock {\em SIAM Review}, 47(1):135--161, 2005.
 
 \bibitem{Lawson:blas}
-C.~L. Lawson, R.~J. Hanson, D.~Kincaid, and F.~T. Krogh.
-\newblock {Basic Linear Algebra Subprograms} for {FORTRAN} usage.
-\newblock {\em ACM Trans. Math. Software}, 5:308--323, 1979.
-\newblock (Algorithm 539).
+C.~L. Lawson, R.~J. Hanson, D.~R. Kincaid, and F.~T. Krogh.
+\newblock Basic linear algebra subprograms for fortran usage.
+\newblock {\em ACM Trans. Math. Softw.}, 5(3):308--323, September 1979.
 
 \bibitem{LEcuyer:multiple-random}
 P.~L'Ecuyer.
