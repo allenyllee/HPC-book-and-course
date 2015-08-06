@@ -10,6 +10,7 @@
 %%%% Unported (CC BY 3.0) license and made possible by funding from
 %%%% The Saylor Foundation \url{http://www.saylor.org}.
 %%%%
+%%%% blas.tex: tutorial on BLAS, LAPACK, SCALAPACK
 %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -62,20 +63,136 @@ two-dimensional cyclic distribution; sections
 \ref{sec:densescaling} and~\ref{sec:LUscaling}. We will not go into
 the details here.
 
-\Level 1 {BLAS matrix storage}
+\Level 1 {Some general remarks}
+
+\Level 2 {The Fortran heritage}
+
+The original BLAS routines were written in Fortran, and the reference implementation
+is still in Fortran. For this reason you will see the routine definitions first in Fortran
+in this tutorial
+It is possible to use the Fortran routines from a C/C++ program:
+\begin{itemize}
+\item You typically need to append an underscore to the Fortran name;
+\item You need to include a prototype file in your source, for instance \n{mkl.h};
+\item Every argument needs to be a `star'-argument, so you can not pass literal constants:
+  you need to pass the address of a variable.
+\item You need to create a column-major matrix.
+\end{itemize}
+There are also C/C++ interfaces:
+\begin{itemize}
+\item The C routine names are formed by prefixing the original name with \n{cblas_};
+  for instance \n{dasum} becomes \n{cblas_dasum}.
+\item Fortran character arguments have been replaced by enumerated constants,
+  for instance \n{CblasNoTrans} instead of the~\n{'N'} parameter.
+\item The Cblas interface can accomodate both row-major and column-major storage.
+\item Array indices are 1-based, rather than 0-based; this mostly
+  becomes apparent in error messages and when specifying pivot
+  indices.
+\end{itemize}
+
+\Level 2 {Routine naming}
+
+Routines conform to a general naming scheme: \n{XYYZZZ} where
+\begin{description}
+\item[X] precision: \n{S,D,C,Z} stand for single and double, single
+  complex and double complex, respectively.
+\item[YY] storage scheme: general rectangular, triangular, banded.
+\item[ZZZ] operation. See the manual for a list.
+\end{description}
+
+\Level 2 {Data formats}
+
+Lapack and Blas use a number of data formats, including
+\begin{description}
+\item[GE] General matrix: stored two-dimensionally as \n{A(LDA,*)}
+\item[SY/HE] Symmetric/Hermitian: general storage; \n{UPLO} parameter
+  to indicate upper or lower (e.g. \n{SPOTRF})
+\item[GB/SB/HB] General/symmetric/Hermitian band; these formats use
+  column-major storage; in \n{SGBTRF} overallocation needed because of
+  pivoting
+\item[PB] Symmetric of Hermitian positive definite band; no
+  overallocation in \n{SPDTRF}
+\end{description}
+
+\Level 2 {Lapack operations}
+\index{Lapack!routines|(}
+
+For Lapack, we can further divide the routines into an organization with three levels:
+\begin{itemize}
+\item Drivers. These are powerful top level routine for problems such
+  as solving linear systems or computing an SVD. There are simple and
+  expert drivers; the expert ones have more numerical sophistication.
+\item Computational routines. These are the routines that drivers are
+  built up out of\footnote{Ha! Take that, Winston.}. A~user may have
+  occasion to call them by themselves.
+\item Auxiliary routines.
+\end{itemize}
+Expert driver names end on 'X'.
+
+\begin{itemize}
+\item Linear system solving.
+Simple drivers: \n{-SV} (e.g., \n{DGESV}) 
+Solve $AX=B$, overwrite A with LU (with pivoting),
+overwrite B with X.
+
+Expert driver: \n{-SVX}
+Also transpose solve, condition estimation, refinement, equilibration
+\item Least squares problems.
+Drivers: 
+\begin{description}
+\item[\n{xGELS}] using QR or LQ under full-rank assumption
+\item[\n{xGELSY}] "complete orthogonal factorisation"
+\item[\n{xGELSS}] using SVD
+\item[\n{xGELSD}] using divide-conquer SVD
+(faster, but more workspace than \n{xGELSS})
+\end{description}
+
+Also: LSE \& GLM linear equality constraint \& general linear model
+
+\item Eigenvalue routines.
+Symmetric/Hermitian: \n{xSY} or \n{xHE} (also \n{SP}, \n{SB}, \n{ST})\\
+simple driver \n{-EV}\\
+expert driver \n{-EVX}\\
+divide and conquer \n{-EVD}\\
+relative robust representation \n{-EVR}
+
+General (only \n{xGE})\\
+Schur decomposition \n{-ES} and \n{-ESX}\\
+eigenvalues \n{-EV} and \n{-EVX}
+
+SVD (only \n{xGE})\\
+simple driver \n{-SVD}\\
+divide and conquer \n{SDD}
+
+Generalized symmetric (\n{SY} and \n{HE}; \n{SP}, \n{SB})\\
+simple driver \n{GV}\\
+expert \n{GVX}\\
+divide-conquer \n{GVD}
+
+Nonsymmetric:\\
+Schur: simple \n{GGES}, expert \n{GGESX}\\
+eigen: simple \n{GGEV}, expert \n{GGEVX}
+
+svd: \n{GGSVD}
+
+\end{itemize}
+\index{Lapack!routines|)}
+
+\Level 2 {BLAS matrix storage}
+\index{BLAS!data format|(}
 
 There are a few points to bear in mind about the way matrices are
 stored in the BLAS and LAPACK\footnote{We are not going into band
   storage here.}:
 
-\Level 2 {Array indexing}
+\Level 3 {Array indexing}
 
 Since these libraries originated in a Fortran environment, they
   use 1-based indexing. Users of languages such as C/C++ are only
   affected by this when routines use index arrays, such as the
   location of pivots in LU factorizations.
 
-\Level 2 {Fortran column-major ordering}
+\Level 3 {Fortran column-major ordering}
 
 Since computer memory is one-dimensional, some conversion is needed
 from two-dimensional matrix coordinates to memory locations. The
@@ -120,92 +237,7 @@ To pass the subblock to a routine, you would specify it as
 call routine( A(3,2), /* M= */ 2, /* N= */ 3, /* LDA= */ Mbig, ... )
 \end{verbatim}
 
-\Level 1 {Organisation of routines}
-\index{Lapack|(}
-
-Lapack is organized with three levels of routines:
-\begin{itemize}
-\item Drivers. These are powerful top level routine for problems such
-  as solving linear systems or computing an SVD. There are simple and
-  expert drivers; the expert ones have more numerical sophistication.
-\item Computational routines. These are the routines that drivers are
-  built up out of\footnote{Ha! Take that, Winston.}. A~user may have
-  occasion to call them by themselves.
-\item Auxiliary routines.
-\end{itemize}
-
-Routines conform to a general naming scheme: \n{XYYZZZ} where
-\begin{description}
-\item[X] precision: \n{S,D,C,Z} stand for single and double, single
-  complex and double complex, respectively.
-\item[YY] storage scheme: general rectangular, triangular, banded.
-\item[ZZZ] operation. See the manual for a list.
-\end{description}
-Expert driver names end on 'X'.
-
-\Level 2 {Lapack data formats}
-
-Lapack and Blas use a number of data formats, including
-\begin{description}
-\item[GE] General matrix: stored two-dimensionally as \n{A(LDA,*)}
-\item[SY/HE] Symmetric/Hermitian: general storage; \n{UPLO} parameter
-  to indicate upper or lower (e.g. \n{SPOTRF})
-\item[GB/SB/HB] General/symmetric/Hermitian band; these formats use
-  column-major storage; in \n{SGBTRF} overallocation needed because of
-  pivoting
-\item[PB] Symmetric of Hermitian positive definite band; no
-  overallocation in \n{SPDTRF}
-\end{description}
-
-\Level 2 {Lapack operations}
-
-\begin{itemize}
-\item Linear system solving.
-Simple drivers: \n{-SV} (e.g., \n{DGESV}) 
-Solve $AX=B$, overwrite A with LU (with pivoting),
-overwrite B with X.
-
-Expert driver: \n{-SVX}
-Also transpose solve, condition estimation, refinement, equilibration
-\item Least squares problems.
-Drivers: 
-\begin{description}
-\item[\n{xGELS}] using QR or LQ under full-rank assumption
-\item[\n{xGELSY}] "complete orthogonal factorisation"
-\item[\n{xGELSS}] using SVD
-\item[\n{xGELSD}] using divide-conquer SVD
-(faster, but more workspace than \n{xGELSS})
-\end{description}
-
-Also: LSE \& GLM linear equality constraint \& general linear model
-
-\item Eigenvalue routines.
-Symmetric/Hermitian: \n{xSY} or \n{xHE} (also \n{SP}, \n{SB}, \n{ST})
-simple driver \n{-EV}
-expert driver \n{-EVX}
-divide and conquer \n{-EVD}
-relative robust representation \n{-EVR}
-
-General (only \n{xGE})
-Schur decomposition \n{-ES} and \n{-ESX}
-eigenvalues \n{-EV} and \n{-EVX}
-
-SVD (only \n{xGE})
-simple driver \n{-SVD}
-divide and conquer \n{SDD}
-
-Generalized symmetric (\n{SY} and \n{HE}; \n{SP}, \n{SB})
-simple driver \n{GV}
-expert \n{GVX}
-divide-conquer \n{GVD}
-
-Nonsymmetric
-Schur: simple \n{GGES}, expert \n{GGESX}
-eigen: simple \n{GGEV}, expert \n{GGEVX}
-
-svd: \n{GGSVD}
-
-\end{itemize}
+\index{BLAS!data format|)}
 
 \Level 1 {Performance issues}
 
@@ -228,5 +260,52 @@ this, you should use an optimized version, such as
   extension project.
 \end{itemize}
 
-\index{Lapack|)}
+\Level 1 {Some simple examples}
+
+Let's look at some simple examples.
+
+The routine \n{xscal} scales a vector in place.
+\begin{verbatim}
+! Fortran
+subroutine dscal(integer N, double precision DA,
+    double precision, dimension(*) DX, integer INCX )  
+// C
+void cblas_dscal (const MKL_INT n, const double a, 
+    double *x, const MKL_INT incx);
+\end{verbatim}
+A simple example:
+%
+\verbatimsnippet{scale}
+
+The same in~C:
+%
+\verbatimsnippet{scalecb}
+
+Many routines have an increment parameter. For \n{xscale} that's the final parameter:
+%
+\verbatimsnippet{scaleinc}
+
+The matrix-vector product \n{xgemv} computes $y\leftarrow \alpha Ax+\beta y$,
+rather than $y\leftarrow Ax$.
+The specification of the matrix takes the \n{M,N} size parameters,
+and a character argument \n{'N'} to indicate that the matrix is not transposed.
+Both of the vectors have an increment argument.
+\begin{verbatim}
+subroutine dgemv(character TRANS,
+    integer M,integer N,
+    double precision ALPHA,
+    double precision, dimension(lda,*) A,integer LDA,
+    double precision, dimension(*) X,integer INCX,
+    double precision BETA,double precision, dimension(*) Y,integer INCY
+    )
+\end{verbatim}
+An example of the use of this routine:
+%
+\verbatimsnippet{mvp}
+
+The same example in~C has an extra parameter to indicate whether the matrix
+is stored in row or column major storage:
+%
+\verbatimsnippet{mvpc}
+
 

@@ -2,7 +2,7 @@
 
 \bibitem{AWK:awk}
 ALFRED~V. AHO, BRIAN~W. KERNIGHAN, and PETER~J WEINBERGER.
-\newblock {\em The Awk Programming Languages}.
+\newblock {\em The Awk Programming Language}.
 \newblock Addison-Wesley Series in Computer Science. Addison-Wesley Publ.,
   1988.
 \newblock ISBN 020107981X, 9780201079814.
@@ -27,7 +27,7 @@ Owe Axelsson and Ben Polman.
 
 \bibitem{BarnesHut}
 Josh Barnes and Piet Hut.
-\newblock A hierarchical {O(N log N)} force-calculation algorithm.
+\newblock A hierarchical $o(n log n)$ force-calculation algorithm.
 \newblock {\em Nature}, 324:446--449, 1986.
 
 \bibitem{Ba:templates}
