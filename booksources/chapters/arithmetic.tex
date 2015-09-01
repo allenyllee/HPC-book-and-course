@@ -425,7 +425,7 @@ Let us consider a real number that is not representable in a
 computer's number system.
 
 An unrepresentable number is approximated either by
-\indexterm{rounding} or \indexterm{truncation}.
+ordinary \indexterm{rounding}, rounding up or down, or \indexterm{truncation}.
 This means that a machine number~$\tilde x$ is the representation for
 all~$x$ in an interval around it.  With $t$ digits in the
 mantissa\index{mantissa}, this is the interval of numbers that differ
@@ -654,6 +654,27 @@ double precision is necessary, since the precision of calculations
 gets worse with increasing problem size or runtime. This is true for
 the sort of calculations in chapter~\ref{ch:odepde}, but not for
 others such as \indexacp{LBM}
+
+\Level 2 {Setting the rounding behaviour}
+
+The 754 standard also declares that a processor should be
+able to switch its rounding behaviour between ordinary rounding,
+rounding up or down (sometimes phrased as `towards plus infinity'
+and `towards minus infinity' respectively) or truncation.
+In~C99, the API for this is contained in \indextermtt{fenv.h}:
+\begin{verbatim}
+#include <fenv.h>
+
+int roundings[]={FE_TONEAREST, FE_UPWARD, FE_DOWNWARD, FE_TOWARDZERO};
+rchoice = ....
+int status = fesetround(roundings[rchoice]);            
+\end{verbatim}
+In Fortran2003 the function \n{IEEE_SET_ROUNDING_MODE}
+is available in the \n{IEEE_ARITHMETIC} module.
+
+Setting the rounding behaviour can serve as a quick test for the stability
+of an algorithm: if the result changes appreciably between two different
+rounding strategies, the algorithm is likely not stable.
 
 \Level 0 {Round-off error analysis}
 \index{round-off error analysis|(}

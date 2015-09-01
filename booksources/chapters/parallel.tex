@@ -186,6 +186,36 @@ These matters of algorithm adaptation, efficiency, and communication,
 are crucial to all of parallel computing. We will return to these
 issues in various guises throughout this chapter.
 
+\Level 0 {Functional parallelism versus data parallelism}
+
+From the above introduction we can describe parallelism as finding
+independent operations in the execution of a program. In all of the examples
+these independent operations were in fact identical operations, but applied to
+different data items. We could call this\indexterm{data parallelism}: the same
+operation is applied in parallel to many data elements.
+This is in fact a common scenario in scientific computing: parallelism
+often stems from the fact that a data set (vector, matrix,
+graph,\ldots) is spread over many processors, each working on its part
+of the data. 
+
+The term data parallelism is traditionally mostly applied
+if the operation is a single instruction; in the case of a subprogram
+it is often called \indexterm{task parallelism}.
+
+It is also possible to find independence, not based on data elements,
+but based on the instructions themselves. Traditionally, compilers
+analyze code in terms of \ac{ILP}: independent instructions can be given
+to separate floating point units, or reordered, for instance to optimize
+register usage (see also section~\ref{sec:ILP}).
+\ac{ILP} is one case of \indexterm{functional parallelism};
+on a higher level, functional parallelism can be obtained
+by considering independent subprograms, often called \indexterm{task parallelism};
+see section~\ref{sec:task-parallel}.
+
+Some examples of functional parallelism are Monte Carlo simulations,
+and other algorithms that traverse a parametrized search space,
+such as boolean \indexterm{satisfyability} problems.
+
 \Level 0 {Quantifying parallelism}
 \label{sec:speedup-efficiency}
 
@@ -2204,7 +2234,7 @@ you can actually see the network designs reflected. For instance,
 will have a central cabinet corresponding to the top level in the tree.
 Figure~\ref{fig:taccswitches} shows the switches of the TACC
 \emph{Ranger}\index{TACC!ranger cluster} (no longer in service)
-and \emph{Stampede}\index{TACC!stampede cluster} clusters.
+and \emph{Stampede}\index{TACC!Stampede cluster} clusters.
 In the second picture it can be seen that there are actually
 multiple redundant fat-tree networks.
 
