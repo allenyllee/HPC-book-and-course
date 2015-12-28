@@ -129,7 +129,7 @@ of the weights of the stages. Here is the Bellman-Ford algorithm:
   Set $d(v)=\infty$ for all other nodes~$v$\;
   \For{$|E|-1$ times}{
     \For{all edges $e=(u,v)$}{
-      Relax: \If{$d(u)+w_{uv}<d(v)$}{Set $d(v)\leftarrow d(u)+w_{uv}$}
+      Relax: \If{$d(u)+w_{uv} < d(v)$}{Set $d(v)\leftarrow d(u)+w_{uv}$}
     }
   }
 \end{displayalgorithm}

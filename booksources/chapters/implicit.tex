@@ -99,6 +99,11 @@ step.
   resulting efficiency?
 \end{exercise}
 
+Of course you don't have to use actual parallel processing
+to exploit this parallelism. Instead you could use a
+\indexterm{vector processor}, \indextermbus{vector}{instructions},
+or a \indexac{GPU}~\cite{Liu:cudasw2009}.
+
 In section~\ref{sec:fill-ordering} you saw the
 \indexterm{Cuthill-McKee ordering} for reducing the fill-in of a
 matrix. We can modify this algorithm as follows to give wavefronts:

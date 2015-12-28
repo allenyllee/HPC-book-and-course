@@ -203,10 +203,11 @@ The exceptions to this story are:
 
 \index{context|)}
 
-\Level 2 {Thread safety and atomic operations}
+\Level 2 {Data races, thread safety, sequential consistency, and atomic operations}
 \index{atomic operation|(}
 \index{atomicity|see{atomic operation}}
 \label{sec:shared-lock}
+\label{sec:seq-consist}
 
 Shared memory makes life easy for the programmer, since every
 processor has access to all of the data: no explicit data traffic
@@ -246,11 +247,8 @@ write the variable. Here are three scenarios:
   \multicolumn{2}{|c|}{$\n{I}=5$}\\ \hline
 \end{tabular}
 Such a scenario, where the final result depends on which thread
-executes first, is known as a \indexterm{race condition}\footnote
-{Even more subtle issues come into play if you consider
-the \indextermbus{memory}{model} that a processor uses. For instance, one
-thread can execute \texttt{A=1; print B;} and print~0, while the other
-executes \texttt{B=1; print A;} and also prints~0.}.
+executes first, is known as a \indexterm{race condition} or
+\emph{data race}\index{data race|see{race condition}}.
 
 A very practical example of such conflicting updates is the inner
 product calculation:
@@ -327,6 +325,92 @@ cache line invalidation (section~\ref{sec:coherence}).
 
 \index{atomic operation|)}
 
+\Level 2 {Memory models and sequential consistency}
+
+The above signaled phenomenon of a \indexterm{race condition}
+means that the result of some programs can be non-deterministic,
+depending on the sequence in which instructions are executed.
+There is a further factor that comes into play, and which is
+called the \indextermbus{memory}{model} that a processor uses.
+The memory model controls how the activity of one thread or core
+is seen by other threads or cores.
+
+As an example, consider
+\begin{tabbing}
+  initially: \texttt{A=B=0;}, then\\
+  process 1: \texttt{A=1; x = B;}\\
+  process 2: \texttt{B=1; y = A;}
+\end{tabbing}
+As above, we have three scenarios, which we describe by
+giving a global sequence of statements:
+
+\begin{tabular}{|l|l|l|}
+  \hline
+  scenario 1.& scenario 2.& scenario 3.\\ \hline
+  $\n{A}\leftarrow \n{1}$&$\n{A}\leftarrow \n{1}$&$\n{B}\leftarrow \n{1}$\\
+  $\n{x}\leftarrow \n{B}$&$\n{B}\leftarrow \n{1}$&$\n{y}\leftarrow \n{A}$\\
+  $\n{B}\leftarrow \n{1}$&$\n{x}\leftarrow \n{B}$&$\n{A}\leftarrow \n{1}$\\
+  $\n{y}\leftarrow \n{A}$&$\n{y}\leftarrow \n{A}$&$\n{x}\leftarrow \n{B}$\\
+  \hline
+  $x=0, y=1$& $x=1,y=1$& $x=1,y=0$\\
+  \hline
+\end{tabular}
+
+(In the second scenario, statements 1,2 can be reversed, as can 3,4,
+without change in outcome.)
+
+The three different outcomes can be characterized as being computed by a global ordering
+on the statements that respects the local orderings. This is known as \indexterm{sequential
+  consistency}: the parallel outcome is consistent with a sequential execution that
+interleaves the parallel computations, respecting their local statement orderings.
+
+Maintaining sequential consistency is expensive: it means that any change to a variable
+immediately needs to be visible on all other threads, or that any access to a variable
+on a thread
+needs to consult all other threads. We discussed this in section~\ref{sec:coherence}.
+
+In a \indextermsub{relaxed}{memory model} it is possible to get a result that
+is not sequentially consistent. Suppose, in the above example, the instructions
+$\n{A}\leftarrow \n{1}$, $\n{B}\leftarrow \n{1}$ are executed first, but
+these changes are not immediately visible to the other threads.
+Then subsequent instructions
+$\n{x}\leftarrow \n{B}$, $\n{y}\leftarrow \n{A}$  can receive the
+result $x=0,y=0$, which was not possible under the sequentially consistent
+model above.
+
+Sequential consistency implies that
+\begin{verbatim}
+integer n
+n = 0
+!$omp parallel shared(n)
+n = n + 1
+!$omp end parallel
+\end{verbatim}
+should have the same effect as
+\begin{verbatim}
+n = 0
+n = n+1 ! for processor 0
+n = n+1 ! for processor 1
+        ! et cetera
+\end{verbatim}
+With sequential consistency it is no longer necessary to declare
+atomic operations or critical sections; however, this puts strong
+demands on the implementation of the model, so it may lead to
+inefficient code.
+
+\begin{exercise}
+  In section~\ref{sec:shared-lock} you saw an example that needed
+  a critical section to get the right final result. Argue that
+  having a critical section is not enough for sequential consistency.
+  \begin{itemize}
+  \item Write a piece of sequential code that, when executed in parallel,
+    corresponds to the example in section~\ref{sec:shared-lock}.
+  \item Show that, using a critical section, there are two execution
+    orderings that give the correct result.
+  \item Show that one of these orderings is not sequentially consistent.
+  \end{itemize}
+\end{exercise}
+
 \Level 2 {Affinity}
 \index{affinity|(}
 
@@ -399,52 +483,6 @@ for (i=0; i<N; i++)
 \end{exercise}
 
 \index{affinity|)}
-
-\Level 2 {Sequential consistency}
-\label{sec:seq-consist}
-
-Thread programs often look very much like fully sequential
-programs. Creating a thread for a function is much like invoking that
-function directly, and \indexterm{OpenMP} programs (see below) only
-differ from sequential programs in directives that are hidden in
-comments and pragmas. Thus, it has been proposed to solve the problem
-of conflicts such a described above by enforcing \indextermdef{sequential
-consistency}~\cite{Lamport:sequential}: a~parallel program should
-compute the same result as when its source is executed sequentially,
-with all the parallel statements in sequence.
-
-This means that a program
-\begin{verbatim}
-integer n
-n = 0
-!$omp parallel shared(n)
-n = n + 1
-!$omp end parallel
-\end{verbatim}
-should have the same effect as
-\begin{verbatim}
-n = 0
-n = n+1 ! for processor 0
-n = n+1 ! for processoe 1
-        ! et cetera
-\end{verbatim}
-With sequential consistency it is no longer necessary to declare
-atomic operations or critical sections; however, this puts strong
-demands on the implementation of the model, so it may lead to
-inefficient code.
-
-\begin{exercise}
-  In section~\ref{sec:shared-lock} you saw an example that needed
-  a critical section to get the right final result. Argue that
-  having a critical section is not enough for sequential consistency.
-  \begin{itemize}
-  \item Write a piece of sequential code that, when executed in parallel,
-    corresponds to the example in section~\ref{sec:shared-lock}.
-  \item Show that, using a critical section, there are two execution
-    orderings that give the correct result.
-  \item Show that one of these orderings is not sequentially consistent.
-  \end{itemize}
-\end{exercise}
 
 \Level 2 {Concurrency}
 

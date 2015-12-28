@@ -195,7 +195,8 @@ to a billion transistors.
 
 In the Von Neuman model there is a single entity that executes instructions.
 This has not been the case in increasing measure since the early 2000s.
-The Sandy Bridge pictured above has four \emph{cores}, each of which
+The Sandy Bridge pictured in figure~\ref{fig:sandybridge} has eight \emph{cores},
+each of which
 is an independent unit executing a stream of instructions.
 In this chapter we will mostly discuss aspects of a single core; 
 section~\ref{sec:multicore} will discuss the integration aspects 
@@ -277,7 +278,7 @@ Intel Haswell     &2014 &$0+0+2\times 4      $ &1/2  \\
 %SPARC IV & 1 add + 1 mul& 2 \\
 %Itanium2 &  2 FMA & 4 
   \end{tabular}
-  \caption{Floating point capabilities of several processor architectures,
+  \caption{Floating point capabilities (per core) of several processor architectures,
   and DAXPY cycle number for 8 operands}
   \label{tab:chipfloats}
 \end{table}
@@ -567,6 +568,7 @@ computers, when we talk about sending data from one processor to the
 next.
 
 \Level 1 {Registers}
+\label{sec:register}
 \index{register|(textbf}
 
 Every processor has a small amount of memory that is internal to the

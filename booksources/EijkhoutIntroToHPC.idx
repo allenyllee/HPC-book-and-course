@@ -57,7 +57,7 @@
 \indexentry{bandwidth|hyperpage}{22}
 \indexentry{stall|hyperindexformat{\see{memory!stall}}}{22}
 \indexentry{memory!stall|hyperpage}{22}
-\indexentry{latency!hiding|hyperpage}{22}
+\indexentry{latency!hiding|hyperpage}{23}
 \indexentry{bus!speed|hyperpage}{23}
 \indexentry{bus!width|hyperpage}{23}
 \indexentry{register|(hyperindexformat{\textbf}}{23}
@@ -177,7 +177,7 @@
 \indexentry{pipeline|)hyperpage}{48}
 \indexentry{cache!blocking|hyperpage}{49}
 \indexentry{blocking for cache reuse|hyperpage}{49}
-\indexentry{stride|hyperpage}{49}
+\indexentry{stride|hyperpage}{50}
 \indexentry{AMD!Opteron|hyperpage}{51}
 \indexentry{Fast Fourier Transform@\acl {FFT} (FFT)|hyperpage}{51}
 \indexentry{AMD!Opteron|hyperpage}{52}
@@ -211,61 +211,73 @@
 \indexentry{power!consumption|)hyperpage}{63}
 \indexentry{parallelism!instruction-level|hyperpage}{64}
 \indexentry{superstep|hyperpage}{66}
-\indexentry{speedup|hyperindexformat{\textbf}}{67}
-\indexentry{efficiency|hyperindexformat{\textbf}}{67}
+\indexentry{data parallelism|hyperpage}{67}
+\indexentry{task parallelism|hyperpage}{67}
+\indexentry{functional parallelism|hyperpage}{67}
+\indexentry{task parallelism|hyperpage}{67}
+\indexentry{satisfyability|hyperpage}{67}
+\indexentry{speedup|hyperindexformat{\textbf}}{68}
+\indexentry{efficiency|hyperindexformat{\textbf}}{68}
 \indexentry{load!unbalance|hyperpage}{68}
 \indexentry{embarassingly parallel|hyperpage}{68}
 \indexentry{superlinear speedup|hyperpage}{68}
-\indexentry{parallelism!average|hyperpage}{68}
-\indexentry{Brent's theorem|hyperindexformat{\textbf}}{69}
-\indexentry{critical path|hyperpage}{69}
-\indexentry{Parallel Random Access Machine@\acl {PRAM} (PRAM)|hyperpage}{70}
-\indexentry{weak scaling|hyperpage}{71}
-\indexentry{Amdahl's law|(hyperpage}{71}
-\indexentry{sequential fraction|hyperpage}{71}
-\indexentry{parallel fraction|hyperpage}{71}
+\indexentry{parallelism!average|hyperpage}{69}
+\indexentry{Brent's theorem|hyperindexformat{\textbf}}{70}
+\indexentry{critical path|hyperpage}{70}
+\indexentry{Parallel Random Access Machine@\acl {PRAM} (PRAM)|hyperpage}{71}
+\indexentry{weak scaling|hyperpage}{72}
+\indexentry{Amdahl's law|(hyperpage}{72}
+\indexentry{sequential fraction|hyperpage}{72}
+\indexentry{parallel fraction|hyperpage}{72}
 \indexentry{communication!overhead|hyperpage}{72}
-\indexentry{Gustafson's law|(hyperpage}{72}
+\indexentry{Gustafson's law|(hyperpage}{73}
 \indexentry{Gustafson's law|)hyperpage}{73}
-\indexentry{Amdahl's law|)hyperpage}{73}
+\indexentry{Amdahl's law|)hyperpage}{74}
 \indexentry{scaling|(hyperpage}{74}
 \indexentry{scalability|(hyperpage}{74}
 \indexentry{scalability|hyperpage}{74}
 \indexentry{scalability!strong|hyperpage}{74}
 \indexentry{scalability!weak|hyperpage}{74}
-\indexentry{bitonic sort|hyperpage}{74}
-\indexentry{scaling|)hyperpage}{76}
-\indexentry{scalability|)hyperpage}{76}
-\indexentry{Flynn's taxonomy|hyperpage}{76}
-\indexentry{data flow|hyperpage}{76}
-\indexentry{control flow|hyperpage}{76}
-\indexentry{array processors|hyperpage}{77}
-\indexentry{parallelism!data|hyperpage}{77}
-\indexentry{ICL!DAP|hyperpage}{77}
-\indexentry{Goodyear!MPP|hyperpage}{77}
-\indexentry{Connection Machine|hyperpage}{77}
+\indexentry{bitonic sort|hyperpage}{75}
+\indexentry{rate!computational|hyperpage}{76}
+\indexentry{scaling|)hyperpage}{77}
+\indexentry{scalability|)hyperpage}{77}
+\indexentry{Flynn's taxonomy|hyperpage}{77}
+\indexentry{data flow|hyperpage}{77}
+\indexentry{control flow|hyperpage}{77}
+\indexentry{array processors|hyperpage}{78}
+\indexentry{parallelism!data|hyperpage}{78}
+\indexentry{ICL!DAP|hyperpage}{78}
+\indexentry{Goodyear!MPP|hyperpage}{78}
+\indexentry{Connection Machine|hyperpage}{78}
 \indexentry{MasPar|hyperpage}{78}
 \indexentry{CUDA|hyperpage}{78}
 \indexentry{Intel!Xeon Phi|hyperpage}{78}
 \indexentry{power!efficiency|hyperpage}{78}
-\indexentry{instruction!issue|hyperpage}{78}
-\indexentry{vector processor|hyperpage}{78}
-\indexentry{pipeline!processor|hyperpage}{78}
-\indexentry{clusters|hyperpage}{78}
-\indexentry{Intel|hyperpage}{78}
-\indexentry{AMD|hyperpage}{78}
-\indexentry{PowerPC|hyperpage}{78}
-\indexentry{vector!instructions|hyperindexformat{\textbf}}{78}
+\indexentry{instruction!issue|hyperpage}{79}
+\indexentry{vector!pipeline|hyperindexformat{\see{pipeline, processor}}}{79}
+\indexentry{vector processor|hyperpage}{79}
+\indexentry{pipeline!processor|hyperpage}{79}
+\indexentry{clusters|hyperpage}{79}
+\indexentry{register!vector|hyperpage}{79}
+\indexentry{vector!register|hyperindexformat{\see{register, vector}}}{79}
+\indexentry{Intel|hyperpage}{79}
+\indexentry{AMD|hyperpage}{79}
+\indexentry{PowerPC|hyperpage}{79}
+\indexentry{vector!instructions|hyperindexformat{\textbf}}{79}
 \indexentry{SIMD Streaming Extensions@\acl {SSE} (SSE)|hyperpage}{79}
 \indexentry{Advanced Vector Extensions@\acl {AVX} (AVX)|hyperpage}{79}
-\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|hyperpage}{79}
-\indexentry{Multiple Instruction Multiple Data@\acl {MIMD} (MIMD)|(hyperpage}{79}
-\indexentry{Single Program Multiple Data@\acl {SPMD} (SPMD)|hyperpage}{79}
-\indexentry{load!unbalance|hyperpage}{79}
-\indexentry{speedup|hyperpage}{79}
-\indexentry{clusters|hyperpage}{79}
-\indexentry{clusters!Beowulf|hyperpage}{79}
-\indexentry{Multiple Instruction Multiple Data@\acl {MIMD} (MIMD)|)hyperpage}{79}
+\indexentry{register!vector|(hyperindexformat{\textbf}}{79}
+\indexentry{SIMD!lanes|hyperindexformat{\textbf}}{79}
+\indexentry{OpenMP!version 4|hyperpage}{80}
+\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|hyperpage}{80}
+\indexentry{Multiple Instruction Multiple Data@\acl {MIMD} (MIMD)|(hyperpage}{80}
+\indexentry{Single Program Multiple Data@\acl {SPMD} (SPMD)|hyperpage}{80}
+\indexentry{load!unbalance|hyperpage}{80}
+\indexentry{speedup|hyperpage}{80}
+\indexentry{clusters|hyperpage}{80}
+\indexentry{clusters!Beowulf|hyperpage}{80}
+\indexentry{Multiple Instruction Multiple Data@\acl {MIMD} (MIMD)|)hyperpage}{80}
 \indexentry{CDC!Cyber205|hyperpage}{80}
 \indexentry{Cray!Cray-1|hyperpage}{80}
 \indexentry{ETA-10|hyperpage}{80}
@@ -276,1260 +288,1274 @@
 \indexentry{Intel!i860|hyperpage}{80}
 \indexentry{MIPS|hyperpage}{80}
 \indexentry{DEC!Alpha|hyperpage}{80}
-\indexentry{memory!distributed|hyperpage}{80}
-\indexentry{memory!shared|hyperpage}{80}
-\indexentry{address space|hyperpage}{80}
-\indexentry{address space!shared|hyperpage}{80}
+\indexentry{memory!distributed|hyperpage}{81}
+\indexentry{memory!shared|hyperpage}{81}
+\indexentry{address space|hyperpage}{81}
+\indexentry{address space!shared|hyperpage}{81}
 \indexentry{Uniform Memory Access@\acl {UMA} (UMA)|hyperpage}{81}
 \indexentry{Symmetric Multi Processing@\acl {SMP} (SMP)|hyperpage}{81}
-\indexentry{crossbar|hyperpage}{81}
-\indexentry{multicore|hyperpage}{81}
-\indexentry{cache!shared|hyperpage}{81}
-\indexentry{Non-Uniform Memory Access@\acl {NUMA} (NUMA)|hyperpage}{81}
-\indexentry{cache!coherence|hyperpage}{82}
-\indexentry{ccNUMA|hyperpage}{82}
-\indexentry{memory!distributed shared|hyperpage}{82}
-\indexentry{memory!virtual shared|hyperpage}{82}
-\indexentry{hypervisor|hyperpage}{82}
-\indexentry{Linux!kernel|hyperpage}{82}
-\indexentry{SGI!UV|hyperpage}{82}
-\indexentry{Cray!XE6|hyperpage}{82}
-\indexentry{Partitioned Global Address Space@\acl {PGAS} (PGAS)|hyperpage}{82}
-\indexentry{ScaleMP|hyperpage}{82}
-\indexentry{IBM!BlueGene|hyperpage}{82}
-\indexentry{parallelism!data|hyperpage}{83}
-\indexentry{parallelism!fine-grained|hyperpage}{83}
-\indexentry{Instruction Level Parallelism@\acl {ILP} (ILP)|hyperpage}{84}
-\indexentry{compiler|hyperpage}{84}
-\indexentry{superscalar|hyperpage}{84}
-\indexentry{task!parallelism|(hyperpage}{84}
-\indexentry{master-worker paradigm|hyperpage}{84}
+\indexentry{crossbar|hyperpage}{82}
+\indexentry{multicore|hyperpage}{82}
+\indexentry{cache!shared|hyperpage}{82}
+\indexentry{Non-Uniform Memory Access@\acl {NUMA} (NUMA)|hyperpage}{82}
+\indexentry{cache!coherence|hyperpage}{83}
+\indexentry{ccNUMA|hyperpage}{83}
+\indexentry{memory!distributed shared|hyperpage}{83}
+\indexentry{memory!virtual shared|hyperpage}{83}
+\indexentry{hypervisor|hyperpage}{83}
+\indexentry{Linux!kernel|hyperpage}{83}
+\indexentry{SGI!UV|hyperpage}{83}
+\indexentry{Cray!XE6|hyperpage}{83}
+\indexentry{Partitioned Global Address Space@\acl {PGAS} (PGAS)|hyperpage}{83}
+\indexentry{ScaleMP|hyperpage}{83}
+\indexentry{IBM!BlueGene|hyperpage}{83}
+\indexentry{parallelism!data|hyperpage}{84}
+\indexentry{parallelism!fine-grained|hyperpage}{84}
+\indexentry{Instruction Level Parallelism@\acl {ILP} (ILP)|hyperpage}{85}
+\indexentry{compiler|hyperpage}{85}
+\indexentry{superscalar|hyperpage}{85}
+\indexentry{task!parallelism|(hyperpage}{85}
+\indexentry{master-worker paradigm|hyperpage}{85}
 \indexentry{Delauney mesh refinement|hyperpage}{85}
-\indexentry{task!queue|hyperpage}{85}
-\indexentry{parallelism!irregular|hyperpage}{85}
-\indexentry{task!parallelism|)hyperpage}{85}
-\indexentry{embarassingly parallel|hyperpage}{85}
-\indexentry{conveniently paralllel|hyperpage}{85}
-\indexentry{Mandelbrot set|hyperpage}{85}
-\indexentry{chess|hyperpage}{85}
+\indexentry{task!queue|hyperpage}{86}
+\indexentry{parallelism!irregular|hyperpage}{86}
+\indexentry{task!parallelism|)hyperpage}{86}
+\indexentry{embarassingly parallel|hyperpage}{86}
+\indexentry{conveniently paralllel|hyperpage}{86}
+\indexentry{Mandelbrot set|hyperpage}{86}
+\indexentry{chess|hyperpage}{86}
 \indexentry{parameter sweep|hyperpage}{86}
-\indexentry{granularity|(hyperpage}{86}
-\indexentry{surface-to-volume|hyperpage}{86}
-\indexentry{load!unbalance|hyperpage}{86}
-\indexentry{overdecomposition|hyperpage}{86}
-\indexentry{scheduling!dynamic|hyperindexformat{\textbf}}{86}
-\indexentry{overdecomposition|hyperpage}{86}
-\indexentry{granularity|)hyperpage}{86}
+\indexentry{granularity|(hyperpage}{87}
+\indexentry{surface-to-volume|hyperpage}{87}
+\indexentry{load!unbalance|hyperpage}{87}
+\indexentry{overdecomposition|hyperpage}{87}
+\indexentry{scheduling!dynamic|hyperindexformat{\textbf}}{87}
+\indexentry{overdecomposition|hyperpage}{87}
+\indexentry{granularity|)hyperpage}{87}
 \indexentry{compiler!parallelizing|hyperpage}{87}
-\indexentry{thread|(hyperindexformat{\textbf}}{87}
-\indexentry{process|hyperpage}{87}
-\indexentry{heap|hyperpage}{87}
-\indexentry{malloc|hyperindexformat{\texttt}}{87}
-\indexentry{program counter|hyperpage}{87}
+\indexentry{thread|(hyperindexformat{\textbf}}{88}
+\indexentry{process|hyperpage}{88}
+\indexentry{heap|hyperpage}{88}
+\indexentry{malloc|hyperindexformat{\texttt}}{88}
+\indexentry{program counter|hyperpage}{88}
 \indexentry{thread!master|hyperpage}{88}
 \indexentry{thread!spawning|hyperindexformat{\textbf}}{88}
 \indexentry{fork-join|hyperpage}{88}
 \indexentry{thread!team|hyperpage}{88}
-\indexentry{hyper-threading|hyperpage}{88}
-\indexentry{pthreads|(hyperpage}{88}
-\indexentry{fork-join|hyperpage}{88}
-\indexentry{lock|hyperpage}{89}
-\indexentry{pthreads|)hyperpage}{90}
-\indexentry{context|(hyperindexformat{\textbf}}{90}
-\indexentry{thread!shared data|hyperpage}{90}
-\indexentry{thread!private data|hyperpage}{90}
-\indexentry{context!switch|hyperindexformat{\textbf}}{90}
-\indexentry{granularity|hyperpage}{90}
-\indexentry{hyperthreading|hyperpage}{90}
-\indexentry{Intel!Xeon Phi|hyperpage}{90}
-\indexentry{Cray!XMT|hyperpage}{90}
-\indexentry{context|)hyperindexformat{\textbf}}{90}
-\indexentry{atomic operation|(hyperpage}{90}
-\indexentry{atomicity|hyperindexformat{\see{atomic operation}}}{90}
-\indexentry{race condition|hyperpage}{91}
-\indexentry{thread!safe|hyperindexformat{\textbf}}{91}
-\indexentry{reduction!and thread safety|hyperpage}{91}
-\indexentry{critical section|hyperpage}{91}
-\indexentry{reduction!under multi-threading|hyperpage}{91}
-\indexentry{semaphore|hyperpage}{91}
-\indexentry{lock|hyperindexformat{\textbf}}{91}
-\indexentry{memory!model|hyperpage}{91}
-\indexentry{transactional memory|hyperpage}{92}
-\indexentry{flushing!pipeline|hyperpage}{92}
-\indexentry{atomic operation|)hyperpage}{92}
-\indexentry{affinity|(hyperpage}{92}
-\indexentry{thread!affinity|hyperindexformat{\see{affinity}}}{92}
-\indexentry{process!affinity|hyperindexformat{\see{affinity}}}{92}
-\indexentry{task!queue|hyperpage}{92}
-\indexentry{first-touch policy|hyperpage}{93}
-\indexentry{affinity|)hyperpage}{93}
-\indexentry{OpenMP|hyperpage}{93}
-\indexentry{sequential consistency|hyperindexformat{\textbf}}{93}
-\indexentry{concurrency|hyperpage}{94}
-\indexentry{Operating System@\acl {OS} (OS)|hyperpage}{94}
-\indexentry{resource contention|hyperpage}{94}
-\indexentry{deadlock|hyperpage}{94}
-\indexentry{Cilk Plus|hyperpage}{94}
-\indexentry{sequential consistency|hyperpage}{94}
-\indexentry{hyperthreading|(hyperpage}{95}
-\indexentry{program counter|hyperpage}{95}
-\indexentry{multi-threading|hyperpage}{95}
-\indexentry{Intel!Xeon Phi|hyperpage}{95}
-\indexentry{hyperthreading|)hyperpage}{95}
-\indexentry{thread|)hyperindexformat{\textbf}}{95}
-\indexentry{OpenMP|(hyperpage}{95}
-\indexentry{OpenMP|hyperpage}{95}
-\indexentry{compiler!directives|hyperpage}{95}
-\indexentry{thread!use in OpenMP|hyperpage}{95}
-\indexentry{parallelism!dynamic|hyperpage}{95}
-\indexentry{parallelization!incremental|hyperpage}{95}
-\indexentry{GCC|hyperpage}{95}
-\indexentry{thread!safe|hyperpage}{96}
-\indexentry{reduction operations|hyperpage}{96}
-\indexentry{round-robin!task scheduling|hyperpage}{96}
-\indexentry{scheduling!static|hyperpage}{96}
-\indexentry{load!unbalance|hyperpage}{97}
-\indexentry{scheduling!dynamic|hyperpage}{97}
-\indexentry{false sharing|hyperpage}{97}
-\indexentry{OpenMP|)hyperpage}{97}
-\indexentry{blocking communication|hyperpage}{98}
-\indexentry{serialized execution|hyperpage}{98}
-\indexentry{deadlock|hyperpage}{99}
-\indexentry{non-blocking communication|hyperpage}{100}
-\indexentry{Message Passing Interface@\acl {MPI} (MPI)|(hyperpage}{101}
-\indexentry{point-to-point   communication|hyperpage}{101}
-\indexentry{collective communication|hyperpage}{101}
-\indexentry{broadcast|hyperpage}{101}
-\indexentry{gather|hyperpage}{101}
-\indexentry{collective operation|hyperpage}{102}
-\indexentry{communication!blocking|hyperpage}{104}
-\indexentry{non-blocking communication|hyperpage}{104}
-\indexentry{collective communication|(hyperpage}{104}
-\indexentry{MPI!MPI 3.0 draft|hyperpage}{104}
-\indexentry{collective communication|)hyperpage}{104}
-\indexentry{non-local operation|hyperpage}{104}
-\indexentry{blocking communication|hyperpage}{104}
-\indexentry{deadlock|hyperindexformat{\textbf}}{104}
-\indexentry{idle time|hyperpage}{105}
+\indexentry{hyper-threading|hyperpage}{89}
+\indexentry{pthreads|(hyperpage}{89}
+\indexentry{fork-join|hyperpage}{89}
+\indexentry{lock|hyperpage}{90}
+\indexentry{pthreads|)hyperpage}{91}
+\indexentry{context|(hyperindexformat{\textbf}}{91}
+\indexentry{thread!shared data|hyperpage}{91}
+\indexentry{thread!private data|hyperpage}{91}
+\indexentry{context!switch|hyperindexformat{\textbf}}{91}
+\indexentry{granularity|hyperpage}{91}
+\indexentry{hyperthreading|hyperpage}{91}
+\indexentry{Intel!Xeon Phi|hyperpage}{91}
+\indexentry{Cray!XMT|hyperpage}{91}
+\indexentry{context|)hyperindexformat{\textbf}}{91}
+\indexentry{atomic operation|(hyperpage}{91}
+\indexentry{atomicity|hyperindexformat{\see{atomic operation}}}{91}
+\indexentry{race condition|hyperpage}{92}
+\indexentry{data race|hyperindexformat{\see{race condition}}}{92}
+\indexentry{thread!safe|hyperindexformat{\textbf}}{92}
+\indexentry{reduction!and thread safety|hyperpage}{92}
+\indexentry{critical section|hyperpage}{92}
+\indexentry{reduction!under multi-threading|hyperpage}{92}
+\indexentry{semaphore|hyperpage}{92}
+\indexentry{lock|hyperindexformat{\textbf}}{92}
+\indexentry{transactional memory|hyperpage}{93}
+\indexentry{flushing!pipeline|hyperpage}{93}
+\indexentry{atomic operation|)hyperpage}{93}
+\indexentry{race condition|hyperpage}{93}
+\indexentry{memory!model|hyperpage}{93}
+\indexentry{sequential consistency|hyperpage}{93}
+\indexentry{memory model!relaxed|hyperpage}{93}
+\indexentry{affinity|(hyperpage}{94}
+\indexentry{thread!affinity|hyperindexformat{\see{affinity}}}{94}
+\indexentry{process!affinity|hyperindexformat{\see{affinity}}}{94}
+\indexentry{task!queue|hyperpage}{95}
+\indexentry{first-touch policy|hyperpage}{95}
+\indexentry{affinity|)hyperpage}{95}
+\indexentry{concurrency|hyperpage}{95}
+\indexentry{Operating System@\acl {OS} (OS)|hyperpage}{95}
+\indexentry{resource contention|hyperpage}{95}
+\indexentry{deadlock|hyperpage}{96}
+\indexentry{Cilk Plus|hyperpage}{96}
+\indexentry{sequential consistency|hyperpage}{96}
+\indexentry{hyperthreading|(hyperpage}{96}
+\indexentry{program counter|hyperpage}{96}
+\indexentry{multi-threading|hyperpage}{96}
+\indexentry{Intel!Xeon Phi|hyperpage}{96}
+\indexentry{hyperthreading|)hyperpage}{96}
+\indexentry{thread|)hyperindexformat{\textbf}}{96}
+\indexentry{OpenMP|(hyperpage}{96}
+\indexentry{OpenMP|hyperpage}{96}
+\indexentry{compiler!directives|hyperpage}{96}
+\indexentry{thread!use in OpenMP|hyperpage}{97}
+\indexentry{parallelism!dynamic|hyperpage}{97}
+\indexentry{parallelization!incremental|hyperpage}{97}
+\indexentry{GCC|hyperpage}{97}
+\indexentry{thread!safe|hyperpage}{97}
+\indexentry{reduction operations|hyperpage}{98}
+\indexentry{round-robin!task scheduling|hyperpage}{98}
+\indexentry{scheduling!static|hyperpage}{98}
+\indexentry{load!unbalance|hyperpage}{98}
+\indexentry{scheduling!dynamic|hyperpage}{98}
+\indexentry{false sharing|hyperpage}{99}
+\indexentry{OpenMP|)hyperpage}{99}
+\indexentry{blocking communication|hyperpage}{99}
+\indexentry{serialized execution|hyperpage}{100}
+\indexentry{deadlock|hyperpage}{101}
+\indexentry{non-blocking communication|hyperpage}{102}
+\indexentry{Message Passing Interface@\acl {MPI} (MPI)|(hyperpage}{102}
+\indexentry{point-to-point   communication|hyperpage}{102}
+\indexentry{collective communication|hyperpage}{102}
+\indexentry{broadcast|hyperpage}{102}
+\indexentry{gather|hyperpage}{102}
+\indexentry{collective operation|hyperpage}{103}
+\indexentry{communication!blocking|hyperpage}{105}
 \indexentry{non-blocking communication|hyperpage}{105}
-\indexentry{PVM|hyperpage}{105}
-\indexentry{one-sided communication|(hyperpage}{106}
-\indexentry{Remote Direct Memory Access@\acl {RDMA} (RDMA)|hyperpage}{106}
-\indexentry{Cray!T3E|hyperpage}{106}
-\indexentry{supersteps|hyperpage}{107}
-\indexentry{one-sided communication|)hyperpage}{107}
-\indexentry{Message Passing Interface@\acl {MPI} (MPI)|)hyperpage}{107}
-\indexentry{hybrid computing|(hyperpage}{107}
-\indexentry{node|hyperpage}{107}
-\indexentry{socket|hyperpage}{107}
-\indexentry{inter-node communication|hyperpage}{107}
-\indexentry{intra-node communication|hyperpage}{107}
-\indexentry{coherence!cache|hyperpage}{108}
-\indexentry{false sharing|hyperpage}{108}
-\indexentry{handshake protocol|hyperpage}{108}
-\indexentry{Intel!Xeon Phi|hyperpage}{108}
-\indexentry{hybrid computing|)hyperpage}{108}
-\indexentry{Partitioned Global Address Space@\acl {PGAS} (PGAS)|(hyperpage}{108}
-\indexentry{High Performance Fortran@\acl {HPF} (HPF)|hyperpage}{108}
-\indexentry{array syntax|hyperpage}{108}
-\indexentry{Chapel|hyperpage}{108}
-\indexentry{Unified Parallel C@\acl {UPC} (UPC)|hyperpage}{108}
-\indexentry{compiler|hyperpage}{109}
-\indexentry{Unified Parallel C@\acl {UPC} (UPC)|(hyperpage}{110}
-\indexentry{parallelism!data|hyperpage}{110}
-\indexentry{compiler|hyperpage}{110}
-\indexentry{round-robin!storage assignment|hyperpage}{110}
-\indexentry{Unified Parallel C@\acl {UPC} (UPC)|)hyperpage}{110}
-\indexentry{Titanium|hyperpage}{110}
-\indexentry{High Performance Fortran@\acl {HPF} (HPF)|(hyperpage}{110}
-\indexentry{compiler!directives|hyperpage}{111}
-\indexentry{High Performance Fortran@\acl {HPF} (HPF)|)hyperpage}{111}
-\indexentry{Co-array Fortran@\acl {CAF} (CAF)|(hyperpage}{111}
-\indexentry{Co-array Fortran@\acl {CAF} (CAF)|)hyperpage}{111}
-\indexentry{Chapel|(hyperpage}{111}
-\indexentry{Chapel|)hyperpage}{112}
-\indexentry{Fortress|(hyperpage}{112}
-\indexentry{Fortress|)hyperpage}{112}
-\indexentry{X10|(hyperpage}{113}
-\indexentry{IBM|hyperpage}{113}
-\indexentry{X10|)hyperpage}{113}
-\indexentry{Linda|(hyperpage}{113}
-\indexentry{Linda|hyperpage}{113}
-\indexentry{coordination language|hyperpage}{113}
-\indexentry{tuple space|hyperpage}{113}
-\indexentry{High-Performance Computing@\acl {HPC} (HPC)|hyperpage}{113}
-\indexentry{ghost region|hyperpage}{113}
-\indexentry{one-sided communication|hyperpage}{113}
-\indexentry{Linda|)hyperpage}{113}
-\indexentry{Global Arrays|(hyperpage}{113}
-\indexentry{one-sided communication|hyperpage}{113}
-\indexentry{cartesian product|hyperpage}{113}
-\indexentry{Global Arrays|)hyperpage}{114}
-\indexentry{Partitioned Global Address Space@\acl {PGAS} (PGAS)|)hyperpage}{114}
-\indexentry{active messages|hyperpage}{114}
-\indexentry{Charm++|hyperpage}{114}
-\indexentry{remote method invocation|hyperpage}{114}
-\indexentry{Bulk Synchronous Parallel@\acl {BSP} (BSP)|hyperpage}{115}
-\indexentry{supersteps|hyperpage}{115}
-\indexentry{barrier|hyperpage}{115}
+\indexentry{collective communication|(hyperpage}{105}
+\indexentry{MPI!MPI 3.0 draft|hyperpage}{105}
+\indexentry{collective communication|)hyperpage}{105}
+\indexentry{non-local operation|hyperpage}{106}
+\indexentry{blocking communication|hyperpage}{106}
+\indexentry{deadlock|hyperindexformat{\textbf}}{106}
+\indexentry{idle time|hyperpage}{106}
+\indexentry{non-blocking communication|hyperpage}{106}
+\indexentry{PVM|hyperpage}{107}
+\indexentry{one-sided communication|(hyperpage}{107}
+\indexentry{Remote Direct Memory Access@\acl {RDMA} (RDMA)|hyperpage}{107}
+\indexentry{Cray!T3E|hyperpage}{107}
+\indexentry{supersteps|hyperpage}{108}
+\indexentry{one-sided communication|)hyperpage}{108}
+\indexentry{Message Passing Interface@\acl {MPI} (MPI)|)hyperpage}{108}
+\indexentry{hybrid computing|(hyperpage}{108}
+\indexentry{node|hyperpage}{108}
+\indexentry{socket|hyperpage}{108}
+\indexentry{inter-node communication|hyperpage}{108}
+\indexentry{intra-node communication|hyperpage}{108}
+\indexentry{coherence!cache|hyperpage}{109}
+\indexentry{false sharing|hyperpage}{109}
+\indexentry{handshake protocol|hyperpage}{109}
+\indexentry{Intel!Xeon Phi|hyperpage}{109}
+\indexentry{hybrid computing|)hyperpage}{109}
+\indexentry{Partitioned Global Address Space@\acl {PGAS} (PGAS)|(hyperpage}{109}
+\indexentry{High Performance Fortran@\acl {HPF} (HPF)|hyperpage}{109}
+\indexentry{array syntax|hyperpage}{109}
+\indexentry{Chapel|hyperpage}{110}
+\indexentry{Unified Parallel C@\acl {UPC} (UPC)|hyperpage}{110}
+\indexentry{compiler|hyperpage}{111}
+\indexentry{Unified Parallel C@\acl {UPC} (UPC)|(hyperpage}{111}
+\indexentry{parallelism!data|hyperpage}{111}
+\indexentry{compiler|hyperpage}{111}
+\indexentry{round-robin!storage assignment|hyperpage}{111}
+\indexentry{Unified Parallel C@\acl {UPC} (UPC)|)hyperpage}{112}
+\indexentry{Titanium|hyperpage}{112}
+\indexentry{High Performance Fortran@\acl {HPF} (HPF)|(hyperpage}{112}
+\indexentry{compiler!directives|hyperpage}{112}
+\indexentry{High Performance Fortran@\acl {HPF} (HPF)|)hyperpage}{112}
+\indexentry{Co-array Fortran@\acl {CAF} (CAF)|(hyperpage}{112}
+\indexentry{Co-array Fortran@\acl {CAF} (CAF)|)hyperpage}{112}
+\indexentry{Chapel|(hyperpage}{113}
+\indexentry{Chapel|)hyperpage}{113}
+\indexentry{Fortress|(hyperpage}{113}
+\indexentry{Fortress|)hyperpage}{114}
+\indexentry{X10|(hyperpage}{114}
+\indexentry{IBM|hyperpage}{114}
+\indexentry{X10|)hyperpage}{114}
+\indexentry{Linda|(hyperpage}{114}
+\indexentry{Linda|hyperpage}{114}
+\indexentry{coordination language|hyperpage}{114}
+\indexentry{tuple space|hyperpage}{114}
+\indexentry{High-Performance Computing@\acl {HPC} (HPC)|hyperpage}{114}
+\indexentry{ghost region|hyperpage}{114}
+\indexentry{one-sided communication|hyperpage}{114}
+\indexentry{Linda|)hyperpage}{114}
+\indexentry{Global Arrays|(hyperpage}{115}
 \indexentry{one-sided communication|hyperpage}{115}
-\indexentry{overdecomposition|hyperpage}{115}
-\indexentry{random placement|hyperpage}{115}
-\indexentry{imbalance!load|hyperpage}{115}
-\indexentry{Google|hyperpage}{115}
-\indexentry{Pregel|hyperpage}{115}
-\indexentry{Array-Of-Structures@\acl {AOS} (AOS)|hyperpage}{116}
-\indexentry{Structure-Of-Arrays@\acl {SOA} (SOA)|hyperpage}{116}
-\indexentry{SIMD!width|hyperpage}{117}
-\indexentry{ispc|hyperpage}{117}
-\indexentry{Single Program Multiple Data@\acl {SPMD} (SPMD)|hyperpage}{117}
-\indexentry{Single Instruction Multiple Data@\acl {SIMD} (SIMD)|hyperpage}{117}
-\indexentry{communication!overlapping computation with|hyperpage}{117}
-\indexentry{latency hiding|hyperpage}{117}
-\indexentry{asynchronous communication|hyperpage}{118}
-\indexentry{non-blocking communication|hyperpage}{118}
-\indexentry{topology|hyperpage}{118}
-\indexentry{fully connected|hyperpage}{119}
-\indexentry{graph!theory!of parallel computers|hyperpage}{119}
-\indexentry{degree|hyperpage}{119}
-\indexentry{diameter|hyperpage}{119}
-\indexentry{congestion|hyperpage}{119}
-\indexentry{contention|hyperpage}{119}
-\indexentry{IBM|hyperpage}{119}
-\indexentry{graph!undirected|hyperpage}{119}
-\indexentry{bisection width|hyperpage}{120}
-\indexentry{redundancy|hyperpage}{120}
-\indexentry{bisection bandwidth|hyperpage}{120}
-\indexentry{bandwidth!aggregate|hyperpage}{120}
-\indexentry{bus!memory|hyperpage}{120}
-\indexentry{Uniform Memory Access@\acl {UMA} (UMA)|hyperpage}{120}
-\indexentry{Symmetric Multi Processing@\acl {SMP} (SMP)|hyperpage}{120}
-\indexentry{cache!coherence|hyperpage}{121}
-\indexentry{snooping|hyperpage}{121}
-\indexentry{linear array (of processors)|hyperpage}{121}
-\indexentry{ring network|hyperpage}{121}
-\indexentry{embedding|hyperpage}{121}
-\indexentry{cartesian mesh|hyperpage}{121}
-\indexentry{nearest neighbour|hyperpage}{121}
-\indexentry{torus|hyperpage}{122}
-\indexentry{node|hyperpage}{122}
-\indexentry{hypercube|hyperpage}{122}
-\indexentry{Gray code|hyperpage}{124}
-\indexentry{switch|hyperpage}{125}
-\indexentry{crossbar|hyperpage}{125}
-\indexentry{butterfly exchange|hyperpage}{125}
-\indexentry{fat tree|hyperpage}{125}
+\indexentry{cartesian product|hyperpage}{115}
+\indexentry{Global Arrays|)hyperpage}{115}
+\indexentry{Partitioned Global Address Space@\acl {PGAS} (PGAS)|)hyperpage}{115}
+\indexentry{active messages|hyperpage}{115}
+\indexentry{Charm++|hyperpage}{115}
+\indexentry{remote method invocation|hyperpage}{115}
+\indexentry{Bulk Synchronous Parallel@\acl {BSP} (BSP)|hyperpage}{116}
+\indexentry{supersteps|hyperpage}{116}
+\indexentry{barrier|hyperpage}{116}
+\indexentry{one-sided communication|hyperpage}{116}
+\indexentry{overdecomposition|hyperpage}{116}
+\indexentry{random placement|hyperpage}{116}
+\indexentry{imbalance!load|hyperpage}{116}
+\indexentry{Google|hyperpage}{117}
+\indexentry{Pregel|hyperpage}{117}
+\indexentry{Array-Of-Structures@\acl {AOS} (AOS)|hyperpage}{117}
+\indexentry{Structure-Of-Arrays@\acl {SOA} (SOA)|hyperpage}{117}
+\indexentry{SIMD!width|hyperpage}{118}
+\indexentry{ispc|hyperpage}{118}
+\indexentry{Single Program Multiple Data@\acl {SPMD} (SPMD)|hyperpage}{118}
+\indexentry{Single Instruction Multiple Data@\acl {SIMD} (SIMD)|hyperpage}{118}
+\indexentry{communication!overlapping computation with|hyperpage}{118}
+\indexentry{latency hiding|hyperpage}{118}
+\indexentry{asynchronous communication|hyperpage}{119}
+\indexentry{non-blocking communication|hyperpage}{119}
+\indexentry{topology|hyperpage}{119}
+\indexentry{fully connected|hyperpage}{120}
+\indexentry{graph!theory!of parallel computers|hyperpage}{120}
+\indexentry{degree|hyperpage}{120}
+\indexentry{diameter|hyperpage}{120}
+\indexentry{IBM|hyperpage}{120}
+\indexentry{graph!undirected|hyperpage}{120}
+\indexentry{congestion|hyperpage}{121}
+\indexentry{contention|hyperpage}{121}
+\indexentry{bisection width|hyperpage}{121}
+\indexentry{redundancy|hyperpage}{121}
+\indexentry{bisection bandwidth|hyperpage}{121}
+\indexentry{bandwidth!aggregate|hyperpage}{121}
+\indexentry{bus!memory|hyperpage}{122}
+\indexentry{Uniform Memory Access@\acl {UMA} (UMA)|hyperpage}{122}
+\indexentry{Symmetric Multi Processing@\acl {SMP} (SMP)|hyperpage}{122}
+\indexentry{cache!coherence|hyperpage}{122}
+\indexentry{snooping|hyperpage}{122}
+\indexentry{linear array (of processors)|hyperpage}{122}
+\indexentry{ring network|hyperpage}{122}
+\indexentry{embedding|hyperpage}{122}
+\indexentry{cartesian mesh|hyperpage}{122}
+\indexentry{nearest neighbour|hyperpage}{123}
+\indexentry{torus|hyperpage}{123}
+\indexentry{node|hyperpage}{123}
+\indexentry{hypercube|hyperpage}{124}
+\indexentry{Gray code|hyperpage}{125}
+\indexentry{switch|hyperpage}{126}
+\indexentry{crossbar|hyperpage}{126}
+\indexentry{butterfly exchange|hyperpage}{126}
+\indexentry{fat tree|hyperpage}{126}
 \indexentry{Uniform Memory Access@\acl {UMA} (UMA)|hyperpage}{126}
 \indexentry{BBN!Butterfly|hyperpage}{126}
-\indexentry{fat tree|(hyperpage}{126}
-\indexentry{TACC|hyperpage}{126}
-\indexentry{switch!leaf|hyperpage}{126}
-\indexentry{fat tree!bisection width of a|hyperpage}{127}
+\indexentry{fat tree|(hyperpage}{127}
+\indexentry{TACC|hyperpage}{128}
+\indexentry{switch!leaf|hyperpage}{128}
+\indexentry{fat tree!bisection width of a|hyperpage}{128}
 \indexentry{Clos network|hyperpage}{129}
 \indexentry{fat tree|)hyperpage}{129}
 \indexentry{fat tree!clusters based on|hyperpage}{129}
 \indexentry{TACC!ranger cluster|hyperpage}{129}
-\indexentry{TACC!stampede cluster|hyperpage}{129}
-\indexentry{IBM!BlueGene|hyperpage}{129}
-\indexentry{torus!clusters based on|hyperpage}{129}
+\indexentry{TACC!Stampede cluster|hyperpage}{129}
+\indexentry{IBM!BlueGene|hyperpage}{130}
+\indexentry{torus!clusters based on|hyperpage}{130}
 \indexentry{latency|hyperpage}{130}
-\indexentry{bandwidth|hyperpage}{130}
-\indexentry{channel rate|hyperpage}{130}
-\indexentry{channel width|hyperpage}{130}
-\indexentry{collective operation|hyperpage}{130}
-\indexentry{computation rate|hyperpage}{130}
+\indexentry{bandwidth|hyperpage}{131}
+\indexentry{channel rate|hyperpage}{131}
+\indexentry{channel width|hyperpage}{131}
+\indexentry{collective operation|hyperpage}{131}
+\indexentry{computation rate|hyperpage}{131}
 \indexentry{locality!in parallel computing|(hyperpage}{131}
-\indexentry{Non-Uniform Memory Access@\acl {NUMA} (NUMA)|hyperpage}{131}
-\indexentry{switch!leaf|hyperpage}{131}
-\indexentry{locality!in parallel computing|)hyperpage}{131}
-\indexentry{data parallel|hyperpage}{131}
+\indexentry{Non-Uniform Memory Access@\acl {NUMA} (NUMA)|hyperpage}{132}
+\indexentry{switch!leaf|hyperpage}{132}
+\indexentry{locality!in parallel computing|)hyperpage}{132}
+\indexentry{data parallel|hyperpage}{132}
 \indexentry{multi-threading|hyperpage}{132}
 \indexentry{context!switch|hyperpage}{132}
 \indexentry{Multi-Threaded Architecture@\acl {MTA} (MTA)|hyperpage}{132}
-\indexentry{Tera Computer!MTA|hyperpage}{132}
-\indexentry{Cray!XMT|hyperpage}{132}
-\indexentry{co-processor|(hyperindexformat{\textbf}}{132}
-\indexentry{host process|hyperpage}{132}
-\indexentry{SIMD Streaming Extensions@\acl {SSE} (SSE)|hyperpage}{132}
-\indexentry{array processors|hyperpage}{132}
-\indexentry{ICL!DAP|hyperpage}{132}
-\indexentry{Cray Inc.|hyperpage}{132}
-\indexentry{Cray Research|hyperpage}{132}
-\indexentry{SGI|hyperpage}{132}
+\indexentry{Tera Computer!MTA|hyperpage}{133}
+\indexentry{Cray!XMT|hyperpage}{133}
+\indexentry{co-processor|(hyperindexformat{\textbf}}{133}
+\indexentry{host process|hyperpage}{133}
+\indexentry{SIMD Streaming Extensions@\acl {SSE} (SSE)|hyperpage}{133}
+\indexentry{array processors|hyperpage}{133}
+\indexentry{ICL!DAP|hyperpage}{133}
 \indexentry{Intel!Paragon|hyperpage}{133}
 \indexentry{Intel!i860|hyperpage}{133}
 \indexentry{IBM!Roadrunner|hyperpage}{133}
 \indexentry{Cell processor|hyperpage}{133}
-\indexentry{Tianhe-1A|hyperpage}{133}
-\indexentry{NVidia|hyperpage}{133}
-\indexentry{Tianhe-2|hyperpage}{133}
-\indexentry{TACC!Stampede cluster|hyperpage}{133}
-\indexentry{Intel!Xeon Phi|hyperpage}{133}
-\indexentry{CUDA|hyperpage}{133}
-\indexentry{co-processor|)hyperindexformat{\textbf}}{133}
-\indexentry{Intel!Xeon Phi|hyperpage}{133}
-\indexentry{PCI bus|hyperpage}{133}
-\indexentry{Intel!Xeon Phi!bandwidth|hyperpage}{133}
-\indexentry{PCI bus|hyperpage}{133}
-\indexentry{bandwidth!measure in GT/s|hyperpage}{133}
-\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|(hyperpage}{133}
-\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|hyperpage}{133}
-\indexentry{General Purpose Graphics Processing Unit@\acl {GPGPU} (GPGPU)|hyperpage}{133}
+\indexentry{Cray Inc.|hyperpage}{133}
+\indexentry{Cray Research|hyperpage}{133}
+\indexentry{SGI|hyperpage}{133}
 \indexentry{Grape computer|hyperpage}{133}
+\indexentry{Tianhe-1A|hyperpage}{134}
+\indexentry{NVidia|hyperpage}{134}
+\indexentry{Tianhe-2|hyperpage}{134}
+\indexentry{TACC!Stampede cluster|hyperpage}{134}
+\indexentry{Intel!Xeon Phi|hyperpage}{134}
+\indexentry{CUDA|hyperpage}{134}
+\indexentry{co-processor|)hyperindexformat{\textbf}}{134}
+\indexentry{Intel!Xeon Phi|hyperpage}{134}
+\indexentry{PCI bus|hyperpage}{134}
+\indexentry{Intel!Xeon Phi!bandwidth|hyperpage}{134}
+\indexentry{PCI bus|hyperpage}{134}
+\indexentry{bandwidth!measure in GT/s|hyperpage}{134}
+\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|(hyperpage}{134}
+\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|hyperpage}{134}
+\indexentry{General Purpose Graphics Processing Unit@\acl {GPGPU} (GPGPU)|hyperpage}{134}
 \indexentry{data parallelism|hyperpage}{134}
 \indexentry{throughput computing|hyperpage}{134}
-\indexentry{thread!blocks|hyperpage}{134}
-\indexentry{kernel!CUDA|hyperpage}{134}
-\indexentry{Single Instruction Multiple Thread@\acl {SIMT} (SIMT)|hyperpage}{134}
-\indexentry{manycore|hyperpage}{134}
-\indexentry{data parallel|hyperpage}{134}
-\indexentry{CUDA|hyperpage}{134}
-\indexentry{kernel!CUDA|hyperpage}{134}
-\indexentry{grid (CUDA)|hyperpage}{134}
-\indexentry{thread!blocks|hyperpage}{134}
-\indexentry{CUDA|hyperpage}{134}
-\indexentry{context!switch|hyperpage}{135}
-\indexentry{PCI-X bus|hyperpage}{135}
-\indexentry{bandwidth|hyperpage}{135}
+\indexentry{thread!blocks|hyperpage}{135}
+\indexentry{kernel!CUDA|hyperpage}{135}
+\indexentry{Single Instruction Multiple Thread@\acl {SIMT} (SIMT)|hyperpage}{135}
+\indexentry{manycore|hyperpage}{135}
+\indexentry{data parallel|hyperpage}{135}
+\indexentry{CUDA|hyperpage}{135}
+\indexentry{kernel!CUDA|hyperpage}{135}
+\indexentry{grid (CUDA)|hyperpage}{135}
+\indexentry{thread!blocks|hyperpage}{135}
+\indexentry{CUDA|hyperpage}{135}
+\indexentry{context!switch|hyperpage}{136}
+\indexentry{PCI-X bus|hyperpage}{136}
+\indexentry{bandwidth|hyperpage}{136}
 \indexentry{single precision|hyperpage}{136}
 \indexentry{double precision|hyperpage}{136}
 \indexentry{thread|hyperpage}{136}
-\indexentry{data parallel|hyperpage}{136}
-\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|)hyperpage}{136}
-\indexentry{Intel!Xeon Phi|(hyperpage}{136}
-\indexentry{PCI-X|hyperpage}{136}
+\indexentry{data parallel|hyperpage}{137}
+\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|)hyperpage}{137}
+\indexentry{Intel!Xeon Phi|(hyperpage}{137}
+\indexentry{PCI-X|hyperpage}{137}
 \indexentry{Advanced Vector Extensions@\acl {AVX} (AVX)|hyperpage}{137}
 \indexentry{offloading|hyperpage}{137}
 \indexentry{MKL|hyperpage}{137}
 \indexentry{Intel!Xeon Phi|)hyperpage}{137}
-\indexentry{load!balancing|(hyperpage}{137}
-\indexentry{idle|hyperpage}{137}
-\indexentry{load!unbalance|hyperpage}{137}
-\indexentry{owner computes|hyperpage}{137}
+\indexentry{load!balancing|(hyperpage}{138}
+\indexentry{idle|hyperpage}{138}
+\indexentry{load!unbalance|hyperpage}{138}
+\indexentry{owner computes|hyperpage}{138}
 \indexentry{space-filling curve|hyperpage}{138}
-\indexentry{Mandelbrot set|hyperpage}{138}
-\indexentry{load!balancing,static|hyperpage}{138}
-\indexentry{overdecomposition|hyperpage}{138}
-\indexentry{work pool|hyperpage}{138}
-\indexentry{load!balancing, dynamic|hyperpage}{138}
-\indexentry{Brent's theorem|hyperpage}{138}
-\indexentry{matrix!structurally symmetric|hyperpage}{139}
-\indexentry{graph!Laplacian|hyperpage}{139}
-\indexentry{load!rebalancing|hyperpage}{139}
-\indexentry{load!redistributing|hyperpage}{139}
+\indexentry{Mandelbrot set|hyperpage}{139}
+\indexentry{load!balancing,static|hyperpage}{139}
+\indexentry{overdecomposition|hyperpage}{139}
+\indexentry{work pool|hyperpage}{139}
+\indexentry{load!balancing, dynamic|hyperpage}{139}
+\indexentry{Brent's theorem|hyperpage}{139}
+\indexentry{matrix!structurally symmetric|hyperpage}{140}
+\indexentry{graph!Laplacian|hyperpage}{140}
+\indexentry{load!rebalancing|hyperpage}{140}
+\indexentry{load!redistributing|hyperpage}{140}
 \indexentry{space-filling curve|(hyperindexformat{\textbf}}{140}
 \indexentry{random placement|hyperpage}{140}
-\indexentry{load!rebalancing|hyperpage}{140}
-\indexentry{refinement!adaptive|hyperpage}{140}
+\indexentry{load!rebalancing|hyperpage}{141}
+\indexentry{refinement!adaptive|hyperpage}{141}
 \indexentry{load!redistributing|hyperpage}{141}
 \indexentry{space-filling curve|)hyperindexformat{\textbf}}{142}
 \indexentry{load!balancing|)hyperpage}{142}
-\indexentry{cloud computing|(hyperpage}{142}
-\indexentry{distributed computing|(hyperpage}{142}
-\indexentry{remote procedure call|hyperpage}{142}
-\indexentry{Storage Area Network@\acl {SAN} (SAN)|hyperpage}{142}
-\indexentry{High-Performance Computing@\acl {HPC} (HPC)|hyperpage}{142}
-\indexentry{virtualization|hyperpage}{142}
-\indexentry{grid computing|hyperpage}{142}
+\indexentry{cloud computing|(hyperpage}{143}
+\indexentry{distributed computing|(hyperpage}{143}
+\indexentry{remote procedure call|hyperpage}{143}
+\indexentry{Storage Area Network@\acl {SAN} (SAN)|hyperpage}{143}
+\indexentry{High-Performance Computing@\acl {HPC} (HPC)|hyperpage}{143}
+\indexentry{virtualization|hyperpage}{143}
+\indexentry{grid computing|hyperpage}{143}
 \indexentry{utility computing|hyperpage}{143}
 \indexentry{Local Area Network@\acl {LAN} (LAN)|hyperpage}{143}
 \indexentry{Wide Area Network@\acl {WAN} (WAN)|hyperpage}{143}
-\indexentry{Google!Google Docs|hyperpage}{143}
-\indexentry{Software As a Service@\acl {SAS} (SAS)|hyperpage}{143}
-\indexentry{thin client|hyperpage}{143}
-\indexentry{Sun!Ray|hyperpage}{143}
-\indexentry{ebook|hyperpage}{144}
-\indexentry{Apple!iCloud|hyperpage}{144}
 \indexentry{Google!Google Docs|hyperpage}{144}
-\indexentry{cloud computing!service models|hyperpage}{144}
-\indexentry{Google!Google Docs|hyperpage}{144}
-\indexentry{cloud computing|)hyperpage}{145}
-\indexentry{distributed computing|)hyperpage}{145}
-\indexentry{capacity computing|(hyperpage}{145}
-\indexentry{capability computing|(hyperpage}{145}
-\indexentry{capability computing|hyperpage}{145}
-\indexentry{capacity computing|hyperpage}{145}
-\indexentry{scheduling!job|hyperpage}{145}
-\indexentry{scheduling!fair-share|hyperpage}{145}
-\indexentry{SGE|hyperpage}{145}
-\indexentry{Slurm|hyperpage}{145}
-\indexentry{NP-complete|hyperpage}{145}
-\indexentry{capacity computing|)hyperpage}{145}
-\indexentry{capability computing|)hyperpage}{145}
-\indexentry{MapReduce|(hyperpage}{145}
-\indexentry{functional programming|hyperpage}{145}
-\indexentry{Hadoop|hyperpage}{146}
-\indexentry{Hadoop File System@\acl {HDFS} (HDFS)|hyperpage}{146}
-\indexentry{Spark|hyperpage}{146}
+\indexentry{Software As a Service@\acl {SAS} (SAS)|hyperpage}{144}
+\indexentry{thin client|hyperpage}{144}
+\indexentry{Sun!Ray|hyperpage}{144}
+\indexentry{ebook|hyperpage}{145}
+\indexentry{Apple!iCloud|hyperpage}{145}
+\indexentry{Google!Google Docs|hyperpage}{145}
+\indexentry{cloud computing!service models|hyperpage}{145}
+\indexentry{Google!Google Docs|hyperpage}{145}
+\indexentry{cloud computing|)hyperpage}{146}
+\indexentry{distributed computing|)hyperpage}{146}
+\indexentry{capacity computing|(hyperpage}{146}
+\indexentry{capability computing|(hyperpage}{146}
+\indexentry{capability computing|hyperpage}{146}
+\indexentry{capacity computing|hyperpage}{146}
+\indexentry{scheduling!job|hyperpage}{146}
+\indexentry{scheduling!fair-share|hyperpage}{146}
+\indexentry{SGE|hyperpage}{146}
+\indexentry{Slurm|hyperpage}{146}
+\indexentry{NP-complete|hyperpage}{146}
+\indexentry{capacity computing|)hyperpage}{146}
+\indexentry{capability computing|)hyperpage}{146}
+\indexentry{MapReduce|(hyperpage}{146}
+\indexentry{functional programming|hyperpage}{146}
+\indexentry{Hadoop|hyperpage}{147}
+\indexentry{Hadoop File System@\acl {HDFS} (HDFS)|hyperpage}{147}
+\indexentry{Spark|hyperpage}{147}
 \indexentry{functional programming|(hyperpage}{147}
 \indexentry{fault tolerance|hyperpage}{147}
-\indexentry{Lisp|hyperpage}{147}
-\indexentry{side effects|hyperpage}{147}
-\indexentry{functional programming|)hyperpage}{147}
-\indexentry{MapReduce|)hyperpage}{147}
-\indexentry{top 500|(hyperpage}{147}
-\indexentry{Linpack!benchmark|hyperpage}{147}
-\indexentry{Linpack|hyperpage}{147}
-\indexentry{Lapack|hyperpage}{147}
-\indexentry{Scalapack|hyperpage}{147}
+\indexentry{Lisp|hyperpage}{148}
+\indexentry{side effects|hyperpage}{148}
+\indexentry{functional programming|)hyperpage}{148}
+\indexentry{MapReduce|)hyperpage}{148}
+\indexentry{top 500|(hyperpage}{148}
+\indexentry{Linpack!benchmark|hyperpage}{148}
+\indexentry{Linpack|hyperpage}{148}
+\indexentry{Lapack|hyperpage}{148}
+\indexentry{Scalapack|hyperpage}{148}
 \indexentry{compute-bound|hyperpage}{148}
-\indexentry{bandwidth bound algorithm|hyperpage}{148}
+\indexentry{bandwidth bound algorithm|hyperpage}{149}
 \indexentry{Earth Simulator|hyperpage}{149}
 \indexentry{x86|hyperpage}{149}
 \indexentry{Intel|hyperpage}{149}
 \indexentry{AMD|hyperpage}{149}
 \indexentry{Intel!Itanium|hyperpage}{149}
-\indexentry{Connection Machine|hyperpage}{149}
-\indexentry{IBM!BlueGene|hyperpage}{149}
-\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|hyperpage}{149}
-\indexentry{x86|hyperpage}{149}
-\indexentry{IBM!BlueGene|hyperpage}{149}
-\indexentry{socket|hyperpage}{149}
+\indexentry{Connection Machine|hyperpage}{150}
+\indexentry{IBM!BlueGene|hyperpage}{150}
+\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|hyperpage}{150}
+\indexentry{x86|hyperpage}{150}
+\indexentry{IBM!BlueGene|hyperpage}{150}
+\indexentry{socket|hyperpage}{150}
 \indexentry{top 500|)hyperpage}{150}
-\indexentry{heterogeneous computing|(hyperpage}{150}
-\indexentry{co-processor|hyperpage}{150}
-\indexentry{host processor|hyperpage}{150}
-\indexentry{CUDA|hyperpage}{150}
-\indexentry{Intel!MIC|hyperpage}{150}
-\indexentry{heterogeneous computing|)hyperpage}{150}
-\indexentry{arithmetic!computer|hyperindexformat{\see{floating point arithmetic}}}{151}
-\indexentry{floating point arithmetic|(hyperindexformat{\textbf}}{151}
-\indexentry{bytes|hyperpage}{151}
-\indexentry{bits|hyperpage}{151}
-\indexentry{real numbers!representation of|hyperpage}{151}
-\indexentry{arithmetic!finite precision|hyperpage}{151}
-\indexentry{sign bit|hyperpage}{152}
-\indexentry{unsigned|hyperpage}{152}
-\indexentry{2's complement|hyperpage}{152}
-\indexentry{overflow|hyperpage}{153}
-\indexentry{overflow bit|hyperpage}{153}
-\indexentry{floating point numbers!representation|(hyperpage}{154}
-\indexentry{significant|hyperpage}{154}
-\indexentry{exponent|hyperpage}{154}
-\indexentry{radix point|hyperpage}{154}
-\indexentry{base|hyperpage}{154}
-\indexentry{sign bit|hyperpage}{154}
-\indexentry{mantissa|hyperpage}{154}
-\indexentry{significant|hyperpage}{154}
-\indexentry{excess|hyperpage}{154}
-\indexentry{IBM|hyperpage}{154}
+\indexentry{heterogeneous computing|(hyperpage}{151}
+\indexentry{co-processor|hyperpage}{151}
+\indexentry{host processor|hyperpage}{151}
+\indexentry{CUDA|hyperpage}{151}
+\indexentry{Intel!MIC|hyperpage}{151}
+\indexentry{heterogeneous computing|)hyperpage}{151}
+\indexentry{arithmetic!computer|hyperindexformat{\see{floating point arithmetic}}}{152}
+\indexentry{floating point arithmetic|(hyperindexformat{\textbf}}{152}
+\indexentry{bytes|hyperpage}{152}
+\indexentry{bits|hyperpage}{152}
+\indexentry{real numbers!representation of|hyperpage}{152}
+\indexentry{arithmetic!finite precision|hyperpage}{152}
+\indexentry{sign bit|hyperpage}{153}
+\indexentry{unsigned|hyperpage}{153}
+\indexentry{2's complement|hyperpage}{153}
+\indexentry{overflow|hyperpage}{154}
+\indexentry{overflow bit|hyperpage}{154}
+\indexentry{floating point numbers!representation|(hyperpage}{155}
+\indexentry{significant|hyperpage}{155}
+\indexentry{exponent|hyperpage}{155}
+\indexentry{radix point|hyperpage}{155}
+\indexentry{base|hyperpage}{155}
+\indexentry{sign bit|hyperpage}{155}
 \indexentry{mantissa|hyperpage}{155}
-\indexentry{binary-coded-decimal|hyperpage}{155}
+\indexentry{significant|hyperpage}{155}
+\indexentry{excess|hyperpage}{155}
 \indexentry{IBM|hyperpage}{155}
-\indexentry{IBM!Power6|hyperpage}{155}
-\indexentry{ternary arithmetic|hyperpage}{155}
-\indexentry{floating point numbers!representation|)hyperpage}{155}
-\indexentry{overflow|hyperindexformat{\textbf}}{155}
-\indexentry{underflow|hyperindexformat{\textbf}}{155}
-\indexentry{underflow!gradual|hyperpage}{155}
-\indexentry{floating point numbers!normalized|hyperpage}{156}
 \indexentry{mantissa|hyperpage}{156}
-\indexentry{denormal|hyperindexformat{\see{floating point numbers, unnormalized}}}{156}
-\indexentry{floating point numbers!unnormalized|hyperpage}{156}
-\indexentry{underflow!gradual|hyperpage}{156}
+\indexentry{binary-coded-decimal|hyperpage}{156}
 \indexentry{IBM|hyperpage}{156}
-\indexentry{rounding|hyperpage}{156}
-\indexentry{truncation|hyperpage}{156}
-\indexentry{mantissa|hyperpage}{156}
-\indexentry{mantissa|hyperpage}{156}
-\indexentry{representation error!absolute|hyperpage}{156}
-\indexentry{representation error!relative|hyperpage}{156}
-\indexentry{precision!machine|hyperindexformat{\see{machine precision}}}{157}
-\indexentry{machine precision|hyperpage}{157}
-\indexentry{machine   epsilon|hyperindexformat{\see{machine precision}}}{157}
-\indexentry{compiler!optimization levels|hyperpage}{157}
-\indexentry{precision!single|hyperindexformat{\see{single precision}}}{157}
-\indexentry{precision!double|hyperindexformat{\see{double precision}}}{157}
+\indexentry{IBM!Power6|hyperpage}{156}
+\indexentry{ternary arithmetic|hyperpage}{156}
+\indexentry{floating point numbers!representation|)hyperpage}{156}
+\indexentry{overflow|hyperindexformat{\textbf}}{156}
+\indexentry{underflow|hyperindexformat{\textbf}}{156}
+\indexentry{underflow!gradual|hyperpage}{156}
+\indexentry{Inf|hyperindexformat{\texttt}}{156}
+\indexentry{NaN|hyperindexformat{\texttt}}{156}
+\indexentry{interrupt|hyperpage}{157}
+\indexentry{floating point numbers!normalized|hyperpage}{157}
 \indexentry{mantissa|hyperpage}{157}
+\indexentry{denormal|hyperindexformat{\see{floating point numbers, unnormalized}}}{157}
+\indexentry{floating point numbers!unnormalized|hyperpage}{157}
+\indexentry{underflow!gradual|hyperpage}{157}
+\indexentry{IBM|hyperpage}{157}
+\indexentry{rounding|hyperpage}{157}
+\indexentry{truncation|hyperpage}{157}
 \indexentry{mantissa|hyperpage}{158}
-\indexentry{rounding!correct|hyperpage}{158}
-\indexentry{NVidia!Tesla|hyperpage}{159}
-\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|hyperpage}{159}
-\indexentry{Lattice Boltzmann Method@\aclp {LBM} (LBM)|hyperpage}{159}
-\indexentry{round-off error analysis|(hyperpage}{159}
-\indexentry{round-off error analysis|hyperpage}{159}
-\indexentry{correct rounding|hyperpage}{159}
-\indexentry{guard digit|hyperindexformat{\textbf}}{159}
-\indexentry{Fused Multiply-Add@\acl {FMA} (FMA)|hyperpage}{160}
-\indexentry{precision!extended|hyperindexformat{\see{extended precision}}}{160}
-\indexentry{extended precision|hyperpage}{160}
-\indexentry{precision!of the intermediate result|hyperpage}{160}
-\indexentry{mantissa|hyperpage}{160}
-\indexentry{mantissa|hyperpage}{161}
-\indexentry{associativity!of mathematical operations|hyperpage}{161}
-\indexentry{significant digits|hyperpage}{161}
-\indexentry{guard digit|hyperpage}{162}
-\indexentry{condition number|hyperpage}{165}
-\indexentry{backwards stability|hyperpage}{165}
-\indexentry{round-off error analysis!in parallel computing|(hyperpage}{165}
-\indexentry{floating point   arithmetic!associativity of|hyperpage}{165}
-\indexentry{gather|hyperpage}{165}
-\indexentry{round-off error analysis!in parallel computing|)hyperpage}{165}
-\indexentry{round-off error analysis|)hyperpage}{165}
-\indexentry{compiler!optimization!vs round-off|(hyperpage}{166}
-\indexentry{value safety|hyperpage}{166}
-\indexentry{reproducibility|hyperpage}{166}
-\indexentry{reproducibility!bitwise|hyperpage}{166}
-\indexentry{re-association|(hyperpage}{166}
-\indexentry{C!language standard|hyperpage}{166}
-\indexentry{C++!language standard|hyperpage}{166}
-\indexentry{Fortran!language standard|hyperpage}{166}
-\indexentry{loop unrolling|hyperpage}{166}
-\indexentry{re-association|)hyperpage}{166}
-\indexentry{precision!of the intermediate result|hyperpage}{166}
-\indexentry{underflow!gradual|hyperpage}{167}
-\indexentry{compiler!optimization!vs round-off|)hyperpage}{167}
-\indexentry{Fortran!declarations in|hyperpage}{167}
-\indexentry{compiler!flags|hyperpage}{167}
-\indexentry{extended precision|hyperpage}{167}
-\indexentry{extended precision|hyperindexformat{\textbf}}{168}
-\indexentry{Intel!80287 co-processor|hyperpage}{168}
-\indexentry{Fused Multiply-Add@\acl {FMA} (FMA)|hyperpage}{168}
-\indexentry{floating point arithmetic|)hyperindexformat{\textbf}}{169}
-\indexentry{Ordinary Diffential Equation@\acl {ODE} (ODE)|(hyperpage}{170}
-\indexentry{Initial Value Problem@\acl {IVP} (IVP)|(hyperpage}{170}
-\indexentry{Euler!explicit|(hyperpage}{172}
-\indexentry{Euler!forward|hyperindexformat{\see{Euler!explicit}}}{172}
-\indexentry{Taylor series|hyperpage}{172}
-\indexentry{finite difference|hyperpage}{173}
-\indexentry{discretization|hyperpage}{173}
-\indexentry{truncation error|hyperpage}{173}
-\indexentry{conditionally stable|hyperpage}{174}
-\indexentry{Euler!explicit|)hyperpage}{174}
-\indexentry{Euler!implicit|(hyperpage}{174}
-\indexentry{Euler!backward|hyperindexformat{\see{Euler!implicit}}}{174}
-\indexentry{unconditionally stable|hyperpage}{175}
-\indexentry{steady state|hyperpage}{175}
-\indexentry{Ordinary Diffential Equation@\acl {ODE} (ODE)|)hyperpage}{176}
-\indexentry{Initial Value Problem@\acl {IVP} (IVP)|)hyperpage}{176}
-\indexentry{Euler!implicit|)hyperpage}{176}
-\indexentry{Partial Diffential Equation@\acl {PDE} (PDE)|(hyperpage}{177}
-\indexentry{Boundary Value Problem@\acl {BVP} (BVP)|(hyperpage}{177}
-\indexentry{region of influence|hyperpage}{177}
-\indexentry{Hyperbolic PDEs|hyperpage}{177}
-\indexentry{Parabolic PDEs|hyperpage}{177}
+\indexentry{mantissa|hyperpage}{158}
+\indexentry{representation error!absolute|hyperpage}{158}
+\indexentry{representation error!relative|hyperpage}{158}
+\indexentry{precision!machine|hyperindexformat{\see{machine precision}}}{158}
+\indexentry{machine precision|hyperpage}{158}
+\indexentry{machine   epsilon|hyperindexformat{\see{machine precision}}}{158}
+\indexentry{compiler!optimization levels|hyperpage}{159}
+\indexentry{precision!single|hyperindexformat{\see{single precision}}}{159}
+\indexentry{precision!double|hyperindexformat{\see{double precision}}}{159}
+\indexentry{mantissa|hyperpage}{159}
+\indexentry{mantissa|hyperpage}{159}
+\indexentry{rounding!correct|hyperpage}{159}
+\indexentry{NVidia!Tesla|hyperpage}{160}
+\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|hyperpage}{160}
+\indexentry{Lattice Boltzmann Method@\aclp {LBM} (LBM)|hyperpage}{160}
+\indexentry{fenv.h|hyperindexformat{\texttt}}{160}
+\indexentry{round-off error analysis|(hyperpage}{161}
+\indexentry{round-off error analysis|hyperpage}{161}
+\indexentry{correct rounding|hyperpage}{161}
+\indexentry{guard digit|hyperindexformat{\textbf}}{161}
+\indexentry{Fused Multiply-Add@\acl {FMA} (FMA)|hyperpage}{162}
+\indexentry{precision!extended|hyperindexformat{\see{extended precision}}}{162}
+\indexentry{extended precision|hyperpage}{162}
+\indexentry{precision!of the intermediate result|hyperpage}{162}
+\indexentry{mantissa|hyperpage}{162}
+\indexentry{mantissa|hyperpage}{163}
+\indexentry{associativity!of mathematical operations|hyperpage}{163}
+\indexentry{guard digit|hyperpage}{163}
+\indexentry{significant digits|hyperpage}{163}
+\indexentry{condition number|hyperpage}{167}
+\indexentry{backwards stability|hyperpage}{167}
+\indexentry{round-off error analysis!in parallel computing|(hyperpage}{167}
+\indexentry{floating point   arithmetic!associativity of|hyperpage}{167}
+\indexentry{gather|hyperpage}{167}
+\indexentry{round-off error analysis!in parallel computing|)hyperpage}{167}
+\indexentry{round-off error analysis|)hyperpage}{167}
+\indexentry{compiler!optimization!vs round-off|(hyperpage}{168}
+\indexentry{value safety|hyperpage}{168}
+\indexentry{reproducibility|hyperpage}{168}
+\indexentry{reproducibility!bitwise|hyperpage}{168}
+\indexentry{re-association|(hyperpage}{168}
+\indexentry{C!language standard|hyperpage}{168}
+\indexentry{C++!language standard|hyperpage}{168}
+\indexentry{Fortran!language standard|hyperpage}{168}
+\indexentry{loop unrolling|hyperpage}{168}
+\indexentry{re-association|)hyperpage}{168}
+\indexentry{precision!of the intermediate result|hyperpage}{168}
+\indexentry{underflow!gradual|hyperpage}{169}
+\indexentry{compiler!optimization!vs round-off|)hyperpage}{169}
+\indexentry{Fortran!declarations in|hyperpage}{169}
+\indexentry{compiler!flags|hyperpage}{169}
+\indexentry{extended precision|hyperpage}{169}
+\indexentry{extended precision|hyperindexformat{\textbf}}{170}
+\indexentry{Intel!80287 co-processor|hyperpage}{170}
+\indexentry{Fused Multiply-Add@\acl {FMA} (FMA)|hyperpage}{170}
+\indexentry{floating point arithmetic|)hyperindexformat{\textbf}}{171}
+\indexentry{Ordinary Diffential Equation@\acl {ODE} (ODE)|(hyperpage}{172}
+\indexentry{Initial Value Problem@\acl {IVP} (IVP)|(hyperpage}{172}
+\indexentry{Euler!explicit|(hyperpage}{174}
+\indexentry{Euler!forward|hyperindexformat{\see{Euler!explicit}}}{174}
+\indexentry{Taylor series|hyperpage}{174}
+\indexentry{finite difference|hyperpage}{175}
+\indexentry{discretization|hyperpage}{175}
+\indexentry{truncation error|hyperpage}{175}
+\indexentry{conditionally stable|hyperpage}{176}
+\indexentry{Euler!explicit|)hyperpage}{176}
+\indexentry{Euler!implicit|(hyperpage}{176}
+\indexentry{Euler!backward|hyperindexformat{\see{Euler!implicit}}}{176}
+\indexentry{unconditionally stable|hyperpage}{177}
 \indexentry{steady state|hyperpage}{177}
-\indexentry{heat equation|hyperpage}{177}
-\indexentry{Dirichlet boundary condition|hyperpage}{177}
-\indexentry{Initial Boundary Value Problem@\aclp {IBVP} (IBVP)|hyperpage}{177}
-\indexentry{Courant-Friedrichs-Lewy condition|hyperpage}{177}
-\indexentry{Elliptic PDEs|hyperpage}{178}
-\indexentry{steady state|hyperpage}{178}
-\indexentry{Poisson equation|hyperpage}{178}
-\indexentry{differential operator|hyperindexformat{\textbf}}{178}
-\indexentry{Poisson equation|hyperpage}{178}
-\indexentry{truncation error|hyperpage}{179}
-\indexentry{Finite Difference Method@\acl {FDM} (FDM)|hyperpage}{179}
+\indexentry{Ordinary Diffential Equation@\acl {ODE} (ODE)|)hyperpage}{178}
+\indexentry{Initial Value Problem@\acl {IVP} (IVP)|)hyperpage}{178}
+\indexentry{Euler!implicit|)hyperpage}{178}
+\indexentry{Partial Diffential Equation@\acl {PDE} (PDE)|(hyperpage}{179}
+\indexentry{Boundary Value Problem@\acl {BVP} (BVP)|(hyperpage}{179}
+\indexentry{region of influence|hyperpage}{179}
+\indexentry{Hyperbolic PDEs|hyperpage}{179}
+\indexentry{Parabolic PDEs|hyperpage}{179}
+\indexentry{steady state|hyperpage}{179}
+\indexentry{heat equation|hyperpage}{179}
 \indexentry{Dirichlet boundary condition|hyperpage}{179}
-\indexentry{Neumann boundary condition|hyperpage}{179}
-\indexentry{sparse!matrix|hyperpage}{180}
-\indexentry{banded matrix|hyperpage}{180}
-\indexentry{tridiagonal matrix|hyperpage}{180}
-\indexentry{M-matrix|hyperpage}{180}
-\indexentry{lexicographic ordering|hyperpage}{181}
-\indexentry{sparse!matrix!from PDEs|hyperpage}{181}
-\indexentry{penta-diagonal|hyperpage}{182}
-\indexentry{block matrix|hyperpage}{182}
-\indexentry{tridiagonal|hyperpage}{182}
-\indexentry{block tridiagonal|hyperpage}{182}
-\indexentry{natural ordering|hyperpage}{182}
-\indexentry{lexicographic ordering|hyperpage}{182}
-\indexentry{red-black ordering|hyperpage}{182}
-\indexentry{checkerboard ordering|hyperpage}{182}
-\indexentry{difference stencil|hyperindexformat{\textbf}}{183}
-\indexentry{Finite Element Method@\acl {FEM} (FEM)|hyperpage}{184}
-\indexentry{finite volume method|hyperpage}{184}
-\indexentry{Boundary Value Problem@\acl {BVP} (BVP)|)hyperpage}{184}
-\indexentry{Initial Boundary Value Problem@\acl {IBVP} (IBVP)|(hyperpage}{184}
-\indexentry{heat equation|hyperpage}{184}
-\indexentry{steady state|hyperpage}{185}
-\indexentry{Crank-Nicolson method|hyperpage}{188}
-\indexentry{Partial Diffential Equation@\acl {PDE} (PDE)|)hyperpage}{188}
-\indexentry{Initial Boundary Value Problem@\acl {IBVP} (IBVP)|)hyperpage}{188}
-\indexentry{Cramer's rule|hyperpage}{190}
-\indexentry{pivots|hyperpage}{191}
-\indexentry{pivoting|hyperpage}{191}
-\indexentry{pivoting|(hyperpage}{192}
-\indexentry{partial pivoting|hyperpage}{193}
-\indexentry{pivoting!partial|hyperpage}{193}
-\indexentry{pivoting!full|hyperpage}{193}
-\indexentry{pivoting!diagonal|hyperpage}{193}
-\indexentry{pivoting|)hyperpage}{193}
-\indexentry{factorization|hyperindexformat{\see{LU factorization}}}{194}
-\indexentry{LU factorization|(hyperindexformat{\textbf}}{194}
-\indexentry{Householder reflectors!in LU factorization|hyperpage}{195}
-\indexentry{Cholesky factorization|(hyperpage}{196}
-\indexentry{Cholesky factorization|)hyperpage}{196}
-\indexentry{pivoting|(hyperpage}{198}
-\indexentry{diagonal dominance|hyperpage}{199}
-\indexentry{symmetric positive definite@\acl {SPD} (SPD)|hyperpage}{199}
-\indexentry{pivoting|)hyperpage}{199}
-\indexentry{complexity!computational|(hyperpage}{200}
-\indexentry{complexity!computational|)hyperpage}{201}
-\indexentry{cache!blocking|hyperpage}{201}
-\indexentry{multicore|hyperpage}{201}
-\indexentry{LU factorization|)hyperindexformat{\textbf}}{202}
-\indexentry{linear algebra!sparse|hyperindexformat{\see{sparse!linear algebra}}}{202}
-\indexentry{sparse!linear algebra|(hyperpage}{202}
-\indexentry{matrix!storage, sparse|(hyperpage}{203}
-\indexentry{sparse!matrix|hyperpage}{203}
-\indexentry{diagonal storage|(hyperpage}{203}
-\indexentry{banded matrix!storage|(hyperpage}{203}
-\indexentry{storage by diagonals|hyperpage}{203}
-\indexentry{bandwidth!of a matrix|hyperpage}{203}
-\indexentry{bandwidth!of a   matrix|hyperindexformat{\see{halfbandwidth}}}{203}
-\indexentry{halfbandwidth!left|hyperpage}{204}
-\indexentry{halfbandwidth!right|hyperpage}{204}
-\indexentry{banded matrix!storage|)hyperpage}{204}
-\indexentry{diagonal storage|)hyperpage}{204}
-\indexentry{diagonal storage|)hyperpage}{205}
-\indexentry{Compressed Row Storage@\acl {CRS} (CRS)|(hyperpage}{205}
-\indexentry{Compressed Column Storage@\acl {CCS} (CCS)|hyperpage}{206}
-\indexentry{Harwell-Boeing matrix format|hyperpage}{206}
-\indexentry{coordinate storage|hyperpage}{206}
-\indexentry{Matrix Market|hyperpage}{206}
-\indexentry{Matrix Market!matrix format|hyperpage}{206}
-\indexentry{sparse!matrix-vector product!implementation|hyperpage}{206}
-\indexentry{indirect addressing|hyperpage}{206}
-\indexentry{sparse!matrix-vector product!locality in|hyperpage}{207}
-\indexentry{Compressed Row Storage@\acl {CRS} (CRS)|)hyperpage}{207}
-\indexentry{matrix!storage, sparse|)hyperpage}{207}
-\indexentry{adjacency graph|hyperpage}{207}
-\indexentry{graph!undirected|hyperpage}{208}
-\indexentry{matrix!structurally symmetric|hyperindexformat{\textbf}}{208}
-\indexentry{reducible|hyperpage}{208}
-\indexentry{fill-in|hyperpage}{209}
-\indexentry{fill-in|(hyperpage}{210}
-\indexentry{fill locations|hyperpage}{210}
-\indexentry{complexity!space|(hyperpage}{211}
-\indexentry{fill-in!estimates|(hyperpage}{211}
-\indexentry{complexity!space|hyperpage}{211}
-\indexentry{halfbandwidth|hyperpage}{211}
-\indexentry{skyline storage|hyperpage}{211}
-\indexentry{complexity!space|)hyperpage}{212}
-\indexentry{fill-in!estimates|)hyperpage}{212}
-\indexentry{fill-in!reduction|(hyperpage}{212}
-\indexentry{permutation|hyperpage}{212}
-\indexentry{unitary basis transformations|hyperpage}{213}
-\indexentry{nested dissection|hyperpage}{213}
-\indexentry{Cuthill-McKee ordering|(hyperpage}{213}
-\indexentry{level sets|hyperpage}{213}
-\indexentry{graph!adjacency|hyperpage}{213}
-\indexentry{block tridiagonal|hyperpage}{213}
-\indexentry{Cuthill-McKee ordering|)hyperpage}{213}
-\indexentry{minimum degree ordering|hyperpage}{214}
-\indexentry{fill-in!reduction|)hyperpage}{214}
-\indexentry{fill-in|)hyperpage}{214}
-\indexentry{sparse!linear algebra|)hyperpage}{214}
-\indexentry{iterative methods|(hyperpage}{214}
-\indexentry{Krylov methods|(hyperpage}{214}
-\indexentry{residual|hyperpage}{215}
-\indexentry{residual|hyperpage}{215}
-\indexentry{stationary iteration|hyperpage}{216}
-\indexentry{Jacobi method|hyperpage}{217}
-\indexentry{Gauss-Seidel|hyperpage}{218}
-\indexentry{Successive Over-Relaxation@\acl {SOR} (SOR)|hyperpage}{218}
-\indexentry{preconditioner|(hyperpage}{219}
-\indexentry{iterative refinement|hyperpage}{219}
-\indexentry{separable problem|hyperpage}{220}
-\indexentry{fast solvers|hyperpage}{220}
-\indexentry{Incomplete LU@\acl {ILU} (ILU)|hyperpage}{220}
-\indexentry{M-matrix|hyperpage}{220}
-\indexentry{Newton method|hyperpage}{221}
-\indexentry{preconditioner|)hyperpage}{221}
-\indexentry{Cayley-Hamilton theorem|hyperpage}{222}
-\indexentry{characteristic polynomial|hyperpage}{222}
-\indexentry{Hessenberg matrix|hyperpage}{225}
-\indexentry{multigrid|hyperpage}{225}
-\indexentry{smoothers|hyperpage}{225}
-\indexentry{symmetric positive definite@\acl {SPD} (SPD)|hyperpage}{225}
-\indexentry{Full Orthogonalization Method@\acl {FOM} (FOM)|hyperpage}{226}
-\indexentry{Gram-Schmidt|hyperpage}{226}
-\indexentry{Gram-Schmidt!modified|hyperpage}{226}
-\indexentry{search direction|hyperpage}{227}
-\indexentry{@\acl {CG|(} (CG|(hyperindexformat{\)}}{227}
-\indexentry{Conjugate Gradients@\acl {CG} (CG)|)}{229}
-\indexentry{symmetric positive definite@\acl {SPD} (SPD)|hyperpage}{230}
-\indexentry{search direction|hyperpage}{230}
-\indexentry{symmetric positive definite@\acl {SPD} (SPD)|hyperpage}{231}
-\indexentry{Generalized Minimum Residual@\acl {GMRES} (GMRES)|hyperpage}{231}
-\indexentry{complexity!of iterative methods|(hyperpage}{231}
-\indexentry{complexity!of iterative methods|)hyperpage}{231}
-\indexentry{iterative methods|)hyperpage}{231}
-\indexentry{Krylov methods|)hyperpage}{231}
-\indexentry{collective communication|(hyperpage}{232}
-\indexentry{collective operation|(hyperpage}{232}
-\indexentry{3@$\alpha$|hyperindexformat{\see{latency}}}{232}
-\indexentry{3@$\beta$|hyperindexformat{\see{bandwidth}}}{232}
-\indexentry{3@$\gamma$|hyperindexformat{\see{computation rate}}}{232}
-\indexentry{latency|hyperpage}{232}
-\indexentry{bandwidth|hyperpage}{232}
-\indexentry{computation rate|hyperpage}{232}
-\indexentry{minimum!spanning tree|hyperpage}{232}
-\indexentry{broadcast|(hyperpage}{232}
-\indexentry{collective operation!short vector|hyperpage}{233}
-\indexentry{bucket brigade algorithm|hyperpage}{233}
-\indexentry{collective operation!long vector|hyperpage}{233}
-\indexentry{broadcast|)hyperpage}{233}
-\indexentry{reduction|(hyperpage}{233}
-\indexentry{reduction|)hyperpage}{234}
-\indexentry{allreduce|(hyperpage}{234}
-\indexentry{allreduce|)hyperpage}{234}
-\indexentry{allgather|(hyperpage}{234}
-\indexentry{gather|hyperpage}{234}
-\indexentry{allgather|)hyperpage}{235}
-\indexentry{reduce-scatter|(hyperpage}{235}
-\indexentry{reduce-scatter|hyperpage}{235}
-\indexentry{bidirectional exchange|hyperpage}{235}
-\indexentry{reduce-scatter|)hyperpage}{235}
-\indexentry{collective communication|)hyperpage}{235}
-\indexentry{collective operation|)hyperpage}{235}
-\indexentry{Dense linear algebra|(hyperpage}{235}
-\indexentry{data decomposition|hyperpage}{236}
-\indexentry{buffering|hyperpage}{237}
-\indexentry{allgather|hyperpage}{239}
-\indexentry{scalability!strong|hyperpage}{240}
-\indexentry{scalability!weak|hyperpage}{240}
-\indexentry{reduce-scatter|hyperpage}{242}
-\indexentry{allgather|hyperpage}{243}
-\indexentry{reduce-scatter|hyperpage}{243}
-\indexentry{LU factorization!solution in parallel|(hyperpage}{245}
-\indexentry{LU factorization!solution in parallel|)hyperpage}{246}
-\indexentry{LU factorization!computation in parallel|(hyperpage}{246}
-\indexentry{matrix!storage, dense|(hyperpage}{246}
-\indexentry{overdecomposition|hyperpage}{246}
-\indexentry{cyclic distribution|hyperpage}{247}
-\indexentry{matrix!storage, dense|)hyperpage}{247}
-\indexentry{LU factorization!computation in parallel|)hyperpage}{247}
-\indexentry{Cannon's algorithm|hyperindexformat{\see{matrix-matrix product, Cannon's algorithm}}}{247}
-\indexentry{matrix-matrix product|hyperpage}{247}
-\indexentry{matrix-matrix product!Cannon's algorithm for|hyperpage}{248}
-\indexentry{Dense linear algebra|)hyperpage}{248}
-\indexentry{matrix-vector product!sparse|hyperindexformat{\see{sparse, matrix-vector product}}}{249}
-\indexentry{block matrix|hyperpage}{249}
-\indexentry{matrix!tesselation|hyperpage}{249}
-\indexentry{Cray|hyperpage}{249}
-\indexentry{diagonal storage|hyperpage}{250}
-\indexentry{sparse!matrix-vector product!parallel|(hyperpage}{250}
-\indexentry{ghost region|hyperpage}{251}
-\indexentry{Boundary Element Method@\acl {BEM} (BEM)|hyperpage}{253}
-\indexentry{Google|hyperpage}{253}
-\indexentry{PageRank|hyperpage}{253}
-\indexentry{Compressed Row Storage@\acl {CRS} (CRS)|hyperpage}{253}
-\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|hyperpage}{254}
-\indexentry{sparse!matrix-vector product!parallel setup|(hyperpage}{255}
-\indexentry{matrix!structurally symmetric|hyperpage}{255}
-\indexentry{reduce-scatter|hyperpage}{255}
-\indexentry{sparse!matrix-vector product!parallel setup|)hyperpage}{255}
-\indexentry{sparse!matrix-vector product!parallel|)hyperpage}{255}
-\indexentry{inner products|(hyperpage}{256}
-\indexentry{inner products|)hyperpage}{257}
-\indexentry{Finite Element Method@\acl {FEM} (FEM)|hyperpage}{257}
-\indexentry{bandwidth-bound|hyperpage}{258}
-\indexentry{iterative methods!floating point performance of|hyperpage}{258}
-\indexentry{direct methods!for linear systems|hyperpage}{258}
-\indexentry{sparse!matrix-vector product!performance of|hyperpage}{258}
-\indexentry{Compressed Row Storage (CRS)!performance of the   matrix-vector product|hyperpage}{258}
-\indexentry{block Jacobi|(hyperpage}{260}
-\indexentry{block Jacobi|hyperpage}{260}
-\indexentry{local solve|hyperpage}{260}
-\indexentry{block Jacobi|)hyperpage}{260}
-\indexentry{Incomplete LU (ILU)!parallel|(hyperpage}{261}
-\indexentry{graph!colouring|hyperpage}{261}
-\indexentry{Incomplete LU (ILU)!parallel|)hyperpage}{261}
-\indexentry{nested dissection|(hyperpage}{263}
-\indexentry{lexicographic ordering|hyperpage}{263}
-\indexentry{separator|hyperpage}{263}
-\indexentry{subdomain|hyperpage}{263}
-\indexentry{domain decomposition|hyperpage}{264}
-\indexentry{substructuring|hyperpage}{264}
-\indexentry{block matrix|hyperpage}{269}
-\indexentry{nested dissection|)hyperpage}{269}
-\indexentry{red-black ordering|(hyperpage}{269}
-\indexentry{colouring|hyperpage}{270}
-\indexentry{graph!colouring|hyperpage}{271}
-\indexentry{multi-colouring|hyperpage}{271}
-\indexentry{colour number|hyperpage}{271}
-\indexentry{red-black ordering|)hyperpage}{271}
-\indexentry{recursive doubling|hyperpage}{272}
-\indexentry{block tridiagonal|hyperpage}{272}
-\indexentry{fill-in|hyperpage}{272}
-\indexentry{wavefront|(hyperpage}{273}
-\indexentry{Cuthill-McKee ordering|hyperpage}{274}
-\indexentry{wavefront|)hyperpage}{274}
-\indexentry{recursive doubling|(hyperpage}{274}
-\indexentry{prefix operation|hyperpage}{276}
-\indexentry{recursive doubling|)hyperpage}{276}
-\indexentry{block Jacobi|hyperpage}{276}
-\indexentry{matrix!strictly upper triangular|hyperpage}{276}
-\indexentry{matrix!unit upper triangular|hyperpage}{276}
-\indexentry{Horner's rule|hyperpage}{277}
-\indexentry{ghost region|hyperpage}{278}
-\indexentry{ghost region|hyperpage}{279}
-\indexentry{redundant computation|hyperpage}{279}
-\indexentry{communication!overlapping computation with|hyperpage}{280}
-\indexentry{Conjugate Gradients@\acl {CG} (CG)|hyperpage}{280}
-\indexentry{multicore|hyperpage}{281}
-\indexentry{Cholesky factorization|hyperpage}{281}
-\indexentry{control flow|hyperpage}{282}
-\indexentry{data flow|hyperpage}{282}
-\indexentry{partial ordering|hyperpage}{282}
-\indexentry{Directed Acyclic Graph@\acl {DAG} (DAG)|hyperpage}{282}
-\indexentry{sequential consistency|hyperpage}{282}
-\indexentry{critical path|hyperpage}{283}
-\indexentry{cache!coherence|hyperpage}{283}
-\indexentry{sorting|(hyperpage}{304}
-\indexentry{Adaptive Mesh Refinement@\acl {AMR} (AMR)|hyperpage}{304}
-\indexentry{Quicksort|hyperpage}{304}
-\indexentry{bubble sort|hyperpage}{305}
-\indexentry{sorting!network|hyperpage}{305}
-\indexentry{compare-and-swap|hyperpage}{305}
-\indexentry{Bitonic sort|hyperpage}{305}
-\indexentry{sequential complexity|hyperpage}{305}
-\indexentry{odd-even transposition sort|hyperpage}{305}
-\indexentry{odd-even transposition sort|(hyperindexformat{\textbf}}{305}
-\indexentry{odd-even transposition sort|)hyperindexformat{\textbf}}{305}
-\indexentry{Quicksort|(hyperpage}{306}
-\indexentry{prefix operation|hyperpage}{307}
-\indexentry{Quicksort|)hyperpage}{308}
-\indexentry{bitonic sort|(hyperindexformat{\textbf}}{308}
-\indexentry{bitonic sequence|hyperpage}{308}
-\indexentry{bitonic sort!sequential complexity of|hyperpage}{309}
+\indexentry{Initial Boundary Value Problem@\aclp {IBVP} (IBVP)|hyperpage}{179}
+\indexentry{Courant-Friedrichs-Lewy condition|hyperpage}{179}
+\indexentry{Elliptic PDEs|hyperpage}{180}
+\indexentry{steady state|hyperpage}{180}
+\indexentry{Poisson equation|hyperpage}{180}
+\indexentry{differential operator|hyperindexformat{\textbf}}{180}
+\indexentry{Poisson equation|hyperpage}{180}
+\indexentry{truncation error|hyperpage}{181}
+\indexentry{Finite Difference Method@\acl {FDM} (FDM)|hyperpage}{181}
+\indexentry{Dirichlet boundary condition|hyperpage}{181}
+\indexentry{Neumann boundary condition|hyperpage}{181}
+\indexentry{sparse!matrix|hyperpage}{182}
+\indexentry{banded matrix|hyperpage}{182}
+\indexentry{tridiagonal matrix|hyperpage}{182}
+\indexentry{M-matrix|hyperpage}{182}
+\indexentry{lexicographic ordering|hyperpage}{183}
+\indexentry{sparse!matrix!from PDEs|hyperpage}{183}
+\indexentry{penta-diagonal|hyperpage}{184}
+\indexentry{block matrix|hyperpage}{184}
+\indexentry{tridiagonal|hyperpage}{184}
+\indexentry{block tridiagonal|hyperpage}{184}
+\indexentry{natural ordering|hyperpage}{184}
+\indexentry{lexicographic ordering|hyperpage}{184}
+\indexentry{red-black ordering|hyperpage}{184}
+\indexentry{checkerboard ordering|hyperpage}{184}
+\indexentry{difference stencil|hyperindexformat{\textbf}}{185}
+\indexentry{Finite Element Method@\acl {FEM} (FEM)|hyperpage}{186}
+\indexentry{finite volume method|hyperpage}{186}
+\indexentry{Boundary Value Problem@\acl {BVP} (BVP)|)hyperpage}{186}
+\indexentry{Initial Boundary Value Problem@\acl {IBVP} (IBVP)|(hyperpage}{186}
+\indexentry{heat equation|hyperpage}{186}
+\indexentry{steady state|hyperpage}{187}
+\indexentry{Crank-Nicolson method|hyperpage}{190}
+\indexentry{Partial Diffential Equation@\acl {PDE} (PDE)|)hyperpage}{190}
+\indexentry{Initial Boundary Value Problem@\acl {IBVP} (IBVP)|)hyperpage}{190}
+\indexentry{Cramer's rule|hyperpage}{192}
+\indexentry{pivots|hyperpage}{193}
+\indexentry{pivoting|hyperpage}{193}
+\indexentry{pivoting|(hyperpage}{194}
+\indexentry{partial pivoting|hyperpage}{195}
+\indexentry{pivoting!partial|hyperpage}{195}
+\indexentry{pivoting!full|hyperpage}{195}
+\indexentry{pivoting!diagonal|hyperpage}{195}
+\indexentry{pivoting|)hyperpage}{195}
+\indexentry{factorization|hyperindexformat{\see{LU factorization}}}{196}
+\indexentry{LU factorization|(hyperindexformat{\textbf}}{196}
+\indexentry{Householder reflectors!in LU factorization|hyperpage}{197}
+\indexentry{Cholesky factorization|(hyperpage}{198}
+\indexentry{Cholesky factorization|)hyperpage}{198}
+\indexentry{pivoting|(hyperpage}{200}
+\indexentry{diagonal dominance|hyperpage}{201}
+\indexentry{symmetric positive definite@\acl {SPD} (SPD)|hyperpage}{201}
+\indexentry{pivoting|)hyperpage}{201}
+\indexentry{complexity!computational|(hyperpage}{202}
+\indexentry{complexity!computational|)hyperpage}{203}
+\indexentry{cache!blocking|hyperpage}{203}
+\indexentry{multicore|hyperpage}{203}
+\indexentry{LU factorization|)hyperindexformat{\textbf}}{204}
+\indexentry{linear algebra!sparse|hyperindexformat{\see{sparse!linear algebra}}}{204}
+\indexentry{sparse!linear algebra|(hyperpage}{204}
+\indexentry{matrix!storage, sparse|(hyperpage}{205}
+\indexentry{sparse!matrix|hyperpage}{205}
+\indexentry{diagonal storage|(hyperpage}{205}
+\indexentry{banded matrix!storage|(hyperpage}{205}
+\indexentry{storage by diagonals|hyperpage}{205}
+\indexentry{bandwidth!of a matrix|hyperpage}{205}
+\indexentry{bandwidth!of a   matrix|hyperindexformat{\see{halfbandwidth}}}{205}
+\indexentry{halfbandwidth!left|hyperpage}{206}
+\indexentry{halfbandwidth!right|hyperpage}{206}
+\indexentry{banded matrix!storage|)hyperpage}{206}
+\indexentry{diagonal storage|)hyperpage}{206}
+\indexentry{diagonal storage|)hyperpage}{207}
+\indexentry{Compressed Row Storage@\acl {CRS} (CRS)|(hyperpage}{207}
+\indexentry{Compressed Column Storage@\acl {CCS} (CCS)|hyperpage}{208}
+\indexentry{Harwell-Boeing matrix format|hyperpage}{208}
+\indexentry{coordinate storage|hyperpage}{208}
+\indexentry{Matrix Market|hyperpage}{208}
+\indexentry{Matrix Market!matrix format|hyperpage}{208}
+\indexentry{sparse!matrix-vector product!implementation|hyperpage}{208}
+\indexentry{indirect addressing|hyperpage}{208}
+\indexentry{sparse!matrix-vector product!locality in|hyperpage}{209}
+\indexentry{Compressed Row Storage@\acl {CRS} (CRS)|)hyperpage}{209}
+\indexentry{matrix!storage, sparse|)hyperpage}{209}
+\indexentry{adjacency graph|hyperpage}{209}
+\indexentry{graph!undirected|hyperpage}{210}
+\indexentry{matrix!structurally symmetric|hyperindexformat{\textbf}}{210}
+\indexentry{reducible|hyperpage}{210}
+\indexentry{fill-in|hyperpage}{211}
+\indexentry{fill-in|(hyperpage}{212}
+\indexentry{fill locations|hyperpage}{212}
+\indexentry{complexity!space|(hyperpage}{212}
+\indexentry{fill-in!estimates|(hyperpage}{212}
+\indexentry{complexity!space|hyperpage}{212}
+\indexentry{halfbandwidth|hyperpage}{213}
+\indexentry{skyline storage|hyperpage}{213}
+\indexentry{complexity!space|)hyperpage}{214}
+\indexentry{fill-in!estimates|)hyperpage}{214}
+\indexentry{fill-in!reduction|(hyperpage}{214}
+\indexentry{permutation|hyperpage}{215}
+\indexentry{unitary basis transformations|hyperpage}{215}
+\indexentry{nested dissection|hyperpage}{215}
+\indexentry{Cuthill-McKee ordering|(hyperpage}{215}
+\indexentry{level sets|hyperpage}{215}
+\indexentry{graph!adjacency|hyperpage}{215}
+\indexentry{block tridiagonal|hyperpage}{215}
+\indexentry{Cuthill-McKee ordering|)hyperpage}{216}
+\indexentry{minimum degree ordering|hyperpage}{216}
+\indexentry{fill-in!reduction|)hyperpage}{216}
+\indexentry{fill-in|)hyperpage}{216}
+\indexentry{sparse!linear algebra|)hyperpage}{216}
+\indexentry{iterative methods|(hyperpage}{216}
+\indexentry{Krylov methods|(hyperpage}{216}
+\indexentry{residual|hyperpage}{217}
+\indexentry{residual|hyperpage}{217}
+\indexentry{stationary iteration|hyperpage}{218}
+\indexentry{Jacobi method|hyperpage}{219}
+\indexentry{Gauss-Seidel|hyperpage}{220}
+\indexentry{Successive Over-Relaxation@\acl {SOR} (SOR)|hyperpage}{221}
+\indexentry{preconditioner|(hyperpage}{221}
+\indexentry{iterative refinement|hyperpage}{221}
+\indexentry{separable problem|hyperpage}{222}
+\indexentry{fast solvers|hyperpage}{222}
+\indexentry{Incomplete LU@\acl {ILU} (ILU)|hyperpage}{222}
+\indexentry{M-matrix|hyperpage}{223}
+\indexentry{Newton method|hyperpage}{223}
+\indexentry{preconditioner|)hyperpage}{223}
+\indexentry{Cayley-Hamilton theorem|hyperpage}{225}
+\indexentry{characteristic polynomial|hyperpage}{225}
+\indexentry{Hessenberg matrix|hyperpage}{227}
+\indexentry{multigrid|hyperpage}{227}
+\indexentry{smoothers|hyperpage}{227}
+\indexentry{symmetric positive definite@\acl {SPD} (SPD)|hyperpage}{227}
+\indexentry{Full Orthogonalization Method@\acl {FOM} (FOM)|hyperpage}{228}
+\indexentry{Gram-Schmidt|hyperpage}{228}
+\indexentry{Gram-Schmidt!modified|hyperpage}{228}
+\indexentry{search direction|hyperpage}{229}
+\indexentry{@\acl {CG|(} (CG|(hyperindexformat{\)}}{230}
+\indexentry{Conjugate Gradients@\acl {CG} (CG)|)}{232}
+\indexentry{symmetric positive definite@\acl {SPD} (SPD)|hyperpage}{232}
+\indexentry{search direction|hyperpage}{233}
+\indexentry{symmetric positive definite@\acl {SPD} (SPD)|hyperpage}{233}
+\indexentry{Generalized Minimum Residual@\acl {GMRES} (GMRES)|hyperpage}{233}
+\indexentry{complexity!of iterative methods|(hyperpage}{233}
+\indexentry{complexity!of iterative methods|)hyperpage}{233}
+\indexentry{iterative methods|)hyperpage}{233}
+\indexentry{Krylov methods|)hyperpage}{233}
+\indexentry{collective communication|(hyperpage}{235}
+\indexentry{collective operation|(hyperpage}{235}
+\indexentry{3@$\alpha$|hyperindexformat{\see{latency}}}{235}
+\indexentry{3@$\beta$|hyperindexformat{\see{bandwidth}}}{235}
+\indexentry{3@$\gamma$|hyperindexformat{\see{computation rate}}}{235}
+\indexentry{latency|hyperpage}{235}
+\indexentry{bandwidth|hyperpage}{235}
+\indexentry{computation rate|hyperpage}{235}
+\indexentry{minimum!spanning tree|hyperpage}{235}
+\indexentry{broadcast|(hyperpage}{235}
+\indexentry{collective operation!short vector|hyperpage}{236}
+\indexentry{bucket brigade algorithm|hyperpage}{236}
+\indexentry{collective operation!long vector|hyperpage}{236}
+\indexentry{broadcast|)hyperpage}{236}
+\indexentry{reduction|(hyperpage}{236}
+\indexentry{reduction|)hyperpage}{237}
+\indexentry{allreduce|(hyperpage}{237}
+\indexentry{allreduce|)hyperpage}{237}
+\indexentry{allgather|(hyperpage}{237}
+\indexentry{gather|hyperpage}{237}
+\indexentry{allgather|)hyperpage}{238}
+\indexentry{reduce-scatter|(hyperpage}{238}
+\indexentry{reduce-scatter|hyperpage}{238}
+\indexentry{bidirectional exchange|hyperpage}{238}
+\indexentry{reduce-scatter|)hyperpage}{238}
+\indexentry{collective communication|)hyperpage}{238}
+\indexentry{collective operation|)hyperpage}{238}
+\indexentry{Dense linear algebra|(hyperpage}{238}
+\indexentry{data decomposition|hyperpage}{239}
+\indexentry{buffering|hyperpage}{240}
+\indexentry{allgather|hyperpage}{242}
+\indexentry{scalability!strong|hyperpage}{243}
+\indexentry{scalability!weak|hyperpage}{243}
+\indexentry{reduce-scatter|hyperpage}{245}
+\indexentry{allgather|hyperpage}{246}
+\indexentry{reduce-scatter|hyperpage}{246}
+\indexentry{LU factorization!solution in parallel|(hyperpage}{248}
+\indexentry{LU factorization!solution in parallel|)hyperpage}{249}
+\indexentry{LU factorization!computation in parallel|(hyperpage}{249}
+\indexentry{matrix!storage, dense|(hyperpage}{249}
+\indexentry{overdecomposition|hyperpage}{249}
+\indexentry{cyclic distribution|hyperpage}{250}
+\indexentry{matrix!storage, dense|)hyperpage}{250}
+\indexentry{LU factorization!computation in parallel|)hyperpage}{250}
+\indexentry{Cannon's algorithm|hyperindexformat{\see{matrix-matrix product, Cannon's algorithm}}}{250}
+\indexentry{matrix-matrix product|hyperpage}{250}
+\indexentry{matrix-matrix product!Cannon's algorithm for|hyperpage}{251}
+\indexentry{Dense linear algebra|)hyperpage}{251}
+\indexentry{matrix-vector product!sparse|hyperindexformat{\see{sparse, matrix-vector product}}}{252}
+\indexentry{block matrix|hyperpage}{252}
+\indexentry{matrix!tesselation|hyperpage}{252}
+\indexentry{Cray|hyperpage}{252}
+\indexentry{diagonal storage|hyperpage}{253}
+\indexentry{sparse!matrix-vector product!parallel|(hyperpage}{253}
+\indexentry{ghost region|hyperpage}{254}
+\indexentry{Boundary Element Method@\acl {BEM} (BEM)|hyperpage}{256}
+\indexentry{Google|hyperpage}{256}
+\indexentry{PageRank|hyperpage}{256}
+\indexentry{Compressed Row Storage@\acl {CRS} (CRS)|hyperpage}{256}
+\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|hyperpage}{257}
+\indexentry{sparse!matrix-vector product!parallel setup|(hyperpage}{258}
+\indexentry{matrix!structurally symmetric|hyperpage}{258}
+\indexentry{reduce-scatter|hyperpage}{258}
+\indexentry{sparse!matrix-vector product!parallel setup|)hyperpage}{258}
+\indexentry{sparse!matrix-vector product!parallel|)hyperpage}{258}
+\indexentry{inner products|(hyperpage}{259}
+\indexentry{inner products|)hyperpage}{260}
+\indexentry{Finite Element Method@\acl {FEM} (FEM)|hyperpage}{260}
+\indexentry{bandwidth-bound|hyperpage}{261}
+\indexentry{iterative methods!floating point performance of|hyperpage}{261}
+\indexentry{direct methods!for linear systems|hyperpage}{261}
+\indexentry{sparse!matrix-vector product!performance of|hyperpage}{261}
+\indexentry{Compressed Row Storage (CRS)!performance of the   matrix-vector product|hyperpage}{261}
+\indexentry{block Jacobi|(hyperpage}{263}
+\indexentry{block Jacobi|hyperpage}{263}
+\indexentry{local solve|hyperpage}{263}
+\indexentry{block Jacobi|)hyperpage}{264}
+\indexentry{Incomplete LU (ILU)!parallel|(hyperpage}{264}
+\indexentry{graph!colouring|hyperpage}{264}
+\indexentry{Incomplete LU (ILU)!parallel|)hyperpage}{265}
+\indexentry{nested dissection|(hyperpage}{265}
+\indexentry{lexicographic ordering|hyperpage}{265}
+\indexentry{separator|hyperpage}{265}
+\indexentry{subdomain|hyperpage}{266}
+\indexentry{domain decomposition|hyperpage}{266}
+\indexentry{substructuring|hyperpage}{266}
+\indexentry{block matrix|hyperpage}{272}
+\indexentry{nested dissection|)hyperpage}{272}
+\indexentry{red-black ordering|(hyperpage}{272}
+\indexentry{colouring|hyperpage}{273}
+\indexentry{graph!colouring|hyperpage}{274}
+\indexentry{multi-colouring|hyperpage}{274}
+\indexentry{colour number|hyperpage}{274}
+\indexentry{red-black ordering|)hyperpage}{274}
+\indexentry{recursive doubling|hyperpage}{275}
+\indexentry{block tridiagonal|hyperpage}{275}
+\indexentry{fill-in|hyperpage}{275}
+\indexentry{wavefront|(hyperpage}{276}
+\indexentry{vector processor|hyperpage}{277}
+\indexentry{vector!instructions|hyperpage}{277}
+\indexentry{Graphics Processing Unit@\acl {GPU} (GPU)|hyperpage}{277}
+\indexentry{Cuthill-McKee ordering|hyperpage}{277}
+\indexentry{wavefront|)hyperpage}{277}
+\indexentry{recursive doubling|(hyperpage}{277}
+\indexentry{prefix operation|hyperpage}{279}
+\indexentry{recursive doubling|)hyperpage}{279}
+\indexentry{block Jacobi|hyperpage}{279}
+\indexentry{matrix!strictly upper triangular|hyperpage}{279}
+\indexentry{matrix!unit upper triangular|hyperpage}{279}
+\indexentry{Horner's rule|hyperpage}{280}
+\indexentry{ghost region|hyperpage}{281}
+\indexentry{ghost region|hyperpage}{282}
+\indexentry{redundant computation|hyperpage}{282}
+\indexentry{communication!overlapping computation with|hyperpage}{283}
+\indexentry{Conjugate Gradients@\acl {CG} (CG)|hyperpage}{283}
+\indexentry{multicore|hyperpage}{284}
+\indexentry{Cholesky factorization|hyperpage}{284}
+\indexentry{control flow|hyperpage}{285}
+\indexentry{data flow|hyperpage}{285}
+\indexentry{partial ordering|hyperpage}{285}
+\indexentry{Directed Acyclic Graph@\acl {DAG} (DAG)|hyperpage}{285}
+\indexentry{sequential consistency|hyperpage}{285}
+\indexentry{critical path|hyperpage}{286}
+\indexentry{cache!coherence|hyperpage}{286}
+\indexentry{sorting|(hyperpage}{308}
+\indexentry{Adaptive Mesh Refinement@\acl {AMR} (AMR)|hyperpage}{308}
+\indexentry{Quicksort|hyperpage}{308}
+\indexentry{bubble sort|hyperpage}{309}
 \indexentry{sorting!network|hyperpage}{309}
 \indexentry{compare-and-swap|hyperpage}{309}
-\indexentry{bitonic sort|)hyperindexformat{\textbf}}{309}
-\indexentry{sorting|)hyperpage}{309}
-\indexentry{World Wide Web|hyperpage}{310}
-\indexentry{graph!social|hyperpage}{310}
-\indexentry{Facebook|hyperpage}{310}
-\indexentry{protein interactions|hyperpage}{310}
-\indexentry{analytics!graph|hyperpage}{310}
-\indexentry{sparse!matrix-vector product!in graph theory|hyperpage}{310}
-\indexentry{shortest path!single source|hyperpage}{310}
-\indexentry{shortest path!all-pairs|hyperpage}{310}
-\indexentry{predicate|hyperpage}{311}
-\indexentry{matrix!adjacency|hyperpage}{311}
-\indexentry{task!queue|hyperpage}{312}
-\indexentry{Floyd-Warshall algorithm|(hyperpage}{312}
-\indexentry{dynamic programming|hyperpage}{312}
-\indexentry{Floyd-Warshall algorithm|)hyperpage}{314}
-\indexentry{spanning tree|hyperpage}{314}
-\indexentry{minimum!spanning tree|hyperpage}{314}
-\indexentry{Prim's algorithm|hyperpage}{314}
-\indexentry{Dijkstra's shortest path algorithm|hyperpage}{314}
-\indexentry{priority queue|hyperpage}{315}
-\indexentry{separator|hyperpage}{315}
-\indexentry{nested dissection|hyperpage}{315}
-\indexentry{Google|hyperpage}{315}
-\indexentry{PageRank|hyperpage}{315}
-\indexentry{graph!random|hyperpage}{315}
-\indexentry{small world|hyperpage}{316}
-\indexentry{HITS|(hyperpage}{316}
-\indexentry{incidence matrix|hyperpage}{316}
-\indexentry{Perron vector|hyperpage}{316}
-\indexentry{matrix!nonnegative|hyperpage}{316}
-\indexentry{power method|hyperpage}{316}
-\indexentry{HITS|)hyperpage}{316}
-\indexentry{PageRank|(hyperindexformat{\textbf}}{317}
-\indexentry{matrix!stochastic|hyperpage}{317}
-\indexentry{probability vector|hyperpage}{317}
-\indexentry{power method|hyperpage}{317}
-\indexentry{adjacency!matrix|hyperpage}{317}
-\indexentry{matrix!reducible|hyperpage}{317}
-\indexentry{Horner's rule|hyperpage}{318}
-\indexentry{Perron vector|hyperpage}{318}
-\indexentry{PageRank|)hyperindexformat{\textbf}}{318}
-\indexentry{Floyd-Warshall algorithm!parallelization of the|hyperpage}{318}
-\indexentry{N-body problems|(hyperpage}{320}
-\indexentry{Barnes-Hut algorithm|hyperpage}{321}
-\indexentry{Barnes-Hut algorithm|(hyperpage}{321}
-\indexentry{octtree|hyperpage}{322}
-\indexentry{Barnes-Hut algorithm|)hyperpage}{322}
-\indexentry{Fast Multipole Method@\acl {FMM} (FMM)|hyperpage}{322}
-\indexentry{NBODY6|hyperpage}{322}
-\indexentry{Grape computer|hyperpage}{322}
-\indexentry{load!rebalancing|hyperpage}{323}
-\indexentry{SIMD Streaming Extensions@\acl {SSE} (SSE)|hyperpage}{323}
-\indexentry{Advanced Vector Extensions@\acl {AVX} (AVX)|hyperpage}{323}
-\indexentry{octtree!hashed|hyperpage}{323}
-\indexentry{N-body problems|)hyperpage}{324}
-\indexentry{Riemann sums|hyperpage}{326}
-\indexentry{Black-Scholes model|hyperpage}{326}
-\indexentry{option pricing|hyperpage}{326}
-\indexentry{random numbers|(hyperpage}{327}
-\indexentry{random numbers!generator|(hyperpage}{327}
-\indexentry{pseudo-random numbers|hyperindexformat{\see{random     numbers}}}{327}
-\indexentry{random numbers!generator!linear congruential|hyperpage}{327}
-\indexentry{random numbers!generator!lagged Fibonacci|hyperpage}{327}
-\indexentry{random numbers|)hyperpage}{328}
-\indexentry{random numbers!generator|)hyperpage}{328}
-\indexentry{Ising model|(hyperpage}{328}
-\indexentry{statistical mechanics|hyperpage}{329}
-\indexentry{Metropolis algorithm|hyperpage}{329}
-\indexentry{ghost region|hyperpage}{329}
-\indexentry{Ising model|)hyperpage}{329}
-\indexentry{linear algebra|(hyperpage}{333}
-\indexentry{norm|hyperpage}{333}
-\indexentry{vector!norms|(hyperpage}{333}
-\indexentry{vector!norms|)hyperpage}{333}
-\indexentry{matrix!norms|(hyperpage}{334}
-\indexentry{matrix!norms!associated|hyperpage}{334}
-\indexentry{condition number|hyperpage}{334}
-\indexentry{matrix!norms|)hyperpage}{334}
-\indexentry{Gram-Schmidt|(hyperpage}{334}
-\indexentry{QR factorization|hyperpage}{335}
-\indexentry{Gram-Schmidt!modified|hyperpage}{335}
-\indexentry{Gram-Schmidt|)hyperpage}{336}
-\indexentry{power method|hyperpage}{336}
-\indexentry{eigenvector!dominant|hyperpage}{337}
-\indexentry{Perron-Frobenius theorem|hyperpage}{338}
-\indexentry{Householder reflectors|(hyperpage}{339}
-\indexentry{Householder reflectors|)hyperpage}{339}
-\indexentry{linear algebra|)hyperpage}{339}
-\indexentry{complexity|(hyperpage}{340}
-\indexentry{complexity!computational|hyperpage}{340}
-\indexentry{complexity!space|hyperpage}{340}
-\indexentry{order|hyperpage}{340}
-\indexentry{complexity|)hyperpage}{340}
-\indexentry{partial differential equations|(hyperpage}{341}
-\indexentry{partial differential equations|hyperpage}{341}
-\indexentry{partial derivates|hyperpage}{341}
-\indexentry{Laplace equation|hyperpage}{341}
-\indexentry{Poisson equation|hyperpage}{341}
-\indexentry{steady state|hyperpage}{342}
-\indexentry{partial differential equations|)hyperpage}{342}
-\indexentry{Taylor series|(hyperpage}{343}
-\indexentry{Taylor series|)hyperpage}{345}
-\indexentry{graph!theory|(hyperpage}{346}
-\indexentry{nodes|hyperpage}{346}
-\indexentry{vertices|hyperpage}{346}
-\indexentry{edges|hyperpage}{346}
-\indexentry{graph!undirected|hyperpage}{346}
-\indexentry{graph!directed|hyperpage}{346}
-\indexentry{degree|hyperpage}{346}
-\indexentry{diameter|hyperpage}{347}
-\indexentry{path (graph theory)|hyperpage}{347}
-\indexentry{cycle (in graph)|hyperpage}{347}
-\indexentry{weighted graph|hyperpage}{347}
-\indexentry{acyclic graph|hyperpage}{347}
-\indexentry{Directed Acyclic Graph@\acl {DAG} (DAG)|hyperpage}{347}
-\indexentry{tree graph|hyperpage}{348}
-\indexentry{leaf nodes|hyperpage}{348}
-\indexentry{interior nodes|hyperpage}{348}
-\indexentry{graph!colouring|(hyperpage}{348}
-\indexentry{colour number|hyperpage}{348}
-\indexentry{independent sets|hyperpage}{348}
-\indexentry{graph!colouring|)hyperpage}{348}
-\indexentry{matrix!adjacency|hyperindexformat{\see{adjacency matrix}}}{348}
-\indexentry{graph!adjacency|hyperindexformat{\see{adjacency graph}}}{348}
-\indexentry{adjacency matrix|hyperpage}{348}
-\indexentry{sparse!matrix|hyperpage}{349}
-\indexentry{adjacency graph|hyperpage}{349}
-\indexentry{clique|hyperpage}{349}
-\indexentry{structurally symmetric|hyperpage}{349}
-\indexentry{matrix!permutation|hyperpage}{349}
-\indexentry{irreducible|hyperpage}{350}
-\indexentry{Markov!chains|hyperpage}{351}
-\indexentry{stochastic matrix|hyperpage}{352}
-\indexentry{Markov!matrix|hyperpage}{352}
-\indexentry{graph!Laplacian|hyperpage}{352}
-\indexentry{Laplace equation|hyperpage}{353}
-\indexentry{Fiedler's theorem|hyperpage}{353}
-\indexentry{Fiedler vector|hyperindexformat{\textbf}}{353}
-\indexentry{Cheeger's!constant|hyperpage}{353}
-\indexentry{Cheeger's!inequality|hyperpage}{353}
-\indexentry{graph!theory|)hyperpage}{354}
-\indexentry{Finite State Automaton@\acl {FSA} (FSA)|(hyperpage}{355}
-\indexentry{automaton|(hyperpage}{355}
-\indexentry{Finite State Automaton@\acl {FSA} (FSA)|hyperpage}{355}
-\indexentry{language!context-free|hyperpage}{356}
-\indexentry{language!regular|hyperpage}{356}
-\indexentry{Chomsky hierarchy|hyperpage}{356}
-\indexentry{Turing machine|hyperpage}{356}
-\indexentry{language!recursively enumerable|hyperpage}{356}
-\indexentry{language!context-sensitive|hyperpage}{356}
-\indexentry{automaton!linear bounded|hyperpage}{356}
-\indexentry{automaton|)hyperpage}{356}
-\indexentry{Finite State Automaton@\acl {FSA} (FSA)|)hyperpage}{356}
-\indexentry{prefix operation|(hyperpage}{357}
-\indexentry{floating point   arithmetic!associativity of|hyperpage}{357}
-\indexentry{sparse!matrix-vector product!as parallel prefix|hyperindexformat{\see{prefix operations!sparse matrix vector product}}}{358}
-\indexentry{prefix operations!sparse matrix vector product|(hyperpage}{358}
-\indexentry{prefix operations!sparse matrix vector product|)hyperpage}{359}
-\indexentry{prefix operation|)hyperpage}{359}
-\indexentry{Operating System@\acl {OS} (OS)|hyperpage}{363}
-\indexentry{shell|hyperpage}{363}
-\indexentry{sh|hyperpage}{363}
-\indexentry{bash|hyperpage}{363}
-\indexentry{Cygwin|hyperpage}{363}
-\indexentry{Linux!distributions|hyperpage}{363}
-\indexentry{Red Hat|hyperpage}{363}
-\indexentry{Ubuntu|hyperpage}{363}
-\indexentry{csh|hyperpage}{363}
-\indexentry{tcsh|hyperpage}{363}
-\indexentry{ksh|hyperpage}{363}
-\indexentry{zsh|hyperpage}{363}
-\indexentry{directories|hyperpage}{363}
-\indexentry{files|hyperpage}{363}
-\indexentry{executable|hyperpage}{363}
-\indexentry{ls@\texttt  {ls}|hyperpage}{364}
-\indexentry{cat@\texttt  {cat}|hyperpage}{364}
-\indexentry{which@\texttt  {which}|hyperpage}{365}
-\indexentry{mkdir@\texttt  {mkdir}|hyperpage}{366}
-\indexentry{cd@\texttt  {cd}|hyperpage}{366}
-\indexentry{touch@\texttt  {touch}|hyperpage}{366}
-\indexentry{chmod@\texttt  {chmod}|hyperpage}{368}
-\indexentry{groups@\texttt  {groups}|hyperpage}{369}
-\indexentry{chgrp@\texttt  {chgrp}|hyperpage}{369}
-\indexentry{wildcard|hyperpage}{369}
-\indexentry{grep@\texttt  {grep}|hyperpage}{369}
-\indexentry{escape|hyperpage}{370}
-\indexentry{sed@\texttt  {sed}|hyperpage}{371}
-\indexentry{redirection|hyperpage}{371}
-\indexentry{cut@\texttt  {cut}|hyperpage}{371}
-\indexentry{which@\texttt  {which}|hyperpage}{372}
-\indexentry{environment variable|hyperpage}{372}
-\indexentry{input redirection|hyperindexformat{\see{redirection}}}{372}
-\indexentry{output redirection|hyperindexformat{\see{redirection}}}{372}
-\indexentry{redirection|(hyperindexformat{\textbf}}{373}
-\indexentry{redirection|)hyperindexformat{\textbf}}{373}
-\indexentry{ps@\texttt  {ps}|hyperpage}{374}
-\indexentry{foreground process|hyperpage}{374}
-\indexentry{background process|hyperpage}{374}
-\indexentry{environment variable|(hyperindexformat{\textbf}}{375}
-\indexentry{export|hyperindexformat{\texttt}}{376}
-\indexentry{environment variable|)hyperindexformat{\textbf}}{377}
-\indexentry{shell!startup files|(hyperindexformat{\textbf}}{380}
-\indexentry{.profile@{\texttt{.profile}}|hyperindexformat{\see{shell, startup files}}}{380}
-\indexentry{.bashrc@{\texttt{.bashrc}}|hyperindexformat{\see{shell, startup files}}}{380}
-\indexentry{shell!startup files|)hyperindexformat{\textbf}}{381}
-\indexentry{escape|hyperpage}{381}
-\indexentry{Unix!user account|hyperpage}{381}
-\indexentry{whoami@\texttt  {whoami}|hyperpage}{381}
-\indexentry{who@\texttt  {who}|hyperpage}{381}
-\indexentry{finger@\texttt  {finger}|hyperpage}{381}
-\indexentry{top@\texttt  {top}|hyperpage}{382}
-\indexentry{uptime@\texttt  {uptime}|hyperpage}{382}
-\indexentry{object file|hyperpage}{385}
-\indexentry{linker|hyperpage}{385}
-\indexentry{libraries!creating and using|(hyperpage}{385}
-\indexentry{static libraries|hyperpage}{385}
-\indexentry{archive utility|hyperpage}{385}
-\indexentry{nm|hyperindexformat{\texttt}}{385}
-\indexentry{shared libraries|hyperpage}{386}
-\indexentry{libraries!creating and using|)hyperpage}{387}
-\indexentry{GNU!Make|hyperindexformat{\see{Make}}}{388}
-\indexentry{Make|(hyperpage}{388}
-\indexentry{Scons|hyperpage}{388}
-\indexentry{Bjam|hyperpage}{388}
-\indexentry{Make!automatic variables|hyperpage}{392}
-\indexentry{Make!template rules|hyperpage}{393}
-\indexentry{wildcard|hyperindexformat{\texttt}}{394}
-\indexentry{patsubst|hyperindexformat{\texttt}}{394}
-\indexentry{Make!debugging|hyperpage}{398}
-\indexentry{shell!command history|hyperpage}{398}
-\indexentry{Make!and LaTeX@{and \LaTeX}|(hyperpage}{399}
-\indexentry{Make!and LaTeX@{and \LaTeX}|)hyperpage}{399}
-\indexentry{Make|)hyperpage}{399}
-\indexentry{source code control|hyperpage}{400}
-\indexentry{revision control   systems|hyperindexformat{\see{source code control}}}{400}
-\indexentry{version control systems|hyperindexformat{\see{source code control}}}{400}
-\indexentry{repository|hyperpage}{400}
-\indexentry{Subversion|hyperpage}{400}
-\indexentry{source code control!distributed|hyperpage}{400}
-\indexentry{repository|hyperpage}{400}
-\indexentry{source code control!distributed|hyperpage}{401}
-\indexentry{Subversion|(hyperpage}{402}
-\indexentry{svn|hyperindexformat{\see{Subversion}}}{402}
-\indexentry{Google!code|hyperpage}{402}
-\indexentry{BitBucket|hyperpage}{402}
-\indexentry{Subversion|)hyperpage}{408}
-\indexentry{mercurial|(hyperpage}{409}
-\indexentry{hg|hyperindexformat{\see{mercurial}}}{409}
-\indexentry{source code control!distributed|hyperpage}{409}
-\indexentry{mercurial|)hyperpage}{413}
-\indexentry{big-endian|hyperpage}{414}
-\indexentry{little-endian|hyperpage}{414}
-\indexentry{little-endian|hyperpage}{418}
+\indexentry{Bitonic sort|hyperpage}{309}
+\indexentry{sequential complexity|hyperpage}{309}
+\indexentry{odd-even transposition sort|hyperpage}{309}
+\indexentry{odd-even transposition sort|(hyperindexformat{\textbf}}{309}
+\indexentry{odd-even transposition sort|)hyperindexformat{\textbf}}{309}
+\indexentry{Quicksort|(hyperpage}{310}
+\indexentry{prefix operation|hyperpage}{311}
+\indexentry{Quicksort|)hyperpage}{312}
+\indexentry{bitonic sort|(hyperindexformat{\textbf}}{312}
+\indexentry{bitonic sequence|hyperpage}{312}
+\indexentry{bitonic sort!sequential complexity of|hyperpage}{313}
+\indexentry{sorting!network|hyperpage}{313}
+\indexentry{compare-and-swap|hyperpage}{313}
+\indexentry{bitonic sort|)hyperindexformat{\textbf}}{313}
+\indexentry{sorting|)hyperpage}{313}
+\indexentry{prime number!finding|(hyperpage}{313}
+\indexentry{Eratosthenes!sieve of|hyperpage}{313}
+\indexentry{prime number!finding|)hyperpage}{314}
+\indexentry{World Wide Web|hyperpage}{315}
+\indexentry{graph!social|hyperpage}{315}
+\indexentry{Facebook|hyperpage}{315}
+\indexentry{protein interactions|hyperpage}{315}
+\indexentry{analytics!graph|hyperpage}{315}
+\indexentry{sparse!matrix-vector product!in graph theory|hyperpage}{315}
+\indexentry{shortest path!single source|hyperpage}{315}
+\indexentry{shortest path!all-pairs|hyperpage}{315}
+\indexentry{predicate|hyperpage}{316}
+\indexentry{matrix!adjacency|hyperpage}{316}
+\indexentry{task!queue|hyperpage}{317}
+\indexentry{Floyd-Warshall algorithm|(hyperpage}{317}
+\indexentry{dynamic programming|hyperpage}{317}
+\indexentry{Floyd-Warshall algorithm|)hyperpage}{319}
+\indexentry{spanning tree|hyperpage}{319}
+\indexentry{minimum!spanning tree|hyperpage}{319}
+\indexentry{Prim's algorithm|hyperpage}{319}
+\indexentry{Dijkstra's shortest path algorithm|hyperpage}{319}
+\indexentry{priority queue|hyperpage}{320}
+\indexentry{separator|hyperpage}{320}
+\indexentry{nested dissection|hyperpage}{320}
+\indexentry{Google|hyperpage}{320}
+\indexentry{PageRank|hyperpage}{320}
+\indexentry{graph!random|hyperpage}{320}
+\indexentry{small world|hyperpage}{321}
+\indexentry{HITS|(hyperpage}{321}
+\indexentry{incidence matrix|hyperpage}{321}
+\indexentry{Perron vector|hyperpage}{321}
+\indexentry{matrix!nonnegative|hyperpage}{321}
+\indexentry{power method|hyperpage}{321}
+\indexentry{HITS|)hyperpage}{322}
+\indexentry{PageRank|(hyperindexformat{\textbf}}{322}
+\indexentry{matrix!stochastic|hyperpage}{322}
+\indexentry{probability vector|hyperpage}{322}
+\indexentry{power method|hyperpage}{322}
+\indexentry{adjacency!matrix|hyperpage}{322}
+\indexentry{matrix!reducible|hyperpage}{322}
+\indexentry{Horner's rule|hyperpage}{323}
+\indexentry{Perron vector|hyperpage}{323}
+\indexentry{PageRank|)hyperindexformat{\textbf}}{323}
+\indexentry{Floyd-Warshall algorithm!parallelization of the|hyperpage}{323}
+\indexentry{N-body problems|(hyperpage}{325}
+\indexentry{Barnes-Hut algorithm|hyperpage}{326}
+\indexentry{Barnes-Hut algorithm|(hyperpage}{326}
+\indexentry{octtree|hyperpage}{327}
+\indexentry{Barnes-Hut algorithm|)hyperpage}{327}
+\indexentry{Fast Multipole Method@\acl {FMM} (FMM)|hyperpage}{327}
+\indexentry{NBODY6|hyperpage}{327}
+\indexentry{Grape computer|hyperpage}{327}
+\indexentry{load!rebalancing|hyperpage}{328}
+\indexentry{SIMD Streaming Extensions@\acl {SSE} (SSE)|hyperpage}{328}
+\indexentry{Advanced Vector Extensions@\acl {AVX} (AVX)|hyperpage}{328}
+\indexentry{octtree!hashed|hyperpage}{328}
+\indexentry{N-body problems|)hyperpage}{329}
+\indexentry{Riemann sums|hyperpage}{331}
+\indexentry{Black-Scholes model|hyperpage}{331}
+\indexentry{option pricing|hyperpage}{331}
+\indexentry{random numbers|(hyperpage}{332}
+\indexentry{random numbers!generator|(hyperpage}{332}
+\indexentry{pseudo-random numbers|hyperindexformat{\see{random     numbers}}}{332}
+\indexentry{random numbers!generator!linear congruential|hyperpage}{332}
+\indexentry{random numbers!generator!lagged Fibonacci|hyperpage}{332}
+\indexentry{random numbers|)hyperpage}{333}
+\indexentry{random numbers!generator|)hyperpage}{333}
+\indexentry{Ising model|(hyperpage}{333}
+\indexentry{statistical mechanics|hyperpage}{334}
+\indexentry{Metropolis algorithm|hyperpage}{334}
+\indexentry{ghost region|hyperpage}{334}
+\indexentry{Ising model|)hyperpage}{334}
+\indexentry{linear algebra|(hyperpage}{337}
+\indexentry{norm|hyperpage}{337}
+\indexentry{vector!norms|(hyperpage}{337}
+\indexentry{vector!norms|)hyperpage}{337}
+\indexentry{matrix!norms|(hyperpage}{338}
+\indexentry{matrix!norms!associated|hyperpage}{338}
+\indexentry{condition number|hyperpage}{338}
+\indexentry{matrix!norms|)hyperpage}{338}
+\indexentry{Gram-Schmidt|(hyperpage}{338}
+\indexentry{QR factorization|hyperpage}{339}
+\indexentry{Gram-Schmidt!modified|hyperpage}{339}
+\indexentry{Gram-Schmidt|)hyperpage}{340}
+\indexentry{power method|hyperpage}{340}
+\indexentry{eigenvector!dominant|hyperpage}{341}
+\indexentry{Perron-Frobenius theorem|hyperpage}{342}
+\indexentry{Householder reflectors|(hyperpage}{343}
+\indexentry{Householder reflectors|)hyperpage}{343}
+\indexentry{linear algebra|)hyperpage}{343}
+\indexentry{complexity|(hyperpage}{344}
+\indexentry{complexity!computational|hyperpage}{344}
+\indexentry{complexity!space|hyperpage}{344}
+\indexentry{order|hyperpage}{344}
+\indexentry{complexity|)hyperpage}{344}
+\indexentry{partial differential equations|(hyperpage}{345}
+\indexentry{partial differential equations|hyperpage}{345}
+\indexentry{partial derivates|hyperpage}{345}
+\indexentry{Laplace equation|hyperpage}{345}
+\indexentry{Poisson equation|hyperpage}{345}
+\indexentry{steady state|hyperpage}{346}
+\indexentry{partial differential equations|)hyperpage}{346}
+\indexentry{Taylor series|(hyperpage}{347}
+\indexentry{Taylor series|)hyperpage}{349}
+\indexentry{graph!theory|(hyperpage}{350}
+\indexentry{nodes|hyperpage}{350}
+\indexentry{vertices|hyperpage}{350}
+\indexentry{edges|hyperpage}{350}
+\indexentry{graph!undirected|hyperpage}{350}
+\indexentry{graph!directed|hyperpage}{350}
+\indexentry{degree|hyperpage}{350}
+\indexentry{diameter|hyperpage}{351}
+\indexentry{path (graph theory)|hyperpage}{351}
+\indexentry{cycle (in graph)|hyperpage}{351}
+\indexentry{weighted graph|hyperpage}{351}
+\indexentry{acyclic graph|hyperpage}{351}
+\indexentry{Directed Acyclic Graph@\acl {DAG} (DAG)|hyperpage}{351}
+\indexentry{tree graph|hyperpage}{352}
+\indexentry{leaf nodes|hyperpage}{352}
+\indexentry{interior nodes|hyperpage}{352}
+\indexentry{graph!colouring|(hyperpage}{352}
+\indexentry{colour number|hyperpage}{352}
+\indexentry{independent sets|hyperpage}{352}
+\indexentry{graph!colouring|)hyperpage}{352}
+\indexentry{matrix!adjacency|hyperindexformat{\see{adjacency matrix}}}{352}
+\indexentry{graph!adjacency|hyperindexformat{\see{adjacency graph}}}{352}
+\indexentry{adjacency matrix|hyperpage}{352}
+\indexentry{sparse!matrix|hyperpage}{353}
+\indexentry{adjacency graph|hyperpage}{353}
+\indexentry{clique|hyperpage}{353}
+\indexentry{structurally symmetric|hyperpage}{353}
+\indexentry{matrix!permutation|hyperpage}{353}
+\indexentry{irreducible|hyperpage}{354}
+\indexentry{Markov!chains|hyperpage}{355}
+\indexentry{stochastic matrix|hyperpage}{356}
+\indexentry{Markov!matrix|hyperpage}{356}
+\indexentry{graph!Laplacian|hyperpage}{356}
+\indexentry{Laplace equation|hyperpage}{357}
+\indexentry{Fiedler's theorem|hyperpage}{357}
+\indexentry{Fiedler vector|hyperindexformat{\textbf}}{357}
+\indexentry{Cheeger's!constant|hyperpage}{357}
+\indexentry{Cheeger's!inequality|hyperpage}{357}
+\indexentry{graph!theory|)hyperpage}{358}
+\indexentry{Finite State Automaton@\acl {FSA} (FSA)|(hyperpage}{359}
+\indexentry{automaton|(hyperpage}{359}
+\indexentry{Finite State Automaton@\acl {FSA} (FSA)|hyperpage}{359}
+\indexentry{language!context-free|hyperpage}{360}
+\indexentry{language!regular|hyperpage}{360}
+\indexentry{Chomsky hierarchy|hyperpage}{360}
+\indexentry{Turing machine|hyperpage}{360}
+\indexentry{language!recursively enumerable|hyperpage}{360}
+\indexentry{language!context-sensitive|hyperpage}{360}
+\indexentry{automaton!linear bounded|hyperpage}{360}
+\indexentry{automaton|)hyperpage}{360}
+\indexentry{Finite State Automaton@\acl {FSA} (FSA)|)hyperpage}{360}
+\indexentry{prefix operation|(hyperpage}{361}
+\indexentry{floating point   arithmetic!associativity of|hyperpage}{361}
+\indexentry{sparse!matrix-vector product!as parallel prefix|hyperindexformat{\see{prefix operations!sparse matrix vector product}}}{362}
+\indexentry{prefix operations!sparse matrix vector product|(hyperpage}{362}
+\indexentry{prefix operations!sparse matrix vector product|)hyperpage}{363}
+\indexentry{prefix operation|)hyperpage}{363}
+\indexentry{Operating System@\acl {OS} (OS)|hyperpage}{367}
+\indexentry{shell|hyperpage}{367}
+\indexentry{sh|hyperpage}{367}
+\indexentry{bash|hyperpage}{367}
+\indexentry{Cygwin|hyperpage}{367}
+\indexentry{Linux!distributions|hyperpage}{367}
+\indexentry{Red Hat|hyperpage}{367}
+\indexentry{Ubuntu|hyperpage}{367}
+\indexentry{csh|hyperpage}{367}
+\indexentry{tcsh|hyperpage}{367}
+\indexentry{ksh|hyperpage}{367}
+\indexentry{zsh|hyperpage}{367}
+\indexentry{directories|hyperpage}{367}
+\indexentry{files|hyperpage}{367}
+\indexentry{executable|hyperpage}{367}
+\indexentry{ls@\texttt  {ls}|hyperpage}{368}
+\indexentry{cat@\texttt  {cat}|hyperpage}{368}
+\indexentry{which@\texttt  {which}|hyperpage}{369}
+\indexentry{mkdir@\texttt  {mkdir}|hyperpage}{370}
+\indexentry{cd@\texttt  {cd}|hyperpage}{370}
+\indexentry{touch@\texttt  {touch}|hyperpage}{370}
+\indexentry{chmod@\texttt  {chmod}|hyperpage}{372}
+\indexentry{groups@\texttt  {groups}|hyperpage}{373}
+\indexentry{chgrp@\texttt  {chgrp}|hyperpage}{373}
+\indexentry{wildcard|hyperpage}{373}
+\indexentry{grep@\texttt  {grep}|hyperpage}{373}
+\indexentry{escape|hyperpage}{374}
+\indexentry{sed@\texttt  {sed}|hyperpage}{375}
+\indexentry{redirection|hyperpage}{375}
+\indexentry{cut@\texttt  {cut}|hyperpage}{375}
+\indexentry{which@\texttt  {which}|hyperpage}{376}
+\indexentry{environment variable|hyperpage}{376}
+\indexentry{input redirection|hyperindexformat{\see{redirection}}}{376}
+\indexentry{output redirection|hyperindexformat{\see{redirection}}}{376}
+\indexentry{redirection|(hyperindexformat{\textbf}}{377}
+\indexentry{redirection|)hyperindexformat{\textbf}}{377}
+\indexentry{ps@\texttt  {ps}|hyperpage}{378}
+\indexentry{foreground process|hyperpage}{378}
+\indexentry{background process|hyperpage}{378}
+\indexentry{environment variable|(hyperindexformat{\textbf}}{379}
+\indexentry{export|hyperindexformat{\texttt}}{380}
+\indexentry{environment variable|)hyperindexformat{\textbf}}{381}
+\indexentry{shell!startup files|(hyperindexformat{\textbf}}{384}
+\indexentry{.profile@{\texttt{.profile}}|hyperindexformat{\see{shell, startup files}}}{384}
+\indexentry{.bashrc@{\texttt{.bashrc}}|hyperindexformat{\see{shell, startup files}}}{384}
+\indexentry{shell!startup files|)hyperindexformat{\textbf}}{385}
+\indexentry{escape|hyperpage}{385}
+\indexentry{Unix!user account|hyperpage}{385}
+\indexentry{whoami@\texttt  {whoami}|hyperpage}{385}
+\indexentry{who@\texttt  {who}|hyperpage}{385}
+\indexentry{finger@\texttt  {finger}|hyperpage}{385}
+\indexentry{top@\texttt  {top}|hyperpage}{386}
+\indexentry{uptime@\texttt  {uptime}|hyperpage}{386}
+\indexentry{object file|hyperpage}{389}
+\indexentry{linker|hyperpage}{389}
+\indexentry{libraries!creating and using|(hyperpage}{389}
+\indexentry{static libraries|hyperpage}{389}
+\indexentry{archive utility|hyperpage}{389}
+\indexentry{nm|hyperindexformat{\texttt}}{389}
+\indexentry{shared libraries|hyperpage}{390}
+\indexentry{libraries!creating and using|)hyperpage}{391}
+\indexentry{GNU!Make|hyperindexformat{\see{Make}}}{392}
+\indexentry{Make|(hyperpage}{392}
+\indexentry{Scons|hyperpage}{392}
+\indexentry{Bjam|hyperpage}{392}
+\indexentry{Make!automatic variables|hyperpage}{396}
+\indexentry{Make!template rules|hyperpage}{397}
+\indexentry{wildcard|hyperindexformat{\texttt}}{398}
+\indexentry{patsubst|hyperindexformat{\texttt}}{398}
+\indexentry{Make!debugging|hyperpage}{402}
+\indexentry{shell!command history|hyperpage}{402}
+\indexentry{Make!and LaTeX@{and \LaTeX}|(hyperpage}{403}
+\indexentry{Make!and LaTeX@{and \LaTeX}|)hyperpage}{403}
+\indexentry{Make|)hyperpage}{403}
+\indexentry{source code control|hyperpage}{404}
+\indexentry{revision control   systems|hyperindexformat{\see{source code control}}}{404}
+\indexentry{version control systems|hyperindexformat{\see{source code control}}}{404}
+\indexentry{repository|hyperpage}{404}
+\indexentry{Subversion|hyperpage}{404}
+\indexentry{source code control!distributed|hyperpage}{404}
+\indexentry{repository|hyperpage}{404}
+\indexentry{source code control!distributed|hyperpage}{405}
+\indexentry{Subversion|(hyperpage}{406}
+\indexentry{svn|hyperindexformat{\see{Subversion}}}{406}
+\indexentry{Google!code|hyperpage}{406}
+\indexentry{BitBucket|hyperpage}{406}
+\indexentry{Subversion|)hyperpage}{412}
+\indexentry{mercurial|(hyperpage}{413}
+\indexentry{hg|hyperindexformat{\see{mercurial}}}{413}
+\indexentry{source code control!distributed|hyperpage}{413}
+\indexentry{mercurial|)hyperpage}{417}
 \indexentry{big-endian|hyperpage}{418}
-\indexentry{IBM|hyperpage}{418}
-\indexentry{libraries!numerical|(hyperpage}{420}
-\indexentry{linear algebra!software!sparse|(hyperpage}{420}
-\indexentry{PETSc|(hyperpage}{420}
-\indexentry{memory!leak|hyperpage}{423}
-\indexentry{PETSc|)hyperpage}{428}
-\indexentry{linear algebra!software!sparse|)hyperpage}{428}
-\indexentry{linear algebra!software!dense|(hyperpage}{428}
-\indexentry{Basic Linear Algebra Subprograms@\acl {BLAS} (BLAS)|hyperpage}{428}
-\indexentry{Linpack|hyperpage}{428}
-\indexentry{Eispack|hyperpage}{428}
-\indexentry{Lapack|hyperpage}{428}
-\indexentry{MKL|hyperpage}{428}
-\indexentry{Scalapack|hyperpage}{428}
-\indexentry{PLapack|hyperpage}{428}
-\indexentry{Linpack!benchmark|hyperpage}{428}
-\indexentry{Fortran|hyperpage}{429}
-\indexentry{column-major|hyperindexformat{\textbf}}{429}
-\indexentry{row-major|hyperpage}{429}
-\indexentry{Lapack|(hyperpage}{430}
-\indexentry{netlib|hyperpage}{431}
+\indexentry{little-endian|hyperpage}{418}
+\indexentry{little-endian|hyperpage}{422}
+\indexentry{big-endian|hyperpage}{422}
+\indexentry{IBM|hyperpage}{422}
+\indexentry{libraries!numerical|(hyperpage}{424}
+\indexentry{linear algebra!software!sparse|(hyperpage}{424}
+\indexentry{PETSc|(hyperpage}{424}
+\indexentry{memory!leak|hyperpage}{427}
+\indexentry{PETSc|)hyperpage}{432}
+\indexentry{linear algebra!software!sparse|)hyperpage}{432}
+\indexentry{linear algebra!software!dense|(hyperpage}{432}
+\indexentry{Basic Linear Algebra Subprograms@\acl {BLAS} (BLAS)|hyperpage}{432}
+\indexentry{Linpack|hyperpage}{432}
+\indexentry{Eispack|hyperpage}{432}
+\indexentry{Lapack|hyperpage}{432}
 \indexentry{MKL|hyperpage}{432}
-\indexentry{matrix-matrix product!Goto implementation|hyperpage}{432}
-\indexentry{blis|hyperpage}{432}
-\indexentry{Lapack|)hyperpage}{432}
-\indexentry{linear algebra!software!dense|)hyperpage}{432}
-\indexentry{libraries!numerical|)hyperpage}{432}
-\indexentry{libraries!numerical|hyperindexformat{\see{PETSc}}}{432}
-\indexentry{libraries!numerical|hyperindexformat{\see{Lapack}}}{432}
-\indexentry{gnuplot|hyperpage}{433}
-\indexentry{GNU!gnuplot|hyperindexformat{\see{gnuplot}}}{433}
-\indexentry{defensive programming|(hyperpage}{436}
-\indexentry{assertions|(hyperpage}{436}
-\indexentry{overflow|hyperpage}{436}
-\indexentry{bug|hyperpage}{436}
-\indexentry{assertion|hyperindexformat{\textbf}}{437}
-\indexentry{side-effects|hyperpage}{437}
-\indexentry{assertions|)hyperpage}{438}
-\indexentry{memory!violations|hyperpage}{440}
-\indexentry{segmentation violation|hyperpage}{440}
-\indexentry{memory!leak|hyperpage}{441}
-\indexentry{debugging|(hyperpage}{444}
-\indexentry{gdb|(hyperpage}{444}
-\indexentry{debugger|hyperpage}{444}
-\indexentry{GNU!gdb|hyperindexformat{\see{gdb}}}{444}
-\indexentry{GNU|hyperpage}{444}
-\indexentry{ddd|hyperpage}{444}
-\indexentry{DDT|hyperpage}{444}
-\indexentry{TotalView|hyperpage}{444}
-\indexentry{core dump|hyperpage}{444}
-\indexentry{debug flag|hyperpage}{445}
-\indexentry{symbol table|hyperpage}{445}
-\indexentry{segmentation fault|hyperpage}{446}
-\indexentry{valgrind|(hyperpage}{448}
-\indexentry{purify|hyperpage}{448}
-\indexentry{valgrind|)hyperpage}{449}
-\indexentry{breakpoint|hyperpage}{450}
-\indexentry{breakpoint|(hyperindexformat{\textbf}}{451}
-\indexentry{breakpoint|)hyperindexformat{\textbf}}{452}
-\indexentry{gdb|)hyperpage}{452}
-\indexentry{debugging!in parallel|(hyperpage}{452}
-\indexentry{deadlock|hyperpage}{452}
-\indexentry{DDT|hyperindexformat{\textbf}}{453}
-\indexentry{debugging!in parallel|)hyperpage}{453}
-\indexentry{debugging|)hyperpage}{453}
-\indexentry{interoperability!C to Fortran|(hyperpage}{454}
-\indexentry{language interoperability|hyperindexformat{\see{interoperability}}}{454}
-\indexentry{nm|hyperpage}{454}
-\indexentry{object file|hyperpage}{454}
-\indexentry{Fortran!iso C bindings|hyperpage}{455}
-\indexentry{C++!linking to|(hyperpage}{455}
-\indexentry{C++!name mangling|hyperpage}{455}
-\indexentry{C++!linking to|)hyperpage}{457}
-\indexentry{C!array layout|(hyperpage}{457}
-\indexentry{Fortran!array layout|(hyperpage}{457}
-\indexentry{column-major|hyperpage}{457}
-\indexentry{row-major|hyperpage}{457}
-\indexentry{C!array layout|)hyperpage}{458}
-\indexentry{Fortran!array layout|)hyperpage}{458}
-\indexentry{null termination|hyperpage}{458}
-\indexentry{by reference|hyperpage}{459}
-\indexentry{interoperability!C to Fortran|)hyperpage}{460}
-\indexentry{LaTeX@{\LaTeX}|(hyperpage}{461}
-\indexentry{LaTeX@{\LaTeX}|hyperindexformat{\seealso{\TeX}}}{461}
-\indexentry{TeX@{\TeX}|(hyperpage}{461}
-\indexentry{TeX@{\TeX}|)hyperpage}{461}
-\indexentry{verbatim mode|hyperpage}{466}
-\indexentry{TeX@{\TeX}!environment variables|(hyperpage}{468}
-\indexentry{TeX@{\TeX}!environment variables|)hyperpage}{468}
-\indexentry{LaTeX@{\LaTeX}|)hyperpage}{474}
-\indexentry{steady state|hyperpage}{480}
-\indexentry{MUMPS|hyperpage}{481}
-\indexentry{memory!wall|hyperpage}{482}
-\indexentry{cache!warming|hyperpage}{484}
-\indexentry{cache!hot|hyperpage}{484}
-\indexentry{cacheline!boundary aligment|hyperpage}{484}
-\indexentry{allocation!static|hyperpage}{484}
-\indexentry{posix\_memalign|hyperindexformat{\texttt}}{484}
-\indexentry{Translation Look-aside Buffer@\acl {TLB} (TLB)|hyperpage}{486}
-\indexentry{AMR|hyperindexformat{\see{Adaptive Mesh Refinement}}}{496}
-\indexentry{AOS|hyperindexformat{\see{Array-Of-Structures}}}{496}
-\indexentry{API|hyperindexformat{\see{Application Programmer Interface}}}{496}
-\indexentry{AVX|hyperindexformat{\see{Advanced Vector Extensions}}}{496}
-\indexentry{BEM|hyperindexformat{\see{Boundary Element Method}}}{496}
-\indexentry{BFS|hyperindexformat{\see{Breadth-First Search}}}{496}
-\indexentry{BLAS|hyperindexformat{\see{Basic Linear Algebra Subprograms}}}{496}
-\indexentry{BSP|hyperindexformat{\see{Bulk Synchronous Parallel}}}{496}
-\indexentry{BVP|hyperindexformat{\see{Boundary Value Problem}}}{496}
-\indexentry{CAF|hyperindexformat{\see{Co-array Fortran}}}{496}
-\indexentry{CCS|hyperindexformat{\see{Compressed Column Storage}}}{496}
-\indexentry{CG|hyperindexformat{\see{Conjugate Gradients}}}{496}
-\indexentry{CGS|hyperindexformat{\see{Classical Gram-Schmidt}}}{496}
-\indexentry{COO|hyperindexformat{\see{Coordinate Storage}}}{496}
-\indexentry{CRS|hyperindexformat{\see{Compressed Row Storage}}}{496}
-\indexentry{DAG|hyperindexformat{\see{Directed Acyclic Graph}}}{496}
-\indexentry{DRAM|hyperindexformat{\see{Dynamic Random-Access Memory}}}{496}
-\indexentry{DSP|hyperindexformat{\see{Digital Signal Processing}}}{496}
-\indexentry{FD|hyperindexformat{\see{Finite Difference}}}{496}
-\indexentry{FMA|hyperindexformat{\see{Fused Multiply-Add}}}{496}
-\indexentry{FDM|hyperindexformat{\see{Finite Difference Method}}}{496}
-\indexentry{FEM|hyperindexformat{\see{Finite Element Method}}}{496}
-\indexentry{FMM|hyperindexformat{\see{Fast Multipole Method}}}{496}
-\indexentry{FOM|hyperindexformat{\see{Full Orthogonalization Method}}}{496}
-\indexentry{FPU|hyperindexformat{\see{Floating Point Unit}}}{496}
-\indexentry{FFT|hyperindexformat{\see{Fast Fourier Transform}}}{496}
-\indexentry{FSA|hyperindexformat{\see{Finite State Automaton}}}{496}
-\indexentry{FSB|hyperindexformat{\see{Front-Side Bus}}}{496}
-\indexentry{FPGA|hyperindexformat{\see{Field-Programmable Gate Array}}}{496}
-\indexentry{GMRES|hyperindexformat{\see{Generalized Minimum Residual}}}{496}
-\indexentry{GPU|hyperindexformat{\see{Graphics Processing Unit}}}{496}
-\indexentry{GPGPU|hyperindexformat{\see{General Purpose Graphics Processing Unit}}}{496}
-\indexentry{GS|hyperindexformat{\see{Gram-Schmidt}}}{496}
-\indexentry{HDFS|hyperindexformat{\see{Hadoop File System}}}{496}
-\indexentry{HPC|hyperindexformat{\see{High-Performance Computing}}}{496}
-\indexentry{HPF|hyperindexformat{\see{High Performance Fortran}}}{496}
-\indexentry{IBVP|hyperindexformat{\see{Initial Boundary Value Problem}}}{496}
-\indexentry{ILP|hyperindexformat{\see{Instruction Level Parallelism}}}{496}
-\indexentry{ILU|hyperindexformat{\see{Incomplete LU}}}{496}
-\indexentry{IVP|hyperindexformat{\see{Initial Value Problem}}}{496}
-\indexentry{LAN|hyperindexformat{\see{Local Area Network}}}{496}
-\indexentry{LBM|hyperindexformat{\see{Lattice Boltzmann Method}}}{496}
-\indexentry{LRU|hyperindexformat{\see{Least Recently Used}}}{496}
-\indexentry{MIC|hyperindexformat{\see{Many Integrated Cores}}}{496}
-\indexentry{MIMD|hyperindexformat{\see{Multiple Instruction Multiple Data}}}{496}
-\indexentry{MGS|hyperindexformat{\see{Modified Gram-Schmidt}}}{496}
-\indexentry{MPI|hyperindexformat{\see{Message Passing Interface}}}{496}
-\indexentry{MSI|hyperindexformat{\see{Modified-Shared-Invalid}}}{496}
-\indexentry{MTA|hyperindexformat{\see{Multi-Threaded Architecture}}}{496}
-\indexentry{NUMA|hyperindexformat{\see{Non-Uniform Memory Access}}}{496}
-\indexentry{ODE|hyperindexformat{\see{Ordinary Diffential Equation}}}{496}
-\indexentry{OS|hyperindexformat{\see{Operating System}}}{496}
-\indexentry{PGAS|hyperindexformat{\see{Partitioned Global Address Space}}}{496}
-\indexentry{PDE|hyperindexformat{\see{Partial Diffential Equation}}}{496}
-\indexentry{PRAM|hyperindexformat{\see{Parallel Random Access Machine}}}{496}
-\indexentry{RDMA|hyperindexformat{\see{Remote Direct Memory Access}}}{496}
-\indexentry{SAN|hyperindexformat{\see{Storage Area Network}}}{496}
-\indexentry{SAS|hyperindexformat{\see{Software As a Service}}}{496}
-\indexentry{SFC|hyperindexformat{\see{Space-Filling Curve}}}{496}
-\indexentry{SIMD|hyperindexformat{\see{Single Instruction Multiple Data}}}{496}
-\indexentry{SIMT|hyperindexformat{\see{Single Instruction Multiple Thread}}}{496}
-\indexentry{SM|hyperindexformat{\see{Streaming Multiprocessor}}}{496}
-\indexentry{SMP|hyperindexformat{\see{Symmetric Multi Processing}}}{496}
-\indexentry{SOA|hyperindexformat{\see{Structure-Of-Arrays}}}{496}
-\indexentry{SOR|hyperindexformat{\see{Successive Over-Relaxation}}}{496}
-\indexentry{SP|hyperindexformat{\see{Streaming Processor}}}{496}
-\indexentry{SPMD|hyperindexformat{\see{Single Program Multiple Data}}}{496}
-\indexentry{SPD|hyperindexformat{\see{symmetric positive definite}}}{496}
-\indexentry{SRAM|hyperindexformat{\see{Static Random-Access Memory}}}{496}
-\indexentry{SSE|hyperindexformat{\see{SIMD Streaming Extensions}}}{496}
-\indexentry{TLB|hyperindexformat{\see{Translation Look-aside Buffer}}}{496}
-\indexentry{UMA|hyperindexformat{\see{Uniform Memory Access}}}{496}
-\indexentry{UPC|hyperindexformat{\see{Unified Parallel C}}}{496}
-\indexentry{WAN|hyperindexformat{\see{Wide Area Network}}}{496}
-\indexentry{cluster!node|hyperindexformat{\see{node}}}{497}
-\indexentry{CPU-bound|hyperindexformat{\see{compute-bound}}}{497}
-\indexentry{directives|hyperindexformat{\see{compiler, directives}}}{497}
-\indexentry{halo|hyperindexformat{\see{ghost region}}}{497}
-\indexentry{irreducible|hyperindexformat{\see{reducible}}}{497}
-\indexentry{modified Gramm-Schmidt|hyperindexformat{\see{Gram-Schmidt, modified}}}{497}
-\indexentry{parallel prefix|hyperindexformat{\see{prefix operation}}}{497}
-\indexentry{Roadrunner|hyperindexformat{\see{IBM!Roadrunner}}}{497}
+\indexentry{Scalapack|hyperpage}{432}
+\indexentry{PLapack|hyperpage}{432}
+\indexentry{Linpack!benchmark|hyperpage}{432}
+\indexentry{Lapack!routines|(hyperpage}{433}
+\indexentry{Lapack!routines|)hyperpage}{434}
+\indexentry{BLAS!data format|(hyperpage}{434}
+\indexentry{Fortran|hyperpage}{434}
+\indexentry{column-major|hyperindexformat{\textbf}}{434}
+\indexentry{row-major|hyperpage}{435}
+\indexentry{BLAS!data format|)hyperpage}{436}
+\indexentry{netlib|hyperpage}{436}
+\indexentry{MKL|hyperpage}{436}
+\indexentry{matrix-matrix product!Goto implementation|hyperpage}{436}
+\indexentry{blis|hyperpage}{436}
+\indexentry{linear algebra!software!dense|)hyperpage}{438}
+\indexentry{libraries!numerical|)hyperpage}{438}
+\indexentry{libraries!numerical|hyperindexformat{\see{PETSc}}}{438}
+\indexentry{libraries!numerical|hyperindexformat{\see{Lapack}}}{438}
+\indexentry{gnuplot|hyperpage}{439}
+\indexentry{GNU!gnuplot|hyperindexformat{\see{gnuplot}}}{439}
+\indexentry{defensive programming|(hyperpage}{442}
+\indexentry{assertions|(hyperpage}{442}
+\indexentry{overflow|hyperpage}{442}
+\indexentry{bug|hyperpage}{442}
+\indexentry{assertion|hyperindexformat{\textbf}}{443}
+\indexentry{side-effects|hyperpage}{443}
+\indexentry{assertions|)hyperpage}{444}
+\indexentry{memory!violations|hyperpage}{446}
+\indexentry{segmentation violation|hyperpage}{446}
+\indexentry{memory!leak|hyperpage}{447}
+\indexentry{debugging|(hyperpage}{450}
+\indexentry{gdb|(hyperpage}{450}
+\indexentry{debugger|hyperpage}{450}
+\indexentry{GNU!gdb|hyperindexformat{\see{gdb}}}{450}
+\indexentry{GNU|hyperpage}{450}
+\indexentry{ddd|hyperpage}{450}
+\indexentry{DDT|hyperpage}{450}
+\indexentry{TotalView|hyperpage}{450}
+\indexentry{core dump|hyperpage}{450}
+\indexentry{debug flag|hyperpage}{451}
+\indexentry{symbol table|hyperpage}{451}
+\indexentry{segmentation fault|hyperpage}{452}
+\indexentry{valgrind|(hyperpage}{454}
+\indexentry{purify|hyperpage}{454}
+\indexentry{valgrind|)hyperpage}{455}
+\indexentry{breakpoint|hyperpage}{456}
+\indexentry{breakpoint|(hyperindexformat{\textbf}}{457}
+\indexentry{breakpoint|)hyperindexformat{\textbf}}{458}
+\indexentry{gdb|)hyperpage}{458}
+\indexentry{debugging!in parallel|(hyperpage}{458}
+\indexentry{deadlock|hyperpage}{458}
+\indexentry{DDT|hyperindexformat{\textbf}}{459}
+\indexentry{debugging!in parallel|)hyperpage}{459}
+\indexentry{debugging|)hyperpage}{459}
+\indexentry{interoperability!C to Fortran|(hyperpage}{460}
+\indexentry{language interoperability|hyperindexformat{\see{interoperability}}}{460}
+\indexentry{nm|hyperpage}{460}
+\indexentry{object file|hyperpage}{460}
+\indexentry{Fortran!iso C bindings|hyperpage}{461}
+\indexentry{C++!linking to|(hyperpage}{461}
+\indexentry{C++!name mangling|hyperpage}{461}
+\indexentry{C++!linking to|)hyperpage}{463}
+\indexentry{C!array layout|(hyperpage}{463}
+\indexentry{Fortran!array layout|(hyperpage}{463}
+\indexentry{column-major|hyperpage}{463}
+\indexentry{row-major|hyperpage}{463}
+\indexentry{C!array layout|)hyperpage}{464}
+\indexentry{Fortran!array layout|)hyperpage}{464}
+\indexentry{null termination|hyperpage}{464}
+\indexentry{by reference|hyperpage}{465}
+\indexentry{interoperability!C to Fortran|)hyperpage}{466}
+\indexentry{LaTeX@{\LaTeX}|(hyperpage}{467}
+\indexentry{LaTeX@{\LaTeX}|hyperindexformat{\seealso{\TeX}}}{467}
+\indexentry{TeX@{\TeX}|(hyperpage}{467}
+\indexentry{TeX@{\TeX}|)hyperpage}{467}
+\indexentry{verbatim mode|hyperpage}{472}
+\indexentry{TeX@{\TeX}!environment variables|(hyperpage}{474}
+\indexentry{TeX@{\TeX}!environment variables|)hyperpage}{474}
+\indexentry{LaTeX@{\LaTeX}|)hyperpage}{480}
+\indexentry{steady state|hyperpage}{486}
+\indexentry{MUMPS|hyperpage}{487}
+\indexentry{memory!wall|hyperpage}{488}
+\indexentry{cache!warming|hyperpage}{490}
+\indexentry{cache!hot|hyperpage}{490}
+\indexentry{cacheline!boundary aligment|hyperpage}{490}
+\indexentry{allocation!static|hyperpage}{490}
+\indexentry{posix\_memalign|hyperindexformat{\texttt}}{490}
+\indexentry{Translation Look-aside Buffer@\acl {TLB} (TLB)|hyperpage}{496}
+\indexentry{AMR|hyperindexformat{\see{Adaptive Mesh Refinement}}}{510}
+\indexentry{AOS|hyperindexformat{\see{Array-Of-Structures}}}{510}
+\indexentry{API|hyperindexformat{\see{Application Programmer Interface}}}{510}
+\indexentry{AVX|hyperindexformat{\see{Advanced Vector Extensions}}}{510}
+\indexentry{BEM|hyperindexformat{\see{Boundary Element Method}}}{510}
+\indexentry{BFS|hyperindexformat{\see{Breadth-First Search}}}{510}
+\indexentry{BLAS|hyperindexformat{\see{Basic Linear Algebra Subprograms}}}{510}
+\indexentry{BSP|hyperindexformat{\see{Bulk Synchronous Parallel}}}{510}
+\indexentry{BVP|hyperindexformat{\see{Boundary Value Problem}}}{510}
+\indexentry{CAF|hyperindexformat{\see{Co-array Fortran}}}{510}
+\indexentry{CCS|hyperindexformat{\see{Compressed Column Storage}}}{510}
+\indexentry{CG|hyperindexformat{\see{Conjugate Gradients}}}{510}
+\indexentry{CGS|hyperindexformat{\see{Classical Gram-Schmidt}}}{510}
+\indexentry{COO|hyperindexformat{\see{Coordinate Storage}}}{510}
+\indexentry{CRS|hyperindexformat{\see{Compressed Row Storage}}}{510}
+\indexentry{DAG|hyperindexformat{\see{Directed Acyclic Graph}}}{510}
+\indexentry{DRAM|hyperindexformat{\see{Dynamic Random-Access Memory}}}{510}
+\indexentry{DSP|hyperindexformat{\see{Digital Signal Processing}}}{510}
+\indexentry{FD|hyperindexformat{\see{Finite Difference}}}{510}
+\indexentry{FMA|hyperindexformat{\see{Fused Multiply-Add}}}{510}
+\indexentry{FDM|hyperindexformat{\see{Finite Difference Method}}}{510}
+\indexentry{FEM|hyperindexformat{\see{Finite Element Method}}}{510}
+\indexentry{FMM|hyperindexformat{\see{Fast Multipole Method}}}{510}
+\indexentry{FOM|hyperindexformat{\see{Full Orthogonalization Method}}}{510}
+\indexentry{FPU|hyperindexformat{\see{Floating Point Unit}}}{510}
+\indexentry{FFT|hyperindexformat{\see{Fast Fourier Transform}}}{510}
+\indexentry{FSA|hyperindexformat{\see{Finite State Automaton}}}{510}
+\indexentry{FSB|hyperindexformat{\see{Front-Side Bus}}}{510}
+\indexentry{FPGA|hyperindexformat{\see{Field-Programmable Gate Array}}}{510}
+\indexentry{GMRES|hyperindexformat{\see{Generalized Minimum Residual}}}{510}
+\indexentry{GPU|hyperindexformat{\see{Graphics Processing Unit}}}{510}
+\indexentry{GPGPU|hyperindexformat{\see{General Purpose Graphics Processing Unit}}}{510}
+\indexentry{GS|hyperindexformat{\see{Gram-Schmidt}}}{510}
+\indexentry{HDFS|hyperindexformat{\see{Hadoop File System}}}{510}
+\indexentry{HPC|hyperindexformat{\see{High-Performance Computing}}}{510}
+\indexentry{HPF|hyperindexformat{\see{High Performance Fortran}}}{510}
+\indexentry{IBVP|hyperindexformat{\see{Initial Boundary Value Problem}}}{510}
+\indexentry{ILP|hyperindexformat{\see{Instruction Level Parallelism}}}{510}
+\indexentry{ILU|hyperindexformat{\see{Incomplete LU}}}{510}
+\indexentry{IVP|hyperindexformat{\see{Initial Value Problem}}}{510}
+\indexentry{LAN|hyperindexformat{\see{Local Area Network}}}{510}
+\indexentry{LBM|hyperindexformat{\see{Lattice Boltzmann Method}}}{510}
+\indexentry{LRU|hyperindexformat{\see{Least Recently Used}}}{510}
+\indexentry{MIC|hyperindexformat{\see{Many Integrated Cores}}}{510}
+\indexentry{MIMD|hyperindexformat{\see{Multiple Instruction Multiple Data}}}{510}
+\indexentry{MGS|hyperindexformat{\see{Modified Gram-Schmidt}}}{510}
+\indexentry{MPI|hyperindexformat{\see{Message Passing Interface}}}{510}
+\indexentry{MSI|hyperindexformat{\see{Modified-Shared-Invalid}}}{510}
+\indexentry{MTA|hyperindexformat{\see{Multi-Threaded Architecture}}}{510}
+\indexentry{NUMA|hyperindexformat{\see{Non-Uniform Memory Access}}}{510}
+\indexentry{ODE|hyperindexformat{\see{Ordinary Diffential Equation}}}{510}
+\indexentry{OS|hyperindexformat{\see{Operating System}}}{510}
+\indexentry{PGAS|hyperindexformat{\see{Partitioned Global Address Space}}}{510}
+\indexentry{PDE|hyperindexformat{\see{Partial Diffential Equation}}}{510}
+\indexentry{PRAM|hyperindexformat{\see{Parallel Random Access Machine}}}{510}
+\indexentry{RDMA|hyperindexformat{\see{Remote Direct Memory Access}}}{510}
+\indexentry{SAN|hyperindexformat{\see{Storage Area Network}}}{510}
+\indexentry{SAS|hyperindexformat{\see{Software As a Service}}}{510}
+\indexentry{SFC|hyperindexformat{\see{Space-Filling Curve}}}{510}
+\indexentry{SIMD|hyperindexformat{\see{Single Instruction Multiple Data}}}{510}
+\indexentry{SIMT|hyperindexformat{\see{Single Instruction Multiple Thread}}}{510}
+\indexentry{SM|hyperindexformat{\see{Streaming Multiprocessor}}}{510}
+\indexentry{SMP|hyperindexformat{\see{Symmetric Multi Processing}}}{510}
+\indexentry{SOA|hyperindexformat{\see{Structure-Of-Arrays}}}{510}
+\indexentry{SOR|hyperindexformat{\see{Successive Over-Relaxation}}}{510}
+\indexentry{SP|hyperindexformat{\see{Streaming Processor}}}{510}
+\indexentry{SPMD|hyperindexformat{\see{Single Program Multiple Data}}}{510}
+\indexentry{SPD|hyperindexformat{\see{symmetric positive definite}}}{510}
+\indexentry{SRAM|hyperindexformat{\see{Static Random-Access Memory}}}{510}
+\indexentry{SSE|hyperindexformat{\see{SIMD Streaming Extensions}}}{510}
+\indexentry{TLB|hyperindexformat{\see{Translation Look-aside Buffer}}}{510}
+\indexentry{UMA|hyperindexformat{\see{Uniform Memory Access}}}{510}
+\indexentry{UPC|hyperindexformat{\see{Unified Parallel C}}}{510}
+\indexentry{WAN|hyperindexformat{\see{Wide Area Network}}}{510}
+\indexentry{cluster!node|hyperindexformat{\see{node}}}{511}
+\indexentry{CPU-bound|hyperindexformat{\see{compute-bound}}}{511}
+\indexentry{directives|hyperindexformat{\see{compiler, directives}}}{511}
+\indexentry{halo|hyperindexformat{\see{ghost region}}}{511}
+\indexentry{irreducible|hyperindexformat{\see{reducible}}}{511}
+\indexentry{modified Gramm-Schmidt|hyperindexformat{\see{Gram-Schmidt, modified}}}{511}
+\indexentry{parallel prefix|hyperindexformat{\see{prefix operation}}}{511}
+\indexentry{Roadrunner|hyperindexformat{\see{IBM!Roadrunner}}}{511}

@@ -380,6 +380,27 @@ The fact that only a small number of real numbers can be represented
 exactly is the basis of the field of round-off error analysis. We will
 study this in some detail in the following sections.
 
+The occurrence of overflow or underflow means that your computation
+will be `wrong' from that point on. Underflow will make the computation
+proceed with a zero where there should have been a nonzero;
+overflow is represented as \indextermtt{Inf}, short of `infinite'.
+Computing with \n{Inf} is possible to an extent: adding two of those
+quantities will again give \n{Inf}. However, subtracting them gives
+\indextermtt{NaN}: `not a number'.
+
+In none of these cases will the computation abort:
+the processor will continue, unless you tell it otherwise.
+The `otherwise' consists of you telling the compiler to generate an \indexterm{interrupt},
+which halts the computation with an error message.
+In~C, you specify this with a library call:
+\begin{verbatim}
+#include <fenv.h>
+int main() { 
+ ...
+ feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW);
+\end{verbatim}
+Interrupts can also be enabled by compiler options.
+
 \Level 1 {Normalized and unnormalized numbers}
 \label{sec:normal-unnormal}
 

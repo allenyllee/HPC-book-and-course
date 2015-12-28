@@ -600,12 +600,6 @@ U.~Kung, Charalampos~E. Tsourakakis, and Christos Faloutsos.
   observations.
 \newblock In {\em Proc. Intl. Conf. Data Mining}, pages 229--238, 2009.
 
-\bibitem{Lamport:sequential}
-L.~Lamport.
-\newblock How to make a multiprocessor computer that correctly executes
-  multiprocess programs.
-\newblock {\em IEEE Transactions on Computers}, C-28:690–--691, 1979.
-
 \bibitem{Lamport:LaTeX}
 L.~Lamport.
 \newblock {\em {\LaTeX}, a Document Preparation System}.
@@ -730,6 +724,13 @@ Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
   Rowley.
 \newblock {\em The {\LaTeX} Companion, 2nd edition}.
 \newblock Addison-Wesley, 2004.
+
+\bibitem{Moreland:formalmetrics2015}
+Kenneth Moreland and Ron Oldfield.
+\newblock Formal metrics for large-scale parallel performance.
+\newblock In Julian~M. Kunkel and Thomas Ludwig, editors, {\em High Performance
+  Computing}, volume 9137 of {\em Lecture Notes in Computer Science}, pages
+  488--496. Springer International Publishing, 2015.
 
 \bibitem{NeedlemanWunsch}
 Saul~B. Needleman and Christian~D. Wunsch.

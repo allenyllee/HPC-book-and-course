@@ -697,6 +697,31 @@ Substituting $M=Pm$, we find ultimately
 that is, the memory per processor that we can use
 goes down as a higher power of the number of processors.
 
+\Level 1 {Other scaling measures}
+
+Amdahl's law above was formulated in terms of the execution time on
+one processor. In many practical situations this is unrealistic, since
+the problems executed in parallel is too large for any single
+processor.  Some formula manipulation gives us quantities that are to
+an extent equivalent, but that do not rely on this single-processor
+number~\cite{Moreland:formalmetrics2015}.
+
+For starters, applying the definition
+%
+$S_p(n) = \frac{ T_1(n) }{ T_p(n) }$
+%
+to strong scaling, we observe that $T_1(n)/n$ is the sequential time
+per operation, and its inverse $n/T_1(n)$ can be called the sequential
+\indextermsub{computational}{rate}, denoted $R_1(n)$. Similarly
+defining a `parallel computational rate'
+\begin{equation}
+  R_p(n) = n/T_p(n)
+\end{equation}
+we find that
+\[ S_p(n) = R_p(n)/R_1(n) \]
+In strong scaling $R_1(n)$ will be a constant, so we
+make a logarithmic plot of speedup, purely based on measuring~$T_p(n)$.
+
 \index{scaling|)}\index{scalability|)}
 
 \Level 0 {Parallel Computers Architectures}
@@ -824,6 +849,7 @@ Using SIMD is then a way to economize on the last two measures.
 
 \Level 2 {Pipelining}
 \label{sec:vector}
+\index{vector!pipeline|see{pipeline, processor}}
 
 A number of computers have been based on a \indexterm{vector
   processor} or \indextermbus{pipeline}{processor} design. The first
@@ -846,8 +872,9 @@ modern superscalar CPU and in, more old-fashioned, vector units.  The
 pipeline units in these vector computers are not integrated floating
 point units in the CPU, but can better be considered as attached
 vector units to a CPU that itself has a floating point unit. The
-vector unit has vector registers\footnote{The Cyber205 was an
-  exception, with direct-to-memory architecture.} with a typical
+vector unit has \index{register!vector}\emph{vector registers}\footnote
+{The Cyber205 was an exception, with direct-to-memory architecture.}
+with a typical
 length of 64 floating point numbers; there is typically no `vector
 cache'. The logic in vector units is also simpler, often addressable
 by explicit vector instructions. Superscalar CPUs, on the other hand,
@@ -856,6 +883,7 @@ streams in unstructured code.
 
 \Level 2 {True SIMD in CPUs and GPUs}
 \label{sec:sse-avx}
+\index{vector!register|see{register, vector}}
 
 True SIMD array processing can be found in modern CPUs and GPUs, in
 both cases inspired by the parallelism that is needed in graphics
@@ -873,7 +901,12 @@ smaller chunks such as 4~bits.
 
 The \ac{AVX} instructions are based on up to
 512-bit wide SIMD, that is, eight floating point numbers can be
-processed simultaneously. Somewhat surprisingly, this is mostly
+processed simultaneously. Just as single floating point operations
+operate on data in registers (section~\ref{sec:register}),
+vector operations use \index{register!vector|(textbf}\emph{vector registers}.
+The locations in a vector register are sometimes referred to as \indextermbusdef{SIMD}{lanes}.
+
+The use of SIMD is mostly
 motivated by power considerations. Decoding instructions is actually
 more power consuming than executing them, so SIMD parallelism is a way
 to save power.
@@ -894,6 +927,8 @@ void func(float *restrict c, float *restrict a,
 Use of these extensions often requires data to be aligned with cache
 line boundaries (section~\ref{sec:cacheline}), so there are special
 allocate and free calls that return aligned memory.
+
+Version 4 of \emph{OpenMP}\index{OpenMP!version 4} also has directives for indicating SIMD parallelism.
 
 \begin{comment}
 For a nontrivial example, see figure~\ref{fig:SSEcomplexmult}, which
