@@ -1433,7 +1433,7 @@ cached data that is no longer an accurate copy of its counterpart: the
 processor will \emph{invalidate}\index{cacheline!invalidation} that
 copy of the item, and in fact its whole cacheline. When the process
 needs access to the item again, it needs to reload that cacheline.
-The alternative is for any core that alters data to send thhat
+The alternative is for any core that alters data to send that
 cacheline to the other cores. This strategy probably has a higher overhead,
 since other cores are not likely to have a copy of a cacheline.
 
