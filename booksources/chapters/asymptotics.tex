@@ -71,8 +71,8 @@ A first objection to these kinds of theoretical bounds is that they
 implicitly assume some form of shared memory. In fact, the formal
 model for these algorithms is called a \indexac{PRAM}, where the
 assumption is that every memory location is accessible to any
-processor.  Often an additional assumption is made that multiple
-access to the same location are in fact possible\footnote{This notion
+processor.  Often an additional assumption is made that multiple simultaneous
+accesses to the same location are in fact possible\footnote{This notion
   can be made precise; for instance, one talks of a CREW-PRAM, for
   Concurrent Read, Exclusive Write PRAM.}. These assumptions are
 unrealistic in practice, especially in the context of scaling up the
@@ -91,7 +91,8 @@ execution time then becomes~$n/2$, a disappointing result given that
 we throw so many processors at the problem. 
 
 What if the processors are
-connected with a hypercube topology? It is not hard to see that the
+connected with a hypercube topology (section~\ref{sec:hypercube})?
+It is not hard to see that the
 summation algorithm can then indeed work in $\log_2n$ time. However,
 as $n\rightarrow\infty$, can we build a sequence of hypercubes of $n$ nodes
 and keep the communication time between two connected constant? Since

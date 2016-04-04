@@ -1,7 +1,7 @@
 \begin{thebibliography}{100}
 
 \bibitem{AWK:awk}
-ALFRED~V. AHO, BRIAN~W. KERNIGHAN, and PETER~J WEINBERGER.
+Alfred~V. Aho, Brian~W. Kernighan, and Peter~J. Weinberger.
 \newblock {\em The Awk Programming Language}.
 \newblock Addison-Wesley Series in Computer Science. Addison-Wesley Publ.,
   1988.
@@ -110,6 +110,12 @@ S.~Browne, J~Dongarra, N.~Garner, G.~Ho, and P.~Mucci.
   processors.
 \newblock {\em International Journal of High Performance Computing
   Applications}, 14:189--204, Fall 2000.
+
+\bibitem{Burks:discussion}
+A.~W. Burks, H.~H. Goldstine, and J.~von Neumann.
+\newblock Preliminary discussion of the logical design of an electronic
+  computing instrument.
+\newblock Technical report, Harvard, 1946.
 
 \bibitem{ButtEijkLang:spmvp}
 Alfredo Buttari, Victor Eijkhout, Julien Langou, and Salvatore Filippone.

@@ -795,51 +795,50 @@ is by an assignment as in other programming languages.
 A variable set this way will be known to all subsequent commands
 you issue in this shell, but not to commands in new shells you start up.
 For that you need the \indextermtt{export} command.
-Reproduce the following session (the double percent sign is the command
-prompt):
+Reproduce the following session (the square brackets form the command prompt):
 \begin{verbatim}
-%% a=20
-%% echo $a
+[] a=20
+[] echo $a
 20
-%% /bin/bash
-%% echo $a
+[] /bin/bash
+[] echo $a
 
-%% exit
+[] exit
 exit
-%% export a=21
-%% /bin/bash
-%% echo $a
+[] export a=21
+[] /bin/bash
+[] echo $a
 21
-%% exit
+[] exit
 \end{verbatim}
 
 You can also temporarily set a variable. Replay this scenario:
 \begin{enumerate}
 \item Find an environment variable that does not have a value:
 \begin{verbatim}
-%% echo $b
+[] echo $b
 
-%%
+[]
 \end{verbatim}
 \item Write a short shell script to print this variable:
 \begin{verbatim}
-%% cat > echob
+[] cat > echob
 #!/bin/bash
 echo $b
 \end{verbatim}
 and of course make it execuable: \n{chmod +x echob}.
 \item Now call the script, preceeding it with a setting of the variable~\n{b}:
 \begin{verbatim}
-%% b=5 ./echob
+[] b=5 ./echob
 5
 \end{verbatim}
 The syntax where you set the value, as a prefix without using a separate
 command, sets the value just for that one command.
 \item Show that the variable is still undefined:
 \begin{verbatim}
-%% echo $b
+[] echo $b
 
-%%
+[]
 \end{verbatim}
 That is, you defined the variable just for the execution of a single command.
 \end{enumerate}
@@ -887,7 +886,7 @@ This does the following:
 \end{itemize}
 As a simple example:
 \begin{verbatim}
-   %% for x in a b c ; do echo $x ; done
+[] for x in a b c ; do echo $x ; done
 a
 b
 c
@@ -904,8 +903,8 @@ Shell variables can be manipulated in a number of ways.
 Execute the following commands to see that you can remove trailing
 characters from a variable:
 \begin{verbatim}
-%% a=b.c
-%% echo ${a%.c}
+[] a=b.c
+[] echo ${a%.c}
 b
 \end{verbatim}
 With this as a hint, write a loop that renames all your \n{.c} files
@@ -956,43 +955,43 @@ is, replacing part of the commandline with different text.
 
 Brace expansion:
 \begin{verbatim}
-%% echo a{b,cc,ddd}e
+[] echo a{b,cc,ddd}e
 abe acce addde
 \end{verbatim}
 This can for instance be used to delete all extension of some base
 file name:
 \begin{verbatim}
-%% rm tmp.{c,s,o}  # delete tmp.c tmp.s tmp.o
+[] rm tmp.{c,s,o}  # delete tmp.c tmp.s tmp.o
 \end{verbatim}
 
 Tilde expansion gives your own, or someone else's home directory:
 \begin{verbatim}
-%% echo ~
+[] echo ~
 /share/home/00434/eijkhout
-%% echo ~eijkhout
+[] echo ~eijkhout
 /share/home/00434/eijkhout
 \end{verbatim}
 
 Parameter expansion gives the value of shell variables:
 \begin{verbatim}
-%% x=5
-%% echo $x
+[] x=5
+[] echo $x
 5
 \end{verbatim}
 Undefined variables do not give an error message:
 \begin{verbatim}
-%% echo $y
+[] echo $y
 \end{verbatim}
 There are many variations on parameter expansion. Above you already
 saw that you can strip trailing characters:
 \begin{verbatim}
-%% a=b.c
-%% echo ${a%.c}
+[] a=b.c
+[] echo ${a%.c}
 b
 \end{verbatim}
 Here is how you can deal with undefined variables:
 \begin{verbatim}
-%% echo ${y:-0}
+[] echo ${y:-0}
 0
 \end{verbatim}
 
@@ -1000,10 +999,10 @@ Here is how you can deal with undefined variables:
 There are ways of doing pattern matching and substitution 
 on a variable:
 \begin{verbatim}
-%% f=x.fort
-%% echo ${f%%.fort}
+[] f=x.fort
+[] echo ${f%%.fort}
 x
-%% echo ${f%%.fort}.bak
+[] echo ${f%%.fort}.bak
 x.bak
 \end{verbatim}
 \end{comment}
@@ -1013,18 +1012,18 @@ is known as command substitution. It allows you to evalute part
 of a command and use it as input for another. For example,
 if you want to ask what type of file the command \n{ls} is, do
 \begin{verbatim}
-%% file `which ls`
+[] file `which ls`
 \end{verbatim}
 This first evalutes \n{which ls}, giving \n{/bin/ls}, and then
 evaluates \n{file /bin/ls}. As another example, here
 we backquote a whole pipeline, and do a test on the result:
 \begin{verbatim}
-%% echo 123 > w
-%% cat w
+[] echo 123 > w
+[] cat w
 123
-%% wc -c w
+[] wc -c w
        4 w
-%% if [ `cat w | wc -c` -eq 4 ] ; then echo four ; fi
+[] if [ `cat w | wc -c` -eq 4 ] ; then echo four ; fi
 four
 \end{verbatim}
 
@@ -1033,14 +1032,14 @@ is possible to do arithmetic.
 Arithmetic substitution tells the shell to treat the expansion of a
 parameter as a number:
 \begin{verbatim}
-%% x=1
-%% echo $((x*2))
+[] x=1
+[] echo $((x*2))
 2
 \end{verbatim}
 
 Integer ranges can be used as follows:
 \begin{verbatim}
-%% for i in {1..10} ; do echo $i ; done
+[] for i in {1..10} ; do echo $i ; done
 1
 2
 3

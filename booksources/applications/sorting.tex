@@ -1,4 +1,19 @@
 % -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012-6
+%%%%
+%%%% This book is distributed under a Creative Commons Attribution 3.0
+%%%% Unported (CC BY 3.0) license and made possible by funding from
+%%%% The Saylor Foundation \url{http://www.saylor.org}.
+%%%%
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \label{sec:sorting}
 \index{sorting|(}
 
@@ -34,30 +49,27 @@ least complexity~$O(n\log n)$\footnote{One can consider a sorting
   n)$}. There are indeed several algorithms that are guaranteed to
 attain this complexity, but a very popular algorithm, called
 \indexterm{Quicksort} has only an `expected' complexity of~$O(n\log
-n)$, and a worst case complexity of~$O(n^2)$.
-
-\Level 1 {Sorting networks}
-
-There is another way of looking at sorting algorithms,
-distinguishing them by whether they work independent of
-the state of the input data, or not.
-As an example of an algorithm that depends on its input data,
-imagine a sorting algorithm that makes a
-pass over the data to check if it was already sorted. This algorithm
-has linear complexity (that is, $n$~operations for $n$ elements)
-for a sorted list, and something
-higher for an unsorted list.
-
-The popular Quicksort algorithm has such data dependencies,
-since it involves finding `pivot' elements.
-
-On the other hand, the so-called \indexterm{bubble sort} algorithm
-can be described
-independently of the data to be sorted. This algorithm is given by:
+n)$, and a worst case complexity of~$O(n^2)$. This behaviour results
+from the fact that quicksort needs to choose `pivot elements' (we will
+go into more detail below in section~\ref{sec:quicksort}), and if
+these choices are consistently the worst possible, the optimal
+complexity is not reached.
 
 \begin{displayalgorithm}
-  \For{$t$ from $n-1$ down to $1$}{
-    \For{$e$ from 1 to $t$}{
+  \While{the input array has length~$>1$}{
+    Find a pivot element of intermediate size\;
+    Split the array in two, based on the pivot\;
+    Sort the two arrays.
+  }
+  \caption{The quicksort algorithm}
+\end{displayalgorithm}
+
+On the other hand, the very simple \indexterm{bubble sort} algorithm
+always has the same complexity, since it has a static structure:
+
+\begin{displayalgorithm}
+  \For{$\mathit{pass}$ from $1$ to $n-1$}{
+    \For{$e$ from 1 to $n-\mathit{pass}$}{
       \If{elements $e$ and $e+1$ are ordered the wrong way}{exchange
       them}
     }
@@ -70,12 +82,26 @@ the inner loop does $t$ comparisons and up to $t$ exchanges. Summing
 this from $1$ to $n-1$ gives approximately $n^2/2$ comparisons and
 at most the same number of exchanges.
 
-Such a data-independent sorting algorithm is sometimes
+\Level 1 {Sorting networks}
+
+Above we saw that some sorting algorithms operate independently of the
+actual input data, and some make decisions based on that data.
+The former class is sometimes
 called \indextermbus{sorting}{network}. It can be considered
 as custom hardware that implements just one algorithm. The 
 basic hardware element is the \indexterm{compare-and-swap}
 element, which has two inputs and two outputs. For two inputs $x,y$
 the outputs are $\max(x,y)$ and $\min(x,y)$.
+
+In figure~\ref{fig:bubble-pass} we show buble sort, built up
+%
+\begin{figure}[ht]
+  \includegraphics[scale=.13]{bubble-pass}
+  \caption{Bubble sort as a sorting network}
+  \label{fig:bubble-pass}
+\end{figure}
+%
+out of compare and swap elements.
 
 Below we will consider the \indexterm{Bitonic sort} algorithm
 as a prime example of a sorting network.
@@ -87,7 +113,12 @@ If we can have perfect speedup, using for simplicity $P=N$ processors,
 we would have parallel time~$O(\log N)$. If the parallel time
 is more than that, we define the \indexterm{sequential complexity}
 as the total number of operations. For instance, below you will see
-\indexterm{odd-even transposition sort}, which takes~$N$ steps,
+\indexterm{odd-even transposition sort},
+also called \emph{swap sort}\index{swap sort|see{odd-even transposition
+    sort}}
+or \emph{exchange sort}\index{exchange sort|see{odd-even transposition
+    sort}}.
+This takes~$N$ parallel steps,
 giving a sequential complexity of~$N^2$, and bitonic sort
 which has a parallel time of~$(\log N)^2$ and a
 sequential complexity of~$N(\log N)^2$.
@@ -95,7 +126,21 @@ sequential complexity of~$N(\log N)^2$.
 \Level 0 {Odd-even transposition sort}
 \index{odd-even transposition sort|(textbf}
 
-The \emph{odd-even transposition sort} algorithm is a simple
+Taking another look at figure~\ref{fig:bubble-pass}, you see that the
+second pass
+%
+\begin{figure}[ht]
+  \includegraphics[scale=.12]{bubble-collapse}
+  \caption{Overlapping passes in the bubble sort network}
+  \label{fig:bubble-collapse}
+\end{figure}
+%
+can actually be started long before the first pass is totally
+finished. This is illustrated in figure~\ref{fig:bubble-collapse}.
+If we now look at what happens at any given time, we easily derive the 
+\emph{odd-even transposition sort} algorithm.
+
+Odd-even transposition sort is a simple parallel sorting
 algorithm, with as main virtue that it is easily implemented
 on a linear area of processors. A~single step of the
 algorithm consists of two substeps:
@@ -107,15 +152,39 @@ algorithm consists of two substeps:
 \end{itemize}
 
 \begin{theorem}
-  After $N$ steps, each consisting of the two substeps just given,
+  After $N/$ steps, each consisting of the two substeps just given,
   a sequency is sorted.
 \end{theorem}
+\begin{proof}
+  In each triplet $2i,2i+1,2i+2$, after an even and an odd step the
+  largest element will be in rightmost position. Proceed by induction.
+\end{proof}
 
-With a parallel time of $2N$, this gives a sequential complexity~$O(N^2)$.
+With a parallel time of $N$, this gives a sequential complexity~$N^2$
+compare-and-swap operations.
+
+\begin{exercise}
+  \label{ex:swapsort}
+  Discuss speedup and efficiency of swap sort, where we sort $N$
+  numbers of $P$ processors; for simplicity we set $N=P$ so that
+  each processor contains a single number. Express execution time
+  in \indexterm{compare-and-swap} operations.
+  \begin{enumerate}
+  \item How many compare-and-swap operations does the parallel code
+    take in total?
+  \item How many sequential steps does the algorithm take? What are
+    $T_1$, $T_p$, $T_\infty$, $S_p$, $E_p$ for sorting $N$ numbers?
+    What is the average amount of parallelism?
+  \item Swap sort can be considered a parallel implementation of
+    bubble sort. Now let $T_1$ refer to the execution time of
+    (sequential) bubble sort. How does this change $S_p$ and~$E_p$?
+  \end{enumerate}
+\end{exercise}
 
 \index{odd-even transposition sort|)textbf}
 
 \Level 0 {Quicksort}
+\label{sec:quicksort}
 \index{Quicksort|(}
 
 Quicksort is a recursive algorithm, that, unlike bubble sort, is not

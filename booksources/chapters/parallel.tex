@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-6
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -186,7 +186,7 @@ These matters of algorithm adaptation, efficiency, and communication,
 are crucial to all of parallel computing. We will return to these
 issues in various guises throughout this chapter.
 
-\Level 0 {Functional parallelism versus data parallelism}
+\Level 1 {Functional parallelism versus data parallelism}
 
 From the above introduction we can describe parallelism as finding
 independent operations in the execution of a program. In all of the examples
@@ -215,6 +215,43 @@ see section~\ref{sec:task-parallel}.
 Some examples of functional parallelism are Monte Carlo simulations,
 and other algorithms that traverse a parametrized search space,
 such as boolean \indexterm{satisfyability} problems.
+
+\Level 1 {Parallelism in the algorithm versus in the code}
+
+Often we are in the situation that we want to parallelize an algorithm
+that has a common expression in sequential form. In some cases, this
+sequential form can easily be parallelized, such as in the vector
+addition discussed above. In other cases there is no simple way to
+parallelize the algorithm; we will discuss linear recurrences in
+section~\ref{sec:recdouble}. And in yet another case the sequential code may
+look not parallel, but the algorithm actually has parallelism.
+
+\begin{exercise}
+\begin{verbatim}
+for i in [1:N]:
+    x[0,i] = some_function_of(i)
+    x[i,0] = some_function_of(i)
+
+for i in [1:N]:
+    for j in [1:N]:
+        x[i,j] = x[i-1,j]+x[i,j-1]
+\end{verbatim}
+
+Answer the following questions about the double \n{i,j} loop:
+\begin{enumerate}
+\item Are the iterations of the inner loop independent, that is, could
+  they be executed simultaneously?
+\item Are the iterations of the outer loop independent?
+\item If \n{x[1,1]} is known, show that \n{x[2,1]} and \n{x[1,2]} can
+  be computed independently.
+\item Does this give you an idea for a parallelization strategy?
+\end{enumerate}
+\end{exercise}
+
+We will discuss the solution to this conundrum in
+section~\ref{sec:wavefront}. In general, the whole of
+chapter~\ref{ch:parallellinear} will be about the amount of
+parallelism intrinsic in scientific computing algorithms.
 
 \Level 0 {Quantifying parallelism}
 \label{sec:speedup-efficiency}
@@ -1232,7 +1269,7 @@ it by \indextermsub{incremental}{parallelization}. By contrast,
 turning a sequential code into a distributed memory MPI program
 is an all-or-nothing affair.
 
-Many compilers, such as GCC\index{GCC} or the Intel compiler, support
+Many compilers, such as \emph{gcc}\index{gcc} or the Intel compiler, support
 the OpenMP extensions. In Fortran, OpenMP directives are placed in
 comment statements; in~C, they are placed in \verb+#pragma+ CPP
 directives, which indicate compiler specific extensions. As a result,
@@ -1283,7 +1320,7 @@ dealing with that. For instance, shared variables commonly occur in
 \indexterm{reduction operations}:
 \begin{verbatim}
   s = 0;
-#pragma parallel for reduction(+:sum)
+#pragma parallel for reduction(+:s)
   for (i=0; i<ProblemSize; i++) {
     s = s + a[i]*b[i];
   }
@@ -1306,22 +1343,7 @@ differ in the amount of work involved, the process may suffer from
 \indextermbus{load}{unbalance} with static scheduling. In that case, a
 \indextermsub{dynamic}{scheduling} strategy would work better, where each
 thread starts work on the next unprocessed iteration as soon as it
-finishes its current iteration.
-\begin{figure}
-  \begin{quote}
-  \includegraphics[scale=.7]{graphics/scheduling}
-  \end{quote}
-  \caption{Static or round-robin (left) vs dynamic (right) thread
-    scheduling; the task numbers are indicated.}
-  \label{fig:staticdynamic}
-\end{figure}
-The example in figure~\ref{fig:staticdynamic} shows static versus
-dynamic scheduling of a number of tasks that gradually decrease in
-individual running time. In static scheduling, the first thread gets
-tasks 1~and~4, the second 2 and~5, et cetera. In dynamic scheduling,
-any thread that finishes its task gets the next task. This clearly
-gives a better running time in this particular example. On the other
-hand, dynamic scheduling is likely to have a higher overhead.
+finishes its current iteration. See the example in section~\ref{sec:load-schedule}.
 
 You can control OpenMP scheduling of loop iterations with the \n{schedule}
 keyword; its values include \n{static} and \n{dynamic}. It is also possible 

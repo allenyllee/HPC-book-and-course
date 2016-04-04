@@ -4,7 +4,7 @@
 #### Makefile for:
 ####     Introduction to High-Performance Scientific Computing
 #### by Victor Eijkhout
-#### copyright 2010-5
+#### copyright 2010-6
 ####
 ################################################################
 ################################################################

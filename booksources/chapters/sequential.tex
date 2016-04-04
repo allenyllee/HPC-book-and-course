@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-6
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -527,7 +527,7 @@ at a regular amount per time period.
   can switch very quickly between threads in order to achieve latency hiding.
 \item[Bandwidth] is the rate at which data arrives at its destination,
   after the initial latency is overcome. Bandwidth is measured in
-  bytes (kilobyes, megabytes, gigabyes) per second or per clock cycle.
+  bytes (kilobytes, megabytes, gigabytes) per second or per clock cycle.
   The bandwidth between two memory levels is usually the product of
   the cycle speed of the channel (the \indextermbus{bus}{speed}) and
   the \indextermbus{bus}{width}: the number of bits that can be sent
@@ -624,7 +624,7 @@ Keeping values in register is often done to avoid recomputing a
 quantity. For instance, in 
 \begin{verbatim}
 t1 = sin(alpha) * x + cos(alpha) * y;
-t2 = -cos(alsph) * x + sin(alpha) * y;
+t2 = -cos(alpha) * x + sin(alpha) * y;
 \end{verbatim}
 the sine and cosine quantity will probably be kept in register. You
 can help the compiler by explicitly introducing temporary quantities:
@@ -678,6 +678,10 @@ advantage to having cache memory is that if a data item is reused
 shortly after it was first needed, it will still be in cache, and
 therefore it can be accessed much faster than if it would have to be
 brought in from memory.
+
+On a historical note, the notion of levels of memory hierarchy was
+already discussed in 1946~\cite{Burks:discussion}, motivated
+by the slowness of the memory technology at the time.
 
 \Level 2 {A motivating example}
 
@@ -893,6 +897,13 @@ long, which in the context of scientific computing implies 8 or 16
 double precision floating point numbers. The cache line size for data
 moved into L2 cache can be larger than for data moved into L1 cache.
 
+\begin{wrapfigure}{r}{3in}
+  \includegraphics[scale=.07]{graphics/stride-1}
+  \caption{Accessing 4 elements at stride 1}
+  \label{fig:stride-1}
+  %\vskip-.5in
+\end{wrapfigure}
+%
 It is important to acknowledge the existence of cache lines in coding,
 since any memory access costs the transfer of several words (see
 section~\ref{sec:coding-cacheline} for some examples). An
@@ -901,13 +912,6 @@ since access to them is effectively free. This phenomenon is visible in
 code that accesses arrays by \indexterm{stride}: elements are read or
 written at regular intervals.
 
-\begin{wrapfigure}{r}{3in}
-  \includegraphics[scale=.07]{graphics/stride-1}
-  \caption{Accessing 4 elements at stride 1}
-  \label{fig:stride-1}
-  \vskip-.5in
-\end{wrapfigure}
-%
 Stride~1 corresponds to sequential access of an array:
 \begin{verbatim}
 for (i=0; i<N; i++)
@@ -947,7 +951,7 @@ Some applications naturally lead to strides greater than~1, for
 instance, accessing only the real parts of an array of complex
 numbers (for some remarks on the practical realization of complex
 numbers see section~\ref{sec:complex}). Also, methods that use
-\indextermdef{recursive doubling} often have a code structure that
+\indexterm{recursive doubling} often have a code structure that
 exhibits non-unit strides
 \begin{verbatim}
 for (i=0; i<N/2; i++)
@@ -984,7 +988,7 @@ The simplest cache mapping strategy is \indexterm{direct
   mapping}. Suppose that memory addresses are 32 bits long, so that
 they can address 4G bytes\footnote{We implicitly use the convention
   that K,M,G suffixes refer to powers of 2 rather than~10: 1K=1024,
-  1M=1,048,576, 1G=4,294,967,296.}; suppose further that the
+  1M=1,048,576, 1G=1,073,741,824.}; suppose further that the
 cache has 8K words, that is, 64K~bytes, needing 16 bits to address.
 Direct mapping then takes from each memory address the last (`least
 significant') 16~bits,
@@ -1433,7 +1437,7 @@ cached data that is no longer an accurate copy of its counterpart: the
 processor will \emph{invalidate}\index{cacheline!invalidation} that
 copy of the item, and in fact its whole cacheline. When the process
 needs access to the item again, it needs to reload that cacheline.
-The alternative is for any core that alters data to send thhat
+The alternative is for any core that alters data to send that
 cacheline to the other cores. This strategy probably has a higher overhead,
 since other cores are not likely to have a copy of a cacheline.
 
@@ -1632,7 +1636,7 @@ the bandwidth/clock speed gap by keeping data in fast cache memory.
 
 [In this discussion we were only concerned with the number of
   operations of a given \emph{implementation}, not the mathematical
-  \emph{operation}. For instance, there are ways or performing the
+  \emph{operation}. For instance, there are ways of performing the
   matrix-matrix multiplication and Gaussian elimination algorithms in
   fewer than $O(n^3)$
   operations~\cite{St:gaussnotoptimal,Pa:combinations}. However, this

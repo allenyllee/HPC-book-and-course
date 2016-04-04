@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-6
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -102,6 +102,36 @@ Show that $\lfloor N/p\rfloor \leq f(i+1)-f(i)\leq \lceil N/p\rceil$.
 
 Under this scheme, the processor that owns index~$i$ is
 $\lfloor (p(i+1)-1)/N \rfloor$.
+
+\Level 2 {Load scheduling}
+\label{sec:load-schedule}
+
+In some circumstances, the computational load can be freely assigned
+to processors, for instance in the context of shared memory where all
+processors have access to all the data. In that case we can consider
+the difference between \indextermsub{static}{scheduling} using a
+pre-determined assignment of work to processors, or
+\indextermsub{dynamic}{scheduling} where the assignment is determined
+during executions.
+
+As an illustration of the merits of dynamic scheduling consider
+scheduling 8~tasks of decreasing runtime on 4~threads
+(figure~\ref{fig:staticdynamic}).
+%
+\begin{figure}[ht]
+  \begin{quote}
+  \includegraphics[scale=.7]{scheduling}
+  \end{quote}
+  \caption{Static or round-robin (left) vs dynamic (right) thread
+    scheduling; the task numbers are indicated.}
+  \label{fig:staticdynamic}
+\end{figure}
+%
+In static scheduling, the first thread gets
+tasks 1~and~4, the second 2 and~5, et cetera. In dynamic scheduling,
+any thread that finishes its task gets the next task. This clearly
+gives a better running time in this particular example. On the other
+hand, dynamic scheduling is likely to have a higher overhead.
 
 \Level 2 {Load balancing of independent tasks}
 

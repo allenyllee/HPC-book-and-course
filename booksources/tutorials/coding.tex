@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012/3/4/5
+%%%% by Victor Eijkhout, copyright 2012-6
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -321,7 +321,10 @@ memory that has not been allocated yet, or has already been
 freed. While some compilers can do bound checking at runtime, this
 slows down your program. A~better strategy is to write your own memory
 management. Some libraries such as PETSc already supply an enhanced
-malloc; if this is available you should certainly make use of it.
+malloc; if this is available you should certainly make use of
+it. (The \emph{gcc}\index{gcc!memory checking} compiler has a
+function \indextermtt{mcheck}, defined in \n{mcheck.h}, that has a
+similar function.)
 
 If you write in~C, you will probably know the \n{malloc} and \n{free} calls:
 \begin{verbatim}
