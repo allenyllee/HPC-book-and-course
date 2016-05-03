@@ -80,6 +80,7 @@ ratings~$r_{ij}$, for instance by gradually minimizing
 \]
 
 \Level 1 {Stochastic gradient descent}
+\index{stochastic gradient descent}
 
 Let $e_{ij}=r_{ij}-q_i^tp_j$ be the difference between actual and predicted rating.
 \[
@@ -88,6 +89,8 @@ Let $e_{ij}=r_{ij}-q_i^tp_j$ be the difference between actual and predicted rati
   p_j\leftarrow p_j+\gamma (e_{ij}q_i-\lambda p_j)
 \end{array}
 \]
+
+Decentralized recommending:~\cite{Zheng:2016arXiv:decentral-recommend}
 
 \Level 1 {Alternating least squares}
 

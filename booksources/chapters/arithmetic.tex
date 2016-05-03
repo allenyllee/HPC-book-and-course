@@ -686,7 +686,8 @@ In~C99, the API for this is contained in \indextermtt{fenv.h}:
 \begin{verbatim}
 #include <fenv.h>
 
-int roundings[]={FE_TONEAREST, FE_UPWARD, FE_DOWNWARD, FE_TOWARDZERO};
+int roundings[] =
+  {FE_TONEAREST, FE_UPWARD, FE_DOWNWARD, FE_TOWARDZERO};
 rchoice = ....
 int status = fesetround(roundings[rchoice]);            
 \end{verbatim}

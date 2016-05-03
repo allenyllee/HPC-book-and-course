@@ -168,7 +168,7 @@ place.
 
 The summing example made the unrealistic assumption that every
 processor initially stored just one vector element: in practice we will
-have $P<N$, and every processor stores a number of vector
+have $p<n$, and every processor stores a number of vector
 elements. The obvious strategy is to give each processor a consecutive
 stretch of elements, but sometimes the obvious strategy is not the
 best.
@@ -278,7 +278,7 @@ $S_p=T_1/T_p$. (Sometimes $T_1$ is defined as `the best time to solve the
 problem on a single processor', which allows for using a different
 algorithm on a single processor than in parallel.)
 In the ideal case, $T_p=T_1/p$, but in practice we don't expect to
-attain that, so $S_P\leq p$. To measure how far we are from the ideal
+attain that, so $S_p\leq p$. To measure how far we are from the ideal
 speedup, we introduce the \indextermdef{efficiency} $E_p=S_p/p$. Clearly,
 $0< E_p\leq 1$.
 
@@ -290,7 +290,7 @@ over many processors may give a distorted picture since very little
 data will wind up on each processor. Below we will discuss more
 realistic measures of speed-up.
 
-There are various reasons why the actual speed is less than~$P$. For
+There are various reasons why the actual speed is less than~$p$. For
 one, using more than one processors necessitates communication, which
 is overhead that was not part of the original computation. Secondly,
 if the processors do not have exactly the same amount of work to do,
@@ -599,7 +599,8 @@ We distinguish two types of scalability. So-called
 \indextermsub{strong}{scalability} is in effect the same as speedup,
 discussed above. We say that a program shows strong scalability if,
 partitioned over more and more processors, it shows perfect or near
-perfect speedup. Typically, one encounters statements like `this
+perfect speedup, that is, the execution time goes down linearly with
+the number of processors. Typically, one encounters statements like `this
 problem scales up to 500 processors', meaning that up to 500
 processors the speedup will not noticeably decrease from optimal. It
 is not necessary for this problem to fit on a single processors: often
@@ -609,7 +610,7 @@ which scalability is judged.
 More interestingly, \indextermsub{weak}{scalability} is a more vaguely
 defined term. It describes that, as problem size and number of
 processors grow in such a way that the amount of data per processor
-stays constant, the speed in operations per second of each processor
+stays constant, the execution time
 also stays constant. This measure is somewhat hard to report, since
 the relation between the number of operations and the amount of data
 can be complicated. If this relation is linear, one could state that
@@ -1896,13 +1897,13 @@ is a natural candidate for running physics simulations.
   Your parallel computer has its processors organized in a 2D grid.
   The chip manufacturer comes out with a new chip with same clock
   speed that is dual core instead of single core, and that will fit in
-  the existing sockets. Critique the following argument: "the amount
+  the existing sockets. Critique the following argument: `the amount
   work per second that can be done (that does not involve communication)
   doubles; since the network stays the same, the bisection bandwidth
   also stays the same, so I can reasonably expect my new machine to
   become twice as fast\footnote{With the numbers one and two replaced
     by higher numbers, this is actually not a bad description of
-    current trends in processor design.}."
+    current trends in processor design.}.'
 \end{exercise}
 
 Grid-based designs often have so-called \emph{wrap-around} or

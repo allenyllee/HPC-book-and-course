@@ -149,11 +149,6 @@ Barbara Chapman, Gabriele Jost, and Ruud van~der Pas.
   volume~10 of {\em Scientific Computation Series}.
 \newblock MIT Press, ISBN 0262533022, 9780262533027, 2008.
 
-\bibitem{ChenDoolen:LBM}
-Shiyi Chen and Gary~D. Doolen.
-\newblock Lattice {Boltzmann} method for fluid flows.
-\newblock {\em Annual Review of Fluid Mechanics}, 30(1):329--364, 1998.
-
 \bibitem{Choi:scalapack}
 Yaeyoung Choi, Jack~J. Dongarra, Roldan Pozo, and David~W. Walker.
 \newblock Scalapack: a scalable linear algebra library for distributed memory
@@ -442,12 +437,24 @@ W.~Gropp, E.~Lusk, and A.~Skjellum.
 \newblock {\em Using {MPI}}.
 \newblock {T}he {MIT} {P}ress, 1994.
 
+\bibitem{Gropp:UsingAdvancedMPI}
+William Gropp, Torsten Hoefler, Rajeev Thakur, and Ewing Lusk.
+\newblock {\em Using Advanced {MPI}: {M}odern Features of the
+  {M}essage-{P}assing {I}nterface}.
+\newblock MIT Press, Nov. 2014.
+
 \bibitem{mpi-2-reference}
 William Gropp, Steven Huss-Lederman, Andrew Lumsdaine, Ewing Lusk, Bill
   Nitzberg, William Saphir, and Marc Snir.
 \newblock {\em {MPI}: The Complete Reference, Volume 2 - The {MPI}-2
   Extensions}.
 \newblock MIT Press, 1998.
+
+\bibitem{Gropp:UsingMPI2}
+William Gropp, Ewing Lusk, and Rajeev Thakur.
+\newblock {\em Using MPI-2: Advanced Features of the Message-Passing
+  Interface}.
+\newblock MIT Press, Cambridge, MA, USA, 1999.
 
 \bibitem{Gropp:BeowulfBook}
 William Gropp, Thomas Sterling, and Ewing Lusk.
@@ -649,12 +656,6 @@ Charles~E. Leiserson.
   supercomputing.
 \newblock {\em IEEE Trans. Comput}, C-34:892--901, 1985.
 
-\bibitem{LinCohen:PIC}
-F.~Lin and W.W. Cohen.
-\newblock Power iteration clustering.
-\newblock In {\em Proceedings of the 27th International Conference on Machine
-  Learning, Haifa, Israel}, 2010.
-
 \bibitem{LiRoTa:dissection}
 Richard~J. Lipton, Donald~J. Rose, and Robert~Endre Tarjan.
 \newblock Generalized nested dissection.
@@ -737,12 +738,6 @@ Kenneth Moreland and Ron Oldfield.
 \newblock In Julian~M. Kunkel and Thomas Ludwig, editors, {\em High Performance
   Computing}, volume 9137 of {\em Lecture Notes in Computer Science}, pages
   488--496. Springer International Publishing, 2015.
-
-\bibitem{NeedlemanWunsch}
-Saul~B. Needleman and Christian~D. Wunsch.
-\newblock A general method applicable to the search for similarities in the
-  amino acid sequence of two proteins.
-\newblock {\em Journal of Molecular Biology}, 48(3):443 -- 453, 1970.
 
 \bibitem{Oetiker:LaTeXintro}
 Tobi Oetiker.
@@ -852,11 +847,6 @@ D.~E. Shaw.
 \newblock A fast, scalable method for the parallel evaluation of
   distance-limited pairwise particle interactions.
 \newblock {\em J. Comput. Chem.}, 26:1318--1328, 2005.
-
-\bibitem{TAU:ijhpca}
-S.~Shende and A.~D. Malony.
-\newblock {\em International Journal of High Performance Computing
-  Applications}, 20:287--331, 2006.
 
 \bibitem{Skillicorn96questionsand}
 D.~B. Skillicorn, Jonathan M.~D. Hill, and W.~F. McColl.

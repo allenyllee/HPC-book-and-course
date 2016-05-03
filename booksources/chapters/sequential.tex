@@ -1552,6 +1552,58 @@ section~\ref{sec:multicore-block}.
 
 \index{multicore|)}
 
+\Level 0 {Node architecture and sockets}
+\label{sec:socket}
+\index{socket|(textbf}
+
+In the previous sections we have made our way down through the memory
+hierarchy, visiting registers and various cache levels, and the extent
+to which they can be private or shared. At the bottom level of the
+memory hierarchy is the memory that all cores share. This can range
+from a few Gigabyte on a lowly laptop to a few Terabyte in some
+supercomputer centers. 
+
+While this memory is shared between all cores, there is some structure
+to it. This derives from the fact that cluster \indexterm{node} can
+have more than one \indextermdef{socket}, that is, processor chip.
+\begin{figure}[ht]
+  \includegraphics[scale=.3]{stampede-node}
+  \caption{A two-socket design with co-processor: one node of the
+    Stampede supercomputer}
+  \label{fig:stampede-node}
+\end{figure}
+The shared memory on the node is typically spread over banks that are
+directly attached to one particular socket.
+This is for instance illustrated in figure~\ref{fig:stampede-node},
+which shows the two-socket node of the \indexterm{Stampede}
+supercomputer.
+
+This is an example of \indexac{NUMA} design: for a process running on
+some core, the memory attached to its socket is slightly faster to
+access than the memory attached another socket.
+
+One result of this is the \indextermdef{first-touch} phenomenon.
+Dynamically allocated memory is not actually allocated until it's
+first written. Consider now the following OpenMP
+(section~\ref{sec:openmp}) code:
+\begin{verbatim}
+double *array = (double*)malloc(N*sizeof(double));
+for (int i=0; i<N; i++)
+   array[i] = 1;
+#pragma omp parallel for
+for (int i=0; i<N; i++)
+   .... lots of work on array[i] ...
+\end{verbatim}
+Because of first-touch, the array is allocated completely in the
+memory of the socket of the master thread. In the subsequenty parallel
+loop the cores of the other socket will then have slower access to the
+memory they operate on.
+
+The solution here is to also make the initialization loop parallel,
+even if the amount of work in it may be negligible.
+
+\index{socket|)}
+
 \Level 0 {Locality and data reuse}
 
 By now it should be clear that there is more to the execution of an

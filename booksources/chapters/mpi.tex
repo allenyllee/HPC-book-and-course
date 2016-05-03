@@ -38,7 +38,7 @@ Let us consider how the OpenMP examples can be coded in
 MPI\footnote{This is not a course in MPI programming, and consequently
   the examples will leave out many details of the MPI calls. If you
   want to learn MPI programming, consult for
-  instance~\cite{Gropp:UsingMPI1}.}. First of all, we no longer allocate
+  instance~\cite{Gropp:UsingMPI1,Gropp:UsingMPI2,Gropp:UsingAdvancedMPI}.}. First of all, we no longer allocate
 \begin{verbatim}
 double a[ProblemSize];
 \end{verbatim}
@@ -302,7 +302,7 @@ MPI_Wait(sendhandle); Wait(recvhandle);
   the disadvantage of this code over a blocking solution?
 \end{exercise}
 
-\Level 2 {MPI version 1 and 2}
+\Level 2 {MPI version 1 and 2 and 3}
 \label{sec:mpi-1-2}
 
 The first MPI standard~\cite{mpi-ref} had a number of notable
@@ -323,6 +323,9 @@ put data into the memory of another, without the receiving process
 doing an actual receive instruction. We will have a short discussion
 in section~\ref{sec:one-sided} below.
 
+With MPI-3 the standard has gained a number of new features, such as
+non-blocking collectives, neighbourhood collectives, and a profiling
+interface. The one-sided mechanisms have also been updated.
 
 \Level 2 {One-sided communication}
 \index{one-sided communication|(}
