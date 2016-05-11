@@ -1,3 +1,4 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
@@ -388,18 +389,19 @@ Computing with \n{Inf} is possible to an extent: adding two of those
 quantities will again give \n{Inf}. However, subtracting them gives
 \indextermtt{NaN}: `not a number'.
 
+\begin{exercise}
+For real numbers $x,y$, the quantity $g=\sqrt{(x^2+y^2)/2}$ satisfies
+\[ g\leq \max\{|x|,|y|\} \]
+so it is representable if $x$ and~$y$ are.
+What can go wrong if you compute $g$ using the above formula?
+Can you think of a better way?
+\end{exercise}
+
+
 In none of these cases will the computation abort:
 the processor will continue, unless you tell it otherwise.
 The `otherwise' consists of you telling the compiler to generate an \indexterm{interrupt},
-which halts the computation with an error message.
-In~C, you specify this with a library call:
-\begin{verbatim}
-#include <fenv.h>
-int main() { 
- ...
- feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW);
-\end{verbatim}
-Interrupts can also be enabled by compiler options.
+which halts the computation with an error message. See section~\ref{sec:fenvh}.
 
 \Level 1 {Normalized and unnormalized numbers}
 \label{sec:normal-unnormal}
@@ -676,7 +678,8 @@ gets worse with increasing problem size or runtime. This is true for
 the sort of calculations in chapter~\ref{ch:odepde}, but not for
 others such as \indexacp{LBM}
 
-\Level 2 {Setting the rounding behaviour}
+\Level 2 {Setting the exception and rounding behaviour}
+\label{sec:fenvh}
 
 The 754 standard also declares that a processor should be
 able to switch its rounding behaviour between ordinary rounding,
@@ -697,6 +700,17 @@ is available in the \n{IEEE_ARITHMETIC} module.
 Setting the rounding behaviour can serve as a quick test for the stability
 of an algorithm: if the result changes appreciably between two different
 rounding strategies, the algorithm is likely not stable.
+
+The behaviour on \indexterm{overflow} can also be set to generate an
+\indexterm{exception}.
+In~C, you specify this with a library call:
+\begin{verbatim}
+#include <fenv.h>
+int main() { 
+ ...
+ feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW);
+\end{verbatim}
+Interrupts can also be enabled by compiler options.
 
 \Level 0 {Round-off error analysis}
 \index{round-off error analysis|(}

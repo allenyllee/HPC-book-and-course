@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-6
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -15,7 +15,7 @@
 
 The architecture of modern CPUs is largely dictated by the fact that
 getting data from memory is much slower than processing it. Hence, a
-hierarchy of ever faster and smaller tries to keep data as close to
+hierarchy of ever faster and smaller memories tries to keep data as close to
 the processing unit as possible, mitigating the long latency and small
 bandwidth of main memory. The \ac{ILP} in the processing unit 
 also helps to hide the latency and more fully utilize the available
@@ -33,7 +33,7 @@ programmed in an explicitly data parallel way. What if we have a great
 deal of data parallelism but not that many processing units? In that
 case, we could turn the parallel instruction streams into threads (see
 section~\ref{sec:threads}) and have multiple threads be executed on
-each processing unit. Whenever a tread would stall because of an
+each processing unit. Whenever a thread would stall because of an
 outstanding memory request, the processor could switch to another
 thread for which all the necessary inputs are available. This is
 called \indexterm{multi-threading}. While it sounds like a way of

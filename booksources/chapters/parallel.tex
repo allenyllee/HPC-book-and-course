@@ -72,7 +72,10 @@ a factor of~$p$\footnote{We ignore lower order errors in this result
   when $p$ does not divide perfectly in~$n$. We will also, in general,
 ignore matters of loop overhead.}.
 
-Next, let us consider summing the elements of a vector. We again
+Next, let us consider summing the elements of a vector.
+(An operation that has a vector as input but only a scalar as output
+is often called a \indexterm{reduction}.)
+We again
 assume that each processor contains just a single array element. The
 sequential code:
 \begin{verbatim}
@@ -90,7 +93,7 @@ there is a way to parallelize it: every iteration of the outer loop is
 now a loop that can be done by $n/s$ processors in parallel. Since the
 \begin{figure}[ht]
   \includegraphics[scale=.13]{graphics/parallel-sum}
-  \caption{Parallelization of a vector addition}
+  \caption{Parallelization of a vector reduction}
   \label{fig:par-sum}
 \end{figure}
 outer loop will go through $\log_2n$ iterations, we see that the new
@@ -126,7 +129,7 @@ processors, and an arrow corresponds to a communication if it goes
 from one processor to another. 
 \begin{figure}[ht]
   \includegraphics[scale=.13]{graphics/parallel-sum-graph}
-  \caption{Communication structure of a parallel vector addition}
+  \caption{Communication structure of a parallel vector reduction}
   \label{fig:par-sum-graph}
 \end{figure}
 The vertical alignment in figure~\ref{fig:par-sum-graph} is not the
@@ -603,7 +606,7 @@ perfect speedup, that is, the execution time goes down linearly with
 the number of processors. Typically, one encounters statements like `this
 problem scales up to 500 processors', meaning that up to 500
 processors the speedup will not noticeably decrease from optimal. It
-is not necessary for this problem to fit on a single processors: often
+is not necessary for this problem to fit on a single processor: often
 a smaller number such as 64 processors is used as the baseline from
 which scalability is judged.
 
@@ -1287,7 +1290,7 @@ and \url{http://openmp.org/wp/}.
 
 The simplest example of OpenMP use is the parallel loop. 
 \begin{verbatim}
-#pragma omp for
+#pragma omp parallel for
 for (i=0; i<ProblemSize; i++) {
   a[i] = b[i];
 }
@@ -1310,7 +1313,7 @@ not due to such constructs, is called not \indextermbus{thread}{safe}.
 
 OpenMP indicates that the temporary is private to each iteration as follows:
 \begin{verbatim}
-#pragma parallel for shared(a,b), private(t)
+#pragma omp parallel for shared(a,b), private(t)
   for (i=0; i<ProblemSize; i++) {
     t = b[i]*b[i];
     a[i] = sin(t) + cos(t);
@@ -1321,7 +1324,7 @@ dealing with that. For instance, shared variables commonly occur in
 \indexterm{reduction operations}:
 \begin{verbatim}
   s = 0;
-#pragma parallel for reduction(+:s)
+#pragma omp parallel for reduction(+:sum)
   for (i=0; i<ProblemSize; i++) {
     s = s + a[i]*b[i];
   }
@@ -1335,7 +1338,7 @@ $P$ threads and $N$ iterations and $N>P$, how is iteration~$i$ going
 to be assigned to a thread?
 
 The simplest assignment uses \indextermbus{round-robin}{task scheduling}, a
-\indextermsub{static}{scheduling} strategy where thread~$p$ get iterations
+\indextermsub{static}{scheduling} strategy where thread~$p$ gets iterations
 $p\times(N/P),\ldots,(p+1)\times (N/P)-1$.
 This has the advantage that if some data is
 reused between iterations, it will stay in the data cache of the
@@ -1539,13 +1542,13 @@ typedef struct _Vector* Vector;
 \end{verbatim}
 and if you need a number of them you create an array of such structures.
 \begin{verbatim}
-Node *nodes = (node) malloc( n_nodes*sizeof(struct _Node) );
+Node *nodes = (Node*) malloc( n_nodes*sizeof(struct _Node) );
 \end{verbatim}
 This is the AOS design.
 
 Now suppose that you want to parallelize an operation
 \begin{verbatim}
-void shift(node the_point,vector by) {
+void shift(Node the_point,Vector by) {
   the_point->xcoord += by->xtrans;
   the_point->ycoord += by->ytrans;
 }
@@ -1787,7 +1790,7 @@ Bisection width also describes \indexterm{redundancy} in a network: if
 one or more connections are malfunctioning, can a message
 still find its way from sender to receiver?
 
-While bisection width is a measure express as a number of wires, in
+While bisection width is a measure expressing a number of wires, in
 practice we care about the capacity through those wires. The relevant
 concept here is \indexterm{bisection bandwidth}: the bandwidth across
 the bisection width, which is the product of the bisection width, and
@@ -1814,7 +1817,7 @@ all processors directly to the same memory pool, so it offers
 a \indexac{UMA} or \indexac{SMP} model.
 
 The main disadvantage of using a bus is the limited scalability,
-since only one processor at a time can do a memory access. To over this,
+since only one processor at a time can do a memory access. To overcome this,
 we need to assume that processors are slower than memory,
 or that the processors have cache or other local memory to operate out of.
 In the latter case, maintaining \indextermbus{cache}{coherence}
@@ -1847,7 +1850,7 @@ so the design is fairly simple.
   \item a processor can send any number of messages simultaneously,
   \item but a wire can can carry only one message at a time; however,
     \item communication between any two processors takes unit time,
-      regardless the number of processors in between them.
+      regardless of the number of processors in between them.
   \end{itemize}
 
   In a fully connected network or a star network
@@ -1873,7 +1876,7 @@ This exercise is an example of \indexterm{embedding} a
 \Level 1 {2D and 3D arrays}
 
 A popular design for parallel computers is to organize the processors
-in a two-dimensional or three-dimensional \indexterm{cartesian mesh}.
+in a two-dimensional or three-dimensional \indexterm{Cartesian mesh}.
 This means that every processor has a coordinate $(i,j)$ or $(i,j,k)$,
 and it is connected to its neighbours in all coordinate directions.
 The processor design is still fairly simple: the number of network
@@ -1897,7 +1900,7 @@ is a natural candidate for running physics simulations.
   Your parallel computer has its processors organized in a 2D grid.
   The chip manufacturer comes out with a new chip with same clock
   speed that is dual core instead of single core, and that will fit in
-  the existing sockets. Critique the following argument: `the amount
+  the existing sockets. Critique the following argument: `the amount of
   work per second that can be done (that does not involve communication)
   doubles; since the network stays the same, the bisection bandwidth
   also stays the same, so I can reasonably expect my new machine to
@@ -1917,7 +1920,7 @@ figure~\ref{fig:torus}.
 \end{figure}
 
 Some computer designs claim to be a grid of high dimensionality, for
-instance~5D, but not all dimensional are equal here. For instance a 3D
+instance~5D, but not all dimensionals are equal here. For instance, a 3D
 grid where each \indexterm{node} is a quad-socket 
 quad-core can be considered as a
 5D grid. However, the last two dimensions are fully connected.
@@ -1926,7 +1929,7 @@ quad-core can be considered as a
 \label{sec:hypercube}
 
 Above we gave a hand-waving argument for the suitability of
-mesh-organized processors, based on the prevalence of nearest
+mesh-organized processors based on the prevalence of nearest
 neighbour communications. However, sometimes sends and receives
 between arbitrary processors occur. One example of this is the
 above-mentioned broadcast. For this reason, it is desirable to have a
@@ -2115,6 +2118,10 @@ connect any two processors by a path through the network.
   \crossbarfig
 \end{notlulu}
 %
+\begin{lulu}
+  \crossbarfig
+\end{lulu}
+%
 The simplest switching network is a cross bar, an arrangement of $n$
 horizontal and vertical lines, with a switch element on each
 intersection that determines whether the lines are connected; see
@@ -2123,10 +2130,6 @@ inputs the vertical as outputs, this is clearly a way of having $n$
 inputs be mapped to $n$ outputs. Every combination of inputs and
 outputs (sometimes called a `permutation') is allowed.
 
-\begin{lulu}
-  \crossbarfig
-\end{lulu}
-%
 One advantage of this type of network is that no connection 
 blocks another.
 The main disadvantage  is that the number of 
@@ -2134,22 +2137,22 @@ switching elements is~$n^2$, a~fast growing function of the
 number of processors~$n$.
 
 \Level 2 {Butterfly exchange}
+\index{Omega network|see{butterfly exchange}}
+\index{butterfly exchange|(textbf}
 
 \begin{figure}[ht]
-  \begin{quote}
-    \includegraphics[scale=.06]{graphics/butterfly1}\hspace{.5in}
-    \includegraphics[scale=.06]{graphics/butterfly2}
-  \end{quote}
-  \caption{A butterfly exchange network for two and four processors/memories}
+  \includegraphics[scale=.06]{butterflys}
+  \caption{Butterfly exchange networks for 2,4,8 processors, each with
+    a local memory}
   \label{fig:butterfly}
 \end{figure}
 
-Butterfly exchanges are typically built out of small switching
-elements, and they have multiple stages; as the number of processors
+\emph{Butterfly exchange} networks are built out of small switching
+elements, and they have multiple stages: as the number of processors
 grows, the number of stages grows with it. Figure~\ref{fig:butterfly}
-shows a one-stage butterfly used to implement both shared memory and
-distributed (or distributed shared) memory, and the extension of the
-latter to two stages.
+shows shows butterfly networks to connect 2,4,~and~8 processors, each
+with a local memory. (Alternatively, you could put all processors at
+one side of the network, and all memories at the other.)
 
 As you can see in figure~\ref{fig:butterflyroute}, butterfly exchanges
 allow several processors to access memory simultaneously. Also, their
@@ -2191,6 +2194,8 @@ figure~\ref{fig:butterfly-route}. If we attach the memories to the
 processors, as in figure~\ref{fig:butterflyroute}, we need only two
 bits (to the last switch) but a further
 three bits to describe the reverse route.
+
+\index{butterfly exchange|)}
 
 \Level 2 {Fat-trees}
 \label{sec:fat-tree}
@@ -2529,7 +2534,7 @@ It has both differencies and similarities with \acp{GPU}.
   section~\ref{sec:gpu-kernel}).
 \item The Xeon Phi accepts ordinary C code.
 \item Both architectures require a large amount of SIMD-style
-  parallelism, in the case of the Xeon Phi because of the 8-wide
+  parallelism, in the case of the Xeon Phi because of the 8-word wide
   \indexac{AVX} instructions.
 \item Both devices work, or can work, through \indexterm{offloading}
   from a host program. In the case of the Xeon Phi this can happen

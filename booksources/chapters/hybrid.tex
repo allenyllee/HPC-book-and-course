@@ -33,13 +33,13 @@ In practice this is realized as follows:
 \begin{itemize}
 \item On each node a single MPI process is started (rather than one
   per socket or core);
-\item This one MPI process than uses OpenMP (or another threading
+\item This one MPI process then uses OpenMP (or another threading
   protocol) to spawn as many threads are there are independent sockets
   or cores on the node.
 \item The OpenMP threads can then easily access the same shared memory.
 \end{itemize}
 The alternative would be to have an MPI process on each core or
-socket, and do all communication through message passing, even between
+socket and do all communication through message passing, even between
 processes that can see the same shared memory.
 
 This hybrid strategy may sound like a good idea but the truth is complicated.
@@ -59,8 +59,7 @@ This hybrid strategy may sound like a good idea but the truth is complicated.
   not have with its fixed processes.
 \item Shared memory programming is conceptually simple, but there can
   be unexpected performance pitfalls. For instance, the performance of
-  two processes now
-  can impeded by the need for maintaining
+  two processes can now be impeded by the need for maintaining
   \indextermsub{cache}{coherence} and by \indexterm{false sharing}.
 \end{itemize}
 

@@ -98,12 +98,14 @@ for (i=0; i<ProblemSize; i++) {
     a[i] = (b[i]+b[i-1])/2
   else
     a[i] = (b[i]+b[i-1]+b[i+1])/3
+}
 \end{verbatim}
 If we had shared memory, we could write the following parallel code:
 \begin{verbatim}
 for (i=0; i<LocalProblemSize; i++) {
   bleft = b[i-1]; bright = b[i+1];
   a[i] = (b[i]+bleft+bright)/3
+}
 \end{verbatim}
 To turn this into valid distributed memory code,
 first we account for the fact that \n{bleft} and \n{bright} need to be
@@ -118,6 +120,7 @@ for (i=0; i<LocalProblemSize; i++) {
   if (i==LocalProblemSize-1) bright=bfromright;
     else bright = b[i+1];
   a[i] = (b[i]+bleft+bright)/3
+}
 \end{verbatim}
 Obtaining the neighbour values is done as follows. First we need to
 ask our processor number, so that we can start a communication with
@@ -129,7 +132,7 @@ MPI_Sendrecv
     /* destination  */ myTaskID+1,
     /* to be recvd: */ &bfromleft,
     /* source:      */ myTaskID-1, 
-    /* some parameters omited */ 
+    /* some parameters omitted */ 
    );
 MPI_Sendrecv(&b[0],myTaskID-1,
     &bfromright, /* ... */ );
@@ -177,7 +180,7 @@ Although MPI is sometimes called the `assembly language of parallel
 programming', for its perceived difficulty and level of explicitness,
 it is not all that hard to learn, as evinced by the large number of scientific
 codes that use it. The main issues that make MPI somewhat intricate to
-use, are buffer management and blocking semantics.
+use are buffer management and blocking semantics.
 
 These issues are related, and stem from the fact that, ideally, data
 should not be in two places at the same time. Let us briefly
@@ -319,7 +322,7 @@ management: there is no way to create new processes and have them be
 part of the parallel run.
 
 Finally, MPI-2 has support for one-sided communication: one process
-put data into the memory of another, without the receiving process
+puts data into the memory of another, without the receiving process
 doing an actual receive instruction. We will have a short discussion
 in section~\ref{sec:one-sided} below.
 
@@ -360,8 +363,8 @@ The MPI parallel code will look like
 a_local = (a_local+left+right)/3
 \end{verbatim}
 It is clear what the transfer has to accomplish: the \n{a_local}
-variables needs to become the \n{left} variable on the processor with
-the next higher rank, and the \n{right} variables on the one with the
+variable needs to become the \n{left} variable on the processor with
+the next higher rank, and the \n{right} variable on the one with the
 next lower rank.
 
 First of all, processors need to declare explicitly what memory area

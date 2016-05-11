@@ -20,7 +20,7 @@ to the topic; for further discussion see the book by Goedeker and
 Hoisie~\cite{Goedeker:performance-book}.
 
 The full listings of the codes and explanations of the data graphed
-here can be found in appendix~\ref{app:codes}. All performance results
+here can be found in chapter~\ref{app:codes}. All performance results
 were obtained on the \indextermbus{AMD}{Opteron} processors of the Ranger
 computer~\cite{tacc:ranger}.
 
@@ -254,7 +254,7 @@ for (i=0; i<m; i++)
 The results (see Appendix~\ref{sec:tlb-code} for the source code) are
 plotted in figures \ref{fig:tlb_row} and~\ref{fig:tlb_col}. 
 
-\begin{figure}
+\begin{figure}[ht]
   \begin{quote}
   \includegraphics[scale=.5]{graphics/tlb_col}
   \end{quote}
@@ -262,7 +262,7 @@ plotted in figures \ref{fig:tlb_row} and~\ref{fig:tlb_col}.
     of columns; columnwise traversal of the array.}
   \label{fig:tlb_col}
 \end{figure}
-\begin{figure}
+\begin{figure}[ht]
   \begin{quote}
   \includegraphics[scale=.5]{graphics/tlb_row}
   \end{quote}
@@ -280,7 +280,7 @@ the TLB.
 \item In the first traversal this is indeed what happens. After we
   touch an element, and the TLB records the page it is on, all other
   elements on that page are used subsequently, so no further TLB
-  misses occur. Figure~\ref{fig:tlb_row} shows that, with increasing~$n$,
+  misses occur. Figure~\ref{fig:tlb_col} shows that, with increasing~$n$,
   the number of TLB misses per column is roughly two.
 \item In the second traversal, we touch a new page for every element
   of the first row. Elements of the second row will be on these pages,
@@ -288,7 +288,7 @@ the TLB.
   entries, these pages will still be recorded in the TLB. As the
   number of columns grows, the number of TLB increases, and ultimately
   there will be one TLB miss for each element
-  access. Figure~\ref{fig:tlb_col} shows that, with a large enough number
+  access. Figure~\ref{fig:tlb_row} shows that, with a large enough number
   of columns, the number of TLB misses per column is equal to the
   number of elements per column.
 \end{enumerate}
@@ -490,7 +490,7 @@ implicit. There is no way a programmer can load data explicitly to a
 certain cache, even in assembly language. 
 
 However, it is possible to code in a `cache aware' manner. Suppose a
-piece of code repeatedly operates on an amount of data that less data
+piece of code repeatedly operates on an amount of data that is less
 than the cache size. We can assume that the first time the data is
 accessed, it is brought into cache; the next time it is accessed it
 will already be in cache. On the other hand, if the amount of data is
@@ -636,7 +636,7 @@ reused. Moreover, we now have $2n^2+n$ loads, comparable to variant~2,
 but $n^2$~stores, which is of a higher order.
 
 It is possible to get reuse both of $x$ and~$y$, but this requires
-more sophisticated programming. The key here is split the loops into
+more sophisticated programming. The key here is to split the loops into
 blocks. For instance:
 \begin{verbatim}
 for (i=0; i<M; i+=2) {

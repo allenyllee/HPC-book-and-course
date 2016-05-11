@@ -146,7 +146,7 @@ This can be fixed by having a \indexterm{lock} on the code region that should be
 pthread_mutex_t lock;
 
 void adder() {
-  int t,r;
+  int t;
   pthread_mutex_lock(&lock);
   t = sum; sleep(1); sum = t+1; 
   pthread_mutex_unlock(&lock);
@@ -453,7 +453,7 @@ for (i=1; i<ndata; i+=2) // use odd indices
 In this second example, either the program has to be transformed, or
 the programmer has to maintain in effect a \indextermbus{task}{queue}.
 
-It is natural to think of affinity to think in terms of `put the
+It is natural to think of affinity in terms of `put the
 execution where the data is'. However, in practice the opposite view
 sometimes makes sense.  For instance, figure~\ref{fig:ranger-numa}
 showed how the shared memory of a cluster node can actually be
@@ -528,6 +528,7 @@ programmer can create threads.
       \>\>rst += fib(n-1);\\
       \>\>rst += fib(n-2);\\
       \>\>return rst;\\
+      \>\>\}\\
       \}\\
     \end{tabbing}
       \end{minipage}
@@ -543,6 +544,7 @@ programmer can create threads.
       \>\>rst += cilk\_spawn fib(n-2);\\
       \>\>cilk\_sync;\\
       \>\>return rst;\\
+      \>\>\}\\
       \}\\
     \end{tabbing}
       \end{minipage}

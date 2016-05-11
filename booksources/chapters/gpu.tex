@@ -132,7 +132,7 @@ first, with all threads in the other branch stopped. Subsequently,
 \emph{and not simultaneously}, the threads on the other branch will
 then execute their code. This may induce a severe performance penalty.
 
-\acp{GPU} rely on large amount of data parallelism and the ability to
+\acp{GPU} rely on a large amount of data parallelism and the ability to
 do a fast
 \indextermbus{context}{switch}. This means that they will thrive in
 graphics and scientific applications, where there is lots of data
@@ -156,7 +156,7 @@ These are some of the  differences between \acp{GPU} and regular CPUs:
   accomodate the scientific computing community, \indexterm{double
     precision} support is increasing, but double precision speed is
   typically half the single precision flop rate. This discrepancy is
-  likely to be addressed in fugure generations.
+  likely to be addressed in future generations.
 \item A CPU is optimized to handle a single stream of instructions
   that can be very heterogeneous in character; a~\ac{GPU} is made
   explicitly for data parallelism, and will perform badly on

@@ -1,9 +1,10 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-6
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -88,7 +89,31 @@ figure~\ref{fig:ghost}.
   matrices for these two cases.
 \end{exercise}
 
-Our crucial observation is now that, for each processor, the number of
+\begin{figure}[ht]
+  \includegraphics[scale=.1]{bandmat}
+  \caption{Band matrix with halfbandwidth $\sqrt N$}
+  \label{fig:bandmat}
+\end{figure}
+
+\begin{exercise}
+  \label{ex:bandmat-prod}
+  Figure~\ref{fig:bandmat} depicts a sparse matrix of size~$N$ with a
+  halfbandwidth~$n=\sqrt N$. That is,
+  \[ |i-j|>n \Rightarrow a_{ij}=0. \]
+  We make a one-dimensional distribution of this matrix over $p$
+  processors, where $p=n=\sqrt N$.
+
+  Show that the matrix-vector product using
+  this scheme is weakly scalable by computing the efficiency
+  as function of the number of processors
+  \[ E_p = \frac{T_1}{pT_p}. \]
+
+  Why is this scheme not really weak scaling, as it is commonly defined?
+\end{exercise}
+
+One crucial observation about the parallel sparse matrix-vector
+product
+is that, for each processor, the number of
 other processors it is involved with is strictly limited. This has
 implications for the efficiency of the operation.
 

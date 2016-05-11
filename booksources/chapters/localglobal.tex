@@ -41,9 +41,9 @@ processor knows its own number.
 
 One possible way of writing this would be
 \begin{itemize}
-\item If I am processor~0 do nothing, otherwise receive a $y$ element
+\item If I am processor~0 do nothing. Otherwise receive a $y$ element
   from the left, add it to my $x$ element.
-\item If I am the last processor do nothing, otherwise send my $y$
+\item If I am the last processor do nothing. Otherwise send my $y$
   element to the right.
 \end{itemize}
 At first we look at the case where sends and
@@ -80,7 +80,7 @@ This is illustrated in figure~\ref{fig:wave_right_2} and you see that
     data to the right}
   \label{fig:wave_right_2}
 \end{figure}
-again we get a serialized execution, except that now the processor are
+again we get a serialized execution, except that now the processors are
 activated right to left.
 
 If the algorithm in equation~\ref{eq:mpi-send-left} had been cyclic:

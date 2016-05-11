@@ -999,7 +999,7 @@ significant') 16~bits,
 \end{figure}
 and uses these as the address of the data item in cache; see figure~\ref{fig:directmap}.
 
-Direct mapping is very efficient because of its address calculations
+Direct mapping is very efficient because its address calculations
 can be performed very quickly, leading to low latency, but it
 has a problem in practical applications. If two items are addressed
 that are separated by 8K words, they will be mapped to the same cache
@@ -1082,7 +1082,7 @@ would suffice, but in practice higher values are often encountered.
 \end{figure}
 Figure~\ref{fig:assoc-mapping} illustrates the mapping of memory
 addresses to cache locations for a direct mapped and a 3-way associative
-cache. Both caches have 12 elements, but addressed diferently.
+cache. Both caches have 12 elements, but these are used diferently.
 The direct mapped cache (left)
 will have a conflict between memory address 0~and~12, but
 in the 3-way associative cache these two addresses can be mapped
@@ -1185,7 +1185,7 @@ cycle to utilize the available bandwidth. This would be true even with
 zero latency; since there is latency, it takes a while for data to
 make it from memory and be processed. Consequently, any data requested
 based on computations on the first data has to be requested with a
-delay at least equal the memory latency.
+delay at least equal to the memory latency.
 
 For full utilization of the bandwidth,
 at all times a volume of data equal to the bandwidth times
@@ -1213,7 +1213,7 @@ way simultaneously. Therefore, we can also phrase Little's law as
 \Level 1 {Memory banks}
 \label{sec:banks}
 
-Above, we discussed issues relating to bandwdith. You saw that memory,
+Above, we discussed issues relating to bandwidth. You saw that memory,
 and to a lesser extent caches, have a bandwidth that is less than what
 a processor can maximally absorb. The situation is actually even worse
 than the above discussion made it seem. For this reason, memory is
@@ -1417,7 +1417,7 @@ chip.
 
 With parallel processing, there is the potential for a conflict if more
 than one processor has a copy of the same data item. The problem of
-ensuring that all cached data are an accurate copy of main memory, is
+ensuring that all cached data are an accurate copy of main memory is
 referred to as \emph{cache coherence}: if one processor alters
 its copy, the other copy needs to be updated.
 
@@ -1427,7 +1427,7 @@ arise with knowledge of the user, and it is up to the user to
 deal with the problem. The case of shared memory is more subtle: since
 processes access the same main memory, it would seem that conflicts
 are in fact impossible. However, processors typically have some private
-cache, which contains copies of data from memory, so conflicting
+cache that contains copies of data from memory, so conflicting
 copies can occur.  This situation arises in particular in multicore
 designs.
 
@@ -1567,16 +1567,22 @@ While this memory is shared between all cores, there is some structure
 to it. This derives from the fact that cluster \indexterm{node} can
 have more than one \indextermdef{socket}, that is, processor chip.
 \begin{figure}[ht]
-  \includegraphics[scale=.3]{stampede-node}
-  \caption{A two-socket design with co-processor: one node of the
-    Stampede supercomputer}
+  \hbox{
+    \includegraphics[scale=.15]{ranger-node}
+    \includegraphics[scale=.15]{stampede-node}
+    }
+  \caption{Left: a four-socket design. Right: a~two-socket design with co-processor.}
   \label{fig:stampede-node}
 \end{figure}
 The shared memory on the node is typically spread over banks that are
 directly attached to one particular socket.
 This is for instance illustrated in figure~\ref{fig:stampede-node},
-which shows the two-socket node of the \indexterm{Stampede}
-supercomputer.
+which shows the four-socket node of the \indexterm{Ranger}
+supercomputer (no longer in production) and the two-socket node of the \indexterm{Stampede}
+supercomputer which contains an \indextermbus{Intel}{Xeon Phi}
+co-processor.
+In both designs you clearly see the memory chips that are directly
+connected to the sockets.
 
 This is an example of \indexac{NUMA} design: for a process running on
 some core, the memory attached to its socket is slightly faster to
@@ -1615,7 +1621,7 @@ possible. Partly this is a matter of programming cleverly, but we can
 also look at the theoretical question: does the algorithm allow for it
 to begin with.
 
-It turns out that in scientific computing it is often the case that data
+It turns out that in scientific computing data often
 interacts mostly with data that is close by in some sense, which will
 lead to data locality; section~\ref{sec:locality}. Often such locality
 derives from the nature of the application, as in the case of the \acp{PDE} you
