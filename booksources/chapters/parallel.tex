@@ -286,7 +286,7 @@ speedup, we introduce the \indextermdef{efficiency} $E_p=S_p/p$. Clearly,
 $0< E_p\leq 1$.
 
 There is a practical problem with
-this definition: a problem that can be solved on a parallel machine
+the above definitions: a problem that can be solved on a parallel machine
 may be too large to fit on any single processor. Conversely,
 distributing a single processor problem
 over many processors may give a distorted picture since very little
@@ -321,6 +321,36 @@ solve it by swapping data to disc. If the same problem fits in the
 memory of two processors, the speedup may well be larger than~$2$
 since disc swapping no longer occurs. Having less, or more localized,
 data may also improve the cache behaviour of a code.
+
+\Level 2 {Cost-optimality}
+
+In cases where the speedup is not perfect we can define
+\indexterm{overhead} as the difference \[ T_o = pT_p-T1. \]
+We can also interpret this as the difference between simulating the
+parallel algorithm on a single processor, and the actual best
+sequential algorithm.
+
+We will later see two different types of overhead:
+\begin{enumerate}
+\item The parallel algorithm can be essentially different from the
+  sequential one. For instance, sorting algorithms have a
+  complexity~$O(n\log n)$, but the parallel bitonic sort
+  (section~\ref{app:bitonicsort}) has complexity~$O(n\log^2n)$.
+\item The parallel algorithm can have overhead derived from the
+  process or parallelizing, such as the cost of sending messages. As
+  an example, section~\ref{sec:densescaling} analyzes the
+  communication overhead in the matrix-vector product.
+\end{enumerate}
+
+A parallel algorithm is called \indexterm{cost-optimal} if the
+overhead is at most of the order of the running time of the sequential
+algorithm.
+
+\begin{exercise}
+  The definition of overhead above implicitly assumes that overhead is
+  not parallelizable. Discuss this assumption in the context of the
+  two examples above.
+\end{exercise}
 
 \Level 2 {Critical path}
 \label{sec:critical-path}
@@ -603,22 +633,38 @@ We distinguish two types of scalability. So-called
 discussed above. We say that a program shows strong scalability if,
 partitioned over more and more processors, it shows perfect or near
 perfect speedup, that is, the execution time goes down linearly with
-the number of processors. Typically, one encounters statements like `this
+the number of processors. In terms of efficiency we can describe this
+as:
+\[ \left.
+\begin{array}{l}
+  N\equiv\mathrm{constant}\\ P\rightarrow\infty
+\end{array}
+\right\} \Rightarrow E_P\approx\mathrm{constant}
+\]
+Typically, one encounters statements like `this
 problem scales up to 500 processors', meaning that up to 500
 processors the speedup will not noticeably decrease from optimal. It
 is not necessary for this problem to fit on a single processor: often
 a smaller number such as 64 processors is used as the baseline from
 which scalability is judged.
 
-More interestingly, \indextermsub{weak}{scalability} is a more vaguely
+More interestingly, \indextermsubdef{weak}{scalability} is a more vaguely
 defined term. It describes that, as problem size and number of
 processors grow in such a way that the amount of data per processor
 stays constant, the execution time
-also stays constant. This measure is somewhat hard to report, since
+also stays constant.
+This measure is somewhat hard to report, since
 the relation between the number of operations and the amount of data
 can be complicated. If this relation is linear, one could state that
 the amount of data per processor is kept constant, and report that parallel
 execution time is constant as the number of processors grows.
+In terms of efficiency:
+\[ \left.
+\begin{array}{l}
+  N\rightarrow\infty\\ P\rightarrow\infty\\ M=N/P\equiv\mathrm{constant}
+\end{array}
+\right\} \Rightarrow E_P\approx\mathrm{constant}
+\]
 
 \begin{exercise}
   We can formulate strong scaling as a runtime that is inversely
@@ -652,8 +698,22 @@ execution time is constant as the number of processors grows.
   Show that in the strong scaling case speedup is a descending function of~$n$.
 \end{exercise}
 
-Although in industry parlance the term `scalability' is sometimes
-applied to architectures or whole computer systems\footnote {``A
+\Level 2 {Iso-efficiency}
+\label{sec:iso-efficiency}
+
+In the definition of \indextermsub{weak}{scalability} above, we stated
+that, under some relation between problem size~$N$ and number of
+processors~$P$, efficiency will stay constant. We can make this
+precise and define the \indextermdef{iso-efficiency curve} as the
+relation between $N,P$ that gives constant
+efficiency~\cite{Grama:1993:isoefficiency}.
+
+\Level 2 {Precisely \emph{what} is scalable?}
+
+In industry parlance the term `scalability' is sometimes
+applied to architectures or whole computer systems:
+\begin{quotation}
+  A
   scalable computer is a computer designed from a small number of
   basic components, without a single bottleneck component, so that
   the computer can be incrementally expanded over its designed scaling
@@ -661,9 +721,9 @@ applied to architectures or whole computer systems\footnote {``A
   set of scalable applications.  General-purpose scalable computers
   provide a wide range of processing, memory size, and I/O
   resources.  Scalability is the degree to which performance
-  increments of a scalable computer are linear''~\cite{Bell:outlook}.},
-%
-in scientific computing
+  increments of a scalable computer are linear''~\cite{Bell:outlook}.
+\end{quotation}
+In scientific computing
 scalability is a property of an algorithm and the way it is
 parallelized on an architecture, in
 particular noting the way data is distributed. In

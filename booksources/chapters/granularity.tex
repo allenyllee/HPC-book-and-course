@@ -1,9 +1,10 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-6
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -51,9 +52,7 @@ in fact \emph{only} work in lockstep, have existed, see
 section~\ref{sec:simd}. Such fully parallel operations on arrays 
 appear in computer graphics, where every pixel of an image is processed
 independently. For this reason, \acp{GPU}
-\begin{gpu}
-  (section~\ref{sec:gpu})
-\end{gpu}
+(section~\ref{sec:gpu})
 are strongly based on data parallelism.
 
 Continuing the above example for a little bit, consider the operation
@@ -161,9 +160,7 @@ subdivided, or they are joined with some neighbouring ones (rendered
 in grey) and then jointly redivided.
 
 \begin{figure}[ht]
-    \begin{quote}
 \includegraphics[scale=.3]{graphics/delauney}
-        \end{quote}
   \caption{A mesh before and after refinement}
   \label{fig:delauney}
 \end{figure}

@@ -576,7 +576,9 @@ and we write the equations with unknowns on the left and known
 quantities on the right as
 \[
 \begin{cases}
-  2u_1-u_2=h^2f(x_1)+u_0\\ 2u_n-u_{n-1}=h^2f(x_{n})+u_{n+1}.
+  -u_{i-1} + 2u_i - u_{i+1} = h^2f(x_i)\\
+  2u_1-u_2=h^2f(x_1)+u_0\\
+  2u_n-u_{n-1}=h^2f(x_{n})+u_{n+1}.
 \end{cases}
 \]
 We can now summarize these equations for $u_k,k=1\ldots n-1$

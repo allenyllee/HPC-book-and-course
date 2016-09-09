@@ -520,10 +520,7 @@ at a regular amount per time period.
   operations while waiting for the requested data. Programmers can
   take this into account, and code in a way that achieves
   \indextermbus{latency}{hiding}; see also section~\ref{sec:intensity}.
-  \acp{GPU} 
-\begin{gpu}
-  (see section~\ref{sec:gpu})  
-\end{gpu}
+  \acp{GPU} (see section~\ref{sec:gpu})  
   can switch very quickly between threads in order to achieve latency hiding.
 \item[Bandwidth] is the rate at which data arrives at its destination,
   after the initial latency is overcome. Bandwidth is measured in
@@ -1057,6 +1054,13 @@ would have sufficed, if it were not for the cache conflicts.
   the cache address. Why is this not a good solution in general?
 \end{exercise}
 
+\begin{remark}
+  So far, we have pretended that caching is based on virtual memory
+  addresses. In reality, caching is based on \indexterm{physical
+    addresses} of the data in memory, which depend on the algorithm
+  mappying virtual addresses to \indextermbus{memory}{pages}.
+\end{remark}
+
 \Level 2 {Associative caches}
 \label{sec:associative}
 \index{associative|seealso{cache, associative}}
@@ -1116,7 +1120,7 @@ importance, is typically lower than of the L2.
   \end{enumerate}
   Since the cache has 32 entries, optimally the 32 addresses can all
   be stored in cache. The chance of this actually happening is small,
-  and often the data of one address will be evicted from the cache
+  and often the data of one address will be \indextermdef{evicted} from the cache
   (meaning that it is overwritten) when another address conflicts with
   it. Record how many addresses, out of~32, are actually stored in the
   cache at the end of the simulation. Do step~\ref{step:random} 100
@@ -1127,6 +1131,19 @@ importance, is typically lower than of the L2.
 \end{exercise}
 
 \index{cache|)}
+
+\Level 2 {Loads versus stores}
+
+In the above description, all data accessed in the program needs to be
+moved into the cache before the instructions using it can
+execute. This holds both for data that is read and data that is
+written. However, data that is written, and that will not be needed
+again (within some reasonable amount of time) has no reason for
+staying in the cache, potentially creating conflicts or evicting data
+that can still be reused. For this reason, compilers often have
+support for \indextermdef{streaming stores}: a~contiguous stream of
+data that is purely output will be written straight to memory, without
+being cached.
 
 \Level 1 {Prefetch streams}
 \label{sec:prefetch}
@@ -1235,8 +1252,7 @@ means that sequential access to the elements of a cache line is
 efficient, but strided access suffers from a deteriorated performance.
 
 
-\Level 1 {TLB and virtual memory}
-\label{sec:tlb}
+\Level 1 {TLB, pages, and virtual memory}
 
 All of a program's data may not be in memory simultaneously. This can
 happen for a number of reasons:
@@ -1247,13 +1263,13 @@ happen for a number of reasons:
   more than the physically available memory;
 \item One single program can use more data than the available memory.
 \end{itemize}
-For this reason, computers use \indexterm{Virtual memory}: if more
+For this reason, computers use \indextermsubdef{virtual}{memory}: if more
 memory is needed than is available, certain blocks of memory are
 written to disc. In effect, the disc acts as an extension of the real
 memory. This means that a block of data can be anywhere in memory, and
 in fact, if it is \indexterm{swapped} in and out, it can be in
 different locations at different times. Swapping does not act on
-individual memory locations, but rather on \indextermbus{memory}{pages}:
+individual memory locations, but rather on \indextermbusdef{memory}{pages}:
 \index{pages!memory|see{memory, pages}}
 contiguous blocks of memory, from a few kilobytes to megabytes in size.
 (In an earlier generation of operating systems, moving memory to disc
@@ -1268,6 +1284,27 @@ the compiled code, and this needs to be translated during program
 execution to actual memory addresses. For this reason, there is a
 \indexterm{page table} that specifies which memory pages contain which
 logical pages.
+
+\Level 2 {Large pages}
+
+\index{large pages|see{memory, pages, large}}
+
+In very irregular applications, for instance databases, the page table
+can get very large as more-or-less random data is brought into
+memory. However, sometimes these pages show some amount of clustering,
+meaning that if the page size had been larger, the number of needed
+pages would be greatly reduced. For this reason, operating systems can
+have support for \emph{large pages}\index{memory!pages!large|textbf},
+typically of size around~2Mb. (Sometimes `huge pages' are used; for
+instance the \indextermbus{Intel}{Knight's Landing} has Gigabyte
+pages.)
+
+The benefits of large pages are application-dependent: if the small
+pages have insufficient clustering, use of large pages may fill up
+memory prematurely with the unused parts of the large pages.
+
+\Level 2 {TLB}
+\label{sec:tlb}
 
 However, address translation by lookup in this table is slow, so CPUs
 have a \indexac{TLB}.
@@ -1480,7 +1517,7 @@ caches. For instance, suppose a core does a read to a cacheline that
 is invalid on that core. It can then load it from memory or get it
 from another cache, which may be faster. (Finding whether a line exists
 (in state M or~S) on another cache is called \indexterm{snooping}; an alternative
-is to maintain cache directories.) If
+is to maintain cache directories; see below.) If
 the line is Shared, it can now simply be copied; if it is in state~M in
 the other cache, that core first needs to write it back to memory.
 
@@ -1496,16 +1533,30 @@ the other cache, that core first needs to write it back to memory.
 Variants of the \ac{MSI} protocal add an `Exclusive' or `Owned' state
 for increased efficiency.
 
-\Level 2 {Snooping}
+\Level 2 {Solutions to cache coherence}
 
-The \indexterm{snooping} mechanism can also be used as follows: if a core
-`listens in' on all bus traffic, it can invalidate or update its own cacheline 
+There are two basic  mechanisms for realizing cache coherence:
+snooping and directory-based schemes.
+
+In the \indextermdef{snooping} mechanism, any request for data is sent
+to all caches, and the data is returned if it is present anywhere;
+otherwise it is retrieved from memory. In a variation on this scheme,
+a core 
+`listens in' on all bus traffic, so that it can invalidate or update its own cacheline 
 copies when another core modifies its copy. Invalidating is cheaper than updating
 since it is a bit operation, while updating involves copying the whole cacheline.
 
 \begin{exercise}
   When would updating pay off? Write a simple cache simulator to evaluate this question.
 \end{exercise}
+
+Since snooping often involves broadcast information to all cores, it
+does not scale beyond a small number of cores. A~solution that scales
+better is using a \indextermdef{tag directory}: a central directory
+that contains the information on what data is present in some cache,
+and what cache it is in specifically. For processors with large
+numbers of cores (such as the \indextermbus{Intel}{Xeon Phi}) the
+directory can be distributed over the cores.
 
 \Level 2 {False sharing}
 \label{sec:falseshare}
@@ -1544,9 +1595,25 @@ this code will have low performance, since the cacheline(s) with the
 
 \Level 1 {Computations on multicore chips}
 
-Multicore chips offer a form of shared memory parallelism and can be
-programmed as such, for instance using OpenMP
-(section~\ref{sec:openmp}). We will go discuss in some detail the
+There are various ways that a multicore processor can lead to
+increased performance. First of all, in a desktop situation, multiple
+cores can actually run multiple programs. More importantly, we can use
+the parallelism to speed up the execution of a single code. This can
+be done in two different ways.
+
+The MPI library (section~\ref{sec:mpi}) is typically used to
+communicate between processors that are connected through a
+network. However, it can also be used in a single multicore processor:
+the MPI calls then are realized through shared memory copies.
+
+Alternatively, we can use the shared memory and shared caches and
+program using threaded systems such as OpenMP
+(section~\ref{sec:openmp}). The advantage of this mode is that
+parallelism can be much more dynamic, since the runtime system can set
+and change
+the correspondence between threads and cores during the program run.
+
+We will discuss in some detail the
 scheduling of linear algebra operations on multicore chips;
 section~\ref{sec:multicore-block}.
 
@@ -2072,6 +2139,18 @@ the program is executed in parallel.
 \index{power!consumption|(}
 \input chapters/power
 \index{power!consumption|)}
+
+\begin{notready}
+\Level 0 {FPGA computing}
+
+Unroll computation with separate hardware for each operation:
+with pipelining all the hardware is active all the time.
+
+Data parallel; can replicate hardware to simulate multi-threading, but
+better to pipeline
+
+Mostly better for power.
+\end{notready}
 
 \begin{notlulu}
 \Level 0 {Review questions}

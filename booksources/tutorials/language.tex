@@ -178,7 +178,26 @@ compiler as linker. It is then necessary to link in extra
 libraries for the C++ system routines. For instance, with the 
 Intel compiler \n{-lstdc++ -lc} needs to be added to the link line.
 
+The use of \n{extern} is also needed if you link other languages to a
+C++ main program. For instance, a Fortran subprogram \n{foo} should be
+declared as
+\begin{verbatim}
+extern "C" {
+void foo_();
+}
+\end{verbatim}
+In that case, you again use the C++ compiler as linker.
+
 \index{C++!linking to|)}
+
+\Level 1 {Complex numbers}
+
+The \emph{complex data types in C/C++ and Fortran}%
+\index{complex numbers!C and Fortran} are compatible with each
+other. Here is an example of a C++ program linking to Lapack's complex
+vector scaling routine~\indextermtt{zscal}.
+%
+\verbatimsnippet{zscale}
 
 \Level 0 {Arrays}
 \label{sec:CFarrays}

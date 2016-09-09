@@ -145,7 +145,8 @@
 \closeout\acrowrite
 
 \newcommand{\indexterm}[1]{\emph{#1}\index{#1}}
-\newcommand{\indextermtt}[1]{\texttt{\textsl{#1}}\index{#1|texttt}}
+\newcommand{\indextermtt}[1]{{\ttfamily\slshape #1}\index{#1}}
+\newcommand{\indextermttdef}[1]{{\ttfamily\slshape #1}\index{#1@\texttt{#1}|textbf}}
 \newcommand{\indextermunix}[1]{{\ttfamily\slshape #1}\index{#1@\texttt{#1}}}
 \newcommand{\indextermdef}[1]{\emph{#1}\index{#1|textbf}}
 \newcommand{\indextermp}[1]{\emph{#1s}\index{#1}}

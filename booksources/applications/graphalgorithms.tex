@@ -492,7 +492,49 @@ A practical search strategy is:
 \index{PageRank|(textbf}
 
 The PageRank~\cite{PageBrin:PageRank} basic idea is similar to
-HITS. Again we define a connectivity matrix
+HITS:
+it models the question
+`if the user keeps clicking on links that are somehow the
+most desirable on a page, what will overall be the set of the most
+desirable links'. 
+This is modeled by defining
+the ranking of a web page is the sum of the rank of all pages
+that connect to it. The algorithm It is often phrased iteratively:
+%
+\begin{displayalgorithm}
+  \While{Not converged}
+        { \For { all pages $i$}
+          {
+            $\mathrm{rank}_i \leftarrow \epsilon +
+            (1-\epsilon) \sum_{j\colon\mathrm{connected}j\rightarrow i}\mathrm{rank}_j$
+          } \;
+          normalize the ranks vector \;
+        }
+\end{displayalgorithm}
+%
+where the ranking is the fixed point of this algorithm.
+The $\epsilon$ term solve the problem that if a page has
+no outgoing links, a user that would wind up there would never
+leave. 
+
+\begin{exercise}
+  Argue that this algorithm can be interpreted in two different ways,
+  roughly corresponding to the Jacobi and Gauss-Seidel iterative
+  methods; section~\ref{sec:jacobi-seidel}.
+\end{exercise}
+
+\begin{exercise}
+  In the PageRank algorithm, each page `gives its rank' to the ones it
+  connects to. Give pseudocode for this variant. Show that it
+  corresponds to a matrix-vector product by columns, as opposed to by
+  rows for the above formulation. What would be a problem implementing
+  this in shared memory parallelism?
+\end{exercise}
+
+For an analysis of this method, including the question of whether it
+converges at all, it is better to couch it completely in
+linear algebra terms.
+Again we define a connectivity matrix
 \[ M_{ij}=
 \begin{cases}
   1&\mbox{if page $j$ links to $i$}\\
@@ -522,17 +564,15 @@ interpretation:
   probability vector.
 \end{exercise}
 
-The PageRank algorithm now does a mathematical investigation of the
-question `if the user keeps clicking on links that are somehow the
-most desirable on a page, what will overall be the set of the most
-desirable links'. In principle this would correspond to taking an
+The PageRank algorithm as formulated above
+would correspond to taking an
 arbitrary stochastic vector~$p$, computing the \indexterm{power method}
 $Tp,T^2p,T^3p,\ldots$ and
 seeing if that sequence converges to something.
 
-There is, however, a small problem with this algorithm. If a page has
-no outgoing links, a user that would wind up there would never
-leave. Mathematically this problem also comes up. Consider for
+There are few problems with this basic algorithm, such as
+pages with no outgoing links. In general, mathematically we are
+dealing with `invariant subspaces'. Consider for
 instance an web with only 2 pages and the following
 \indextermbus{adjacency}{matrix}:
 \[ A=

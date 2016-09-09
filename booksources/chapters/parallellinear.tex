@@ -473,7 +473,9 @@ decomposition. We start with a discussion of collectives.
 \Level 1 {Scalability of the dense matrix-vector product}
 \label{sec:densescaling}
 
+%pyskipbegin
 \input chapters/robertmacros
+%pyskipend
 
 In this section, we will give a full analysis of the parallel
 computation of $ y \becomes A x $, where $ x, y \in \Rn $ and $ A \in
@@ -690,6 +692,17 @@ and the parallel efficiency as the number of nodes becomes large approaches
 \]
 Again, efficiency cannot be maintained as the number of processors
 increases and the execution time is capped.
+
+We can also compute the \indexterm{iso-efficiency curve} for this
+operation, that is, the relationship between $n,p$ for which the
+efficiency stays constant (see section~\ref{sec:iso-efficiency}). If
+we simplify the efficiency above as
+$E(n,p)=\frac{2\gamma}{\beta}\frac{n}{p}$, then $E\equiv c$ is
+equivalent to $n=O(p)$ and therefore
+\[ M=O\left(\frac{n^2}{p}\right)=O(p). \]
+Thus, in order to maintain efficiency we need to increasae the memory
+per processors pretty quickly. This makes sense, since that downplays
+the importance of the communication.
 
 \Level 2 {Matrix-vector product, partitioning by columns}
 
@@ -1038,9 +1051,11 @@ Note that when $ r = p $ the 2D algorithm becomes the "partitioned by
 rows" algorithm and when $ c = p $ it becomes the "partitioned by
 columns" algorithm.  It is not hard to show that the 2D algorithm is
 scalable in the sense of the above analysis
-when $ r = c $, as long as $ r / c
-$ is kept constant.
-%\input chapters/mvpscaling2
+when $ r = c $, as long as $r/c$ is kept constant.
+
+\begin{exercise}
+  Compute the iso-efficiency curve for this operation.
+\end{exercise}
 
 \Level 0 {LU factorization in parallel}
 
@@ -1226,8 +1241,8 @@ see figure~\ref{fig:cannon}.
 
 If you start top-left, you see that processor $(0,0)$ has both
 $A_{00}$ and~$B_{00}$, so it can immediately start doing a local multiplication.
-However, processor $(0,1)$ has $A_{01}$ and~$B_{01}$, which are
-not needed together. However, if we rotate the second column of~$B$ up
+Processor $(0,1)$ has $A_{01}$ and~$B_{01}$, which are
+not needed together, but if we rotate the second column of~$B$ up
 by one position, processor~$(0,1)$ will have $A_{01},B_{11}$ and those
 two do need to be multiplied. Similarly, we rotate the third column of~$B$
 up by two places so that $(0,2)$ contains $A_{02},B_{22}$.
@@ -1617,7 +1632,7 @@ limited. Therefore we need to consider more sophisticated methods such
 \ac{ILU}. Unlike with the Jacobi preconditioner, parallelism is then
 not trivial.
 
-\Level 1 {The trouble with parallel ILU}
+\Level 1 {The trouble with ILU in parallel}
 
 Above we saw that, in a flop counting sense, applying an ILU
 preconditioner (section~\ref{sec:ilu}) is about as expensive as doing

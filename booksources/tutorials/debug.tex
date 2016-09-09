@@ -155,8 +155,9 @@ Reason: KERN_INVALID_ADDRESS at address: 0x000000000000eb4a
 \end{verbatim}
 Apparently the error occurred in a function \n{__svfscanf_l}, which is
 not one of ours, but a system function. Using the \n{backtrace}
-(or~\n{bt}, also \n{where} or~\n{w}) command we quickly find out how
-this came to be called:
+(or~\n{bt}, also \n{where} or~\n{w}) command we
+display the \indexterm{call stack}. This usually allows us to find out
+where the error lies:
 {\small
 \begin{verbatim}
 (gdb) backtrace

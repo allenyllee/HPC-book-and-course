@@ -113,8 +113,8 @@ Above you used \n{ls} to get a directory listing. You can also use the
 The \n{ls} command can give you all sorts of information.
 
 \practical {Read the man page of the \n{ls} command: \n{man ls}. Find
-  out the size and creation date of some files, for instance the file
-  you just created.}  
+  out the size and the time/date date of the last change to some files, for instance the file
+  you just created.}
 {Did you find the \n{ls -s} and \n{ls -l}
   options? The first one lists the size of each file, usually in
   kilobytes, the other gives all sorts of information about a file,
@@ -128,15 +128,22 @@ The \n{ls} command can give you all sorts of information.
   \n{q} to exit the viewer. If you really get stuck, \n{Control-c} will
   get you out.}
 
-(If you already know what command you're looking for, you can use man
-to get online information about it. If you forget the name of a
-command, \n{man -k keyword} can help you find it.)
+\begin{remark}
+  There are several dates associated with a file, corresponding to
+  changes in content, changes in permissions, and access of any
+  sort. The \indextermunix{stat} command gives all of them.
+\end{remark}
+\begin{remark}
+  If you already know what command you're looking for, you can use man
+  to get online information about it. If you forget the name of a
+  command, \indextermunix{man}~\n{-k keyword} can help you find it.
+\end{remark}
 
-The \n{touch} command creates an empty file, or updates the timestamp of
+The \indextermunix{touch} command creates an empty file, or updates the timestamp of
 a file if it already exists. Use \n{ls -l} to confirm this behaviour.
 
-Three more useful commands for files are: \n{cp} for copying, \n{mv}
-(short for `move') for renaming, and \n{rm} (`remove') for deleting.
+Three more useful commands for files are: \indextermunix{cp} for copying, \indextermunix{mv}
+(short for `move') for renaming, and \indextermunix{rm} (`remove') for deleting.
 Experiment with them.
 
 There are more commands for displaying a file, parts of a file, or
@@ -147,11 +154,11 @@ information about a file.
 your system. Now experiment with the commands \n{head}, \n{tail},
 \n{more}, and
 \n{wc} using that file.}
-{\n{head} displays the first couple of lines of a file, \n{tail} the
-  last, and \n{more} uses the same viewer that is used for man
+{\indextermunix{head} displays the first couple of lines of a file, \indextermunix{tail} the
+  last, and \indextermunix{more} uses the same viewer that is used for man
   pages. Read the man pages for these commands and experiment with
   increasing and decreasing the amount of output. 
-  The \n{wc} (`word count') command reports the number of words,
+  The \indextermunix{wc} (`word count') command reports the number of words,
   characters, and lines in a file.}{}
 
 Another useful command is \indextermunix{which}: it tells you what
@@ -180,7 +187,7 @@ reboot your personal machine, or when you log in to a server.
 
 \practical
 {The command to find out your current working directory
-is \n{pwd}. Your home directory is your working directory immediately
+is \indextermunix{pwd}. Your home directory is your working directory immediately
 when you log in. Find out your home directory.}
 {You will typically see something like \n{/home/yourname} or
   \n{/Users/yourname}. This is system dependent.}{}
@@ -196,7 +203,7 @@ session. Example:
 
 The command for making a new directory is \indextermunix{mkdir}.
 
-\practical{Make a new directory with \n{mkdir newdir} and view the
+\practical{Make a new directory with \indextermunix{mkdir}~\n{newdir} and view the
   current directory with \n{ls}}
 {You should see this structure:
 \dirdisplay{.1 /home/you/. .2 newdir/\DTcomment{the new directory}. }
@@ -592,7 +599,7 @@ commands.
   to be emptied explicitly (as on Windows or the Mac OS),
   this can be a good idea.}{}
 
-\Level 1 {Redirection and Pipelines}
+\Level 1 {Redirection}
 \label{sec:unixpipe}
 \index{input redirection|see{redirection}}
 \index{output redirection|see{redirection}}
@@ -648,8 +655,37 @@ In an interactive session, all three files are connected to the user
 terminal. Using input or output redirection then means that the input
 is taken or the output sent to a different file than the terminal.
 
-\Level 2 {Command redirection}
+\Level 1 {Command sequencing}
 \label{tut:unix-bq}
+
+There are various ways of having multiple commands on a single
+commandline.
+
+\Level 2 {Simple sequencing}
+
+First of all, you can type
+\begin{verbatim}
+command1 ; command2
+\end{verbatim}
+This is convenient if you repeat the same two commands a number of
+times: you only need to up-arrow once to repeat them both.
+
+There is a problem: if you type
+\begin{verbatim}
+cc -o myprog myprog.c ; ./myprog
+\end{verbatim}
+and the compilation fails, the program will still be executed,
+using an old version of the executable if that exists. This is very
+confusing.
+
+A better way is:
+\begin{verbatim}
+cc -o myprog myprog.c && ./myprog
+\end{verbatim}
+which only executes the second command if the first one was
+successful.
+
+\Level 2 {Pipelining}
 
 Instead of taking input from a file, or sending output to a file, it
 is possible to connect two commands together, so that the second takes
@@ -663,6 +699,8 @@ the output of the first as input. The syntax for this is
   (see above) to do the counting.}
 {}{}
 
+\Level 2 {Backquoting}
+
 There are a few more ways to combine commands. Suppose you want to
 present the result of \n{wc} a bit nicely. Type the following command
 \begin{verbatim}
@@ -674,8 +712,74 @@ get the actual line count echoed is by the backquote:
 echo The line count is `wc -l foo`
 \end{verbatim}
 Anything in between backquotes is executed before the rest of the
-command line is evaluated. The way \n{wc} is used here, it prints the
-file name. Can you find a way to prevent that from happening?
+command line is evaluated.
+
+\begin{exercise}
+  The way \n{wc} is used here, it prints the
+  file name. Can you find a way to prevent that from happening?
+\end{exercise}
+
+\Level 2 {Grouping in a subshell}
+
+Suppose you want to apply output redirection to a couple of commands
+in a row:
+\begin{verbatim}
+  configure ; make ; make install > installation.log 2>&1
+\end{verbatim}
+This only catches the last command. You could for instance group the
+three commands in a subshell and catch the output of that:
+\begin{verbatim}
+  ( configure ; make ; make install ) > installation.log 2>&1
+\end{verbatim}
+
+\Level 1 {Exit status}
+
+Commands can fail. If you type a single command on the command line,
+you see the error, and you act accordingly when you type the next
+command. When that failing command happens in a script, you have to
+tell the scrip how to act accordingly. For this, you use the
+\indexterm{exit status} of the command: this is a value (zero for
+success, nonzero otherwise) that is stored in an internal variable,
+and that you can access with \verb+$?+.
+
+Example. Suppose we have a directory that is not writable
+\begin{verbatim}
+[testing] ls -ld nowrite/
+dr-xr-xr-x  2 eijkhout  506  68 May 19 12:32 nowrite//
+[testing] cd nowrite/
+\end{verbatim}
+and write try to create a file there:
+\begin{verbatim}
+[nowrite] cat ../newfile 
+#!/bin/bash
+touch $1
+echo "Created file: $1"
+[nowrite] newfile myfile
+bash: newfile: command not found
+[nowrite] ../newfile myfile
+touch: myfile: Permission denied
+Created file: myfile
+[nowrite] ls
+[nowrite]
+\end{verbatim}
+The script reports that the file was created even though it wasn't.
+
+Improved script:
+\begin{verbatim}
+[nowrite] cat ../betterfile
+#!/bin/bash
+touch $1
+if [ $? -eq 0 ] ; then
+    echo "Created file: $1"
+else
+    echo "Problem creating file: $1"
+fi
+
+[nowrite] ../betterfile myfile
+touch: myfile: Permission denied
+Problem creating file: myfile
+\end{verbatim}
+
 
 \Level 1 {Processes}
 
@@ -1067,7 +1171,7 @@ need to apply to every sessions, so you can have
 
 Unfortunately, there are several startup files, and which one gets read
 is a complicated functions of circumstances. Here is a good common sense
-guideline\footnote{Many thanks for Robert McLay for figuring this out.}:
+guideline\footnote{Many thanks to Robert McLay for figuring this out.}:
 \begin{itemize}
 \item Have a \n{.profile} that does nothing but read the \n{.bashrc}:
 \begin{verbatim}

@@ -1,3 +1,4 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
@@ -327,10 +328,7 @@ is illustrated in figure~\ref{fig:1d-sor}; every $x_i$ point
   \label{fig:1d-sor}
 \end{figure}
 still combines its neighbours' values, but now the left value is
-actually from the next outer iteration. Since the computations in the
-$x_i$ points are now dependent, this type of iteration is not simple
-to implement on a parallel computer. Some strategies for dealing with
-this are discussed in section~\ref{sec:parallel-prec}.
+actually from the next outer iteration.
 
 Finally, we can insert a damping parameter into the Gauss-Seidel
 scheme, giving the \indexacf{SOR} method:
@@ -368,6 +366,33 @@ shown to be as follows:
 \item For the SOR method, the optimal omega can improve the
   convergence factor to~$1-O(h)$.
 \end{itemize}
+
+\Level 1 {Jacobi versus Gauss-Seidel and parallelism}
+
+Above, we mostly looked at the Jacobi, Gauss-Seidel, and SOR methods
+from a mathematical perspective.
+However, such considerations are largely superseded by matters
+of parallelization on modern computers.
+
+First we observe that all computations in one iteration of the Jacobi
+method are completely independent, so they can simply be vectorized or
+done in parallel. That story is different for Gauss-Seidel (and we
+ignore SOR from now on, since it only differs from Gauss-Seidel in the
+damping  parameter):
+since the computation of the
+$x_i$ points of one iteration are now dependent, this type of
+iteration is not simple
+to vectorize or
+to implement on a parallel computer.
+
+In many cases, both methods are considered superseded by the \ac{CG}
+or \ac{GMRES} methods (sections \ref{sec:cg} and~\ref{sec:gmres}). The
+Jacobi method is sometimes used as a preconditioner for these methods.
+One place where Gauss-Seidel is still popular is as a
+\indextermbus{multigrid}{smoother}. In that case, parallelism is often
+found by using a \indexterm{red-black ordering} of the variables.
+
+Further discussion of these issues can be found in section~\ref{sec:parallel-prec}.
 
 \Level 1 {Choice of $K$}
 \label{sec:preconditioner}

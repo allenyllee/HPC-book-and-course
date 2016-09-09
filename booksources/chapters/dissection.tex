@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-6
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -233,6 +233,7 @@ by
   \caption{One-way domain decomposition}
   \label{fig:domdecomp4}
 \end{figure}
+
 \begin{exercise}
   The matrix from a two-dimensional \ac{BVP} has a block tridiagonal
   structure. Divide the domain in four strips, that is, using three
@@ -244,6 +245,13 @@ by
   is block tridiagonal.
 \end{exercise}
 
+In all the domain splitting schemes we have discussed so far we have
+used domains that were rectangular, or `brick' shaped, in more than
+two dimensions. All of these arguments are applicable to more general
+domains in two or three dimensions, but things like finding a
+separator become much harder~\cite{LiRoTa:dissection}, and that holds
+even more for the parallel case. See section~\ref{sec:fiedler-vector}
+for some introduction to this topic.
 
 \Level 2 {Complexity}
 

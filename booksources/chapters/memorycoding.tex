@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-6
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -406,6 +406,37 @@ course, L2 reuse will not give as high a performance as L1 reuse.
 \end{verbatim}
 \end{exercise}
 
+For a less trivial example, let's look at
+\indextermbus{matrix}{transposition} $A\leftarrow B^t$. Ordinarily you would traverse
+the input and output matrices:
+%
+\verbatimsnippet{regulartranspose}
+%
+Using blocking this becomes:
+%
+\verbatimsnippet{blockedtranspose}
+%
+Unlike in the example above, each element of the input and output is
+touched only once, so there is no direct reuse. However, there is
+reuse of cachelines. 
+
+\begin{figure}[ht]
+  \includegraphics[scale=.13]{blockedtranspose}
+  \caption{Regular and blocked traversal of a matrix}
+  \label{fig:blockedtranspose}
+\end{figure}
+Figure~\ref{fig:blockedtranspose} shows how one of the matrices is
+traversed in a different order from its storage order, for instance
+columnwise while it is stored by rows. This has the effect that each
+element load transfers a cacheline, of which only one element is
+immediately used. In the regular traversal, this streams of cachelines
+quickly overflows the cache, and there is no reuse. In the blocked
+traversal, however, only a small number of cachelines is traversed
+before the next element of these lines is needed. Thus there is reuse
+of cachelines, or \indextermsub{spatial}{locality}.
+
+The most important example of attaining performance through blocking
+is the \indexterm{matrix-matrix product}.
 In section~\ref{sec:locality} we looked at the matrix-matrix
 multiplication, and concluded that little data could be kept in
 cache. With loop tiling we can improve this situation. For instance,

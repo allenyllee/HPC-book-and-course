@@ -203,11 +203,10 @@ The exceptions to this story are:
 
 \index{context|)}
 
-\Level 2 {Data races, thread safety, sequential consistency, and atomic operations}
+\Level 2 {Data races, thread safety, and atomic operations}
 \index{atomic operation|(}
 \index{atomicity|see{atomic operation}}
 \label{sec:shared-lock}
-\label{sec:seq-consist}
 
 Shared memory makes life easy for the programmer, since every
 processor has access to all of the data: no explicit data traffic
@@ -326,12 +325,14 @@ cache line invalidation (section~\ref{sec:coherence}).
 \index{atomic operation|)}
 
 \Level 2 {Memory models and sequential consistency}
+\label{sec:seq-consist}
 
 The above signaled phenomenon of a \indexterm{race condition}
 means that the result of some programs can be non-deterministic,
 depending on the sequence in which instructions are executed.
 There is a further factor that comes into play, and which is
-called the \indextermbus{memory}{model} that a processor uses.
+called the \indextermbus{memory}{model} that a processor and/or a
+language uses~\cite{AdveBoehm:memorymodels}.
 The memory model controls how the activity of one thread or core
 is seen by other threads or cores.
 

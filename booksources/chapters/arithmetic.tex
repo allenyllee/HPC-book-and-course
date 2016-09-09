@@ -1202,7 +1202,17 @@ hinted at in exercise~\ref{ex:epsilon} above.
 We use the concept of \indexterm{value safety} to describe
 how a compiler is allowed to change the interpretation of a computation.
 At its strictest, the compiler is not allowed
-to make any changes that affect the result of a computation. 
+to make any changes that affect the result of a
+computation.
+
+Compilers typically have an option controlling whether optimizations
+are allowed that may change the numerical behaviour. For the Intel
+compiler that is \texttt{-fp-model=...}. On the other hand, options
+such as \texttt{-Ofast} are aimed at performance improvement only, and
+may affect numerical behaviour severely.  For the Gnu compiler full
+754 compliance takes the option \n{-frounding-math} whereas
+\n{-ffast-math} allows for performance-oriented compiler
+transformations that violate 754 and/or the language standard.
 
 These matters are also of importance if you care about
 \indexterm{reproducibility} of results. If a code is compiled with 
@@ -1226,7 +1236,9 @@ term for grouping $a+b+c$ as $a+(b+c)$. The \indextermbus{C}{language
   standard} and the \indextermbus{C++}{language standard} prescribe
 strict left-to-right evaluation of expressions without parentheses, so
 re-association is in fact not allowed by the standard. The
-\indextermbus{Fortran}{language standard} has no such prescription.
+\indextermbus{Fortran}{language standard} has no such prescription,
+but there the compiler has to respect the evaluation order that is
+implied by parentheses.
 
 A common source of re-association is \indexterm{loop unrolling}; see
 section~\ref{sec:coding-pipeline}. Under strict value safety,
@@ -1242,6 +1254,19 @@ different parallel configurations.
 
 \index{re-association|)}
 
+\heading{Constant expressions}
+%
+It is a common compiler optimization to compute constant expressions
+during compile time. For instance, in
+\begin{verbatim}
+float one = 1.;
+...
+x = 2. + y + one;
+\end{verbatim}
+the compiler change the assignment to \n{x = y+3.}. However, this
+violates the re-association rule above, and it ignores any dynamically
+set rounding behaviour.
+
 \heading{Expression evaluation}
 In evaluating the expression $a+(b+c)$, a processor will generate an 
 intermediate result for $b+c$ which is not assigned to any variable.
@@ -1250,8 +1275,10 @@ Many processors are able to assign a higher
 A~compiler can have a flag to dictate whether to use this facility.
 
 \heading{Behaviour of the floating point unit}
-Rounding behaviour and treatment of \indextermsub{gradual}{underflow}
-may be controlled by libary functions.
+%
+Rounding behaviour (truncate versus round-to-nearest) and treatment of
+\indextermsub{gradual}{underflow} may be controlled by libary
+functions or compiler options.
 
 \heading{Library functions}
 The IEEE 754 standard only prescribes simple operations;
@@ -1375,8 +1402,9 @@ which simplifies the chip logic needed, and speeds up calculations.
 
 \Level 1 {Complex numbers}
 \label{sec:complex}
+\index{complex numbers|(}
 
-Some programming languages have complex numbers as a native data type,
+Some programming languages have \emph{complex numbers} as a native data type,
 others not, and others are in between. For instance, in Fortran you
 can declare
 \begin{verbatim}
@@ -1420,6 +1448,8 @@ array for the real parts, and another for the imaginary parts.
   imaginary parts. Argue for the efficiency of storing arrays of
   complex numbers as separate arrays for the real and imaginary parts.
 \end{exercise}
+
+\index{complex numbers|)}
 
 \Level 0 {Conclusions}
 
