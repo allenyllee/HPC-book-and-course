@@ -121,7 +121,7 @@ scheduling 8~tasks of decreasing runtime on 4~threads
 %
 \begin{figure}[ht]
   \begin{quote}
-  \includegraphics[scale=.7]{scheduling}
+  \includegraphics[scale=.1]{scheduling}
   \end{quote}
   \caption{Static or round-robin (left) vs dynamic (right) thread
     scheduling; the task numbers are indicated.}
@@ -355,6 +355,9 @@ More importantly, if the domain is refined by
 another level, we can refine the curve accordingly. Load can then be
 redistributed to neighbouring processors on the curve, and we will
 still have locality preserved.
+
+(The use of \acfp{SFC} is N-body problems was
+discussed in~\cite{Warren:1993:hash-octree} and~\cite{Springel:gadget}.)
 
 \index{space-filling curve|)}
 

@@ -1326,7 +1326,8 @@ A typical \ac{TLB} has between 64 and 512 entries. If a program accesses
 data sequentially, it will typically alternate between just a few
 pages, and there will be no \ac{TLB} misses. On the other hand, a program
 that access many random memory locations can experience a slowdown
-because of such misses. 
+because of such misses. The set of pages that is in current use is
+called the `working set'.
 
 Section~\ref{sec:coding-tlb} and appendix~\ref{sec:tlb-code} discuss
 some simple code illustrating the
@@ -1342,6 +1343,10 @@ behaviour of the \ac{TLB}.
   only talked about the L2 \ac{TLB}. The reason that this can be
   associated with the L2~cache, rather than with main memory, is that
   the translation from memory to L2~cache is deterministic.]
+
+Use of \emph{large pages}\index{memory!pages!large} also reduces the
+number of potential TLB misses, since the working set of pages can be
+reduced.
 
 \Level 0 {Multicore architectures}
 \label{sec:multicore}

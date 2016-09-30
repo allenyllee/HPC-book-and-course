@@ -1355,6 +1355,23 @@ processors sometimes have 80-bit registers for storing intermediate results.
 This strategy makes sense in \indexac{FMA} instructions, 
 and in the accumulation of inner products.
 
+\Level 1 {Reduced precision}
+
+You can ask `does double precision always give benefits over single
+precision' and the answer is not always `yes' but rather: `it
+depends'.
+\begin{itemize}
+\item In iterative linear system solving (section~\ref{sec:iterative}, the accuracy is determined
+  by how precise the residual is calculated. Therefore, one could do
+  operations such as applying the preconditioner
+  (section~\ref{sec:preconditioner}) in reduced
+  precision~\cite{Dongarra:mixed-refinement}.
+\item Certain applications, such as \indexterm{deep learning}, do not
+  need full precision. The upcoming \indextermbus{Intel}{Knight's
+    Mill} processes has \indexterm{half precision}, 16-bit floating
+  point, modes for this purpose.
+\end{itemize}
+
 \Level 1 {Fixed-point arithmetic}
 
 A fixed-point number (for a more thorough discussion than found here,

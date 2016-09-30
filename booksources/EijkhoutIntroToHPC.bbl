@@ -1,5 +1,12 @@
 \begin{thebibliography}{100}
 
+\bibitem{Dongarra:mixed-refinement}
+Buttari A., Dongarra J., Langou J., Langou J., Luszczek P., and Kurzak J.
+\newblock Mixed precision iterative refinement techniques for the solution of
+  dense linear systems.
+\newblock {\em International Journal of High Performance Computing
+  Applications}, 21:457--466, 2007.
+
 \bibitem{AdveBoehm:memorymodels}
 Sarita~V. Adve and Hans-J. Boehm.
 \newblock Memory models: A case for rethinking parallel languages and hardware.
@@ -902,6 +909,11 @@ Dan Spielman.
 \newblock Spectral graph theory, fall 2009.
 \newblock \url{http://www.cs.yale.edu/homes/spielman/561/}.
 
+\bibitem{Springel:gadget}
+Volker Springel.
+\newblock The cosmological simulation code {GADGET-2}.
+\newblock {\em Mon. Not. R. Astron. Soc.}, 364:1105--1134, 2005.
+
 \bibitem{Stewart90}
 {G.~W.} Stewart.
 \newblock Communication and matrix computations on large message passing
@@ -964,6 +976,13 @@ R.~Vuduc, J.~Demmel, and K.~Yelikk.
 Richard~W. Vuduc.
 \newblock {\em Automatic Performance Tuning of Sparse Matrix Kernels}.
 \newblock PhD thesis, University of California Berkeley, 2003.
+
+\bibitem{Warren:1993:hash-octree}
+M.~S. Warren and J.~K. Salmon.
+\newblock A parallel hashed oct-tree n-body algorithm.
+\newblock In {\em Proceedings of the 1993 ACM/IEEE conference on
+  Supercomputing}, Supercomputing '93, pages 12--21, New York, NY, USA, 1993.
+  ACM.
 
 \bibitem{atlas-parcomp}
 R.~Clint Whaley, Antoine Petitet, and Jack~J. Dongarra.
