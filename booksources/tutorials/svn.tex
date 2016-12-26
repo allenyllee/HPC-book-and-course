@@ -461,24 +461,3 @@ tool:~\url{http://wwww.websvn.info}.
 \index{Subversion|)}
 
 \input tutorials/mercurial
-\endinput
-
-\Level 0 {Other source control systems}
-
-Lately, there has been considerable interest in `distributed source
-code control' system, such as \indexterm{git} or
-\indexterm{mercurial}. In these systems, each user has a local
-repository against which commits can be made. This has some advantages
-over systems like \n{svn}.
-
-Consider the case where a developer is working on a  patch that takes some
-time to code and test. During this time, development on the project
-goes on, and by the time the patch can be commited, too many changes
-have been made for \n{svn} to be able to merge the patch. As a result,
-branching and merging is often a frustrating experience with
-traditional system. In distributed systems, the developer can do
-commits against the local repository, and roll back versions as
-needed. Additionally, when the patch is ready to merge back, it is not
-a single massive change, but a sequence of small changes, which the
-source control system should be better able to handle.
-

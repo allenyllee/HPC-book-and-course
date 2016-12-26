@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -104,6 +104,7 @@
 \acroitem{HPC}{High-Performance Computing}
 \acroitem{HPF}{High Performance Fortran}
 \acroitem{IBVP}{Initial Boundary Value Problem}
+\acroitem{IDE}{Integrated Development Environment}
 \acroitem{ILP}{Instruction Level Parallelism}
 \acroitem{ILU}{Incomplete LU}
 \acroitem{IVP}{Initial Value Problem}
@@ -166,6 +167,12 @@
     \expandafter\expandafter\expandafter
         \@secondoftwo\csname fn@#1\endcsname%
     @\acl{#1} (#1)}}\tmp}
+\newcommand\indexacdef[1]{\emph{\ac{#1}}%
+  %\tracingmacros=2 \tracingcommands=2
+  \edef\tmp{\noexpand\index{%
+    \expandafter\expandafter\expandafter
+        \@secondoftwo\csname fn@#1\endcsname%
+    @\acl{#1} (#1)}|textbf}\tmp}
 \newcommand\indexacp[1]{\emph{\ac{#1}}%
   %\tracingmacros=2 \tracingcommands=2
   \edef\tmp{\noexpand\index{%

@@ -25,6 +25,12 @@ in a form of \indexterm{data parallelism}
 and a number of such
 blocks of data parallelism can be active at the same time.
 
+\begin{wrapfigure}{r}{3.5in}
+\includegraphics[scale=.15]{gpu-memory}
+\caption{Memory structure of a GPU}
+\label{fig:gpu-memory}
+\end{wrapfigure}
+%
 The basic limitations that hold for a CPU hold for a \ac{GPU}:
 accesses to memory incur a long latency. The solution to this problem
 in a CPU is to introduce levels of cache; in the case of a \ac{GPU} a
@@ -121,7 +127,7 @@ the same scalar program, just on different data.
 \begin{comment}
 The total internal bandwidth is about 80 Gbyte or 10 Gword per second,
 or 100 Mword per \ac{SP}.
-By contrast, the bandwidth to main memory (over the PCI-X bus) is only
+By contrast, the bandwidth to main memory (over the \indexterm{PCI-X bus}) is only
 4 Gbyte per second, each way.
 \end{comment}
 

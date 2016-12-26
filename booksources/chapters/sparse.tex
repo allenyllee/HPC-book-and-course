@@ -1,3 +1,4 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
@@ -354,6 +355,7 @@ parallelism.
 
 \Level 1 {Sparse matrices and graph theory}
 \label{sec:sparse-graph}
+\index{graph theory!of sparse matrices}
 
 Many arguments regarding sparse matrices can be formulated in terms of
 graph theory.  To see why this can be done,
@@ -471,9 +473,13 @@ section~\ref{sec:sparse-graph} to factorizations.
 
 \Level 2 {Graph theory of sparse LU factorization}
 \label{sec:lu-graph}
+\index{LU factorization!graph interpretation}
 
-Graph theory is often useful when discussion the factorization of a
-sparse matrix. Let us investigate what eliminating the first unknown
+Graph theory is often useful when discussion the
+%
+\emph{LU factorization of a sparse matrix}.
+%
+Let us investigate what eliminating the first unknown
 (or sweeping the first column) means in graph theoretic terms. We are
 assuming a structurally symmetric matrix.
 
@@ -805,7 +811,9 @@ fill-in is related to the degree of nodes.
   Show that eliminating a node with degree~$d$ leads to at most $2d$
   fill elements
 \end{exercise}
+
 The so-called \indexterm{minimum degree ordering} proceeds as follows:
+\index{matrix ordering!minimum degree|see{minimum degree ordering}}
 \begin{itemize}
 \item Find the node with lowest degree;
 \item eliminate that node and update the degree information for the

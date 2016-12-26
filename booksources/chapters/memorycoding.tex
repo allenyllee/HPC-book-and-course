@@ -52,7 +52,7 @@ for (i=0; i<N; i++)
 \end{verbatim}
 The fact that \n{s} gets both read and written halts the addition
 pipeline. One way to fill the \indexterm{floating point pipeline}
-is to apply \indexterm{loop unrolling}:
+is to apply \indextermbusdef{loop}{unrolling}:
 \begin{verbatim}
 for (i = 0; i < N/2-1; i ++) {
   sum1 += a[2*i] * b[2*i];
@@ -355,12 +355,61 @@ increasing~$m$; this is probably due to a progressively more
 favourable balance between load and store operations. Store operations
 are more expensive than loads, for various reasons.
 
+\Level 1 {Loop nests}
+\index{loop!nested|(}
+
+If your code has \emph{nested loops}, and the iterations of the outer
+loop are independent, you have a choice which loop to make outer and
+which to make inner.
+
+\begin{exercise}
+  Give an example of a doubly-nested loop where the loops can be
+  exchanged; give an example where this can not be done. If at all
+  possible, use practical examples from this book.
+\end{exercise}
+
+If you have such choice, there are many factors that can influence
+your decision.
+
+\heading{Programming language: C~versus~Fortran}
+%
+If your loop describes the $(i,j)$ indices of a two-dimensional array,
+it is often best to let the $i$-index be in the inner loop for
+Fortran, and the $j$-index inner for~C.
+
+\begin{exercise}
+  Can you come up with at least two reasons why this is possibly better for performance?
+\end{exercise}
+
+However, this is not a hard-and-fast rule. It can depend on the size
+of the loops, and other factors. For instance, in the matrix-vector
+product, changing the loop ordering changes how the input and output
+vectors are used.
+
+\heading{Parallelism model}
+%
+If you want to parallelize your loops with \indexterm{OpenMP}, you
+generally want the outer loop to be larger than the inner. Having a
+very short outer loop is definitely bad. A~short inner loop can also
+often be \emph{vectorized by the
+  compiler}\index{compiler!vectorization}.
+
+On the other hand, if you are targeting a \indexac{GPU}, you want the
+large loop to be the inner one. The unit of parallel work should not have branches
+or loops.
+
+\index{loop!nested|)}
+
 \Level 1 {Loop tiling}
 \label{sec:loop-tiling}
 
 In some cases performance can be increased by breaking up a loop into
 two nested loops, an outer one for the blocks in the iteration space,
-and an inner one that goes through the block:
+and an inner one that goes through the block. This is known as
+\indextermbusdef{loop}{tiling}: the (short) inner loop is a tile, many
+consecutive instances of which form the iteration space.
+
+For instance
 \begin{verbatim}
 for (i=0; i<n; i++)
   ...
@@ -679,7 +728,7 @@ for (i=0; i<M; i+=2) {
   y[i] = s1; y[i+1] = s2;
 }
 \end{verbatim}
-This is also called \indexterm{loop unrolling},
+This is also called \indexterm{loop}{unrolling},
 or \indexterm{strip mining}. The amount by which you unroll
 loops is determined by the number of available registers.
 

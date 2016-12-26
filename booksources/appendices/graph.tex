@@ -421,14 +421,15 @@ are in the complex right half plane.
 This Laplacian matrix gives us a quadratic form:
 \[ x^tL_Gx = \sum_{(i,j)\in E} (x_i-x_j)^2. \]
 
-\Level 1 {Eigenvalue theorems for graph matrices}
+\Level 1 {Domain decomposition through Laplacian matrices}
 \label{sec:fiedler-vector}
 
 There are various interesting theorems connected with the graph
 adjacency and Laplacian matrix. 
-We start by remarking that the following theorems may not seem
-intuitive, but they closely resemble some simple facts
-about \acp{PDE}. 
+These have a very practical application to
+\indexterm{domain decomposition}.
+
+We get our inspiration of elliptic \acp{PDE}.
 
 Connected with the \indexterm{Laplace equation}
 $-\Delta u=f$ is an operator ${\cal L}u=-\Delta u$. 
@@ -464,19 +465,23 @@ The second theorem is more useful~\cite{Fiedler:75-property}:
 
 The important consequence of this is that the eigenvector to the first
 nontrivial eigenvalue can be used to partition the graph in two
-connected pieces: one of nodes where the eigenvector is positive, and
+connected piecesone of nodes where the eigenvector is positive, and
 one where the eigenvector is negative. This eigenvector is known as
 the \indextermdef{Fiedler vector}.
-
 The adjacency matrix is nonnegative, and there is an extensive theory
 for this type of matrix~\cite{BePl:book}; see the Perron-Frobenius
 theorem in section~\ref{app:perron}.
 
-\begin{lemma}
-  The largest eigenvalue of the adjacency matrix can be bounded by the
-  maximum node degree:
-  \[ \alpha_1\leq d_{\max}. \]
-\end{lemma}
+In general there are no guarantees for how good a decomposition this
+is, measured by the ratio of the numbers of edges, but in practice it
+can be shown that the behaviour is pretty
+good~\cite{Spielman96spectralpartitioning}.
+
+%% \begin{lemma}
+%%   The largest eigenvalue of the adjacency matrix can be bounded by the
+%%   maximum node degree:
+%%   \[ \alpha_1\leq d_{\max}. \]
+%% \end{lemma}
 
 \Level 1 {Cheeger's inequality}
 

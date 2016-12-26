@@ -909,6 +909,11 @@ Dan Spielman.
 \newblock Spectral graph theory, fall 2009.
 \newblock \url{http://www.cs.yale.edu/homes/spielman/561/}.
 
+\bibitem{Spielman96spectralpartitioning}
+Daniel~A. Spielman and Shang-Hua Teng.
+\newblock Spectral partitioning works: Planar graphs and finite element meshes.
+\newblock {\em Linear Algebra and its Applications}, 421(2):284 -- 305, 2007.
+
 \bibitem{Springel:gadget}
 Volker Springel.
 \newblock The cosmological simulation code {GADGET-2}.

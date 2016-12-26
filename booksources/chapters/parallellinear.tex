@@ -1120,11 +1120,15 @@ simultaneously.
 
 \index{LU factorization!solution in parallel|)}
 
-\Level 1 {Factorization}
-\index{LU factorization!computation in parallel|(}
+\Level 1 {Factorization, dense case}
+\index{LU factorization!computation in parallel!dense|(}
 \label{sec:LUscaling}
 
-A full analysis of the scalability of dense LU factorization is quite
+A full analysis of the scalability of
+%
+\emph{parallel dense LU factorization}
+%
+is quite
 involved, so we will state without further proof that as in the matrix-vector case a
 two-dimensional distribution is needed. However, we can identify a
 further complication. Since factorizations of any
@@ -1151,7 +1155,7 @@ for k=1..n
   each processor stores one element.
 \end{exercise}
 
-\index{matrix!storage, dense|(}
+\index{matrix!storage, cyclic|(}
 
 For this reason, an \indexterm{overdecomposition} is used, where
 the matrix is divided in more blocks than there are processors,
@@ -1215,10 +1219,36 @@ processor~0 the \emph{block} rows $0,c,2c,\ldots$.
   location $(I(i,j),J(i,j))$ on processor $(P(i,j),Q(i,j))$.
 \end{exercise}
 
-\index{matrix!storage, dense|)}
+\index{matrix!storage, cyclic|)}
 
-\index{LU factorization!computation in parallel|)}
+\index{LU factorization!computation in parallel!dense|)}
 
+\Level 1 {Factorization, sparse case}
+\index{LU factorization!computation in parallel!sparse|(}
+
+\emph{Sparse matrix LU factorization in parallel} is a notoriously
+difficult topic. Any type of factorization involves a sequential
+component, making it non-trivial to begin with. To see the problem
+with the sparse case in particular, suppose you process
+the matrix rows sequentially. The dense case has enough elements per
+row to derive parallelism there, but in the sparse case that number
+may be very low.
+
+The way out of this problem is to realize that we are not interested
+in the factorization as such, but rather that we can use it to solve a
+linear system. Since permuting the matrix gives the same solution,
+maybe itself permuted, we can explore permutations that have a higher
+degree of parallelism.
+
+The topic of matrix orderings already came up in
+section~\ref{sec:fill-ordering}, motivated by fill-in reduction.
+We will consider orderings with favourable parallelism properties
+below: nested dissection in section~\ref{sec:dissection}, and
+multi-colour orderings in section~\ref{sec:redblackgreen}.
+
+\index{LU factorization!computation in parallel!sparse|)}
+
+%\pagebreak
 \Level 0 {Matrix-matrix product}
 \index{Cannon's algorithm|see{matrix-matrix product, Cannon's algorithm}}
 
@@ -1813,9 +1843,8 @@ for iterative solution methods.
 
 \Level 1 {Nested dissection}
 \label{sec:dissection}
-\index{nested dissection|(}
 \input chapters/dissection
-\index{nested dissection|)}
+
 \Level 1 {Variable reordering and colouring: independent sets}
 \label{sec:redblackgreen}
 \input chapters/redblackgreen

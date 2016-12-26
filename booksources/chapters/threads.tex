@@ -421,27 +421,109 @@ of data movement in scientific computations, and that aspect can not
 be ignored in thread programming.
 
 In the context of a multicore processor, any thread can be scheduled
-to any core, and there is no immediate problem with this. The problem
-in cases where we have two subsequent regions that are handled with
-thread-level parallelism. If the first region computes data, and the
-second uses that data, then we have to make sure that the thread
-producing a particular data item and the thread consuming (or
-updating) it are scheduled to the same core.
+to any core, and there is no immediate problem with this. However, if
+you can about high performance, this flexibility can have unexpected
+costs. There are various reasons why you want to certain threads to
+run only on certain cores. Since the \ac{OS} is allowed to
+\emph{migrate threads}\index{thread!migration}, may be you simply want
+threads to stay in place.
 
-We call \emph{affinity} the maintaining of a fixed mapping between
+\begin{itemize}
+\item If a thread migrates to a different core, and that core has its
+  own cache, you lose the contents of the original cache, and
+  unnecessary memory transfers will occur.
+\item If a thread migrates, there is nothing to prevent the OS from
+  putting two threads on one core, and leaving another core completely
+  unused. This obviously leads to less than perfect speedup, even if
+  the number of threads equals the number of cores.
+\end{itemize}
+
+We call \emph{affinity} the mapping between
 threads (\emph{thread affinity}\index{thread!affinity|see{affinity}})
 or processes (\emph{process
   affinity}\index{process!affinity|see{affinity}}) and cores.
+Affinity is usually expressed as a \emph{mask}\index{affinity!mask}: a
+description of the locations where a thread is allowed to run.
 
-Maintaining thread affinity is easy in some cases. If the loop
-structure that is being parallelized stays the same, a fixed mapping
-of threads to cores makes sense:
+As an example, consider a two-socket node, where each socket has four
+cores.
+
+With two threads and socket affinity we have the following affinity mask:\\
+\begin{tabular}{|l|l|l|}
+  \hline
+  thread & socket 0 & socket 1\\
+  \hline \hline
+  0 & 0-1-2-3 & \\
+  1 & & 4-5-6-7 \\
+  \hline
+\end{tabular}
+
+With core affinity the mask depends on the affinity type. The typical
+strategies are `close' and `spread'. With \indextermsub{close}{affinity}, the mask
+could be:\\
+\begin{tabular}{|l|l|l|}
+  \hline
+  thread & socket 0 & socket 1\\
+  \hline \hline
+  0 & 0 & \\
+  1 & \hphantom{0-}1 & \\
+  \hline
+\end{tabular}
+
+Having two threads on the same socket means that they probably share
+an L2~cache, so this strategy is appropriate if they share data.
+
+On the other hand, with \indextermsub{spread}{affinity} the threads
+are placed further apart:\\
+\begin{tabular}{|l|l|l|}
+  \hline
+  thread & socket 0 & socket 1\\
+  \hline \hline
+  0 & 0 & \\
+  1 & & 4 \\
+  \hline
+\end{tabular}
+
+This strategy is better for bandwidth-bound applications, since now
+each thread has the bandwidth of a socket, rather than having to share
+it in the `close' case.
+
+If you assign all cores, the close and spread strategies lead to
+different arrangements:\\
+\begin{tabular}{|l|l|}
+  \hline
+  socket 0 & socket 1\\
+  \hline \hline
+  0-1-2-3 & \\
+  & 4-5-6-7\\
+  \hline
+\end{tabular}
+
+versus\\
+\begin{tabular}{|l|l|}
+  \hline
+  socket 0 & socket 1\\
+  \hline \hline
+  0-2-4-6 & \\
+  & 1-3-5-7 \\
+  \hline
+\end{tabular}
+
+\heading{Affinity and data access patterns}
+
+Affinity can also be considered as a strategy of binding execution to data.
+
+Consider this code:
 \begin{verbatim}
 for (i=0; i<ndata; i++) // this loop will be done by threads
   x[i] = ....
 for (i=0; i<ndata; i++) // as will this one
   ... = .... x[i] ...
 \end{verbatim}
+The first loop, by accessing elements of~$x$, bring memory into cache
+or page table. The second loop accesses elements in the same order, so
+having a fixed affinity is the right decision for performance.
+
 In other cases a fixed mapping is not the right solution:
 \begin{verbatim}
 for (i=0; i<ndata; i++) // produces loop
@@ -453,6 +535,9 @@ for (i=1; i<ndata; i+=2) // use odd indices
 \end{verbatim}
 In this second example, either the program has to be transformed, or
 the programmer has to maintain in effect a \indextermbus{task}{queue}.
+
+
+\heading{First touch}
 
 It is natural to think of affinity in terms of `put the
 execution where the data is'. However, in practice the opposite view

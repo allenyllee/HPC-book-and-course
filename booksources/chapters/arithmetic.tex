@@ -182,7 +182,13 @@ Some observations:
 Adding two numbers with the same sign, or multiplying two numbers of
 any sign, may lead to a result that is too
 large or too small to represent. This is called \indexterm{overflow};
-see section~\ref{sec:exceptions} for details.
+see section~\ref{sec:exceptions} for the corresponding floating
+point phenomenon.
+The following exercise lets you explore the behaviour of an actual
+program. If you program this in~C, it is worth noting that while you
+probably get an outcome that is understandable, the behaviour
+of overflow in the case of signed quantities is
+actually undefined under the C~standard.
 
 \begin{exercise}
   Investigate what happens when you perform such a calculation. What
@@ -1293,37 +1299,59 @@ Therefore, their implementation may be a source of variability.
 
 Different languages have different approaches to declaring integers and
 floating point numbers.
-\begin{itemize}
-\item [Fortran]\index{Fortran!declarations in} In Fortran there are
-  various ways of specifying the storage format for integer and real
-  variables. For instance, it is possible to declare
-   the number of bytes that it takes to store a variable:
-  \texttt{INTEGER*2, REAL*8}. One advantage of this approach is the
-  easy interoperability with other languages, or the MPI library.
 
-  Often it is possible to write a code
-  using only \texttt{INTEGER, REAL}, and use
-  \indextermbus{compiler}{flags} to indicate the size of an integer
-  and real number in bytes.
+\heading{Fortran}In Fortran, variable declarations can take
+various forms. For instance, it is possible for a
+%
+\emph{type identifier}\index{Fortran!type!identifier}
+to declare the number of
+bytes that it takes to store a variable: \texttt{INTEGER*2,
+  REAL*8}. One advantage of this approach is the easy interoperability
+with other languages, or the MPI library.
 
-  More sophisticated, modern versions of Fortran can indicate the
-  number of digits of precision a floating point number needs to have:
+Often it is possible to write a code using only \texttt{INTEGER,
+  REAL}, and use \indextermbus{compiler}{flags} to indicate the size
+of an integer and real number in bytes.
+
+More sophisticated, modern versions of Fortran can indicate the number
+of digits of precision a floating point number needs to have:
 \begin{verbatim}
 integer, parameter :: k9 = selected_real_kind(9)
 real(kind=k9) :: r
 r = 2._k9; print *, sqrt(r) ! prints 1.4142135623730
 \end{verbatim}
-  The `kind' values will usually be 4,8,16 but this is compiler
-  dependent.
-\item [C] In C, the type identifiers have no standard length. For
-  integers there is \texttt{short int, int, long int}, and for
-  floating point \texttt{float, double}. The \texttt{sizeof()}
-  operator gives the number of bytes used to store a datatype.
-\item [C99, Fortran2003] Recent standards of the C and Fortran
-  languages incorporate the C/Fortran interoperability standard, which
-  can be used to declare a type in one language so that it is
-  compatible with a certain type in the other language.
-\end{itemize}
+The `kind' values will usually be 4,8,16 but this is compiler
+dependent.
+
+\heading{C/C++}
+%
+In C, the commonly used
+%
+\emph{type identifiers}\index{C!type!identifier}
+%
+do not correspond to a standard length. For integers there
+is \texttt{short int, int, long int}, and for floating point
+\texttt{float, double}. The \texttt{sizeof()} operator gives the
+number of bytes used to store a datatype.
+
+The \emph{numerical ranges}\index{C!type!numerical range}
+of C~integers are defined in \indextermtt{limits.h} (C) or
+\indextermtt{climits}~(\n{C++}), typically giving an upper or lower bound.
+For instance, \n{INT_MAX} is defined to be 32767~or greater.
+
+Floating point types are specified in \indextermtt{float.h} or \indextermtt{cfloat},
+
+C~integral types with specified storage exist: constants such as
+\n{int64_t} are defined by \n{typedef} in \indextermtt{stdint.h} or
+\indextermtt{cstdint}.
+
+\heading{C99 and Fortran2003}
+%
+Recent standards of the C and Fortran
+languages incorporate the C/Fortran interoperability standard, which
+can be used to declare a type in one language so that it is compatible
+with a certain type in the other language.
+
 
 \Level 1 {Other computer arithmetic systems}
 

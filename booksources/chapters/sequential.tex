@@ -191,14 +191,13 @@ This chip is about an inch in size and contains close
 to a billion transistors.
 
 \Level 1 {The processing cores}
-\index{core|(textbf}
 
 In the Von Neuman model there is a single entity that executes instructions.
 This has not been the case in increasing measure since the early 2000s.
 The Sandy Bridge pictured in figure~\ref{fig:sandybridge} has eight \emph{cores},
 each of which
 is an independent unit executing a stream of instructions.
-In this chapter we will mostly discuss aspects of a single core; 
+In this chapter we will mostly discuss aspects of a single \indextermdef{core}; 
 section~\ref{sec:multicore} will discuss the integration aspects 
 of the multiple cores.
 
@@ -961,7 +960,7 @@ integer or a floating point number. This need not be true: an 8-byte
 floating point number can be placed straddling the boundary between
 two cachelines. You can image that this is not good for
 performance. Section~\ref{sec:memalign} discusses ways to address
-\indextermbus{cacheline}{boundary aligment}
+\indextermbus{cacheline}{boundary alignment}
 in practice.
 
 \index{cache!line|)}
@@ -2139,11 +2138,40 @@ the program is executed in parallel.
 \label{sec:performance-programming}
 \input chapters/memorycoding
 
-\Level 0 {Power consumption}
+\Level 0 {Further topics}
+
+\Level 1 {Power consumption}
 \label{sec:power}
 \index{power!consumption|(}
+\SetBaseLevel 2
 \input chapters/power
+\SetBaseLevel 1
 \index{power!consumption|)}
+
+\Level 1 {Operating system effects}
+
+HPC practitioners typically don't worry much about the%
+\indexacdef{OS}. However, sometimes the presence of the \ac{OS} can be
+felt, influencing performance. The reason for this is the
+\indextermsubdef{periodic}{interrupt}, where the operating system upwards
+of 100~times per second interrupts the current process to let another
+process or a system \indexterm{daemon} have a \indexterm{time slice}.
+
+If you are running basically one program, you don't want the overhead and
+\indextermdef{jitter}, the unpredictability of process
+runtimes, this introduces. Therefore, computers have existed that basically dispensed
+with having an \ac{OS} to increase performance.
+
+The \indextermsub{periodic}{interrupt} has further negative
+effects. For instance, it pollutes the cache and
+\ac{TLB}. As a fine-grained effect of jitter, it degrades performance
+of codes that rely on barriers between threads, such as frequently
+happens in OpenMP (section~\ref{sec:openmp}).
+
+In particular in \indexterm{financial applications}, where very tight
+synchronization is important, have adopted a Linux kernel mode where
+the periodic timer ticks only once a second, rather than hundreds of
+times. This is called a \indextermsubdef{tickless}{kernel}.
 
 \begin{notready}
 \Level 0 {FPGA computing}

@@ -264,6 +264,22 @@ where for interoperability we store the elements in column-major fashion.
 \index{C!array layout|)}
 \index{Fortran!array layout|)}
 
+\Level 1 {Array alignment}
+\index{cacheline!boundary alignent|seealso{allocation, aligned}}
+
+For reasons such as \ac{SIMD} \indexterm{vector instructions}, it can
+be advantageous to use \indextermsubdef{aligned}{allocation}. For
+instance, `16-byte alignment' means that the starting address of your
+array, expressed in bytes, is a multiple of~16.
+
+In~C, you can force such alignment with 
+\indextermtt{posix\_memalign}. In Fortran there is no general
+mechanism for this. The Intel compiler allows you to write:
+\begin{verbatim}
+double precision, allocatable :: A(:), B(:)
+!DIR$ ATTRIBUTES ALIGN : 32 :: A, B
+\end{verbatim}
+
 \Level 0 {Strings}
 
 Programming languages differ widely in how they handle strings. 

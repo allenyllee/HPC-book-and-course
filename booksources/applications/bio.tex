@@ -81,28 +81,42 @@ Summarizing:
 This gives us a score at $h_{mn}$ and by backtracking we find
 how the sequences match up.
 
-Computational considerations
-\begin{itemize}
-\item In each row or column, the values of the $H$ matrix are defined
-  recursively. Therefore, approaches have been tried based on treating
-  each diagonal as a \indexterm{wavefront}~\cite{Liu:cudasw2009}.
-  This is illustrated in figure~\ref{fig:sw-diagonal};
-  see section~\ref{sec:wavefront} for more on wavefronts.
-  \begin{figure}
+\Level 1 {Discussion}
+
+\heading{Data reuse}
+%
+This algorithm has work proportional to $mn$, with only $m+n$ input,
+and scalar output. This makes it a good candidate for implementation on \acp{GPU}.
+
+\heading{Data parallism}
+%
+Typically, many fragments need to be aligned, and all these operations
+are independent. This means that SIMD approaches, including on
+\acp{GPU}, are feasible. If sequences are of unequal length, they can
+be padded at a slight overhead cost.
+
+\heading{Computational structure}
+%
+  \begin{figure}[ht]
   \includegraphics{graphics/smith-watermann-diagonal}
   \caption{Illustration of dependencies in the Smith-Watermann algorithm; diagonals are seen to be independent}
   \label{fig:sw-diagonal}  
   \end{figure}
-  Each diagonal only needs two previous diagonals for its computation,
-  so the required amount of temporary space is linear in the input size.
-\item Typically, many fragments need to be aligned, and all these
-  operations are independent. This means that SIMD approaches,
-  including on \acp{GPU}, are feasible. If sequences are of unequal
-  length, they can be padded at a slight overhead cost.
-\item This algorithm has work proportional to $mn$, with only $m+n$
-  input and scalar output. This is favourable for implementationl on
-  \acp{GPU}.
-\end{itemize}
+%
+In each row or column, the values of the $H$ matrix are defined
+recursively, so there is no obvious inner or outer loop that is
+parallel. However, the algorithm has a \indexterm{wavefront}
+structure~\cite{Liu:cudasw2009}; see figure~\ref{fig:sw-diagonal} and
+see section~\ref{sec:wavefront} for a further discussion on
+wavefronts.
+
+Assuming shared memory, we can split the $H$-matrix into blocks, and
+apply the wavefront algorithm to the blocks: the blocks on each
+diagonal can be processed in parallel. Inside each block, the
+diagonals can be processed with \indextermbus{vector}{instructions}.
+
+Each diagonal only needs two previous diagonals for its computation,
+so the required amount of temporary space is linear in the input size.
 
 \Level 0 {Suffix tree}
 
