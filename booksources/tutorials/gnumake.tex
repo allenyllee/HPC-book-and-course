@@ -1,9 +1,10 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012/3/4/5
+%%%% by Victor Eijkhout, copyright 2012-17
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -270,7 +271,7 @@ make FC="gfortran -g"
   you see the difference in your screen output?}
   {The compile lines now show the added compiler option \n{-O2} or \n{-g}.}{}
 
-\emph{Make} also has \emph{automatic variables}\index{Make!automatic variables}:
+\emph{Make} also has \emph{automatic variables}\index{Make!automatic variables|textbf}:
 \begin{itemize}
 \item [\n{\$@}] The target. Use this in the link line for the main
   program. % (See section \ref{sec:target-prereq} for some trickery
@@ -279,7 +280,9 @@ make FC="gfortran -g"
   line for the program.
 \item [\n{\$<}] The first prerequisite. Use this in the compile
   commands for the individual object files.
-\item [\n{\$*}] The stem of the target by stripping any extension.
+\item [\n{\$*}] In \emph{template rules}\index{Make!template rules}
+  (section~\ref{sec:make-template}) this matches the template part,
+  the part corresponding to the~\n{\char37}.
 \end{itemize}
 Using these variables, the rule for \n{fooprog} becomes
 \begin{verbatim}
@@ -307,7 +310,11 @@ the executable later.
   the syntax \n{make VAR=value}.}  {Make sure that there are no spaces
   around the equals sign in your commandline.}
 
+The full list of these automatic variables can be found at
+\url{https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html}.
+
 \Level 1 {Template rules}
+\label{sec:make-template}
 
 So far, you wrote a separate rule for each file that
 needed to be compiled. However, the rules for the various \n{.c}

@@ -969,9 +969,11 @@ in practice.
 
 Caches get faster, but also smaller, the closer to the \acp{FPU} they
 get, yet even the largest cache is considerably smaller than the main
-memory size. We already noted that this has implications for the cache
-replacement strategy. Another issue we need to address in this context
-is that of \indextermbus{cache}{mapping}, which is the question of `if
+memory size. In section~\ref{sec:lru} we have already discussed how
+the decision is made which elements to keep and which to replace.
+
+We will now address the issue
+of \indextermbus{cache}{mapping}, which is the question of `if
 an item is placed in cache, where does it get placed'. This problem is
 generally addressed by mapping the (main memory) address of the item
 to an address in cache, leading to the question `what if two items get
@@ -988,7 +990,7 @@ they can address 4G bytes\footnote{We implicitly use the convention
 cache has 8K words, that is, 64K~bytes, needing 16 bits to address.
 Direct mapping then takes from each memory address the last (`least
 significant') 16~bits,
-\begin{figure}
+\begin{figure}[ht]
   \includegraphics[scale=.1]{directmap}
   \caption{Direct mapping of 32-bit addresses into a 64K cache}
   \label{fig:directmap}
@@ -1000,6 +1002,13 @@ can be performed very quickly, leading to low latency, but it
 has a problem in practical applications. If two items are addressed
 that are separated by 8K words, they will be mapped to the same cache
 location, which will make certain calculations inefficient. Example:
+%
+\begin{figure}[ht]
+  \includegraphics[scale=.1]{directmapconflict}
+  \caption{Mapping conflicts in direct mapped cache}
+  \label{fig:directconflict}
+\end{figure}
+%
 \begin{verbatim}
 double A[3][8192];
 for (i=0; i<512; i++)
@@ -1016,7 +1025,9 @@ Here, the locations of \texttt{a[0][i]}, \texttt{a[1][i]}, and
 \texttt{a[2][i]} (or \texttt{a(i,1),a(i,2),a(i,3)})
 are 8K from each other for every~\n{i}, so the last
 16 bits of their addresses will be the same, and hence they will
-be mapped to the same location in cache. The execution of the loop will now
+be mapped to the same location in cache; see figure~\ref{fig:directconflict}.
+
+The execution of the loop will now
 go as follows:
 \begin{itemize}
 \item The data at \texttt{a[0][0]} is brought into cache and
@@ -1057,7 +1068,7 @@ would have sufficed, if it were not for the cache conflicts.
   So far, we have pretended that caching is based on virtual memory
   addresses. In reality, caching is based on \indexterm{physical
     addresses} of the data in memory, which depend on the algorithm
-  mappying virtual addresses to \indextermbus{memory}{pages}.
+  mapping virtual addresses to \indextermbus{memory}{pages}.
 \end{remark}
 
 \Level 2 {Associative caches}

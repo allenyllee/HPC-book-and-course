@@ -333,7 +333,7 @@ binary. With a finite number of bits in the mantissa\index{mantissa},
 this means that the number $1/10$ can not be represented exactly in
 binary.  For this reason, \indexterm{binary-coded-decimal} schemes
 were used in old IBM\index{IBM} mainframes, and are in fact being
-standardized in revisions of IEEE754~\cite{ieee754-webpage}; see also
+standardized in revisions of \indexterm{IEEE 754}~\cite{ieee754-webpage}; see also
 section~\ref{sec:ieee754}.
 
 In BCD schemes, one or more decimal digits are encoded in a number of
@@ -423,7 +423,7 @@ The implies that the mantissa\index{mantissa} part is $\beta> x_m\geq 1$.
 
 A practical implication in the case of binary numbers is that the
 first digit is always~1, so we do not need to store it explicitly.
-In the IEEE 754 standard, this means that every floating point number
+In the \indexterm{IEEE 754} standard, this means that every floating point number
 is of the form
 \[ 1.d_1d_2\ldots d_t\times 2^{\mathrm exp}\]
 and only the digits $d_1d_2\ldots d_t$ are stored.
@@ -604,8 +604,14 @@ Some decades ago, issues like the length of the
 mantissa\index{mantissa} and the rounding behaviour of operations
 could differ between computer manufacturers, and even between models
 from one manufacturer. This was obviously a bad situation from a point
-of portability of codes and reproducibility of results. The IEEE
-standard 754\footnote{IEEE 754 is a standard for binary arithmetic;
+of portability of codes and reproducibility of results.
+The \indextermdef{IEEE 754} standard%
+\footnote{Full name of the 754 standard is `IEEE Standard for Binary
+  Floating-Point Arithmetic (ANSI/IEEE Std 754-1985)'. It is also
+  identical to IEC 559: `Binary floating-point arithmetic for
+  microprocessor systems', superseded by ISO/IEC/IEEE 60559:2011.}%
+\index{IEC 559|see{IEEE 754}}%
+\footnote{IEEE 754 is a standard for binary arithmetic;
   there is a further standard, IEEE 854, that allows decimal
   arithmetic.}\footnote{`` It was remarkable that so many hardware
   people there, knowing how difficult p754 would be, agreed that it
@@ -620,6 +626,7 @@ standard 754\footnote{IEEE 754 is a standard for binary arithmetic;
 codified all this, for instance stipulating 24 and 53 bits for the
 mantissa\index{mantissa} in single and double precision arithmetic,
 using a storage sequence of sign bit, exponent, mantissa. 
+
 %% \footnote{Computer systems
 %%   can still differ as to how to store successive bytes. If the
 %%   \indexterm{least significant byte} is stored first, the system is
@@ -646,7 +653,7 @@ for computing with \texttt{Inf} is a bit more
 complicated~\cite{goldberg:floatingpoint}.
 
 An inventory of the meaning of all bit patterns in IEEE
-754 double precision is given in figure~\ref{fig:single-precision}.
+754 single precision is given in figure~\ref{fig:single-precision}.
 Recall from section~\ref{sec:normal-unnormal} above
 that for normalized numbers the first nonzero digit is a~1, which
 is not stored, so the bit pattern $d_1d_2\ldots d_t$ is interpreted as
@@ -687,7 +694,8 @@ others such as \indexacp{LBM}
 \Level 2 {Setting the exception and rounding behaviour}
 \label{sec:fenvh}
 
-The 754 standard also declares that a processor should be
+The \emph{IEEE 754}\index{IEEE 754!rounding behaviour}
+standard also declares that a processor should be
 able to switch its rounding behaviour between ordinary rounding,
 rounding up or down (sometimes phrased as `towards plus infinity'
 and `towards minus infinity' respectively) or truncation.
@@ -718,6 +726,43 @@ int main() {
 \end{verbatim}
 Interrupts can also be enabled by compiler options.
 
+\Level 2 {Not-a-Number}
+\label{sec:754nan}
+\index{NaN|(textbf}
+
+Various operations can give a result that is not representable as a
+real number. Processors will represent such a result as \emph{NaN}:
+`not a number', and will just as happily compute with these quantities
+as with legitimate floating point numbers.
+
+The following operations produce a NaN:
+\begin{itemize}
+\item Real operations with a complex result, such as the root of a
+  negative number, the logarithm of a non-positive number, or the
+  inverse sine of a number greater than~1 in absolute value.
+\item Indeterminate operations, such as $0/0$, $0\times\inf$,
+  or~$\inf-\inf$.
+\item Operations where at least one operand is already a~NaN.
+\end{itemize}
+
+Since the processor can continue computing with such a number, it is
+referred to as a \indextermsub{quiet}{NaN}. By contrast, some NaN
+quantities can cause the processor to generate an
+\indexterm{interrupt} or \indexterm{exception}. This is called a
+\indextermsub{signalling}{NaN}. 
+
+There are uses for a signalling NaN. You could for instance fill
+allocated memory with such a value, to indicate that it is
+uninitialized for the purposes of the computation. Any use of such a
+value is then a program error, and would cause an exception.
+
+The \emph{2008 revision}%
+\index{IEEE 754!revision 2008} of IEEE~754 suggests using the most
+significant bit of a NaN as the \n{is_quiet} bit to distinguish
+between quiet and signalling NaNs.
+
+\index{NaN|)}
+
 \Level 0 {Round-off error analysis}
 \index{round-off error analysis|(}
 
@@ -739,7 +784,11 @@ The IEEE 754 standard, mentioned in section~\ref{sec:ieee754}, does
 not only declare the way a floating point number is stored, it also
 gives a standard for the accuracy of operations such as addition,
 subtraction, multiplication, division. The model for arithmetic in the
-standard is that of \indexterm{correct rounding}: the result of an
+standard is that of \emph{correct rounding}%
+\index{rounding!correct|textbf}%
+\index{correct rounding|see{rounding, correct}}%
+:
+the result of an
 operation should be as if the following procedure is followed:
 \begin{itemize}
 \item The exact result of the operation is computed, whether this is
@@ -1300,6 +1349,8 @@ Therefore, their implementation may be a source of variability.
 Different languages have different approaches to declaring integers and
 floating point numbers.
 
+\Level 2 {Type declarations}
+
 \heading{Fortran}In Fortran, variable declarations can take
 various forms. For instance, it is possible for a
 %
@@ -1352,6 +1403,27 @@ languages incorporate the C/Fortran interoperability standard, which
 can be used to declare a type in one language so that it is compatible
 with a certain type in the other language.
 
+\Level 2 {NaN, Inf}
+\index{NaN!programming language support|(}
+
+It is possible to manipulate NaN and Inf quantities through
+\emph{programming language support}.
+
+The constant \n{NAN} is declared in \n{math.h} or \n{cmath}.
+%
+In~C++, \n{std::numeric_limits<double>::quiet_NaN()} is declared in
+\n{limits}, which is meaningful if
+\n{std::numeric_limits::has_quiet_NaN} is true, which is the case if
+\n{std::numeric_limits::is_iec559} is true,
+
+The same module also has \n{infinity()} and \n{signaling_NaN()}.
+
+For checking whether a value is \n{NaN}, use \n{isnan()} from \n{math.h} in~C, or
+\n{std::isnan()} from \n{cmath} in~C++.
+
+See further \url{http://en.cppreference.com/w/cpp/numeric/math/nan}.
+
+\index{NaN!programming language support|)}
 
 \Level 1 {Other computer arithmetic systems}
 
