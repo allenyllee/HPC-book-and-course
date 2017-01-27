@@ -98,7 +98,7 @@ Now it is clear that the algorithm has a good deal of parallelism: the
 iterations in every $\ell$-loop can be processed independently.
 However, these loops get shorter in every iteration of the outer
 $k$-loop, so it is not immediate how many processors we can
-accomodate. Moreover, it is not necessary to preserve the order of
+accommodate. Moreover, it is not necessary to preserve the order of
 operations of the algorithm above. For instance, after
 \[
   L_1L_1^t=A_{11},\quad A_{21}\leftarrow A_{21}L_1\invt,\quad
@@ -109,9 +109,9 @@ $k=1$ iteration is still unfinished. Thus, there is probably a lot more
 parallelism than we would get from just parallelizing the inner loops.
 
 The best way to approach parallelism in this case is to shift away
-from a \indexterm{control flow} view of the algorith, where the
+from a \indexterm{control flow} view of the algorithm, where the
 sequence of operations is prescribed, to a \indexterm{data flow} view.
-In the latter only data depencies are indicated, and any ordering of
+In the latter only data dependencies are indicated, and any ordering of
 operations that obeys these dependencies is allowed. (Technically, we
 abandon the program order of the tasks and replace it with a
 \indexterm{partial ordering}\footnote{Let's write $a\leq b$ if $a$~is
