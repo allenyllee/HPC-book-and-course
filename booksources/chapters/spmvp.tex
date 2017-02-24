@@ -282,14 +282,14 @@ input and output vectors for each product operation.
 \label{sec:shared-crs-transpose}
 
 In section~\ref{sec:crs} you saw that the code for both the regular
-and the tranpose matrix-vector product are limited to loop orderings
+and the transpose matrix-vector product are limited to loop orderings
 where rows of the matrix are traversed. (In section~\ref{sec:locality}
 you saw a discussion of computational effects of changes in loop
 order; in this case we are limited to row traversal by the storage
 format.) 
 
 In this section we will briefly look at the parallel transpose
-product. Equivalently to partitioninging the matrix by rows and
+product. Equivalently to partitioning the matrix by rows and
 performing the transpose product, we look at a matrix stored and
 partitioned by columns and perform the regular product.
 
