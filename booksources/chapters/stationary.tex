@@ -26,7 +26,7 @@ The computational scheme looks, very roughly, like:
 \begin{cases}
   \mbox{Choose any starting vector $x_0$ and repeat for $i\geq0$:}\\
   x_{i+1}=Bx_i+c\\
-  \mbox{until some stoppping test is satisfied.}
+  \mbox{until some stopping test is satisfied.}
 \end{cases}
 \]
 The important feature here is that no systems are solved with the
@@ -163,7 +163,7 @@ unfortunately limited applicability.
 
 There are several questions we need to answer about iterative schemes:
 \begin{itemize}
-\item Does this scheme alway take us to the solution?
+\item Does this scheme always take us to the solution?
 \item If the scheme converges, how quickly?
 \item When do we stop iterating?
 \item How do we choose $K$?
@@ -243,7 +243,7 @@ It is easy to see that this is a stationary iteration:
 \]
 which is the basic form of equation~\eqref{eq:stat-it}.
 %
-The convergence criterium $|\lambda(I-AK\inv)|<1$ (see
+The convergence criterion $|\lambda(I-AK\inv)|<1$ (see
 above) now simplifies to
 $|\lambda(NK\inv)|<\nobreak1$.
 
