@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -69,7 +69,7 @@ Since threads share data, they are one possible mechanism for parallel programmi
 Of course, for this to be faster than sequential single-threaded execution,
 this assumes that the hardware can work on more than one
 thread at the same time. This can happen in two main circumstances:
-a multicore processor can accomodate one thread per core,
+a multicore processor can accommodate one thread per core,
 and secondly, some cores have hardware support for executing more
 than one thread.
 
@@ -78,7 +78,7 @@ than one thread on a single processor, a higher processor utilization
 can result, since the instructions of one thread can be processed
 while another thread is waiting for data.  On traditional CPUs,
 switching between threads is somewhat expensive (an exception is the
-\indexterm{hyper-threading} mechanism) but on \acp{GPU} it is not, and
+\indexterm{hyperthreading} mechanism) but on \acp{GPU} it is not, and
 in fact they \emph{need} many threads to attain high performance.
 
 In the context of parallel processing we are also interested in
@@ -545,8 +545,8 @@ sometimes makes sense.  For instance, figure~\ref{fig:ranger-numa}
 showed how the shared memory of a cluster node can actually be
 distributed. Thus, a thread can be attached to a socket, but data can
 be allocated by the \ac{OS} on any of the sockets.  The mechanism that
-is often used by the \ac{OS} is called the \indexterm{first-touch
-policy}:
+is often used by the \ac{OS} is called the \indextermdef{first-touch}
+policy:
 \begin{itemize}
 \item When the program allocates data, the \ac{OS} does not actually
   create it;
@@ -567,6 +567,8 @@ for (i=0; i<N; i++)
   a[i] = b[i] + c[i];
 \end{verbatim}
 \end{exercise}
+
+For an in-depth discussion of memory policies, see~\cite{Lameter:NUMAq}.
 
 \index{affinity|)}
 
@@ -644,7 +646,8 @@ section~\ref{sec:seq-consist}.
 
 \Level 2 {Hyperthreading versus multi-threading}
 \label{sec:hyperthread}
-\index{hyperthreading|(}
+\index{hyperthreading|(textbf}
+\index{Symmetric Multi Threading|see{hyperthreading}}
 
 In the above examples you saw that the threads that are spawned during one 
 program run essentially execute the same code, and have access to the same data.
@@ -677,4 +680,3 @@ the \indextermbus{Intel}{Xeon Phi} architecture, where each core can
 support up to four threads.
 
 \index{hyperthreading|)}
-

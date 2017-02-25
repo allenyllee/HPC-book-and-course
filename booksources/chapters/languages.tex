@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -90,7 +90,7 @@ distributed memory.
 
 \acf{UPC}~\cite{UPC:homepage} is an extension to the C~language.  Its
 main source of parallelism is \indextermsub{data}{parallelism}, where
-the compiler\index{compiler} discovers indepence of operations on
+the compiler\index{compiler} discovers independence of operations on
 arrays, and assigns them to separate processors. The language has an
 extended array declaration, which allows the user to specify whether
 the array is partitioned by blocks, or in a
@@ -181,7 +181,7 @@ Real :: Z(100,200)[10,0:9,*]
 arrays \n{X,Y} have 100 elements on each processor.
 Array \n{Z} behaves as if the available processors
 are on a three-dimensional grid, with two sides specified 
-and the third adjustable to accomodate the available processors.
+and the third adjustable to accommodate the available processors.
 
 Communication between processors is now done through copies along the
 (co-)dimensions that describe the processor grid.
@@ -347,7 +347,7 @@ know its provenance. Thus, Linda becomes one way of implementing
 The Global Arrays library (\url{http://www.emsl.pnl.gov/docs/global/})
 is another example of \indexterm{one-sided communication}, and in fact
 it predates MPI. This library has as its prime data structure
-\indexterm{cartesian product} arrays\footnote{This means that if the
+\indexterm{Cartesian product} arrays\footnote{This means that if the
   array is three-dimensional, it can be described by three integers
   $n_1,n_2,n_3$, and each point has a coordinate $(i_1,i_2,i_3)$ with
   $1\leq i_1\leq n_1$ et cetera.}, distributed over a processor grid

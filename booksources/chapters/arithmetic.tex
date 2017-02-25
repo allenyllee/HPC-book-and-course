@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012/3/4/5
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -37,7 +37,7 @@ contains infinitely many numbers. Therefore, any
 numbers that are stored. 
 Calculations in a computer are sometimes
 described as \indextermsub{finite precision}{arithmetic}.
-Since many resulsts are not representible, any computation that results in
+Since many results are not representible, any computation that results in
 such a number will have to be dealt with by issuing an
 error or by approximating the result. 
 In this chapter we will look at
@@ -70,7 +70,7 @@ purposes; these days the need for larger data sets has made 64~bit
 indexing necessary.
 
 When we are indexing an array, only positive integers are needed.
-In general integer computations, of course, we need to accomodate
+In general integer computations, of course, we need to accommodate
 the negative integers too. We will now discuss several strategies for
 implementing negative integers. Our motivation here will be that
 arithmetic on positive and negative integers should be as simple as on
@@ -443,7 +443,7 @@ this is done through a zero exponent field.
 However, this is typically tens or hundreds of times slower than
 computing with regular floating point numbers\footnote{In real-time
 applications such as audio processing this phenomenon is especially
-noticable;
+noticeable;
 see \url{http://phonophunk.com/articles/pentium4-denormalization.php?pg=3}.}. 
 At the time of this writing, only the IBM\index{IBM} Power6 has
 hardware support for gradual underflow.
@@ -832,7 +832,7 @@ roundings: one after the multiplication and one after the addition.
 \begin{exercise}
   Can you come up with an example where correct rounding of
   an \ac{FMA} is considerably more accurate than rounding the
-  multiplication and addition seperately? Hint: let the \n{c} term be
+  multiplication and addition separately? Hint: let the \n{c} term be
   of opposite sign as \n{a*b}, and try to force cancellation in the
   subtraction.
 \end{exercise}
@@ -1195,7 +1195,7 @@ Higham~\cite{Higham:2002:ASN}.
 \label{sec:roundoff-parallel}
 \index{round-off error analysis!in parallel computing|(}
 
-As we discused in section~\ref{sec:fp-associative}, and as you saw
+As we discussed in section~\ref{sec:fp-associative}, and as you saw
 in the above example of summing a series, addition in
 computer arithmetic is not \emph{associative}\index{floating point
   arithmetic!associativity of}. A~similar fact holds for
@@ -1302,7 +1302,7 @@ for performance. The amount of loop unrolling,
 and whether it's performed at all, depends on the compiler optimization level,
 the choice of compiler, and the target platform.
 
-A more subtle source of re-association is parallel exection; 
+A more subtle source of re-association is parallel execution; 
 see section~\ref{sec:roundoff-parallel}. This implies that the output
 of a code need not be strictly reproducible between two runs on
 different parallel configurations.
@@ -1332,7 +1332,7 @@ A~compiler can have a flag to dictate whether to use this facility.
 \heading{Behaviour of the floating point unit}
 %
 Rounding behaviour (truncate versus round-to-nearest) and treatment of
-\indextermsub{gradual}{underflow} may be controlled by libary
+\indextermsub{gradual}{underflow} may be controlled by library
 functions or compiler options.
 
 \heading{Library functions}
@@ -1586,7 +1586,7 @@ various observations hold:
 Thus it
 becomes imperative to analyze computer algorithms with regard to their
 roundoff behaviour: does roundoff increase as a slowly growing
-function of problem parameters, such as the number of terms evaluted,
+function of problem parameters, such as the number of terms evalauted,
 or is worse behaviour possible? We will not address such questions in
 further detail in this book.
 

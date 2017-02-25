@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-6
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -623,7 +623,7 @@ people advocate \emph{cache oblivious
 
 Cache oblivious programming can be described as a way of programming
 that automatically uses all levels of the
-\indextermbus{cache}{hierarchy}. This is typicalbly done by using a
+\indextermbus{cache}{hierarchy}. This is typically done by using a
 \indexterm{divide-and-conquer} strategy, that is, recursive
 subdivision of a problem.
 
@@ -651,10 +651,16 @@ the cachelines of~$A$ will be fully used. Hence, this algorithm
 improves on the simple one by a factor equal to the cacheline size.
 
 The cache oblivious strategy can often yield improvement, but it is
-not necessarily optimal. In the matrix-matrix product it improves on
+not necessarily optimal. In the
+%
+\emph{matrix-matrix product}\index{matrix-matrix product!cache oblivious}
+it improves on
 the naive algorithm, but it is not as good as an algorithm that is
 explicitly designed to make optimal use of
 caches~\cite{GotoGeijn:2008:Anatomy}.
+
+See section~\ref{sec:fd-oblivious} for a discussion of such techniques
+in stencil computations.
 
 \index{cache!oblivious programming|)}
 

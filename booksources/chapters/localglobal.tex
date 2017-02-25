@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -101,7 +101,7 @@ communication happen simultaneously as possible. After all, there are
 no serial dependencies in the algorithm. Thus we program the algorithm
 as follows:
 \begin{itemize}
-\item If I am an odd numbered processor, I send first, then recieve;
+\item If I am an odd numbered processor, I send first, then receive;
 \item If I am an even numbered processor, I receive first, then send.
 \end{itemize}
 This is illustrated in figure~\ref{fig:wave_right_3}, and we see that

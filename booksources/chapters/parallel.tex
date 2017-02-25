@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-6
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -306,7 +306,7 @@ Communication between processors is an important source of a loss of
 efficiency. Clearly, a problem that can be solved without
 communication will be very efficient. Such problems, in effect
 consisting of a number of completely independent calculations, is
-called \indexterm{embarassingly parallel}; it will have close to a perfect
+called \indexterm{embarrassingly parallel}; it will have close to a perfect
 speedup and efficiency.
 
 \begin{exercise}
@@ -521,7 +521,7 @@ effect, loop overhead acts as a sequential part of the code.
 \end{exercise}
 
 \begin{exercise}
-  Investigate the implications of Amdahls's law: if the number of
+  Investigate the implications of Amdahl's law: if the number of
   processors~$P$ increases, how does the parallel fraction of a code
   have to increase to maintain a fixed efficiency?
 \end{exercise}
@@ -740,7 +740,7 @@ the amount of storage are linearly related. This is not always the case; for ins
 the operation complexity of a matrix-matrix product is $N^3$ for $N^2$ data.
 If you linearly increase the number of processors, the work will go up with a higher power.
 
-A similar effect comes into play if you similate time-dependent \acp{PDE}\footnote
+A similar effect comes into play if you simulate time-dependent \acp{PDE}\footnote
 {This uses concepts from chapter~\ref{ch:odepde}.}.
 Here, the total work is a product of the work per time step and the number of 
 time steps. These two numbers are related; in section~\ref{sec:fd-ode} you
@@ -1075,7 +1075,7 @@ differing ways of programming these machines. We will see all these
 aspects below. Many machines these days are 
 called \indexterm{clusters}. They can be built out of custom or
 commodity processors (if they consist of PCs, running Linux, and
-connected with Ethernet, they are referred to as \indextermsub{Beowulf}
+connected with \indexterm{Ethernet}, they are referred to as \indextermsub{Beowulf}
 {clusters}~\cite{Gropp:BeowulfBook}); since the processors are
 independent they are examples of the \ac{MIMD} or \ac{SPMD} model.
 
@@ -1195,7 +1195,7 @@ note that each processor has three connections that could be used to
 access other memory, but the rightmost two chips use one connection to
 connect to the network. This means that accessing each other's memory
 can only happen through an intermediate processor, slowing down the
-transfer, and tieing up that processor's connections.
+transfer, and tying up that processor's connections.
 
 While the \ac{NUMA} approach is convenient for the programmer, it offers some
 challenges for the system. Imagine that two different processors each
@@ -1724,7 +1724,7 @@ In order to get an appreciation for the fact that there is a genuine
 problem here, consider two
 simple schemes that do not `scale up':
 \begin{itemize}
-\item Ethernet is a connection scheme where all machines on a network
+\item \indextermdef{Ethernet} is a connection scheme where all machines on a network
   are on a single cable\footnote{We are here describing the original
     design of Ethernet. With the use of switches, especially in an HPC
     context, this description does not really apply anymore.}. If one
@@ -1740,11 +1740,11 @@ simple schemes that do not `scale up':
   communication channel is finite, so as more processors are connected
   to it, the capacity available to each will go down. Because of the
   scheme for resolving conflicts, the average delay before a message
-  can be started will also increase\footnote{It was initially
-  thought that ethernet would be inferior to other solutions such as
-  IBM\index{IBM}'s `token ring'. It takes fairly sophisticated statistical
-  analysis to prove that it works a lot better than was
-  naively expected.}.
+  can be started will also increase\footnote{It was initially thought
+    that ethernet would be inferior to other solutions such as
+    IBM\index{IBM}'s \indexterm{token ring} network. It takes fairly
+    sophisticated statistical analysis to prove that it works a lot
+    better than was naively expected.}.
 \item In a \indexterm{fully connected} configuration,
   each processor has one wire for
   the communications with each other processor. This scheme is perfect
@@ -1822,7 +1822,7 @@ and~$p_{n/2}$.
 This
 sort of conflict is called \indexterm{congestion} or
 \indexterm{contention}. Clearly, the more links a
-parallel comupter has, the smaller the chance of congestion.
+parallel computer has, the smaller the chance of congestion.
 
 A~precise way to describe the likelihood of congestion, is
 to look at the \indexterm{bisection width}. This is defined as the
@@ -2141,7 +2141,7 @@ into a hypercube, we can now work our way up.
 \begin{exercise}
   Show how a square mesh of $2^{2d}$ nodes can be embedded in a
   hypercube by appending the bit patterns of the embeddings of two
-  $2^d$ node cubes. How would you accomodate a mesh of $2^{d_1+d_2}$
+  $2^d$ node cubes. How would you accommodate a mesh of $2^{d_1+d_2}$
   nodes? A three-dimensional mesh of $2^{d_1+d_2+d_3}$ nodes?
 \end{exercise}
 
@@ -2490,7 +2490,7 @@ and separate \ac{GPU} units to be attached to the PCI-X bus.
 
 Further examples are the use of co-processors
   for \ac{DSP} instructions, as well as \ac{FPGA} boards which can be
-  reconfigured to accomodate specific needs.
+  reconfigured to accommodate specific needs.
 Early \indexterm{array processors}
 such as the \indextermbus{ICL}{DAP} were also co-processors.
 
@@ -2533,7 +2533,7 @@ Some notable parallel machines with co-processors are:
 \end{itemize}
 The Roadrunner and Tianhe-1A are examples of co-processors that are
 very powerful, and that need to be explicitly programmed independently
-of the host CPU. For instance, code runing on the \acp{GPU} of the
+of the host CPU. For instance, code running on the \acp{GPU} of the
 Tianhe-1A is programmed in \indexterm{CUDA} and compiled separately.
 
 In both cases the programmability problem is further exacerbated by
@@ -2584,7 +2584,7 @@ they report the higher number.
 Recently, Intel has released a co-processor, the \emph{Intel Xeon Phi}
 (also known by its architecture design as \ac{MIC})
 which is expressly designed for numerical computing.
-It has both differencies and similarities with \acp{GPU}.
+It has both differences and similarities with \acp{GPU}.
 \begin{itemize}
 \item Both are connected through a \indexterm{PCI-X} bus, which means
   that operations on the device have a considerable latency in

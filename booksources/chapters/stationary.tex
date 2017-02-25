@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -26,7 +26,7 @@ The computational scheme looks, very roughly, like:
 \begin{cases}
   \mbox{Choose any starting vector $x_0$ and repeat for $i\geq0$:}\\
   x_{i+1}=Bx_i+c\\
-  \mbox{until some stoppping test is satisfied.}
+  \mbox{until some stopping test is satisfied.}
 \end{cases}
 \]
 The important feature here is that no systems are solved with the
@@ -163,7 +163,7 @@ unfortunately limited applicability.
 
 There are several questions we need to answer about iterative schemes:
 \begin{itemize}
-\item Does this scheme alway take us to the solution?
+\item Does this scheme always take us to the solution?
 \item If the scheme converges, how quickly?
 \item When do we stop iterating?
 \item How do we choose $K$?
@@ -194,7 +194,7 @@ close enough.
 
 \begin{exercise}
   Derive a similar inductive relation for~$e_n$. 
-  % Does it give the same convergence criterium?
+  % Does it give the same convergence criterion?
 \end{exercise}
 
 It is hard to determine if the condition $|\lambda(I-AK\inv)|<1$ is
@@ -243,7 +243,7 @@ It is easy to see that this is a stationary iteration:
 \]
 which is the basic form of equation~\eqref{eq:stat-it}.
 %
-The convergence criterium $|\lambda(I-AK\inv)|<1$ (see
+The convergence criterion $|\lambda(I-AK\inv)|<1$ (see
 above) now simplifies to
 $|\lambda(NK\inv)|<\nobreak1$.
 

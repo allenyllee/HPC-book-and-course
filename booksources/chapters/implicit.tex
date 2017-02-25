@@ -68,9 +68,12 @@ steps can be less than is apparent at first.
 \end{exercise}
 
 Let us take another look at
-figure~\ref{fig:laplacedomain} that describes the difference stencil
-of a two-dimensional \ac{BVP}. The corresponding picture for the lower
-triangular factor is
+figure~\ref{fig:laplacedomain} that describes the
+%
+\indextermsub{finite difference}{stencil}
+of a two-dimensional \ac{BVP}. The corresponding picture for the
+%
+\indextermbus{stencil}{of the lower triangular factor} is
 \begin{figure}
   \begin{quote}
     \includegraphics[scale=.12]{graphics/laplacelower}
@@ -82,7 +85,7 @@ triangular factor is
 in figure~\ref{fig:laplacelower}. This describes the sequentiality of
 the lower triangular solve process $x\leftarrow L\inv y$:
 \[ x_k = y_k - \ell_{k,k-1}x_{k-1} - \ell_{k,k-n}x_{k-n} \]
-In other words, the value at point~$k$ can be found if its neigbours
+In other words, the value at point~$k$ can be found if its neighbours
 to the left (that is, variable $k-1$) and below (variable $k-n$) are
 known. 
 

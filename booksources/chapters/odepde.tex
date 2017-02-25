@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012/3/4/5/
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -139,7 +139,7 @@ differential equation `stable' if solutions corresponding to different
 initial values~$u_0$ converge to one another
 as~$t\rightarrow\nobreak\infty$. 
 
-A~sufficient criterium for stability is:
+A~sufficient criterion for stability is:
   \[ \frac\partial{\partial u}f(u)=
   \begin{cases}
     >0&\mbox{unstable}\\ =0&\mbox{neutrally stable}\\ <0&\mbox{stable}
@@ -187,7 +187,7 @@ This gives for $u'$:
   \end{array}
   \label{eq:forwarddifference}\end{equation}
 We can approximate the infinite sum of higher derivatives by a single
-$O(\Delta t^2)$ if all derivates are bounded; alternatively,
+$O(\Delta t^2)$ if all derivatives are bounded; alternatively,
 appendix~\ref{app:taylor} shows that this sum is equal to $\Delta
 t^2u''(t+\alpha\Delta t)$ with $0<\alpha<1$.
 
@@ -483,7 +483,7 @@ space and time is influenced by a certain finite region at each
 previous point in space\footnote{This leads to a condition limiting
   the time step in \indexacp{IBVP}, known as the
   \indexterm{Courant-Friedrichs-Lewy
-    condition}~\url{http://en.wikipedia.org/wiki/CourantĞFriedrichsĞLewy_condition}.
+    condition}~\url{http://en.wikipedia.org/wiki/Courant-Friedrichs-Lewy_condition}.
   It describes the notion that in the exact problem $u(x,t)$ depends
   on a range of $u(x',t-\Delta t)$ values; the time step of the
   numerical method has to be small enough that the numerical solution
@@ -757,7 +757,10 @@ that makes clear the two-dimensional connections of the unknowns. For this,
 \end{figure}
 figure~\ref{fig:laplacedomain} pictures the variables in the domain,
 and how 
-equation~\eqref{eq:5-point-star-ij} relates them. From now on, when
+equation~\eqref{eq:5-point-star-ij} relates them through a
+%
+\indextermsub{finite difference}{stencil}.
+From now on, when
 making such a picture of the domain, we will
 just use the indices of the variables, and omit the `$u$' identifier.
 
@@ -815,7 +818,7 @@ the unknowns by rows and columns. This known as the \indexterm{natural
   ordering} or \indexterm{lexicographic ordering}; various other orderings are
 possible. One common way of ordering the unknowns is the
 \indexterm{red-black ordering} or \indexterm{checkerboard
-  ordering} which has advantanges for parallel computation. This will
+  ordering} which has advantages for parallel computation. This will
 be discussed in section~\ref{sec:parallel-prec}.
 
 There is more to say about analytical aspects of the \ac{BVP} (for
@@ -828,7 +831,12 @@ matrices. In the  chapter on linear algebra, we will come back to the
 \Level 1 {Difference stencils}
 
 The discretization \eqref{eq:5-point-star} is often phrased as
-applying the \indextermdef{difference stencil}
+applying the
+%
+\emph{difference stencil}%
+\index{difference stencil|see{stencil, finite difference}}%
+\index{stencil!finite difference}
+%
 \[
 \begin{matrix}
   \cdot&-1&\cdot\\ -1&4&-1\\ \cdot&-1&\cdot
@@ -845,7 +853,8 @@ next and previous lines become the nonzeros in the off-diagonal
 blocks.
 
 This particular stencil is often referred to as
-the `5-point star'. There are other difference stencils; the structure
+the `5-point star' or \indextermsub{five-point}{stencil}.
+There are other difference stencils; the structure
 of some of them are depicted in figure~\ref{fig:stencils}.
 \begin{figure}[ht]
   \centering
@@ -877,8 +886,10 @@ less than~$O(1)$ truncation error.
 While the discussion so far has been about two-dimensional
 problems, it is easily generalized to higher dimensions for such
 equations as $-u_{xx}-u_{yy}-u_{zz}=f$. The straightforward
-generalization of the 5-point stencil, for instance, becomes a 7-point
-stencil in three dimensions.
+generalization of the 5-point stencil, for instance, becomes a
+%
+\indextermsub{7-point}{stencil}
+in three dimensions.
 
 \Level 1 {Other discretization techniques}
 \label{sec:fem}

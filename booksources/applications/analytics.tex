@@ -55,6 +55,54 @@ section~\ref{app:power-method}.
 
 \index{clustering|)}
 
+\Level 0 {Classification}
+
+\Level 1 {Decision trees}
+
+A \indexterm{decision tree} is a classifier for a combination of ordered and
+unordered attributes. For each attribute, we have a list of
+\begin{quote}
+  record-id $|$ class $|$ value
+\end{quote}
+triplets.
+
+Building the decision tree now goes as follows:\\
+\begin{tabbing}
+  until \=all attributes are covered:\\
+  \>find an attribute\\
+  \>find a way to split the attribute\\
+  \>for \=all other attributes\\
+  \>\>split\= the attribute lists in\\
+  \>\>\>a `left' and `right' part
+\end{tabbing}
+
+Finding an attribute is typically done using the \indexterm{gini
+  index}. After that, finding a split point in that attribute is
+relatively simple for numerical attributes, though this is facilitated
+by always \indexterm{sorting} the lists.
+
+Splitting non-numeric, or `categorical', attributes is harder. We make
+a count of the records with the various values. We then group these to
+give a balanced split.
+
+Spliting the attribute lists takes one
+scan per attribute list:\\
+\begin{tabbing}
+  for \=each item:\\
+  \>use\= the record identifier to\\
+  \>\>find its value of the split attribute\\
+  \>based on this assign the item to\\
+  \>\>the `left' or `right' part of this attribute list.
+\end{tabbing}
+
+If the splitting attribute is categorical, assigning a record is
+slightly harder. For this, in the splitting stage
+typically a \indexterm{hash table} is used, noting for each record
+number in which subtree it is classified. For the other attribute
+lists the record number is then used to move the item left or right.
+
+\cite{Sprint:classifier,ScalParC}
+
 \Level 0 {Recommender systems}
 
 The article 
