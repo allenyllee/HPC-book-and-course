@@ -9,7 +9,7 @@
 
   \begin{itemize}
   \item Fit data to a model
-  \item Approximate uncomputable quantities such as integralss
+  \item Approximate uncomputable quantities such as integrals
   \item Approximate expensive computation (trig functions) by
     something simpler, for instance table lookup plus interpolation.
   \end{itemize}
@@ -96,7 +96,7 @@ Instead of direct construction, use induction
 \begin{itemize}
 \item Zeroth degree polynomial through one point $(x_1,y_1)$:
 \[ p_1(x)=y_1 \]
-\item First degree polymomial through two points:
+\item First degree polynomial through two points:
 \[ p_2(x) = p_1(x)+c_2(x-x_1) \]
 then automatically $p_2(x_1) = p_1(x_1)=y_1$. Furthermore
 \[ p_2(x_2)=p_1(x_2)+c_2(x_2-x_1)\quad\Rightarrow\quad c_2=\ldots \]
@@ -135,12 +135,12 @@ et cetera. Now the cost is linear.
   \end{cases}
   \]
   Implementation: \[ h_j(x)=\alpha_j(x-x_j)\Pi_{k\not=j}(x-x_k)^2 \]
-  Combination of Lagrange and Hermite interpolation for values and derivates
+  Combination of Lagrange and Hermite interpolation for values and derivatives
 
 
 \Level 0 {More interpolation}
 
-  Certain choices of $x_i$ lead to higher accuracy: ``Gaus quadrature points''
+  Certain choices of $x_i$ lead to higher accuracy: ``Gauss quadrature points''
 
   Other norms lead to other basis functions, for instance
   \[ \min_F \int_0^1 w(x)(F(x)-f(x))^2\,dx \]

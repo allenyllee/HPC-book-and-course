@@ -220,7 +220,7 @@ Of course the processor is only allowed to re-order instructions
 if that leaves the result of the execution intact!
 
 In the block diagram (figure~\ref{fig:sandycore}) you see various
-units that are concerned with instrunction handling: This cleverness
+units that are concerned with instruction handling: This cleverness
 actually costs considerable energy, as well as sheer amount of
 transistors. For this reason, processors such as the
 \indextermbus{Intel}{Xeon Phi} use
@@ -649,7 +649,7 @@ for k=1,nvectors
 \end{verbatim}
 it is a good idea to introduce explicitly a temporary variable to
 hold~\n{c[k]}. In~C, you can give a hint to the compiler
-to keep a veriable in register by declaring it as a \indextermbus{register}{variable}:
+to keep a variable in register by declaring it as a \indextermbus{register}{variable}:
 \begin{verbatim}
 register double t;
 \end{verbatim}
@@ -704,7 +704,7 @@ behaviour of the memory system now becomes:
 \item request \n{x} from memory, but since it is still in the cache,
   load it from the cache into register; operate on it.
 \end{itemize}
-Since loading from cache is faster than loading from main memoory, the
+Since loading from cache is faster than loading from main memory, the
 computation will now be faster. Caches are fairly small, so values
 can not be kept there indefinitely. We will see the implications of
 this in the following discussion.
@@ -940,7 +940,7 @@ same holds for the fourth element. Loading four elements now needed
 loading three cache lines instead of one, meaning that two-thirds of
 the available bandwidth has been wasted. (This second case would also incur
 three times the latency of the first, if it weren't for a hardware
-mechanism that notices the regular access patterns, and pre-emtively
+mechanism that notices the regular access patterns, and preemptively
 loads further cachelines; see section~\ref{sec:prefetch}.)
 
 Some applications naturally lead to strides greater than~1, for
@@ -1096,7 +1096,7 @@ would suffice, but in practice higher values are often encountered.
 \end{figure}
 Figure~\ref{fig:assoc-mapping} illustrates the mapping of memory
 addresses to cache locations for a direct mapped and a 3-way associative
-cache. Both caches have 12 elements, but these are used diferently.
+cache. Both caches have 12 elements, but these are used differently.
 The direct mapped cache (left)
 will have a conflict between memory address 0~and~12, but
 in the 3-way associative cache these two addresses can be mapped
@@ -1404,7 +1404,7 @@ incorporated L3 or L2 caches that were shared between the two
 processor cores; see figure~\ref{fig:core-caches}
 \begin{figure}[ht]
   \includegraphics[scale=.18]{graphics/cache-hierarchy}
-  \caption{Cache hiearchy in a single-core and dual-core chip}
+  \caption{Cache hierarchy in a single-core and dual-core chip}
   \label{fig:core-caches}
 \end{figure}
 This design makes it efficient for the cores to work
@@ -1545,7 +1545,7 @@ the other cache, that core first needs to write it back to memory.
   of transitions is a \indexacf{FSA}; see section~\ref{app:fsa}.)
 \end{exercise}
 
-Variants of the \ac{MSI} protocal add an `Exclusive' or `Owned' state
+Variants of the \ac{MSI} protocol add an `Exclusive' or `Owned' state
 for increased efficiency.
 
 \Level 2 {Solutions to cache coherence}
@@ -1683,7 +1683,7 @@ for (int i=0; i<N; i++)
    .... lots of work on array[i] ...
 \end{verbatim}
 Because of first-touch, the array is allocated completely in the
-memory of the socket of the master thread. In the subsequenty parallel
+memory of the socket of the master thread. In the subsequently parallel
 loop the cores of the other socket will then have slower access to the
 memory they operate on.
 
@@ -1812,7 +1812,7 @@ may give considerably lower figures.
 \label{sec:roofline}
 \index{roofline model|(}
 
-There is an elegant way of talking about how arithemtic intensity,
+There is an elegant way of talking about how arithmetic intensity,
 which is a statement about the ideal algorithm, not its implementation,
 interacts with hardware parameters and the actual implementation
 to determine performance.
@@ -2220,7 +2220,7 @@ for each element.
   Consider the matrix-vector product with an $N\times N$ matrix.
   What is the needed cache size to execute this operation with only
   compulsory cache misses? Your answer depends on how the operation
-  is implemented: answer seperately for rowwise and columnwise traversal
+  is implemented: answer separately for rowwise and columnwise traversal
   of the matrix, where you can assume that the matrix is always stored by rows.
 \end{exercise}
 \end{notlulu}

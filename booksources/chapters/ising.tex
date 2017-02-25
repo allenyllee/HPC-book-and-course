@@ -18,7 +18,7 @@ originally proposed to model ferromagnetism. Magnetism is the result
 of atoms aligning their `spin' direction: let's say spin can only be
 `up' or `down', then a material has magnetism if more atoms have spin
 up than down, or the other way around. The atoms are said to be in a
-structure called a `latice'.
+structure called a `lattice'.
 
 Now image heating up a material, which loosens up the atoms. If an
 external field is applied to the material, the atoms will start
@@ -137,7 +137,7 @@ Generalized Monte Carlo code
 Usually, Monte Carlo programs for Ising model simulations are written
 for a specific lattice. The reason for this is that in a typical
 simulation, the Ising Model energy expression is evaluated many times
-(~1000000 times). In order to evalute this energy expression quickly,
+(~1000000 times). In order to evaluate this energy expression quickly,
 it is necessary to explicitly write it within the code. This
 expression, however, is different for different lattices.
 
@@ -159,7 +159,7 @@ To avoid manually writing a new Monte Carlo code for each different
 lattice, a preprocessor was created in this work that uses the group
 theory of crystallography to automatically write the energy expression
 for a particular lattice. This energy expression is then automatically
-incorporated into the body of a standard Monte carlo code. All that is
+incorporated into the body of a standard Monte Carlo code. All that is
 needed as input is the space group of the lattice (which can be found
 in the literature) and the coordinates of a representative cluster of
 each type appearing in the Ising Model energy expression. A user of

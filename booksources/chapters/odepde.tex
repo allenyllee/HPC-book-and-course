@@ -139,7 +139,7 @@ differential equation `stable' if solutions corresponding to different
 initial values~$u_0$ converge to one another
 as~$t\rightarrow\nobreak\infty$. 
 
-A~sufficient criterium for stability is:
+A~sufficient criterion for stability is:
   \[ \frac\partial{\partial u}f(u)=
   \begin{cases}
     >0&\mbox{unstable}\\ =0&\mbox{neutrally stable}\\ <0&\mbox{stable}
@@ -187,7 +187,7 @@ This gives for $u'$:
   \end{array}
   \label{eq:forwarddifference}\end{equation}
 We can approximate the infinite sum of higher derivatives by a single
-$O(\Delta t^2)$ if all derivates are bounded; alternatively,
+$O(\Delta t^2)$ if all derivatives are bounded; alternatively,
 appendix~\ref{app:taylor} shows that this sum is equal to $\Delta
 t^2u''(t+\alpha\Delta t)$ with $0<\alpha<1$.
 
@@ -483,7 +483,7 @@ space and time is influenced by a certain finite region at each
 previous point in space\footnote{This leads to a condition limiting
   the time step in \indexacp{IBVP}, known as the
   \indexterm{Courant-Friedrichs-Lewy
-    condition}~\url{http://en.wikipedia.org/wiki/CourantĞFriedrichsĞLewy_condition}.
+    condition}~\url{http://en.wikipedia.org/wiki/Courant\D0Friedrichs\D0Lewy_condition}.
   It describes the notion that in the exact problem $u(x,t)$ depends
   on a range of $u(x',t-\Delta t)$ values; the time step of the
   numerical method has to be small enough that the numerical solution
@@ -815,7 +815,7 @@ the unknowns by rows and columns. This known as the \indexterm{natural
   ordering} or \indexterm{lexicographic ordering}; various other orderings are
 possible. One common way of ordering the unknowns is the
 \indexterm{red-black ordering} or \indexterm{checkerboard
-  ordering} which has advantanges for parallel computation. This will
+  ordering} which has advantages for parallel computation. This will
 be discussed in section~\ref{sec:parallel-prec}.
 
 There is more to say about analytical aspects of the \ac{BVP} (for

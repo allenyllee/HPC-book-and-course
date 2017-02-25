@@ -700,7 +700,7 @@ we simplify the efficiency above as
 $E(n,p)=\frac{2\gamma}{\beta}\frac{n}{p}$, then $E\equiv c$ is
 equivalent to $n=O(p)$ and therefore
 \[ M=O\left(\frac{n^2}{p}\right)=O(p). \]
-Thus, in order to maintain efficiency we need to increasae the memory
+Thus, in order to maintain efficiency we need to increase the memory
 per processors pretty quickly. This makes sense, since that downplays
 the importance of the communication.
 
@@ -1199,7 +1199,7 @@ $1,c+1,2c+1,\ldots$, et cetera. This scheme can be generalized two a
 two-dimensional distribution, if $N=c_1P_1=c_2P_2$
 and~$P=P_1P_2$. This is called a 2D \indexterm{cyclic
   distribution}. This scheme can be further extended by considering
-block rows and colums (with a small block size), and assigning to
+block rows and columns (with a small block size), and assigning to
 processor~0 the \emph{block} rows $0,c,2c,\ldots$.
 
 \begin{exercise}
@@ -1350,7 +1350,7 @@ $4\times$ reduction in the amount of integer data transferred.
   Give two more reasons why this strategy is likely to improve
   performance. Hint: cachelines, and reuse.
 \end{exercise}
-Such a \indextermbus{matrix}{tesselation} may give a factor of~2 in
+Such a \indextermbus{matrix}{tessellation} may give a factor of~2 in
 performance improvement. Assuming such an improvement, we may adopt
 this strategy even if the matrix is not a perfect block matrix: if
 every $2\times2$ block will contain one zero element we may still get
@@ -1734,7 +1734,7 @@ for i=myfirstrow..mylastrow
 This is not mathematically equivalent to the sequential algorithm
 (technically, it is called a \indexterm{block Jacobi} method with 
 \ac{ILU} as the \indexterm{local solve}), but
-since we're only looking for an approximationg $K\approx A$, this is
+since we're only looking for an approximation $K\approx A$, this is
 simply a slightly cruder approximation.
 \begin{exercise}
   Take the Gauss-Seidel code you wrote above, and simulate a parallel
@@ -1782,7 +1782,7 @@ A=P^tAP$ is a matrix with the following structure:
 \item each diagonal block is a diagonal matrix.
 \end{itemize}
 Now, if you are performing an iterative system solution
-and you are looking for a parallel preconitioner you can use this
+and you are looking for a parallel preconditioner you can use this
 permuted matrix. Consider solving $Ly=x$ with the permuted system. We
 write the usual algorithm (section~\ref{sec:lu-solve}) as
 \begin{quotation}
@@ -1820,7 +1820,7 @@ active during all the colour stages; see
 figure~\ref{fig:pilu-solve}. Ok, if you take a close look at that
 figure you'll see that one processor is not active in the last
 colour. With large numbers of nodes per processor this is unlikely to
-happen, but there may be some load inbalance.
+happen, but there may be some load imbalance.
 
 \index{Incomplete LU (ILU)!parallel|)}
 
