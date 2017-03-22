@@ -1,0 +1,650 @@
+\contentsline {part}{I\hspace {1em}Theory}{11}{part.1}
+\contentsline {chapter}{\numberline {1}\relax \bfseries Single-processor Computing}{12}{chapter.1}
+\contentsline {section}{\numberline {1.1}\slshape The Von Neumann architecture}{12}{section.1.1}
+\contentsline {section}{\numberline {1.2}\slshape Modern processors}{14}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}\rmfamily The processing cores}{14}{subsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.1.1} Instruction handling}{15}{subsubsection.1.2.1.1}
+\contentsline {subsubsection}{\numberline {1.2.1.2} Floating point units}{15}{subsubsection.1.2.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1.3} Pipelining}{16}{subsubsection.1.2.1.3}
+\contentsline {subsubsection}{\numberline {1.2.1.4} Peak performance}{19}{subsubsection.1.2.1.4}
+\contentsline {subsection}{\numberline {1.2.2}\rmfamily 8-bit, 16-bit, 32-bit, 64-bit}{19}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}\rmfamily Caches: on-chip memory}{20}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.4}\rmfamily Graphics, controllers, special purpose hardware}{20}{subsection.1.2.4}
+\contentsline {subsection}{\numberline {1.2.5}\rmfamily Superscalar processing and instruction-level parallelism}{20}{subsection.1.2.5}
+\contentsline {section}{\numberline {1.3}\slshape Memory Hierarchies}{21}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}\rmfamily Busses}{21}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}\rmfamily Latency and Bandwidth}{22}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}\rmfamily Registers}{23}{subsection.1.3.3}
+\contentsline {subsection}{\numberline {1.3.4}\rmfamily Caches}{25}{subsection.1.3.4}
+\contentsline {subsubsection}{\numberline {1.3.4.1} A motivating example}{25}{subsubsection.1.3.4.1}
+\contentsline {subsubsection}{\numberline {1.3.4.2} Cache levels, speed and size}{26}{subsubsection.1.3.4.2}
+\contentsline {subsubsection}{\numberline {1.3.4.3} Types of cache misses}{27}{subsubsection.1.3.4.3}
+\contentsline {subsubsection}{\numberline {1.3.4.4} Reuse is the name of the game}{27}{subsubsection.1.3.4.4}
+\contentsline {subsubsection}{\numberline {1.3.4.5} Replacement policies}{28}{subsubsection.1.3.4.5}
+\contentsline {subsubsection}{\numberline {1.3.4.6} Cache lines}{28}{subsubsection.1.3.4.6}
+\contentsline {subsubsection}{\numberline {1.3.4.7} Cache mapping}{29}{subsubsection.1.3.4.7}
+\contentsline {subsubsection}{\numberline {1.3.4.8} Direct mapped caches}{30}{subsubsection.1.3.4.8}
+\contentsline {subsubsection}{\numberline {1.3.4.9} Associative caches}{31}{subsubsection.1.3.4.9}
+\contentsline {subsubsection}{\numberline {1.3.4.10} Loads versus stores}{33}{subsubsection.1.3.4.10}
+\contentsline {subsection}{\numberline {1.3.5}\rmfamily Prefetch streams}{33}{subsection.1.3.5}
+\contentsline {subsection}{\numberline {1.3.6}\rmfamily Concurrency and memory transfer}{34}{subsection.1.3.6}
+\contentsline {subsection}{\numberline {1.3.7}\rmfamily Memory banks}{34}{subsection.1.3.7}
+\contentsline {subsection}{\numberline {1.3.8}\rmfamily TLB, pages, and virtual memory}{35}{subsection.1.3.8}
+\contentsline {subsubsection}{\numberline {1.3.8.1} Large pages}{35}{subsubsection.1.3.8.1}
+\contentsline {subsubsection}{\numberline {1.3.8.2} TLB}{36}{subsubsection.1.3.8.2}
+\contentsline {section}{\numberline {1.4}\slshape Multicore architectures}{36}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}\rmfamily Cache coherence}{38}{subsection.1.4.1}
+\contentsline {subsubsection}{\numberline {1.4.1.1} Solutions to cache coherence}{39}{subsubsection.1.4.1.1}
+\contentsline {subsubsection}{\numberline {1.4.1.2} False sharing}{40}{subsubsection.1.4.1.2}
+\contentsline {subsection}{\numberline {1.4.2}\rmfamily Computations on multicore chips}{40}{subsection.1.4.2}
+\contentsline {subsection}{\numberline {1.4.3}\rmfamily TLB shootdown}{40}{subsection.1.4.3}
+\contentsline {section}{\numberline {1.5}\slshape Node architecture and sockets}{41}{section.1.5}
+\contentsline {section}{\numberline {1.6}\slshape Locality and data reuse}{42}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}\rmfamily Data reuse and arithmetic intensity}{42}{subsection.1.6.1}
+\contentsline {subsubsection}{\numberline {1.6.1.1} Examples}{43}{subsubsection.1.6.1.1}
+\contentsline {subsubsection}{\numberline {1.6.1.2} The roofline model}{44}{subsubsection.1.6.1.2}
+\contentsline {subsection}{\numberline {1.6.2}\rmfamily Locality}{44}{subsection.1.6.2}
+\contentsline {subsubsection}{\numberline {1.6.2.1} Temporal locality}{46}{subsubsection.1.6.2.1}
+\contentsline {subsubsection}{\numberline {1.6.2.2} Spatial locality}{46}{subsubsection.1.6.2.2}
+\contentsline {subsubsection}{\numberline {1.6.2.3} Examples of locality}{47}{subsubsection.1.6.2.3}
+\contentsline {subsubsection}{\numberline {1.6.2.4} Core locality}{49}{subsubsection.1.6.2.4}
+\contentsline {section}{\numberline {1.7}\slshape Programming strategies for high performance}{49}{section.1.7}
+\contentsline {subsection}{\numberline {1.7.1}\rmfamily Peak performance}{49}{subsection.1.7.1}
+\contentsline {subsection}{\numberline {1.7.2}\rmfamily Pipelining}{49}{subsection.1.7.2}
+\contentsline {subsection}{\numberline {1.7.3}\rmfamily Cache size}{51}{subsection.1.7.3}
+\contentsline {subsection}{\numberline {1.7.4}\rmfamily Cache lines}{52}{subsection.1.7.4}
+\contentsline {subsection}{\numberline {1.7.5}\rmfamily TLB}{53}{subsection.1.7.5}
+\contentsline {subsection}{\numberline {1.7.6}\rmfamily Cache associativity}{54}{subsection.1.7.6}
+\contentsline {subsection}{\numberline {1.7.7}\rmfamily Loop nests}{57}{subsection.1.7.7}
+\contentsline {subsection}{\numberline {1.7.8}\rmfamily Loop tiling}{57}{subsection.1.7.8}
+\contentsline {subsection}{\numberline {1.7.9}\rmfamily Optimization strategies}{60}{subsection.1.7.9}
+\contentsline {subsection}{\numberline {1.7.10}\rmfamily Cache aware and cache oblivious programming}{61}{subsection.1.7.10}
+\contentsline {subsection}{\numberline {1.7.11}\rmfamily Case study: Matrix-vector product}{62}{subsection.1.7.11}
+\contentsline {subsection}{\numberline {1.7.12}\rmfamily Case study: Goto matrix-matrix product}{64}{subsection.1.7.12}
+\contentsline {section}{\numberline {1.8}\slshape Further topics}{65}{section.1.8}
+\contentsline {subsection}{\numberline {1.8.1}\rmfamily Power consumption}{65}{subsection.1.8.1}
+\contentsline {subsubsection}{\numberline {1.8.1.1} Derivation of scaling properties}{66}{subsubsection.1.8.1.1}
+\contentsline {subsubsection}{\numberline {1.8.1.2} Multicore}{66}{subsubsection.1.8.1.2}
+\contentsline {subsubsection}{\numberline {1.8.1.3} Total computer power}{67}{subsubsection.1.8.1.3}
+\contentsline {subsection}{\numberline {1.8.2}\rmfamily Operating system effects}{68}{subsection.1.8.2}
+\contentsline {section}{\numberline {1.9}\slshape Review questions}{68}{section.1.9}
+\contentsline {chapter}{\numberline {2}\relax \bfseries Parallel Computing}{69}{chapter.2}
+\contentsline {section}{\numberline {2.1}\slshape Introduction}{69}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}\rmfamily Functional parallelism versus data parallelism}{72}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}\rmfamily Parallelism in the algorithm versus in the code}{73}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}\slshape Quantifying parallelism}{73}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}\rmfamily Definitions}{73}{subsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.1.1} Speedup and efficiency}{73}{subsubsection.2.2.1.1}
+\contentsline {subsubsection}{\numberline {2.2.1.2} Cost-optimality}{74}{subsubsection.2.2.1.2}
+\contentsline {subsubsection}{\numberline {2.2.1.3} Critical path}{75}{subsubsection.2.2.1.3}
+\contentsline {subsection}{\numberline {2.2.2}\rmfamily Asymptotics}{76}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}\rmfamily Amdahl's law}{78}{subsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.3.1} Amdahl's law with communication overhead}{79}{subsubsection.2.2.3.1}
+\contentsline {subsubsection}{\numberline {2.2.3.2} Gustafson's law}{79}{subsubsection.2.2.3.2}
+\contentsline {subsubsection}{\numberline {2.2.3.3} Amdahl's law and hybrid programming}{80}{subsubsection.2.2.3.3}
+\contentsline {subsection}{\numberline {2.2.4}\rmfamily Scalability}{80}{subsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.4.1} Iso-efficiency}{81}{subsubsection.2.2.4.1}
+\contentsline {subsubsection}{\numberline {2.2.4.2} Precisely \emph {what} is scalable?}{82}{subsubsection.2.2.4.2}
+\contentsline {subsection}{\numberline {2.2.5}\rmfamily Simulation scaling}{82}{subsection.2.2.5}
+\contentsline {subsection}{\numberline {2.2.6}\rmfamily Other scaling measures}{83}{subsection.2.2.6}
+\contentsline {section}{\numberline {2.3}\slshape Parallel Computers Architectures}{84}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}\rmfamily SIMD}{84}{subsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.1.1} Pipelining}{85}{subsubsection.2.3.1.1}
+\contentsline {subsubsection}{\numberline {2.3.1.2} True SIMD in CPUs and GPUs}{86}{subsubsection.2.3.1.2}
+\contentsline {subsection}{\numberline {2.3.2}\rmfamily MIMD / SPMD computers}{87}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}\rmfamily The commoditization of supercomputers}{87}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}\slshape Different types of memory access}{87}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}\rmfamily Symmetric Multi-Processors: Uniform Memory Access}{88}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}\rmfamily Non-Uniform Memory Access}{88}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}\rmfamily Logically and physically distributed memory}{90}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}\slshape Granularity of parallelism}{90}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}\rmfamily Data parallelism}{90}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}\rmfamily Instruction-level parallelism}{91}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}\rmfamily Task-level parallelism}{91}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}\rmfamily Conveniently parallel computing}{93}{subsection.2.5.4}
+\contentsline {subsection}{\numberline {2.5.5}\rmfamily Medium-grain data parallelism}{93}{subsection.2.5.5}
+\contentsline {subsection}{\numberline {2.5.6}\rmfamily Task granularity}{94}{subsection.2.5.6}
+\contentsline {section}{\numberline {2.6}\slshape Parallel programming}{94}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}\rmfamily Thread parallelism}{95}{subsection.2.6.1}
+\contentsline {subsubsection}{\numberline {2.6.1.1} The fork-join mechanism}{95}{subsubsection.2.6.1.1}
+\contentsline {subsubsection}{\numberline {2.6.1.2} Threads and parallel computing}{96}{subsubsection.2.6.1.2}
+\contentsline {subsubsection}{\numberline {2.6.1.3} Threads example}{96}{subsubsection.2.6.1.3}
+\contentsline {subsubsection}{\numberline {2.6.1.4} Contexts}{97}{subsubsection.2.6.1.4}
+\contentsline {subsubsection}{\numberline {2.6.1.5} Data races, thread safety, and atomic operations}{98}{subsubsection.2.6.1.5}
+\contentsline {subsubsection}{\numberline {2.6.1.6} Memory models and sequential consistency}{99}{subsubsection.2.6.1.6}
+\contentsline {subsubsection}{\numberline {2.6.1.7} Affinity}{101}{subsubsection.2.6.1.7}
+\contentsline {subsubsection}{\numberline {2.6.1.8} Concurrency}{103}{subsubsection.2.6.1.8}
+\contentsline {subsubsection}{\numberline {2.6.1.9} Cilk Plus}{103}{subsubsection.2.6.1.9}
+\contentsline {subsubsection}{\numberline {2.6.1.10} Hyperthreading versus multi-threading}{104}{subsubsection.2.6.1.10}
+\contentsline {subsection}{\numberline {2.6.2}\rmfamily OpenMP}{104}{subsection.2.6.2}
+\contentsline {subsubsection}{\numberline {2.6.2.1} OpenMP examples}{105}{subsubsection.2.6.2.1}
+\contentsline {subsection}{\numberline {2.6.3}\rmfamily Distributed memory programming through message passing}{106}{subsection.2.6.3}
+\contentsline {subsubsection}{\numberline {2.6.3.1} The global versus the local view in distributed programming}{106}{subsubsection.2.6.3.1}
+\contentsline {subsubsection}{\numberline {2.6.3.2} Blocking and non-blocking communication}{109}{subsubsection.2.6.3.2}
+\contentsline {subsubsection}{\numberline {2.6.3.3} The MPI library}{110}{subsubsection.2.6.3.3}
+\contentsline {subsubsection}{\numberline {2.6.3.4} Blocking}{112}{subsubsection.2.6.3.4}
+\contentsline {subsubsection}{\numberline {2.6.3.5} Collective operations}{113}{subsubsection.2.6.3.5}
+\contentsline {subsubsection}{\numberline {2.6.3.6} Non-blocking communication}{113}{subsubsection.2.6.3.6}
+\contentsline {subsubsection}{\numberline {2.6.3.7} MPI version 1 and 2 and 3}{114}{subsubsection.2.6.3.7}
+\contentsline {subsubsection}{\numberline {2.6.3.8} One-sided communication}{115}{subsubsection.2.6.3.8}
+\contentsline {subsection}{\numberline {2.6.4}\rmfamily Hybrid shared/distributed memory computing}{116}{subsection.2.6.4}
+\contentsline {subsection}{\numberline {2.6.5}\rmfamily Parallel languages}{117}{subsection.2.6.5}
+\contentsline {subsubsection}{\numberline {2.6.5.1} Discussion}{118}{subsubsection.2.6.5.1}
+\contentsline {subsubsection}{\numberline {2.6.5.2} Unified Parallel C}{119}{subsubsection.2.6.5.2}
+\contentsline {subsubsection}{\numberline {2.6.5.3} High Performance Fortran}{120}{subsubsection.2.6.5.3}
+\contentsline {subsubsection}{\numberline {2.6.5.4} Co-array Fortran}{120}{subsubsection.2.6.5.4}
+\contentsline {subsubsection}{\numberline {2.6.5.5} Chapel}{120}{subsubsection.2.6.5.5}
+\contentsline {subsubsection}{\numberline {2.6.5.6} Fortress}{121}{subsubsection.2.6.5.6}
+\contentsline {subsubsection}{\numberline {2.6.5.7} X10}{122}{subsubsection.2.6.5.7}
+\contentsline {subsubsection}{\numberline {2.6.5.8} Linda}{122}{subsubsection.2.6.5.8}
+\contentsline {subsubsection}{\numberline {2.6.5.9} The Global Arrays library}{123}{subsubsection.2.6.5.9}
+\contentsline {subsection}{\numberline {2.6.6}\rmfamily OS-based approaches}{123}{subsection.2.6.6}
+\contentsline {subsection}{\numberline {2.6.7}\rmfamily Active messages}{123}{subsection.2.6.7}
+\contentsline {subsection}{\numberline {2.6.8}\rmfamily Bulk synchronous parallelism}{124}{subsection.2.6.8}
+\contentsline {subsection}{\numberline {2.6.9}\rmfamily Program design for parallelism}{125}{subsection.2.6.9}
+\contentsline {subsubsection}{\numberline {2.6.9.1} Parallel data structures}{125}{subsubsection.2.6.9.1}
+\contentsline {subsubsection}{\numberline {2.6.9.2} Latency hiding}{126}{subsubsection.2.6.9.2}
+\contentsline {section}{\numberline {2.7}\slshape Topologies}{127}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}\rmfamily Some graph theory}{128}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}\rmfamily Busses}{130}{subsection.2.7.2}
+\contentsline {subsection}{\numberline {2.7.3}\rmfamily Linear arrays and rings}{130}{subsection.2.7.3}
+\contentsline {subsection}{\numberline {2.7.4}\rmfamily 2D and 3D arrays}{130}{subsection.2.7.4}
+\contentsline {subsection}{\numberline {2.7.5}\rmfamily Hypercubes}{131}{subsection.2.7.5}
+\contentsline {subsubsection}{\numberline {2.7.5.1} Embedding grids in a hypercube}{133}{subsubsection.2.7.5.1}
+\contentsline {subsection}{\numberline {2.7.6}\rmfamily Switched networks}{134}{subsection.2.7.6}
+\contentsline {subsubsection}{\numberline {2.7.6.1} Cross bar}{134}{subsubsection.2.7.6.1}
+\contentsline {subsubsection}{\numberline {2.7.6.2} Butterfly exchange}{134}{subsubsection.2.7.6.2}
+\contentsline {subsubsection}{\numberline {2.7.6.3} Fat-trees}{135}{subsubsection.2.7.6.3}
+\contentsline {subsection}{\numberline {2.7.7}\rmfamily Cluster networks}{138}{subsection.2.7.7}
+\contentsline {subsection}{\numberline {2.7.8}\rmfamily Bandwidth and latency}{138}{subsection.2.7.8}
+\contentsline {subsection}{\numberline {2.7.9}\rmfamily Locality in parallel computing}{140}{subsection.2.7.9}
+\contentsline {section}{\numberline {2.8}\slshape Multi-threaded architectures}{140}{section.2.8}
+\contentsline {section}{\numberline {2.9}\slshape Co-processors, including GPUs}{141}{section.2.9}
+\contentsline {subsection}{\numberline {2.9.1}\rmfamily A little history}{141}{subsection.2.9.1}
+\contentsline {subsection}{\numberline {2.9.2}\rmfamily Bottlenecks}{142}{subsection.2.9.2}
+\contentsline {subsection}{\numberline {2.9.3}\rmfamily GPU computing}{142}{subsection.2.9.3}
+\contentsline {subsubsection}{\numberline {2.9.3.1} SIMD-type programming with kernels}{143}{subsubsection.2.9.3.1}
+\contentsline {subsubsection}{\numberline {2.9.3.2} GPUs versus CPUs}{145}{subsubsection.2.9.3.2}
+\contentsline {subsubsection}{\numberline {2.9.3.3} Expected benefit from GPUs}{145}{subsubsection.2.9.3.3}
+\contentsline {subsection}{\numberline {2.9.4}\rmfamily Intel Xeon Phi}{146}{subsection.2.9.4}
+\contentsline {section}{\numberline {2.10}\slshape Remaining topics}{146}{section.2.10}
+\contentsline {subsection}{\numberline {2.10.1}\rmfamily Load balancing}{146}{subsection.2.10.1}
+\contentsline {subsubsection}{\numberline {2.10.1.1} Load balancing versus data distribution}{147}{subsubsection.2.10.1.1}
+\contentsline {subsubsection}{\numberline {2.10.1.2} Load scheduling}{147}{subsubsection.2.10.1.2}
+\contentsline {subsubsection}{\numberline {2.10.1.3} Load balancing of independent tasks}{148}{subsubsection.2.10.1.3}
+\contentsline {subsubsection}{\numberline {2.10.1.4} Load balancing as graph problem}{148}{subsubsection.2.10.1.4}
+\contentsline {subsubsection}{\numberline {2.10.1.5} Load redistributing}{149}{subsubsection.2.10.1.5}
+\contentsline {subsubsection}{\numberline {2.10.1.6} Load balancing with space-filling curves}{149}{subsubsection.2.10.1.6}
+\contentsline {subsection}{\numberline {2.10.2}\rmfamily Distributed computing, grid computing, cloud computing}{152}{subsection.2.10.2}
+\contentsline {subsubsection}{\numberline {2.10.2.1} Usage scenarios}{153}{subsubsection.2.10.2.1}
+\contentsline {subsubsection}{\numberline {2.10.2.2} Characterization}{154}{subsubsection.2.10.2.2}
+\contentsline {subsection}{\numberline {2.10.3}\rmfamily Capability versus capacity computing}{155}{subsection.2.10.3}
+\contentsline {subsection}{\numberline {2.10.4}\rmfamily MapReduce}{155}{subsection.2.10.4}
+\contentsline {subsubsection}{\numberline {2.10.4.1} Expressive power of the MapReduce model}{155}{subsubsection.2.10.4.1}
+\contentsline {subsubsection}{\numberline {2.10.4.2} Mapreduce software}{156}{subsubsection.2.10.4.2}
+\contentsline {subsubsection}{\numberline {2.10.4.3} \bf Functional programming}{156}{subsubsection.2.10.4.3}
+\contentsline {subsection}{\numberline {2.10.5}\rmfamily The top500 list}{157}{subsection.2.10.5}
+\contentsline {subsubsection}{\numberline {2.10.5.1} The top500 list as a recent history of supercomputing}{158}{subsubsection.2.10.5.1}
+\contentsline {subsection}{\numberline {2.10.6}\rmfamily Heterogeneous computing}{159}{subsection.2.10.6}
+\contentsline {chapter}{\numberline {3}\relax \bfseries Computer Arithmetic}{161}{chapter.3}
+\contentsline {section}{\numberline {3.1}\slshape Integers}{161}{section.3.1}
+\contentsline {section}{\numberline {3.2}\slshape Real numbers}{163}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}\rmfamily They're not really real numbers}{164}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}\rmfamily Representation of real numbers}{164}{subsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.1} Some examples}{164}{subsubsection.3.2.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2.2} Binary coded decimal}{165}{subsubsection.3.2.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.3} Other number bases for computer arithmetic}{165}{subsubsection.3.2.2.3}
+\contentsline {subsection}{\numberline {3.2.3}\rmfamily Limitations}{165}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}\rmfamily Normalized and unnormalized numbers}{166}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}\rmfamily Representation error}{167}{subsection.3.2.5}
+\contentsline {subsection}{\numberline {3.2.6}\rmfamily Machine precision}{167}{subsection.3.2.6}
+\contentsline {subsection}{\numberline {3.2.7}\rmfamily The IEEE 754 standard for floating point numbers}{168}{subsection.3.2.7}
+\contentsline {subsubsection}{\numberline {3.2.7.1} Setting the exception and rounding behaviour}{169}{subsubsection.3.2.7.1}
+\contentsline {subsubsection}{\numberline {3.2.7.2} Not-a-Number}{170}{subsubsection.3.2.7.2}
+\contentsline {section}{\numberline {3.3}\slshape Round-off error analysis}{170}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}\rmfamily Correct rounding}{171}{subsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.1.1} Mul-Add operations}{171}{subsubsection.3.3.1.1}
+\contentsline {subsection}{\numberline {3.3.2}\rmfamily Addition}{172}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}\rmfamily Multiplication}{172}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}\rmfamily Subtraction}{172}{subsection.3.3.4}
+\contentsline {subsection}{\numberline {3.3.5}\rmfamily Associativity}{173}{subsection.3.3.5}
+\contentsline {subsection}{\numberline {3.3.6}\rmfamily Examples}{173}{subsection.3.3.6}
+\contentsline {subsubsection}{\numberline {3.3.6.1} The `abc-formula'}{174}{subsubsection.3.3.6.1}
+\contentsline {subsubsection}{\numberline {3.3.6.2} Summing series}{174}{subsubsection.3.3.6.2}
+\contentsline {subsubsection}{\numberline {3.3.6.3} Unstable algorithms}{175}{subsubsection.3.3.6.3}
+\contentsline {subsubsection}{\numberline {3.3.6.4} Linear system solving}{175}{subsubsection.3.3.6.4}
+\contentsline {subsection}{\numberline {3.3.7}\rmfamily Roundoff error in parallel computations}{176}{subsection.3.3.7}
+\contentsline {section}{\numberline {3.4}\slshape Compilers and round-off}{177}{section.3.4}
+\contentsline {section}{\numberline {3.5}\slshape More about floating point arithmetic}{179}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}\rmfamily Programming languages}{179}{subsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.1.1} Type declarations}{179}{subsubsection.3.5.1.1}
+\contentsline {subsubsection}{\numberline {3.5.1.2} NaN, Inf}{179}{subsubsection.3.5.1.2}
+\contentsline {subsection}{\numberline {3.5.2}\rmfamily Other computer arithmetic systems}{180}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}\rmfamily Extended precision}{180}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.4}\rmfamily Reduced precision}{180}{subsection.3.5.4}
+\contentsline {subsection}{\numberline {3.5.5}\rmfamily Fixed-point arithmetic}{180}{subsection.3.5.5}
+\contentsline {subsection}{\numberline {3.5.6}\rmfamily Complex numbers}{181}{subsection.3.5.6}
+\contentsline {section}{\numberline {3.6}\slshape Conclusions}{182}{section.3.6}
+\contentsline {chapter}{\numberline {4}\relax \bfseries Numerical treatment of differential equations}{183}{chapter.4}
+\contentsline {section}{\numberline {4.1}\slshape Initial value problems}{183}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}\rmfamily Error and stability}{185}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}\rmfamily Finite difference approximation: Euler explicit and implicit methods}{185}{subsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.2.1} Stability of the Euler explicit method}{187}{subsubsection.4.1.2.1}
+\contentsline {subsubsection}{\numberline {4.1.2.2} The Euler implicit method}{187}{subsubsection.4.1.2.2}
+\contentsline {subsubsection}{\numberline {4.1.2.3} Stability of the implicit Euler method}{188}{subsubsection.4.1.2.3}
+\contentsline {section}{\numberline {4.2}\slshape Boundary value problems}{190}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}\rmfamily General PDE theory}{190}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}\rmfamily The Poisson equation in one space dimension}{191}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}\rmfamily The Poisson equation in two space dimensions}{193}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}\rmfamily Difference stencils}{196}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}\rmfamily Other discretization techniques}{197}{subsection.4.2.5}
+\contentsline {section}{\numberline {4.3}\slshape Initial boundary value problem}{197}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}\rmfamily Discretization}{198}{subsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.1.1} Explicit scheme}{198}{subsubsection.4.3.1.1}
+\contentsline {subsubsection}{\numberline {4.3.1.2} Implicit scheme}{199}{subsubsection.4.3.1.2}
+\contentsline {subsection}{\numberline {4.3.2}\rmfamily Stability analysis}{200}{subsection.4.3.2}
+\contentsline {chapter}{\numberline {5}\relax \bfseries Numerical linear algebra}{202}{chapter.5}
+\contentsline {section}{\numberline {5.1}\slshape Elimination of unknowns}{202}{section.5.1}
+\contentsline {section}{\numberline {5.2}\slshape Linear algebra in computer arithmetic}{205}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}\rmfamily Roundoff control during elimination}{205}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}\rmfamily Influence of roundoff on eigenvalue computations}{206}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}\slshape LU factorization}{207}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}\rmfamily The algorithm}{208}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}\rmfamily The Cholesky factorization}{209}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}\rmfamily Uniqueness}{209}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}\rmfamily Pivoting}{211}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}\rmfamily Solving the system}{212}{subsection.5.3.5}
+\contentsline {subsection}{\numberline {5.3.6}\rmfamily Complexity}{213}{subsection.5.3.6}
+\contentsline {subsection}{\numberline {5.3.7}\rmfamily Block algorithms}{214}{subsection.5.3.7}
+\contentsline {section}{\numberline {5.4}\slshape Sparse matrices}{215}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}\rmfamily Storage of sparse matrices}{216}{subsection.5.4.1}
+\contentsline {subsubsection}{\numberline {5.4.1.1} Diagonal storage}{216}{subsubsection.5.4.1.1}
+\contentsline {subsubsection}{\numberline {5.4.1.2} Operations on diagonal storage}{217}{subsubsection.5.4.1.2}
+\contentsline {subsubsection}{\numberline {5.4.1.3} Compressed row storage}{218}{subsubsection.5.4.1.3}
+\contentsline {subsubsection}{\numberline {5.4.1.4} Algorithms on compressed row storage}{219}{subsubsection.5.4.1.4}
+\contentsline {subsection}{\numberline {5.4.2}\rmfamily Sparse matrices and graph theory}{220}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}\rmfamily LU factorizations of sparse matrices}{221}{subsection.5.4.3}
+\contentsline {subsubsection}{\numberline {5.4.3.1} Graph theory of sparse LU factorization}{222}{subsubsection.5.4.3.1}
+\contentsline {subsubsection}{\numberline {5.4.3.2} Fill-in}{223}{subsubsection.5.4.3.2}
+\contentsline {subsubsection}{\numberline {5.4.3.3} Fill-in estimates}{223}{subsubsection.5.4.3.3}
+\contentsline {subsubsection}{\numberline {5.4.3.4} Fill-in reduction}{225}{subsubsection.5.4.3.4}
+\contentsline {subsubsection}{\numberline {5.4.3.5} Fill-in reducing orderings}{226}{subsubsection.5.4.3.5}
+\contentsline {section}{\numberline {5.5}\slshape Iterative methods}{227}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}\rmfamily Abstract presentation}{228}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}\rmfamily Convergence and error analysis}{229}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}\rmfamily Computational form}{230}{subsection.5.5.3}
+\contentsline {subsection}{\numberline {5.5.4}\rmfamily Convergence of the method}{232}{subsection.5.5.4}
+\contentsline {subsection}{\numberline {5.5.5}\rmfamily Jacobi versus Gauss-Seidel and parallelism}{232}{subsection.5.5.5}
+\contentsline {subsection}{\numberline {5.5.6}\rmfamily Choice of $K$}{232}{subsection.5.5.6}
+\contentsline {subsubsection}{\numberline {5.5.6.1} Constructing $K$ as an incomplete LU factorization}{234}{subsubsection.5.5.6.1}
+\contentsline {subsubsection}{\numberline {5.5.6.2} Cost of constructing a preconditioner}{234}{subsubsection.5.5.6.2}
+\contentsline {subsubsection}{\numberline {5.5.6.3} Parallel preconditioners}{235}{subsubsection.5.5.6.3}
+\contentsline {subsection}{\numberline {5.5.7}\rmfamily Stopping tests}{235}{subsection.5.5.7}
+\contentsline {subsection}{\numberline {5.5.8}\rmfamily Theory of general iterative methods}{236}{subsection.5.5.8}
+\contentsline {subsection}{\numberline {5.5.9}\rmfamily Iterating by orthogonalization}{239}{subsection.5.5.9}
+\contentsline {subsection}{\numberline {5.5.10}\rmfamily Coupled recurrences form of iterative methods}{240}{subsection.5.5.10}
+\contentsline {subsection}{\numberline {5.5.11}\rmfamily The method of Conjugate Gradients}{241}{subsection.5.5.11}
+\contentsline {subsection}{\numberline {5.5.12}\rmfamily Derivation from minimization}{243}{subsection.5.5.12}
+\contentsline {subsection}{\numberline {5.5.13}\rmfamily GMRES}{244}{subsection.5.5.13}
+\contentsline {subsection}{\numberline {5.5.14}\rmfamily Complexity}{245}{subsection.5.5.14}
+\contentsline {section}{\numberline {5.6}\slshape Further Reading}{245}{section.5.6}
+\contentsline {chapter}{\numberline {6}\relax \bfseries High performance linear algebra}{246}{chapter.6}
+\contentsline {section}{\numberline {6.1}\slshape Collective operations}{246}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}\rmfamily Broadcast}{246}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}\rmfamily Reduction}{247}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}\rmfamily Allreduce}{248}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}\rmfamily Allgather}{248}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}\rmfamily Reduce-scatter}{249}{subsection.6.1.5}
+\contentsline {section}{\numberline {6.2}\slshape Parallel dense matrix-vector product}{249}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}\rmfamily Implementing the block-row case}{250}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}\rmfamily Scalability of the dense matrix-vector product}{253}{subsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.2.1} Matrix-vector product, partitioning by rows}{253}{subsubsection.6.2.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2.2} Matrix-vector product, partitioning by columns}{256}{subsubsection.6.2.2.2}
+\contentsline {subsubsection}{\numberline {6.2.2.3} Two-dimensional partitioning}{257}{subsubsection.6.2.2.3}
+\contentsline {section}{\numberline {6.3}\slshape LU factorization in parallel}{259}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}\rmfamily Solving a triangular system}{259}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}\rmfamily Factorization, dense case}{260}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}\rmfamily Factorization, sparse case}{262}{subsection.6.3.3}
+\contentsline {section}{\numberline {6.4}\slshape Matrix-matrix product}{262}{section.6.4}
+\contentsline {section}{\numberline {6.5}\slshape Sparse matrix-vector product}{263}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}\rmfamily The single-processor sparse matrix-vector product}{263}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}\rmfamily The parallel sparse matrix-vector product}{264}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}\rmfamily Parallel efficiency of the sparse matrix-vector product}{267}{subsection.6.5.3}
+\contentsline {subsection}{\numberline {6.5.4}\rmfamily Memory behaviour of the sparse matrix-vector product}{269}{subsection.6.5.4}
+\contentsline {subsection}{\numberline {6.5.5}\rmfamily The transpose product}{269}{subsection.6.5.5}
+\contentsline {subsection}{\numberline {6.5.6}\rmfamily Setup of the sparse matrix-vector product}{270}{subsection.6.5.6}
+\contentsline {section}{\numberline {6.6}\slshape Computational aspects of iterative methods}{271}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}\rmfamily Vector operations}{271}{subsection.6.6.1}
+\contentsline {subsubsection}{\numberline {6.6.1.1} Vector additions}{272}{subsubsection.6.6.1.1}
+\contentsline {subsubsection}{\numberline {6.6.1.2} Inner products}{272}{subsubsection.6.6.1.2}
+\contentsline {subsection}{\numberline {6.6.2}\rmfamily Finite element matrix construction}{273}{subsection.6.6.2}
+\contentsline {subsection}{\numberline {6.6.3}\rmfamily A simple model for iterative method performance}{274}{subsection.6.6.3}
+\contentsline {section}{\numberline {6.7}\slshape Parallel preconditioners}{275}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}\rmfamily Jacobi preconditioning}{275}{subsection.6.7.1}
+\contentsline {subsection}{\numberline {6.7.2}\rmfamily The trouble with ILU in parallel}{275}{subsection.6.7.2}
+\contentsline {subsection}{\numberline {6.7.3}\rmfamily Block Jacobi methods}{276}{subsection.6.7.3}
+\contentsline {subsection}{\numberline {6.7.4}\rmfamily Parallel ILU}{277}{subsection.6.7.4}
+\contentsline {section}{\numberline {6.8}\slshape Ordering strategies and parallelism}{278}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}\rmfamily Nested dissection}{278}{subsection.6.8.1}
+\contentsline {subsubsection}{\numberline {6.8.1.1} Domain decomposition}{282}{subsubsection.6.8.1.1}
+\contentsline {subsubsection}{\numberline {6.8.1.2} Complexity}{283}{subsubsection.6.8.1.2}
+\contentsline {subsubsection}{\numberline {6.8.1.3} Parallelism}{284}{subsubsection.6.8.1.3}
+\contentsline {subsubsection}{\numberline {6.8.1.4} Preconditioning}{284}{subsubsection.6.8.1.4}
+\contentsline {subsection}{\numberline {6.8.2}\rmfamily Variable reordering and colouring: independent sets}{284}{subsection.6.8.2}
+\contentsline {subsection}{\numberline {6.8.3}\rmfamily Irregular iteration spaces}{287}{subsection.6.8.3}
+\contentsline {subsection}{\numberline {6.8.4}\rmfamily Ordering for cache efficiency}{288}{subsection.6.8.4}
+\contentsline {section}{\numberline {6.9}\slshape Operator splitting}{288}{section.6.9}
+\contentsline {section}{\numberline {6.10}\slshape Parallelism and implicit operations}{289}{section.6.10}
+\contentsline {subsection}{\numberline {6.10.1}\rmfamily Wavefronts}{290}{subsection.6.10.1}
+\contentsline {subsection}{\numberline {6.10.2}\rmfamily Recursive doubling}{291}{subsection.6.10.2}
+\contentsline {subsection}{\numberline {6.10.3}\rmfamily Approximating implicit by explicit operations, series expansion}{292}{subsection.6.10.3}
+\contentsline {section}{\numberline {6.11}\slshape Grid updates}{294}{section.6.11}
+\contentsline {subsection}{\numberline {6.11.1}\rmfamily Analysis}{296}{subsection.6.11.1}
+\contentsline {subsection}{\numberline {6.11.2}\rmfamily Communication and work minimizing strategy}{296}{subsection.6.11.2}
+\contentsline {section}{\numberline {6.12}\slshape Block algorithms on multicore architectures}{297}{section.6.12}
+\contentsline {part}{II\hspace {1em}Applications}{301}{part.2}
+\contentsline {chapter}{\numberline {7}\relax \bfseries Molecular dynamics}{302}{chapter.7}
+\contentsline {section}{\numberline {7.1}\slshape Force Computation}{303}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}\rmfamily Force Fields}{303}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}\rmfamily Computing Short-Range Nonbonded Forces}{304}{subsection.7.1.2}
+\contentsline {subsubsection}{\numberline {7.1.2.1} Cell Lists}{304}{subsubsection.7.1.2.1}
+\contentsline {subsubsection}{\numberline {7.1.2.2} Verlet Neighbor Lists}{305}{subsubsection.7.1.2.2}
+\contentsline {subsubsection}{\numberline {7.1.2.3} Using Cell and Neighbor Lists Together}{305}{subsubsection.7.1.2.3}
+\contentsline {subsection}{\numberline {7.1.3}\rmfamily Computing Long-Range Forces}{305}{subsection.7.1.3}
+\contentsline {subsubsection}{\numberline {7.1.3.1} Hierarchical N-body Methods}{305}{subsubsection.7.1.3.1}
+\contentsline {subsubsection}{\numberline {7.1.3.2} Particle-Mesh Methods}{306}{subsubsection.7.1.3.2}
+\contentsline {subsubsection}{\numberline {7.1.3.3} Ewald Method}{306}{subsubsection.7.1.3.3}
+\contentsline {section}{\numberline {7.2}\slshape Parallel Decompositions}{307}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}\rmfamily Atom Decompositions}{307}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}\rmfamily Force Decompositions}{308}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}\rmfamily Spatial Decompositions}{310}{subsection.7.2.3}
+\contentsline {subsection}{\numberline {7.2.4}\rmfamily Neutral Territory Methods}{312}{subsection.7.2.4}
+\contentsline {section}{\numberline {7.3}\slshape Parallel Fast Fourier Transform}{313}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}\rmfamily Parallel 1-D FFT}{314}{subsection.7.3.1}
+\contentsline {subsubsection}{\numberline {7.3.1.1} 1-D FFT without Transpose}{314}{subsubsection.7.3.1.1}
+\contentsline {subsubsection}{\numberline {7.3.1.2} 1-D FFT with Transpose}{314}{subsubsection.7.3.1.2}
+\contentsline {subsection}{\numberline {7.3.2}\rmfamily Parallel 3-D FFT}{314}{subsection.7.3.2}
+\contentsline {subsubsection}{\numberline {7.3.2.1} 3-D FFT with Block Decomposition}{314}{subsubsection.7.3.2.1}
+\contentsline {subsubsection}{\numberline {7.3.2.2} 3-D FFT with Slab Decomposition}{315}{subsubsection.7.3.2.2}
+\contentsline {subsubsection}{\numberline {7.3.2.3} 3-D FFT with Pencil Decomposition}{315}{subsubsection.7.3.2.3}
+\contentsline {section}{\numberline {7.4}\slshape Integration for Molecular Dynamics}{316}{section.7.4}
+\contentsline {chapter}{\numberline {8}\relax \bfseries Combinatorial algorithms}{320}{chapter.8}
+\contentsline {section}{\numberline {8.1}\slshape Brief introduction to sorting}{320}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}\rmfamily Complexity}{320}{subsection.8.1.1}
+\contentsline {subsection}{\numberline {8.1.2}\rmfamily Sorting networks}{321}{subsection.8.1.2}
+\contentsline {subsection}{\numberline {8.1.3}\rmfamily Parallel complexity}{321}{subsection.8.1.3}
+\contentsline {section}{\numberline {8.2}\slshape Odd-even transposition sort}{321}{section.8.2}
+\contentsline {section}{\numberline {8.3}\slshape Quicksort}{323}{section.8.3}
+\contentsline {subsection}{\numberline {8.3.1}\rmfamily Quicksort in shared memory}{324}{subsection.8.3.1}
+\contentsline {subsection}{\numberline {8.3.2}\rmfamily Quicksort on a hypercube}{324}{subsection.8.3.2}
+\contentsline {subsection}{\numberline {8.3.3}\rmfamily Quicksort on a general parallel processor}{325}{subsection.8.3.3}
+\contentsline {section}{\numberline {8.4}\slshape Bitonic sort}{325}{section.8.4}
+\contentsline {section}{\numberline {8.5}\slshape Prime number finding}{327}{section.8.5}
+\contentsline {chapter}{\numberline {9}\relax \bfseries Graph analytics}{328}{chapter.9}
+\contentsline {section}{\numberline {9.1}\slshape Traditional graph algorithms}{328}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}\rmfamily Shortest path algorithms}{328}{subsection.9.1.1}
+\contentsline {subsection}{\numberline {9.1.2}\rmfamily Parallelization}{330}{subsection.9.1.2}
+\contentsline {subsection}{\numberline {9.1.3}\rmfamily Floyd-Warshall all-pairs shortest path}{330}{subsection.9.1.3}
+\contentsline {subsection}{\numberline {9.1.4}\rmfamily Spanning trees}{332}{subsection.9.1.4}
+\contentsline {section}{\numberline {9.2}\slshape `Real world' graphs}{333}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}\rmfamily Properties of random graphs}{334}{subsection.9.2.1}
+\contentsline {section}{\numberline {9.3}\slshape Hypertext algorithms}{334}{section.9.3}
+\contentsline {subsection}{\numberline {9.3.1}\rmfamily HITS}{334}{subsection.9.3.1}
+\contentsline {subsection}{\numberline {9.3.2}\rmfamily PageRank}{335}{subsection.9.3.2}
+\contentsline {section}{\numberline {9.4}\slshape Large-scale computational graph theory}{337}{section.9.4}
+\contentsline {chapter}{\numberline {10}\relax \bfseries N-body problems}{338}{chapter.10}
+\contentsline {section}{\numberline {10.1}\slshape The Barnes-Hut algorithm}{339}{section.10.1}
+\contentsline {section}{\numberline {10.2}\slshape The Fast Multipole Method}{340}{section.10.2}
+\contentsline {section}{\numberline {10.3}\slshape Full computation}{340}{section.10.3}
+\contentsline {section}{\numberline {10.4}\slshape Implementation}{341}{section.10.4}
+\contentsline {subsection}{\numberline {10.4.1}\rmfamily Vectorization}{341}{subsection.10.4.1}
+\contentsline {subsection}{\numberline {10.4.2}\rmfamily Shared memory implementation}{341}{subsection.10.4.2}
+\contentsline {subsection}{\numberline {10.4.3}\rmfamily Distributed memory implementation}{341}{subsection.10.4.3}
+\contentsline {chapter}{\numberline {11}\relax \bfseries Monte Carlo Methods}{343}{chapter.11}
+\contentsline {section}{\numberline {11.1}\slshape Motivation}{343}{section.11.1}
+\contentsline {subsection}{\numberline {11.1.1}\rmfamily What is the attraction?}{344}{subsection.11.1.1}
+\contentsline {section}{\numberline {11.2}\slshape Parallel Random Number Generation}{345}{section.11.2}
+\contentsline {subsection}{\numberline {11.2.1}\rmfamily Sequential random number generators}{345}{subsection.11.2.1}
+\contentsline {subsection}{\numberline {11.2.2}\rmfamily Parallel random number generation}{345}{subsection.11.2.2}
+\contentsline {subsubsection}{\numberline {11.2.2.1} Master-worker generator}{346}{subsubsection.11.2.2.1}
+\contentsline {subsubsection}{\numberline {11.2.2.2} Sequence splitting solutions}{346}{subsubsection.11.2.2.2}
+\contentsline {subsubsection}{\numberline {11.2.2.3} Blocked random number generators}{346}{subsubsection.11.2.2.3}
+\contentsline {section}{\numberline {11.3}\slshape Examples}{346}{section.11.3}
+\contentsline {subsection}{\numberline {11.3.1}\rmfamily Monte Carlo simulation of the Ising model}{346}{subsection.11.3.1}
+\contentsline {part}{III\hspace {1em}Appendices}{349}{part.3}
+\contentsline {chapter}{\numberline {12}\relax \bfseries Linear algebra}{351}{chapter.12}
+\contentsline {section}{\numberline {12.1}\slshape Norms}{351}{section.12.1}
+\contentsline {subsection}{\numberline {12.1.1}\rmfamily Vector norms}{351}{subsection.12.1.1}
+\contentsline {subsection}{\numberline {12.1.2}\rmfamily Matrix norms}{352}{subsection.12.1.2}
+\contentsline {section}{\numberline {12.2}\slshape Gram-Schmidt orthogonalization}{352}{section.12.2}
+\contentsline {section}{\numberline {12.3}\slshape The power method}{354}{section.12.3}
+\contentsline {section}{\numberline {12.4}\slshape Nonnegative matrices; Perron vectors}{356}{section.12.4}
+\contentsline {section}{\numberline {12.5}\slshape The Gershgorin theorem}{356}{section.12.5}
+\contentsline {section}{\numberline {12.6}\slshape Householder reflectors}{357}{section.12.6}
+\contentsline {chapter}{\numberline {13}\relax \bfseries Complexity}{358}{chapter.13}
+\contentsline {chapter}{\numberline {14}\relax \bfseries Partial Differential Equations}{359}{chapter.14}
+\contentsline {section}{\numberline {14.1}\slshape Partial derivatives}{359}{section.14.1}
+\contentsline {section}{\numberline {14.2}\slshape Poisson or Laplace Equation}{359}{section.14.2}
+\contentsline {section}{\numberline {14.3}\slshape Heat Equation}{360}{section.14.3}
+\contentsline {section}{\numberline {14.4}\slshape Steady state}{360}{section.14.4}
+\contentsline {chapter}{\numberline {15}\relax \bfseries Taylor series}{361}{chapter.15}
+\contentsline {chapter}{\numberline {16}\relax \bfseries Graph theory}{364}{chapter.16}
+\contentsline {section}{\numberline {16.1}\slshape Definitions}{364}{section.16.1}
+\contentsline {section}{\numberline {16.2}\slshape Common types of graphs}{365}{section.16.2}
+\contentsline {subsection}{\numberline {16.2.1}\rmfamily Directed Acyclic Graphs}{365}{subsection.16.2.1}
+\contentsline {subsection}{\numberline {16.2.2}\rmfamily Trees}{366}{subsection.16.2.2}
+\contentsline {section}{\numberline {16.3}\slshape Graph colouring and independent sets}{366}{section.16.3}
+\contentsline {section}{\numberline {16.4}\slshape Graphs and matrices}{366}{section.16.4}
+\contentsline {subsection}{\numberline {16.4.1}\rmfamily Permutation}{367}{subsection.16.4.1}
+\contentsline {subsection}{\numberline {16.4.2}\rmfamily Irreducibility}{368}{subsection.16.4.2}
+\contentsline {subsection}{\numberline {16.4.3}\rmfamily Graph closure}{368}{subsection.16.4.3}
+\contentsline {subsection}{\numberline {16.4.4}\rmfamily Graph operations in linear algebra}{368}{subsection.16.4.4}
+\contentsline {subsubsection}{\numberline {16.4.4.1} Markov chains}{369}{subsubsection.16.4.4.1}
+\contentsline {subsubsection}{\numberline {16.4.4.2} General matrix-vector product}{369}{subsubsection.16.4.4.2}
+\contentsline {section}{\numberline {16.5}\slshape Spectral graph theory}{370}{section.16.5}
+\contentsline {subsection}{\numberline {16.5.1}\rmfamily Domain decomposition through Laplacian matrices}{371}{subsection.16.5.1}
+\contentsline {subsection}{\numberline {16.5.2}\rmfamily Cheeger's inequality}{371}{subsection.16.5.2}
+\contentsline {chapter}{\numberline {17}\relax \bfseries Automata theory}{373}{chapter.17}
+\contentsline {section}{\numberline {17.1}\slshape Finite State Automata}{373}{section.17.1}
+\contentsline {section}{\numberline {17.2}\slshape General discussion}{373}{section.17.2}
+\contentsline {chapter}{\numberline {18}\relax \bfseries Parallel Prefix}{375}{chapter.18}
+\contentsline {section}{\numberline {18.1}\slshape Parallel prefix}{375}{section.18.1}
+\contentsline {section}{\numberline {18.2}\slshape Sparse matrix vector product as parallel prefix}{376}{section.18.2}
+\contentsline {part}{IV\hspace {1em}Tutorials}{379}{part.4}
+\contentsline {chapter}{\numberline {19}\relax \bfseries Unix intro}{381}{chapter.19}
+\contentsline {section}{\numberline {19.1}\slshape Files and such}{381}{section.19.1}
+\contentsline {subsection}{\numberline {19.1.1}\rmfamily Looking at files}{381}{subsection.19.1.1}
+\contentsline {subsection}{\numberline {19.1.2}\rmfamily Directories}{383}{subsection.19.1.2}
+\contentsline {subsection}{\numberline {19.1.3}\rmfamily Permissions}{385}{subsection.19.1.3}
+\contentsline {subsection}{\numberline {19.1.4}\rmfamily Wildcards}{387}{subsection.19.1.4}
+\contentsline {section}{\numberline {19.2}\slshape Text searching and regular expressions}{387}{section.19.2}
+\contentsline {subsection}{\numberline {19.2.1}\rmfamily Stream editing with \texttt {sed}}{389}{subsection.19.2.1}
+\contentsline {subsection}{\numberline {19.2.2}\rmfamily Cutting up lines with \texttt {cut}}{389}{subsection.19.2.2}
+\contentsline {section}{\numberline {19.3}\slshape Command execution}{390}{section.19.3}
+\contentsline {subsection}{\numberline {19.3.1}\rmfamily Search paths}{390}{subsection.19.3.1}
+\contentsline {subsection}{\numberline {19.3.2}\rmfamily Redirection}{390}{subsection.19.3.2}
+\contentsline {subsubsection}{\numberline {19.3.2.1} Input redirection}{391}{subsubsection.19.3.2.1}
+\contentsline {subsubsection}{\numberline {19.3.2.2} Output redirection}{391}{subsubsection.19.3.2.2}
+\contentsline {subsubsection}{\numberline {19.3.2.3} Standard files}{391}{subsubsection.19.3.2.3}
+\contentsline {subsection}{\numberline {19.3.3}\rmfamily Command sequencing}{391}{subsection.19.3.3}
+\contentsline {subsubsection}{\numberline {19.3.3.1} Simple sequencing}{391}{subsubsection.19.3.3.1}
+\contentsline {subsubsection}{\numberline {19.3.3.2} Pipelining}{392}{subsubsection.19.3.3.2}
+\contentsline {subsubsection}{\numberline {19.3.3.3} Backquoting}{392}{subsubsection.19.3.3.3}
+\contentsline {subsubsection}{\numberline {19.3.3.4} Grouping in a subshell}{392}{subsubsection.19.3.3.4}
+\contentsline {subsection}{\numberline {19.3.4}\rmfamily Exit status}{393}{subsection.19.3.4}
+\contentsline {subsection}{\numberline {19.3.5}\rmfamily Processes}{394}{subsection.19.3.5}
+\contentsline {subsection}{\numberline {19.3.6}\rmfamily Shell customization}{395}{subsection.19.3.6}
+\contentsline {section}{\numberline {19.4}\slshape Scripting}{395}{section.19.4}
+\contentsline {subsection}{\numberline {19.4.1}\rmfamily Shell environent variables}{395}{subsection.19.4.1}
+\contentsline {subsection}{\numberline {19.4.2}\rmfamily Control structures}{397}{subsection.19.4.2}
+\contentsline {subsection}{\numberline {19.4.3}\rmfamily Scripting}{398}{subsection.19.4.3}
+\contentsline {section}{\numberline {19.5}\slshape Expansion}{398}{section.19.5}
+\contentsline {section}{\numberline {19.6}\slshape Startup files}{400}{section.19.6}
+\contentsline {section}{\numberline {19.7}\slshape Shell interaction}{401}{section.19.7}
+\contentsline {section}{\numberline {19.8}\slshape The system and other users}{401}{section.19.8}
+\contentsline {section}{\numberline {19.9}\slshape The {\tt sed} and {\tt awk} tools}{402}{section.19.9}
+\contentsline {subsection}{\numberline {19.9.1}\rmfamily \tt sed}{402}{subsection.19.9.1}
+\contentsline {subsection}{\numberline {19.9.2}\rmfamily \tt awk}{402}{subsection.19.9.2}
+\contentsline {section}{\numberline {19.10}\slshape Review questions}{403}{section.19.10}
+\contentsline {chapter}{\numberline {20}\relax \bfseries Compilers and libraries}{404}{chapter.20}
+\contentsline {section}{\numberline {20.1}\slshape An introduction to binary files}{404}{section.20.1}
+\contentsline {section}{\numberline {20.2}\slshape Simple compilation}{404}{section.20.2}
+\contentsline {section}{\numberline {20.3}\slshape Libraries}{405}{section.20.3}
+\contentsline {chapter}{\numberline {21}\relax \bfseries Managing projects with Make}{408}{chapter.21}
+\contentsline {section}{\numberline {21.1}\slshape A simple example}{408}{section.21.1}
+\contentsline {subsection}{\numberline {21.1.1}\rmfamily C}{408}{subsection.21.1.1}
+\contentsline {subsection}{\numberline {21.1.2}\rmfamily Fortran}{410}{subsection.21.1.2}
+\contentsline {subsection}{\numberline {21.1.3}\rmfamily About the make file}{411}{subsection.21.1.3}
+\contentsline {section}{\numberline {21.2}\slshape Variables and template rules}{411}{section.21.2}
+\contentsline {subsection}{\numberline {21.2.1}\rmfamily Makefile variables}{412}{subsection.21.2.1}
+\contentsline {subsection}{\numberline {21.2.2}\rmfamily Template rules}{413}{subsection.21.2.2}
+\contentsline {subsection}{\numberline {21.2.3}\rmfamily Wildcards}{414}{subsection.21.2.3}
+\contentsline {subsection}{\numberline {21.2.4}\rmfamily Conditionals}{414}{subsection.21.2.4}
+\contentsline {section}{\numberline {21.3}\slshape Miscellania}{415}{section.21.3}
+\contentsline {subsection}{\numberline {21.3.1}\rmfamily What does this makefile do?}{415}{subsection.21.3.1}
+\contentsline {subsection}{\numberline {21.3.2}\rmfamily Phony targets}{416}{subsection.21.3.2}
+\contentsline {subsection}{\numberline {21.3.3}\rmfamily Predefined variables and rules}{416}{subsection.21.3.3}
+\contentsline {subsection}{\numberline {21.3.4}\rmfamily Using the target as prerequisite}{416}{subsection.21.3.4}
+\contentsline {section}{\numberline {21.4}\slshape Shell scripting in a Makefile}{417}{section.21.4}
+\contentsline {section}{\numberline {21.5}\slshape Practical tips for using Make}{418}{section.21.5}
+\contentsline {section}{\numberline {21.6}\slshape A Makefile for \LaTeX }{419}{section.21.6}
+\contentsline {chapter}{\numberline {22}\relax \bfseries Source code control}{420}{chapter.22}
+\contentsline {section}{\numberline {22.1}\slshape Workflow in source code control systems}{420}{section.22.1}
+\contentsline {section}{\numberline {22.2}\slshape Subversion or SVN}{422}{section.22.2}
+\contentsline {subsection}{\numberline {22.2.1}\rmfamily Create and populate a repository}{422}{subsection.22.2.1}
+\contentsline {subsection}{\numberline {22.2.2}\rmfamily New files}{423}{subsection.22.2.2}
+\contentsline {subsection}{\numberline {22.2.3}\rmfamily Conflicts}{424}{subsection.22.2.3}
+\contentsline {subsection}{\numberline {22.2.4}\rmfamily Inspecting the history}{425}{subsection.22.2.4}
+\contentsline {subsection}{\numberline {22.2.5}\rmfamily Shuffling files around}{426}{subsection.22.2.5}
+\contentsline {subsection}{\numberline {22.2.6}\rmfamily Branching and merging}{427}{subsection.22.2.6}
+\contentsline {subsection}{\numberline {22.2.7}\rmfamily Repository browsers}{428}{subsection.22.2.7}
+\contentsline {section}{\numberline {22.3}\slshape Mercurial (hg) and Git}{429}{section.22.3}
+\contentsline {subsection}{\numberline {22.3.1}\rmfamily Create and populate a repository}{429}{subsection.22.3.1}
+\contentsline {subsection}{\numberline {22.3.2}\rmfamily New files}{429}{subsection.22.3.2}
+\contentsline {subsection}{\numberline {22.3.3}\rmfamily Conflicts}{432}{subsection.22.3.3}
+\contentsline {subsection}{\numberline {22.3.4}\rmfamily Inspecting the history}{434}{subsection.22.3.4}
+\contentsline {chapter}{\numberline {23}\relax \bfseries Scientific Data Storage}{436}{chapter.23}
+\contentsline {section}{\numberline {23.1}\slshape Introduction to HDF5}{436}{section.23.1}
+\contentsline {section}{\numberline {23.2}\slshape Creating a file}{437}{section.23.2}
+\contentsline {section}{\numberline {23.3}\slshape Datasets}{438}{section.23.3}
+\contentsline {section}{\numberline {23.4}\slshape Writing the data}{440}{section.23.4}
+\contentsline {section}{\numberline {23.5}\slshape Reading}{441}{section.23.5}
+\contentsline {chapter}{\numberline {24}\relax \bfseries Scientific Libraries}{442}{chapter.24}
+\contentsline {section}{\numberline {24.1}\slshape The Portable Extendable Toolkit for Scientific Computing}{442}{section.24.1}
+\contentsline {subsection}{\numberline {24.1.1}\rmfamily What is in PETSc?}{442}{subsection.24.1.1}
+\contentsline {subsection}{\numberline {24.1.2}\rmfamily Design of PETSc}{443}{subsection.24.1.2}
+\contentsline {subsection}{\numberline {24.1.3}\rmfamily Small examples}{443}{subsection.24.1.3}
+\contentsline {subsubsection}{\numberline {24.1.3.1} Program structure}{444}{subsubsection.24.1.3.1}
+\contentsline {subsubsection}{\numberline {24.1.3.2} Vectors}{445}{subsubsection.24.1.3.2}
+\contentsline {subsubsection}{\numberline {24.1.3.3} Matrices}{445}{subsubsection.24.1.3.3}
+\contentsline {subsubsection}{\numberline {24.1.3.4} Matrix-vector operations}{446}{subsubsection.24.1.3.4}
+\contentsline {subsubsection}{\numberline {24.1.3.5} Solvers}{446}{subsubsection.24.1.3.5}
+\contentsline {subsection}{\numberline {24.1.4}\rmfamily A realistic program}{447}{subsection.24.1.4}
+\contentsline {subsubsection}{\numberline {24.1.4.1} Construction of the coefficient matrix}{447}{subsubsection.24.1.4.1}
+\contentsline {subsubsection}{\numberline {24.1.4.2} Filling in matrix elements}{447}{subsubsection.24.1.4.2}
+\contentsline {subsubsection}{\numberline {24.1.4.3} Finite Element Matrix assembly}{449}{subsubsection.24.1.4.3}
+\contentsline {subsubsection}{\numberline {24.1.4.4} Linear system solver}{449}{subsubsection.24.1.4.4}
+\contentsline {subsection}{\numberline {24.1.5}\rmfamily Quick experimentation}{449}{subsection.24.1.5}
+\contentsline {section}{\numberline {24.2}\slshape Libraries for dense linear algebra: BLAS, Lapack, Scalapack}{450}{section.24.2}
+\contentsline {subsection}{\numberline {24.2.1}\rmfamily Some general remarks}{450}{subsection.24.2.1}
+\contentsline {subsubsection}{\numberline {24.2.1.1} The Fortran heritage}{450}{subsubsection.24.2.1.1}
+\contentsline {subsubsection}{\numberline {24.2.1.2} Routine naming}{451}{subsubsection.24.2.1.2}
+\contentsline {subsubsection}{\numberline {24.2.1.3} Data formats}{451}{subsubsection.24.2.1.3}
+\contentsline {subsubsection}{\numberline {24.2.1.4} Lapack operations}{451}{subsubsection.24.2.1.4}
+\contentsline {subsubsection}{\numberline {24.2.1.5} BLAS matrix storage}{452}{subsubsection.24.2.1.5}
+\contentsline {paragraph}{\numberline {24.2.1.5.1} \bf Array indexing}{452}{paragraph.24.2.1.5.1}
+\contentsline {paragraph}{\numberline {24.2.1.5.2} \bf Fortran column-major ordering}{452}{paragraph.24.2.1.5.2}
+\contentsline {subsubsection}{\numberline {24.2.1.6} Submatrices and the {\tt LDA} parameter}{453}{subsubsection.24.2.1.6}
+\contentsline {subsection}{\numberline {24.2.2}\rmfamily Performance issues}{454}{subsection.24.2.2}
+\contentsline {subsection}{\numberline {24.2.3}\rmfamily Some simple examples}{454}{subsection.24.2.3}
+\contentsline {chapter}{\numberline {25}\relax \bfseries Plotting with GNUplot}{457}{chapter.25}
+\contentsline {section}{\numberline {25.1}\slshape Usage modes}{457}{section.25.1}
+\contentsline {section}{\numberline {25.2}\slshape Plotting}{458}{section.25.2}
+\contentsline {subsection}{\numberline {25.2.1}\rmfamily Plotting curves}{458}{subsection.25.2.1}
+\contentsline {subsection}{\numberline {25.2.2}\rmfamily Plotting data points}{458}{subsection.25.2.2}
+\contentsline {subsection}{\numberline {25.2.3}\rmfamily Customization}{458}{subsection.25.2.3}
+\contentsline {section}{\numberline {25.3}\slshape Workflow}{459}{section.25.3}
+\contentsline {chapter}{\numberline {26}\relax \bfseries Good coding practices}{460}{chapter.26}
+\contentsline {section}{\numberline {26.1}\slshape Defensive programming}{460}{section.26.1}
+\contentsline {subsection}{\numberline {26.1.1}\rmfamily Assertions}{460}{subsection.26.1.1}
+\contentsline {subsubsection}{\numberline {26.1.1.1} The C \n {assert} macro}{461}{subsubsection.26.1.1.1}
+\contentsline {subsubsection}{\numberline {26.1.1.2} An assert macro for Fortran}{462}{subsubsection.26.1.1.2}
+\contentsline {subsection}{\numberline {26.1.2}\rmfamily Use of error codes}{462}{subsection.26.1.2}
+\contentsline {section}{\numberline {26.2}\slshape Guarding against memory errors}{464}{section.26.2}
+\contentsline {subsection}{\numberline {26.2.1}\rmfamily Array bound checking and other memory techniques}{464}{subsection.26.2.1}
+\contentsline {subsection}{\numberline {26.2.2}\rmfamily Memory leaks}{465}{subsection.26.2.2}
+\contentsline {subsection}{\numberline {26.2.3}\rmfamily Roll-your-own malloc}{465}{subsection.26.2.3}
+\contentsline {subsection}{\numberline {26.2.4}\rmfamily Specific techniques: Fortran}{466}{subsection.26.2.4}
+\contentsline {section}{\numberline {26.3}\slshape Testing}{467}{section.26.3}
+\contentsline {subsection}{\numberline {26.3.1}\rmfamily Test-driven design and development}{467}{subsection.26.3.1}
+\contentsline {chapter}{\numberline {27}\relax \bfseries Debugging}{468}{chapter.27}
+\contentsline {section}{\numberline {27.1}\slshape Invoking {\tt gdb}}{468}{section.27.1}
+\contentsline {section}{\numberline {27.2}\slshape Finding errors}{470}{section.27.2}
+\contentsline {subsection}{\numberline {27.2.1}\rmfamily C programs}{470}{subsection.27.2.1}
+\contentsline {subsection}{\numberline {27.2.2}\rmfamily Fortran programs}{472}{subsection.27.2.2}
+\contentsline {section}{\numberline {27.3}\slshape Memory debugging with Valgrind}{472}{section.27.3}
+\contentsline {section}{\numberline {27.4}\slshape Stepping through a program}{473}{section.27.4}
+\contentsline {section}{\numberline {27.5}\slshape Inspecting values}{474}{section.27.5}
+\contentsline {section}{\numberline {27.6}\slshape Breakpoints}{475}{section.27.6}
+\contentsline {section}{\numberline {27.7}\slshape Parallel debugging}{476}{section.27.7}
+\contentsline {section}{\numberline {27.8}\slshape Further reading}{477}{section.27.8}
+\contentsline {chapter}{\numberline {28}\relax \bfseries C/Fortran interoperability}{478}{chapter.28}
+\contentsline {section}{\numberline {28.1}\slshape Linker conventions}{478}{section.28.1}
+\contentsline {subsection}{\numberline {28.1.1}\rmfamily C bindings in Fortran 2003}{479}{subsection.28.1.1}
+\contentsline {subsection}{\numberline {28.1.2}\rmfamily C++ linking}{479}{subsection.28.1.2}
+\contentsline {subsection}{\numberline {28.1.3}\rmfamily Complex numbers}{481}{subsection.28.1.3}
+\contentsline {section}{\numberline {28.2}\slshape Arrays}{481}{section.28.2}
+\contentsline {subsection}{\numberline {28.2.1}\rmfamily Array alignment}{482}{subsection.28.2.1}
+\contentsline {section}{\numberline {28.3}\slshape Strings}{483}{section.28.3}
+\contentsline {section}{\numberline {28.4}\slshape Subprogram arguments}{483}{section.28.4}
+\contentsline {section}{\numberline {28.5}\slshape Input/output}{484}{section.28.5}
+\contentsline {section}{\numberline {28.6}\slshape Fortran/C interoperability in Fortran2003}{484}{section.28.6}
+\contentsline {chapter}{\numberline {29}\relax \bfseries LaTeX for scientific documentation}{485}{chapter.29}
+\contentsline {section}{\numberline {29.1}\slshape The idea behind \LaTeX , some history of T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}}{485}{section.29.1}
+\contentsline {subsection}{\numberline {29.1.1}\rmfamily Installing \LaTeX }{486}{subsection.29.1.1}
+\contentsline {subsection}{\numberline {29.1.2}\rmfamily Running \LaTeX }{486}{subsection.29.1.2}
+\contentsline {section}{\numberline {29.2}\slshape A gentle introduction to LaTeX}{486}{section.29.2}
+\contentsline {subsection}{\numberline {29.2.1}\rmfamily Document structure}{486}{subsection.29.2.1}
+\contentsline {subsection}{\numberline {29.2.2}\rmfamily Some simple text}{487}{subsection.29.2.2}
+\contentsline {subsection}{\numberline {29.2.3}\rmfamily Math}{488}{subsection.29.2.3}
+\contentsline {subsection}{\numberline {29.2.4}\rmfamily Referencing}{489}{subsection.29.2.4}
+\contentsline {subsection}{\numberline {29.2.5}\rmfamily Lists}{490}{subsection.29.2.5}
+\contentsline {subsection}{\numberline {29.2.6}\rmfamily Source code and algorithms}{490}{subsection.29.2.6}
+\contentsline {subsection}{\numberline {29.2.7}\rmfamily Graphics}{491}{subsection.29.2.7}
+\contentsline {subsection}{\numberline {29.2.8}\rmfamily Bibliography references}{492}{subsection.29.2.8}
+\contentsline {subsection}{\numberline {29.2.9}\rmfamily Environment variables}{492}{subsection.29.2.9}
+\contentsline {section}{\numberline {29.3}\slshape A worked out example}{492}{section.29.3}
+\contentsline {section}{\numberline {29.4}\slshape Where to take it from here}{498}{section.29.4}
+\contentsline {part}{V\hspace {1em}Projects, codes, index}{499}{part.5}
+\contentsline {chapter}{\numberline {30}\relax \bfseries Class projects}{500}{chapter.30}
+\contentsline {section}{\numberline {30.1}\slshape Cache simulation and analysis}{500}{section.30.1}
+\contentsline {subsection}{\numberline {30.1.1}\rmfamily Cache simulation}{500}{subsection.30.1.1}
+\contentsline {subsection}{\numberline {30.1.2}\rmfamily Code simulation}{500}{subsection.30.1.2}
+\contentsline {subsection}{\numberline {30.1.3}\rmfamily Investigation}{501}{subsection.30.1.3}
+\contentsline {subsection}{\numberline {30.1.4}\rmfamily Analysis}{501}{subsection.30.1.4}
+\contentsline {section}{\numberline {30.2}\slshape Evaluation of Bulk Synchronous Programming}{502}{section.30.2}
+\contentsline {subsection}{\numberline {30.2.1}\rmfamily Discussion}{502}{subsection.30.2.1}
+\contentsline {subsection}{\numberline {30.2.2}\rmfamily Simulation}{502}{subsection.30.2.2}
+\contentsline {section}{\numberline {30.3}\slshape Heat equation}{503}{section.30.3}
+\contentsline {subsection}{\numberline {30.3.1}\rmfamily Software}{503}{subsection.30.3.1}
+\contentsline {subsection}{\numberline {30.3.2}\rmfamily Tests}{503}{subsection.30.3.2}
+\contentsline {subsection}{\numberline {30.3.3}\rmfamily Parallelism}{505}{subsection.30.3.3}
+\contentsline {subsection}{\numberline {30.3.4}\rmfamily Comparison of solvers}{505}{subsection.30.3.4}
+\contentsline {subsection}{\numberline {30.3.5}\rmfamily Reporting}{505}{subsection.30.3.5}
+\contentsline {section}{\numberline {30.4}\slshape The memory wall}{506}{section.30.4}
+\contentsline {subsection}{\numberline {30.4.1}\rmfamily Background}{506}{subsection.30.4.1}
+\contentsline {subsection}{\numberline {30.4.2}\rmfamily Assignment}{506}{subsection.30.4.2}
+\contentsline {chapter}{\numberline {31}\relax \bfseries Codes}{507}{chapter.31}
+\contentsline {section}{\numberline {31.1}\slshape Preliminaries}{507}{section.31.1}
+\contentsline {subsection}{\numberline {31.1.1}\rmfamily Hardware event counting}{507}{subsection.31.1.1}
+\contentsline {subsection}{\numberline {31.1.2}\rmfamily Test setup}{507}{subsection.31.1.2}
+\contentsline {subsection}{\numberline {31.1.3}\rmfamily Memory issues}{508}{subsection.31.1.3}
+\contentsline {section}{\numberline {31.2}\slshape Cache size}{508}{section.31.2}
+\contentsline {section}{\numberline {31.3}\slshape Cachelines}{510}{section.31.3}
+\contentsline {section}{\numberline {31.4}\slshape Cache associativity}{512}{section.31.4}
+\contentsline {section}{\numberline {31.5}\slshape TLB}{514}{section.31.5}
+\contentsline {section}{\numberline {31.6}\slshape Unrepresentible numbers}{517}{section.31.6}
+\contentsline {chapter}{\numberline {32}\relax \bfseries Bibliography, index, and list of acronyms}{518}{chapter.32}
+\contentsline {section}{\numberline {32.1}\slshape Bibliography}{518}{section.32.1}
+\contentsline {section}{\numberline {32.2}\slshape List of acronyms}{528}{section.32.2}
+\contentsline {section}{\numberline {32.3}\slshape Index}{529}{section.32.3}

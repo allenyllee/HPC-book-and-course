@@ -1,0 +1,384 @@
+\BOOKMARK [-1][-]{part.1}{I Theory}{}% 1
+\BOOKMARK [0][-]{chapter.1}{ Single-processor Computing}{part.1}% 2
+\BOOKMARK [1][-]{section.1.1}{ The Von Neumann architecture}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{ Modern processors}{chapter.1}% 4
+\BOOKMARK [2][-]{subsection.1.2.1}{ The processing cores}{section.1.2}% 5
+\BOOKMARK [2][-]{subsection.1.2.2}{ 8-bit, 16-bit, 32-bit, 64-bit}{section.1.2}% 6
+\BOOKMARK [2][-]{subsection.1.2.3}{ Caches: on-chip memory}{section.1.2}% 7
+\BOOKMARK [2][-]{subsection.1.2.4}{ Graphics, controllers, special purpose hardware}{section.1.2}% 8
+\BOOKMARK [2][-]{subsection.1.2.5}{ Superscalar processing and instruction-level parallelism}{section.1.2}% 9
+\BOOKMARK [1][-]{section.1.3}{ Memory Hierarchies}{chapter.1}% 10
+\BOOKMARK [2][-]{subsection.1.3.1}{ Busses}{section.1.3}% 11
+\BOOKMARK [2][-]{subsection.1.3.2}{ Latency and Bandwidth}{section.1.3}% 12
+\BOOKMARK [2][-]{subsection.1.3.3}{ Registers}{section.1.3}% 13
+\BOOKMARK [2][-]{subsection.1.3.4}{ Caches}{section.1.3}% 14
+\BOOKMARK [2][-]{subsection.1.3.5}{ Prefetch streams}{section.1.3}% 15
+\BOOKMARK [2][-]{subsection.1.3.6}{ Concurrency and memory transfer}{section.1.3}% 16
+\BOOKMARK [2][-]{subsection.1.3.7}{ Memory banks}{section.1.3}% 17
+\BOOKMARK [2][-]{subsection.1.3.8}{ TLB, pages, and virtual memory}{section.1.3}% 18
+\BOOKMARK [1][-]{section.1.4}{ Multicore architectures}{chapter.1}% 19
+\BOOKMARK [2][-]{subsection.1.4.1}{ Cache coherence}{section.1.4}% 20
+\BOOKMARK [2][-]{subsection.1.4.2}{ Computations on multicore chips}{section.1.4}% 21
+\BOOKMARK [2][-]{subsection.1.4.3}{ TLB shootdown}{section.1.4}% 22
+\BOOKMARK [1][-]{section.1.5}{ Node architecture and sockets}{chapter.1}% 23
+\BOOKMARK [1][-]{section.1.6}{ Locality and data reuse}{chapter.1}% 24
+\BOOKMARK [2][-]{subsection.1.6.1}{ Data reuse and arithmetic intensity}{section.1.6}% 25
+\BOOKMARK [2][-]{subsection.1.6.2}{ Locality}{section.1.6}% 26
+\BOOKMARK [1][-]{section.1.7}{ Programming strategies for high performance}{chapter.1}% 27
+\BOOKMARK [2][-]{subsection.1.7.1}{ Peak performance}{section.1.7}% 28
+\BOOKMARK [2][-]{subsection.1.7.2}{ Pipelining}{section.1.7}% 29
+\BOOKMARK [2][-]{subsection.1.7.3}{ Cache size}{section.1.7}% 30
+\BOOKMARK [2][-]{subsection.1.7.4}{ Cache lines}{section.1.7}% 31
+\BOOKMARK [2][-]{subsection.1.7.5}{ TLB}{section.1.7}% 32
+\BOOKMARK [2][-]{subsection.1.7.6}{ Cache associativity}{section.1.7}% 33
+\BOOKMARK [2][-]{subsection.1.7.7}{ Loop nests}{section.1.7}% 34
+\BOOKMARK [2][-]{subsection.1.7.8}{ Loop tiling}{section.1.7}% 35
+\BOOKMARK [2][-]{subsection.1.7.9}{ Optimization strategies}{section.1.7}% 36
+\BOOKMARK [2][-]{subsection.1.7.10}{ Cache aware and cache oblivious programming}{section.1.7}% 37
+\BOOKMARK [2][-]{subsection.1.7.11}{ Case study: Matrix-vector product}{section.1.7}% 38
+\BOOKMARK [2][-]{subsection.1.7.12}{ Case study: Goto matrix-matrix product}{section.1.7}% 39
+\BOOKMARK [1][-]{section.1.8}{ Further topics}{chapter.1}% 40
+\BOOKMARK [2][-]{subsection.1.8.1}{ Power consumption}{section.1.8}% 41
+\BOOKMARK [2][-]{subsection.1.8.2}{ Operating system effects}{section.1.8}% 42
+\BOOKMARK [1][-]{section.1.9}{ Review questions}{chapter.1}% 43
+\BOOKMARK [0][-]{chapter.2}{ Parallel Computing}{part.1}% 44
+\BOOKMARK [1][-]{section.2.1}{ Introduction}{chapter.2}% 45
+\BOOKMARK [2][-]{subsection.2.1.1}{ Functional parallelism versus data parallelism}{section.2.1}% 46
+\BOOKMARK [2][-]{subsection.2.1.2}{ Parallelism in the algorithm versus in the code}{section.2.1}% 47
+\BOOKMARK [1][-]{section.2.2}{ Quantifying parallelism}{chapter.2}% 48
+\BOOKMARK [2][-]{subsection.2.2.1}{ Definitions}{section.2.2}% 49
+\BOOKMARK [2][-]{subsection.2.2.2}{ Asymptotics}{section.2.2}% 50
+\BOOKMARK [2][-]{subsection.2.2.3}{ Amdahl's law}{section.2.2}% 51
+\BOOKMARK [2][-]{subsection.2.2.4}{ Scalability}{section.2.2}% 52
+\BOOKMARK [2][-]{subsection.2.2.5}{ Simulation scaling}{section.2.2}% 53
+\BOOKMARK [2][-]{subsection.2.2.6}{ Other scaling measures}{section.2.2}% 54
+\BOOKMARK [1][-]{section.2.3}{ Parallel Computers Architectures}{chapter.2}% 55
+\BOOKMARK [2][-]{subsection.2.3.1}{ SIMD}{section.2.3}% 56
+\BOOKMARK [2][-]{subsection.2.3.2}{ MIMD / SPMD computers}{section.2.3}% 57
+\BOOKMARK [2][-]{subsection.2.3.3}{ The commoditization of supercomputers}{section.2.3}% 58
+\BOOKMARK [1][-]{section.2.4}{ Different types of memory access}{chapter.2}% 59
+\BOOKMARK [2][-]{subsection.2.4.1}{ Symmetric Multi-Processors: Uniform Memory Access}{section.2.4}% 60
+\BOOKMARK [2][-]{subsection.2.4.2}{ Non-Uniform Memory Access}{section.2.4}% 61
+\BOOKMARK [2][-]{subsection.2.4.3}{ Logically and physically distributed memory}{section.2.4}% 62
+\BOOKMARK [1][-]{section.2.5}{ Granularity of parallelism}{chapter.2}% 63
+\BOOKMARK [2][-]{subsection.2.5.1}{ Data parallelism}{section.2.5}% 64
+\BOOKMARK [2][-]{subsection.2.5.2}{ Instruction-level parallelism}{section.2.5}% 65
+\BOOKMARK [2][-]{subsection.2.5.3}{ Task-level parallelism}{section.2.5}% 66
+\BOOKMARK [2][-]{subsection.2.5.4}{ Conveniently parallel computing}{section.2.5}% 67
+\BOOKMARK [2][-]{subsection.2.5.5}{ Medium-grain data parallelism}{section.2.5}% 68
+\BOOKMARK [2][-]{subsection.2.5.6}{ Task granularity}{section.2.5}% 69
+\BOOKMARK [1][-]{section.2.6}{ Parallel programming}{chapter.2}% 70
+\BOOKMARK [2][-]{subsection.2.6.1}{ Thread parallelism}{section.2.6}% 71
+\BOOKMARK [2][-]{subsection.2.6.2}{ OpenMP}{section.2.6}% 72
+\BOOKMARK [2][-]{subsection.2.6.3}{ Distributed memory programming through message passing}{section.2.6}% 73
+\BOOKMARK [2][-]{subsection.2.6.4}{ Hybrid shared/distributed memory computing}{section.2.6}% 74
+\BOOKMARK [2][-]{subsection.2.6.5}{ Parallel languages}{section.2.6}% 75
+\BOOKMARK [2][-]{subsection.2.6.6}{ OS-based approaches}{section.2.6}% 76
+\BOOKMARK [2][-]{subsection.2.6.7}{ Active messages}{section.2.6}% 77
+\BOOKMARK [2][-]{subsection.2.6.8}{ Bulk synchronous parallelism}{section.2.6}% 78
+\BOOKMARK [2][-]{subsection.2.6.9}{ Program design for parallelism}{section.2.6}% 79
+\BOOKMARK [1][-]{section.2.7}{ Topologies}{chapter.2}% 80
+\BOOKMARK [2][-]{subsection.2.7.1}{ Some graph theory}{section.2.7}% 81
+\BOOKMARK [2][-]{subsection.2.7.2}{ Busses}{section.2.7}% 82
+\BOOKMARK [2][-]{subsection.2.7.3}{ Linear arrays and rings}{section.2.7}% 83
+\BOOKMARK [2][-]{subsection.2.7.4}{ 2D and 3D arrays}{section.2.7}% 84
+\BOOKMARK [2][-]{subsection.2.7.5}{ Hypercubes}{section.2.7}% 85
+\BOOKMARK [2][-]{subsection.2.7.6}{ Switched networks}{section.2.7}% 86
+\BOOKMARK [2][-]{subsection.2.7.7}{ Cluster networks}{section.2.7}% 87
+\BOOKMARK [2][-]{subsection.2.7.8}{ Bandwidth and latency}{section.2.7}% 88
+\BOOKMARK [2][-]{subsection.2.7.9}{ Locality in parallel computing}{section.2.7}% 89
+\BOOKMARK [1][-]{section.2.8}{ Multi-threaded architectures}{chapter.2}% 90
+\BOOKMARK [1][-]{section.2.9}{ Co-processors, including GPUs}{chapter.2}% 91
+\BOOKMARK [2][-]{subsection.2.9.1}{ A little history}{section.2.9}% 92
+\BOOKMARK [2][-]{subsection.2.9.2}{ Bottlenecks}{section.2.9}% 93
+\BOOKMARK [2][-]{subsection.2.9.3}{ GPU computing}{section.2.9}% 94
+\BOOKMARK [2][-]{subsection.2.9.4}{ Intel Xeon Phi}{section.2.9}% 95
+\BOOKMARK [1][-]{section.2.10}{ Remaining topics}{chapter.2}% 96
+\BOOKMARK [2][-]{subsection.2.10.1}{ Load balancing}{section.2.10}% 97
+\BOOKMARK [2][-]{subsection.2.10.2}{ Distributed computing, grid computing, cloud computing}{section.2.10}% 98
+\BOOKMARK [2][-]{subsection.2.10.3}{ Capability versus capacity computing}{section.2.10}% 99
+\BOOKMARK [2][-]{subsection.2.10.4}{ MapReduce}{section.2.10}% 100
+\BOOKMARK [2][-]{subsection.2.10.5}{ The top500 list}{section.2.10}% 101
+\BOOKMARK [2][-]{subsection.2.10.6}{ Heterogeneous computing}{section.2.10}% 102
+\BOOKMARK [0][-]{chapter.3}{ Computer Arithmetic}{part.1}% 103
+\BOOKMARK [1][-]{section.3.1}{ Integers}{chapter.3}% 104
+\BOOKMARK [1][-]{section.3.2}{ Real numbers}{chapter.3}% 105
+\BOOKMARK [2][-]{subsection.3.2.1}{ They're not really real numbers}{section.3.2}% 106
+\BOOKMARK [2][-]{subsection.3.2.2}{ Representation of real numbers}{section.3.2}% 107
+\BOOKMARK [2][-]{subsection.3.2.3}{ Limitations}{section.3.2}% 108
+\BOOKMARK [2][-]{subsection.3.2.4}{ Normalized and unnormalized numbers}{section.3.2}% 109
+\BOOKMARK [2][-]{subsection.3.2.5}{ Representation error}{section.3.2}% 110
+\BOOKMARK [2][-]{subsection.3.2.6}{ Machine precision}{section.3.2}% 111
+\BOOKMARK [2][-]{subsection.3.2.7}{ The IEEE 754 standard for floating point numbers}{section.3.2}% 112
+\BOOKMARK [1][-]{section.3.3}{ Round-off error analysis}{chapter.3}% 113
+\BOOKMARK [2][-]{subsection.3.3.1}{ Correct rounding}{section.3.3}% 114
+\BOOKMARK [2][-]{subsection.3.3.2}{ Addition}{section.3.3}% 115
+\BOOKMARK [2][-]{subsection.3.3.3}{ Multiplication}{section.3.3}% 116
+\BOOKMARK [2][-]{subsection.3.3.4}{ Subtraction}{section.3.3}% 117
+\BOOKMARK [2][-]{subsection.3.3.5}{ Associativity}{section.3.3}% 118
+\BOOKMARK [2][-]{subsection.3.3.6}{ Examples}{section.3.3}% 119
+\BOOKMARK [2][-]{subsection.3.3.7}{ Roundoff error in parallel computations}{section.3.3}% 120
+\BOOKMARK [1][-]{section.3.4}{ Compilers and round-off}{chapter.3}% 121
+\BOOKMARK [1][-]{section.3.5}{ More about floating point arithmetic}{chapter.3}% 122
+\BOOKMARK [2][-]{subsection.3.5.1}{ Programming languages}{section.3.5}% 123
+\BOOKMARK [2][-]{subsection.3.5.2}{ Other computer arithmetic systems}{section.3.5}% 124
+\BOOKMARK [2][-]{subsection.3.5.3}{ Extended precision}{section.3.5}% 125
+\BOOKMARK [2][-]{subsection.3.5.4}{ Reduced precision}{section.3.5}% 126
+\BOOKMARK [2][-]{subsection.3.5.5}{ Fixed-point arithmetic}{section.3.5}% 127
+\BOOKMARK [2][-]{subsection.3.5.6}{ Complex numbers}{section.3.5}% 128
+\BOOKMARK [1][-]{section.3.6}{ Conclusions}{chapter.3}% 129
+\BOOKMARK [0][-]{chapter.4}{ Numerical treatment of differential equations}{part.1}% 130
+\BOOKMARK [1][-]{section.4.1}{ Initial value problems}{chapter.4}% 131
+\BOOKMARK [2][-]{subsection.4.1.1}{ Error and stability}{section.4.1}% 132
+\BOOKMARK [2][-]{subsection.4.1.2}{ Finite difference approximation: Euler explicit and implicit methods}{section.4.1}% 133
+\BOOKMARK [1][-]{section.4.2}{ Boundary value problems}{chapter.4}% 134
+\BOOKMARK [2][-]{subsection.4.2.1}{ General PDE theory}{section.4.2}% 135
+\BOOKMARK [2][-]{subsection.4.2.2}{ The Poisson equation in one space dimension}{section.4.2}% 136
+\BOOKMARK [2][-]{subsection.4.2.3}{ The Poisson equation in two space dimensions}{section.4.2}% 137
+\BOOKMARK [2][-]{subsection.4.2.4}{ Difference stencils}{section.4.2}% 138
+\BOOKMARK [2][-]{subsection.4.2.5}{ Other discretization techniques}{section.4.2}% 139
+\BOOKMARK [1][-]{section.4.3}{ Initial boundary value problem}{chapter.4}% 140
+\BOOKMARK [2][-]{subsection.4.3.1}{ Discretization}{section.4.3}% 141
+\BOOKMARK [2][-]{subsection.4.3.2}{ Stability analysis}{section.4.3}% 142
+\BOOKMARK [0][-]{chapter.5}{ Numerical linear algebra}{part.1}% 143
+\BOOKMARK [1][-]{section.5.1}{ Elimination of unknowns}{chapter.5}% 144
+\BOOKMARK [1][-]{section.5.2}{ Linear algebra in computer arithmetic}{chapter.5}% 145
+\BOOKMARK [2][-]{subsection.5.2.1}{ Roundoff control during elimination}{section.5.2}% 146
+\BOOKMARK [2][-]{subsection.5.2.2}{ Influence of roundoff on eigenvalue computations}{section.5.2}% 147
+\BOOKMARK [1][-]{section.5.3}{ LU factorization}{chapter.5}% 148
+\BOOKMARK [2][-]{subsection.5.3.1}{ The algorithm}{section.5.3}% 149
+\BOOKMARK [2][-]{subsection.5.3.2}{ The Cholesky factorization}{section.5.3}% 150
+\BOOKMARK [2][-]{subsection.5.3.3}{ Uniqueness}{section.5.3}% 151
+\BOOKMARK [2][-]{subsection.5.3.4}{ Pivoting}{section.5.3}% 152
+\BOOKMARK [2][-]{subsection.5.3.5}{ Solving the system}{section.5.3}% 153
+\BOOKMARK [2][-]{subsection.5.3.6}{ Complexity}{section.5.3}% 154
+\BOOKMARK [2][-]{subsection.5.3.7}{ Block algorithms}{section.5.3}% 155
+\BOOKMARK [1][-]{section.5.4}{ Sparse matrices}{chapter.5}% 156
+\BOOKMARK [2][-]{subsection.5.4.1}{ Storage of sparse matrices}{section.5.4}% 157
+\BOOKMARK [2][-]{subsection.5.4.2}{ Sparse matrices and graph theory}{section.5.4}% 158
+\BOOKMARK [2][-]{subsection.5.4.3}{ LU factorizations of sparse matrices}{section.5.4}% 159
+\BOOKMARK [1][-]{section.5.5}{ Iterative methods}{chapter.5}% 160
+\BOOKMARK [2][-]{subsection.5.5.1}{ Abstract presentation}{section.5.5}% 161
+\BOOKMARK [2][-]{subsection.5.5.2}{ Convergence and error analysis}{section.5.5}% 162
+\BOOKMARK [2][-]{subsection.5.5.3}{ Computational form}{section.5.5}% 163
+\BOOKMARK [2][-]{subsection.5.5.4}{ Convergence of the method}{section.5.5}% 164
+\BOOKMARK [2][-]{subsection.5.5.5}{ Jacobi versus Gauss-Seidel and parallelism}{section.5.5}% 165
+\BOOKMARK [2][-]{subsection.5.5.6}{ Choice of K}{section.5.5}% 166
+\BOOKMARK [2][-]{subsection.5.5.7}{ Stopping tests}{section.5.5}% 167
+\BOOKMARK [2][-]{subsection.5.5.8}{ Theory of general iterative methods}{section.5.5}% 168
+\BOOKMARK [2][-]{subsection.5.5.9}{ Iterating by orthogonalization}{section.5.5}% 169
+\BOOKMARK [2][-]{subsection.5.5.10}{ Coupled recurrences form of iterative methods}{section.5.5}% 170
+\BOOKMARK [2][-]{subsection.5.5.11}{ The method of Conjugate Gradients}{section.5.5}% 171
+\BOOKMARK [2][-]{subsection.5.5.12}{ Derivation from minimization}{section.5.5}% 172
+\BOOKMARK [2][-]{subsection.5.5.13}{ GMRES}{section.5.5}% 173
+\BOOKMARK [2][-]{subsection.5.5.14}{ Complexity}{section.5.5}% 174
+\BOOKMARK [1][-]{section.5.6}{ Further Reading}{chapter.5}% 175
+\BOOKMARK [0][-]{chapter.6}{ High performance linear algebra}{part.1}% 176
+\BOOKMARK [1][-]{section.6.1}{ Collective operations}{chapter.6}% 177
+\BOOKMARK [2][-]{subsection.6.1.1}{ Broadcast}{section.6.1}% 178
+\BOOKMARK [2][-]{subsection.6.1.2}{ Reduction}{section.6.1}% 179
+\BOOKMARK [2][-]{subsection.6.1.3}{ Allreduce}{section.6.1}% 180
+\BOOKMARK [2][-]{subsection.6.1.4}{ Allgather}{section.6.1}% 181
+\BOOKMARK [2][-]{subsection.6.1.5}{ Reduce-scatter}{section.6.1}% 182
+\BOOKMARK [1][-]{section.6.2}{ Parallel dense matrix-vector product}{chapter.6}% 183
+\BOOKMARK [2][-]{subsection.6.2.1}{ Implementing the block-row case}{section.6.2}% 184
+\BOOKMARK [2][-]{subsection.6.2.2}{ Scalability of the dense matrix-vector product}{section.6.2}% 185
+\BOOKMARK [1][-]{section.6.3}{ LU factorization in parallel}{chapter.6}% 186
+\BOOKMARK [2][-]{subsection.6.3.1}{ Solving a triangular system}{section.6.3}% 187
+\BOOKMARK [2][-]{subsection.6.3.2}{ Factorization, dense case}{section.6.3}% 188
+\BOOKMARK [2][-]{subsection.6.3.3}{ Factorization, sparse case}{section.6.3}% 189
+\BOOKMARK [1][-]{section.6.4}{ Matrix-matrix product}{chapter.6}% 190
+\BOOKMARK [1][-]{section.6.5}{ Sparse matrix-vector product}{chapter.6}% 191
+\BOOKMARK [2][-]{subsection.6.5.1}{ The single-processor sparse matrix-vector product}{section.6.5}% 192
+\BOOKMARK [2][-]{subsection.6.5.2}{ The parallel sparse matrix-vector product}{section.6.5}% 193
+\BOOKMARK [2][-]{subsection.6.5.3}{ Parallel efficiency of the sparse matrix-vector product}{section.6.5}% 194
+\BOOKMARK [2][-]{subsection.6.5.4}{ Memory behaviour of the sparse matrix-vector product}{section.6.5}% 195
+\BOOKMARK [2][-]{subsection.6.5.5}{ The transpose product}{section.6.5}% 196
+\BOOKMARK [2][-]{subsection.6.5.6}{ Setup of the sparse matrix-vector product}{section.6.5}% 197
+\BOOKMARK [1][-]{section.6.6}{ Computational aspects of iterative methods}{chapter.6}% 198
+\BOOKMARK [2][-]{subsection.6.6.1}{ Vector operations}{section.6.6}% 199
+\BOOKMARK [2][-]{subsection.6.6.2}{ Finite element matrix construction}{section.6.6}% 200
+\BOOKMARK [2][-]{subsection.6.6.3}{ A simple model for iterative method performance}{section.6.6}% 201
+\BOOKMARK [1][-]{section.6.7}{ Parallel preconditioners}{chapter.6}% 202
+\BOOKMARK [2][-]{subsection.6.7.1}{ Jacobi preconditioning}{section.6.7}% 203
+\BOOKMARK [2][-]{subsection.6.7.2}{ The trouble with ILU in parallel}{section.6.7}% 204
+\BOOKMARK [2][-]{subsection.6.7.3}{ Block Jacobi methods}{section.6.7}% 205
+\BOOKMARK [2][-]{subsection.6.7.4}{ Parallel ILU}{section.6.7}% 206
+\BOOKMARK [1][-]{section.6.8}{ Ordering strategies and parallelism}{chapter.6}% 207
+\BOOKMARK [2][-]{subsection.6.8.1}{ Nested dissection}{section.6.8}% 208
+\BOOKMARK [2][-]{subsection.6.8.2}{ Variable reordering and colouring: independent sets}{section.6.8}% 209
+\BOOKMARK [2][-]{subsection.6.8.3}{ Irregular iteration spaces}{section.6.8}% 210
+\BOOKMARK [2][-]{subsection.6.8.4}{ Ordering for cache efficiency}{section.6.8}% 211
+\BOOKMARK [1][-]{section.6.9}{ Operator splitting}{chapter.6}% 212
+\BOOKMARK [1][-]{section.6.10}{ Parallelism and implicit operations}{chapter.6}% 213
+\BOOKMARK [2][-]{subsection.6.10.1}{ Wavefronts}{section.6.10}% 214
+\BOOKMARK [2][-]{subsection.6.10.2}{ Recursive doubling}{section.6.10}% 215
+\BOOKMARK [2][-]{subsection.6.10.3}{ Approximating implicit by explicit operations, series expansion}{section.6.10}% 216
+\BOOKMARK [1][-]{section.6.11}{ Grid updates}{chapter.6}% 217
+\BOOKMARK [2][-]{subsection.6.11.1}{ Analysis}{section.6.11}% 218
+\BOOKMARK [2][-]{subsection.6.11.2}{ Communication and work minimizing strategy}{section.6.11}% 219
+\BOOKMARK [1][-]{section.6.12}{ Block algorithms on multicore architectures}{chapter.6}% 220
+\BOOKMARK [-1][-]{part.2}{II Applications}{}% 221
+\BOOKMARK [0][-]{chapter.7}{ Molecular dynamics}{part.2}% 222
+\BOOKMARK [1][-]{section.7.1}{ Force Computation}{chapter.7}% 223
+\BOOKMARK [2][-]{subsection.7.1.1}{ Force Fields}{section.7.1}% 224
+\BOOKMARK [2][-]{subsection.7.1.2}{ Computing Short-Range Nonbonded Forces}{section.7.1}% 225
+\BOOKMARK [2][-]{subsection.7.1.3}{ Computing Long-Range Forces}{section.7.1}% 226
+\BOOKMARK [1][-]{section.7.2}{ Parallel Decompositions}{chapter.7}% 227
+\BOOKMARK [2][-]{subsection.7.2.1}{ Atom Decompositions}{section.7.2}% 228
+\BOOKMARK [2][-]{subsection.7.2.2}{ Force Decompositions}{section.7.2}% 229
+\BOOKMARK [2][-]{subsection.7.2.3}{ Spatial Decompositions}{section.7.2}% 230
+\BOOKMARK [2][-]{subsection.7.2.4}{ Neutral Territory Methods}{section.7.2}% 231
+\BOOKMARK [1][-]{section.7.3}{ Parallel Fast Fourier Transform}{chapter.7}% 232
+\BOOKMARK [2][-]{subsection.7.3.1}{ Parallel 1-D FFT}{section.7.3}% 233
+\BOOKMARK [2][-]{subsection.7.3.2}{ Parallel 3-D FFT}{section.7.3}% 234
+\BOOKMARK [1][-]{section.7.4}{ Integration for Molecular Dynamics}{chapter.7}% 235
+\BOOKMARK [0][-]{chapter.8}{ Combinatorial algorithms}{part.2}% 236
+\BOOKMARK [1][-]{section.8.1}{ Brief introduction to sorting}{chapter.8}% 237
+\BOOKMARK [2][-]{subsection.8.1.1}{ Complexity}{section.8.1}% 238
+\BOOKMARK [2][-]{subsection.8.1.2}{ Sorting networks}{section.8.1}% 239
+\BOOKMARK [2][-]{subsection.8.1.3}{ Parallel complexity}{section.8.1}% 240
+\BOOKMARK [1][-]{section.8.2}{ Odd-even transposition sort}{chapter.8}% 241
+\BOOKMARK [1][-]{section.8.3}{ Quicksort}{chapter.8}% 242
+\BOOKMARK [2][-]{subsection.8.3.1}{ Quicksort in shared memory}{section.8.3}% 243
+\BOOKMARK [2][-]{subsection.8.3.2}{ Quicksort on a hypercube}{section.8.3}% 244
+\BOOKMARK [2][-]{subsection.8.3.3}{ Quicksort on a general parallel processor}{section.8.3}% 245
+\BOOKMARK [1][-]{section.8.4}{ Bitonic sort}{chapter.8}% 246
+\BOOKMARK [1][-]{section.8.5}{ Prime number finding}{chapter.8}% 247
+\BOOKMARK [0][-]{chapter.9}{ Graph analytics}{part.2}% 248
+\BOOKMARK [1][-]{section.9.1}{ Traditional graph algorithms}{chapter.9}% 249
+\BOOKMARK [2][-]{subsection.9.1.1}{ Shortest path algorithms}{section.9.1}% 250
+\BOOKMARK [2][-]{subsection.9.1.2}{ Parallelization}{section.9.1}% 251
+\BOOKMARK [2][-]{subsection.9.1.3}{ Floyd-Warshall all-pairs shortest path}{section.9.1}% 252
+\BOOKMARK [2][-]{subsection.9.1.4}{ Spanning trees}{section.9.1}% 253
+\BOOKMARK [1][-]{section.9.2}{ `Real world' graphs}{chapter.9}% 254
+\BOOKMARK [2][-]{subsection.9.2.1}{ Properties of random graphs}{section.9.2}% 255
+\BOOKMARK [1][-]{section.9.3}{ Hypertext algorithms}{chapter.9}% 256
+\BOOKMARK [2][-]{subsection.9.3.1}{ HITS}{section.9.3}% 257
+\BOOKMARK [2][-]{subsection.9.3.2}{ PageRank}{section.9.3}% 258
+\BOOKMARK [1][-]{section.9.4}{ Large-scale computational graph theory}{chapter.9}% 259
+\BOOKMARK [0][-]{chapter.10}{ N-body problems}{part.2}% 260
+\BOOKMARK [1][-]{section.10.1}{ The Barnes-Hut algorithm}{chapter.10}% 261
+\BOOKMARK [1][-]{section.10.2}{ The Fast Multipole Method}{chapter.10}% 262
+\BOOKMARK [1][-]{section.10.3}{ Full computation}{chapter.10}% 263
+\BOOKMARK [1][-]{section.10.4}{ Implementation}{chapter.10}% 264
+\BOOKMARK [2][-]{subsection.10.4.1}{ Vectorization}{section.10.4}% 265
+\BOOKMARK [2][-]{subsection.10.4.2}{ Shared memory implementation}{section.10.4}% 266
+\BOOKMARK [2][-]{subsection.10.4.3}{ Distributed memory implementation}{section.10.4}% 267
+\BOOKMARK [0][-]{chapter.11}{ Monte Carlo Methods}{part.2}% 268
+\BOOKMARK [1][-]{section.11.1}{ Motivation}{chapter.11}% 269
+\BOOKMARK [2][-]{subsection.11.1.1}{ What is the attraction?}{section.11.1}% 270
+\BOOKMARK [1][-]{section.11.2}{ Parallel Random Number Generation}{chapter.11}% 271
+\BOOKMARK [2][-]{subsection.11.2.1}{ Sequential random number generators}{section.11.2}% 272
+\BOOKMARK [2][-]{subsection.11.2.2}{ Parallel random number generation}{section.11.2}% 273
+\BOOKMARK [1][-]{section.11.3}{ Examples}{chapter.11}% 274
+\BOOKMARK [2][-]{subsection.11.3.1}{ Monte Carlo simulation of the Ising model}{section.11.3}% 275
+\BOOKMARK [-1][-]{part.3}{III Appendices}{}% 276
+\BOOKMARK [0][-]{chapter.12}{ Linear algebra}{part.3}% 277
+\BOOKMARK [1][-]{section.12.1}{ Norms}{chapter.12}% 278
+\BOOKMARK [1][-]{section.12.2}{ Gram-Schmidt orthogonalization}{chapter.12}% 279
+\BOOKMARK [1][-]{section.12.3}{ The power method}{chapter.12}% 280
+\BOOKMARK [1][-]{section.12.4}{ Nonnegative matrices; Perron vectors}{chapter.12}% 281
+\BOOKMARK [1][-]{section.12.5}{ The Gershgorin theorem}{chapter.12}% 282
+\BOOKMARK [1][-]{section.12.6}{ Householder reflectors}{chapter.12}% 283
+\BOOKMARK [0][-]{chapter.13}{ Complexity}{part.3}% 284
+\BOOKMARK [0][-]{chapter.14}{ Partial Differential Equations}{part.3}% 285
+\BOOKMARK [1][-]{section.14.1}{ Partial derivatives}{chapter.14}% 286
+\BOOKMARK [1][-]{section.14.2}{ Poisson or Laplace Equation}{chapter.14}% 287
+\BOOKMARK [1][-]{section.14.3}{ Heat Equation}{chapter.14}% 288
+\BOOKMARK [1][-]{section.14.4}{ Steady state}{chapter.14}% 289
+\BOOKMARK [0][-]{chapter.15}{ Taylor series}{part.3}% 290
+\BOOKMARK [0][-]{chapter.16}{ Graph theory}{part.3}% 291
+\BOOKMARK [1][-]{section.16.1}{ Definitions}{chapter.16}% 292
+\BOOKMARK [1][-]{section.16.2}{ Common types of graphs}{chapter.16}% 293
+\BOOKMARK [1][-]{section.16.3}{ Graph colouring and independent sets}{chapter.16}% 294
+\BOOKMARK [1][-]{section.16.4}{ Graphs and matrices}{chapter.16}% 295
+\BOOKMARK [1][-]{section.16.5}{ Spectral graph theory}{chapter.16}% 296
+\BOOKMARK [0][-]{chapter.17}{ Automata theory}{part.3}% 297
+\BOOKMARK [1][-]{section.17.1}{ Finite State Automata}{chapter.17}% 298
+\BOOKMARK [1][-]{section.17.2}{ General discussion}{chapter.17}% 299
+\BOOKMARK [0][-]{chapter.18}{ Parallel Prefix}{part.3}% 300
+\BOOKMARK [1][-]{section.18.1}{ Parallel prefix}{chapter.18}% 301
+\BOOKMARK [1][-]{section.18.2}{ Sparse matrix vector product as parallel prefix}{chapter.18}% 302
+\BOOKMARK [-1][-]{part.4}{IV Tutorials}{}% 303
+\BOOKMARK [0][-]{chapter.19}{ Unix intro}{part.4}% 304
+\BOOKMARK [1][-]{section.19.1}{ Files and such}{chapter.19}% 305
+\BOOKMARK [1][-]{section.19.2}{ Text searching and regular expressions}{chapter.19}% 306
+\BOOKMARK [1][-]{section.19.3}{ Command execution}{chapter.19}% 307
+\BOOKMARK [1][-]{section.19.4}{ Scripting}{chapter.19}% 308
+\BOOKMARK [1][-]{section.19.5}{ Expansion}{chapter.19}% 309
+\BOOKMARK [1][-]{section.19.6}{ Startup files}{chapter.19}% 310
+\BOOKMARK [1][-]{section.19.7}{ Shell interaction}{chapter.19}% 311
+\BOOKMARK [1][-]{section.19.8}{ The system and other users}{chapter.19}% 312
+\BOOKMARK [1][-]{section.19.9}{ The sed and awk tools}{chapter.19}% 313
+\BOOKMARK [1][-]{section.19.10}{ Review questions}{chapter.19}% 314
+\BOOKMARK [0][-]{chapter.20}{ Compilers and libraries}{part.4}% 315
+\BOOKMARK [1][-]{section.20.1}{ An introduction to binary files}{chapter.20}% 316
+\BOOKMARK [1][-]{section.20.2}{ Simple compilation}{chapter.20}% 317
+\BOOKMARK [1][-]{section.20.3}{ Libraries}{chapter.20}% 318
+\BOOKMARK [0][-]{chapter.21}{ Managing projects with Make}{part.4}% 319
+\BOOKMARK [1][-]{section.21.1}{ A simple example}{chapter.21}% 320
+\BOOKMARK [1][-]{section.21.2}{ Variables and template rules}{chapter.21}% 321
+\BOOKMARK [1][-]{section.21.3}{ Miscellania}{chapter.21}% 322
+\BOOKMARK [1][-]{section.21.4}{ Shell scripting in a Makefile}{chapter.21}% 323
+\BOOKMARK [1][-]{section.21.5}{ Practical tips for using Make}{chapter.21}% 324
+\BOOKMARK [1][-]{section.21.6}{ A Makefile for LaTeX}{chapter.21}% 325
+\BOOKMARK [0][-]{chapter.22}{ Source code control}{part.4}% 326
+\BOOKMARK [1][-]{section.22.1}{ Workflow in source code control systems}{chapter.22}% 327
+\BOOKMARK [1][-]{section.22.2}{ Subversion or SVN}{chapter.22}% 328
+\BOOKMARK [1][-]{section.22.3}{ Mercurial \(hg\) and Git}{chapter.22}% 329
+\BOOKMARK [0][-]{chapter.23}{ Scientific Data Storage}{part.4}% 330
+\BOOKMARK [1][-]{section.23.1}{ Introduction to HDF5}{chapter.23}% 331
+\BOOKMARK [1][-]{section.23.2}{ Creating a file}{chapter.23}% 332
+\BOOKMARK [1][-]{section.23.3}{ Datasets}{chapter.23}% 333
+\BOOKMARK [1][-]{section.23.4}{ Writing the data}{chapter.23}% 334
+\BOOKMARK [1][-]{section.23.5}{ Reading}{chapter.23}% 335
+\BOOKMARK [0][-]{chapter.24}{ Scientific Libraries}{part.4}% 336
+\BOOKMARK [1][-]{section.24.1}{ The Portable Extendable Toolkit for Scientific Computing}{chapter.24}% 337
+\BOOKMARK [1][-]{section.24.2}{ Libraries for dense linear algebra: BLAS, Lapack, Scalapack}{chapter.24}% 338
+\BOOKMARK [0][-]{chapter.25}{ Plotting with GNUplot}{part.4}% 339
+\BOOKMARK [1][-]{section.25.1}{ Usage modes}{chapter.25}% 340
+\BOOKMARK [1][-]{section.25.2}{ Plotting}{chapter.25}% 341
+\BOOKMARK [1][-]{section.25.3}{ Workflow}{chapter.25}% 342
+\BOOKMARK [0][-]{chapter.26}{ Good coding practices}{part.4}% 343
+\BOOKMARK [1][-]{section.26.1}{ Defensive programming}{chapter.26}% 344
+\BOOKMARK [1][-]{section.26.2}{ Guarding against memory errors}{chapter.26}% 345
+\BOOKMARK [1][-]{section.26.3}{ Testing}{chapter.26}% 346
+\BOOKMARK [0][-]{chapter.27}{ Debugging}{part.4}% 347
+\BOOKMARK [1][-]{section.27.1}{ Invoking gdb}{chapter.27}% 348
+\BOOKMARK [1][-]{section.27.2}{ Finding errors}{chapter.27}% 349
+\BOOKMARK [1][-]{section.27.3}{ Memory debugging with Valgrind}{chapter.27}% 350
+\BOOKMARK [1][-]{section.27.4}{ Stepping through a program}{chapter.27}% 351
+\BOOKMARK [1][-]{section.27.5}{ Inspecting values}{chapter.27}% 352
+\BOOKMARK [1][-]{section.27.6}{ Breakpoints}{chapter.27}% 353
+\BOOKMARK [1][-]{section.27.7}{ Parallel debugging}{chapter.27}% 354
+\BOOKMARK [1][-]{section.27.8}{ Further reading}{chapter.27}% 355
+\BOOKMARK [0][-]{chapter.28}{ C/Fortran interoperability}{part.4}% 356
+\BOOKMARK [1][-]{section.28.1}{ Linker conventions}{chapter.28}% 357
+\BOOKMARK [1][-]{section.28.2}{ Arrays}{chapter.28}% 358
+\BOOKMARK [1][-]{section.28.3}{ Strings}{chapter.28}% 359
+\BOOKMARK [1][-]{section.28.4}{ Subprogram arguments}{chapter.28}% 360
+\BOOKMARK [1][-]{section.28.5}{ Input/output}{chapter.28}% 361
+\BOOKMARK [1][-]{section.28.6}{ Fortran/C interoperability in Fortran2003}{chapter.28}% 362
+\BOOKMARK [0][-]{chapter.29}{ LaTeX for scientific documentation}{part.4}% 363
+\BOOKMARK [1][-]{section.29.1}{ The idea behind LaTeX, some history of TeX}{chapter.29}% 364
+\BOOKMARK [1][-]{section.29.2}{ A gentle introduction to LaTeX}{chapter.29}% 365
+\BOOKMARK [1][-]{section.29.3}{ A worked out example}{chapter.29}% 366
+\BOOKMARK [1][-]{section.29.4}{ Where to take it from here}{chapter.29}% 367
+\BOOKMARK [-1][-]{part.5}{V Projects, codes, index}{}% 368
+\BOOKMARK [0][-]{chapter.30}{ Class projects}{part.5}% 369
+\BOOKMARK [1][-]{section.30.1}{ Cache simulation and analysis}{chapter.30}% 370
+\BOOKMARK [1][-]{section.30.2}{ Evaluation of Bulk Synchronous Programming}{chapter.30}% 371
+\BOOKMARK [1][-]{section.30.3}{ Heat equation}{chapter.30}% 372
+\BOOKMARK [1][-]{section.30.4}{ The memory wall}{chapter.30}% 373
+\BOOKMARK [0][-]{chapter.31}{ Codes}{part.5}% 374
+\BOOKMARK [1][-]{section.31.1}{ Preliminaries}{chapter.31}% 375
+\BOOKMARK [1][-]{section.31.2}{ Cache size}{chapter.31}% 376
+\BOOKMARK [1][-]{section.31.3}{ Cachelines}{chapter.31}% 377
+\BOOKMARK [1][-]{section.31.4}{ Cache associativity}{chapter.31}% 378
+\BOOKMARK [1][-]{section.31.5}{ TLB}{chapter.31}% 379
+\BOOKMARK [1][-]{section.31.6}{ Unrepresentible numbers}{chapter.31}% 380
+\BOOKMARK [0][-]{chapter.32}{ Bibliography, index, and list of acronyms}{part.5}% 381
+\BOOKMARK [1][-]{section.32.1}{ Bibliography}{chapter.32}% 382
+\BOOKMARK [1][-]{section.32.2}{ List of acronyms}{chapter.32}% 383
+\BOOKMARK [1][-]{section.32.3}{ Index}{chapter.32}% 384

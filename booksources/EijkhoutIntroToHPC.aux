@@ -1,0 +1,2539 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\reset@newl@bel
+\newacro{AMR}[AMR]{Adaptive Mesh Refinement}
+\newacro{AOS}[AOS]{Array-Of-Structures}
+\newacro{API}[API]{Application Programmer Interface}
+\newacro{AVX}[AVX]{Advanced Vector Extensions}
+\newacro{BEM}[BEM]{Boundary Element Method}
+\newacro{BFS}[BFS]{Breadth-First Search}
+\newacro{BLAS}[BLAS]{Basic Linear Algebra Subprograms}
+\newacro{BSP}[BSP]{Bulk Synchronous Parallel}
+\newacro{BVP}[BVP]{Boundary Value Problem}
+\newacro{CAF}[CAF]{Co-array Fortran}
+\newacro{CCS}[CCS]{Compressed Column Storage}
+\newacro{CG}[CG]{Conjugate Gradients}
+\newacro{CGS}[CGS]{Classical Gram-Schmidt}
+\newacro{COO}[COO]{Coordinate Storage}
+\newacro{CRS}[CRS]{Compressed Row Storage}
+\newacro{DAG}[DAG]{Directed Acyclic Graph}
+\newacro{DRAM}[DRAM]{Dynamic Random-Access Memory}
+\newacro{DSP}[DSP]{Digital Signal Processing}
+\newacro{FD}[FD]{Finite Difference}
+\newacro{FMA}[FMA]{Fused Multiply-Add}
+\newacro{FDM}[FDM]{Finite Difference Method}
+\newacro{FEM}[FEM]{Finite Element Method}
+\newacro{FMM}[FMM]{Fast Multipole Method}
+\newacro{FOM}[FOM]{Full Orthogonalization Method}
+\newacro{FPU}[FPU]{Floating Point Unit}
+\newacro{FFT}[FFT]{Fast Fourier Transform}
+\newacro{FSA}[FSA]{Finite State Automaton}
+\newacro{FSB}[FSB]{Front-Side Bus}
+\newacro{FPGA}[FPGA]{Field-Programmable Gate Array}
+\newacro{GMRES}[GMRES]{Generalized Minimum Residual}
+\newacro{GPU}[GPU]{Graphics Processing Unit}
+\newacro{GPGPU}[GPGPU]{General Purpose Graphics Processing Unit}
+\newacro{GS}[GS]{Gram-Schmidt}
+\newacro{HDFS}[HDFS]{Hadoop File System}
+\newacro{HPC}[HPC]{High-Performance Computing}
+\newacro{HPF}[HPF]{High Performance Fortran}
+\newacro{IBVP}[IBVP]{Initial Boundary Value Problem}
+\newacro{IDE}[IDE]{Integrated Development Environment}
+\newacro{ILP}[ILP]{Instruction Level Parallelism}
+\newacro{ILU}[ILU]{Incomplete LU}
+\newacro{IVP}[IVP]{Initial Value Problem}
+\newacro{LAN}[LAN]{Local Area Network}
+\newacro{LBM}[LBM]{Lattice Boltzmann Method}
+\newacro{LRU}[LRU]{Least Recently Used}
+\newacro{MIC}[MIC]{Many Integrated Cores}
+\newacro{MIMD}[MIMD]{Multiple Instruction Multiple Data}
+\newacro{MGS}[MGS]{Modified Gram-Schmidt}
+\newacro{MPI}[MPI]{Message Passing Interface}
+\newacro{MSI}[MSI]{Modified-Shared-Invalid}
+\newacro{MTA}[MTA]{Multi-Threaded Architecture}
+\newacro{NUMA}[NUMA]{Non-Uniform Memory Access}
+\newacro{ODE}[ODE]{Ordinary Diffential Equation}
+\newacro{OS}[OS]{Operating System}
+\newacro{PGAS}[PGAS]{Partitioned Global Address Space}
+\newacro{PDE}[PDE]{Partial Diffential Equation}
+\newacro{PRAM}[PRAM]{Parallel Random Access Machine}
+\newacro{RDMA}[RDMA]{Remote Direct Memory Access}
+\newacro{SAN}[SAN]{Storage Area Network}
+\newacro{SAS}[SAS]{Software As a Service}
+\newacro{SFC}[SFC]{Space-Filling Curve}
+\newacro{SIMD}[SIMD]{Single Instruction Multiple Data}
+\newacro{SIMT}[SIMT]{Single Instruction Multiple Thread}
+\newacro{SM}[SM]{Streaming Multiprocessor}
+\newacro{SMP}[SMP]{Symmetric Multi Processing}
+\newacro{SMT}[SMT]{Symmetric Multi Threading}
+\newacro{SOA}[SOA]{Structure-Of-Arrays}
+\newacro{SOR}[SOR]{Successive Over-Relaxation}
+\newacro{SP}[SP]{Streaming Processor}
+\newacro{SPMD}[SPMD]{Single Program Multiple Data}
+\newacro{SPD}[SPD]{symmetric positive definite}
+\newacro{SRAM}[SRAM]{Static Random-Access Memory}
+\newacro{SSE}[SSE]{SIMD Streaming Extensions}
+\newacro{TLB}[TLB]{Translation Look-aside Buffer}
+\newacro{UMA}[UMA]{Uniform Memory Access}
+\newacro{UPC}[UPC]{Unified Parallel C}
+\newacro{WAN}[WAN]{Wide Area Network}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {part}{I\hspace  {1em}Theory}{11}{part.1}}
+\citation{Karbo:book}
+\citation{HennessyPatterson}
+\citation{EWD:EWD117}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}\relax \bfseries   Single-processor Computing}{12}{chapter.1}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:sequential}{{1}{12}{Single-processor Computing}{chapter.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}\slshape   The Von Neumann architecture}{12}{section.1.1}}
+\newlabel{sec:vonneuman}{{1.1}{12}{The Von Neumann architecture}{section.1.1}{}}
+\undonewlabel{acro:ILP}
+\newlabel{acro:ILP}{{1.1}{14}{The Von Neumann architecture}{section*.6}{}}
+\acronymused{ILP}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}\slshape   Modern processors}{14}{section.1.2}}
+\newlabel{sec:fp}{{1.2}{14}{Modern processors}{section.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.1}\rmfamily   The processing cores}{14}{subsection.1.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1.1} Instruction handling}{15}{subsubsection.1.2.1.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces The Intel Sandy Bridge processor die}}{15}{figure.1.1}}
+\newlabel{fig:sandybridge}{{1.1}{15}{The Intel Sandy Bridge processor die}{figure.1.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1.2} Floating point units}{15}{subsubsection.1.2.1.2}}
+\undonewlabel{acro:FPU}
+\newlabel{acro:FPU}{{1.2.1.2}{15}{Floating point units}{section*.7}{}}
+\acronymused{FPU}
+\undonewlabel{acro:FMA}
+\newlabel{acro:FMA}{{1.2.1.2}{15}{Floating point units}{section*.8}{}}
+\acronymused{FMA}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Block diagram of the Intel Sandy Bridge core}}{16}{figure.1.2}}
+\newlabel{fig:sandycore}{{1.2}{16}{Block diagram of the Intel Sandy Bridge core}{figure.1.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1.3} Pipelining}{16}{subsubsection.1.2.1.3}}
+\newlabel{sec:pipeline}{{1.2.1.3}{16}{Pipelining}{subsubsection.1.2.1.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1.1}{\ignorespaces Floating point capabilities (per core) of several processor architectures, and DAXPY cycle number for 8 operands}}{17}{table.1.1}}
+\newlabel{tab:chipfloats}{{1.1}{17}{Floating point capabilities (per core) of several processor architectures, and DAXPY cycle number for 8 operands}{table.1.1}{}}
+\acronymused{FPU}
+\acronymused{FPU}
+\acronymused{FPU}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces Schematic depiction of a pipelined operation}}{18}{figure.1.3}}
+\newlabel{fig:pipeline}{{1.3}{18}{Schematic depiction of a pipelined operation}{figure.1.3}{}}
+\newlabel{ex:recursivedoubling}{{1.4}{19}{Pipelining}{excounter.1.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1.4} Peak performance}{19}{subsubsection.1.2.1.4}}
+\acronymused{FPU}
+\acronymused{FPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.2}\rmfamily   8-bit, 16-bit, 32-bit, 64-bit}{19}{subsection.1.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.3}\rmfamily   Caches: on-chip memory}{20}{subsection.1.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.4}\rmfamily   Graphics, controllers, special purpose hardware}{20}{subsection.1.2.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.5}\rmfamily   Superscalar processing and instruction-level parallelism}{20}{subsection.1.2.5}}
+\newlabel{sec:pipelinecpu}{{1.2.5}{20}{Superscalar processing and instruction-level parallelism}{subsection.1.2.5}{}}
+\acronymused{ILP}
+\citation{Wulf:memory-wall}
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}\slshape   Memory Hierarchies}{21}{section.1.3}}
+\newlabel{sec:hierarchy}{{1.3}{21}{Memory Hierarchies}{section.1.3}{}}
+\acronymused{FPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.1}\rmfamily   Busses}{21}{subsection.1.3.1}}
+\undonewlabel{acro:FSB}
+\newlabel{acro:FSB}{{1.3.1}{21}{Busses}{section*.9}{}}
+\acronymused{FSB}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Bus structure of a processor}}{22}{figure.1.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.2}\rmfamily   Latency and Bandwidth}{22}{subsection.1.3.2}}
+\newlabel{sec:latencybandwidth}{{1.3.2}{22}{Latency and Bandwidth}{subsection.1.3.2}{}}
+\undonewlabel{acro:GPU}
+\newlabel{acro:GPU}{{1.3.2}{23}{Latency and Bandwidth}{section*.10}{}}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.3}\rmfamily   Registers}{23}{subsection.1.3.3}}
+\newlabel{sec:register}{{1.3.3}{23}{Registers}{subsection.1.3.3}{}}
+\citation{Burks:discussion}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.4}\rmfamily   Caches}{25}{subsection.1.3.4}}
+\newlabel{sec:cache}{{1.3.4}{25}{Caches}{subsection.1.3.4}{}}
+\undonewlabel{acro:SRAM}
+\newlabel{acro:SRAM}{{1.3.4}{25}{Caches}{section*.11}{}}
+\acronymused{SRAM}
+\undonewlabel{acro:DRAM}
+\newlabel{acro:DRAM}{{1.3.4}{25}{Caches}{section*.12}{}}
+\acronymused{DRAM}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4.1} A motivating example}{25}{subsubsection.1.3.4.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4.2} Cache levels, speed and size}{26}{subsubsection.1.3.4.2}}
+\newlabel{sec:cache-level}{{1.3.4.2}{26}{Cache levels, speed and size}{subsubsection.1.3.4.2}{}}
+\acronymused{FPU}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces Memory hierarchy of an Intel Sandy Bridge, characterized by speed and size.}}{26}{figure.1.5}}
+\newlabel{fig:hierarchy}{{1.5}{26}{Memory hierarchy of an Intel Sandy Bridge, characterized by speed and size}{figure.1.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4.3} Types of cache misses}{27}{subsubsection.1.3.4.3}}
+\newlabel{sec:cache-miss}{{1.3.4.3}{27}{Types of cache misses}{subsubsection.1.3.4.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4.4} Reuse is the name of the game}{27}{subsubsection.1.3.4.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4.5} Replacement policies}{28}{subsubsection.1.3.4.5}}
+\newlabel{sec:lru}{{1.3.4.5}{28}{Replacement policies}{subsubsection.1.3.4.5}{}}
+\undonewlabel{acro:LRU}
+\newlabel{acro:LRU}{{1.3.4.5}{28}{Replacement policies}{section*.13}{}}
+\acronymused{LRU}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4.6} Cache lines}{28}{subsubsection.1.3.4.6}}
+\newlabel{sec:cacheline}{{1.3.4.6}{28}{Cache lines}{subsubsection.1.3.4.6}{}}
+\newlabel{sec:stride}{{1.3.4.6}{28}{Cache lines}{subsubsection.1.3.4.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.6}{\ignorespaces Accessing 4 elements at stride 1}}{28}{figure.1.6}}
+\newlabel{fig:stride-1}{{1.6}{28}{Accessing 4 elements at stride 1}{figure.1.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.7}{\ignorespaces Accessing 4 elements at stride 3}}{29}{figure.1.7}}
+\newlabel{fig:stride-3}{{1.7}{29}{Accessing 4 elements at stride 3}{figure.1.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4.7} Cache mapping}{29}{subsubsection.1.3.4.7}}
+\acronymused{FPU}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4.8} Direct mapped caches}{30}{subsubsection.1.3.4.8}}
+\newlabel{sec:directmap}{{1.3.4.8}{30}{Direct mapped caches}{subsubsection.1.3.4.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.8}{\ignorespaces Direct mapping of 32-bit addresses into a 64K cache}}{30}{figure.1.8}}
+\newlabel{fig:directmap}{{1.8}{30}{Direct mapping of 32-bit addresses into a 64K cache}{figure.1.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces Mapping conflicts in direct mapped cache}}{30}{figure.1.9}}
+\newlabel{fig:directconflict}{{1.9}{30}{Mapping conflicts in direct mapped cache}{figure.1.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4.9} Associative caches}{31}{subsubsection.1.3.4.9}}
+\newlabel{sec:associative}{{1.3.4.9}{31}{Associative caches}{subsubsection.1.3.4.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces Two caches of 12 elements: direct mapped (left) and 3-way associative (right)}}{32}{figure.1.10}}
+\newlabel{fig:assoc-mapping}{{1.10}{32}{Two caches of 12 elements: direct mapped (left) and 3-way associative (right)}{figure.1.10}{}}
+\newlabel{step:random}{{3}{32}{Associative caches}{Item.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces Prefetch stream generated by equally spaced requests}}{33}{figure.1.11}}
+\newlabel{fig:prefetch}{{1.11}{33}{Prefetch stream generated by equally spaced requests}{figure.1.11}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4.10} Loads versus stores}{33}{subsubsection.1.3.4.10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.5}\rmfamily   Prefetch streams}{33}{subsection.1.3.5}}
+\newlabel{sec:prefetch}{{1.3.5}{33}{Prefetch streams}{subsection.1.3.5}{}}
+\citation{Little:law}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.6}\rmfamily   Concurrency and memory transfer}{34}{subsection.1.3.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces Illustration of Little's Law that states how much independent data needs to be in flight}}{34}{figure.1.12}}
+\newlabel{fig:little}{{1.12}{34}{Illustration of Little's Law that states how much independent data needs to be in flight}{figure.1.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.7}\rmfamily   Memory banks}{34}{subsection.1.3.7}}
+\newlabel{sec:banks}{{1.3.7}{34}{Memory banks}{subsection.1.3.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.8}\rmfamily   TLB, pages, and virtual memory}{35}{subsection.1.3.8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.8.1} Large pages}{35}{subsubsection.1.3.8.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.8.2} TLB}{36}{subsubsection.1.3.8.2}}
+\newlabel{sec:tlb}{{1.3.8.2}{36}{TLB}{subsubsection.1.3.8.2}{}}
+\undonewlabel{acro:TLB}
+\newlabel{acro:TLB}{{1.3.8.2}{36}{TLB}{section*.14}{}}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\acronymused{TLB}
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}\slshape   Multicore architectures}{36}{section.1.4}}
+\newlabel{sec:multicore}{{1.4}{36}{Multicore architectures}{section.1.4}{}}
+\acronymused{ILP}
+\acronymused{ILP}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.13}{\ignorespaces Cache hierarchy in a single-core and dual-core chip}}{37}{figure.1.13}}
+\newlabel{fig:core-caches}{{1.13}{37}{Cache hierarchy in a single-core and dual-core chip}{figure.1.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.14}{\ignorespaces Structure of the Intel Single-chip Cloud Computer chip}}{38}{figure.1.14}}
+\newlabel{fig:rockcreek}{{1.14}{38}{Structure of the Intel Single-chip Cloud Computer chip}{figure.1.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4.1}\rmfamily   Cache coherence}{38}{subsection.1.4.1}}
+\newlabel{sec:coherence}{{1.4.1}{38}{Cache coherence}{subsection.1.4.1}{}}
+\undonewlabel{acro:MSI}
+\newlabel{acro:MSI}{{1.4.1}{39}{Cache coherence}{section*.15}{}}
+\acronymused{MSI}
+\undonewlabel{acro:FSA}
+\newlabel{acro:FSA}{{1.9}{39}{Cache coherence}{section*.16}{}}
+\acronymused{FSA}
+\acronymused{MSI}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.1.1} Solutions to cache coherence}{39}{subsubsection.1.4.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.1.2} False sharing}{40}{subsubsection.1.4.1.2}}
+\newlabel{sec:falseshare}{{1.4.1.2}{40}{False sharing}{subsubsection.1.4.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4.2}\rmfamily   Computations on multicore chips}{40}{subsection.1.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4.3}\rmfamily   TLB shootdown}{40}{subsection.1.4.3}}
+\acronymused{TLB}
+\@writefile{toc}{\contentsline {section}{\numberline {1.5}\slshape   Node architecture and sockets}{41}{section.1.5}}
+\newlabel{sec:socket}{{1.5}{41}{Node architecture and sockets}{section.1.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.15}{\ignorespaces Left: a four-socket design. Right: a\nobreakspace  {}two-socket design with co-processor.}}{41}{figure.1.15}}
+\newlabel{fig:stampede-node}{{1.15}{41}{Left: a four-socket design. Right: a~two-socket design with co-processor}{figure.1.15}{}}
+\undonewlabel{acro:NUMA}
+\newlabel{acro:NUMA}{{1.5}{41}{Node architecture and sockets}{section*.17}{}}
+\acronymused{NUMA}
+\@writefile{toc}{\contentsline {section}{\numberline {1.6}\slshape   Locality and data reuse}{42}{section.1.6}}
+\undonewlabel{acro:PDE}
+\newlabel{acro:PDE}{{1.6}{42}{Locality and data reuse}{section*.18}{}}
+\acronymused{PDE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.1}\rmfamily   Data reuse and arithmetic intensity}{42}{subsection.1.6.1}}
+\newlabel{sec:reuse}{{1.6.1}{42}{Data reuse and arithmetic intensity}{subsection.1.6.1}{}}
+\newlabel{sec:gemm}{{1.6.1}{42}{Data reuse and arithmetic intensity}{subsection.1.6.1}{}}
+\newlabel{sec:intensity}{{1.6.1}{42}{Data reuse and arithmetic intensity}{subsection.1.6.1}{}}
+\citation{St:gaussnotoptimal}
+\citation{Pa:combinations}
+\citation{Dongarra1987LinpackBenchmark}
+\citation{Williams:2009:roofline}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.1.1} Examples}{43}{subsubsection.1.6.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.1.2} The roofline model}{44}{subsubsection.1.6.1.2}}
+\newlabel{sec:roofline}{{1.6.1.2}{44}{The roofline model}{subsubsection.1.6.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.2}\rmfamily   Locality}{44}{subsection.1.6.2}}
+\newlabel{sec:locality}{{1.6.2}{44}{Locality}{subsection.1.6.2}{}}
+\acronymused{LRU}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.16}{\ignorespaces Illustration of factors determining performance in the roofline model}}{45}{figure.1.16}}
+\newlabel{fig:roofline}{{1.16}{45}{Illustration of factors determining performance in the roofline model}{figure.1.16}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.2.1} Temporal locality}{46}{subsubsection.1.6.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.2.2} Spatial locality}{46}{subsubsection.1.6.2.2}}
+\acronymused{TLB}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.2.3} Examples of locality}{47}{subsubsection.1.6.2.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.17}{\ignorespaces Two loop orderings for the $C\leftarrow A\cdot B$ matrix-matrix product}}{48}{figure.1.17}}
+\newlabel{fig:ijk-mult}{{1.17}{48}{Two loop orderings for the $C\leftarrow A\cdot B$ matrix-matrix product}{figure.1.17}{}}
+\citation{Goedeker:performance-book}
+\citation{tacc:ranger}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.2.4} Core locality}{49}{subsubsection.1.6.2.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.7}\slshape   Programming strategies for high performance}{49}{section.1.7}}
+\newlabel{sec:performance-programming}{{1.7}{49}{Programming strategies for high performance}{section.1.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.1}\rmfamily   Peak performance}{49}{subsection.1.7.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.2}\rmfamily   Pipelining}{49}{subsection.1.7.2}}
+\newlabel{sec:coding-pipeline}{{1.7.2}{49}{Pipelining}{subsection.1.7.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1.2}{\ignorespaces Cycle times for the inner product operation, unrolled up to six times}}{51}{table.1.2}}
+\newlabel{tab:unroll-inner}{{1.2}{51}{Cycle times for the inner product operation, unrolled up to six times}{table.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.3}\rmfamily   Cache size}{51}{subsection.1.7.3}}
+\newlabel{sec:coding-cachesize}{{1.7.3}{51}{Cache size}{subsection.1.7.3}{}}
+\acronymused{LRU}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.18}{\ignorespaces Average cycle count per operation as function of the dataset size}}{52}{figure.1.18}}
+\newlabel{fig:cache-overflow}{{1.18}{52}{Average cycle count per operation as function of the dataset size}{figure.1.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.4}\rmfamily   Cache lines}{52}{subsection.1.7.4}}
+\newlabel{sec:coding-cacheline}{{1.7.4}{52}{Cache lines}{subsection.1.7.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.19}{\ignorespaces Run time in kcycles and L1 reuse as a function of stride}}{53}{figure.1.19}}
+\newlabel{fig:cacheline}{{1.19}{53}{Run time in kcycles and L1 reuse as a function of stride}{figure.1.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.5}\rmfamily   TLB}{53}{subsection.1.7.5}}
+\newlabel{sec:coding-tlb}{{1.7.5}{53}{TLB}{subsection.1.7.5}{}}
+\acronymused{TLB}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.20}{\ignorespaces Number of TLB misses per column as function of the number of columns; columnwise traversal of the array.}}{54}{figure.1.20}}
+\newlabel{fig:tlb_col}{{1.20}{54}{Number of TLB misses per column as function of the number of columns; columnwise traversal of the array}{figure.1.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.6}\rmfamily   Cache associativity}{54}{subsection.1.7.6}}
+\newlabel{sec:assoc-coding}{{1.7.6}{54}{Cache associativity}{subsection.1.7.6}{}}
+\undonewlabel{acro:FFT}
+\newlabel{acro:FFT}{{1.7.6}{54}{Cache associativity}{section*.19}{}}
+\acronymused{FFT}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.21}{\ignorespaces Number of TLB misses per column as function of the number of columns; rowwise traversal of the array.}}{55}{figure.1.21}}
+\newlabel{fig:tlb_row}{{1.21}{55}{Number of TLB misses per column as function of the number of columns; rowwise traversal of the array}{figure.1.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.22}{\ignorespaces The number of L1 cache misses and the number of cycles for each $j$ column accumulation, vector length\nobreakspace  {}$4096$}}{56}{figure.1.22}}
+\newlabel{fig:l1_assoc}{{1.22}{56}{The number of L1 cache misses and the number of cycles for each $j$ column accumulation, vector length~$4096$}{figure.1.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.23}{\ignorespaces The number of L1 cache misses and the number of cycles for each $j$ column accumulation, vector length\nobreakspace  {}$4096+8$}}{56}{figure.1.23}}
+\newlabel{fig:l1_assoc_shift}{{1.23}{56}{The number of L1 cache misses and the number of cycles for each $j$ column accumulation, vector length~$4096+8$}{figure.1.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.7}\rmfamily   Loop nests}{57}{subsection.1.7.7}}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.8}\rmfamily   Loop tiling}{57}{subsection.1.7.8}}
+\newlabel{sec:loop-tiling}{{1.7.8}{57}{Loop tiling}{subsection.1.7.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.24}{\ignorespaces Regular and blocked traversal of a matrix}}{59}{figure.1.24}}
+\newlabel{fig:blockedtranspose}{{1.24}{59}{Regular and blocked traversal of a matrix}{figure.1.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.9}\rmfamily   Optimization strategies}{60}{subsection.1.7.9}}
+\newlabel{sec:scalar-opt}{{1.7.9}{60}{Optimization strategies}{subsection.1.7.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.25}{\ignorespaces Performance of naive and optimized implementations of the Discrete Fourier Transform}}{60}{figure.1.25}}
+\newlabel{fig:dft-perf}{{1.25}{60}{Performance of naive and optimized implementations of the Discrete Fourier Transform}{figure.1.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.26}{\ignorespaces Performance of naive and optimized implementations of the matrix-matrix product}}{60}{figure.1.26}}
+\newlabel{fig:gemm-perf}{{1.26}{60}{Performance of naive and optimized implementations of the matrix-matrix product}{figure.1.26}{}}
+\citation{atlas-parcomp}
+\citation{spiral}
+\citation{Frigo:oblivious}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.10}\rmfamily   Cache aware and cache oblivious programming}{61}{subsection.1.7.10}}
+\citation{GotoGeijn:2008:Anatomy}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.27}{\ignorespaces Matrix transpose operation, with simple and recursive traversal of the source matrix}}{62}{figure.1.27}}
+\newlabel{fig:oblivious-transpose}{{1.27}{62}{Matrix transpose operation, with simple and recursive traversal of the source matrix}{figure.1.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.11}\rmfamily   Case study: Matrix-vector product}{62}{subsection.1.7.11}}
+\newlabel{sec:mvp-opt}{{1.7.11}{62}{Case study: Matrix-vector product}{subsection.1.7.11}{}}
+\citation{GotoGeijn:2008:Anatomy}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.12}\rmfamily   Case study: Goto matrix-matrix product}{64}{subsection.1.7.12}}
+\newlabel{sec:goto-gemm}{{1.7.12}{64}{Case study: Goto matrix-matrix product}{subsection.1.7.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.28}{\ignorespaces Matrix-matrix multiplication as a sequence of low-rank updates}}{64}{figure.1.28}}
+\newlabel{fig:goto1}{{1.28}{64}{Matrix-matrix multiplication as a sequence of low-rank updates}{figure.1.28}{}}
+\citation{Bohr:30yearDennard}
+\citation{Dennard:scaling}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.29}{\ignorespaces The block-panel multiplication in the matrix-matrix algorithm}}{65}{figure.1.29}}
+\newlabel{fig:goto2}{{1.29}{65}{The block-panel multiplication in the matrix-matrix algorithm}{figure.1.29}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.30}{\ignorespaces The register-resident kernel of the matrix-matrix multiply}}{65}{figure.1.30}}
+\newlabel{fig:goto3}{{1.30}{65}{The register-resident kernel of the matrix-matrix multiply}{figure.1.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.8}\slshape   Further topics}{65}{section.1.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.1}\rmfamily   Power consumption}{65}{subsection.1.8.1}}
+\newlabel{sec:power}{{1.8.1}{65}{Power consumption}{subsection.1.8.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.1.1} Derivation of scaling properties}{66}{subsubsection.1.8.1.1}}
+\newlabel{eq:power}{{1.1}{66}{Derivation of scaling properties}{equation.1.8.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.1.2} Multicore}{66}{subsubsection.1.8.1.2}}
+\acronymused{ILP}
+\acronymused{GPU}
+\undonewlabel{acro:FPGA}
+\newlabel{acro:FPGA}{{1.8.1.2}{66}{Multicore}{section*.22}{}}
+\acronymused{FPGA}
+\citation{Chandrakasa:transformations}
+\citation{Bohr:ISSCC2009}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.31}{\ignorespaces Projected heat dissipation of a CPU if trends had continued -- this graph courtesy Pat Helsinger}}{67}{figure.1.31}}
+\newlabel{fig:chipheat}{{1.31}{67}{Projected heat dissipation of a CPU if trends had continued -- this graph courtesy Pat Helsinger}{figure.1.31}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.1.3} Total computer power}{67}{subsubsection.1.8.1.3}}
+\undonewlabel{acro:SIMD}
+\newlabel{acro:SIMD}{{1.8.1.3}{67}{Total computer power}{section*.23}{}}
+\acronymused{SIMD}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.2}\rmfamily   Operating system effects}{68}{subsection.1.8.2}}
+\undonewlabel{acro:OS}
+\newlabel{acro:OS}{{1.8.2}{68}{Operating system effects}{section*.24}{}}
+\acronymused{OS}
+\acronymused{OS}
+\acronymused{OS}
+\acronymused{TLB}
+\@writefile{toc}{\contentsline {section}{\numberline {1.9}\slshape   Review questions}{68}{section.1.9}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}\relax \bfseries   Parallel Computing}{69}{chapter.2}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:parallel}{{2}{69}{Parallel Computing}{chapter.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}\slshape   Introduction}{69}{section.2.1}}
+\newlabel{sec:parallel-intro}{{2.1}{69}{Introduction}{section.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Parallelization of a vector addition}}{70}{figure.2.1}}
+\newlabel{fig:par-add}{{2.1}{70}{Parallelization of a vector addition}{figure.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Parallelization of a vector reduction}}{71}{figure.2.2}}
+\newlabel{fig:par-sum}{{2.2}{71}{Parallelization of a vector reduction}{figure.2.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Communication structure of a parallel vector reduction}}{71}{figure.2.3}}
+\newlabel{fig:par-sum-graph}{{2.3}{71}{Communication structure of a parallel vector reduction}{figure.2.3}{}}
+\undonewlabel{acro:DAG}
+\newlabel{acro:DAG}{{2.2}{72}{Introduction}{section*.25}{}}
+\acronymused{DAG}
+\newlabel{ex:summing0}{{2.3}{72}{Introduction}{excounter.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}\rmfamily   Functional parallelism versus data parallelism}{72}{subsection.2.1.1}}
+\acronymused{ILP}
+\acronymused{ILP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}\rmfamily   Parallelism in the algorithm versus in the code}{73}{subsection.2.1.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}\slshape   Quantifying parallelism}{73}{section.2.2}}
+\newlabel{sec:speedup-efficiency}{{2.2}{73}{Quantifying parallelism}{section.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}\rmfamily   Definitions}{73}{subsection.2.2.1}}
+\newlabel{sec:speedup}{{2.2.1}{73}{Definitions}{subsection.2.2.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1.1} Speedup and efficiency}{73}{subsubsection.2.2.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1.2} Cost-optimality}{74}{subsubsection.2.2.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1.3} Critical path}{75}{subsubsection.2.2.1.3}}
+\newlabel{sec:critical-path}{{2.2.1.3}{75}{Critical path}{subsubsection.2.2.1.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}\rmfamily   Asymptotics}{76}{subsection.2.2.2}}
+\newlabel{sec:asymptotics}{{2.2.2}{76}{Asymptotics}{subsection.2.2.2}{}}
+\citation{He:surveyparallel}
+\undonewlabel{acro:PRAM}
+\newlabel{acro:PRAM}{{2.9}{77}{Asymptotics}{section*.26}{}}
+\acronymused{PRAM}
+\acronymused{PRAM}
+\citation{Fisher:fastparallel}
+\citation{amd:law}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}\rmfamily   Amdahl's law}{78}{subsection.2.2.3}}
+\newlabel{sec:amdahl}{{2.2.3}{78}{Amdahl's law}{subsection.2.2.3}{}}
+\newlabel{eq:amdahl}{{2.1}{78}{Amdahl's law}{equation.2.2.1}{}}
+\citation{Landau:comp-phys}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3.1} Amdahl's law with communication overhead}{79}{subsubsection.2.2.3.1}}
+\newlabel{eq:amdahl-comm}{{2.2}{79}{Amdahl's law with communication overhead}{equation.2.2.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3.2} Gustafson's law}{79}{subsubsection.2.2.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3.3} Amdahl's law and hybrid programming}{80}{subsubsection.2.2.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.4}\rmfamily   Scalability}{80}{subsection.2.2.4}}
+\newlabel{sec:scaling}{{2.2.4}{80}{Scalability}{subsection.2.2.4}{}}
+\citation{Grama:1993:isoefficiency}
+\citation{Bell:outlook}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4.1} Iso-efficiency}{81}{subsubsection.2.2.4.1}}
+\newlabel{sec:iso-efficiency}{{2.2.4.1}{81}{Iso-efficiency}{subsubsection.2.2.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4.2} Precisely \emph  {what} is scalable?}{82}{subsubsection.2.2.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.5}\rmfamily   Simulation scaling}{82}{subsection.2.2.5}}
+\acronymused{PDE}
+\citation{Moreland:formalmetrics2015}
+\citation{flynn:taxonomy}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.6}\rmfamily   Other scaling measures}{83}{subsection.2.2.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces The four classes of the Flynn's taxonomy}}{84}{figure.2.4}}
+\newlabel{fig:flynn}{{2.4}{84}{The four classes of the Flynn's taxonomy}{figure.2.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}\slshape   Parallel Computers Architectures}{84}{section.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}\rmfamily   SIMD}{84}{subsection.2.3.1}}
+\newlabel{sec:simd}{{2.3.1}{84}{SIMD}{subsection.2.3.1}{}}
+\citation{DAP:79a}
+\citation{Batcher:85a}
+\citation{Sato2004}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Architecture of the MasPar 2 array processors}}{85}{figure.2.5}}
+\newlabel{fig:maspar}{{2.5}{85}{Architecture of the MasPar 2 array processors}{figure.2.5}{}}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1.1} Pipelining}{85}{subsubsection.2.3.1.1}}
+\newlabel{sec:vector}{{2.3.1.1}{85}{Pipelining}{subsubsection.2.3.1.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1.2} True SIMD in CPUs and GPUs}{86}{subsubsection.2.3.1.2}}
+\newlabel{sec:sse-avx}{{2.3.1.2}{86}{True SIMD in CPUs and GPUs}{subsubsection.2.3.1.2}{}}
+\undonewlabel{acro:SSE}
+\newlabel{acro:SSE}{{2.3.1.2}{86}{True SIMD in CPUs and GPUs}{section*.27}{}}
+\acronymused{SSE}
+\undonewlabel{acro:AVX}
+\newlabel{acro:AVX}{{2.3.1.2}{86}{True SIMD in CPUs and GPUs}{section*.28}{}}
+\acronymused{AVX}
+\acronymused{AVX}
+\acronymused{SSE}
+\acronymused{AVX}
+\citation{Gropp:BeowulfBook}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{SIMD}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}\rmfamily   MIMD / SPMD computers}{87}{subsection.2.3.2}}
+\newlabel{sec:mimd}{{2.3.2}{87}{MIMD / SPMD computers}{subsection.2.3.2}{}}
+\newlabel{sec:spmd}{{2.3.2}{87}{MIMD / SPMD computers}{subsection.2.3.2}{}}
+\undonewlabel{acro:MIMD}
+\newlabel{acro:MIMD}{{2.3.2}{87}{MIMD / SPMD computers}{section*.29}{}}
+\acronymused{MIMD}
+\undonewlabel{acro:SPMD}
+\newlabel{acro:SPMD}{{2.3.2}{87}{MIMD / SPMD computers}{section*.30}{}}
+\acronymused{SPMD}
+\acronymused{SIMD}
+\acronymused{MIMD}
+\acronymused{MIMD}
+\acronymused{SPMD}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}\rmfamily   The commoditization of supercomputers}{87}{subsection.2.3.3}}
+\newlabel{sec:commodity}{{2.3.3}{87}{The commoditization of supercomputers}{subsection.2.3.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}\slshape   Different types of memory access}{87}{section.2.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces References to identically named variables in the distributed and shared memory case}}{88}{figure.2.6}}
+\newlabel{fig:shared-distributed}{{2.6}{88}{References to identically named variables in the distributed and shared memory case}{figure.2.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}\rmfamily   Symmetric Multi-Processors: Uniform Memory Access}{88}{subsection.2.4.1}}
+\newlabel{sec:uma}{{2.4.1}{88}{Symmetric Multi-Processors: Uniform Memory Access}{subsection.2.4.1}{}}
+\undonewlabel{acro:UMA}
+\newlabel{acro:UMA}{{2.4.1}{88}{Symmetric Multi-Processors: Uniform Memory Access}{section*.31}{}}
+\acronymused{UMA}
+\undonewlabel{acro:SMP}
+\newlabel{acro:SMP}{{2.4.1}{88}{Symmetric Multi-Processors: Uniform Memory Access}{section*.32}{}}
+\acronymused{SMP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}\rmfamily   Non-Uniform Memory Access}{88}{subsection.2.4.2}}
+\newlabel{sec:numa}{{2.4.2}{88}{Non-Uniform Memory Access}{subsection.2.4.2}{}}
+\acronymused{UMA}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Non-uniform memory access in a four-socket motherboard}}{89}{figure.2.7}}
+\newlabel{fig:ranger-numa}{{2.7}{89}{Non-uniform memory access in a four-socket motherboard}{figure.2.7}{}}
+\acronymused{NUMA}
+\acronymused{NUMA}
+\acronymused{NUMA}
+\undonewlabel{acro:PGAS}
+\newlabel{acro:PGAS}{{2.4.2}{89}{Non-Uniform Memory Access}{section*.33}{}}
+\acronymused{PGAS}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}\rmfamily   Logically and physically distributed memory}{90}{subsection.2.4.3}}
+\acronymused{NUMA}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}\slshape   Granularity of parallelism}{90}{section.2.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}\rmfamily   Data parallelism}{90}{subsection.2.5.1}}
+\newlabel{sec:data-parallel}{{2.5.1}{90}{Data parallelism}{subsection.2.5.1}{}}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}\rmfamily   Instruction-level parallelism}{91}{subsection.2.5.2}}
+\newlabel{sec:ILP}{{2.5.2}{91}{Instruction-level parallelism}{subsection.2.5.2}{}}
+\acronymused{ILP}
+\acronymused{ILP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}\rmfamily   Task-level parallelism}{91}{subsection.2.5.3}}
+\newlabel{sec:task-parallel}{{2.5.3}{91}{Task-level parallelism}{subsection.2.5.3}{}}
+\citation{Kulkami:howmuch}
+\@writefile{loa}{\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace  SearchInTree(root)}}{92}{algocfproc.SearchInTree}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces A mesh before and after refinement}}{92}{figure.2.8}}
+\newlabel{fig:delauney}{{2.8}{92}{A mesh before and after refinement}{figure.2.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Task queue implementation of Delauney refinement}}{93}{figure.2.9}}
+\newlabel{fig:delauney-code}{{2.9}{93}{Task queue implementation of Delauney refinement}{figure.2.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.4}\rmfamily   Conveniently parallel computing}{93}{subsection.2.5.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.5}\rmfamily   Medium-grain data parallelism}{93}{subsection.2.5.5}}
+\newlabel{sec:medium-grain}{{2.5.5}{93}{Medium-grain data parallelism}{subsection.2.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.6}\rmfamily   Task granularity}{94}{subsection.2.5.6}}
+\acronymused{ILP}
+\acronymused{SIMD}
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}\slshape   Parallel programming}{94}{section.2.6}}
+\newlabel{sec:parallel-programming}{{2.6}{94}{Parallel programming}{section.2.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.1}\rmfamily   Thread parallelism}{95}{subsection.2.6.1}}
+\newlabel{sec:threads}{{2.6.1}{95}{Thread parallelism}{subsection.2.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1.1} The fork-join mechanism}{95}{subsubsection.2.6.1.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.10}{\ignorespaces Thread creation and deletion during parallel execution}}{95}{figure.2.10}}
+\newlabel{fig:forkjoin}{{2.10}{95}{Thread creation and deletion during parallel execution}{figure.2.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1.2} Threads and parallel computing}{96}{subsubsection.2.6.1.2}}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1.3} Threads example}{96}{subsubsection.2.6.1.3}}
+\newlabel{sec:thread-example}{{2.6.1.3}{96}{Threads example}{subsubsection.2.6.1.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1.4} Contexts}{97}{subsubsection.2.6.1.4}}
+\newlabel{sec:context}{{2.6.1.4}{97}{Contexts}{subsubsection.2.6.1.4}{}}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1.5} Data races, thread safety, and atomic operations}{98}{subsubsection.2.6.1.5}}
+\newlabel{sec:shared-lock}{{2.6.1.5}{98}{Data races, thread safety, and atomic operations}{subsubsection.2.6.1.5}{}}
+\citation{Dijkstra:semaphores}
+\citation{AdveBoehm:memorymodels}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1.6} Memory models and sequential consistency}{99}{subsubsection.2.6.1.6}}
+\newlabel{sec:seq-consist}{{2.6.1.6}{99}{Memory models and sequential consistency}{subsubsection.2.6.1.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1.7} Affinity}{101}{subsubsection.2.6.1.7}}
+\acronymused{OS}
+\citation{Lameter:NUMAq}
+\acronymused{OS}
+\acronymused{OS}
+\acronymused{OS}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1.8} Concurrency}{103}{subsubsection.2.6.1.8}}
+\acronymused{OS}
+\acronymused{OS}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1.9} Cilk Plus}{103}{subsubsection.2.6.1.9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1.10} Hyperthreading versus multi-threading}{104}{subsubsection.2.6.1.10}}
+\newlabel{sec:hyperthread}{{2.6.1.10}{104}{Hyperthreading versus multi-threading}{subsubsection.2.6.1.10}{}}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.2}\rmfamily   OpenMP}{104}{subsection.2.6.2}}
+\newlabel{sec:openmp}{{2.6.2}{104}{OpenMP}{subsection.2.6.2}{}}
+\citation{Chapman2008:OpenMPbook}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.2.1} OpenMP examples}{105}{subsubsection.2.6.2.1}}
+\newlabel{omp:examples}{{2.6.2.1}{105}{OpenMP examples}{subsubsection.2.6.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.3}\rmfamily   Distributed memory programming through message passing}{106}{subsection.2.6.3}}
+\undonewlabel{acro:MPI}
+\newlabel{acro:MPI}{{2.6.3}{106}{Distributed memory programming through message passing}{section*.36}{}}
+\acronymused{MPI}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.3.1} The global versus the local view in distributed programming}{106}{subsubsection.2.6.3.1}}
+\newlabel{sec:distributed-programming}{{2.6.3.1}{106}{The global versus the local view in distributed programming}{subsubsection.2.6.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.11}{\ignorespaces Local and resulting global view of an algorithm for sending data to the right}}{107}{figure.2.11}}
+\newlabel{fig:wave_right_1}{{2.11}{107}{Local and resulting global view of an algorithm for sending data to the right}{figure.2.11}{}}
+\newlabel{eq:mpi-send-left}{{2.4}{107}{The global versus the local view in distributed programming}{equation.2.6.4}{}}
+\acronymused{SPMD}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.12}{\ignorespaces Local and resulting global view of an algorithm for sending data to the right}}{108}{figure.2.12}}
+\newlabel{fig:wave_right_2}{{2.12}{108}{Local and resulting global view of an algorithm for sending data to the right}{figure.2.12}{}}
+\newlabel{eq:cyclic-add}{{2.5}{108}{The global versus the local view in distributed programming}{equation.2.6.5}{}}
+\acronymused{SPMD}
+\citation{mpi-reference}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.13}{\ignorespaces Local and resulting global view of an algorithm for sending data to the right}}{109}{figure.2.13}}
+\newlabel{fig:wave_right_3}{{2.13}{109}{Local and resulting global view of an algorithm for sending data to the right}{figure.2.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.3.2} Blocking and non-blocking communication}{109}{subsubsection.2.6.3.2}}
+\citation{Gropp:UsingMPI1}
+\citation{Gropp:UsingMPI2}
+\citation{Gropp:UsingAdvancedMPI}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.3.3} The MPI library}{110}{subsubsection.2.6.3.3}}
+\newlabel{sec:mpi}{{2.6.3.3}{110}{The MPI library}{subsubsection.2.6.3.3}{}}
+\acronymused{MPI}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.3.4} Blocking}{112}{subsubsection.2.6.3.4}}
+\newlabel{sec:blocking}{{2.6.3.4}{112}{Blocking}{subsubsection.2.6.3.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.3.5} Collective operations}{113}{subsubsection.2.6.3.5}}
+\newlabel{sec:mpi-collective}{{2.6.3.5}{113}{Collective operations}{subsubsection.2.6.3.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.3.6} Non-blocking communication}{113}{subsubsection.2.6.3.6}}
+\newlabel{sec:nonblocking}{{2.6.3.6}{113}{Non-blocking communication}{subsubsection.2.6.3.6}{}}
+\citation{mpi-ref}
+\citation{mpi-2-reference}
+\citation{pvm-1}
+\citation{pvm-2}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.3.7} MPI version 1 and 2 and 3}{114}{subsubsection.2.6.3.7}}
+\newlabel{sec:mpi-1-2}{{2.6.3.7}{114}{MPI version 1 and 2 and 3}{subsubsection.2.6.3.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.3.8} One-sided communication}{115}{subsubsection.2.6.3.8}}
+\newlabel{sec:one-sided}{{2.6.3.8}{115}{One-sided communication}{subsubsection.2.6.3.8}{}}
+\undonewlabel{acro:RDMA}
+\newlabel{acro:RDMA}{{2.6.3.8}{115}{One-sided communication}{section*.37}{}}
+\acronymused{RDMA}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.4}\rmfamily   Hybrid shared/distributed memory computing}{116}{subsection.2.6.4}}
+\newlabel{sec:hybrid}{{2.6.4}{116}{Hybrid shared/distributed memory computing}{subsection.2.6.4}{}}
+\acronymused{OS}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.5}\rmfamily   Parallel languages}{117}{subsection.2.6.5}}
+\newlabel{sec:pgas}{{2.6.5}{117}{Parallel languages}{subsection.2.6.5}{}}
+\undonewlabel{acro:HPF}
+\newlabel{acro:HPF}{{2.6.5}{117}{Parallel languages}{section*.38}{}}
+\acronymused{HPF}
+\acronymused{HPF}
+\acronymused{PGAS}
+\acronymused{SMP}
+\acronymused{PGAS}
+\undonewlabel{acro:UPC}
+\newlabel{acro:UPC}{{2.6.5}{118}{Parallel languages}{section*.39}{}}
+\acronymused{UPC}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.5.1} Discussion}{118}{subsubsection.2.6.5.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.14}{\ignorespaces Data shift that requires communication}}{118}{figure.2.14}}
+\newlabel{fig:abshift}{{2.14}{118}{Data shift that requires communication}{figure.2.14}{}}
+\citation{UPC:homepage}
+\acronymused{PGAS}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.5.2} Unified Parallel C}{119}{subsubsection.2.6.5.2}}
+\acronymused{UPC}
+\acronymused{UPC}
+\acronymused{UPC}
+\citation{Chapel:homepage}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.5.3} High Performance Fortran}{120}{subsubsection.2.6.5.3}}
+\newlabel{sec:HPF}{{2.6.5.3}{120}{High Performance Fortran}{subsubsection.2.6.5.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.5.4} Co-array Fortran}{120}{subsubsection.2.6.5.4}}
+\undonewlabel{acro:CAF}
+\newlabel{acro:CAF}{{2.6.5.4}{120}{Co-array Fortran}{section*.40}{}}
+\acronymused{CAF}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.5.5} Chapel}{120}{subsubsection.2.6.5.5}}
+\newlabel{sec:Chapel}{{2.6.5.5}{120}{Chapel}{subsubsection.2.6.5.5}{}}
+\citation{Fortress:homepage}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.5.6} Fortress}{121}{subsubsection.2.6.5.6}}
+\citation{Gelernter85generativecommunication}
+\citation{Linda-CACM}
+\citation{Deshpande92efficientparallel}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.5.7} X10}{122}{subsubsection.2.6.5.7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.5.8} Linda}{122}{subsubsection.2.6.5.8}}
+\undonewlabel{acro:HPC}
+\newlabel{acro:HPC}{{2.6.5.8}{122}{Linda}{section*.41}{}}
+\acronymused{HPC}
+\citation{KSRallcache}
+\citation{charmpp}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.5.9} The Global Arrays library}{123}{subsubsection.2.6.5.9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.6}\rmfamily   OS-based approaches}{123}{subsection.2.6.6}}
+\acronymused{NUMA}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.7}\rmfamily   Active messages}{123}{subsection.2.6.7}}
+\newlabel{sec:charm++}{{2.6.7}{123}{Active messages}{subsection.2.6.7}{}}
+\acronymused{PDE}
+\citation{Valiant:1990:BSP}
+\citation{Skillicorn96questionsand}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.8}\rmfamily   Bulk synchronous parallelism}{124}{subsection.2.6.8}}
+\newlabel{sec:bsp}{{2.6.8}{124}{Bulk synchronous parallelism}{subsection.2.6.8}{}}
+\undonewlabel{acro:BSP}
+\newlabel{acro:BSP}{{2.6.8}{124}{Bulk synchronous parallelism}{section*.42}{}}
+\acronymused{BSP}
+\acronymused{BSP}
+\acronymused{BSP}
+\acronymused{BSP}
+\acronymused{BSP}
+\citation{BSPlib}
+\citation{Pregel:podc2009}
+\acronymused{BSP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.9}\rmfamily   Program design for parallelism}{125}{subsection.2.6.9}}
+\newlabel{sec:aos-soa}{{2.6.9}{125}{Program design for parallelism}{subsection.2.6.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.9.1} Parallel data structures}{125}{subsubsection.2.6.9.1}}
+\undonewlabel{acro:AOS}
+\newlabel{acro:AOS}{{2.6.9.1}{125}{Parallel data structures}{section*.43}{}}
+\acronymused{AOS}
+\undonewlabel{acro:SOA}
+\newlabel{acro:SOA}{{2.6.9.1}{125}{Parallel data structures}{section*.44}{}}
+\acronymused{SOA}
+\acronymused{SPMD}
+\acronymused{SIMD}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.9.2} Latency hiding}{126}{subsubsection.2.6.9.2}}
+\newlabel{sec:comcom-overlap}{{2.6.9.2}{126}{Latency hiding}{subsubsection.2.6.9.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.15}{\ignorespaces The parallel matrix-vector product with a blockrow distribution.}}{127}{figure.2.15}}
+\newlabel{fig:distmvp}{{2.15}{127}{The parallel matrix-vector product with a blockrow distribution}{figure.2.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}\slshape   Topologies}{127}{section.2.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.1}\rmfamily   Some graph theory}{128}{subsection.2.7.1}}
+\newlabel{sec:graph-theory}{{2.7.1}{128}{Some graph theory}{subsection.2.7.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.16}{\ignorespaces Contention for a network link due to simultaneous messages}}{129}{figure.2.16}}
+\newlabel{fig:contention}{{2.16}{129}{Contention for a network link due to simultaneous messages}{figure.2.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.2}\rmfamily   Busses}{130}{subsection.2.7.2}}
+\acronymused{UMA}
+\acronymused{SMP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.3}\rmfamily   Linear arrays and rings}{130}{subsection.2.7.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.4}\rmfamily   2D and 3D arrays}{130}{subsection.2.7.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.17}{\ignorespaces A 2D grid with torus connections}}{131}{figure.2.17}}
+\newlabel{fig:torus}{{2.17}{131}{A 2D grid with torus connections}{figure.2.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.5}\rmfamily   Hypercubes}{131}{subsection.2.7.5}}
+\newlabel{sec:hypercube}{{2.7.5}{131}{Hypercubes}{subsection.2.7.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.19}{\ignorespaces Hypercubes}}{132}{figure.2.19}}
+\newlabel{fig:hypercube}{{2.19}{132}{Hypercubes}{figure.2.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.18}{\ignorespaces Numbering of the nodes of a hypercube}}{132}{figure.2.18}}
+\newlabel{fig:cubenumber}{{2.18}{132}{Numbering of the nodes of a hypercube}{figure.2.18}{}}
+\citation{Gray:graycodepatent}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.5.1} Embedding grids in a hypercube}{133}{subsubsection.2.7.5.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.20}{\ignorespaces Gray codes}}{133}{figure.2.20}}
+\newlabel{fig:graycode}{{2.20}{133}{Gray codes}{figure.2.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.21}{\ignorespaces Gray code numbering of the nodes of a hypercube}}{133}{figure.2.21}}
+\newlabel{fig:cubegraynumber}{{2.21}{133}{Gray code numbering of the nodes of a hypercube}{figure.2.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.6}\rmfamily   Switched networks}{134}{subsection.2.7.6}}
+\newlabel{sec:crossbar}{{2.7.6}{134}{Switched networks}{subsection.2.7.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.6.1} Cross bar}{134}{subsubsection.2.7.6.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.22}{\ignorespaces A simple cross bar connecting 6 inputs to 6 outputs}}{134}{figure.2.22}}
+\newlabel{fig:crossbar}{{2.22}{134}{A simple cross bar connecting 6 inputs to 6 outputs}{figure.2.22}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.6.2} Butterfly exchange}{134}{subsubsection.2.7.6.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.23}{\ignorespaces Butterfly exchange networks for 2,4,8 processors, each with a local memory}}{134}{figure.2.23}}
+\newlabel{fig:butterfly}{{2.23}{134}{Butterfly exchange networks for 2,4,8 processors, each with a local memory}{figure.2.23}{}}
+\citation{Greenberg89randomizedrouting}
+\acronymused{UMA}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.24}{\ignorespaces Two independent routes through a butterfly exchange network}}{135}{figure.2.24}}
+\newlabel{fig:butterflyroute}{{2.24}{135}{Two independent routes through a butterfly exchange network}{figure.2.24}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.6.3} Fat-trees}{135}{subsubsection.2.7.6.3}}
+\newlabel{sec:fat-tree}{{2.7.6.3}{135}{Fat-trees}{subsubsection.2.7.6.3}{}}
+\citation{Leiserson:fattree}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.25}{\ignorespaces Routing through a three-stage butterfly exchange network}}{136}{figure.2.25}}
+\newlabel{fig:butterfly-route}{{2.25}{136}{Routing through a three-stage butterfly exchange network}{figure.2.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.26}{\ignorespaces A fat tree with a three-level interconnect (left); the leaf switches in a cabinet of the Stampede cluster (right)}}{137}{figure.2.26}}
+\newlabel{fig:fattree}{{2.26}{137}{A fat tree with a three-level interconnect (left); the leaf switches in a cabinet of the Stampede cluster (right)}{figure.2.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.27}{\ignorespaces A fat-tree built from simple switching elements}}{137}{figure.2.27}}
+\newlabel{fig:fattreeclos}{{2.27}{137}{A fat-tree built from simple switching elements}{figure.2.27}{}}
+\citation{Clos1953}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.7}\rmfamily   Cluster networks}{138}{subsection.2.7.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.28}{\ignorespaces Networks switches for the TACC Ranger and Stampede clusters}}{138}{figure.2.28}}
+\newlabel{fig:taccswitches}{{2.28}{138}{Networks switches for the TACC Ranger and Stampede clusters}{figure.2.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.8}\rmfamily   Bandwidth and latency}{138}{subsection.2.7.8}}
+\newlabel{sec:bwlatency}{{2.7.8}{138}{Bandwidth and latency}{subsection.2.7.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.29}{\ignorespaces A BlueGene computer}}{139}{figure.2.29}}
+\newlabel{fig:bluegenep}{{2.29}{139}{A BlueGene computer}{figure.2.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.9}\rmfamily   Locality in parallel computing}{140}{subsection.2.7.9}}
+\newlabel{sec:parallel-local}{{2.7.9}{140}{Locality in parallel computing}{subsection.2.7.9}{}}
+\acronymused{NUMA}
+\@writefile{toc}{\contentsline {section}{\numberline {2.8}\slshape   Multi-threaded architectures}{140}{section.2.8}}
+\newlabel{sec:mta}{{2.8}{140}{Multi-threaded architectures}{section.2.8}{}}
+\acronymused{ILP}
+\acronymused{ILP}
+\acronymused{SIMD}
+\undonewlabel{acro:MTA}
+\newlabel{acro:MTA}{{2.36}{141}{Multi-threaded architectures}{section*.49}{}}
+\acronymused{MTA}
+\acronymused{MTA}
+\acronymused{GPU}
+\acronymused{SIMD}
+\@writefile{toc}{\contentsline {section}{\numberline {2.9}\slshape   Co-processors, including GPUs}{141}{section.2.9}}
+\newlabel{sec:copprocessor}{{2.9}{141}{Co-processors, including GPUs}{section.2.9}{}}
+\acronymused{SIMD}
+\acronymused{SSE}
+\acronymused{GPU}
+\undonewlabel{acro:DSP}
+\newlabel{acro:DSP}{{2.9}{141}{Co-processors, including GPUs}{section*.50}{}}
+\acronymused{DSP}
+\acronymused{FPGA}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.9.1}\rmfamily   A little history}{141}{subsection.2.9.1}}
+\acronymused{GPU}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.9.2}\rmfamily   Bottlenecks}{142}{subsection.2.9.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.9.3}\rmfamily   GPU computing}{142}{subsection.2.9.3}}
+\newlabel{sec:gpu}{{2.9.3}{142}{GPU computing}{subsection.2.9.3}{}}
+\acronymused{GPU}
+\undonewlabel{acro:GPGPU}
+\newlabel{acro:GPGPU}{{2.9.3}{142}{GPU computing}{section*.52}{}}
+\acronymused{GPGPU}
+\acronymused{GPU}
+\acronymused{GPU}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.30}{\ignorespaces Memory structure of a GPU}}{143}{figure.2.30}}
+\newlabel{fig:gpu-memory}{{2.30}{143}{Memory structure of a GPU}{figure.2.30}{}}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.9.3.1} SIMD-type programming with kernels}{143}{subsubsection.2.9.3.1}}
+\newlabel{sec:gpu-kernel}{{2.9.3.1}{143}{SIMD-type programming with kernels}{subsubsection.2.9.3.1}{}}
+\acronymused{GPU}
+\acronymused{SIMD}
+\acronymused{SPMD}
+\acronymused{SIMD}
+\acronymused{SPMD}
+\undonewlabel{acro:SIMT}
+\newlabel{acro:SIMT}{{2.9.3.1}{143}{SIMD-type programming with kernels}{section*.53}{}}
+\acronymused{SIMT}
+\acronymused{GPU}
+\undonewlabel{acro:SM}
+\newlabel{acro:SM}{{2.9.3.1}{143}{SIMD-type programming with kernels}{section*.54}{}}
+\acronymused{SM}
+\acronymused{SM}
+\undonewlabel{acro:SP}
+\newlabel{acro:SP}{{2.9.3.1}{143}{SIMD-type programming with kernels}{section*.55}{}}
+\acronymused{SP}
+\acronymused{SP}
+\acronymused{GPU}
+\acronymused{SIMD}
+\acronymused{GPU}
+\acronymused{GPU}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.31}{\ignorespaces Diagram of a GPU}}{144}{figure.2.31}}
+\newlabel{fig:gpu-diagram}{{2.31}{144}{Diagram of a GPU}{figure.2.31}{}}
+\acronymused{SIMD}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{ILP}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.9.3.2} GPUs versus CPUs}{145}{subsubsection.2.9.3.2}}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.9.3.3} Expected benefit from GPUs}{145}{subsubsection.2.9.3.3}}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.9.4}\rmfamily   Intel Xeon Phi}{146}{subsection.2.9.4}}
+\undonewlabel{acro:MIC}
+\newlabel{acro:MIC}{{2.9.4}{146}{Intel Xeon Phi}{section*.56}{}}
+\acronymused{MIC}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{AVX}
+\@writefile{toc}{\contentsline {section}{\numberline {2.10}\slshape   Remaining topics}{146}{section.2.10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.10.1}\rmfamily   Load balancing}{146}{subsection.2.10.1}}
+\newlabel{sec:load}{{2.10.1}{146}{Load balancing}{subsection.2.10.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.1.1} Load balancing versus data distribution}{147}{subsubsection.2.10.1.1}}
+\newlabel{sec:load-vs-data}{{2.10.1.1}{147}{Load balancing versus data distribution}{subsubsection.2.10.1.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.1.2} Load scheduling}{147}{subsubsection.2.10.1.2}}
+\newlabel{sec:load-schedule}{{2.10.1.2}{147}{Load scheduling}{subsubsection.2.10.1.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.32}{\ignorespaces Static or round-robin (left) vs dynamic (right) thread scheduling; the task numbers are indicated.}}{147}{figure.2.32}}
+\newlabel{fig:staticdynamic}{{2.32}{147}{Static or round-robin (left) vs dynamic (right) thread scheduling; the task numbers are indicated}{figure.2.32}{}}
+\citation{KarpZhang88}
+\citation{Pospiech2015}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.1.3} Load balancing of independent tasks}{148}{subsubsection.2.10.1.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.1.4} Load balancing as graph problem}{148}{subsubsection.2.10.1.4}}
+\newlabel{sec:graph-loadbalancing}{{2.10.1.4}{148}{Load balancing as graph problem}{subsubsection.2.10.1.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.1.5} Load redistributing}{149}{subsubsection.2.10.1.5}}
+\undonewlabel{acro:FEM}
+\newlabel{acro:FEM}{{2.10.1.5}{149}{Load redistributing}{section*.57}{}}
+\acronymused{FEM}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.1.6} Load balancing with space-filling curves}{149}{subsubsection.2.10.1.6}}
+\newlabel{sec:space-filling}{{2.10.1.6}{149}{Load balancing with space-filling curves}{subsubsection.2.10.1.6}{}}
+\acronymused{BSP}
+\citation{Campbell:octree}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.33}{\ignorespaces Adaptive refinement of a domain in subsequent levels}}{150}{figure.2.33}}
+\newlabel{fig:octree1}{{2.33}{150}{Adaptive refinement of a domain in subsequent levels}{figure.2.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.34}{\ignorespaces Load distribution of an adaptively refined domain}}{150}{figure.2.34}}
+\newlabel{fig:octree2}{{2.34}{150}{Load distribution of an adaptively refined domain}{figure.2.34}{}}
+\citation{Warren:1993:hash-octree}
+\citation{Springel:gadget}
+\undonewlabel{acro:SFC}
+\newlabel{acro:SFC}{{2.42}{151}{Load balancing with space-filling curves}{section*.58}{}}
+\acronymused{SFC}
+\acronymused{SFC}
+\acronymused{SFC}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.35}{\ignorespaces A space filling curve for the load balanced tree}}{151}{figure.2.35}}
+\newlabel{fig:octree-sfc}{{2.35}{151}{A space filling curve for the load balanced tree}{figure.2.35}{}}
+\acronymused{SFC}
+\acronymused{SFC}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.36}{\ignorespaces Space filling curves, regularly and irregularly refined}}{151}{figure.2.36}}
+\newlabel{fig:octree3}{{2.36}{151}{Space filling curves, regularly and irregularly refined}{figure.2.36}{}}
+\acronymused{SFC}
+\acronymused{SFC}
+\citation{Google:mapreduce}
+\citation{Hadoop-wiki}
+\acronymused{SFC}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.10.2}\rmfamily   Distributed computing, grid computing, cloud computing}{152}{subsection.2.10.2}}
+\newlabel{sec:cloud}{{2.10.2}{152}{Distributed computing, grid computing, cloud computing}{subsection.2.10.2}{}}
+\undonewlabel{acro:SAN}
+\newlabel{acro:SAN}{{2.10.2}{152}{Distributed computing, grid computing, cloud computing}{section*.59}{}}
+\acronymused{SAN}
+\acronymused{HPC}
+\undonewlabel{acro:LAN}
+\newlabel{acro:LAN}{{2.10.2}{152}{Distributed computing, grid computing, cloud computing}{section*.60}{}}
+\acronymused{LAN}
+\undonewlabel{acro:WAN}
+\newlabel{acro:WAN}{{2.10.2}{152}{Distributed computing, grid computing, cloud computing}{section*.61}{}}
+\acronymused{WAN}
+\undonewlabel{acro:SAS}
+\newlabel{acro:SAS}{{2.10.2}{153}{Distributed computing, grid computing, cloud computing}{section*.62}{}}
+\acronymused{SAS}
+\acronymused{SAS}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.2.1} Usage scenarios}{153}{subsubsection.2.10.2.1}}
+\citation{canfar-lecture}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.2.2} Characterization}{154}{subsubsection.2.10.2.2}}
+\citation{Google:mapreduce}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.10.3}\rmfamily   Capability versus capacity computing}{155}{subsection.2.10.3}}
+\newlabel{sec:capacity}{{2.10.3}{155}{Capability versus capacity computing}{subsection.2.10.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.10.4}\rmfamily   MapReduce}{155}{subsection.2.10.4}}
+\newlabel{sec:mapreduce}{{2.10.4}{155}{MapReduce}{subsection.2.10.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.4.1} Expressive power of the MapReduce model}{155}{subsubsection.2.10.4.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.4.2} Mapreduce software}{156}{subsubsection.2.10.4.2}}
+\undonewlabel{acro:HDFS}
+\newlabel{acro:HDFS}{{2.10.4.2}{156}{Mapreduce software}{section*.63}{}}
+\acronymused{HDFS}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.4.3} \bf  Functional programming}{156}{subsubsection.2.10.4.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.10.5}\rmfamily   The top500 list}{157}{subsection.2.10.5}}
+\newlabel{sec:top500}{{2.10.5}{157}{The top500 list}{subsection.2.10.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.5.1} The top500 list as a recent history of supercomputing}{158}{subsubsection.2.10.5.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.37}{\ignorespaces Evolution of the architecture types on the top500 list}}{158}{figure.2.37}}
+\newlabel{fig:top500-types}{{2.37}{158}{Evolution of the architecture types on the top500 list}{figure.2.37}{}}
+\acronymused{GPU}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.38}{\ignorespaces Evolution of the architecture types on the top500 list}}{159}{figure.2.38}}
+\newlabel{fig:top500-processor}{{2.38}{159}{Evolution of the architecture types on the top500 list}{figure.2.38}{}}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.10.6}\rmfamily   Heterogeneous computing}{159}{subsection.2.10.6}}
+\newlabel{sec:heterogeneous}{{2.10.6}{159}{Heterogeneous computing}{subsection.2.10.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.39}{\ignorespaces Evolution of the architecture types on the top500 list}}{160}{figure.2.39}}
+\newlabel{fig:top500-cores}{{2.39}{160}{Evolution of the architecture types on the top500 list}{figure.2.39}{}}
+\acronymused{MIC}
+\@writefile{loa}{\addvspace {10\p@ }}
+\citation{Overton:754book}
+\citation{goldberg:floatingpoint}
+\citation{Higham:2002:ASN}
+\citation{Wilkinson:roundoff}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}\relax \bfseries   Computer Arithmetic}{161}{chapter.3}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:arithmetic}{{3}{161}{Computer Arithmetic}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}\slshape   Integers}{161}{section.3.1}}
+\newlabel{ex:compare-mn}{{3.1}{163}{Integers}{excounter.3.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}\slshape   Real numbers}{163}{section.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}\rmfamily   They're not really real numbers}{164}{subsection.3.2.1}}
+\newlabel{sec:arith-intro}{{3.2.1}{164}{They're not really real numbers}{subsection.3.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}\rmfamily   Representation of real numbers}{164}{subsection.3.2.2}}
+\newlabel{sec:float-representation}{{3.2.2}{164}{Representation of real numbers}{subsection.3.2.2}{}}
+\newlabel{eq:floatingpoint-def}{{3.1}{164}{Representation of real numbers}{equation.3.2.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.1} Some examples}{164}{subsubsection.3.2.2.1}}
+\citation{ieee754-webpage}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.2} Binary coded decimal}{165}{subsubsection.3.2.2.2}}
+\newlabel{sec:bcd}{{3.2.2.2}{165}{Binary coded decimal}{subsubsection.3.2.2.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.3} Other number bases for computer arithmetic}{165}{subsubsection.3.2.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}\rmfamily   Limitations}{165}{subsection.3.2.3}}
+\newlabel{sec:exceptions}{{3.2.3}{165}{Limitations}{subsection.3.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}\rmfamily   Normalized and unnormalized numbers}{166}{subsection.3.2.4}}
+\newlabel{sec:normal-unnormal}{{3.2.4}{166}{Normalized and unnormalized numbers}{subsection.3.2.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}\rmfamily   Representation error}{167}{subsection.3.2.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.6}\rmfamily   Machine precision}{167}{subsection.3.2.6}}
+\newlabel{sec:machine-eps}{{3.2.6}{167}{Machine precision}{subsection.3.2.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Single precision arithmetic}}{168}{figure.3.1}}
+\newlabel{fig:single-precision}{{3.1}{168}{Single precision arithmetic}{figure.3.1}{}}
+\newlabel{ex:epsilon}{{3.6}{168}{Machine precision}{excounter.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.7}\rmfamily   The IEEE 754 standard for floating point numbers}{168}{subsection.3.2.7}}
+\newlabel{sec:ieee754}{{3.2.7}{168}{The IEEE 754 standard for floating point numbers}{subsection.3.2.7}{}}
+\citation{goldberg:floatingpoint}
+\acronymused{GPU}
+\undonewlabel{acro:LBM}
+\newlabel{acro:LBM}{{3.8}{169}{The IEEE 754 standard for floating point numbers}{section*.64}{}}
+\acronymused{LBM}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.7.1} Setting the exception and rounding behaviour}{169}{subsubsection.3.2.7.1}}
+\newlabel{sec:fenvh}{{3.2.7.1}{169}{Setting the exception and rounding behaviour}{subsubsection.3.2.7.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.7.2} Not-a-Number}{170}{subsubsection.3.2.7.2}}
+\newlabel{sec:754nan}{{3.2.7.2}{170}{Not-a-Number}{subsubsection.3.2.7.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}\slshape   Round-off error analysis}{170}{section.3.3}}
+\citation{Goldberg:arithmetic}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}\rmfamily   Correct rounding}{171}{subsection.3.3.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1.1} Mul-Add operations}{171}{subsubsection.3.3.1.1}}
+\acronymused{FMA}
+\acronymused{FMA}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}\rmfamily   Addition}{172}{subsection.3.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}\rmfamily   Multiplication}{172}{subsection.3.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}\rmfamily   Subtraction}{172}{subsection.3.3.4}}
+\newlabel{sec:subtraction}{{3.3.4}{172}{Subtraction}{subsection.3.3.4}{}}
+\citation{Wilkinson:roundoff}
+\citation{Higham:2002:ASN}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.5}\rmfamily   Associativity}{173}{subsection.3.3.5}}
+\newlabel{sec:fp-associative}{{3.3.5}{173}{Associativity}{subsection.3.3.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.6}\rmfamily   Examples}{173}{subsection.3.3.6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.6.1} The `abc-formula'}{174}{subsubsection.3.3.6.1}}
+\newlabel{sec:abc-formula}{{3.3.6.1}{174}{The `abc-formula'}{subsubsection.3.3.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.6.2} Summing series}{174}{subsubsection.3.3.6.2}}
+\newlabel{sec:fp-summing}{{3.3.6.2}{174}{Summing series}{subsubsection.3.3.6.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.6.3} Unstable algorithms}{175}{subsubsection.3.3.6.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.6.4} Linear system solving}{175}{subsubsection.3.3.6.4}}
+\citation{Higham:2002:ASN}
+\newlabel{eq:xbound}{{3.2}{176}{Linear system solving}{equation.3.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.7}\rmfamily   Roundoff error in parallel computations}{176}{subsection.3.3.7}}
+\newlabel{sec:roundoff-parallel}{{3.3.7}{176}{Roundoff error in parallel computations}{subsection.3.3.7}{}}
+\citation{Kulish:dotproduct}
+\citation{Kulisch:2011:VFE}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}\slshape   Compilers and round-off}{177}{section.3.4}}
+\newlabel{sec:round-compile}{{3.4}{177}{Compilers and round-off}{section.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}\slshape   More about floating point arithmetic}{179}{section.3.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}\rmfamily   Programming languages}{179}{subsection.3.5.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1.1} Type declarations}{179}{subsubsection.3.5.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1.2} NaN, Inf}{179}{subsubsection.3.5.1.2}}
+\citation{gmplib}
+\citation{wikipedia:interval-arithmetic}
+\citation{boost:interval-arithmetic}
+\citation{Dongarra:mixed-refinement}
+\citation{YatesFixedPoint}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}\rmfamily   Other computer arithmetic systems}{180}{subsection.3.5.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.3}\rmfamily   Extended precision}{180}{subsection.3.5.3}}
+\newlabel{sec:ext-prec}{{3.5.3}{180}{Extended precision}{subsection.3.5.3}{}}
+\acronymused{FMA}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.4}\rmfamily   Reduced precision}{180}{subsection.3.5.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.5}\rmfamily   Fixed-point arithmetic}{180}{subsection.3.5.5}}
+\citation{DobbsComplex}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.6}\rmfamily   Complex numbers}{181}{subsection.3.5.6}}
+\newlabel{sec:complex}{{3.5.6}{181}{Complex numbers}{subsection.3.5.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}\slshape   Conclusions}{182}{section.3.6}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\citation{Heath:scicomp}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}\relax \bfseries   Numerical treatment of differential equations}{183}{chapter.4}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:odepde}{{4}{183}{Numerical treatment of differential equations}{chapter.4}{}}
+\undonewlabel{acro:ODE}
+\newlabel{acro:ODE}{{4}{183}{Numerical treatment of differential equations}{section*.73}{}}
+\acronymused{ODE}
+\acronymused{PDE}
+\acronymused{ODE}
+\acronymused{PDE}
+\undonewlabel{acro:IVP}
+\newlabel{acro:IVP}{{4}{183}{Numerical treatment of differential equations}{section*.74}{}}
+\acronymused{IVP}
+\acronymused{ODE}
+\undonewlabel{acro:BVP}
+\newlabel{acro:BVP}{{4}{183}{Numerical treatment of differential equations}{section*.75}{}}
+\acronymused{BVP}
+\acronymused{PDE}
+\acronymused{BVP}
+\undonewlabel{acro:IBVP}
+\newlabel{acro:IBVP}{{4}{183}{Numerical treatment of differential equations}{section*.76}{}}
+\acronymused{IBVP}
+\acronymused{IVP}
+\acronymused{BVP}
+\acronymused{ODE}
+\acronymused{PDE}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}\slshape   Initial value problems}{183}{section.4.1}}
+\newlabel{sec:ode}{{4.1}{183}{Initial value problems}{section.4.1}{}}
+\acronymused{ODE}
+\acronymused{IVP}
+\acronymused{ODE}
+\newlabel{eq:ode-nonauton}{{4.1}{184}{Initial value problems}{equation.4.1.1}{}}
+\acronymused{ODE}
+\newlabel{eq:ode}{{4.2}{184}{Initial value problems}{equation.4.1.2}{}}
+\acronymused{ODE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}\rmfamily   Error and stability}{185}{subsection.4.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}\rmfamily   Finite difference approximation: Euler explicit and implicit methods}{185}{subsection.4.1.2}}
+\newlabel{sec:fd-ode}{{4.1.2}{185}{Finite difference approximation: Euler explicit and implicit methods}{subsection.4.1.2}{}}
+\newlabel{eq:forwarddifference}{{4.3}{185}{Finite difference approximation: Euler explicit and implicit methods}{equation.4.1.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2.1} Stability of the Euler explicit method}{187}{subsubsection.4.1.2.1}}
+\acronymused{IVP}
+\acronymused{IVP}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2.2} The Euler implicit method}{187}{subsubsection.4.1.2.2}}
+\newlabel{sec:implicit-euler}{{4.1.2.2}{187}{The Euler implicit method}{subsubsection.4.1.2.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2.3} Stability of the implicit Euler method}{188}{subsubsection.4.1.2.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}\slshape   Boundary value problems}{190}{section.4.2}}
+\newlabel{sec:bvp}{{4.2}{190}{Boundary value problems}{section.4.2}{}}
+\acronymused{BVP}
+\newlabel{eq:2nd-order-bvp}{{4.4}{190}{Boundary value problems}{equation.4.2.4}{}}
+\newlabel{eq:2nd-order-bvp-2D}{{4.5}{190}{Boundary value problems}{equation.4.2.5}{}}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}\rmfamily   General PDE theory}{190}{subsection.4.2.1}}
+\newlabel{sec:region-influence}{{4.2.1}{190}{General PDE theory}{subsection.4.2.1}{}}
+\acronymused{PDE}
+\acronymused{PDE}
+\acronymused{PDE}
+\acronymused{PDE}
+\acronymused{IBVP}
+\acronymused{PDE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}\rmfamily   The Poisson equation in one space dimension}{191}{subsection.4.2.2}}
+\newlabel{sec:poisson}{{4.2.2}{191}{The Poisson equation in one space dimension}{subsection.4.2.2}{}}
+\newlabel{sec:1dbvp}{{4.2.2}{191}{The Poisson equation in one space dimension}{subsection.4.2.2}{}}
+\acronymused{PDE}
+\newlabel{eq:2nd-order-bvp-poisson}{{4.6}{191}{The Poisson equation in one space dimension}{equation.4.2.6}{}}
+\acronymused{PDE}
+\newlabel{eq:2nd-order-num}{{4.7}{191}{The Poisson equation in one space dimension}{equation.4.2.7}{}}
+\undonewlabel{acro:FD}
+\newlabel{acro:FD}{{4.2.2}{192}{The Poisson equation in one space dimension}{section*.77}{}}
+\acronymused{FD}
+\newlabel{eq:2nddiff-formula}{{4.8}{192}{The Poisson equation in one space dimension}{equation.4.2.8}{}}
+\acronymused{FD}
+\acronymused{PDE}
+\undonewlabel{acro:FDM}
+\newlabel{acro:FDM}{{4.2.2}{192}{The Poisson equation in one space dimension}{section*.78}{}}
+\acronymused{FDM}
+\newlabel{eq:1d2nd-matrix-vector}{{4.9}{192}{The Poisson equation in one space dimension}{equation.4.2.9}{}}
+\citation{BePl:book}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}\rmfamily   The Poisson equation in two space dimensions}{193}{subsection.4.2.3}}
+\newlabel{sec:2dbvp}{{4.2.3}{193}{The Poisson equation in two space dimensions}{subsection.4.2.3}{}}
+\acronymused{BVP}
+\newlabel{eq:laplace}{{4.10}{193}{The Poisson equation in two space dimensions}{equation.4.2.10}{}}
+\newlabel{eq:5-point-star}{{4.11}{194}{The Poisson equation in two space dimensions}{equation.4.2.11}{}}
+\newlabel{eq:5-point-star-ij}{{4.12}{194}{The Poisson equation in two space dimensions}{equation.4.2.12}{}}
+\newlabel{eq:5-point-star-linear}{{4.13}{194}{The Poisson equation in two space dimensions}{equation.4.2.13}{}}
+\newlabel{eq:5starmatrix}{{4.14}{194}{The Poisson equation in two space dimensions}{equation.4.2.14}{}}
+\acronymused{BVP}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces A difference stencil applied to a two-dimensional square domain}}{195}{figure.4.1}}
+\newlabel{fig:laplacedomain}{{4.1}{195}{A difference stencil applied to a two-dimensional square domain}{figure.4.1}{}}
+\acronymused{BVP}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces A triangular domain of definition for the Poisson equation}}{196}{figure.4.2}}
+\newlabel{fig:laplacetriangle}{{4.2}{196}{A triangular domain of definition for the Poisson equation}{figure.4.2}{}}
+\acronymused{BVP}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.4}\rmfamily   Difference stencils}{196}{subsection.4.2.4}}
+\acronymused{BVP}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces The structure of some difference stencils in two dimensions}}{197}{figure.4.3}}
+\newlabel{fig:stencils}{{4.3}{197}{The structure of some difference stencils in two dimensions}{figure.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.5}\rmfamily   Other discretization techniques}{197}{subsection.4.2.5}}
+\newlabel{sec:fem}{{4.2.5}{197}{Other discretization techniques}{subsection.4.2.5}{}}
+\acronymused{FDM}
+\acronymused{FEM}
+\acronymused{FD}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}\slshape   Initial boundary value problem}{197}{section.4.3}}
+\newlabel{sec:heateq}{{4.3}{197}{Initial boundary value problem}{section.4.3}{}}
+\acronymused{IBVP}
+\acronymused{IVP}
+\acronymused{BVP}
+\acronymused{PDE}
+\acronymused{IBVP}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}\rmfamily   Discretization}{198}{subsection.4.3.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.1} Explicit scheme}{198}{subsubsection.4.3.1.1}}
+\newlabel{fig:explicit-heat}{{4.3.1.1}{198}{Explicit scheme}{subsubsection.4.3.1.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces The difference stencil of the Euler forward method for the heat equation}}{198}{figure.4.4}}
+\newlabel{fig:Euler-forward-stencil}{{4.4}{198}{The difference stencil of the Euler forward method for the heat equation}{figure.4.4}{}}
+\newlabel{eq:disc-time-explicit}{{4.15}{198}{Explicit scheme}{equation.4.3.15}{}}
+\newlabel{eq:bivp-explicit}{{4.16}{198}{Explicit scheme}{equation.4.3.16}{}}
+\newlabel{eq:bivp-explicit-vector}{{4.17}{199}{Explicit scheme}{equation.4.3.17}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.2} Implicit scheme}{199}{subsubsection.4.3.1.2}}
+\acronymused{IVP}
+\newlabel{eq:heat-time-explicit}{{4.18}{199}{Implicit scheme}{equation.4.3.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces The difference stencil of the Euler backward method for the heat equation}}{199}{figure.4.5}}
+\newlabel{fig:Euler-backward-stencil}{{4.5}{199}{The difference stencil of the Euler backward method for the heat equation}{figure.4.5}{}}
+\newlabel{eq:bivp-implicit}{{4.19}{199}{Implicit scheme}{equation.4.3.19}{}}
+\newlabel{eq:bivp-implicit-vector}{{4.20}{199}{Implicit scheme}{equation.4.3.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}\rmfamily   Stability analysis}{200}{subsection.4.3.2}}
+\acronymused{IVP}
+\newlabel{ex:crank}{{4.7}{201}{Stability analysis}{excounter.4.7}{}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\citation{GoVL:matcomp}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}\relax \bfseries   Numerical linear algebra}{202}{chapter.5}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:linear}{{5}{202}{Numerical linear algebra}{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}\slshape   Elimination of unknowns}{202}{section.5.1}}
+\newlabel{sec:gauss-example}{{5.1}{202}{Elimination of unknowns}{section.5.1}{}}
+\newlabel{eq:elimination-example}{{5.1}{203}{Elimination of unknowns}{equation.5.1.1}{}}
+\newlabel{eq:systemabbrev}{{5.2}{204}{Elimination of unknowns}{equation.5.1.2}{}}
+\newlabel{ex:zero-pivot}{{5.1}{204}{Elimination of unknowns}{excounter.5.1}{}}
+\citation{Wilkinson:roundoff}
+\citation{Higham:2002:ASN}
+\acronymused{PDE}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}\slshape   Linear algebra in computer arithmetic}{205}{section.5.2}}
+\newlabel{sec:linear-arith}{{5.2}{205}{Linear algebra in computer arithmetic}{section.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}\rmfamily   Roundoff control during elimination}{205}{subsection.5.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}\rmfamily   Influence of roundoff on eigenvalue computations}{206}{subsection.5.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}\slshape   LU factorization}{207}{section.5.3}}
+\newlabel{sec:lu-fact}{{5.3}{207}{LU factorization}{section.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}\rmfamily   The algorithm}{208}{subsection.5.3.1}}
+\newlabel{sec:lu-algorithm}{{5.3.1}{208}{The algorithm}{subsection.5.3.1}{}}
+\citation{TSoPMC}
+\newlabel{eq:LU-algorithm}{{5.3}{209}{The algorithm}{equation.5.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}\rmfamily   The Cholesky factorization}{209}{subsection.5.3.2}}
+\newlabel{sec:cholesky}{{5.3.2}{209}{The Cholesky factorization}{subsection.5.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}\rmfamily   Uniqueness}{209}{subsection.5.3.3}}
+\newlabel{sec:LUunique}{{5.3.3}{209}{Uniqueness}{subsection.5.3.3}{}}
+\newlabel{eq:A=LUnormalized}{{5.4}{210}{Uniqueness}{equation.5.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.4}\rmfamily   Pivoting}{211}{subsection.5.3.4}}
+\newlabel{sec:pivoting}{{5.3.4}{211}{Pivoting}{subsection.5.3.4}{}}
+\newlabel{eq:lu-pivot-interleave}{{5.5}{211}{Pivoting}{equation.5.3.5}{}}
+\newlabel{eq:lu-pivot}{{5.6}{212}{Pivoting}{equation.5.3.6}{}}
+\acronymused{BVP}
+\undonewlabel{acro:SPD}
+\newlabel{acro:SPD}{{5.13}{212}{Pivoting}{section*.79}{}}
+\acronymused{SPD}
+\acronymused{SPD}
+\newlabel{ex:no-pivot}{{5.13}{212}{Pivoting}{excounter.5.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.5}\rmfamily   Solving the system}{212}{subsection.5.3.5}}
+\newlabel{sec:lu-solve}{{5.3.5}{212}{Solving the system}{subsection.5.3.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.6}\rmfamily   Complexity}{213}{subsection.5.3.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.7}\rmfamily   Block algorithms}{214}{subsection.5.3.7}}
+\newlabel{sec:block-algebra}{{5.3.7}{214}{Block algorithms}{subsection.5.3.7}{}}
+\acronymused{BVP}
+\newlabel{eq:LU-block-algorithm}{{5.7}{215}{Block algorithms}{equation.5.3.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}\slshape   Sparse matrices}{215}{section.5.4}}
+\newlabel{sec:sparse}{{5.4}{215}{Sparse matrices}{section.5.4}{}}
+\acronymused{BVP}
+\acronymused{IBVP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}\rmfamily   Storage of sparse matrices}{216}{subsection.5.4.1}}
+\newlabel{sec:spmvp}{{5.4.1}{216}{Storage of sparse matrices}{subsection.5.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1.1} Diagonal storage}{216}{subsubsection.5.4.1.1}}
+\newlabel{sec:diagonal-storage}{{5.4.1.1}{216}{Diagonal storage}{subsubsection.5.4.1.1}{}}
+\acronymused{BVP}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Diagonal storage of a banded matrix}}{216}{figure.5.1}}
+\newlabel{fig:sparsediag}{{5.1}{216}{Diagonal storage of a banded matrix}{figure.5.1}{}}
+\newlabel{eq:2minus1-by-diagonals}{{5.8}{216}{Diagonal storage}{equation.5.4.8}{}}
+\newlabel{eq:sparse-conversion}{{5.9}{217}{Diagonal storage}{equation.5.4.9}{}}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1.2} Operations on diagonal storage}{217}{subsubsection.5.4.1.2}}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1.3} Compressed row storage}{218}{subsubsection.5.4.1.3}}
+\newlabel{sec:crs}{{5.4.1.3}{218}{Compressed row storage}{subsubsection.5.4.1.3}{}}
+\undonewlabel{acro:CRS}
+\newlabel{acro:CRS}{{5.4.1.3}{218}{Compressed row storage}{section*.80}{}}
+\acronymused{CRS}
+\citation{Duff:harwellboeingformat}
+\citation{matrix-market}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Compressing a row of a sparse matrix in the CRS format}}{219}{figure.5.2}}
+\newlabel{fig:crs}{{5.2}{219}{Compressing a row of a sparse matrix in the CRS format}{figure.5.2}{}}
+\acronymused{CRS}
+\undonewlabel{acro:CCS}
+\newlabel{acro:CCS}{{5.4.1.3}{219}{Compressed row storage}{section*.81}{}}
+\acronymused{CCS}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1.4} Algorithms on compressed row storage}{219}{subsubsection.5.4.1.4}}
+\newlabel{sec:crs-mvp}{{5.4.1.4}{219}{Algorithms on compressed row storage}{subsubsection.5.4.1.4}{}}
+\acronymused{CRS}
+\acronymused{CRS}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}\rmfamily   Sparse matrices and graph theory}{220}{subsection.5.4.2}}
+\newlabel{sec:sparse-graph}{{5.4.2}{220}{Sparse matrices and graph theory}{subsection.5.4.2}{}}
+\newlabel{ex:rb-tridiagonal}{{5.27}{221}{Sparse matrices and graph theory}{excounter.5.27}{}}
+\acronymused{BVP}
+\newlabel{ex:reducible-tridiagonal}{{5.28}{221}{Sparse matrices and graph theory}{excounter.5.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}\rmfamily   LU factorizations of sparse matrices}{221}{subsection.5.4.3}}
+\newlabel{sec:fill}{{5.4.3}{221}{LU factorizations of sparse matrices}{subsection.5.4.3}{}}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3.1} Graph theory of sparse LU factorization}{222}{subsubsection.5.4.3.1}}
+\newlabel{sec:lu-graph}{{5.4.3.1}{222}{Graph theory of sparse LU factorization}{subsubsection.5.4.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Eliminating a vertex introduces a new edge in the quotient graph}}{222}{figure.5.3}}
+\newlabel{fig:ijk-eliminate}{{5.3}{222}{Eliminating a vertex introduces a new edge in the quotient graph}{figure.5.3}{}}
+\newlabel{ex:schur-fill}{{5.30}{222}{Graph theory of sparse LU factorization}{excounter.5.30}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3.2} Fill-in}{223}{subsubsection.5.4.3.2}}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3.3} Fill-in estimates}{223}{subsubsection.5.4.3.3}}
+\newlabel{sec:bandfill}{{5.4.3.3}{223}{Fill-in estimates}{subsubsection.5.4.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Creation of fill-in connection in the matrix graph}}{224}{figure.5.4}}
+\newlabel{fig:row-eliminate}{{5.4}{224}{Creation of fill-in connection in the matrix graph}{figure.5.4}{}}
+\newlabel{ex:skyline}{{5.33}{224}{Fill-in estimates}{excounter.5.33}{}}
+\acronymused{BVP}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3.4} Fill-in reduction}{225}{subsubsection.5.4.3.4}}
+\newlabel{sec:arrow-matrix}{{5.4.3.4}{225}{Fill-in reduction}{subsubsection.5.4.3.4}{}}
+\citation{CuMcK:reducing}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3.5} Fill-in reducing orderings}{226}{subsubsection.5.4.3.5}}
+\newlabel{sec:fill-ordering}{{5.4.3.5}{226}{Fill-in reducing orderings}{subsubsection.5.4.3.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}\slshape   Iterative methods}{227}{section.5.5}}
+\newlabel{sec:iterative}{{5.5}{227}{Iterative methods}{section.5.5}{}}
+\acronymused{PDE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}\rmfamily   Abstract presentation}{228}{subsection.5.5.1}}
+\newlabel{sec:stationary}{{5.5.1}{228}{Abstract presentation}{subsection.5.5.1}{}}
+\citation{Varga:iterative-analysis}
+\newlabel{eq:stat-it}{{5.11}{229}{Abstract presentation}{equation.5.5.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}\rmfamily   Convergence and error analysis}{229}{subsection.5.5.2}}
+\newlabel{sec:stationary-convergence}{{5.5.2}{229}{Convergence and error analysis}{subsection.5.5.2}{}}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.3}\rmfamily   Computational form}{230}{subsection.5.5.3}}
+\newlabel{sec:jacobi-seidel}{{5.5.3}{230}{Computational form}{subsection.5.5.3}{}}
+\newlabel{eq:kx=nx}{{5.13}{230}{Computational form}{equation.5.5.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Data movement pattern in the Jacobi iteration on a one-dimensional problem}}{231}{figure.5.5}}
+\newlabel{fig:1d-jacobi}{{5.5}{231}{Data movement pattern in the Jacobi iteration on a one-dimensional problem}{figure.5.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Data movement pattern in the Gauss-Seidel iteration on a one-dimensional problem}}{231}{figure.5.6}}
+\newlabel{fig:1d-sor}{{5.6}{231}{Data movement pattern in the Gauss-Seidel iteration on a one-dimensional problem}{figure.5.6}{}}
+\undonewlabel{acro:SOR}
+\newlabel{acro:SOR}{{5.5.3}{231}{Computational form}{section*.82}{}}
+\acronymused{SOR}
+\citation{HaYo:applied}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.4}\rmfamily   Convergence of the method}{232}{subsection.5.5.4}}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.5}\rmfamily   Jacobi versus Gauss-Seidel and parallelism}{232}{subsection.5.5.5}}
+\undonewlabel{acro:CG}
+\newlabel{acro:CG}{{5.5.5}{232}{Jacobi versus Gauss-Seidel and parallelism}{section*.83}{}}
+\acronymused{CG}
+\undonewlabel{acro:GMRES}
+\newlabel{acro:GMRES}{{5.5.5}{232}{Jacobi versus Gauss-Seidel and parallelism}{section*.84}{}}
+\acronymused{GMRES}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.6}\rmfamily   Choice of $K$}{232}{subsection.5.5.6}}
+\newlabel{sec:preconditioner}{{5.5.6}{232}{Choice of $K$}{subsection.5.5.6}{}}
+\citation{Wi:fastseparable}
+\acronymused{SOR}
+\citation{MevdVo:itsol}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.6.1} Constructing $K$ as an incomplete LU factorization}{234}{subsubsection.5.5.6.1}}
+\newlabel{sec:ilu}{{5.5.6.1}{234}{Constructing $K$ as an incomplete LU factorization}{subsubsection.5.5.6.1}{}}
+\undonewlabel{acro:ILU}
+\newlabel{acro:ILU}{{5.5.6.1}{234}{Constructing $K$ as an incomplete LU factorization}{section*.85}{}}
+\acronymused{ILU}
+\acronymused{ILU}
+\acronymused{ILU}
+\acronymused{ILU}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.6.2} Cost of constructing a preconditioner}{234}{subsubsection.5.5.6.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.6.3} Parallel preconditioners}{235}{subsubsection.5.5.6.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.7}\rmfamily   Stopping tests}{235}{subsection.5.5.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.8}\rmfamily   Theory of general iterative methods}{236}{subsection.5.5.8}}
+\newlabel{sec:nonstationary}{{5.5.8}{236}{Theory of general iterative methods}{subsection.5.5.8}{}}
+\newlabel{eq:it-general-x}{{5.14}{236}{Theory of general iterative methods}{equation.5.5.14}{}}
+\newlabel{eq:x-from-PA-r0}{{5.15}{236}{Theory of general iterative methods}{equation.5.5.15}{}}
+\newlabel{eq:r-is-polynomial}{{5.16}{237}{Theory of general iterative methods}{equation.5.5.16}{}}
+\newlabel{eq:iterate-general-x0}{{5.18}{237}{Theory of general iterative methods}{equation.5.5.18}{}}
+\newlabel{eq:preconditioned-iteration}{{5.19}{237}{Theory of general iterative methods}{equation.5.5.19}{}}
+\newlabel{eq:general-r-update}{{5.20}{237}{Theory of general iterative methods}{equation.5.5.20}{}}
+\citation{Young:thesis}
+\citation{Varga:iterative-analysis}
+\newlabel{eq:general-xr-hessenberg}{{5.21}{238}{Theory of general iterative methods}{equation.5.5.21}{}}
+\citation{Lanczos1952:solution_of_systems}
+\citation{HestenesStiefel1952:cg}
+\citation{GolubOleary:cg-history}
+\citation{Reid1971:cg}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.9}\rmfamily   Iterating by orthogonalization}{239}{subsection.5.5.9}}
+\newlabel{sec:fom}{{5.5.9}{239}{Iterating by orthogonalization}{subsection.5.5.9}{}}
+\acronymused{SPD}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces The optimal update $u_m$ make the new residual orthogonal to the $AK_m$ subspace}}{239}{figure.5.7}}
+\newlabel{fig:res-projection}{{5.7}{239}{The optimal update $u_m$ make the new residual orthogonal to the $AK_m$ subspace}{figure.5.7}{}}
+\acronymused{CG}
+\acronymused{GMRES}
+\undonewlabel{acro:FOM}
+\newlabel{acro:FOM}{{5.5.9}{240}{Iterating by orthogonalization}{section*.86}{}}
+\acronymused{FOM}
+\acronymused{FOM}
+\acronymused{FOM}
+\acronymused{GMRES}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.10}\rmfamily   Coupled recurrences form of iterative methods}{240}{subsection.5.5.10}}
+\citation{Eijkhout2010ICCS-krylov}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.11}\rmfamily   The method of Conjugate Gradients}{241}{subsection.5.5.11}}
+\newlabel{sec:cg}{{5.5.11}{241}{The method of Conjugate Gradients}{subsection.5.5.11}{}}
+\acronymused{CG}
+\acronymused{FOM}
+\acronymused{SPD}
+\acronymused{CG}
+\acronymused{CG}
+\newlabel{eq:xrp-update}{{5.22}{241}{The method of Conjugate Gradients}{equation.5.5.22}{}}
+\newlabel{eq:cg-updates-xrp}{{5.23}{242}{The method of Conjugate Gradients}{equation.5.5.23}{}}
+\acronymused{CG}
+\acronymused{CG}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.12}\rmfamily   Derivation from minimization}{243}{subsection.5.5.12}}
+\acronymused{CG}
+\acronymused{SPD}
+\citation{AxBa:febook}
+\citation{FaberManteuffel:conditions-for-existence}
+\citation{FrNa:qmr}
+\citation{vdVorst1992:bicgstab}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces The Preconditioned Conjugate Gradient Method}}{244}{figure.5.8}}
+\newlabel{fig:pcg}{{5.8}{244}{The Preconditioned Conjugate Gradient Method}{figure.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.13}\rmfamily   GMRES}{244}{subsection.5.5.13}}
+\newlabel{sec:gmres}{{5.5.13}{244}{GMRES}{subsection.5.5.13}{}}
+\acronymused{CG}
+\acronymused{CG}
+\acronymused{SPD}
+\acronymused{GMRES}
+\citation{Ba:templates}
+\citation{saad96}
+\acronymused{GMRES}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.14}\rmfamily   Complexity}{245}{subsection.5.5.14}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}\slshape   Further Reading}{245}{section.5.6}}
+\newlabel{sec:furtherreading-linear}{{5.6}{245}{Further Reading}{section.5.6}{}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\citation{Chan2007Collective}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}\relax \bfseries   High performance linear algebra}{246}{chapter.6}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:parallellinear}{{6}{246}{High performance linear algebra}{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}\slshape   Collective operations}{246}{section.6.1}}
+\newlabel{sec:collective}{{6.1}{246}{Collective operations}{section.6.1}{}}
+\newlabel{sec:collective-cost}{{6.1}{246}{Collective operations}{section.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}\rmfamily   Broadcast}{246}{subsection.6.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}\rmfamily   Reduction}{247}{subsection.6.1.2}}
+\citation{Chan2007Collective}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.3}\rmfamily   Allreduce}{248}{subsection.6.1.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.4}\rmfamily   Allgather}{248}{subsection.6.1.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.5}\rmfamily   Reduce-scatter}{249}{subsection.6.1.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}\slshape   Parallel dense matrix-vector product}{249}{section.6.2}}
+\newlabel{sec:parallel-dense-mvp}{{6.2}{249}{Parallel dense matrix-vector product}{section.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}\rmfamily   Implementing the block-row case}{250}{subsection.6.2.1}}
+\newlabel{sec:blockrow}{{6.2.1}{250}{Implementing the block-row case}{subsection.6.2.1}{}}
+\newlabel{eq:yi=sum-in-and-not}{{6.1}{250}{Implementing the block-row case}{equation.6.2.1}{}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace  Naive Parallel MVP($A,x_{\mathrm  \scriptstyle local},y_{\mathrm  \scriptstyle local},p$)}}{251}{algocfproc.Naive Parallel MVP}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces A na\"\i vely coded parallel matrix-vector product}}{251}{figure.6.1}}
+\newlabel{fig:naive-pmvp}{{6.1}{251}{A na\"\i vely coded parallel matrix-vector product}{figure.6.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces The parallel matrix-vector product with a blockrow distribution.}}{252}{figure.6.2}}
+\newlabel{fig:distmvp2}{{6.2}{252}{The parallel matrix-vector product with a blockrow distribution}{figure.6.2}{}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace  Parallel MVP($A,x_{\mathrm  \scriptstyle local},y_{\mathrm  \scriptstyle local},p$)}}{252}{algocfproc.Parallel MVP}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces A buffered implementation of the parallel matrix-vector product}}{252}{figure.6.3}}
+\newlabel{fig:buffer-pmvp}{{6.3}{252}{A buffered implementation of the parallel matrix-vector product}{figure.6.3}{}}
+\citation{HeWo:94}
+\citation{Schreiber:scalability92}
+\citation{Stewart90}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}\rmfamily   Scalability of the dense matrix-vector product}{253}{subsection.6.2.2}}
+\newlabel{sec:densescaling}{{6.2.2}{253}{Scalability of the dense matrix-vector product}{subsection.6.2.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2.1} Matrix-vector product, partitioning by rows}{253}{subsubsection.6.2.2.1}}
+\newlabel{sec:mvp-by-rows}{{6.2.2.1}{253}{Matrix-vector product, partitioning by rows}{subsubsection.6.2.2.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2.2} Matrix-vector product, partitioning by columns}{256}{subsubsection.6.2.2.2}}
+\citation{Flame:PBMD-report}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2.3} Two-dimensional partitioning}{257}{subsubsection.6.2.2.3}}
+\newlabel{sec:mvp-2d}{{6.2.2.3}{257}{Two-dimensional partitioning}{subsubsection.6.2.2.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Distribution of matrix and vector elements for a problem of size 12 on a $4\times 3$ processor grid}}{257}{figure.6.4}}
+\newlabel{fig:2dmatrix}{{6.4}{257}{Distribution of matrix and vector elements for a problem of size 12 on a $4\times 3$ processor grid}{figure.6.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}\slshape   LU factorization in parallel}{259}{section.6.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}\rmfamily   Solving a triangular system}{259}{subsection.6.3.1}}
+\citation{TSoPMC}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}\rmfamily   Factorization, dense case}{260}{subsection.6.3.2}}
+\newlabel{sec:LUscaling}{{6.3.2}{260}{Factorization, dense case}{subsection.6.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces One-dimensional cyclic distribution: assignment of four matrix columns to two processors, and the resulting mapping of storage to matrixcolumns}}{261}{figure.6.5}}
+\newlabel{fig:cyclic-1}{{6.5}{261}{One-dimensional cyclic distribution: assignment of four matrix columns to two processors, and the resulting mapping of storage to matrixcolumns}{figure.6.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces Matrix-vector multiplication with a cyclicly distributed matrix}}{261}{figure.6.6}}
+\newlabel{fig:cyclic-1-mvp}{{6.6}{261}{Matrix-vector multiplication with a cyclicly distributed matrix}{figure.6.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}\rmfamily   Factorization, sparse case}{262}{subsection.6.3.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}\slshape   Matrix-matrix product}{262}{section.6.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Cannon's algorithm for matrix-matrix multiplication: (a) initial rotation of matrix rows and colums, (b)\nobreakspace  {}resulting position in which processor\nobreakspace  {}$(i,j)$ can start accumulating\nobreakspace  {}$\DOTSB \sum@ \slimits@ _kA_{ik}B_{kj}$, (c)\nobreakspace  {}subsequent rotation of $A,B$ for the next term.}}{262}{figure.6.7}}
+\newlabel{fig:cannon}{{6.7}{262}{Cannon's algorithm for matrix-matrix multiplication: (a) initial rotation of matrix rows and colums, (b)~resulting position in which processor~$(i,j)$ can start accumulating~$\sum _kA_{ik}B_{kj}$, (c)~subsequent rotation of $A,B$ for the next term}{figure.6.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}\slshape   Sparse matrix-vector product}{263}{section.6.5}}
+\newlabel{sec:pspmvp}{{6.5}{263}{Sparse matrix-vector product}{section.6.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.1}\rmfamily   The single-processor sparse matrix-vector product}{263}{subsection.6.5.1}}
+\newlabel{sec:spmvp-performance}{{6.5.1}{263}{The single-processor sparse matrix-vector product}{subsection.6.5.1}{}}
+\acronymused{CRS}
+\acronymused{CRS}
+\citation{vuduc:thesis}
+\citation{ButtEijkLang:spmvp}
+\citation{DAzevedo2005:vector-mvp}
+\citation{Bolz:GPUsparse}
+\acronymused{GPU}
+\acronymused{GPU}
+\acronymused{CRS}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.2}\rmfamily   The parallel sparse matrix-vector product}{264}{subsection.6.5.2}}
+\newlabel{ex:bandmat-prod}{{6.14}{265}{The parallel sparse matrix-vector product}{excounter.6.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces A difference stencil applied to a two-dimensional square domain, distributed over processors. A cross-processor connection is indicated.}}{266}{figure.6.8}}
+\newlabel{fig:laplaceparallel}{{6.8}{266}{A difference stencil applied to a two-dimensional square domain, distributed over processors. A cross-processor connection is indicated}{figure.6.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.9}{\ignorespaces The ghost region of a processor, induced by a stencil}}{266}{figure.6.9}}
+\newlabel{fig:ghost}{{6.9}{266}{The ghost region of a processor, induced by a stencil}{figure.6.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.10}{\ignorespaces Band matrix with halfbandwidth $\sqrt  N$}}{267}{figure.6.10}}
+\newlabel{fig:bandmat}{{6.10}{267}{Band matrix with halfbandwidth $\sqrt N$}{figure.6.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.3}\rmfamily   Parallel efficiency of the sparse matrix-vector product}{267}{subsection.6.5.3}}
+\newlabel{sec:par-spmvp}{{6.5.3}{267}{Parallel efficiency of the sparse matrix-vector product}{subsection.6.5.3}{}}
+\acronymused{FDM}
+\acronymused{FEM}
+\undonewlabel{acro:BEM}
+\newlabel{acro:BEM}{{6.17}{268}{Parallel efficiency of the sparse matrix-vector product}{section*.96}{}}
+\acronymused{BEM}
+\acronymused{BEM}
+\citation{ButtEijkLang:spmvp}
+\citation{DemEtAl:ieeeproc2004}
+\citation{oski}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.4}\rmfamily   Memory behaviour of the sparse matrix-vector product}{269}{subsection.6.5.4}}
+\acronymused{CRS}
+\acronymused{GPU}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.5}\rmfamily   The transpose product}{269}{subsection.6.5.5}}
+\newlabel{sec:shared-crs-transpose}{{6.5.5}{269}{The transpose product}{subsection.6.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.6}\rmfamily   Setup of the sparse matrix-vector product}{270}{subsection.6.5.6}}
+\acronymused{PDE}
+\citation{Falgout:scalable-hypre}
+\citation{Hoefler:2010:SCP}
+\@writefile{toc}{\contentsline {section}{\numberline {6.6}\slshape   Computational aspects of iterative methods}{271}{section.6.6}}
+\newlabel{sec:iterative-computational}{{6.6}{271}{Computational aspects of iterative methods}{section.6.6}{}}
+\acronymused{FEM}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6.1}\rmfamily   Vector operations}{271}{subsection.6.6.1}}
+\acronymused{CG}
+\acronymused{BVP}
+\citation{ChGe:sstep}
+\citation{DAzEijRo:ppscicomp}
+\citation{Me:multicg}
+\citation{YandBrent:bicgstab}
+\citation{dehevo92:acta}
+\citation{Langou:thesis}
+\acronymused{FOM}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.1} Vector additions}{272}{subsubsection.6.6.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.2} Inner products}{272}{subsubsection.6.6.1.2}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Compute $a\leftarrow x^ty$ where $x,y$ are distributed vectors}}{272}{algocf.1}}
+\acronymused{CG}
+\acronymused{GMRES}
+\undonewlabel{acro:GS}
+\newlabel{acro:GS}{{6.23}{273}{Inner products}{section*.97}{}}
+\acronymused{GS}
+\acronymused{GS}
+\acronymused{GS}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6.2}\rmfamily   Finite element matrix construction}{273}{subsection.6.6.2}}
+\newlabel{sec:fem-assembly}{{6.6.2}{273}{Finite element matrix construction}{subsection.6.6.2}{}}
+\acronymused{FEM}
+\acronymused{FEM}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.11}{\ignorespaces A finite element domain, parallelization of the matrix construction, and parallelization of matrix element storage}}{273}{figure.6.11}}
+\newlabel{fig:fem-assembly}{{6.11}{273}{A finite element domain, parallelization of the matrix construction, and parallelization of matrix element storage}{figure.6.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6.3}\rmfamily   A simple model for iterative method performance}{274}{subsection.6.6.3}}
+\acronymused{PDE}
+\acronymused{PDE}
+\@writefile{toc}{\contentsline {section}{\numberline {6.7}\slshape   Parallel preconditioners}{275}{section.6.7}}
+\newlabel{sec:parallel-prec}{{6.7}{275}{Parallel preconditioners}{section.6.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.1}\rmfamily   Jacobi preconditioning}{275}{subsection.6.7.1}}
+\acronymused{ILU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.2}\rmfamily   The trouble with ILU in parallel}{275}{subsection.6.7.2}}
+\acronymused{ILU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.3}\rmfamily   Block Jacobi methods}{276}{subsection.6.7.3}}
+\newlabel{sec:block-jacobi}{{6.7.3}{276}{Block Jacobi methods}{subsection.6.7.3}{}}
+\acronymused{ILU}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.12}{\ignorespaces Sparsity pattern corresponding to a block Jacobi preconditioner}}{276}{figure.6.12}}
+\newlabel{fig:block-method}{{6.12}{276}{Sparsity pattern corresponding to a block Jacobi preconditioner}{figure.6.12}{}}
+\acronymused{ILU}
+\acronymused{BVP}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.13}{\ignorespaces A partitioned domain with coloured nodes}}{277}{figure.6.13}}
+\newlabel{fig:pilu}{{6.13}{277}{A partitioned domain with coloured nodes}{figure.6.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.4}\rmfamily   Parallel ILU}{277}{subsection.6.7.4}}
+\newlabel{sec:parallel-ilu}{{6.7.4}{277}{Parallel ILU}{subsection.6.7.4}{}}
+\acronymused{ILU}
+\acronymused{ILU}
+\acronymused{ILU}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.14}{\ignorespaces Solving a parallel multicolour ILU in four steps}}{278}{figure.6.14}}
+\newlabel{fig:pilu-solve}{{6.14}{278}{Solving a parallel multicolour ILU in four steps}{figure.6.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.8}\slshape   Ordering strategies and parallelism}{278}{section.6.8}}
+\newlabel{sec:ordering}{{6.8}{278}{Ordering strategies and parallelism}{section.6.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8.1}\rmfamily   Nested dissection}{278}{subsection.6.8.1}}
+\newlabel{sec:dissection}{{6.8.1}{278}{Nested dissection}{subsection.6.8.1}{}}
+\citation{BGSm:96}
+\citation{LiTa:separator}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.15}{\ignorespaces Domain dissection into two unconnected subdomains and a separator}}{279}{figure.6.15}}
+\newlabel{fig:domdecomp}{{6.15}{279}{Domain dissection into two unconnected subdomains and a separator}{figure.6.15}{}}
+\acronymused{BVP}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.16}{\ignorespaces A four-way domain decomposition}}{280}{figure.6.16}}
+\newlabel{fig:domdecomp2}{{6.16}{280}{A four-way domain decomposition}{figure.6.16}{}}
+\citation{LiRoTa:dissection}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.1.1} Domain decomposition}{282}{subsubsection.6.8.1.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.17}{\ignorespaces One-way domain decomposition}}{282}{figure.6.17}}
+\newlabel{fig:domdecomp4}{{6.17}{282}{One-way domain decomposition}{figure.6.17}{}}
+\acronymused{BVP}
+\citation{LiRoTa:dissection}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.1.2} Complexity}{283}{subsubsection.6.8.1.2}}
+\citation{AxPo:dd2}
+\citation{Eij:general}
+\citation{Me:dd}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.1.3} Parallelism}{284}{subsubsection.6.8.1.3}}
+\newlabel{sec:dissect-parallel}{{6.8.1.3}{284}{Parallelism}{subsubsection.6.8.1.3}{}}
+\newlabel{fig:taskqueue}{{11}{284}{Parallelism}{algocfline.11}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.1.4} Preconditioning}{284}{subsubsection.6.8.1.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8.2}\rmfamily   Variable reordering and colouring: independent sets}{284}{subsection.6.8.2}}
+\newlabel{sec:redblackgreen}{{6.8.2}{284}{Variable reordering and colouring: independent sets}{subsection.6.8.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.18}{\ignorespaces Red-black ordering of a the points on a line}}{285}{figure.6.18}}
+\newlabel{fig:red-black-1d}{{6.18}{285}{Red-black ordering of a the points on a line}{figure.6.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.19}{\ignorespaces Red-black solution on a 1d domain}}{286}{figure.6.19}}
+\newlabel{fig:1d-rb-solve}{{6.19}{286}{Red-black solution on a 1d domain}{figure.6.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.20}{\ignorespaces Parallel red-black solution on a 1d domain}}{286}{figure.6.20}}
+\newlabel{fig:1d-rb-solve-par}{{6.20}{286}{Parallel red-black solution on a 1d domain}{figure.6.20}{}}
+\acronymused{BVP}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.21}{\ignorespaces Red-black ordering of the variables of a two-dimensional domain}}{287}{figure.6.21}}
+\newlabel{fig:redblack}{{6.21}{287}{Red-black ordering of the variables of a two-dimensional domain}{figure.6.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8.3}\rmfamily   Irregular iteration spaces}{287}{subsection.6.8.3}}
+\newlabel{sec:iterationspace}{{6.8.3}{287}{Irregular iteration spaces}{subsection.6.8.3}{}}
+\citation{Briggs:CMB}
+\citation{Frigo:2007:oblivious-stencil}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8.4}\rmfamily   Ordering for cache efficiency}{288}{subsection.6.8.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.22}{\ignorespaces First and second step in cache-optimized iteration space traversal}}{288}{figure.6.22}}
+\newlabel{fig:oblivious-cache}{{6.22}{288}{First and second step in cache-optimized iteration space traversal}{figure.6.22}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.9}\slshape   Operator splitting}{288}{section.6.9}}
+\newlabel{eq:heat-recap}{{6.2}{288}{Operator splitting}{equation.6.9.2}{}}
+\newlabel{eq:adi-recap}{{6.3}{288}{Operator splitting}{equation.6.9.3}{}}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {section}{\numberline {6.10}\slshape   Parallelism and implicit operations}{289}{section.6.10}}
+\newlabel{sec:parallel-implicit}{{6.10}{289}{Parallelism and implicit operations}{section.6.10}{}}
+\acronymused{IBVP}
+\newlabel{eq:ex:bidiagonal}{{6.4}{289}{Parallelism and implicit operations}{equation.6.10.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.23}{\ignorespaces The difference stencil of the $L$ factor of the matrix of a two-dimensional \ac {BVP}}}{290}{figure.6.23}}
+\acronymused{BVP}
+\newlabel{fig:laplacelower}{{6.23}{290}{The difference stencil of the $L$ factor of the matrix of a two-dimensional \ac {BVP}}{figure.6.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.10.1}\rmfamily   Wavefronts}{290}{subsection.6.10.1}}
+\newlabel{sec:wavefront}{{6.10.1}{290}{Wavefronts}{subsection.6.10.1}{}}
+\acronymused{BVP}
+\acronymused{BVP}
+\citation{Liu:cudasw2009}
+\acronymused{GPU}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.10.2}\rmfamily   Recursive doubling}{291}{subsection.6.10.2}}
+\newlabel{sec:recdouble}{{6.10.2}{291}{Recursive doubling}{subsection.6.10.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.10.3}\rmfamily   Approximating implicit by explicit operations, series expansion}{292}{subsection.6.10.3}}
+\newlabel{sec:implicit-becomes-explicit}{{6.10.3}{292}{Approximating implicit by explicit operations, series expansion}{subsection.6.10.3}{}}
+\newlabel{eq:neuman-series}{{6.5}{293}{Approximating implicit by explicit operations, series expansion}{equation.6.10.5}{}}
+\newlabel{eq:horner}{{6.6}{293}{Approximating implicit by explicit operations, series expansion}{equation.6.10.6}{}}
+\acronymused{BVP}
+\acronymused{BVP}
+\@writefile{toc}{\contentsline {section}{\numberline {6.11}\slshape   Grid updates}{294}{section.6.11}}
+\acronymused{FEM}
+\acronymused{FDM}
+\newlabel{eq:3p-average}{{6.7}{295}{Grid updates}{equation.6.11.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.24}{\ignorespaces Computation of blocks of grid points over multiple iterations}}{295}{figure.6.24}}
+\newlabel{fig:grid-update-overlap}{{6.24}{295}{Computation of blocks of grid points over multiple iterations}{figure.6.24}{}}
+\citation{ChGe:sstep}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.1}\rmfamily   Analysis}{296}{subsection.6.11.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.2}\rmfamily   Communication and work minimizing strategy}{296}{subsection.6.11.2}}
+\citation{Demmel2008IEEE:avoiding}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.25}{\ignorespaces Computation of blocks of grid points over multiple iterations}}{297}{figure.6.25}}
+\newlabel{fig:grid-update-local}{{6.25}{297}{Computation of blocks of grid points over multiple iterations}{figure.6.25}{}}
+\acronymused{CG}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.26}{\ignorespaces Computation of blocks of grid points over multiple iterations}}{297}{figure.6.26}}
+\newlabel{fig:grid-update-minimal}{{6.26}{297}{Computation of blocks of grid points over multiple iterations}{figure.6.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.12}\slshape   Block algorithms on multicore architectures}{297}{section.6.12}}
+\newlabel{sec:multicore-block}{{6.12}{297}{Block algorithms on multicore architectures}{section.6.12}{}}
+\acronymused{DAG}
+\acronymused{DAG}
+\acronymused{DAG}
+\acronymused{DAG}
+\acronymused{DAG}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.27}{\ignorespaces Graph of task dependencies in a $4\times 4$ Cholesky factorization}}{300}{figure.6.27}}
+\newlabel{fig:chol4dag}{{6.27}{300}{Graph of task dependencies in a $4\times 4$ Cholesky factorization}{figure.6.27}{}}
+\@writefile{toc}{\contentsline {part}{II\hspace  {1em}Applications}{301}{part.2}}
+\citation{frenkel-smit}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}\relax \bfseries   Molecular dynamics}{302}{chapter.7}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:md}{{7}{302}{Molecular dynamics}{chapter.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}\slshape   Force Computation}{303}{section.7.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1.1}\rmfamily   Force Fields}{303}{subsection.7.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1.2}\rmfamily   Computing Short-Range Nonbonded Forces}{304}{subsection.7.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Computing nonbonded forces within a cutoff, $r_c$. To compute forces involving the highlighted particle, only particles in the shaded regions are considered.}}{304}{figure.7.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Cell list method.}}}{304}{figure.7.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Verlet neighbor list method.}}}{304}{figure.7.1}}
+\newlabel{fig:nb}{{7.1}{304}{Computing nonbonded forces within a cutoff, $r_c$. To compute forces involving the highlighted particle, only particles in the shaded regions are considered}{figure.7.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2.1} Cell Lists}{304}{subsubsection.7.1.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2.2} Verlet Neighbor Lists}{305}{subsubsection.7.1.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2.3} Using Cell and Neighbor Lists Together}{305}{subsubsection.7.1.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1.3}\rmfamily   Computing Long-Range Forces}{305}{subsection.7.1.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.3.1} Hierarchical N-body Methods}{305}{subsubsection.7.1.3.1}}
+\citation{frenkel-smit}
+\citation{plimpton}
+\citation{shaw}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.3.2} Particle-Mesh Methods}{306}{subsubsection.7.1.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.3.3} Ewald Method}{306}{subsubsection.7.1.3.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}\slshape   Parallel Decompositions}{307}{section.7.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}\rmfamily   Atom Decompositions}{307}{subsection.7.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Atom decomposition, showing a force matrix of 16 particles distributed among 8 processors. A dot represents a nonzero entry in the force matrix. On the left, the matrix is symmetric; on the right, only one element of a pair of skew-symmetric elements is computed, to take advantage of Newton's third law.}}{307}{figure.7.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Force matrix.}}}{307}{figure.7.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Force matrix, redundancies removed.}}}{307}{figure.7.2}}
+\newlabel{fig:atom}{{7.2}{307}{Atom decomposition, showing a force matrix of 16 particles distributed among 8 processors. A dot represents a nonzero entry in the force matrix. On the left, the matrix is symmetric; on the right, only one element of a pair of skew-symmetric elements is computed, to take advantage of Newton's third law}{figure.7.2}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Atom decomposition time step}}{308}{algorithm.1}}
+\newlabel{alg:atom1}{{1}{308}{Atom Decompositions}{algorithm.1}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Atom decomposition time step, without redundant calculations}}{308}{algorithm.2}}
+\newlabel{alg:atom2}{{2}{308}{Atom Decompositions}{algorithm.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}\rmfamily   Force Decompositions}{308}{subsection.7.2.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces Force decomposition, showing a force matrix of 16 particles and forces partitioned among 16 processors. }}{309}{figure.7.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Force matrix.}}}{309}{figure.7.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Force matrix, redundancies removed.}}}{309}{figure.7.3}}
+\newlabel{fig:force}{{7.3}{309}{Force decomposition, showing a force matrix of 16 particles and forces partitioned among 16 processors}{figure.7.3}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Force decomposition time step}}{309}{algorithm.3}}
+\newlabel{alg:force1}{{3}{309}{Force Decompositions}{algorithm.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Force decomposition, with permuted columns in the force matrix. Note that columns 3, 7, 11, 15 are now in the block column corresponding to processors 3, 7, 11, 15 (the same indices), etc.}}{310}{figure.7.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Force matrix.}}}{310}{figure.7.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Force matrix, redundancies removed.}}}{310}{figure.7.4}}
+\newlabel{fig:force-perm}{{7.4}{310}{Force decomposition, with permuted columns in the force matrix. Note that columns 3, 7, 11, 15 are now in the block column corresponding to processors 3, 7, 11, 15 (the same indices), etc}{figure.7.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.3}\rmfamily   Spatial Decompositions}{310}{subsection.7.2.3}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Force decomposition time step, with permuted columns of force matrix}}{311}{algorithm.4}}
+\newlabel{alg:force2}{{4}{311}{Force Decompositions}{algorithm.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces Spatial decomposition, showing particles in a 2-D computational box, (a) partitioned into 64 cells, (b) import region for one cell.}}{311}{figure.7.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Decomposition into 64 cells.}}}{311}{figure.7.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Import region for one cell.}}}{311}{figure.7.5}}
+\newlabel{fig:spatial}{{7.5}{311}{Spatial decomposition, showing particles in a 2-D computational box, (a) partitioned into 64 cells, (b) import region for one cell}{figure.7.5}{}}
+\citation{shaw}
+\citation{shaw}
+\citation{shaw}
+\citation{shaw}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces Spatial decomposition time step}}{312}{algorithm.5}}
+\newlabel{alg:spatial}{{5}{312}{Spatial Decompositions}{algorithm.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.4}\rmfamily   Neutral Territory Methods}{312}{subsection.7.2.4}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {6}{\ignorespaces Neutral territory method time step}}{312}{algorithm.6}}
+\newlabel{alg:nt}{{6}{312}{Neutral Territory Methods}{algorithm.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Neutral territory method, showing particles in a 2-D computational box and the import region (shaded) for one cell (center square). This Figure can be compared directly to the spatial decomposition case of Fig.\nobreakspace  {}\ref  {fig:spatial}(b). See Shaw \cite  {shaw} for additional details. }}{313}{figure.7.6}}
+\newlabel{fig:nt}{{7.6}{313}{Neutral territory method, showing particles in a 2-D computational box and the import region (shaded) for one cell (center square). This Figure can be compared directly to the spatial decomposition case of Fig.~\ref {fig:spatial}(b). See Shaw \cite {shaw} for additional details}{figure.7.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}\slshape   Parallel Fast Fourier Transform}{313}{section.7.3}}
+\newlabel{sec:fft}{{7.3}{313}{Parallel Fast Fourier Transform}{section.7.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}\rmfamily   Parallel 1-D FFT}{314}{subsection.7.3.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.1.1} 1-D FFT without Transpose}{314}{subsubsection.7.3.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.1.2} 1-D FFT with Transpose}{314}{subsubsection.7.3.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}\rmfamily   Parallel 3-D FFT}{314}{subsection.7.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.2.1} 3-D FFT with Block Decomposition}{314}{subsubsection.7.3.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.7}{\ignorespaces Data flow diagram for 1-D FFT for 16 points. The shaded regions show a decomposition for 4 processors (one processor per region). In this parallelization, the first two FFT stages have no communication; the last two FFT stages do have communication.}}{315}{figure.7.7}}
+\newlabel{fig:fft1}{{7.7}{315}{Data flow diagram for 1-D FFT for 16 points. The shaded regions show a decomposition for 4 processors (one processor per region). In this parallelization, the first two FFT stages have no communication; the last two FFT stages do have communication}{figure.7.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.2.2} 3-D FFT with Slab Decomposition}{315}{subsubsection.7.3.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.2.3} 3-D FFT with Pencil Decomposition}{315}{subsubsection.7.3.2.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.8}{\ignorespaces 1-D FFT with transpose. The first two stages do not involve communication. The data is then transposed among the processors. As a result, the second two stages also do not involve communication.}}{316}{figure.7.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Data flow diagram (shown without horizontal lines for clarity) for 1-D FFT for 16 points.}}}{316}{figure.7.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Partitioning of the indices before (left) and after (right) the transpose.}}}{316}{figure.7.8}}
+\newlabel{fig:fft2}{{7.8}{316}{1-D FFT with transpose. The first two stages do not involve communication. The data is then transposed among the processors. As a result, the second two stages also do not involve communication}{figure.7.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}\slshape   Integration for Molecular Dynamics}{316}{section.7.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.9}{\ignorespaces Three data decompositions for 3-D FFTs.}}{317}{figure.7.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Block Decomposition}}}{317}{figure.7.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Slab Decomposition}}}{317}{figure.7.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Pencil Decomposition}}}{317}{figure.7.9}}
+\newlabel{fig:fft3}{{7.9}{317}{Three data decompositions for 3-D FFTs}{figure.7.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.10}{\ignorespaces Phase plot of the solution of the simple harmonic oscillator for three methods with initial value (1,0), time step 0.05, and 500 steps. For explicit Euler, the solution spirals outward; for implicit Euler, the solution spirals inward; the total energy is best preserved with the St\"{o}rmer-Verlet method.}}{318}{figure.7.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Explicit Euler}}}{318}{figure.7.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Implicit Euler}}}{318}{figure.7.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {St\"{o}rmer-Verlet Method}}}{318}{figure.7.10}}
+\newlabel{fig:integ}{{7.10}{318}{Phase plot of the solution of the simple harmonic oscillator for three methods with initial value (1,0), time step 0.05, and 500 steps. For explicit Euler, the solution spirals outward; for implicit Euler, the solution spirals inward; the total energy is best preserved with the St\"{o}rmer-Verlet method}{figure.7.10}{}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\citation{Kumar:parcomp-book}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}\relax \bfseries   Combinatorial algorithms}{320}{chapter.8}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:combinatorics}{{8}{320}{Combinatorial algorithms}{chapter.8}{}}
+\newlabel{sec:sorting}{{8}{320}{Combinatorial algorithms}{chapter.8}{}}
+\undonewlabel{acro:AMR}
+\newlabel{acro:AMR}{{8}{320}{Combinatorial algorithms}{section*.98}{}}
+\acronymused{AMR}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}\slshape   Brief introduction to sorting}{320}{section.8.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1.1}\rmfamily   Complexity}{320}{subsection.8.1.1}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces The quicksort algorithm}}{321}{algocf.2}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {3}{\ignorespaces The bubble sort algorithm}}{321}{algocf.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1.2}\rmfamily   Sorting networks}{321}{subsection.8.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1.3}\rmfamily   Parallel complexity}{321}{subsection.8.1.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}\slshape   Odd-even transposition sort}{321}{section.8.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.1}{\ignorespaces Bubble sort as a sorting network}}{322}{figure.8.1}}
+\newlabel{fig:bubble-pass}{{8.1}{322}{Bubble sort as a sorting network}{figure.8.1}{}}
+\newlabel{ex:swapsort}{{8.1}{322}{Odd-even transposition sort}{excounter.8.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.2}{\ignorespaces Overlapping passes in the bubble sort network}}{323}{figure.8.2}}
+\newlabel{fig:bubble-collapse}{{8.2}{323}{Overlapping passes in the bubble sort network}{figure.8.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.3}\slshape   Quicksort}{323}{section.8.3}}
+\newlabel{sec:quicksort}{{8.3}{323}{Quicksort}{section.8.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.1}\rmfamily   Quicksort in shared memory}{324}{subsection.8.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.2}\rmfamily   Quicksort on a hypercube}{324}{subsection.8.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.3}\rmfamily   Quicksort on a general parallel processor}{325}{subsection.8.3.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.4}\slshape   Bitonic sort}{325}{section.8.4}}
+\newlabel{app:bitonicsort}{{8.4}{325}{Bitonic sort}{section.8.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces Illustration of a splitting a bitonic sequence}}{325}{figure.8.3}}
+\newlabel{eq:bitonic-split}{{8.1}{325}{Bitonic sort}{equation.8.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.4}{\ignorespaces Illustration of a bitonic network that sorts a bitonic sequence of length\nobreakspace  {}16}}{326}{figure.8.4}}
+\newlabel{fig:bitonic8421}{{8.4}{326}{Illustration of a bitonic network that sorts a bitonic sequence of length~16}{figure.8.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.5}{\ignorespaces Full bitonic sort for 16 elements}}{327}{figure.8.5}}
+\newlabel{fig:full-bitonic}{{8.5}{327}{Full bitonic sort for 16 elements}{figure.8.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.5}\slshape   Prime number finding}{327}{section.8.5}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {9}\relax \bfseries   Graph analytics}{328}{chapter.9}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:graphalgorithms}{{9}{328}{Graph analytics}{chapter.9}{}}
+\newlabel{sec:graph-analytics}{{9}{328}{Graph analytics}{chapter.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.1}\slshape   Traditional graph algorithms}{328}{section.9.1}}
+\newlabel{sec:graph-alg}{{9.1}{328}{Traditional graph algorithms}{section.9.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1.1}\rmfamily   Shortest path algorithms}{328}{subsection.9.1.1}}
+\undonewlabel{acro:BFS}
+\newlabel{acro:BFS}{{9.1.1}{329}{Shortest path algorithms}{section*.99}{}}
+\acronymused{BFS}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1.2}\rmfamily   Parallelization}{330}{subsection.9.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1.3}\rmfamily   Floyd-Warshall all-pairs shortest path}{330}{subsection.9.1.3}}
+\newlabel{sec:floyd}{{9.1.3}{330}{Floyd-Warshall all-pairs shortest path}{subsection.9.1.3}{}}
+\newlabel{eq:floyd-allpairs}{{9.1}{331}{Floyd-Warshall all-pairs shortest path}{equation.9.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1.4}\rmfamily   Spanning trees}{332}{subsection.9.1.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.1}{\ignorespaces Illustration of the correctness of Dijkstra's algorithm}}{332}{figure.9.1}}
+\newlabel{fig:dijkstra-proof}{{9.1}{332}{Illustration of the correctness of Dijkstra's algorithm}{figure.9.1}{}}
+\citation{Erdos:randomgraph}
+\@writefile{toc}{\contentsline {section}{\numberline {9.2}\slshape   `Real world' graphs}{333}{section.9.2}}
+\acronymused{PDE}
+\acronymused{FDM}
+\acronymused{FEM}
+\acronymused{FEM}
+\citation{Langville2005eigenvector}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2.1}\rmfamily   Properties of random graphs}{334}{subsection.9.2.1}}
+\acronymused{FEM}
+\@writefile{toc}{\contentsline {section}{\numberline {9.3}\slshape   Hypertext algorithms}{334}{section.9.3}}
+\newlabel{sec:pagerank}{{9.3}{334}{Hypertext algorithms}{section.9.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.1}\rmfamily   HITS}{334}{subsection.9.3.1}}
+\citation{PageBrin:PageRank}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.2}\rmfamily   PageRank}{335}{subsection.9.3.2}}
+\citation{OgAi:sparsestorage}
+\acronymused{BVP}
+\citation{Yoo:2005:scalable-bfs}
+\@writefile{toc}{\contentsline {section}{\numberline {9.4}\slshape   Large-scale computational graph theory}{337}{section.9.4}}
+\newlabel{sec:random-graph-product}{{9.4}{337}{Large-scale computational graph theory}{section.9.4}{}}
+\acronymused{BFS}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {10}\relax \bfseries   N-body problems}{338}{chapter.10}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:discrete}{{10}{338}{N-body problems}{chapter.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10.1}{\ignorespaces Summing all forces on a particle}}{338}{figure.10.1}}
+\citation{BarnesHut}
+\@writefile{toc}{\contentsline {section}{\numberline {10.1}\slshape   The Barnes-Hut algorithm}{339}{section.10.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10.2}{\ignorespaces Recursive subdivision of a domain in quadrants with levels indicated (left); actual subdivision with one particle per box (right)}}{339}{figure.10.2}}
+\newlabel{fig:bh-quadrants}{{10.2}{339}{Recursive subdivision of a domain in quadrants with levels indicated (left); actual subdivision with one particle per box (right)}{figure.10.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10.3}{\ignorespaces Boxes with constant distance/diameter ratio}}{340}{figure.10.3}}
+\newlabel{fig:bh-cellratio}{{10.3}{340}{Boxes with constant distance/diameter ratio}{figure.10.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.2}\slshape   The Fast Multipole Method}{340}{section.10.2}}
+\undonewlabel{acro:FMM}
+\newlabel{acro:FMM}{{10.2}{340}{The Fast Multipole Method}{section*.101}{}}
+\acronymused{FMM}
+\acronymused{FMM}
+\acronymused{FMM}
+\@writefile{toc}{\contentsline {section}{\numberline {10.3}\slshape   Full computation}{340}{section.10.3}}
+\citation{Katzenelson:nbody}
+\@writefile{toc}{\contentsline {section}{\numberline {10.4}\slshape   Implementation}{341}{section.10.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4.1}\rmfamily   Vectorization}{341}{subsection.10.4.1}}
+\acronymused{SSE}
+\acronymused{AVX}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4.2}\rmfamily   Shared memory implementation}{341}{subsection.10.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4.3}\rmfamily   Distributed memory implementation}{341}{subsection.10.4.3}}
+\acronymused{SFC}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {11}\relax \bfseries   Monte Carlo Methods}{343}{chapter.11}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:montecarlo}{{11}{343}{Monte Carlo Methods}{chapter.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.1}\slshape   Motivation}{343}{section.11.1}}
+\citation{BlackScholes}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.1.1}\rmfamily   What is the attraction?}{344}{subsection.11.1.1}}
+\citation{Knuth:vol2}
+\@writefile{toc}{\contentsline {section}{\numberline {11.2}\slshape   Parallel Random Number Generation}{345}{section.11.2}}
+\newlabel{sec:parallel-random}{{11.2}{345}{Parallel Random Number Generation}{section.11.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2.1}\rmfamily   Sequential random number generators}{345}{subsection.11.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2.2}\rmfamily   Parallel random number generation}{345}{subsection.11.2.2}}
+\citation{Mascagni:SPRNG}
+\citation{LEcuyer:multiple-random}
+\citation{Cipra:Ising}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {11.2.2.1} Master-worker generator}{346}{subsubsection.11.2.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {11.2.2.2} Sequence splitting solutions}{346}{subsubsection.11.2.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {11.2.2.3} Blocked random number generators}{346}{subsubsection.11.2.2.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.3}\slshape   Examples}{346}{section.11.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.3.1}\rmfamily   Monte Carlo simulation of the Ising model}{346}{subsection.11.3.1}}
+\newlabel{sec:ising}{{11.3.1}{346}{Monte Carlo simulation of the Ising model}{subsection.11.3.1}{}}
+\citation{Metropolis}
+\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Appendices}{349}{part.3}}
+\citation{golo83}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {12}\relax \bfseries   Linear algebra}{351}{chapter.12}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:norms}{{12}{351}{Linear algebra}{chapter.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.1}\slshape   Norms}{351}{section.12.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.1.1}\rmfamily   Vector norms}{351}{subsection.12.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.1.2}\rmfamily   Matrix norms}{352}{subsection.12.1.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.2}\slshape   Gram-Schmidt orthogonalization}{352}{section.12.2}}
+\newlabel{app:gram-schmidt}{{12.2}{352}{Gram-Schmidt orthogonalization}{section.12.2}{}}
+\acronymused{GS}
+\acronymused{GS}
+\acronymused{GS}
+\acronymused{GS}
+\acronymused{GS}
+\undonewlabel{acro:MGS}
+\newlabel{acro:MGS}{{12.1}{353}{Gram-Schmidt orthogonalization}{section*.102}{}}
+\acronymused{MGS}
+\acronymused{MGS}
+\acronymused{GS}
+\undonewlabel{acro:CGS}
+\newlabel{acro:CGS}{{12.1}{353}{Gram-Schmidt orthogonalization}{section*.103}{}}
+\acronymused{CGS}
+\acronymused{CGS}
+\acronymused{MGS}
+\@writefile{toc}{\contentsline {section}{\numberline {12.3}\slshape   The power method}{354}{section.12.3}}
+\newlabel{app:power-method}{{12.3}{354}{The power method}{section.12.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.4}\slshape   Nonnegative matrices; Perron vectors}{356}{section.12.4}}
+\newlabel{app:perron}{{12.4}{356}{Nonnegative matrices; Perron vectors}{section.12.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.5}\slshape   The Gershgorin theorem}{356}{section.12.5}}
+\newlabel{app:gershgorin}{{12.5}{356}{The Gershgorin theorem}{section.12.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.6}\slshape   Householder reflectors}{357}{section.12.6}}
+\newlabel{app:reflector}{{12.6}{357}{Householder reflectors}{section.12.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12.1}{\ignorespaces Householder reflector}}{357}{figure.12.1}}
+\newlabel{fig:reflector}{{12.1}{357}{Householder reflector}{figure.12.1}{}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {13}\relax \bfseries   Complexity}{358}{chapter.13}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:complexity}{{13}{358}{Complexity}{chapter.13}{}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {14}\relax \bfseries   Partial Differential Equations}{359}{chapter.14}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:pde}{{14}{359}{Partial Differential Equations}{chapter.14}{}}
+\acronymused{HPC}
+\@writefile{toc}{\contentsline {section}{\numberline {14.1}\slshape   Partial derivatives}{359}{section.14.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.2}\slshape   Poisson or Laplace Equation}{359}{section.14.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.3}\slshape   Heat Equation}{360}{section.14.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.4}\slshape   Steady state}{360}{section.14.4}}
+\newlabel{app:steadystate}{{14.4}{360}{Steady state}{section.14.4}{}}
+\acronymused{IBVP}
+\acronymused{BVP}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {15}\relax \bfseries   Taylor series}{361}{chapter.15}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:taylor}{{15}{361}{Taylor series}{chapter.15}{}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {16}\relax \bfseries   Graph theory}{364}{chapter.16}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:graph}{{16}{364}{Graph theory}{chapter.16}{}}
+\acronymused{HPC}
+\@writefile{toc}{\contentsline {section}{\numberline {16.1}\slshape   Definitions}{364}{section.16.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16.1}{\ignorespaces A simple graph}}{364}{figure.16.1}}
+\newlabel{fig:graph1}{{16.1}{364}{A simple graph}{figure.16.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16.2}{\ignorespaces Shortest paths}}{365}{figure.16.2}}
+\newlabel{fig:graph2}{{16.2}{365}{Shortest paths}{figure.16.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {16.2}\slshape   Common types of graphs}{365}{section.16.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {16.2.1}\rmfamily   Directed Acyclic Graphs}{365}{subsection.16.2.1}}
+\acronymused{DAG}
+\citation{jopl94}
+\citation{Luby:parallel}
+\@writefile{toc}{\contentsline {subsection}{\numberline {16.2.2}\rmfamily   Trees}{366}{subsection.16.2.2}}
+\acronymused{DAG}
+\@writefile{toc}{\contentsline {section}{\numberline {16.3}\slshape   Graph colouring and independent sets}{366}{section.16.3}}
+\newlabel{sec:independent}{{16.3}{366}{Graph colouring and independent sets}{section.16.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {16.4}\slshape   Graphs and matrices}{366}{section.16.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16.3}{\ignorespaces A dense and a sparse matrix, both with their adjacency graph}}{367}{figure.16.3}}
+\newlabel{fig:matrix-graph}{{16.3}{367}{A dense and a sparse matrix, both with their adjacency graph}{figure.16.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {16.4.1}\rmfamily   Permutation}{367}{subsection.16.4.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {16.4.2}\rmfamily   Irreducibility}{368}{subsection.16.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {16.4.3}\rmfamily   Graph closure}{368}{subsection.16.4.3}}
+\newlabel{app:graph-closure}{{16.4.3}{368}{Graph closure}{subsection.16.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {16.4.4}\rmfamily   Graph operations in linear algebra}{368}{subsection.16.4.4}}
+\newlabel{app:graph-mult}{{16.4.4}{368}{Graph operations in linear algebra}{subsection.16.4.4}{}}
+\citation{Kung:pegasus2009}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {16.4.4.1} Markov chains}{369}{subsubsection.16.4.4.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {16.4.4.2} General matrix-vector product}{369}{subsubsection.16.4.4.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {16.5}\slshape   Spectral graph theory}{370}{section.16.5}}
+\newlabel{app:fiedler}{{16.5}{370}{Spectral graph theory}{section.16.5}{}}
+\citation{Spielman:spectral-graph-theory}
+\citation{Fiedler:75-property}
+\citation{BePl:book}
+\citation{Spielman96spectralpartitioning}
+\@writefile{toc}{\contentsline {subsection}{\numberline {16.5.1}\rmfamily   Domain decomposition through Laplacian matrices}{371}{subsection.16.5.1}}
+\newlabel{sec:fiedler-vector}{{16.5.1}{371}{Domain decomposition through Laplacian matrices}{subsection.16.5.1}{}}
+\acronymused{PDE}
+\acronymused{PDE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {16.5.2}\rmfamily   Cheeger's inequality}{371}{subsection.16.5.2}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {17}\relax \bfseries   Automata theory}{373}{chapter.17}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:fsa}{{17}{373}{Automata theory}{chapter.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {17.1}\slshape   Finite State Automata}{373}{section.17.1}}
+\acronymused{FSA}
+\@writefile{toc}{\contentsline {section}{\numberline {17.2}\slshape   General discussion}{373}{section.17.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17.1}{\ignorespaces A simple real-life automaton}}{374}{figure.17.1}}
+\newlabel{fig:automaton}{{17.1}{374}{A simple real-life automaton}{figure.17.1}{}}
+\acronymused{FSA}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {18}\relax \bfseries   Parallel Prefix}{375}{chapter.18}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:prefix}{{18}{375}{Parallel Prefix}{chapter.18}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {18.1}\slshape   Parallel prefix}{375}{section.18.1}}
+\citation{Blelloc:segmented-report}
+\@writefile{lof}{\contentsline {figure}{\numberline {18.1}{\ignorespaces A prefix operation applied to 8 elements}}{376}{figure.18.1}}
+\newlabel{fig:prefix}{{18.1}{376}{A prefix operation applied to 8 elements}{figure.18.1}{}}
+\acronymused{SIMD}
+\@writefile{toc}{\contentsline {section}{\numberline {18.2}\slshape   Sparse matrix vector product as parallel prefix}{376}{section.18.2}}
+\newlabel{sec:spmvp-prefix}{{18.2}{376}{Sparse matrix vector product as parallel prefix}{section.18.2}{}}
+\@writefile{toc}{\contentsline {part}{IV\hspace  {1em}Tutorials}{379}{part.4}}
+\newlabel{app:practical}{{IV}{380}{Tutorials}{part.4}{}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {19}\relax \bfseries   Unix intro}{381}{chapter.19}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{tut:unix}{{19}{381}{Unix intro}{chapter.19}{}}
+\acronymused{OS}
+\acronymused{OS}
+\@writefile{toc}{\contentsline {section}{\numberline {19.1}\slshape   Files and such}{381}{section.19.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.1.1}\rmfamily   Looking at files}{381}{subsection.19.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.1.2}\rmfamily   Directories}{383}{subsection.19.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.1.3}\rmfamily   Permissions}{385}{subsection.19.1.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.1.4}\rmfamily   Wildcards}{387}{subsection.19.1.4}}
+\newlabel{sec:shell-wildcard}{{19.1.4}{387}{Wildcards}{subsection.19.1.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.2}\slshape   Text searching and regular expressions}{387}{section.19.2}}
+\newlabel{sec:regexp}{{19.2}{387}{Text searching and regular expressions}{section.19.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.2.1}\rmfamily   Stream editing with \texttt {sed}}{389}{subsection.19.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.2.2}\rmfamily   Cutting up lines with \texttt {cut}}{389}{subsection.19.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.3}\slshape   Command execution}{390}{section.19.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.3.1}\rmfamily   Search paths}{390}{subsection.19.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.3.2}\rmfamily   Redirection}{390}{subsection.19.3.2}}
+\newlabel{sec:unixpipe}{{19.3.2}{390}{Redirection}{subsection.19.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {19.3.2.1} Input redirection}{391}{subsubsection.19.3.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {19.3.2.2} Output redirection}{391}{subsubsection.19.3.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {19.3.2.3} Standard files}{391}{subsubsection.19.3.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.3.3}\rmfamily   Command sequencing}{391}{subsection.19.3.3}}
+\newlabel{tut:unix-bq}{{19.3.3}{391}{Command sequencing}{subsection.19.3.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {19.3.3.1} Simple sequencing}{391}{subsubsection.19.3.3.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {19.3.3.2} Pipelining}{392}{subsubsection.19.3.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {19.3.3.3} Backquoting}{392}{subsubsection.19.3.3.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {19.3.3.4} Grouping in a subshell}{392}{subsubsection.19.3.3.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.3.4}\rmfamily   Exit status}{393}{subsection.19.3.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.3.5}\rmfamily   Processes}{394}{subsection.19.3.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.3.6}\rmfamily   Shell customization}{395}{subsection.19.3.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.4}\slshape   Scripting}{395}{section.19.4}}
+\newlabel{sec:unix-script}{{19.4}{395}{Scripting}{section.19.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.4.1}\rmfamily   Shell environent variables}{395}{subsection.19.4.1}}
+\newlabel{tut:shellvars}{{19.4.1}{395}{Shell environent variables}{subsection.19.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.4.2}\rmfamily   Control structures}{397}{subsection.19.4.2}}
+\newlabel{sec:shell-control}{{19.4.2}{397}{Control structures}{subsection.19.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.4.3}\rmfamily   Scripting}{398}{subsection.19.4.3}}
+\newlabel{sec:shell-scripting}{{19.4.3}{398}{Scripting}{subsection.19.4.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.5}\slshape   Expansion}{398}{section.19.5}}
+\newlabel{tut:unix-expansion}{{19.5}{398}{Expansion}{section.19.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.6}\slshape   Startup files}{400}{section.19.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.7}\slshape   Shell interaction}{401}{section.19.7}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.8}\slshape   The system and other users}{401}{section.19.8}}
+\newlabel{sec:users}{{19.8}{401}{The system and other users}{section.19.8}{}}
+\citation{AWK:awk}
+\citation{OReilly:sedawk}
+\@writefile{toc}{\contentsline {section}{\numberline {19.9}\slshape   The {\tt  sed} and {\tt  awk} tools}{402}{section.19.9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.9.1}\rmfamily   \tt  sed}{402}{subsection.19.9.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {19.9.2}\rmfamily   \tt  awk}{402}{subsection.19.9.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.10}\slshape   Review questions}{403}{section.19.10}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {20}\relax \bfseries   Compilers and libraries}{404}{chapter.20}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{tut:compile}{{20}{404}{Compilers and libraries}{chapter.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {20.1}\slshape   An introduction to binary files}{404}{section.20.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {20.2}\slshape   Simple compilation}{404}{section.20.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {20.3}\slshape   Libraries}{405}{section.20.3}}
+\citation{OReilly-GnuMake}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {21}\relax \bfseries   Managing projects with Make}{408}{chapter.21}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{tut:gnumake}{{21}{408}{Managing projects with Make}{chapter.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {21.1}\slshape   A simple example}{408}{section.21.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {21.1.1}\rmfamily   C}{408}{subsection.21.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {21.1.2}\rmfamily   Fortran}{410}{subsection.21.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {21.1.3}\rmfamily   About the make file}{411}{subsection.21.1.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {21.2}\slshape   Variables and template rules}{411}{section.21.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {21.2.1}\rmfamily   Makefile variables}{412}{subsection.21.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {21.2.2}\rmfamily   Template rules}{413}{subsection.21.2.2}}
+\newlabel{sec:make-template}{{21.2.2}{413}{Template rules}{subsection.21.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {21.2.3}\rmfamily   Wildcards}{414}{subsection.21.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {21.2.4}\rmfamily   Conditionals}{414}{subsection.21.2.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {21.3}\slshape   Miscellania}{415}{section.21.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {21.3.1}\rmfamily   What does this makefile do?}{415}{subsection.21.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {21.3.2}\rmfamily   Phony targets}{416}{subsection.21.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {21.3.3}\rmfamily   Predefined variables and rules}{416}{subsection.21.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {21.3.4}\rmfamily   Using the target as prerequisite}{416}{subsection.21.3.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {21.4}\slshape   Shell scripting in a Makefile}{417}{section.21.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {21.5}\slshape   Practical tips for using Make}{418}{section.21.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {21.6}\slshape   A Makefile for \LaTeX  }{419}{section.21.6}}
+\newlabel{sec:latex-make}{{21.6}{419}{A Makefile for \LaTeX }{section.21.6}{}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {22}\relax \bfseries   Source code control}{420}{chapter.22}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{tut:svn}{{22}{420}{Source code control}{chapter.22}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {22.1}\slshape   Workflow in source code control systems}{420}{section.22.1}}
+\newlabel{it:commit}{{22.1}{421}{Workflow in source code control systems}{section.22.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22.1}{\ignorespaces Workflow in traditional source code control systems such as Subversion}}{421}{figure.22.1}}
+\newlabel{fig:svn}{{22.1}{421}{Workflow in traditional source code control systems such as Subversion}{figure.22.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22.2}{\ignorespaces Workflow in distributed source code control systems such as Mercurial}}{422}{figure.22.2}}
+\newlabel{fig:hg}{{22.2}{422}{Workflow in distributed source code control systems such as Mercurial}{figure.22.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {22.2}\slshape   Subversion or SVN}{422}{section.22.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {22.2.1}\rmfamily   Create and populate a repository}{422}{subsection.22.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {22.2.2}\rmfamily   New files}{423}{subsection.22.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {22.2.3}\rmfamily   Conflicts}{424}{subsection.22.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {22.2.4}\rmfamily   Inspecting the history}{425}{subsection.22.2.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {22.2.5}\rmfamily   Shuffling files around}{426}{subsection.22.2.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {22.2.6}\rmfamily   Branching and merging}{427}{subsection.22.2.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {22.2.7}\rmfamily   Repository browsers}{428}{subsection.22.2.7}}
+\@writefile{toc}{\contentsline {section}{\numberline {22.3}\slshape   Mercurial (hg) and Git}{429}{section.22.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {22.3.1}\rmfamily   Create and populate a repository}{429}{subsection.22.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {22.3.2}\rmfamily   New files}{429}{subsection.22.3.2}}
+\newlabel{sec:hg-push}{{22.3.2}{429}{New files}{subsection.22.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {22.3.3}\rmfamily   Conflicts}{432}{subsection.22.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {22.3.4}\rmfamily   Inspecting the history}{434}{subsection.22.3.4}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {23}\relax \bfseries   Scientific Data Storage}{436}{chapter.23}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{tut:hdf5}{{23}{436}{Scientific Data Storage}{chapter.23}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.1}\slshape   Introduction to HDF5}{436}{section.23.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.2}\slshape   Creating a file}{437}{section.23.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.3}\slshape   Datasets}{438}{section.23.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.4}\slshape   Writing the data}{440}{section.23.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.5}\slshape   Reading}{441}{section.23.5}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {24}\relax \bfseries   Scientific Libraries}{442}{chapter.24}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{tut:petsc}{{24}{442}{Scientific Libraries}{chapter.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {24.1}\slshape   The Portable Extendable Toolkit for Scientific Computing}{442}{section.24.1}}
+\acronymused{PDE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {24.1.1}\rmfamily   What is in PETSc?}{442}{subsection.24.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {24.1.2}\rmfamily   Design of PETSc}{443}{subsection.24.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {24.1.3}\rmfamily   Small examples}{443}{subsection.24.1.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.1.3.1} Program structure}{444}{subsubsection.24.1.3.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.1.3.2} Vectors}{445}{subsubsection.24.1.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.1.3.3} Matrices}{445}{subsubsection.24.1.3.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.1.3.4} Matrix-vector operations}{446}{subsubsection.24.1.3.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.1.3.5} Solvers}{446}{subsubsection.24.1.3.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {24.1.4}\rmfamily   A realistic program}{447}{subsection.24.1.4}}
+\acronymused{PDE}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.1.4.1} Construction of the coefficient matrix}{447}{subsubsection.24.1.4.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.1.4.2} Filling in matrix elements}{447}{subsubsection.24.1.4.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.1.4.3} Finite Element Matrix assembly}{449}{subsubsection.24.1.4.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.1.4.4} Linear system solver}{449}{subsubsection.24.1.4.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {24.1.5}\rmfamily   Quick experimentation}{449}{subsection.24.1.5}}
+\citation{Lawson:blas}
+\citation{BLAS2}
+\citation{BLAS3}
+\citation{Lawson:blas}
+\citation{reference-blas}
+\citation{Choi:scalapack}
+\citation{scalapack-users-guide}
+\citation{PLAPACK}
+\citation{PLAPACK:UG}
+\citation{Elemental:TOMS}
+\@writefile{toc}{\contentsline {section}{\numberline {24.2}\slshape   Libraries for dense linear algebra: BLAS, Lapack, Scalapack}{450}{section.24.2}}
+\undonewlabel{acro:BLAS}
+\newlabel{acro:BLAS}{{24.2}{450}{Libraries for dense linear algebra: BLAS, Lapack, Scalapack}{section*.106}{}}
+\acronymused{BLAS}
+\@writefile{toc}{\contentsline {subsection}{\numberline {24.2.1}\rmfamily   Some general remarks}{450}{subsection.24.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.2.1.1} The Fortran heritage}{450}{subsubsection.24.2.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.2.1.2} Routine naming}{451}{subsubsection.24.2.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.2.1.3} Data formats}{451}{subsubsection.24.2.1.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.2.1.4} Lapack operations}{451}{subsubsection.24.2.1.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.2.1.5} BLAS matrix storage}{452}{subsubsection.24.2.1.5}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {24.2.1.5.1} \bf  Array indexing}{452}{paragraph.24.2.1.5.1}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {24.2.1.5.2} \bf  Fortran column-major ordering}{452}{paragraph.24.2.1.5.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {24.1}{\ignorespaces Column-major storage of an array in Fortran}}{453}{figure.24.1}}
+\newlabel{fig:densearray}{{24.1}{453}{Column-major storage of an array in Fortran}{figure.24.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {24.2.1.6} Submatrices and the {\tt  LDA} parameter}{453}{subsubsection.24.2.1.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {24.2}{\ignorespaces A subblock out of a larger matrix}}{453}{figure.24.2}}
+\newlabel{fig:lda1}{{24.2}{453}{A subblock out of a larger matrix}{figure.24.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {24.3}{\ignorespaces A subblock out of a larger matrix, using {\tt  LDA}}}{454}{figure.24.3}}
+\newlabel{fig:lda2}{{24.3}{454}{A subblock out of a larger matrix, using {\tt LDA}}{figure.24.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {24.2.2}\rmfamily   Performance issues}{454}{subsection.24.2.2}}
+\undonewlabel{acro:API}
+\newlabel{acro:API}{{24.2.2}{454}{Performance issues}{section*.107}{}}
+\acronymused{API}
+\@writefile{toc}{\contentsline {subsection}{\numberline {24.2.3}\rmfamily   Some simple examples}{454}{subsection.24.2.3}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {25}\relax \bfseries   Plotting with GNUplot}{457}{chapter.25}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{tut:gnuplot}{{25}{457}{Plotting with GNUplot}{chapter.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.1}\slshape   Usage modes}{457}{section.25.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.2}\slshape   Plotting}{458}{section.25.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.2.1}\rmfamily   Plotting curves}{458}{subsection.25.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.2.2}\rmfamily   Plotting data points}{458}{subsection.25.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.2.3}\rmfamily   Customization}{458}{subsection.25.2.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.3}\slshape   Workflow}{459}{section.25.3}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {26}\relax \bfseries   Good coding practices}{460}{chapter.26}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{tut:coding}{{26}{460}{Good coding practices}{chapter.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {26.1}\slshape   Defensive programming}{460}{section.26.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {26.1.1}\rmfamily   Assertions}{460}{subsection.26.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {26.1.1.1} The C \n {assert} macro}{461}{subsubsection.26.1.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {26.1.1.2} An assert macro for Fortran}{462}{subsubsection.26.1.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {26.1.2}\rmfamily   Use of error codes}{462}{subsection.26.1.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {26.2}\slshape   Guarding against memory errors}{464}{section.26.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {26.2.1}\rmfamily   Array bound checking and other memory techniques}{464}{subsection.26.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {26.2.2}\rmfamily   Memory leaks}{465}{subsection.26.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {26.2.3}\rmfamily   Roll-your-own malloc}{465}{subsection.26.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {26.2.4}\rmfamily   Specific techniques: Fortran}{466}{subsection.26.2.4}}
+\citation{Hoare1969axiomatic}
+\citation{Dijkstra1974Programming}
+\@writefile{toc}{\contentsline {section}{\numberline {26.3}\slshape   Testing}{467}{section.26.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {26.3.1}\rmfamily   Test-driven design and development}{467}{subsection.26.3.1}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {27}\relax \bfseries   Debugging}{468}{chapter.27}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{tut:debug}{{27}{468}{Debugging}{chapter.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {27.1}\slshape   Invoking {\tt  gdb}}{468}{section.27.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {27.2}\slshape   Finding errors}{470}{section.27.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {27.2.1}\rmfamily   C programs}{470}{subsection.27.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {27.2.2}\rmfamily   Fortran programs}{472}{subsection.27.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {27.3}\slshape   Memory debugging with Valgrind}{472}{section.27.3}}
+\newlabel{sec:valgrind}{{27.3}{472}{Memory debugging with Valgrind}{section.27.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {27.4}\slshape   Stepping through a program}{473}{section.27.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {27.5}\slshape   Inspecting values}{474}{section.27.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {27.6}\slshape   Breakpoints}{475}{section.27.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {27.7}\slshape   Parallel debugging}{476}{section.27.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {27.1}{\ignorespaces Display of 16 processes in the DDT debugger}}{476}{figure.27.1}}
+\newlabel{fig:ddt2}{{27.1}{476}{Display of 16 processes in the DDT debugger}{figure.27.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {27.8}\slshape   Further reading}{477}{section.27.8}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {28}\relax \bfseries   C/Fortran interoperability}{478}{chapter.28}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{tut:language}{{28}{478}{C/Fortran interoperability}{chapter.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {28.1}\slshape   Linker conventions}{478}{section.28.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {28.1.1}\rmfamily   C bindings in Fortran 2003}{479}{subsection.28.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {28.1.2}\rmfamily   C++ linking}{479}{subsection.28.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {28.1.3}\rmfamily   Complex numbers}{481}{subsection.28.1.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {28.2}\slshape   Arrays}{481}{section.28.2}}
+\newlabel{sec:CFarrays}{{28.2}{481}{Arrays}{section.28.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {28.1}{\ignorespaces Fortran and C array storage by columns and rows respectively}}{482}{figure.28.1}}
+\newlabel{fig:cf-arrays}{{28.1}{482}{Fortran and C array storage by columns and rows respectively}{figure.28.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {28.2.1}\rmfamily   Array alignment}{482}{subsection.28.2.1}}
+\acronymused{SIMD}
+\@writefile{toc}{\contentsline {section}{\numberline {28.3}\slshape   Strings}{483}{section.28.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {28.4}\slshape   Subprogram arguments}{483}{section.28.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {28.5}\slshape   Input/output}{484}{section.28.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {28.6}\slshape   Fortran/C interoperability in Fortran2003}{484}{section.28.6}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {29}\relax \bfseries   LaTeX for scientific documentation}{485}{chapter.29}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{tut:latex}{{29}{485}{LaTeX for scientific documentation}{chapter.29}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {29.1}\slshape   The idea behind \LaTeX  , some history of T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}}{485}{section.29.1}}
+\citation{Oetiker:LaTeXintro}
+\@writefile{toc}{\contentsline {subsection}{\numberline {29.1.1}\rmfamily   Installing \LaTeX  }{486}{subsection.29.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {29.1.2}\rmfamily   Running \LaTeX  }{486}{subsection.29.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {29.1}{\ignorespaces A minimal \LaTeX  \ document}}{486}{figure.29.1}}
+\newlabel{fig:minimaldoc}{{29.1}{486}{A minimal \LaTeX \ document}{figure.29.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {29.2}\slshape   A gentle introduction to LaTeX}{486}{section.29.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {29.2.1}\rmfamily   Document structure}{486}{subsection.29.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {29.2.2}\rmfamily   Some simple text}{487}{subsection.29.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {29.2.3}\rmfamily   Math}{488}{subsection.29.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {29.2.4}\rmfamily   Referencing}{489}{subsection.29.2.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {29.2.5}\rmfamily   Lists}{490}{subsection.29.2.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {29.2.6}\rmfamily   Source code and algorithms}{490}{subsection.29.2.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {29.2.7}\rmfamily   Graphics}{491}{subsection.29.2.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {29.2.8}\rmfamily   Bibliography references}{492}{subsection.29.2.8}}
+\newlabel{sec:bib-latex}{{29.2.8}{492}{Bibliography references}{subsection.29.2.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {29.2.9}\rmfamily   Environment variables}{492}{subsection.29.2.9}}
+\newlabel{sec:texinputs}{{29.2.9}{492}{Environment variables}{subsection.29.2.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {29.3}\slshape   A worked out example}{492}{section.29.3}}
+\citation{Oetiker:LaTeXintro}
+\citation{Lamport:LaTeX}
+\citation{KopkaDaly}
+\citation{LaTeXcompanion}
+\citation{UKTeXFAQ}
+\@writefile{toc}{\contentsline {section}{\numberline {29.4}\slshape   Where to take it from here}{498}{section.29.4}}
+\newlabel{sec:moreLaTeX}{{29.4}{498}{Where to take it from here}{section.29.4}{}}
+\@writefile{toc}{\contentsline {part}{V\hspace  {1em}Projects, codes, index}{499}{part.5}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {30}\relax \bfseries   Class projects}{500}{chapter.30}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {30.1}\slshape   Cache simulation and analysis}{500}{section.30.1}}
+\newlabel{prj:cache}{{30.1}{500}{Cache simulation and analysis}{section.30.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.1.1}\rmfamily   Cache simulation}{500}{subsection.30.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.1.2}\rmfamily   Code simulation}{500}{subsection.30.1.2}}
+\citation{Rao:1978:cache}
+\citation{Hartstein:cache-sqrt}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.1.3}\rmfamily   Investigation}{501}{subsection.30.1.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.1.4}\rmfamily   Analysis}{501}{subsection.30.1.4}}
+\citation{Valiant:1990:BSP}
+\@writefile{toc}{\contentsline {section}{\numberline {30.2}\slshape   Evaluation of Bulk Synchronous Programming}{502}{section.30.2}}
+\newlabel{prj:bsp}{{30.2}{502}{Evaluation of Bulk Synchronous Programming}{section.30.2}{}}
+\acronymused{BSP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.2.1}\rmfamily   Discussion}{502}{subsection.30.2.1}}
+\acronymused{BSP}
+\acronymused{PDE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.2.2}\rmfamily   Simulation}{502}{subsection.30.2.2}}
+\acronymused{BSP}
+\@writefile{toc}{\contentsline {section}{\numberline {30.3}\slshape   Heat equation}{503}{section.30.3}}
+\newlabel{prj:heat}{{30.3}{503}{Heat equation}{section.30.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.3.1}\rmfamily   Software}{503}{subsection.30.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.3.2}\rmfamily   Tests}{503}{subsection.30.3.2}}
+\acronymused{PDE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.3.3}\rmfamily   Parallelism}{505}{subsection.30.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.3.4}\rmfamily   Comparison of solvers}{505}{subsection.30.3.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.3.5}\rmfamily   Reporting}{505}{subsection.30.3.5}}
+\citation{Wulf:memory-wall}
+\@writefile{toc}{\contentsline {section}{\numberline {30.4}\slshape   The memory wall}{506}{section.30.4}}
+\newlabel{prj:wall}{{30.4}{506}{The memory wall}{section.30.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.4.1}\rmfamily   Background}{506}{subsection.30.4.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {30.4.2}\rmfamily   Assignment}{506}{subsection.30.4.2}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\citation{papi}
+\citation{papi-homepage}
+\@writefile{toc}{\contentsline {chapter}{\numberline {31}\relax \bfseries   Codes}{507}{chapter.31}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{app:codes}{{31}{507}{Codes}{chapter.31}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {31.1}\slshape   Preliminaries}{507}{section.31.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {31.1.1}\rmfamily   Hardware event counting}{507}{subsection.31.1.1}}
+\newlabel{sec:papi}{{31.1.1}{507}{Hardware event counting}{subsection.31.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {31.1.2}\rmfamily   Test setup}{507}{subsection.31.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {31.1.3}\rmfamily   Memory issues}{508}{subsection.31.1.3}}
+\newlabel{sec:memalign}{{31.1.3}{508}{Memory issues}{subsection.31.1.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {31.2}\slshape   Cache size}{508}{section.31.2}}
+\newlabel{sec:cachesize-code}{{31.2}{508}{Cache size}{section.31.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {31.3}\slshape   Cachelines}{510}{section.31.3}}
+\newlabel{sec:cacheline-code}{{31.3}{510}{Cachelines}{section.31.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {31.1}{\ignorespaces Run time in kcycles and L1 reuse as a function of stride}}{512}{figure.31.1}}
+\newlabel{fig:cacheline16}{{31.1}{512}{Run time in kcycles and L1 reuse as a function of stride}{figure.31.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {31.4}\slshape   Cache associativity}{512}{section.31.4}}
+\newlabel{sec:assoc-code}{{31.4}{512}{Cache associativity}{section.31.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {31.5}\slshape   TLB}{514}{section.31.5}}
+\newlabel{sec:tlb-code}{{31.5}{514}{TLB}{section.31.5}{}}
+\acronymused{TLB}
+\@writefile{toc}{\contentsline {section}{\numberline {31.6}\slshape   Unrepresentible numbers}{517}{section.31.6}}
+\newlabel{sec:fraction-code}{{31.6}{517}{Unrepresentible numbers}{section.31.6}{}}
+\bibdata{vle}
+\bibcite{Dongarra:mixed-refinement}{1}
+\bibcite{AdveBoehm:memorymodels}{2}
+\bibcite{AWK:awk}{3}
+\bibcite{amd:law}{4}
+\bibcite{AxBa:febook}{5}
+\bibcite{AxPo:dd2}{6}
+\bibcite{BarnesHut}{7}
+\bibcite{Ba:templates}{8}
+\bibcite{Batcher:85a}{9}
+\bibcite{Bell:outlook}{10}
+\bibcite{BePl:book}{11}
+\bibcite{BGSm:96}{12}
+\bibcite{BlackScholes}{13}
+\bibcite{scalapack-users-guide}{14}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {32}\relax \bfseries   Bibliography, index, and list of acronyms}{518}{chapter.32}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {32.1}\slshape   Bibliography}{518}{section.32.1}}
+\bibcite{reference-blas}{15}
+\bibcite{Blelloc:segmented-report}{16}
+\bibcite{Bohr:30yearDennard}{17}
+\bibcite{Bohr:ISSCC2009}{18}
+\bibcite{Bolz:GPUsparse}{19}
+\bibcite{boost:interval-arithmetic}{20}
+\bibcite{Briggs:CMB}{21}
+\bibcite{papi}{22}
+\bibcite{Burks:discussion}{23}
+\bibcite{ButtEijkLang:spmvp}{24}
+\bibcite{Campbell:octree}{25}
+\bibcite{Chan2007Collective}{26}
+\bibcite{Chandrakasa:transformations}{27}
+\bibcite{Chapel:homepage}{28}
+\bibcite{Chapman2008:OpenMPbook}{29}
+\bibcite{ChenDoolen:LBM}{30}
+\bibcite{Choi:scalapack}{31}
+\bibcite{ChGe:sstep}{32}
+\bibcite{Cipra:Ising}{33}
+\bibcite{Clos1953}{34}
+\bibcite{CuMcK:reducing}{35}
+\bibcite{DAzevedo2005:vector-mvp}{36}
+\bibcite{DAzEijRo:ppscicomp}{37}
+\bibcite{Google:mapreduce}{38}
+\bibcite{dehevo92:acta}{39}
+\bibcite{Demmel2008IEEE:avoiding}{40}
+\bibcite{DemEtAl:ieeeproc2004}{41}
+\bibcite{Dennard:scaling}{42}
+\bibcite{Deshpande92efficientparallel}{43}
+\bibcite{Dijkstra:semaphores}{44}
+\bibcite{Dijkstra1974Programming}{45}
+\bibcite{EWD:EWD117}{46}
+\bibcite{pvm-1}{47}
+\bibcite{Dongarra1987LinpackBenchmark}{48}
+\bibcite{BLAS3}{49}
+\bibcite{BLAS2}{50}
+\bibcite{OReilly:sedawk}{51}
+\bibcite{DobbsComplex}{52}
+\bibcite{Duff:harwellboeingformat}{53}
+\bibcite{Flame:PBMD-report}{54}
+\bibcite{Eij:general}{55}
+\bibcite{Eijkhout2010ICCS-krylov}{56}
+\bibcite{Erdos:randomgraph}{57}
+\bibcite{FaberManteuffel:conditions-for-existence}{58}
+\bibcite{Falgout:scalable-hypre}{59}
+\bibcite{Fiedler:75-property}{60}
+\bibcite{Fisher:fastparallel}{61}
+\bibcite{flynn:taxonomy}{62}
+\bibcite{Fortress:homepage}{63}
+\bibcite{frenkel-smit}{64}
+\bibcite{FrNa:qmr}{65}
+\bibcite{Frigo:oblivious}{66}
+\bibcite{Frigo:2007:oblivious-stencil}{67}
+\bibcite{pvm-2}{68}
+\bibcite{Gelernter85generativecommunication}{69}
+\bibcite{Linda-CACM}{70}
+\bibcite{gmplib}{71}
+\bibcite{Goedeker:performance-book}{72}
+\bibcite{Goldberg:arithmetic}{73}
+\citation{HennessyPatterson}
+\bibcite{goldberg:floatingpoint}{74}
+\bibcite{GolubOleary:cg-history}{75}
+\bibcite{golo83}{76}
+\bibcite{GoVL:matcomp}{77}
+\bibcite{GotoGeijn:2008:Anatomy}{78}
+\bibcite{Grama:1993:isoefficiency}{79}
+\bibcite{Gray:graycodepatent}{80}
+\bibcite{Greenberg89randomizedrouting}{81}
+\bibcite{Gropp:UsingMPI1}{82}
+\bibcite{Gropp:UsingAdvancedMPI}{83}
+\bibcite{mpi-2-reference}{84}
+\bibcite{Gropp:UsingMPI2}{85}
+\bibcite{Gropp:BeowulfBook}{86}
+\bibcite{Hadoop-wiki}{87}
+\bibcite{HaYo:applied}{88}
+\bibcite{Hartstein:cache-sqrt}{89}
+\bibcite{Heath:scicomp}{90}
+\bibcite{He:surveyparallel}{91}
+\bibcite{HeWo:94}{92}
+\bibcite{HennessyPatterson}{93}
+\bibcite{HestenesStiefel1952:cg}{94}
+\bibcite{Higham:2002:ASN}{95}
+\bibcite{BSPlib}{96}
+\bibcite{Hoare1969axiomatic}{97}
+\bibcite{Hoefler:2010:SCP}{98}
+\bibcite{ieee754-webpage}{99}
+\bibcite{wikipedia:interval-arithmetic}{100}
+\bibcite{DAP:79a}{101}
+\bibcite{jopl94}{102}
+\bibcite{ScalParC}{103}
+\bibcite{charmpp}{104}
+\bibcite{Karbo:book}{105}
+\bibcite{KarpZhang88}{106}
+\bibcite{Katzenelson:nbody}{107}
+\bibcite{KSRallcache}{108}
+\bibcite{Knuth:vol2}{109}
+\bibcite{KopkaDaly}{110}
+\bibcite{Kulisch:2011:VFE}{111}
+\bibcite{Kulish:dotproduct}{112}
+\bibcite{Kulkami:howmuch}{113}
+\bibcite{Kumar:parcomp-book}{114}
+\bibcite{Kung:pegasus2009}{115}
+\bibcite{Lameter:NUMAq}{116}
+\bibcite{Lamport:LaTeX}{117}
+\bibcite{Lanczos1952:solution_of_systems}{118}
+\bibcite{Landau:comp-phys}{119}
+\bibcite{Langou:thesis}{120}
+\bibcite{Langville2005eigenvector}{121}
+\bibcite{Lawson:blas}{122}
+\bibcite{LEcuyer:multiple-random}{123}
+\bibcite{Leiserson:fattree}{124}
+\bibcite{LinCohen:PIC}{125}
+\bibcite{LiRoTa:dissection}{126}
+\bibcite{LiTa:separator}{127}
+\bibcite{Little:law}{128}
+\bibcite{Liu:cudasw2009}{129}
+\bibcite{Luby:parallel}{130}
+\bibcite{Pregel:podc2009}{131}
+\bibcite{Mascagni:SPRNG}{132}
+\bibcite{OReilly-GnuMake}{133}
+\bibcite{MevdVo:itsol}{134}
+\bibcite{Metropolis}{135}
+\bibcite{Me:multicg}{136}
+\bibcite{Me:dd}{137}
+\bibcite{LaTeXcompanion}{138}
+\bibcite{Moreland:formalmetrics2015}{139}
+\bibcite{NeedlemanWunsch}{140}
+\bibcite{Oetiker:LaTeXintro}{141}
+\bibcite{matrix-market}{142}
+\bibcite{OgAi:sparsestorage}{143}
+\bibcite{mpi-ref}{144}
+\bibcite{Overton:754book}{145}
+\bibcite{PageBrin:PageRank}{146}
+\bibcite{Pa:combinations}{147}
+\bibcite{papi-homepage}{148}
+\bibcite{plimpton}{149}
+\bibcite{Pospiech2015}{150}
+\bibcite{Elemental:TOMS}{151}
+\bibcite{spiral}{152}
+\bibcite{tacc:ranger}{153}
+\bibcite{Rao:1978:cache}{154}
+\bibcite{Reid1971:cg}{155}
+\bibcite{saad96}{156}
+\bibcite{Sato2004}{157}
+\bibcite{canfar-lecture}{158}
+\bibcite{Schreiber:scalability92}{159}
+\bibcite{Sprint:classifier}{160}
+\bibcite{shaw}{161}
+\bibcite{TAU:ijhpca}{162}
+\bibcite{Skillicorn96questionsand}{163}
+\bibcite{mpi-reference}{164}
+\bibcite{Spielman:spectral-graph-theory}{165}
+\bibcite{Spielman96spectralpartitioning}{166}
+\bibcite{Springel:gadget}{167}
+\bibcite{Stewart90}{168}
+\bibcite{St:gaussnotoptimal}{169}
+\bibcite{UKTeXFAQ}{170}
+\bibcite{UPC:homepage}{171}
+\bibcite{Valiant:1990:BSP}{172}
+\bibcite{PLAPACK:UG}{173}
+\bibcite{PLAPACK}{174}
+\bibcite{TSoPMC}{175}
+\bibcite{vdVorst1992:bicgstab}{176}
+\bibcite{Varga:iterative-analysis}{177}
+\bibcite{oski}{178}
+\bibcite{vuduc:thesis}{179}
+\bibcite{Warren:1993:hash-octree}{180}
+\bibcite{atlas-parcomp}{181}
+\bibcite{Wi:fastseparable}{182}
+\bibcite{Wilkinson:roundoff}{183}
+\bibcite{Williams:2009:roofline}{184}
+\bibcite{Wulf:memory-wall}{185}
+\bibcite{YandBrent:bicgstab}{186}
+\bibcite{YatesFixedPoint}{187}
+\bibcite{Yoo:2005:scalable-bfs}{188}
+\bibcite{Young:thesis}{189}
+\bibcite{Zheng:2016arXiv:decentral-recommend}{190}
+\bibstyle{plain}
+\@writefile{toc}{\contentsline {section}{\numberline {32.2}\slshape   List of acronyms}{528}{section.32.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {32.3}\slshape   Index}{529}{section.32.3}}
+\acronymused{AMR}
+\acronymused{AVX}
+\acronymused{AOS}
+\acronymused{BLAS}
+\acronymused{BEM}
+\acronymused{BVP}
+\acronymused{BSP}
+\acronymused{CAF}
+\acronymused{CCS}
+\acronymused{CRS}
+\acronymused{CG}
+\acronymused{DAG}
+\acronymused{DRAM}
+\acronymused{FFT}
+\acronymused{FMM}
+\acronymused{FPGA}
+\acronymused{FDM}
+\acronymused{FEM}
+\acronymused{FSA}
+\acronymused{FSB}
+\acronymused{FOM}
+\acronymused{FMA}
+\acronymused{GPGPU}
+\acronymused{GMRES}
+\acronymused{GPU}
+\acronymused{HDFS}
+\acronymused{HPF}
+\acronymused{HPC}
+\acronymused{ILU}
+\acronymused{IBVP}
+\acronymused{IBVP}
+\acronymused{IVP}
+\acronymused{ILP}
+\acronymused{LBM}
+\acronymused{LAN}
+\acronymused{MPI}
+\acronymused{MTA}
+\acronymused{MIMD}
+\acronymused{NUMA}
+\acronymused{OS}
+\acronymused{ODE}
+\acronymused{PRAM}
+\acronymused{PDE}
+\acronymused{PGAS}
+\acronymused{RDMA}
+\acronymused{SSE}
+\acronymused{SIMD}
+\acronymused{SIMT}
+\acronymused{SPMD}
+\acronymused{SAS}
+\acronymused{SRAM}
+\acronymused{SAN}
+\acronymused{SOA}
+\acronymused{SOR}
+\acronymused{SMP}
+\acronymused{SPD}
+\@ifundefined{unitindent}{\newdimen\unitindent\let \@indentset\relax }{}
+\global \unitindent=49.27489pt\relax\@indentset\relax
+\acronymused{TLB}
+\acronymused{UPC}
+\acronymused{UMA}
+\acronymused{WAN}

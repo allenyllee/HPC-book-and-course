@@ -286,7 +286,7 @@ $w_i\colon i\in E$, the tree has weight $\sum_{e\in T} w_e$, and
 we call a tree a \indextermbus{minimum}{spanning tree} if it has minimum weight.
 A~minimum spanning tree need not be unique.
 
-\indexterm{Prim's algorithm}, a minimal variant of
+\indexterm{Prim's algorithm}, a slight variant of
 \indexterm{Dijkstra's shortest path algorithm}, computes a spanning
 tree starting at a root. The root has path length zero, and all other
 nodes infinity.  In each step, all nodes connected to the known tree
@@ -304,6 +304,12 @@ nodes are considered, and their best known path length updated.
     }
   }
 \end{displayalgorithm}
+
+\begin{figure}[ht]
+  \includegraphics[scale=.12]{graphics/dijkstra-proof}
+  \caption{Illustration of the correctness of Dijkstra's algorithm}
+  \label{fig:dijkstra-proof}
+\end{figure}
 
 \begin{theorem}
   The above algorithm computes the shortest distance from each
@@ -325,11 +331,6 @@ nodes are considered, and their best known path length updated.
 
   Suppose this is not true, and there is another path that is shorter.
   This path needs to go through some node~$y$ that is not currently in~$T$;
-  \begin{figure}[ht]
-    \includegraphics[scale=.12]{graphics/dijkstra-proof}
-    \caption{Illustration of the correctness of Dijkstra's algorithm}
-    \label{fig:dijkstra-proof}
-  \end{figure}
   this illustrated in figure~\ref{fig:dijkstra-proof}.
   Let $x$~be the node in~$T$ on the purported shortest path right before~$y$.
   Now we have $\ell(u)>L(u)$ since we do not have the right pathlength

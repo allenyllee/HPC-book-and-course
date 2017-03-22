@@ -1414,7 +1414,8 @@ The constant \n{NAN} is declared in \n{math.h} or \n{cmath}.
 In~C++, \n{std::numeric_limits<double>::quiet_NaN()} is declared in
 \n{limits}, which is meaningful if
 \n{std::numeric_limits::has_quiet_NaN} is true, which is the case if
-\n{std::numeric_limits::is_iec559} is true,
+\n{std::numeric_limits::is_iec559} is true. (ICE~559 is essentially
+IEEE~754; see section~\ref{sec:ieee754}.)
 
 The same module also has \n{infinity()} and \n{signaling_NaN()}.
 
@@ -1586,7 +1587,7 @@ various observations hold:
 Thus it
 becomes imperative to analyze computer algorithms with regard to their
 roundoff behaviour: does roundoff increase as a slowly growing
-function of problem parameters, such as the number of terms evaluated,
+function of problem parameters, such as the number of terms evalauted,
 or is worse behaviour possible? We will not address such questions in
 further detail in this book.
 

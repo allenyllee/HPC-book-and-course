@@ -197,6 +197,34 @@
     @\acl{#1} (#1)|)}}\tmp}
 \makeatother
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% Outlining
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{outliner}
+\OutlineLevelStart0{\chapter{#1}
+  \maillink{arabic{chapter} "#1"}{#1}{chapter}
+}
+\OutlineLevelStart1{\section{#1}
+\maillink{\arabic{chapter}.\arabic{section}}{#1}{section}
+}
+\OutlineLevelCont1{\section{#1}
+\maillink{\arabic{chapter}.\arabic{section}}{#1}{section}
+}
+\OutlineLevelStart2{\subsection{#1}
+  \maillink
+    {\arabic{chapter}.\arabic{section}.\arabic{subsection}}{#1}{subsection}
+}
+\OutlineLevelStart3{\subsubsection{#1}}
+\setcounter{secnumdepth}{4}
+\OutlineLevelStart4{\paragraph{\bf #1}}
+
+\newcommand\heading[1]{\paragraph*{\textbf{#1}}}
+
+%%%%%%%%%%%%%%%%
+%%%% Titles
+%%%%%%%%%%%%%%%%
 \def\chaptertitle{\csname\chaptername title\endcsname}
 \def\chaptershorttitle{\csname\chaptername shorttitle\endcsname}
 

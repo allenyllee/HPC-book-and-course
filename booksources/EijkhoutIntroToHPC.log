@@ -1,0 +1,5028 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/MacPorts 2016_4) (preloaded format=pdflatex 2016.7.5)  22 MAR 2017 01:31
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**EijkhoutIntroToHPC
+(./EijkhoutIntroToHPC.tex
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 55 language(s) loaded.
+(./boek3.cls
+Document Class: boek3 2004/06/07 v2.1a NTG LaTeX document class
+(/opt/local/share/texmf-texlive/tex/latex/ntgclass/ntg11.clo
+File: ntg11.clo 2004/06/07 v2.1a NTG LaTeX file (size option)
+)
+\unitindent=\dimen102
+\othermargin=\dimen103
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+LaTeX Info: Redefining \em on input line 799.
+\bibindent=\dimen104
+)
+(/Users/eijkhout/Software/TeX/macros/comment.sty
+\CommentStream=\write3
+ Excluding comment 'comment')
+(/opt/local/share/texmf-texlive/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks14
+\verbatim@line=\toks15
+\verbatim@in@stream=\read1
+)
+Excluding comment 'booth' (./inex.tex Excluding comment 'lulu'
+Include comment 'notlulu' Include comment 'download' Excluding comment 'istc'
+Excluding comment 'notready' Include comment 'montecarlo'
+Include comment 'fmm') Include comment 'gpu' Including 'notlulu' comment.
+\openout3 = `comment.cut'.
+
+
+Straight input of comment.cut. (./comment.cut
+(/opt/local/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2016/05/05 v6.83n Hypertext links for LaTeX
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2016/05/10 v0.21 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/05/16 v1.17 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+(/opt/local/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/opt/local/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen105
+\Hy@linkcounter=\count88
+\Hy@pagecounter=\count89
+
+(/opt/local/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2016/05/05 v6.83n Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count90
+
+(/opt/local/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4322.
+Package hyperref Info: Hyper figures OFF on input line 4446.
+Package hyperref Info: Link nesting OFF on input line 4451.
+Package hyperref Info: Hyper index ON on input line 4454.
+Package hyperref Info: Plain pages OFF on input line 4461.
+Package hyperref Info: Backreferencing OFF on input line 4466.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4691.
+\c@Hy@tempcnt=\count91
+
+(/Users/eijkhout/Software/TeX/LaTeX/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5044.
+\XeTeXLinkMargin=\dimen106
+\Fld@menulength=\count92
+\Field@Width=\dimen107
+\Fld@charsize=\dimen108
+Package hyperref Info: Hyper figures OFF on input line 6298.
+Package hyperref Info: Link nesting OFF on input line 6303.
+Package hyperref Info: Hyper index ON on input line 6306.
+Package hyperref Info: backreferencing OFF on input line 6313.
+Package hyperref Info: Link coloring ON on input line 6316.
+Package hyperref Info: Link coloring with OCG OFF on input line 6323.
+Package hyperref Info: PDF/A mode OFF on input line 6328.
+LaTeX Info: Redefining \ref on input line 6368.
+LaTeX Info: Redefining \pageref on input line 6372.
+\Hy@abspage=\count93
+\c@Item=\count94
+\c@Hfootnote=\count95
+)
+
+Package hyperref Message: Driver: hpdftex.
+
+(/opt/local/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2016/05/05 v6.83n Hyperref driver for pdfTeX
+\Fld@listcount=\count96
+\c@bookmark@seq@number=\count97
+
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip43
+))
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/hypcap.sty
+Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
+)
+Excluding 'lulu' comment.
+(/opt/local/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/opt/local/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks17
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/opt/local/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/03/10 v2.15b AMS math features
+\@mathmargin=\skip44
+
+For additional information on amsmath, use the `?' option.
+(/opt/local/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/opt/local/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen109
+))
+(/opt/local/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen110
+)
+(/opt/local/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count98
+LaTeX Info: Redefining \frac on input line 199.
+\uproot@=\count99
+\leftroot@=\count100
+LaTeX Info: Redefining \overline on input line 297.
+\classnum@=\count101
+\DOTSCASE@=\count102
+LaTeX Info: Redefining \ldots on input line 394.
+LaTeX Info: Redefining \dots on input line 397.
+LaTeX Info: Redefining \cdots on input line 518.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen111
+LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
+\macc@depth=\count103
+\c@MaxMatrixCols=\count104
+\dotsspace@=\muskip11
+\c@parentequation=\count105
+\dspbrk@lvl=\count106
+\tag@help=\toks19
+\row@=\count107
+\column@=\count108
+\maxfields@=\count109
+\andhelp@=\toks20
+\eqnshift@=\dimen112
+\alignsep@=\dimen113
+\tagshift@=\dimen114
+\tagwidth@=\dimen115
+\totwidth@=\dimen116
+\lineht@=\dimen117
+\@envbody=\toks21
+\multlinegap=\skip45
+\multlinetaggap=\skip46
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2739.
+LaTeX Info: Redefining \] on input line 2740.
+)
+(/opt/local/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2016/05/09 v1.0r Standard LaTeX Graphics (DPC,SPQR)
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/opt/local/share/texmf-texlive/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/01/02 v1.10 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 96.
+
+(/opt/local/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+\Gread@gobject=\count110
+))
+\Gin@req@height=\dimen118
+\Gin@req@width=\dimen119
+)
+(/Users/eijkhout/Software/TeX/LaTeX/undertilde.sty
+Package: undertilde 2000/08/08 v1.0 Tilde under a math object
+\knuthian@fdfive=\skip47
+)
+(/Users/eijkhout/Software/TeX/LaTeX/arydshln.sty
+Package: arydshln 2004/08/31 v1.71 
+\dashlinedash=\dimen120
+\dashlinegap=\dimen121
+\adl@box=\box28
+\adl@height=\dimen122
+\adl@heightsave=\dimen123
+\adl@depth=\dimen124
+\adl@depthsave=\dimen125
+\adl@finaldepth=\dimen126
+\adl@columns=\count111
+\adl@ncol=\count112
+\adl@currentcolumn=\count113
+\adl@currentcolumnsave=\count114
+\adl@totalheight=\count115
+\adl@totalheightsave=\count116
+\adl@dash=\count117
+\adl@gap=\count118
+\adl@cla=\count119
+\adl@clb=\count120
+\adl@everyvbox=\toks23
+\adl@LTpagetotal=\dimen127
+)
+(/Users/eijkhout/Software/TeX/LaTeX/wrapfig.sty
+\wrapoverhang=\dimen128
+\WF@size=\dimen129
+\c@WF@wrappedlines=\count121
+\WF@box=\box29
+\WF@everypar=\toks24
+Package: wrapfig 2003/01/31  v 3.6
+)
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(/opt/local/share/texmf-texlive/tex/latex/base/makeidx.sty
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+(/Users/eijkhout/Software/TeX/LaTeX/multirow.sty
+\bigstrutjot=\dimen130
+)
+(/opt/local/share/texmf-texlive/tex/latex/tools/multicol.sty
+Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
+\c@tracingmulticols=\count122
+\mult@box=\box30
+\multicol@leftmargin=\dimen131
+\c@unbalance=\count123
+\c@collectmore=\count124
+\doublecol@number=\count125
+\multicoltolerance=\count126
+\multicolpretolerance=\count127
+\full@width=\dimen132
+\page@free=\dimen133
+\premulticols=\dimen134
+\postmulticols=\dimen135
+\multicolsep=\skip48
+\multicolbaselineskip=\skip49
+\partial@page=\box31
+\last@line=\box32
+\maxbalancingoverflow=\dimen136
+\mult@rightbox=\box33
+\mult@grightbox=\box34
+\mult@gfirstbox=\box35
+\mult@firstbox=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\@tempa=\box52
+\@tempa=\box53
+\c@columnbadness=\count128
+\c@finalcolumnbadness=\count129
+\last@try=\dimen137
+\multicolovershoot=\dimen138
+\multicolundershoot=\dimen139
+\mult@nat@firstbox=\box54
+\colbreak@box=\box55
+\mc@col@check@num=\count130
+)
+(/Users/eijkhout/Software/TeX/LaTeX/dirtree.sty
+Package: dirtree 2006/01/25 v0.2 package wrapper for dirtree
+
+(/Users/eijkhout/Software/TeX/LaTeX/dirtree.tex
+`dirtree' v0.2, 2006/01/25 (jcc)
+\DT@offset=\dimen140
+\DT@width=\dimen141
+\DT@sep=\dimen142
+\DT@all=\dimen143
+\DT@rulewidth=\dimen144
+\DT@dotwidth=\dimen145
+\DTbaselineskip=\dimen146
+\DT@counti=\count131
+\DT@countii=\count132
+\DT@countiii=\count133
+\DT@countiv=\count134
+)
+File: dirtree.tex 2006/01/25 v0.2 `dirtree' (jcc)
+)
+(/Users/eijkhout/Software/TeX/LaTeX/algorithm2e.sty
+Package: algorithm2e 2008/00/00 v3.10 algorithms environments
+\c@AlgoLine=\count135
+
+(/opt/local/share/texmf-texlive/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/opt/local/share/texmf-texlive/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(/Users/eijkhout/Software/TeX/LaTeX/relsize.sty
+Package: relsize 2003/07/04 ver 3.1
+)
+********************************************************
+Package `algorithm2e' Release 4.01 -- december 14 2009 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (fiorio@lirmm.fr)
+********************************************************
+\skiptotal=\skip50
+\skiplinenumber=\skip51
+\skiprule=\skip52
+\skiphlne=\skip53
+\skiptext=\skip54
+\skiplength=\skip55
+\algomargin=\skip56
+\skipalgocfslide=\skip57
+\algowidth=\dimen147
+\inoutsize=\dimen148
+\inoutline=\dimen149
+\interspacetitleruled=\dimen150
+\interspacealgoruled=\dimen151
+\interspacetitleboxruled=\dimen152
+\algocf@inoutbox=\box56
+\algocf@inputbox=\box57
+\AlCapSkip=\skip58
+\AlCapHSkip=\skip59
+\algocf@nlbox=\box58
+\algocf@hangingbox=\box59
+\algocf@capbox=\box60
+\algoheightruledefault=\skip60
+\algoheightrule=\skip61
+\algotitleheightruledefault=\skip62
+\algotitleheightrule=\skip63
+\c@algocfline=\count136
+\c@algocfproc=\count137
+\c@algocf=\count138
+\algocf@algoframe=\box61
+\algocf@algobox=\box62
+) (/Users/eijkhout/Software/TeX/LaTeX/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip64
+\subfigcapskip=\skip65
+\subfigcaptopadj=\dimen153
+\subfigbottomskip=\skip66
+\subfigcapmargin=\dimen154
+\subfiglabelskip=\skip67
+\c@subfigure=\count139
+\c@lofdepth=\count140
+\c@subtable=\count141
+\c@lotdepth=\count142
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/opt/local/share/texmf-texlive/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip68
+\subfig@bottom=\skip69
+)
+(/Users/eijkhout/Software/TeX/LaTeX/algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+\c@ALC@unique=\count143
+\c@ALC@line=\count144
+\c@ALC@rem=\count145
+\c@ALC@depth=\count146
+\ALC@tlm=\skip70
+\algorithmicindent=\skip71
+)
+(/Users/eijkhout/Software/TeX/LaTeX/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+(/Users/eijkhout/Software/TeX/LaTeX/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count147
+\float@exts=\toks25
+\float@box=\box63
+\@float@everytoks=\toks26
+\@floatcapt=\box64
+)
+\@float@every@algorithm=\toks27
+\c@algorithm=\count148
+)
+(/opt/local/share/texmf-texlive/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+\Gm@cnth=\count149
+\Gm@cntv=\count150
+\c@Gm@tempcnt=\count151
+\Gm@bindingoffset=\dimen155
+\Gm@wd@mp=\dimen156
+\Gm@odd@mp=\dimen157
+\Gm@even@mp=\dimen158
+\Gm@layoutwidth=\dimen159
+\Gm@layoutheight=\dimen160
+\Gm@layouthoffset=\dimen161
+\Gm@layoutvoffset=\dimen162
+\Gm@dimlist=\toks28
+)
+(/opt/local/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip72
+\f@ncyO@elh=\skip73
+\f@ncyO@erh=\skip74
+\f@ncyO@olh=\skip75
+\f@ncyO@orh=\skip76
+\f@ncyO@elf=\skip77
+\f@ncyO@erf=\skip78
+\f@ncyO@olf=\skip79
+\f@ncyO@orf=\skip80
+)
+Excluding 'booth' comment. (./exmacs.tex Excluding comment 'quiz'
+\c@excounter=\count152
+
+General comment 'exercise' General comment 'answer')
+\nx=\write4
+\nx=\write5
+
+Include comment 'tutorials' (./scimacs.tex
+\c@remark=\count153
+\c@definition=\count154
+\c@theorem=\count155
+\c@lemma=\count156
+
+(/Users/eijkhout/Software/TeX/LaTeX/acronym.sty
+Package: acronym 2009/10/20 v1.35 Support for acronyms (Tobias Oetiker)
+
+(/Users/eijkhout/Software/TeX/LaTeX/suffix.sty
+Package: suffix 2006/07/15 1.5 Variant command support
+)
+\AC@clearlist=\toks29
+)
+\acrowrite=\write6
+
+(/Users/eijkhout/Software/TeX/macros/outliner.sty
+\c@leveldepth=\count157
+\c@baselevel=\count158
+\c@aimlevel=\count159
+\c@pagebreaklevel=\count160
+)) (./tutmacs.tex)
+\@indexfile=\write7
+\openout7 = `EijkhoutIntroToHPC.idx'.
+
+
+Writing index file EijkhoutIntroToHPC.idx
+Excluding 'lulu' comment.
+\chapterlist=\write8
+ (./EijkhoutIntroToHPC.aux)
+\openout1 = `EijkhoutIntroToHPC.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 202.
+
+
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+\AtBeginShipoutBox=\box65
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics/color.sty
+Package: color 2016/05/09 v1.1c Standard LaTeX Color (DPC)
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 144.
+)
+Package hyperref Info: Link coloring ON on input line 202.
+
+(/opt/local/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count161
+)
+LaTeX Info: Redefining \ref on input line 202.
+LaTeX Info: Redefining \pageref on input line 202.
+LaTeX Info: Redefining \nameref on input line 202.
+
+(./EijkhoutIntroToHPC.out) (./EijkhoutIntroToHPC.out)
+\@outlinefile=\write9
+\openout9 = `EijkhoutIntroToHPC.out'.
+
+
+(/opt/local/share/texmf-texlive/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count162
+\scratchdimen=\dimen163
+\scratchbox=\box66
+\nofMPsegments=\count163
+\nofMParguments=\count164
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count165
+\MPscratchDim=\dimen164
+\MPnumerator=\count166
+\makeMPintoPDFobject=\count167
+\everyMPtoPDFconversion=\toks31
+) (/opt/local/share/texmf-texlive/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/opt/local/share/texmf-texlive/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(73.71613pt, 430.00462pt, 110.57425pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=466.13962pt
+* \textheight=592.61156pt
+* \oddsidemargin=1.44614pt
+* \evensidemargin=2.16927pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=104.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 205.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 205.
+LaTeX Font Info:    Try loading font information for U+msa on input line 205.
+(/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 205.
+
+(/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+\openout6 = `acronyms.tex'.
+
+\openout8 = `chapternames.tex'.
+
+
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./copyright.tex
+<ccby.jpg, id=1554, 120.45pt x 42.1575pt>
+File: ccby.jpg Graphic file (type jpg)
+ <use ccby.jpg>
+Package pdftex.def Info: ccby.jpg used on input line 18.
+(pdftex.def)             Requested size: 120.44969pt x 42.15738pt.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 20.
+
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 23.
+
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)) [2 <./ccby.jpg>]
+(./introduction.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 17.
+ Including 'notlulu' comment.
+\openout3 = `comment.cut'.
+
+
+Straight input of comment.cut. (./comment.cut) Including 'download' comment.
+\openout3 = `comment.cut'.
+
+
+Straight input of comment.cut. (./comment.cut) Excluding 'lulu' comment.
+Excluding 'lulu' comment. [3]) [4]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 211.
+ (./EijkhoutIntroToHPC.toc [5
+
+]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6] [7] [8])
+\tf@toc=\write10
+\openout10 = `EijkhoutIntroToHPC.toc'.
+
+ [9] [10
+
+] [11]
+Chapter 1.
+(./chapters/sequential.tex
+Overfull \vbox (7.67459pt too high) has occurred while \output is active []
+
+
+[12
+
+]
+Overfull \vbox (2.25858pt too high) has occurred while \output is active []
+
+
+[13]
+Package acronym Info: Label `acro:ILP' newly defined as it shall be overridden
+although it is yet undefined on input line 163.
+ <sandybridge-eightcore-ann.jpg, id=1829, 633.567pt x 631.76025pt>
+File: sandybridge-eightcore-ann.jpg Graphic file (type jpg)
+
+<use sandybridge-eightcore-ann.jpg>
+Package pdftex.def Info: sandybridge-eightcore-ann.jpg used on input line 205.
+(pdftex.def)             Requested size: 285.10251pt x 284.28947pt.
+
+Overfull \hbox (32.15752pt too wide) in paragraph at lines 205--206
+[][]
+ []
+
+
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 21
+0.
+
+[14]
+Package acronym Info: Label `acro:FPU' newly defined as it shall be overridden
+although it is yet undefined on input line 238.
+Package acronym Info: Label `acro:FMA' newly defined as it shall be overridden
+although it is yet undefined on input line 249.
+ <sandybridge_pipeline.jpg, id=1838, 711.4078pt x 578.91281pt>
+File: sandybridge_pipeline.jpg Graphic file (type jpg)
+
+<use sandybridge_pipeline.jpg>
+Package pdftex.def Info: sandybridge_pipeline.jpg used on input line 256.
+(pdftex.def)             Requested size: 426.84798pt x 347.35036pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[15pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.294 \Level 2 {Pipelining}
+                            <graphics/sandybridge-eightcore-ann.jpg>]
+(./chapters/pipeline.tex [16pdfTeX warning (ext4): destination with the same id
+entifier (name{figure.1.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.41 \item S
+            toring the result. <graphics/sandybridge_pipeline.jpg>]
+<graphics/pipeline.jpg, id=1857, 2338.7375pt x 2090.81125pt>
+File: graphics/pipeline.jpg Graphic file (type jpg)
+
+<use graphics/pipeline.jpg>
+Package pdftex.def Info: graphics/pipeline.jpg used on input line 75.
+(pdftex.def)             Requested size: 280.6364pt x 250.88652pt.
+\openout3 = `exercises/sequential-ex1.tex'.
+
+ (./exercises/sequential-ex1.tex) [17pdfTeX warning (ext4): destination with th
+e same identifier (name{table.1.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.102 A
+        pipelined processor can speed up operations by a factor of $4,5,6$]
+\openout3 = `exercises/sequential-ex2.tex'.
+
+
+(./exercises/sequential-ex2.tex)
+\openout3 = `exercises/sequential-ex3.tex'.
+
+ (./exercises/sequential-ex3.tex) [18pdfTeX warning (ext4): destination with th
+e same identifier (name{figure.1.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.145 
+       <./graphics/pipeline.jpg>]
+\openout3 = `exercises/sequential-ex4.tex'.
+
+ (./exercises/sequential-ex4.tex)) [19]
+[20]
+Package acronym Info: Label `acro:FSB' newly defined as it shall be overridden
+although it is yet undefined on input line 471.
+ <graphics/bridges.jpg, id=1891, 2249.40375pt x 1722.435pt>
+File: graphics/bridges.jpg Graphic file (type jpg)
+
+<use graphics/bridges.jpg>
+Package pdftex.def Info: graphics/bridges.jpg used on input line 477.
+(pdftex.def)             Requested size: 224.95355pt x 172.25359pt.
+ [21]
+Package acronym Info: Label `acro:GPU' newly defined as it shall be overridden
+although it is yet undefined on input line 522.
+ [22pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.524 \item[Bandwidth]
+                       is the rate at which data arrives at its destination, <.
+/graphics/bridges.jpg>] [23] [24]
+Package acronym Info: Label `acro:SRAM' newly defined as it shall be overridden
+
+although it is yet undefined on input line 668.
+Package acronym Info: Label `acro:DRAM' newly defined as it shall be overridden
+
+although it is yet undefined on input line 668.
+ [25]
+<graphics/hierarchysb.jpeg, id=1933, 3306.3525pt x 1475.5125pt>
+File: graphics/hierarchysb.jpeg Graphic file (type jpg)
+
+<use graphics/hierarchysb.jpeg>
+Package pdftex.def Info: graphics/hierarchysb.jpeg used on input line 747.
+(pdftex.def)             Requested size: 363.6999pt x 162.30687pt.
+ [26pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.764 \item T
+             he bandwidth of the L2 and L3 cache is nominally the same as <./gr
+aphics/hierarchysb.jpeg>]
+\openout3 = `exercises/sequential-ex5.tex'.
+
+ (./exercises/sequential-ex5.tex) [27]
+Package acronym Info: Label `acro:LRU' newly defined as it shall be overridden
+although it is yet undefined on input line 869.
+\openout3 = `exercises/sequential-ex6.tex'.
+
+
+(./exercises/sequential-ex6.tex)
+<graphics/stride-1.jpg, id=1955, 2663.9525pt x 940.51375pt>
+File: graphics/stride-1.jpg Graphic file (type jpg)
+
+<use graphics/stride-1.jpg>
+Package pdftex.def Info: graphics/stride-1.jpg used on input line 897.
+(pdftex.def)             Requested size: 186.49573pt x 65.84268pt.
+ [28pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.912 \begin{verbatim}
+                       <./graphics/stride-1.jpg>]
+<graphics/stride-3.jpg, id=1965, 2663.9525pt x 397.485pt>
+File: graphics/stride-3.jpg Graphic file (type jpg)
+
+<use graphics/stride-3.jpg>
+Package pdftex.def Info: graphics/stride-3.jpg used on input line 923.
+(pdftex.def)             Requested size: 186.49573pt x 27.82678pt.
+ [29pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.982 \Level 2 {Direct mapped caches}
+                                      <./graphics/stride-3.jpg>]
+<directmap.jpeg, id=1978, 4182.62625pt x 1100.11pt>
+File: directmap.jpeg Graphic file (type jpg)
+ <use directmap.jpeg>
+Package pdftex.def Info: directmap.jpeg used on input line 994.
+(pdftex.def)             Requested size: 418.28712pt x 110.01744pt.
+
+<directmapconflict.jpeg, id=1980, 3800.1975pt x 1172.38pt>
+File: directmapconflict.jpeg Graphic file (type jpg)
+
+<use directmapconflict.jpeg>
+Package pdftex.def Info: directmapconflict.jpeg used on input line 1007.
+(pdftex.def)             Requested size: 380.042pt x 117.24486pt.
+ [30pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+8}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1016 \end{verbatim}
+                     pdfTeX warning (ext4): destination with the same identifie
+r (name{figure.1.9}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1016 \end{verbatim}
+                      <graphics/directmap.jpeg> <graphics/directmapconflict.jpe
+g>]
+\openout3 = `exercises/sequential-ex7.tex'.
+
+ (./exercises/sequential-ex7.tex)
+<graphics/assoc-mapping.jpeg, id=1991, 2685.03125pt x 1387.1825pt>
+File: graphics/assoc-mapping.jpeg Graphic file (type jpg)
+
+<use graphics/assoc-mapping.jpeg>
+Package pdftex.def Info: graphics/assoc-mapping.jpeg used on input line 1093.
+(pdftex.def)             Requested size: 322.18985pt x 166.45471pt.
+ [31]
+\openout3 = `exercises/sequential-ex8.tex'.
+
+ (./exercises/sequential-ex8.tex)
+[32pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1
+0}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1141 \end{exercise}
+                      <./graphics/assoc-mapping.jpeg>]
+<prefetch.jpeg, id=2011, 4633.31pt x 985.6825pt>
+File: prefetch.jpeg Graphic file (type jpg)
+ <use prefetch.jpeg>
+Package pdftex.def Info: prefetch.jpeg used on input line 1169.
+(pdftex.def)             Requested size: 416.97992pt x 88.7076pt.
+ [33pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+11}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1208 
+        <graphics/prefetch.jpeg>]
+<graphics/little.jpg, id=2020, 2999.205pt x 1359.0775pt>
+File: graphics/little.jpg Graphic file (type jpg)
+
+<use graphics/little.jpg>
+Package pdftex.def Info: graphics/little.jpg used on input line 1224.
+(pdftex.def)             Requested size: 389.91034pt x 176.68628pt.
+ [34pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+12}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1250 
+        <./graphics/little.jpg>]
+Package acronym Info: Label `acro:TLB' newly defined as it shall be overridden
+although it is yet undefined on input line 1320.
+ [35] [36]
+<graphics/cache-hierarchy.jpg, id=2054, 2423.0525pt x 1200.485pt>
+File: graphics/cache-hierarchy.jpg Graphic file (type jpg)
+
+<use graphics/cache-hierarchy.jpg>
+Package pdftex.def Info: graphics/cache-hierarchy.jpg used on input line 1406.
+(pdftex.def)             Requested size: 436.13065pt x 216.07797pt.
+
+<graphics/ScCC-1.png, id=2057, 371.3875pt x 275.0275pt>
+File: graphics/ScCC-1.png Graphic file (type png)
+
+<use graphics/ScCC-1.png>
+Package pdftex.def Info: graphics/ScCC-1.png used on input line 1435.
+(pdftex.def)             Requested size: 185.69328pt x 137.51341pt.
+
+<graphics/ScCC-2.png, id=2058, 560.0925pt x 394.47375pt>
+File: graphics/ScCC-2.png Graphic file (type png)
+
+<use graphics/ScCC-2.png>
+Package pdftex.def Info: graphics/ScCC-2.png used on input line 1436.
+(pdftex.def)             Requested size: 224.03302pt x 157.7867pt.
+
+Overfull \hbox (44.21696pt too wide) in paragraph at lines 1435--1437
+[][] [] 
+ []
+
+[37pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1
+3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1457 \end{itemize}
+                     <./graphics/cache-hierarchy.jpg>]
+Overfull \hbox (9.92766pt too wide) in paragraph at lines 1459--1465
+[]\OT1/ptm/m/n/10.95 Historically, mul-ti-core ar-chi-tec-tures have a prece-de
+nt in mul-ti-pro-ces-sor shared mem-ory de-signs (sec-tion [][]2.4.1[][])
+ []
+
+[38pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1506 \begin{itemize}
+                       <./graphics/ScCC-1.png> <./graphics/ScCC-2.png>]
+Package acronym Info: Label `acro:MSI' newly defined as it shall be overridden
+although it is yet undefined on input line 1518.
+\openout3 = `exercises/sequential-ex9.tex'.
+
+
+(./exercises/sequential-ex9.tex
+Package acronym Info: Label `acro:FSA' newly defined as it shall be overridden
+although it is yet undefined on input line 6.
+)
+\openout3 = `exercises/sequential-ex10.tex'.
+
+ (./exercises/sequential-ex10.tex) [39]
+[40] <ranger-node.jpg, id=2094, 1417.39537pt x 817.55438pt>
+File: ranger-node.jpg Graphic file (type jpg)
+
+<use ranger-node.jpg>
+Package pdftex.def Info: ranger-node.jpg used on input line 1667.
+(pdftex.def)             Requested size: 212.60013pt x 122.62787pt.
+ <stampede-node.jpg, id=2095, 2055.68pt x 1185.42876pt>
+File: stampede-node.jpg Graphic file (type jpg)
+
+<use stampede-node.jpg>
+Package pdftex.def Info: stampede-node.jpg used on input line 1668.
+(pdftex.def)             Requested size: 308.3387pt x 177.80664pt.
+Package acronym Info: Label `acro:NUMA' newly defined as it shall be overridden
+
+although it is yet undefined on input line 1683.
+ [41pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+15}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1696 for (int i=0; i<N; i++)
+                               <graphics/ranger-node.jpg> <graphics/stampede-no
+de.jpg>]
+Package acronym Info: Label `acro:PDE' newly defined as it shall be overridden
+although it is yet undefined on input line 1723.
+ [42]
+\openout3 = `exercises/sequential-ex11.tex'.
+
+ (./exercises/sequential-ex11.tex)
+<graphics/roofline1.jpeg, id=2118, 2216.28pt x 1817.79124pt>
+File: graphics/roofline1.jpeg Graphic file (type jpg)
+
+<use graphics/roofline1.jpeg>
+Package pdftex.def Info: graphics/roofline1.jpeg used on input line 1838.
+(pdftex.def)             Requested size: 221.64098pt x 181.78976pt.
+
+<graphics/roofline2.jpeg, id=2119, 2253.41875pt x 1817.79124pt>
+File: graphics/roofline2.jpeg Graphic file (type jpg)
+
+<use graphics/roofline2.jpeg>
+Package pdftex.def Info: graphics/roofline2.jpeg used on input line 1839.
+(pdftex.def)             Requested size: 225.35507pt x 181.78976pt.
+
+<graphics/roofline3.jpeg, id=2120, 2253.41875pt x 1817.79124pt>
+File: graphics/roofline3.jpeg Graphic file (type jpg)
+
+<use graphics/roofline3.jpeg>
+Package pdftex.def Info: graphics/roofline3.jpeg used on input line 1840.
+(pdftex.def)             Requested size: 225.35507pt x 181.78976pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1838--1841
+[][] []
+ []
+
+[43]
+\openout3 = `exercises/sequential-ex12.tex'.
+
+ (./exercises/sequential-ex12.tex) [44] [45pdfTeX warning (ext4): destination w
+ith the same identifier (name{figure.1.16}) has been already used, duplicate ig
+nored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1917 \begin{verbatim}
+                        <./graphics/roofline1.jpeg> <./graphics/roofline2.jpeg>
+ <./graphics/roofline3.jpeg>] [46]
+\openout3 = `exercises/sequential-ex13.tex'.
+
+ (./exercises/sequential-ex13.tex)
+\openout3 = `exercises/sequential-ex14.tex'.
+
+
+(./exercises/sequential-ex14.tex)
+Overfull \hbox (53.35167pt too wide) in paragraph at lines 2040--2040
+[]      \OT1/pcr/m/n/10.95 c[i,j] += a[i,k]*b[k,j][] 
+ []
+
+
+Overfull \hbox (53.35167pt too wide) in paragraph at lines 2050--2050
+[]      \OT1/pcr/m/n/10.95 c[i,j] += a[i,k]*b[k,j][] 
+ []
+
+<graphics/ijk-mult.jpg, id=2164, 4471.70625pt x 908.39375pt>
+File: graphics/ijk-mult.jpg Graphic file (type jpg)
+
+<use graphics/ijk-mult.jpg>
+Package pdftex.def Info: graphics/ijk-mult.jpg used on input line 2056.
+(pdftex.def)             Requested size: 447.19682pt x 90.8447pt.
+ [47]
+\openout3 = `exercises/sequential-ex15.tex'.
+
+ (./exercises/sequential-ex15.tex [48pdfTeX warning (ext4): destination with th
+e same identifier (name{figure.1.17}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.7       c[i,j] += a[i,k]*b[k,j]
+                                  <./graphics/ijk-mult.jpg>])
+(./chapters/memorycoding.tex [49] [50]
+<graphics/cacheoverflow.jpg, id=2200, 578.16pt x 433.62pt>
+File: graphics/cacheoverflow.jpg Graphic file (type jpg)
+
+<use graphics/cacheoverflow.jpg>
+Package pdftex.def Info: graphics/cacheoverflow.jpg used on input line 160.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
+\openout3 = `exercises/sequential-ex16.tex'.
+
+ (./exercises/sequential-ex16.tex) [51pdfTeX warning (ext4): destination with t
+he same identifier (name{table.1.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.179   blockstart = 0;
+                       ]
+\openout3 = `exercises/sequential-ex17.tex'.
+
+ (./exercises/sequential-ex17.tex)
+<graphics/cacheline8.jpg, id=2211, 578.16pt x 433.62pt>
+File: graphics/cacheline8.jpg Graphic file (type jpg)
+
+<use graphics/cacheline8.jpg>
+Package pdftex.def Info: graphics/cacheline8.jpg used on input line 215.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
+ [52pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+18}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.221 
+       <./graphics/cacheoverflow.jpg>] [53pdfTeX warning (ext4): destination wi
+th the same identifier (name{figure.1.19}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.250   for (j=0; j<n; j++)
+                            <./graphics/cacheline8.jpg>]
+<graphics/tlb_col.jpg, id=2229, 578.16pt x 433.62pt>
+File: graphics/tlb_col.jpg Graphic file (type jpg)
+
+<use graphics/tlb_col.jpg>
+Package pdftex.def Info: graphics/tlb_col.jpg used on input line 259.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
+
+<graphics/tlb_row.jpg, id=2230, 578.16pt x 433.62pt>
+File: graphics/tlb_row.jpg Graphic file (type jpg)
+
+<use graphics/tlb_row.jpg>
+Package pdftex.def Info: graphics/tlb_row.jpg used on input line 267.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
+Package acronym Info: Label `acro:FFT' newly defined as it shall be overridden
+although it is yet undefined on input line 300.
+ [54pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+20}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.304 
+       <./graphics/tlb_col.jpg>]
+<graphics/l1_assoc.jpg, id=2243, 578.16pt x 433.62pt>
+File: graphics/l1_assoc.jpg Graphic file (type jpg)
+
+<use graphics/l1_assoc.jpg>
+Package pdftex.def Info: graphics/l1_assoc.jpg used on input line 321.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
+
+<graphics/l1_assocshift.jpg, id=2244, 578.16pt x 433.62pt>
+File: graphics/l1_assocshift.jpg Graphic file (type jpg)
+
+<use graphics/l1_assocshift.jpg>
+Package pdftex.def Info: graphics/l1_assocshift.jpg used on input line 330.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
+ [55pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+21}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.357 
+       <./graphics/tlb_row.jpg>] [56pdfTeX warning (ext4): destination with the
+ same identifier (name{figure.1.22}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.357 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+1.23}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.357 
+       <./graphics/l1_assoc.jpg> <./graphics/l1_assocshift.jpg>]
+\openout3 = `exercises/sequential-ex18.tex'.
+
+
+(./exercises/sequential-ex18.tex)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/sl' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/sl' tried instead on input line 376.
+\openout3 = `exercises/sequential-ex19.tex'.
+
+ (./exercises/sequential-ex19.tex) [57]
+\openout3 = `exercises/sequential-ex20.tex'.
+
+
+(./exercises/sequential-ex20.tex)
+File: snippets/regulartranspose  (verbatim)
+File: snippets/blockedtranspose  (verbatim)
+
+<blockedtranspose.jpeg, id=2268, 2743.24875pt x 1259.70625pt>
+File: blockedtranspose.jpeg Graphic file (type jpg)
+
+<use blockedtranspose.jpeg>
+Package pdftex.def Info: blockedtranspose.jpeg used on input line 473.
+(pdftex.def)             Requested size: 356.63486pt x 163.76756pt.
+ [58] [59pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.1.24}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.515       for k=(kk-1)*bs+1..kk*bs
+                                     <graphics/blockedtranspose.jpeg>]
+<graphics/dft.jpg, id=2282, 617.30624pt x 322.20375pt>
+File: graphics/dft.jpg Graphic file (type jpg)
+ <use graphics/dft.jpg>
+Package pdftex.def Info: graphics/dft.jpg used on input line 526.
+(pdftex.def)             Requested size: 308.65236pt x 161.10147pt.
+
+<graphics/gemm.jpg, id=2283, 613.29124pt x 347.2975pt>
+File: graphics/gemm.jpg Graphic file (type jpg)
+ <use graphics/gemm.jpg>
+Package pdftex.def Info: graphics/gemm.jpg used on input line 534.
+(pdftex.def)             Requested size: 306.64487pt x 173.64832pt.
+
+[60pdfTeX warning (ext4): destination with the same identifier (name{figure.1.2
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.551 \item C
+             ompilers\index{compiler} are not able to extract anywhere closepdf
+TeX warning (ext4): destination with the same identifier (name{figure.1.26}) ha
+s been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.551 \item C
+             ompilers\index{compiler} are not able to extract anywhere close <.
+/graphics/dft.jpg> <./graphics/gemm.jpg>] [61]
+<graphics/oblivious1.jpeg, id=2307, 4363.30125pt x 1152.305pt>
+File: graphics/oblivious1.jpeg Graphic file (type jpg)
+
+<use graphics/oblivious1.jpeg>
+Package pdftex.def Info: graphics/oblivious1.jpeg used on input line 640.
+(pdftex.def)             Requested size: 436.3557pt x 115.23724pt.
+
+
+LaTeX Warning: Reference `sec:fd-oblivious' on page 62 undefined on input line 
+662.
+
+[62pdfTeX warning (ext4): destination with the same identifier (name{figure.1.2
+7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.680 /* variant 1 */
+                      <./graphics/oblivious1.jpeg>] [63]
+<gotoblas1.jpeg, id=2323, 3741.98pt x 1002.74625pt>
+File: gotoblas1.jpeg Graphic file (type jpg)
+ <use gotoblas1.jpeg>
+Package pdftex.def Info: gotoblas1.jpeg used on input line 765.
+(pdftex.def)             Requested size: 374.21992pt x 100.28049pt.
+
+<gotoblas2.jpeg, id=2326, 3741.98pt x 1003.75pt>
+File: gotoblas2.jpeg Graphic file (type jpg)
+ <use gotoblas2.jpeg>
+Package pdftex.def Info: gotoblas2.jpeg used on input line 772.
+(pdftex.def)             Requested size: 374.21992pt x 100.38087pt.
+
+<gotoblas3.jpeg, id=2328, 2337.73375pt x 809.0225pt>
+File: gotoblas3.jpeg Graphic file (type jpg)
+ <use gotoblas3.jpeg>
+Package pdftex.def Info: gotoblas3.jpeg used on input line 785.
+(pdftex.def)             Requested size: 280.51595pt x 97.0785pt.
+
+[64pdfTeX warning (ext4): destination with the same identifier (name{figure.1.2
+8}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.794 \item T
+             hose elements of~$C$ are accumulated, so they stay in register <gr
+aphics/gotoblas1.jpeg>]) (./chapters/power.tex [65pdfTeX warning (ext4): destin
+ation with the same identifier (name{figure.1.29}) has been already used, dupli
+cate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.38 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.1
+.30}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.38 
+      <graphics/gotoblas2.jpeg> <graphics/gotoblas3.jpeg>]
+<graphics/chipheat0.jpg, id=2343, 652.4375pt x 352.31625pt>
+File: graphics/chipheat0.jpg Graphic file (type jpg)
+
+<use graphics/chipheat0.jpg>
+Package pdftex.def Info: graphics/chipheat0.jpg used on input line 86.
+(pdftex.def)             Requested size: 391.46552pt x 211.39137pt.
+
+Overfull \hbox (23.87567pt too wide) in paragraph at lines 86--87
+[][] 
+ []
+
+Package acronym Info: Label `acro:FPGA' newly defined as it shall be overridden
+
+although it is yet undefined on input line 107.
+[66]
+Package acronym Info: Label `acro:SIMD' newly defined as it shall be overridden
+
+although it is yet undefined on input line 147.
+)
+Package acronym Info: Label `acro:OS' newly defined as it shall be overridden
+although it is yet undefined on input line 2179.
+ [67pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+31}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2184 
+        <./graphics/chipheat0.jpg>] Excluding 'notready' comment.
+Including 'notlulu' comment.
+\openout3 = `comment.cut'.
+
+ Straight input of comment.cut. (./comment.cut
+\openout3 = `exercises/sequential-ex21.tex'.
+
+
+(./exercises/sequential-ex21.tex)
+\openout3 = `exercises/sequential-ex22.tex'.
+
+ (./exercises/sequential-ex22.tex)
+\openout3 = `exercises/sequential-ex23.tex'.
+
+
+(./exercises/sequential-ex23.tex))) [68
+\openout5 = `exercises/sequential-nx.tex'.
+
+]
+Chapter 2.
+(./chapters/parallel.tex
+<graphics/parallel-add.jpg, id=2381, 3790.16pt x 1282.7925pt>
+File: graphics/parallel-add.jpg Graphic file (type jpg)
+
+<use graphics/parallel-add.jpg>
+Package pdftex.def Info: graphics/parallel-add.jpg used on input line 55.
+(pdftex.def)             Requested size: 416.9189pt x 141.1076pt.
+ [69
+
+]
+<graphics/parallel-sum.jpg, id=2389, 3439.85126pt x 1015.795pt>
+File: graphics/parallel-sum.jpg Graphic file (type jpg)
+
+<use graphics/parallel-sum.jpg>
+Package pdftex.def Info: graphics/parallel-sum.jpg used on input line 95.
+(pdftex.def)             Requested size: 447.19637pt x 132.05798pt.
+
+<graphics/parallel-sum-graph.jpeg, id=2394, 2755.29375pt x 1353.055pt>
+File: graphics/parallel-sum-graph.jpeg Graphic file (type jpg)
+
+<use graphics/parallel-sum-graph.jpeg>
+Package pdftex.def Info: graphics/parallel-sum-graph.jpeg used on input line 13
+1.
+(pdftex.def)             Requested size: 358.20076pt x 175.90332pt.
+ [70pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.138 \begin{exercise}
+                       <./graphics/parallel-add.jpg>]
+\openout3 = `exercises/parallel-ex1.tex'.
+
+
+(./exercises/parallel-ex1.tex)
+\openout3 = `exercises/parallel-ex2.tex'.
+
+ (./exercises/parallel-ex2.tex
+Package acronym Info: Label `acro:DAG' newly defined as it shall be overridden
+although it is yet undefined on input line 4.
+) [71pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.150 \end{exercise}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.2.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.150 \end{exercise}
+                     <./graphics/parallel-sum.jpg> <./graphics/parallel-sum-gra
+ph.jpeg>]
+\openout3 = `exercises/parallel-ex3.tex'.
+
+ (./exercises/parallel-ex3.tex)
+\openout3 = `exercises/parallel-ex4.tex'.
+
+ (./exercises/parallel-ex4.tex)
+[72]
+\openout3 = `exercises/parallel-ex5.tex'.
+
+ (./exercises/parallel-ex5.tex) [73]
+\openout3 = `exercises/parallel-ex6.tex'.
+
+ (./exercises/parallel-ex6.tex)
+\openout3 = `exercises/parallel-ex7.tex'.
+
+
+(./exercises/parallel-ex7.tex) [74]
+<critical1.jpeg, id=2449, 622.325pt x 1078.0275pt>
+File: critical1.jpeg Graphic file (type jpg)
+ <use critical1.jpeg>
+Package pdftex.def Info: critical1.jpeg used on input line 384.
+(pdftex.def)             Requested size: 43.5672pt x 75.46964pt.
+
+Overfull \hbox (2.08049pt too wide) in paragraph at lines 383--397
+[]$[]$ $[]$ 
+ []
+
+<critical2.jpeg, id=2450, 1128.215pt x 2166.0925pt>
+File: critical2.jpeg Graphic file (type jpg)
+ <use critical2.jpeg>
+Package pdftex.def Info: critical2.jpeg used on input line 401.
+(pdftex.def)             Requested size: 78.98311pt x 151.64197pt.
+
+Overfull \hbox (2.08049pt too wide) in paragraph at lines 400--415
+[]$[]$ $[]$ 
+ []
+
+<critical3.jpeg, id=2451, 1803.73875pt x 1030.85126pt>
+File: critical3.jpeg Graphic file (type jpg)
+ <use critical3.jpeg>
+Package pdftex.def Info: critical3.jpeg used on input line 419.
+(pdftex.def)             Requested size: 126.27461pt x 72.16696pt.
+
+Overfull \hbox (2.08049pt too wide) in paragraph at lines 418--436
+[]$[]$ $[]$ 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [75 <graphics/critical1.jpeg> <graphics/critical2.jpeg>] (./chapters/asymptoti
+cs.tex
+\openout3 = `exercises/parallel-ex8.tex'.
+
+
+(./exercises/parallel-ex8.tex [76 <graphics/critical3.jpeg>])
+\openout3 = `exercises/parallel-ex9.tex'.
+
+
+(./exercises/parallel-ex9.tex)
+Package acronym Info: Label `acro:PRAM' newly defined as it shall be overridden
+
+although it is yet undefined on input line 72.
+ [77])
+\openout3 = `exercises/parallel-ex10.tex'.
+
+ (./exercises/parallel-ex10.tex) [78]
+\openout3 = `exercises/parallel-ex11.tex'.
+
+
+(./exercises/parallel-ex11.tex) [79]
+\openout3 = `exercises/parallel-ex12.tex'.
+
+ (./exercises/parallel-ex12.tex) [80]
+\openout3 = `exercises/parallel-ex13.tex'.
+
+
+(./exercises/parallel-ex13.tex)
+\openout3 = `exercises/parallel-ex14.tex'.
+
+ (./exercises/parallel-ex14.tex)
+\openout3 = `exercises/parallel-ex15.tex'.
+
+
+(./exercises/parallel-ex15.tex) [81] [82]
+<Flynn.jpeg, id=2543, 3434.8325pt x 1317.92375pt>
+File: Flynn.jpeg Graphic file (type jpg)
+ <use Flynn.jpeg>
+Package pdftex.def Info: Flynn.jpeg used on input line 839.
+(pdftex.def)             Requested size: 412.16212pt x 158.14403pt.
+ [83]
+Excluding 'lulu' comment. [84pdfTeX warning (ext4): destination with the same i
+dentifier (name{figure.2.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.897 
+       <graphics/Flynn.jpeg>] Including 'notlulu' comment.
+\openout3 = `comment.cut'.
+
+
+Straight input of comment.cut. (./comment.cut
+<maspar2.jpg, id=2559, 491.8375pt x 1001.7425pt>
+File: maspar2.jpg Graphic file (type jpg)
+ <use maspar2.jpg>
+Package pdftex.def Info: maspar2.jpg used on input line 2.
+(pdftex.def)             Requested size: 147.55238pt x 300.52507pt.
+
+Overfull \hbox (3.01239pt too wide) in paragraph at lines 2--3
+[][]
+ []
+
+) [85pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.964 
+       <graphics/maspar2.jpg>]
+Package acronym Info: Label `acro:SSE' newly defined as it shall be overridden
+although it is yet undefined on input line 996.
+Package acronym Info: Label `acro:AVX' newly defined as it shall be overridden
+although it is yet undefined on input line 996.
+
+Overfull \vbox (2.82385pt too high) has occurred while \output is active []
+
+
+[86]
+Package acronym Info: Label `acro:MIMD' newly defined as it shall be overridden
+
+although it is yet undefined on input line 1058.
+Package acronym Info: Label `acro:SPMD' newly defined as it shall be overridden
+
+although it is yet undefined on input line 1061.
+ [87]
+<graphics/shared-distributed.jpeg, id=2599, 3226.0525pt x 1247.66125pt>
+File: graphics/shared-distributed.jpeg Graphic file (type jpg)
+
+<use graphics/shared-distributed.jpeg>
+Package pdftex.def Info: graphics/shared-distributed.jpeg used on input line 11
+26.
+(pdftex.def)             Requested size: 322.62415pt x 124.77342pt.
+Package acronym Info: Label `acro:UMA' newly defined as it shall be overridden
+although it is yet undefined on input line 1145.
+Package acronym Info: Label `acro:SMP' newly defined as it shall be overridden
+although it is yet undefined on input line 1147.
+ [88pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1180 
+        <./graphics/shared-distributed.jpeg>]
+<graphics/ranger-numa.jpg, id=2608, 539.01375pt x 272.01625pt>
+File: graphics/ranger-numa.jpg Graphic file (type jpg)
+
+<use graphics/ranger-numa.jpg>
+Package pdftex.def Info: graphics/ranger-numa.jpg used on input line 1183.
+(pdftex.def)             Requested size: 323.41074pt x 163.211pt.
+Package acronym Info: Label `acro:PGAS' newly defined as it shall be overridden
+
+although it is yet undefined on input line 1224.
+ [89pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1227 
+        <./graphics/ranger-numa.jpg>] (./chapters/granularity.tex [90] [91]
+Overfull \hbox (0.17131pt too wide) in paragraph at lines 139--145
+[]\OT1/ptm/m/n/10.95 (There is a sub-tle dis-tinc-tion be-tween the two pre-vi-
+ous pseudo-codes. In the first, tasks were self-scheduling:
+ []
+
+<graphics/delauney.jpg, id=2638, 852.18375pt x 425.59pt>
+File: graphics/delauney.jpg Graphic file (type jpg)
+
+<use graphics/delauney.jpg>
+Package pdftex.def Info: graphics/delauney.jpg used on input line 163.
+(pdftex.def)             Requested size: 255.65709pt x 127.67798pt.
+ [92pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+8}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.198 
+       <./graphics/delauney.jpg>] [93pdfTeX warning (ext4): destination with th
+e same identifier (name{figure.2.9}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.251 
+      ]
+\openout3 = `exercises/parallel-ex16.tex'.
+
+ (./exercises/parallel-ex16.tex)) [94] (./chapters/threads.tex
+<fork-join.jpeg, id=2672, 4890.27pt x 1018.80624pt>
+File: fork-join.jpeg Graphic file (type jpg)
+ <use fork-join.jpeg>
+Package pdftex.def Info: fork-join.jpeg used on input line 57.
+(pdftex.def)             Requested size: 391.2296pt x 81.50616pt.
+
+[95pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+0}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.75 
+      <graphics/fork-join.jpeg>]
+Overfull \hbox (16.75475pt too wide) in paragraph at lines 119--119
+[]    \OT1/pcr/m/n/10.95 if (pthread_create(threads+i,NULL,&adder,NULL)!=0) ret
+urn i+1;[] 
+ []
+
+[96] [97]
+Overfull \hbox (3.49533pt too wide) in paragraph at lines 229--251
+[][]
+ []
+
+[98] [99]
+\openout3 = `exercises/parallel-ex17.tex'.
+
+ (./exercises/parallel-ex17.tex [100]) [101] [102]
+\openout3 = `exercises/parallel-ex18.tex'.
+
+
+(./exercises/parallel-ex18.tex)
+Overfull \hbox (13.11569pt too wide) in paragraph at lines 602--606
+\OT1/ptm/m/n/10.95 Other pro-gram-ming mod-els based on threads ex-ist. For in-
+stance, In-tel \OT1/ptm/m/sl/10.95 Cilk Plus[] \OT1/ptm/m/n/10.95 ([][]$\OT1/pc
+r/m/n/10.95 http : / / www . cilkplus .
+ []
+
+LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10.95> not available
+(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 611.
+LaTeX Font Info:    Try loading font information for OMS+pcr on input line 612.
+
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/omspcr.fd
+File: omspcr.fd 
+)
+LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 612.
+
+Underfull \vbox (badness 4120) has occurred while \output is active []
+
+ [103])
+[104] [105]
+\openout3 = `exercises/parallel-ex19.tex'.
+
+ (./exercises/parallel-ex19.tex)
+Package acronym Info: Label `acro:MPI' newly defined as it shall be overridden
+although it is yet undefined on input line 1438.
+ (./chapters/localglobal.tex
+[106] <graphics/wave_right_1.jpg, id=2778, 3206.98125pt x 1219.55624pt>
+File: graphics/wave_right_1.jpg Graphic file (type jpg)
+
+<use graphics/wave_right_1.jpg>
+Package pdftex.def Info: graphics/wave_right_1.jpg used on input line 60.
+(pdftex.def)             Requested size: 448.97432pt x 170.73671pt.
+ [107pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.11}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.75 \end{itemize}
+                   <./graphics/wave_right_1.jpg>]
+<graphics/wave_right_2.jpg, id=2786, 3200.95876pt x 1208.515pt>
+File: graphics/wave_right_2.jpg Graphic file (type jpg)
+
+<use graphics/wave_right_2.jpg>
+Package pdftex.def Info: graphics/wave_right_2.jpg used on input line 78.
+(pdftex.def)             Requested size: 448.13118pt x 169.19095pt.
+
+<graphics/wave_right_3.jpg, id=2789, 3315.38625pt x 995.72pt>
+File: graphics/wave_right_3.jpg Graphic file (type jpg)
+
+<use graphics/wave_right_3.jpg>
+Package pdftex.def Info: graphics/wave_right_3.jpg used on input line 109.
+(pdftex.def)             Requested size: 381.2867pt x 114.51299pt.
+\openout3 = `exercises/parallel-ex20.tex'.
+
+ (./exercises/parallel-ex20.tex [108pdfTeX warning (ext4): destination with the
+ same identifier (name{figure.2.12}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.19   \item E
+              very processor sends at most one message. Express the step <./gra
+phics/wave_right_2.jpg>])) (./chapters/mpi.tex [109pdfTeX warning (ext4): desti
+nation with the same identifier (name{figure.2.13}) has been already used, dupl
+icate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.23 \begin{itemize}
+                     <./graphics/wave_right_3.jpg>] [110] [111]
+\openout3 = `exercises/parallel-ex21.tex'.
+
+
+(./exercises/parallel-ex21.tex) [112] [113]
+Overfull \hbox (3.61476pt too wide) in paragraph at lines 285--285
+[]\OT1/pcr/m/n/10.95 MPI_Wait(handle); // block until the communication is comp
+leted;[] 
+ []
+
+\openout3 = `exercises/parallel-ex22.tex'.
+
+(./exercises/parallel-ex22.tex) [114]
+Package acronym Info: Label `acro:RDMA' newly defined as it shall be overridden
+
+although it is yet undefined on input line 352.
+ [115]) (./chapters/hybrid.tex [116]
+\openout3 = `exercises/parallel-ex23.tex'.
+
+
+(./exercises/parallel-ex23.tex)) (./chapters/languages.tex
+Package acronym Info: Label `acro:HPF' newly defined as it shall be overridden
+although it is yet undefined on input line 23.
+Package acronym Info: Label `acro:UPC' newly defined as it shall be overridden
+although it is yet undefined on input line 39.
+ [117]
+<graphics/abshift.jpg, id=2880, 2717.15125pt x 1789.68625pt>
+File: graphics/abshift.jpg Graphic file (type jpg)
+
+<use graphics/abshift.jpg>
+Package pdftex.def Info: graphics/abshift.jpg used on input line 54.
+(pdftex.def)             Requested size: 326.04408pt x 214.75308pt.
+ [118pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.14}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.76 for (i=0; i<N; i++)
+                         <./graphics/abshift.jpg>] [119]
+Package acronym Info: Label `acro:CAF' newly defined as it shall be overridden
+although it is yet undefined on input line 172.
+ [120]
+Overfull \hbox (16.75475pt too wide) in paragraph at lines 242--242
+[]\OT1/pcr/m/n/10.95 const ProblemSpace: domain(1, 64)) distributed BlockDist =
+ [1..m];[] 
+ []
+
+[121]
+Package acronym Info: Label `acro:HPC' newly defined as it shall be overridden
+although it is yet undefined on input line 332.
+ [122]) [123]
+Overfull \hbox (3.61476pt too wide) in paragraph at lines 1529--1529
+[]\OT1/pcr/m/n/10.95 all_processors[myid+1].incorporate_neighbour_data(local_x_
+data);[] 
+ []
+
+
+Overfull \hbox (3.61476pt too wide) in paragraph at lines 1530--1530
+[]\OT1/pcr/m/n/10.95 all_processors[myid-1].incorporate_neighbour_data(local_x_
+data);[] 
+ []
+
+Package acronym Info: Label `acro:BSP' newly defined as it shall be overridden
+although it is yet undefined on input line 1541.
+\openout3 = `exercises/parallel-ex24.tex'.
+
+(./exercises/parallel-ex24.tex) [124]
+Package acronym Info: Label `acro:AOS' newly defined as it shall be overridden
+although it is yet undefined on input line 1595.
+Package acronym Info: Label `acro:SOA' newly defined as it shall be overridden
+although it is yet undefined on input line 1595.
+ [125]
+<graphics/distmvp.jpeg, id=2977, 2558.55875pt x 1200.485pt>
+File: graphics/distmvp.jpeg Graphic file (type jpg)
+
+<use graphics/distmvp.jpeg>
+Package pdftex.def Info: graphics/distmvp.jpeg used on input line 1683.
+(pdftex.def)             Requested size: 307.01381pt x 144.05199pt.
+ [126]
+\openout3 = `exercises/parallel-ex25.tex'.
+
+ (./exercises/parallel-ex25.tex) [127pdfTeX warning (ext4): destination with th
+e same identifier (name{figure.2.15}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1748 \item I
+              n a \indexterm{fully connected} configuration, <./graphics/distmv
+p.jpeg>]
+\openout3 = `exercises/parallel-ex26.tex'.
+
+ (./exercises/parallel-ex26.tex)
+<graphics/contention.jpg, id=2998, 4948.4875pt x 1016.79875pt>
+File: graphics/contention.jpg Graphic file (type jpg)
+
+<use graphics/contention.jpg>
+Package pdftex.def Info: graphics/contention.jpg used on input line 1818.
+(pdftex.def)             Requested size: 445.34467pt x 91.50793pt.
+ [128]
+Underfull \vbox (badness 4673) has occurred while \output is active []
+
+ [129pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.16}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1879 T
+        he main disadvantage of using a bus is the limited scalability, <./grap
+hics/contention.jpg>]
+\openout3 = `exercises/parallel-ex27.tex'.
+
+ (./exercises/parallel-ex27.tex)
+\openout3 = `exercises/parallel-ex28.tex'.
+
+
+(./exercises/parallel-ex28.tex) [130]
+\openout3 = `exercises/parallel-ex29.tex'.
+
+ (./exercises/parallel-ex29.tex)
+\openout3 = `exercises/parallel-ex30.tex'.
+
+
+(./exercises/parallel-ex30.tex)
+<graphics/torus.jpeg, id=3020, 3615.5075pt x 1068.99374pt>
+File: graphics/torus.jpeg Graphic file (type jpg)
+
+<use graphics/torus.jpeg>
+Package pdftex.def Info: graphics/torus.jpeg used on input line 1977.
+(pdftex.def)             Requested size: 397.70706pt x 117.58968pt.
+
+<graphics/hypercubenumber.jpg, id=3021, 2225.31375pt x 1402.23875pt>
+File: graphics/hypercubenumber.jpg Graphic file (type jpg)
+
+<use graphics/hypercubenumber.jpg>
+Package pdftex.def Info: graphics/hypercubenumber.jpg used on input line 2000.
+(pdftex.def)             Requested size: 180.23584pt x 113.57216pt.
+ [131pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.17}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2005 A
+         good intermediate solution is the \indexterm{hypercube} design. An <./
+graphics/torus.jpeg>]
+<graphics/hypercubes.jpg, id=3031, 2775.36874pt x 1642.135pt>
+File: graphics/hypercubes.jpg Graphic file (type jpg)
+
+<use graphics/hypercubes.jpg>
+Package pdftex.def Info: graphics/hypercubes.jpg used on input line 2012.
+(pdftex.def)             Requested size: 333.02988pt x 197.0477pt.
+\openout3 = `exercises/parallel-ex31.tex'.
+
+ (./exercises/parallel-ex31.tex)
+\openout3 = `exercises/parallel-ex32.tex'.
+
+
+(./exercises/parallel-ex32.tex) [132pdfTeX warning (ext4): destination with the
+ same identifier (name{figure.2.19}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2072 
+       pdfTeX warning (ext4): destination with the same identifier (name{figure
+.2.18}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2072 
+        <./graphics/hypercubes.jpg> <./graphics/hypercubenumber.jpg>]
+Excluding 'lulu' comment. Including 'notlulu' comment.
+\openout3 = `comment.cut'.
+
+
+Straight input of comment.cut. (./comment.cut
+<graphics/hypercubegraynumber.jpeg, id=3043, 2231.33624pt x 1539.7525pt>
+File: graphics/hypercubegraynumber.jpeg Graphic file (type jpg)
+
+<use graphics/hypercubegraynumber.jpeg>
+Package pdftex.def Info: graphics/hypercubegraynumber.jpeg used on input line 1
+.
+(pdftex.def)             Requested size: 180.72363pt x 124.70987pt.
+)
+\openout3 = `exercises/parallel-ex33.tex'.
+
+ (./exercises/parallel-ex33.tex)
+[133pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+20}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2146 \end{exercise}
+                     pdfTeX warning (ext4): destination with the same identifie
+r (name{figure.2.21}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2146 \end{exercise}
+                      <./graphics/hypercubegraynumber.jpeg>]
+Including 'notlulu' comment.
+\openout3 = `comment.cut'.
+
+ Straight input of comment.cut. (./comment.cut
+<graphics/crossbar.jpg, id=3057, 160.6pt x 158.5925pt>
+File: graphics/crossbar.jpg Graphic file (type jpg)
+
+<use graphics/crossbar.jpg>
+Package pdftex.def Info: graphics/crossbar.jpg used on input line 1.
+(pdftex.def)             Requested size: 112.41922pt x 111.01396pt.
+) Excluding 'lulu' comment.
+<butterflys.jpeg, id=3059, 1764.5925pt x 1434.35875pt>
+File: butterflys.jpeg Graphic file (type jpg)
+ <use butterflys.jpeg>
+Package pdftex.def Info: butterflys.jpeg used on input line 2204.
+(pdftex.def)             Requested size: 105.87097pt x 86.0578pt.
+
+[134pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+22}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2217 A
+        s you can see in figure~\ref{fig:butterflyroute}, butterfly exchangespd
+fTeX warning (ext4): destination with the same identifier (name{figure.2.23}) h
+as been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2217 A
+        s you can see in figure~\ref{fig:butterflyroute}, butterfly exchanges <
+./graphics/crossbar.jpg> <graphics/butterflys.jpeg>]
+<graphics/butterfly3.jpeg, id=3073, 2511.3825pt x 1736.4875pt>
+File: graphics/butterfly3.jpeg Graphic file (type jpg)
+
+<use graphics/butterfly3.jpeg>
+Package pdftex.def Info: graphics/butterfly3.jpeg used on input line 2227.
+(pdftex.def)             Requested size: 251.15297pt x 173.65892pt.
+\openout3 = `exercises/parallel-ex34.tex'.
+
+ (./exercises/parallel-ex34.tex)
+<graphics/butterfly-route.jpg, id=3074, 2410.00375pt x 1392.20125pt>
+File: graphics/butterfly-route.jpg Graphic file (type jpg)
+
+<use graphics/butterfly-route.jpg>
+Package pdftex.def Info: graphics/butterfly-route.jpg used on input line 2247.
+(pdftex.def)             Requested size: 433.78197pt x 250.5854pt.
+
+<graphics/fattree5.jpg, id=3079, 2401.97375pt x 1358.07375pt>
+File: graphics/fattree5.jpg Graphic file (type jpg)
+
+<use graphics/fattree5.jpg>
+Package pdftex.def Info: graphics/fattree5.jpg used on input line 2278.
+(pdftex.def)             Requested size: 288.22441pt x 162.9618pt.
+ <stampede_leaf.jpg, id=3080, 120.45pt x 180.675pt>
+File: stampede_leaf.jpg Graphic file (type jpg)
+
+<use stampede_leaf.jpg>
+Package pdftex.def Info: stampede_leaf.jpg used on input line 2280.
+(pdftex.def)             Requested size: 120.44969pt x 180.67455pt.
+
+Overfull \vbox (3.82422pt too high) has occurred while \output is active []
+
+
+[135pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+24}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2290 T
+        he first successful computer <./graphics/butterfly3.jpeg>]
+\openout3 = `exercises/parallel-ex35.tex'.
+
+
+(./exercises/parallel-ex35.tex)
+<graphics/fattree-clos.jpg, id=3094, 2885.78125pt x 1297.84875pt>
+File: graphics/fattree-clos.jpg Graphic file (type jpg)
+
+<use graphics/fattree-clos.jpg>
+Package pdftex.def Info: graphics/fattree-clos.jpg used on input line 2329.
+(pdftex.def)             Requested size: 317.43692pt x 142.7638pt.
+ [136pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.25}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2338 
+        <./graphics/butterfly-route.jpg>] [137pdfTeX warning (ext4): destinatio
+n with the same identifier (name{figure.2.26}) has been already used, duplicate
+ ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2338 
+       pdfTeX warning (ext4): destination with the same identifier (name{figure
+.2.27}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2338 
+        <./graphics/fattree5.jpg> <graphics/stampede_leaf.jpg> <./graphics/fatt
+ree-clos.jpg>] <rangerswitch.jpg, id=3107, 2457.18pt x 1842.885pt>
+File: rangerswitch.jpg Graphic file (type jpg)
+
+<use rangerswitch.jpg>
+Package pdftex.def Info: rangerswitch.jpg used on input line 2351.
+(pdftex.def)             Requested size: 196.57841pt x 147.4338pt.
+ <stampedeswitches.jpg, id=3108, 2457.18pt x 3276.24pt>
+File: stampedeswitches.jpg Graphic file (type jpg)
+
+<use stampedeswitches.jpg>
+Package pdftex.def Info: stampedeswitches.jpg used on input line 2352.
+(pdftex.def)             Requested size: 196.57841pt x 262.10455pt.
+ <bluegenellnl.jpg, id=3110, 867.24pt x 317.988pt>
+File: bluegenellnl.jpg Graphic file (type jpg)
+
+<use bluegenellnl.jpg>
+Package pdftex.def Info: bluegenellnl.jpg used on input line 2368.
+(pdftex.def)             Requested size: 433.61894pt x 158.9936pt.
+ [138pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.28}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2392   \item T
+                he two processors engage in `hand-shaking', to make sure that <
+graphics/rangerswitch.jpg> <graphics/stampedeswitches.jpg>] [139pdfTeX warning 
+(ext4): destination with the same identifier (name{figure.2.29}) has been alrea
+dy used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2433 
+        <graphics/bluegenellnl.jpg>] (./chapters/mta.tex
+\openout3 = `exercises/parallel-ex36.tex'.
+
+ [140]
+(./exercises/parallel-ex36.tex)
+Package acronym Info: Label `acro:MTA' newly defined as it shall be overridden
+although it is yet undefined on input line 52.
+)
+Package acronym Info: Label `acro:DSP' newly defined as it shall be overridden
+although it is yet undefined on input line 2492.
+ [141] (./chapters/gpu.tex
+Package acronym Info: Label `acro:GPGPU' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 16.
+ [142]
+<gpu-memory.jpeg, id=3161, 1944.26375pt x 1482.53876pt>
+File: gpu-memory.jpeg Graphic file (type jpg)
+ <use gpu-memory.jpeg>
+Package pdftex.def Info: gpu-memory.jpeg used on input line 29.
+(pdftex.def)             Requested size: 291.62698pt x 222.37122pt.
+
+Overfull \hbox (38.68199pt too wide) in paragraph at lines 29--30
+[][]
+ []
+
+Package acronym Info: Label `acro:SIMT' newly defined as it shall be overridden
+
+although it is yet undefined on input line 60.
+
+Underfull \hbox (badness 6094) in paragraph at lines 49--61
+\OT1/ptm/m/n/10.95 com-bines SIMD[][] and SPMD[][] par-al-lelism.
+ []
+
+Package acronym Info: Label `acro:SM' newly defined as it shall be overridden
+although it is yet undefined on input line 63.
+Package acronym Info: Label `acro:SP' newly defined as it shall be overridden
+although it is yet undefined on input line 64.
+<graphics/gpu1.jpg, id=3166, 675.52374pt x 348.30125pt>
+File: graphics/gpu1.jpg Graphic file (type jpg)
+
+<use graphics/gpu1.jpg>
+Package pdftex.def Info: graphics/gpu1.jpg used on input line 72.
+(pdftex.def)             Requested size: 405.31737pt x 208.98236pt.
+
+Overfull \hbox (37.72752pt too wide) in paragraph at lines 72--73
+[][] 
+ []
+
+
+Overfull \vbox (0.10408pt too high) has occurred while \output is active []
+
+
+[143pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+30}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.89 
+      <graphics/gpu-memory.jpeg>] [144pdfTeX warning (ext4): destination with t
+he same identifier (name{figure.2.31}) has been already used, duplicate ignored
+
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.140 
+       <./graphics/gpu1.jpg>] [145])
+Package acronym Info: Label `acro:MIC' newly defined as it shall be overridden
+although it is yet undefined on input line 2585.
+ (./chapters/load.tex
+\openout3 = `exercises/parallel-ex37.tex'.
+
+
+(./exercises/parallel-ex37.tex) [146]
+\openout3 = `exercises/parallel-ex38.tex'.
+
+ (./exercises/parallel-ex38.tex)
+\openout3 = `exercises/parallel-ex39.tex'.
+
+
+(./exercises/parallel-ex39.tex)
+<scheduling.jpg, id=3201, 495.8525pt x 103.38625pt>
+File: scheduling.jpg Graphic file (type jpg)
+ <use scheduling.jpg>
+Package pdftex.def Info: scheduling.jpg used on input line 124.
+(pdftex.def)             Requested size: 49.58815pt x 10.33922pt.
+
+[147pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+32}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.136 
+       <graphics/scheduling.jpg>]
+\openout3 = `exercises/parallel-ex40.tex'.
+
+ (./exercises/parallel-ex40.tex) [148]
+\openout3 = `exercises/parallel-ex41.tex'.
+
+
+(./exercises/parallel-ex41.tex)
+Package acronym Info: Label `acro:FEM' newly defined as it shall be overridden
+although it is yet undefined on input line 245.
+\openout3 = `exercises/parallel-ex42.tex'.
+
+ (./exercises/parallel-ex42.tex) [149]
+<graphics/my_octree1.jpeg, id=3242, 3242.1125pt x 1313.90875pt>
+File: graphics/my_octree1.jpeg Graphic file (type jpg)
+
+<use graphics/my_octree1.jpeg>
+Package pdftex.def Info: graphics/my_octree1.jpeg used on input line 297.
+(pdftex.def)             Requested size: 453.89265pt x 183.94597pt.
+
+<graphics/my_octree2.jpeg, id=3244, 2431.0825pt x 899.36pt>
+File: graphics/my_octree2.jpeg Graphic file (type jpg)
+
+<use graphics/my_octree2.jpeg>
+Package pdftex.def Info: graphics/my_octree2.jpeg used on input line 307.
+(pdftex.def)             Requested size: 437.57597pt x 161.8778pt.
+ [150pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.33}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.321 \item W
+             hen a subdomain gets further subdivided, part of the load ofpdfTeX
+ warning (ext4): destination with the same identifier (name{figure.2.34}) has b
+een already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.321 \item W
+             hen a subdomain gets further subdivided, part of the load of <./gr
+aphics/my_octree1.jpeg> <./graphics/my_octree2.jpeg>]
+Package acronym Info: Label `acro:SFC' newly defined as it shall be overridden
+although it is yet undefined on input line 327.
+
+<graphics/my_octree3.jpeg, id=3254, 2382.9025pt x 899.36pt>
+File: graphics/my_octree3.jpeg Graphic file (type jpg)
+
+<use graphics/my_octree3.jpeg>
+Package pdftex.def Info: graphics/my_octree3.jpeg used on input line 332.
+(pdftex.def)             Requested size: 428.90395pt x 161.8778pt.
+
+<my_octree3_evolve.jpeg, id=3257, 3573.35pt x 1032.85875pt>
+File: my_octree3_evolve.jpeg Graphic file (type jpg)
+
+<use my_octree3_evolve.jpeg>
+Package pdftex.def Info: my_octree3_evolve.jpeg used on input line 345.
+(pdftex.def)             Requested size: 285.87384pt x 82.63039pt.
+) [151pdfTeX warning (ext4): destination with the same identifier (name{figure.
+2.35}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2614 ...puting, grid computing, cloud computing}
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{figure.2.36}) has been already used, dupli
+cate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2614 ...puting, grid computing, cloud computing}
+                                                   <./graphics/my_octree3.jpeg>
+ <graphics/my_octree3_evolve.jpeg>] (./chapters/cloud.tex
+Package acronym Info: Label `acro:SAN' newly defined as it shall be overridden
+although it is yet undefined on input line 35.
+Package acronym Info: Label `acro:LAN' newly defined as it shall be overridden
+although it is yet undefined on input line 63.
+Package acronym Info: Label `acro:WAN' newly defined as it shall be overridden
+although it is yet undefined on input line 63.
+Package acronym Info: Label `acro:SAS' newly defined as it shall be overridden
+although it is yet undefined on input line 91.
+ [152]
+Overfull \hbox (23.23126pt too wide) in paragraph at lines 134--138
+[]\OT1/ptm/m/n/10.95 In HPC ap-pli-ca-tions, users can con-sider the cloud re-s
+ources as a clus-ter; this falls un-der Infrastructure-
+ []
+
+[153] [154]) (./chapters/capability.tex) Excluding 'notready' comment.
+(./chapters/mapreduce.tex [155]
+Package acronym Info: Label `acro:HDFS' newly defined as it shall be overridden
+
+although it is yet undefined on input line 75.
+ [156]) (./chapters/top500.tex
+<top500/ChartByArchitecture.png, id=3326, 679.5789pt x 462.7689pt>
+File: top500/ChartByArchitecture.png Graphic file (type png)
+
+<use top500/ChartByArchitecture.png>
+Package pdftex.def Info: top500/ChartByArchitecture.png used on input line 61.
+(pdftex.def)             Requested size: 407.75049pt x 277.66347pt.
+ [157]
+<top500/processor.jpg, id=3335, 675.4836pt x 461.5644pt>
+File: top500/processor.jpg Graphic file (type jpg)
+
+<use top500/processor.jpg>
+Package pdftex.def Info: top500/processor.jpg used on input line 91.
+(pdftex.def)             Requested size: 405.29329pt x 276.94078pt.
+ [158pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.37}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.98 F
+      inally, figure~\ref{fig:top500-cores} shows the gradual increase in <grap
+hics/top500/ChartByArchitecture.png>]
+<top500/cores.jpg, id=3345, 677.4108pt x 460.6008pt>
+File: top500/cores.jpg Graphic file (type jpg)
+ <use top500/cores.jpg>
+Package pdftex.def Info: top500/cores.jpg used on input line 101.
+(pdftex.def)             Requested size: 406.44962pt x 276.36261pt.
+)
+(./chapters/hetero.tex)) [159pdfTeX warning (ext4): destination with the same i
+dentifier (name{figure.2.38}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.219 \CHAPTER{Computer Arithmetic}{arithmetic}
+                                                <graphics/top500/processor.jpg>
+] [160pdfTeX warning (ext4): destination with the same identifier (name{figure.
+2.39}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.219 \CHAPTER{Computer Arithmetic}{arithmetic}
+                                               
+\openout5 = `exercises/parallel-nx.tex'.
+
+ <graphics/top500/cores.jpg>]
+Chapter 3.
+(./chapters/arithmetic.tex [161
+
+] [162]
+\openout3 = `exercises/arithmetic-ex1.tex'.
+
+ (./exercises/arithmetic-ex1.tex)
+\openout3 = `exercises/arithmetic-ex2.tex'.
+
+
+(./exercises/arithmetic-ex2.tex) [163]
+\openout3 = `exercises/arithmetic-ex3.tex'.
+
+ (./exercises/arithmetic-ex3.tex)
+[164] [165]
+\openout3 = `exercises/arithmetic-ex4.tex'.
+
+ (./exercises/arithmetic-ex4.tex) [166]
+
+Package amsmath Warning: Foreign command \atop;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 481.
+
+\openout3 = `exercises/arithmetic-ex5.tex'.
+
+(./exercises/arithmetic-ex5.tex) [167]
+\openout3 = `exercises/arithmetic-ex6.tex'.
+
+ (./exercises/arithmetic-ex6.tex)
+\openout3 = `exercises/arithmetic-ex7.tex'.
+
+
+(./exercises/arithmetic-ex7.tex)
+Overfull \vbox (3.93785pt too high) has occurred while \output is active []
+
+
+[168pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.641 
+      ]
+\openout3 = `exercises/arithmetic-ex8.tex'.
+
+ (./exercises/arithmetic-ex8.tex)
+Package acronym Info: Label `acro:LBM' newly defined as it shall be overridden
+although it is yet undefined on input line 692.
+ [169] [170]
+\openout3 = `exercises/arithmetic-ex9.tex'.
+
+
+(./exercises/arithmetic-ex9.tex)
+\openout3 = `exercises/arithmetic-ex10.tex'.
+
+ (./exercises/arithmetic-ex10.tex) [171]
+\openout3 = `exercises/arithmetic-ex11.tex'.
+
+
+(./exercises/arithmetic-ex11.tex)
+Overfull \vbox (1.39125pt too high) has occurred while \output is active []
+
+
+[172] [173]
+\openout3 = `exercises/arithmetic-ex12.tex'.
+
+ (./exercises/arithmetic-ex12.tex)
+\openout3 = `exercises/arithmetic-ex13.tex'.
+
+ (./exercises/arithmetic-ex13.tex) [174] [175] [176]
+Underfull \hbox (badness 6236) in paragraph at lines 1248--1248
+[][][][]\OT1/ptm/m/n/9 This sec-tion bor-rows from doc-u-ments by Mi-crosoft []
+[]$\OT1/pcr/m/n/9 http : / / msdn . microsoft . com / en-[]us / library /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1248--1248
+\OT1/pcr/m/n/9 aa289157(vs . 71 ) .aspx$[][] \OT1/ptm/m/n/9 and In-tel [][]$\OT
+1/pcr/m/n/9 http : / / software . intel . com / sites / default / files / artic
+le /
+ []
+
+[177] [178]
+Overfull \hbox (61.32988pt too wide) in paragraph at lines 1412--1419
+[]\OT1/ptm/m/n/10.95 The con-stant \OT1/pcr/m/n/10.95 NAN \OT1/ptm/m/n/10.95 is
+ de-clared in \OT1/pcr/m/n/10.95 math.h \OT1/ptm/m/n/10.95 or \OT1/pcr/m/n/10.9
+5 cmath\OT1/ptm/m/n/10.95 . In C++, \OT1/pcr/m/n/10.95 std::numeric_limits<doub
+le>::quiet_NaN()
+ []
+
+[179] [180]
+\openout3 = `exercises/arithmetic-ex14.tex'.
+
+ (./exercises/arithmetic-ex14.tex) [181]
+\openout3 = `exercises/arithmetic-ex15.tex'.
+
+
+(./exercises/arithmetic-ex15.tex)) [182
+\openout5 = `exercises/arithmetic-nx.tex'.
+
+]
+Chapter 4.
+(./chapters/odepde.tex
+Package acronym Info: Label `acro:ODE' newly defined as it shall be overridden
+although it is yet undefined on input line 18.
+Package acronym Info: Label `acro:IVP' newly defined as it shall be overridden
+although it is yet undefined on input line 28.
+Package acronym Info: Label `acro:BVP' newly defined as it shall be overridden
+although it is yet undefined on input line 33.
+Package acronym Info: Label `acro:IBVP' newly defined as it shall be overridden
+
+although it is yet undefined on input line 39.
+ [183
+
+] [184] [185] [186] [187]
+\openout3 = `exercises/odepde-ex1.tex'.
+
+
+(./exercises/odepde-ex1.tex)
+\openout3 = `exercises/odepde-ex2.tex'.
+
+ (./exercises/odepde-ex2.tex [188]) [189] [190]
+Package acronym Info: Label `acro:FD' newly defined as it shall be overridden
+although it is yet undefined on input line 559.
+
+[191]
+Package acronym Info: Label `acro:FDM' newly defined as it shall be overridden
+although it is yet undefined on input line 569.
+\openout3 = `exercises/odepde-ex3.tex'.
+
+ (./exercises/odepde-ex3.tex) [192] [193]
+<graphics/laplacedomain.jpg, id=3699, 2098.84125pt x 1803.73875pt>
+File: graphics/laplacedomain.jpg Graphic file (type jpg)
+
+<use graphics/laplacedomain.jpg>
+Package pdftex.def Info: graphics/laplacedomain.jpg used on input line 752.
+(pdftex.def)             Requested size: 230.87325pt x 198.41188pt.
+ [194]
+<graphics/laplacetriangle.jpg, id=3713, 2166.0925pt x 1826.825pt>
+File: graphics/laplacetriangle.jpg Graphic file (type jpg)
+
+<use graphics/laplacetriangle.jpg>
+Package pdftex.def Info: graphics/laplacetriangle.jpg used on input line 792.
+(pdftex.def)             Requested size: 216.62193pt x 182.69319pt.
+\openout3 = `exercises/odepde-ex4.tex'.
+
+ (./exercises/odepde-ex4.tex) [195pdfTeX warning (ext4): destination with the s
+ame identifier (name{figure.4.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.830 
+       <./graphics/laplacedomain.jpg>]
+<graphics/stencils.jpg, id=3727, 356.33125pt x 115.43124pt>
+File: graphics/stencils.jpg Graphic file (type jpg)
+
+<use graphics/stencils.jpg>
+Package pdftex.def Info: graphics/stencils.jpg used on input line 861.
+(pdftex.def)             Requested size: 285.06537pt x 92.34511pt.
+\openout3 = `exercises/odepde-ex5.tex'.
+
+ (./exercises/odepde-ex5.tex) [196pdfTeX warning (ext4): destination with the s
+ame identifier (name{figure.4.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.885 
+       <./graphics/laplacetriangle.jpg>] [197pdfTeX warning (ext4): destination
+ with the same identifier (name{figure.4.3}) has been already used, duplicate i
+gnored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.938 \item T
+             he material the rod is made of is modeled by a single parameter <.
+/graphics/stencils.jpg>]
+<graphics/euler-forward.jpg, id=3744, 979.66pt x 820.06375pt>
+File: graphics/euler-forward.jpg Graphic file (type jpg)
+
+<use graphics/euler-forward.jpg>
+Package pdftex.def Info: graphics/euler-forward.jpg used on input line 977.
+(pdftex.def)             Requested size: 117.55412pt x 98.4034pt.
+ [198pdfTeX warning (ext4): destination with the same identifier (name{figure.4
+.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1024 \]
+          <./graphics/euler-forward.jpg>]
+<graphics/euler-backward.jpg, id=3761, 547.04375pt x 376.40625pt>
+File: graphics/euler-backward.jpg Graphic file (type jpg)
+
+<use graphics/euler-backward.jpg>
+Package pdftex.def Info: graphics/euler-backward.jpg used on input line 1062.
+(pdftex.def)             Requested size: 109.4068pt x 75.2799pt.
+ [199pdfTeX warning (ext4): destination with the same identifier (name{figure.4
+.5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1100 
+        <./graphics/euler-backward.jpg>]
+\openout3 = `exercises/odepde-ex6.tex'.
+
+ (./exercises/odepde-ex6.tex) [200]
+\openout3 = `exercises/odepde-ex7.tex'.
+
+
+(./exercises/odepde-ex7.tex)) [201
+\openout5 = `exercises/odepde-nx.tex'.
+
+]
+Chapter 5.
+(./chapters/linear.tex [202
+
+] [203]
+\openout3 = `exercises/linear-ex1.tex'.
+
+ (./exercises/linear-ex1.tex)
+\openout3 = `exercises/linear-ex2.tex'.
+
+
+(./exercises/linear-ex2.tex)
+\openout3 = `exercises/linear-ex3.tex'.
+
+ (./exercises/linear-ex3.tex) [204] [205] [206]
+[207]
+\openout3 = `exercises/linear-ex4.tex'.
+
+ (./exercises/linear-ex4.tex) [208] [209]
+\openout3 = `exercises/linear-ex5.tex'.
+
+ (./exercises/linear-ex5.tex)
+\openout3 = `exercises/linear-ex6.tex'.
+
+
+(./exercises/linear-ex6.tex)
+\openout3 = `exercises/linear-ex7.tex'.
+
+ (./exercises/linear-ex7.tex)
+\openout3 = `exercises/linear-ex8.tex'.
+
+
+(./exercises/linear-ex8.tex)
+\openout3 = `exercises/linear-ex9.tex'.
+
+ (./exercises/linear-ex9.tex) [210]
+\openout3 = `exercises/linear-ex10.tex'.
+
+
+(./exercises/linear-ex10.tex)
+\openout3 = `exercises/linear-ex11.tex'.
+
+ (./exercises/linear-ex11.tex)
+Overfull \hbox (13.55759pt too wide) detected at line 737
+ $[] [] \OT1/cmr/m/n/10.95 = [] = [] []$ 
+ []
+
+[211]
+\openout3 = `exercises/linear-ex12.tex'.
+
+ (./exercises/linear-ex12.tex)
+\openout3 = `exercises/linear-ex13.tex'.
+
+ (./exercises/linear-ex13.tex
+Package acronym Info: Label `acro:SPD' newly defined as it shall be overridden
+although it is yet undefined on input line 20.
+) [212]
+\openout3 = `exercises/linear-ex14.tex'.
+
+
+(./exercises/linear-ex14.tex)
+\openout3 = `exercises/linear-ex15.tex'.
+
+ (./exercises/linear-ex15.tex) [213] [214]
+\openout3 = `exercises/linear-ex16.tex'.
+
+
+(./exercises/linear-ex16.tex) (./chapters/sparse.tex [215]
+<graphics/sparsediag.jpg, id=3915, 2466.21375pt x 1675.25874pt>
+File: graphics/sparsediag.jpg Graphic file (type jpg)
+
+<use graphics/sparsediag.jpg>
+Package pdftex.def Info: graphics/sparsediag.jpg used on input line 62.
+(pdftex.def)             Requested size: 246.63582pt x 167.53569pt.
+ [216pdfTeX warning (ext4): destination with the same identifier (name{figure.5
+.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.91 dimension A(n,-1:1)
+                         <./graphics/sparsediag.jpg>]
+\openout3 = `exercises/linear-ex17.tex'.
+
+
+(./exercises/linear-ex17.tex)
+\openout3 = `exercises/linear-ex18.tex'.
+
+ (./exercises/linear-ex18.tex) [217]
+\openout3 = `exercises/linear-ex19.tex'.
+
+
+(./exercises/linear-ex19.tex)
+\openout3 = `exercises/linear-ex20.tex'.
+
+ (./exercises/linear-ex20.tex)
+\openout3 = `exercises/linear-ex21.tex'.
+
+
+(./exercises/linear-ex21.tex)
+Package acronym Info: Label `acro:CRS' newly defined as it shall be overridden
+although it is yet undefined on input line 208.
+
+<graphics/crs.jpg, id=3942, 3644.61626pt x 1238.6275pt>
+File: graphics/crs.jpg Graphic file (type jpg)
+ <use graphics/crs.jpg>
+Package pdftex.def Info: graphics/crs.jpg used on input line 212.
+(pdftex.def)             Requested size: 473.81676pt x 161.02722pt.
+
+Overfull \hbox (7.67714pt too wide) in paragraph at lines 212--213
+[][]
+ []
+
+[218]
+Package acronym Info: Label `acro:CCS' newly defined as it shall be overridden
+although it is yet undefined on input line 245.
+\openout3 = `exercises/linear-ex22.tex'.
+
+ (./exercises/linear-ex22.tex) [219pdfTeX warning (ext4): destination with the 
+same identifier (name{figure.5.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.284 \end{exercise}
+                     <./graphics/crs.jpg>]
+\openout3 = `exercises/linear-ex23.tex'.
+
+ (./exercises/linear-ex23.tex)
+\openout3 = `exercises/linear-ex24.tex'.
+
+
+(./exercises/linear-ex24.tex)
+\openout3 = `exercises/linear-ex25.tex'.
+
+ (./exercises/linear-ex25.tex) [220]
+\openout3 = `exercises/linear-ex26.tex'.
+
+
+(./exercises/linear-ex26.tex)
+\openout3 = `exercises/linear-ex27.tex'.
+
+ (./exercises/linear-ex27.tex)
+\openout3 = `exercises/linear-ex28.tex'.
+
+
+(./exercises/linear-ex28.tex)
+Overfull \hbox (21.49516pt too wide) in paragraph at lines 426--426
+\OT1/ptm/m/n/10.95 ments clos-est to the `mid-dle' of the ma-trix: let $\OML/cm
+m/m/it/10.95 a[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 a[] \OT1/cmr/m/n/10.9
+5 =
+ []
+
+[221] <graphics/ijk-eliminate.jpeg, id=3985, 2283.53125pt x 730.73pt>
+File: graphics/ijk-eliminate.jpeg Graphic file (type jpg)
+
+<use graphics/ijk-eliminate.jpeg>
+Package pdftex.def Info: graphics/ijk-eliminate.jpeg used on input line 502.
+(pdftex.def)             Requested size: 274.01193pt x 87.6838pt.
+\openout3 = `exercises/linear-ex29.tex'.
+
+ (./exercises/linear-ex29.tex)
+\openout3 = `exercises/linear-ex30.tex'.
+
+
+(./exercises/linear-ex30.tex [222pdfTeX warning (ext4): destination with the sa
+me identifier (name{figure.5.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.13   \]
+          <./graphics/ijk-eliminate.jpeg>])
+<graphics/row-eliminate.jpg, id=3998, 2304.61pt x 819.06pt>
+File: graphics/row-eliminate.jpg Graphic file (type jpg)
+
+<use graphics/row-eliminate.jpg>
+Package pdftex.def Info: graphics/row-eliminate.jpg used on input line 583.
+(pdftex.def)             Requested size: 460.91383pt x 163.8091pt.
+\openout3 = `exercises/linear-ex31.tex'.
+
+ (./exercises/linear-ex31.tex)
+\openout3 = `exercises/linear-ex32.tex'.
+
+
+(./exercises/linear-ex32.tex)
+\openout3 = `exercises/linear-ex33.tex'.
+
+ (./exercises/linear-ex33.tex [223])
+\openout3 = `exercises/linear-ex34.tex'.
+
+
+(./exercises/linear-ex34.tex) [224pdfTeX warning (ext4): destination with the s
+ame identifier (name{figure.5.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.679 
+       <./graphics/row-eliminate.jpg>]
+\openout3 = `exercises/linear-ex35.tex'.
+
+ (./exercises/linear-ex35.tex)
+\openout3 = `exercises/linear-ex36.tex'.
+
+ [225]
+(./exercises/linear-ex36.tex)
+\openout3 = `exercises/linear-ex37.tex'.
+
+ (./exercises/linear-ex37.tex)
+\openout3 = `exercises/linear-ex38.tex'.
+
+
+(./exercises/linear-ex38.tex)
+\openout3 = `exercises/linear-ex39.tex'.
+
+ [226] (./exercises/linear-ex39.tex)
+\openout3 = `exercises/linear-ex40.tex'.
+
+
+(./exercises/linear-ex40.tex)) (./chapters/stationary.tex [227]
+\openout3 = `exercises/linear-ex41.tex'.
+
+
+(./exercises/linear-ex41.tex) [228]
+\openout3 = `exercises/linear-ex42.tex'.
+
+ (./exercises/linear-ex42.tex)
+\openout3 = `exercises/linear-ex43.tex'.
+
+
+(./exercises/linear-ex43.tex) [229]
+<graphics/jacobi.jpg, id=4078, 4451.63126pt x 834.11626pt>
+File: graphics/jacobi.jpg Graphic file (type jpg)
+
+<use graphics/jacobi.jpg>
+Package pdftex.def Info: graphics/jacobi.jpg used on input line 286.
+(pdftex.def)             Requested size: 356.13779pt x 66.73065pt.
+ [230]
+<graphics/sor.jpg, id=4086, 5194.40625pt x 896.34875pt>
+File: graphics/sor.jpg Graphic file (type jpg)
+ <use graphics/sor.jpg>
+Package pdftex.def Info: graphics/sor.jpg used on input line 325.
+(pdftex.def)             Requested size: 415.56099pt x 71.70937pt.
+Package acronym Info: Label `acro:SOR' newly defined as it shall be overridden
+although it is yet undefined on input line 334.
+
+[231pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.341         +(1-\omega)x^{(t)}$\\
+                                   pdfTeX warning (ext4): destination with the 
+same identifier (name{figure.5.6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.341         +(1-\omega)x^{(t)}$\\
+                                    <./graphics/jacobi.jpg> <./graphics/sor.jpg
+>]
+Package acronym Info: Label `acro:CG' newly defined as it shall be overridden
+although it is yet undefined on input line 388.
+Package acronym Info: Label `acro:GMRES' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 389.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 397.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 397.
+
+[232]
+\openout3 = `exercises/linear-ex44.tex'.
+
+ (./exercises/linear-ex44.tex)
+\openout3 = `exercises/linear-ex45.tex'.
+
+ (./exercises/linear-ex45.tex)
+\openout3 = `exercises/linear-ex46.tex'.
+
+
+(./exercises/linear-ex46.tex)
+Package acronym Info: Label `acro:ILU' newly defined as it shall be overridden
+although it is yet undefined on input line 475.
+ [233]
+\openout3 = `exercises/linear-ex47.tex'.
+
+ (./exercises/linear-ex47.tex)
+\openout3 = `exercises/linear-ex48.tex'.
+
+
+(./exercises/linear-ex48.tex) [234]
+\openout3 = `exercises/linear-ex49.tex'.
+
+ (./exercises/linear-ex49.tex)
+\openout3 = `exercises/linear-ex50.tex'.
+
+
+(./exercises/linear-ex50.tex)) (./chapters/cg.tex [235] [236] [237] [238]
+<graphics/projection.jpg, id=4171, 214.8025pt x 133.49875pt>
+File: graphics/projection.jpg Graphic file (type jpg)
+
+<use graphics/projection.jpg>
+Package pdftex.def Info: graphics/projection.jpg used on input line 239.
+(pdftex.def)             Requested size: 150.36072pt x 93.44847pt.
+Package acronym Info: Label `acro:FOM' newly defined as it shall be overridden
+although it is yet undefined on input line 259.
+ [239pdfTeX warning (ext4): destination with the same identifier (name{figure.5
+.7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.261 \begin{quote}
+                    <./graphics/projection.jpg>] [240] [241] [242]
+(./chapters/pcg.tex)
+\openout3 = `exercises/linear-ex51.tex'.
+
+ (./exercises/linear-ex51.tex)
+\openout3 = `exercises/linear-ex52.tex'.
+
+ (./exercises/linear-ex52.tex) [243] [244pdfTeX warning (ext4): destination wit
+h the same identifier (name{figure.5.8}) has been already used, duplicate ignor
+ed
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.554 \Level 1 {Complexity}
+                           ])) [245
+\openout5 = `exercises/linear-nx.tex'.
+
+]
+Chapter 6.
+(./chapters/parallellinear.tex [246
+
+] [247] [248] [249]
+\openout3 = `exercises/parallellinear-ex1.tex'.
+
+
+(./exercises/parallellinear-ex1.tex) [250]pdfTeX warning (ext4): destination wi
+th the same identifier (name{algocf.1}) has been already used, duplicate ignore
+d
+<to be read again> 
+                   \relax 
+l.382 ...arallel MVP}{$A,x\sublocal,y\sublocal,p$}
+                                                  
+File: graphics/distmvp.jpeg Graphic file (type jpg)
+ <use graphics/distmvp.jpeg>
+Package pdftex.def Info: graphics/distmvp.jpeg used on input line 417.
+(pdftex.def)             Requested size: 307.01381pt x 144.05199pt.
+pdfTeX warning (ext4): destination with the same identifier (name{algocf.1}) ha
+s been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.426 ...arallel MVP}{$A,x\sublocal,y\sublocal,p$}
+                                                  
+\openout3 = `exercises/parallellinear-ex2.tex'.
+
+
+(./exercises/parallellinear-ex2.tex) [251pdfTeX warning (ext4): destination wit
+h the same identifier (name{figure.6.1}) has been already used, duplicate ignor
+ed
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.455 
+      ] [252pdfTeX warning (ext4): destination with the same identifier (name{f
+igure.6.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.455 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+6.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.455 
+      ] (./chapters/robertmacros.tex) [253] [254] [255]
+Overfull \hbox (0.46535pt too wide) in paragraph at lines 735--753
+[]   [] 
+ []
+
+[256]
+Overfull \hbox (7.55014pt too wide) detected at line 913
+ $[]$ 
+ []
+
+[257pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.942 \end{itemize}
+                   ] [258]
+\openout3 = `exercises/parallellinear-ex3.tex'.
+
+ (./exercises/parallellinear-ex3.tex)
+\openout3 = `exercises/parallellinear-ex4.tex'.
+
+
+(./exercises/parallellinear-ex4.tex) [259]
+\openout3 = `exercises/parallellinear-ex5.tex'.
+
+ (./exercises/parallellinear-ex5.tex)
+\openout3 = `exercises/parallellinear-ex6.tex'.
+
+(./exercises/parallellinear-ex6.tex)
+\openout3 = `exercises/parallellinear-ex7.tex'.
+
+ (./exercises/parallellinear-ex7.tex)
+<graphics/cyclic-1.jpg, id=4356, 3152.77875pt x 1590.94376pt>
+File: graphics/cyclic-1.jpg Graphic file (type jpg)
+
+<use graphics/cyclic-1.jpg>
+Package pdftex.def Info: graphics/cyclic-1.jpg used on input line 1164.
+(pdftex.def)             Requested size: 346.80673pt x 175.00435pt.
+
+<graphics/cyclic-1-mvp.jpg, id=4359, 3829.30624pt x 1042.89626pt>
+File: graphics/cyclic-1-mvp.jpg Graphic file (type jpg)
+
+<use graphics/cyclic-1-mvp.jpg>
+Package pdftex.def Info: graphics/cyclic-1-mvp.jpg used on input line 1176.
+(pdftex.def)             Requested size: 421.22499pt x 114.71893pt.
+\openout3 = `exercises/parallellinear-ex8.tex'.
+
+ (./exercises/parallellinear-ex8.tex) [260]
+\openout3 = `exercises/parallellinear-ex9.tex'.
+
+
+(./exercises/parallellinear-ex9.tex)
+Overfull \hbox (21.12512pt too wide) in paragraph at lines 12--1220
+\OT1/ptm/m/n/10.95 is, ma-trix el-e-ment $\OML/cmm/m/it/10.95 a[]$ \OT1/ptm/m/n
+/10.95 is stored in lo-ca-tion $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 I\OT1/c
+mr/m/n/10.95 (\OML/cmm/m/it/10.95 i; j\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ;
+ J\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 i; j\OT1/cmr/m/n/10.95 ))$ \OT1/ptm/m
+/n/10.95 on pro-ces-sor $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 P\OT1/cmr/m/n/
+10.95 (\OML/cmm/m/it/10.95 i; j\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; Q\OT1/
+cmr/m/n/10.95 (\OML/cmm/m/it/10.95 i; j\OT1/cmr/m/n/10.95 ))$\OT1/ptm/m/n/10.95
+ . 
+ []
+
+[261pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1236 
+       pdfTeX warning (ext4): destination with the same identifier (name{figure
+.6.6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1236 
+        <./graphics/cyclic-1.jpg> <./graphics/cyclic-1-mvp.jpg>]
+<cannon1.jpeg, id=4380, 1824.8175pt x 2392.94pt>
+File: cannon1.jpeg Graphic file (type jpg)
+ <use cannon1.jpeg>
+Package pdftex.def Info: cannon1.jpeg used on input line 1261.
+(pdftex.def)             Requested size: 273.71082pt x 358.92552pt.
+
+Underfull \hbox (badness 1221) in paragraph at lines 1280--1285
+\OT1/ptm/m/n/10.95 uct. And now pro-ces-sor $\OT1/cmr/m/n/10.95 (1\OML/cmm/m/it
+/10.95 ; \OT1/cmr/m/n/10.95 1)$ \OT1/ptm/m/n/10.95 has
+ []
+
+[262pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
+7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1286 I
+        f we continue this story, we start with a matrix~$A$ of which the <grap
+hics/cannon1.jpeg>] [263]
+\openout3 = `exercises/parallellinear-ex10.tex'.
+
+ (./exercises/parallellinear-ex10.tex)
+\openout3 = `exercises/parallellinear-ex11.tex'.
+
+
+(./exercises/parallellinear-ex11.tex)
+\openout3 = `exercises/parallellinear-ex12.tex'.
+
+ (./exercises/parallellinear-ex12.tex)
+(./chapters/spmvp.tex [264]
+<laplaceparallel.jpeg, id=4416, 2098.84125pt x 1803.73875pt>
+File: laplaceparallel.jpeg Graphic file (type jpg)
+
+<use laplaceparallel.jpeg>
+Package pdftex.def Info: laplaceparallel.jpeg used on input line 58.
+(pdftex.def)             Requested size: 251.85008pt x 216.43932pt.
+
+<laplaceghost.jpeg, id=4418, 2404.985pt x 2066.72125pt>
+File: laplaceghost.jpeg Graphic file (type jpg)
+
+<use laplaceghost.jpeg>
+Package pdftex.def Info: laplaceghost.jpeg used on input line 75.
+(pdftex.def)             Requested size: 288.58575pt x 247.99585pt.
+\openout3 = `exercises/parallellinear-ex13.tex'.
+
+ (./exercises/parallellinear-ex13.tex)
+<bandmat.jpeg, id=4419, 2259.44125pt x 1879.02pt>
+File: bandmat.jpeg Graphic file (type jpg)
+ <use bandmat.jpeg>
+Package pdftex.def Info: bandmat.jpeg used on input line 93.
+(pdftex.def)             Requested size: 225.95735pt x 187.91301pt.
+\openout3 = `exercises/parallellinear-ex14.tex'.
+
+
+(./exercises/parallellinear-ex14.tex [265] [266pdfTeX warning (ext4): destinati
+on with the same identifier (name{figure.6.8}) has been already used, duplicate
+ ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.11   \[ E_p = \frac{T_1}{pT_p}. \]
+                                    pdfTeX warning (ext4): destination with the
+ same identifier (name{figure.6.9}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.11   \[ E_p = \frac{T_1}{pT_p}. \]
+                                     <graphics/laplaceparallel.jpeg> <graphics/
+laplaceghost.jpeg>])
+\openout3 = `exercises/parallellinear-ex15.tex'.
+
+ (./exercises/parallellinear-ex15.tex) [267pdfTeX warning (ext4): destination w
+ith the same identifier (name{figure.6.10}) has been already used, duplicate ig
+nored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.152 
+       <graphics/bandmat.jpeg>]
+\openout3 = `exercises/parallellinear-ex16.tex'.
+
+ (./exercises/parallellinear-ex16.tex)
+\openout3 = `exercises/parallellinear-ex17.tex'.
+
+
+(./exercises/parallellinear-ex17.tex)
+Package acronym Info: Label `acro:BEM' newly defined as it shall be overridden
+although it is yet undefined on input line 213.
+\openout3 = `exercises/parallellinear-ex18.tex'.
+
+ (./exercises/parallellinear-ex18.tex)
+[268] [269]
+\openout3 = `exercises/parallellinear-ex19.tex'.
+
+ (./exercises/parallellinear-ex19.tex)
+\openout3 = `exercises/parallellinear-ex20.tex'.
+
+
+(./exercises/parallellinear-ex20.tex) [270]) Excluding 'notready' comment.
+\openout3 = `exercises/parallellinear-ex21.tex'.
+
+
+(./exercises/parallellinear-ex21.tex [271])
+\openout3 = `exercises/parallellinear-ex22.tex'.
+
+
+(./exercises/parallellinear-ex22.tex)pdfTeX warning (ext4): destination with th
+e same identifier (name{algocf.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1507   \caption
+                 {Compute $a\leftarrow x^ty$ where $x,y$ are distributed vec...
+pdfTeX warning (ext4): destination with the same identifier (name{algocf.1}) ha
+s been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1507 ...ty$ where $x,y$ are distributed vectors}
+                                                  
+\openout3 = `exercises/parallellinear-ex23.tex'.
+
+
+(./exercises/parallellinear-ex23.tex)
+Package acronym Info: Label `acro:GS' newly defined as it shall be overridden
+although it is yet undefined on input line 1535.
+ [272]
+<graphics/fem.jpg, id=4522, 3890.535pt x 1095.09125pt>
+File: graphics/fem.jpg Graphic file (type jpg)
+ <use graphics/fem.jpg>
+Package pdftex.def Info: graphics/fem.jpg used on input line 1561.
+(pdftex.def)             Requested size: 466.84406pt x 131.40527pt.
+
+Overfull \hbox (0.70444pt too wide) in paragraph at lines 1561--1563
+[][]
+ []
+
+[273pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
+11}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1592 
+        <./graphics/fem.jpg>]
+Underfull \vbox (badness 1584) has occurred while \output is active []
+
+ [274]
+[275]
+\openout3 = `exercises/parallellinear-ex24.tex'.
+
+ (./exercises/parallellinear-ex24.tex)
+<graphics/block-jacobi.jpeg, id=4549, 3340.48pt x 1199.48125pt>
+File: graphics/block-jacobi.jpeg Graphic file (type jpg)
+
+<use graphics/block-jacobi.jpeg>
+Package pdftex.def Info: graphics/block-jacobi.jpeg used on input line 1747.
+(pdftex.def)             Requested size: 400.8403pt x 143.93153pt.
+ [276pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.12}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1760 
+        <./graphics/block-jacobi.jpeg>]
+\openout3 = `exercises/parallellinear-ex25.tex'.
+
+ (./exercises/parallellinear-ex25.tex)
+<graphics/pilu.jpeg, id=4560, 2761.31625pt x 1439.3775pt>
+File: graphics/pilu.jpeg Graphic file (type jpg)
+
+<use graphics/pilu.jpeg>
+Package pdftex.def Info: graphics/pilu.jpeg used on input line 1804.
+(pdftex.def)             Requested size: 331.34366pt x 172.71785pt.
+
+<graphics/pilu-solve.jpeg, id=4561, 3714.87875pt x 1263.72125pt>
+File: graphics/pilu-solve.jpeg Graphic file (type jpg)
+
+<use graphics/pilu-solve.jpeg>
+Package pdftex.def Info: graphics/pilu-solve.jpeg used on input line 1813.
+(pdftex.def)             Requested size: 482.9512pt x 164.28952pt.
+
+Overfull \hbox (16.81158pt too wide) in paragraph at lines 1813--1814
+[][]
+ []
+
+[277pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
+13}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1824 
+        <./graphics/pilu.jpeg>] (./chapters/dissection.tex
+<graphics/domdecomp.jpg, id=4573, 2471.2325pt x 2018.54124pt>
+File: graphics/domdecomp.jpg Graphic file (type jpg)
+
+<use graphics/domdecomp.jpg>
+Package pdftex.def Info: graphics/domdecomp.jpg used on input line 31.
+(pdftex.def)             Requested size: 247.13773pt x 201.86595pt.
+ [278pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.14}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.42 \[
+        <./graphics/pilu-solve.jpeg>]
+Overfull \hbox (13.19164pt too wide) detected at line 80
+ $\OML/cmm/m/it/10.95 A[] \OT1/cmr/m/n/10.95 = [] = [] [][]$ 
+ []
+
+
+Underfull \vbox (badness 1817) has occurred while \output is active []
+
+ [279pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.15}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.105 \]
+         <./graphics/domdecomp.jpg>]
+\openout3 = `exercises/parallellinear-ex26.tex'.
+
+ (./exercises/parallellinear-ex26.tex)
+<graphics/domdecomp2.jpg, id=4593, 2902.845pt x 1685.29625pt>
+File: graphics/domdecomp2.jpg Graphic file (type jpg)
+
+<use graphics/domdecomp2.jpg>
+Package pdftex.def Info: graphics/domdecomp2.jpg used on input line 139.
+(pdftex.def)             Requested size: 319.31393pt x 185.38316pt.
+ [280pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.16}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.155 \]
+         <./graphics/domdecomp2.jpg>]
+\openout3 = `exercises/parallellinear-ex27.tex'.
+
+ (./exercises/parallellinear-ex27.tex)
+[281] <graphics/domdecomp4.jpeg, id=4607, 2506.36375pt x 1741.50626pt>
+File: graphics/domdecomp4.jpeg Graphic file (type jpg)
+
+<use graphics/domdecomp4.jpeg>
+Package pdftex.def Info: graphics/domdecomp4.jpeg used on input line 236.
+(pdftex.def)             Requested size: 401.0264pt x 278.6467pt.
+\openout3 = `exercises/parallellinear-ex28.tex'.
+
+ (./exercises/parallellinear-ex28.tex)
+Underfull \vbox (badness 3312) has occurred while \output is active []
+
+ [282pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.17}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.267 
+       <./graphics/domdecomp4.jpeg>] [283]) (./chapters/redblackgreen.tex
+[284] <graphics/red-black-1d.jpg, id=4647, 2784.4025pt x 141.52875pt>
+File: graphics/red-black-1d.jpg Graphic file (type jpg)
+
+<use graphics/red-black-1d.jpg>
+Package pdftex.def Info: graphics/red-black-1d.jpg used on input line 43.
+(pdftex.def)             Requested size: 334.11389pt x 16.98271pt.
+
+<graphics/red-black-1d-solve.jpg, id=4649, 3103.595pt x 1400.23125pt>
+File: graphics/red-black-1d-solve.jpg Graphic file (type jpg)
+
+<use graphics/red-black-1d-solve.jpg>
+Package pdftex.def Info: graphics/red-black-1d-solve.jpg used on input line 81.
+
+(pdftex.def)             Requested size: 310.37769pt x 140.03133pt.
+
+<graphics/red-black-1d-solve-par.jpg, id=4651, 3103.595pt x 1594.95876pt>
+File: graphics/red-black-1d-solve-par.jpg Graphic file (type jpg)
+
+<use graphics/red-black-1d-solve-par.jpg>
+Package pdftex.def Info: graphics/red-black-1d-solve-par.jpg used on input line
+ 91.
+(pdftex.def)             Requested size: 310.37769pt x 159.50522pt.
+ [285pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.18}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.95 
+      <./graphics/red-black-1d.jpg>]
+<graphics/redblack.jpg, id=4658, 1637.11626pt x 1322.9425pt>
+File: graphics/redblack.jpg Graphic file (type jpg)
+
+<use graphics/redblack.jpg>
+Package pdftex.def Info: graphics/redblack.jpg used on input line 107.
+(pdftex.def)             Requested size: 196.44547pt x 158.74625pt.
+\openout3 = `exercises/parallellinear-ex29.tex'.
+
+ (./exercises/parallellinear-ex29.tex) [286pdfTeX warning (ext4): destination w
+ith the same identifier (name{figure.6.19}) has been already used, duplicate ig
+nored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.122 \end{exercise}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.6.20}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.122 \end{exercise}
+                     <./graphics/red-black-1d-solve.jpg> <./graphics/red-black-
+1d-solve-par.jpg>]
+\openout3 = `exercises/parallellinear-ex30.tex'.
+
+ (./exercises/parallellinear-ex30.tex)
+\openout3 = `exercises/parallellinear-ex31.tex'.
+
+
+(./exercises/parallellinear-ex31.tex)) [287pdfTeX warning (ext4): destination w
+ith the same identifier (name{figure.6.21}) has been already used, duplicate ig
+nored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1868 for (i=0; i<N; i++)
+                           <./graphics/redblack.jpg>]
+<oblivious-stencil-1.jpeg, id=4680, 3518.14375pt x 1007.765pt>
+File: oblivious-stencil-1.jpeg Graphic file (type jpg)
+
+<use oblivious-stencil-1.jpeg>
+Package pdftex.def Info: oblivious-stencil-1.jpeg used on input line 1900.
+(pdftex.def)             Requested size: 158.30963pt x 45.34746pt.
+
+<oblivious-stencil-2.jpeg, id=4681, 5029.79124pt x 881.2925pt>
+File: oblivious-stencil-2.jpeg Graphic file (type jpg)
+
+<use oblivious-stencil-2.jpeg>
+Package pdftex.def Info: oblivious-stencil-2.jpeg used on input line 1901.
+(pdftex.def)             Requested size: 226.33084pt x 39.65645pt.
+\openout3 = `exercises/parallellinear-ex32.tex'.
+
+ [288pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.22}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1942 \end{exercise}
+                      <graphics/oblivious-stencil-1.jpeg> <graphics/oblivious-s
+tencil-2.jpeg>] (./exercises/parallellinear-ex32.tex)
+\openout3 = `exercises/parallellinear-ex33.tex'.
+
+
+(./exercises/parallellinear-ex33.tex) (./chapters/implicit.tex
+\openout3 = `exercises/parallellinear-ex34.tex'.
+
+
+(./exercises/parallellinear-ex34.tex) [289]
+\openout3 = `exercises/parallellinear-ex35.tex'.
+
+
+(./exercises/parallellinear-ex35.tex)
+<graphics/laplacelower.jpg, id=4712, 2098.84125pt x 1803.73875pt>
+File: graphics/laplacelower.jpg Graphic file (type jpg)
+
+<use graphics/laplacelower.jpg>
+Package pdftex.def Info: graphics/laplacelower.jpg used on input line 79.
+(pdftex.def)             Requested size: 251.85008pt x 216.43932pt.
+ [290pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.23}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.98 
+      <./graphics/laplacelower.jpg>]
+\openout3 = `exercises/parallellinear-ex36.tex'.
+
+ (./exercises/parallellinear-ex36.tex)
+\openout3 = `exercises/parallellinear-ex37.tex'.
+
+
+(./exercises/parallellinear-ex37.tex)
+\openout3 = `exercises/parallellinear-ex38.tex'.
+
+ (./exercises/parallellinear-ex38.tex)
+[291] [292]
+\openout3 = `exercises/parallellinear-ex39.tex'.
+
+ (./exercises/parallellinear-ex39.tex)
+\openout3 = `exercises/parallellinear-ex40.tex'.
+
+
+(./exercises/parallellinear-ex40.tex)
+\openout3 = `exercises/parallellinear-ex41.tex'.
+
+ (./exercises/parallellinear-ex41.tex
+[293])
+\openout3 = `exercises/parallellinear-ex42.tex'.
+
+ (./exercises/parallellinear-ex42.tex))
+\openout3 = `exercises/parallellinear-ex43.tex'.
+
+
+(./exercises/parallellinear-ex43.tex) [294]
+<graphics/grid-update-overlap.jpeg, id=4772, 4182.62625pt x 1164.35pt>
+File: graphics/grid-update-overlap.jpeg Graphic file (type jpg)
+
+<use graphics/grid-update-overlap.jpeg>
+Package pdftex.def Info: graphics/grid-update-overlap.jpeg used on input line 2
+048.
+(pdftex.def)             Requested size: 418.28712pt x 116.44182pt.
+ [295pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.24}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2063 
+        <./graphics/grid-update-overlap.jpeg>]
+\openout3 = `exercises/parallellinear-ex44.tex'.
+
+
+(./exercises/parallellinear-ex44.tex)
+\openout3 = `exercises/parallellinear-ex45.tex'.
+
+ (./exercises/parallellinear-ex45.tex)
+\openout3 = `exercises/parallellinear-ex46.tex'.
+
+
+(./exercises/parallellinear-ex46.tex)
+<graphics/grid-update-local.jpeg, id=4782, 3647.6275pt x 1056.94875pt>
+File: graphics/grid-update-local.jpeg Graphic file (type jpg)
+
+<use graphics/grid-update-local.jpeg>
+Package pdftex.def Info: graphics/grid-update-local.jpeg used on input line 212
+7.
+(pdftex.def)             Requested size: 364.78412pt x 105.70107pt.
+\openout3 = `exercises/parallellinear-ex47.tex'.
+
+ (./exercises/parallellinear-ex47.tex)
+[296]
+\openout3 = `exercises/parallellinear-ex48.tex'.
+
+ (./exercises/parallellinear-ex48.tex)
+<graphics/grid-update-minimal.jpeg, id=4795, 3647.6275pt x 1017.8025pt>
+File: graphics/grid-update-minimal.jpeg Graphic file (type jpg)
+
+<use graphics/grid-update-minimal.jpeg>
+Package pdftex.def Info: graphics/grid-update-minimal.jpeg used on input line 2
+155.
+(pdftex.def)             Requested size: 364.78412pt x 101.78621pt.
+ (./chapters/ernie.tex [297pdfTeX warning (ext4): destination with the same ide
+ntifier (name{figure.6.25}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.34 \]
+       pdfTeX warning (ext4): destination with the same identifier (name{figure
+.6.26}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.34 \]
+        <./graphics/grid-update-local.jpeg> <./graphics/grid-update-minimal.jpe
+g>] <graphics/chol4dag.jpg, id=4806, 568.1225pt x 776.9025pt>
+File: graphics/chol4dag.jpg Graphic file (type jpg)
+
+<use graphics/chol4dag.jpg>
+Package pdftex.def Info: graphics/chol4dag.jpg used on input line 91.
+(pdftex.def)             Requested size: 397.68303pt x 543.82803pt.
+ [298]
+\openout3 = `exercises/parallellinear-ex49.tex'.
+
+ (./exercises/parallellinear-ex49.tex)
+\openout3 = `exercises/parallellinear-ex50.tex'.
+
+
+(./exercises/parallellinear-ex50.tex)
+\openout3 = `exercises/parallellinear-ex51.tex'.
+
+ (./exercises/parallellinear-ex51.tex)))
+[299
+\openout5 = `exercises/parallellinear-nx.tex'.
+
+] [300pdfTeX warning (ext4): destination with the same identifier (name{figure.
+6.27}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.227 \part
+           {Applications} <./graphics/chol4dag.jpg>] [301
+
+]
+Chapter 7.
+(./applications/md.tex [302
+
+] [303]
+<mdchapter/fig-nb-cell.jpg, id=4847, 796.9775pt x 597.23125pt>
+File: mdchapter/fig-nb-cell.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-nb-cell.jpg>
+Package pdftex.def Info: mdchapter/fig-nb-cell.jpg used on input line 153.
+(pdftex.def)             Requested size: 146.5475pt x 146.5475pt.
+
+<mdchapter/fig-nb-verlet.jpg, id=4849, 796.9775pt x 597.23125pt>
+File: mdchapter/fig-nb-verlet.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-nb-verlet.jpg>
+Package pdftex.def Info: mdchapter/fig-nb-verlet.jpg used on input line 156.
+(pdftex.def)             Requested size: 146.5475pt x 146.5475pt.
+ [304pdfTeX warning (ext4): destination with the same identifier (name{figure.7
+.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.180 \Level 2 {Verlet Neighbor Lists}
+                                       <./mdchapter/fig-nb-cell.jpg> <./mdchapt
+er/fig-nb-verlet.jpg>] [305] [306]
+<mdchapter/fig-atom1v.jpg, id=4880, 381.425pt x 377.41pt>
+File: mdchapter/fig-atom1v.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-atom1v.jpg>
+Package pdftex.def Info: mdchapter/fig-atom1v.jpg used on input line 324.
+(pdftex.def)             Requested size: 190.71202pt x 188.70453pt.
+
+<mdchapter/fig-atom2v.jpg, id=4881, 378.41376pt x 379.4175pt>
+File: mdchapter/fig-atom2v.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-atom2v.jpg>
+Package pdftex.def Info: mdchapter/fig-atom2v.jpg used on input line 328.
+(pdftex.def)             Requested size: 189.2064pt x 189.70828pt.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 355.
+ [307pdfTeX warning (ext4): destination with the same identifier (name{figure.7
+.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.364 
+       <./mdchapter/fig-atom1v.jpg> <./mdchapter/fig-atom2v.jpg>]
+<mdchapter/fig-force1v.jpg, id=4899, 380.42125pt x 381.425pt>
+File: mdchapter/fig-force1v.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-force1v.jpg>
+Package pdftex.def Info: mdchapter/fig-force1v.jpg used on input line 420.
+(pdftex.def)             Requested size: 190.21014pt x 190.71202pt.
+
+<mdchapter/fig-force1symv.jpg, id=4900, 378.41376pt x 382.42876pt>
+File: mdchapter/fig-force1symv.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-force1symv.jpg>
+Package pdftex.def Info: mdchapter/fig-force1symv.jpg used on input line 424.
+(pdftex.def)             Requested size: 189.2064pt x 191.2139pt.
+ [308] [309pdfTeX warning (ext4): destination with the same identifier (name{fi
+gure.7.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.471 
+       <./mdchapter/fig-force1v.jpg> <./mdchapter/fig-force1symv.jpg>]
+<mdchapter/fig-force2v.jpg, id=4934, 379.4175pt x 382.42876pt>
+File: mdchapter/fig-force2v.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-force2v.jpg>
+Package pdftex.def Info: mdchapter/fig-force2v.jpg used on input line 500.
+(pdftex.def)             Requested size: 189.70828pt x 191.2139pt.
+
+<mdchapter/fig-force2symv.jpg, id=4935, 378.41376pt x 383.4325pt>
+File: mdchapter/fig-force2symv.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-force2symv.jpg>
+Package pdftex.def Info: mdchapter/fig-force2symv.jpg used on input line 504.
+(pdftex.def)             Requested size: 189.2064pt x 191.71577pt.
+ [310pdfTeX warning (ext4): destination with the same identifier (name{figure.7
+.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.552 
+       <./mdchapter/fig-force2v.jpg> <./mdchapter/fig-force2symv.jpg>]
+<mdchapter/fig-spatial1.jpg, id=4947, 796.9775pt x 597.23125pt>
+File: mdchapter/fig-spatial1.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-spatial1.jpg>
+Package pdftex.def Info: mdchapter/fig-spatial1.jpg used on input line 555.
+(pdftex.def)             Requested size: 175.05132pt x 175.05132pt.
+
+<mdchapter/fig-spatial2.jpg, id=4949, 796.9775pt x 597.23125pt>
+File: mdchapter/fig-spatial2.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-spatial2.jpg>
+Package pdftex.def Info: mdchapter/fig-spatial2.jpg used on input line 556.
+(pdftex.def)             Requested size: 175.05132pt x 175.05132pt.
+ [311pdfTeX warning (ext4): destination with the same identifier (name{figure.7
+.5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.592 
+       <./mdchapter/fig-spatial1.jpg> <./mdchapter/fig-spatial2.jpg>]
+<mdchapter/fig-ntmethod.jpg, id=4970, 796.9775pt x 597.23125pt>
+File: mdchapter/fig-ntmethod.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-ntmethod.jpg>
+Package pdftex.def Info: mdchapter/fig-ntmethod.jpg used on input line 627.
+(pdftex.def)             Requested size: 175.05132pt x 175.05132pt.
+ [312] [313pdfTeX warning (ext4): destination with the same identifier (name{fi
+gure.7.6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.697 
+       <./mdchapter/fig-ntmethod.jpg>]
+<mdchapter/fig-fft-first.jpg, id=5001, 796.9775pt x 597.23125pt>
+File: mdchapter/fig-fft-first.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-fft-first.jpg>
+Package pdftex.def Info: mdchapter/fig-fft-first.jpg used on input line 731.
+(pdftex.def)             Requested size: 216.81pt x 228.35312pt.
+
+<mdchapter/fig-fft-second.jpg, id=5003, 796.9775pt x 597.23125pt>
+File: mdchapter/fig-fft-second.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-fft-second.jpg>
+Package pdftex.def Info: mdchapter/fig-fft-second.jpg used on input line 743.
+(pdftex.def)             Requested size: 252.94499pt x 219.31937pt.
+
+<mdchapter/fig-fft-third.jpg, id=5005, 796.9775pt x 597.23125pt>
+File: mdchapter/fig-fft-third.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-fft-third.jpg>
+Package pdftex.def Info: mdchapter/fig-fft-third.jpg used on input line 744.
+(pdftex.def)             Requested size: 101.17902pt x 51.19176pt.
+ [314]
+<mdchapter/fig-fft1.jpg, id=5021, 796.9775pt x 597.23125pt>
+File: mdchapter/fig-fft1.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-fft1.jpg>
+Package pdftex.def Info: mdchapter/fig-fft1.jpg used on input line 792.
+(pdftex.def)             Requested size: 138.51889pt x 114.42865pt.
+
+<mdchapter/fig-fft2.jpg, id=5023, 796.9775pt x 597.23125pt>
+File: mdchapter/fig-fft2.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-fft2.jpg>
+Package pdftex.def Info: mdchapter/fig-fft2.jpg used on input line 793.
+(pdftex.def)             Requested size: 138.51889pt x 114.42865pt.
+
+<mdchapter/fig-fft3.jpg, id=5025, 796.9775pt x 597.23125pt>
+File: mdchapter/fig-fft3.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-fft3.jpg>
+Package pdftex.def Info: mdchapter/fig-fft3.jpg used on input line 794.
+(pdftex.def)             Requested size: 138.51889pt x 114.42865pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [315pdfTeX warning (ext4): destination with the same identifier (name{figure.7
+.7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.815 
+       <./mdchapter/fig-fft-first.jpg>] [316pdfTeX warning (ext4): destination 
+with the same identifier (name{figure.7.8}) has been already used, duplicate ig
+nored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.844 \]
+         <./mdchapter/fig-fft-second.jpg> <./mdchapter/fig-fft-third.jpg>]
+<mdchapter/fig-integ1v.jpg, id=5044, 388.45125pt x 390.45876pt>
+File: mdchapter/fig-integ1v.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-integ1v.jpg>
+Package pdftex.def Info: mdchapter/fig-integ1v.jpg used on input line 879.
+(pdftex.def)             Requested size: 135.95996pt x 136.6626pt.
+
+<mdchapter/fig-integ2v.jpg, id=5045, 387.4475pt x 384.43625pt>
+File: mdchapter/fig-integ2v.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-integ2v.jpg>
+Package pdftex.def Info: mdchapter/fig-integ2v.jpg used on input line 883.
+(pdftex.def)             Requested size: 135.60864pt x 134.55469pt.
+
+<mdchapter/fig-integ3v.jpg, id=5046, 384.43625pt x 388.45125pt>
+File: mdchapter/fig-integ3v.jpg Graphic file (type jpg)
+
+<use mdchapter/fig-integ3v.jpg>
+Package pdftex.def Info: mdchapter/fig-integ3v.jpg used on input line 887.
+(pdftex.def)             Requested size: 134.55469pt x 135.95996pt.
+ [317pdfTeX warning (ext4): destination with the same identifier (name{figure.7
+.9}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.923 
+       <./mdchapter/fig-fft1.jpg> <./mdchapter/fig-fft2.jpg> <./mdchapter/fig-f
+ft3.jpg>] [318pdfTeX warning (ext4): destination with the same identifier (name
+{figure.7.10}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.959 
+       <./mdchapter/fig-integ1v.jpg> <./mdchapter/fig-integ2v.jpg> <./mdchapter
+/fig-integ3v.jpg>]) Excluding 'lulu' comment. Including 'notlulu' comment.
+\openout3 = `comment.cut'.
+
+
+Straight input of comment.cut. (./comment.cut [319
+\openout5 = `exercises/md-nx.tex'.
+
+]
+Chapter 8.
+(./applications/combinatorics.tex (./applications/sorting.tex
+Package acronym Info: Label `acro:AMR' newly defined as it shall be overridden
+although it is yet undefined on input line 23.
+ [320
+
+]
+<bubble-pass.jpeg, id=5082, 2674.99374pt x 1450.41875pt>
+File: bubble-pass.jpeg Graphic file (type jpg)
+
+<use bubble-pass.jpeg>
+Package pdftex.def Info: bubble-pass.jpeg used on input line 99.
+(pdftex.def)             Requested size: 347.7614pt x 188.56105pt.
+ <bubble-collapse.jpeg, id=5084, 2529.45pt x 1433.355pt>
+File: bubble-collapse.jpeg Graphic file (type jpg)
+
+<use bubble-collapse.jpeg>
+Package pdftex.def Info: bubble-collapse.jpeg used on input line 133.
+(pdftex.def)             Requested size: 303.5209pt x 171.99518pt.
+ [321pdfTeX warning (ext4): destination with the same identifier (name{algocf.2
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.147 \begin{itemize}
+                     pdfTeX warning (ext4): destination with the same identifie
+r (name{algocf.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.147 \begin{itemize}
+                     ]
+\openout3 = `exercises/combinatorics-ex1.tex'.
+
+ (./exercises/combinatorics-ex1.tex)
+Underfull \vbox (badness 4328) has occurred while \output is active []
+
+ [322pdfTeX warning (ext4): destination with the same identifier (name{figure.8
+.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.204 W
+       e state without proof that this can be done in $O(n)$ operations. <graph
+ics/bubble-pass.jpeg>] [323pdfTeX warning (ext4): destination with the same ide
+ntifier (name{figure.8.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.228 \[ T_n = 2T_{n/2} + O(n) \]
+                                  <graphics/bubble-collapse.jpeg>]
+\openout3 = `exercises/combinatorics-ex2.tex'.
+
+
+(./exercises/combinatorics-ex2.tex) [324]
+<bitonic1.jpg, id=5123, 638.385pt x 176.66pt>
+File: bitonic1.jpg Graphic file (type jpg)
+ <use bitonic1.jpg>
+Package pdftex.def Info: bitonic1.jpg used on input line 336.
+(pdftex.def)             Requested size: 319.19171pt x 88.32977pt.
+ [325pdfTeX warning (ext4): destination with the same identifier (name{figure.8
+.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.352 W
+       e call \eqref{eq:bitonic-split} an ascending bitonic sorter, sinc the <g
+raphics/bitonic1.jpg>] <bitonic2.jpg, id=5133, 587.19376pt x 403.5075pt>
+File: bitonic2.jpg Graphic file (type jpg)
+
+<use bitonic2.jpg>
+Package pdftex.def Info: bitonic2.jpg used on input line 361.
+(pdftex.def)             Requested size: 293.59616pt x 201.75325pt.
+\openout3 = `exercises/combinatorics-ex3.tex'.
+
+ (./exercises/combinatorics-ex3.tex)
+<full-bitonic.png, id=5136, 1003.75pt x 307.1475pt>
+File: full-bitonic.png Graphic file (type png)
+ <use full-bitonic.png>
+Package pdftex.def Info: full-bitonic.png used on input line 387.
+(pdftex.def)             Requested size: 401.49289pt x 122.85681pt.
+)
+[326pdfTeX warning (ext4): destination with the same identifier (name{figure.8.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.31 W
+      rite down all natural numbers from~2 to some upper bound~$N$, <graphics/b
+itonic2.jpg>])) [327pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.8.5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.236 ...ICATION{Graph analytics}{graphalgorithms}
+                                                  
+\openout5 = `exercises/combinatorics-nx.tex'.
+
+ <graphics/full-bitonic.png>]
+Chapter 9.
+(./applications/graphalgorithms.tex
+Package acronym Info: Label `acro:BFS' newly defined as it shall be overridden
+although it is yet undefined on input line 68.
+ [328
+
+] [329]
+\openout3 = `exercises/graphalgorithms-ex1.tex'.
+
+
+(./exercises/graphalgorithms-ex1.tex)
+\openout3 = `exercises/graphalgorithms-ex2.tex'.
+
+ (./exercises/graphalgorithms-ex2.tex)
+[330]
+\openout3 = `exercises/graphalgorithms-ex3.tex'.
+
+ (./exercises/graphalgorithms-ex3.tex)
+\openout3 = `exercises/graphalgorithms-ex4.tex'.
+
+
+(./exercises/graphalgorithms-ex4.tex)
+\openout3 = `exercises/graphalgorithms-ex5.tex'.
+
+ (./exercises/graphalgorithms-ex5.tex)
+\openout3 = `exercises/graphalgorithms-ex6.tex'.
+
+
+(./exercises/graphalgorithms-ex6.tex)
+\openout3 = `exercises/graphalgorithms-ex7.tex'.
+
+ (./exercises/graphalgorithms-ex7.tex)
+[331] <graphics/dijkstra-proof.jpeg, id=5190, 2120.92375pt x 1905.1175pt>
+File: graphics/dijkstra-proof.jpeg Graphic file (type jpg)
+
+<use graphics/dijkstra-proof.jpeg>
+Package pdftex.def Info: graphics/dijkstra-proof.jpeg used on input line 309.
+(pdftex.def)             Requested size: 254.49986pt x 228.60423pt.
+ [332pdfTeX warning (ext4): destination with the same identifier (name{figure.9
+.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.317 \end{theorem}
+                    <./graphics/dijkstra-proof.jpeg>] [333]
+\openout3 = `exercises/graphalgorithms-ex8.tex'.
+
+
+(./exercises/graphalgorithms-ex8.tex) Excluding 'notready' comment. [334]
+\openout3 = `exercises/graphalgorithms-ex9.tex'.
+
+
+(./exercises/graphalgorithms-ex9.tex)
+\openout3 = `exercises/graphalgorithms-ex10.tex'.
+
+ (./exercises/graphalgorithms-ex10.tex)
+\openout3 = `exercises/graphalgorithms-ex11.tex'.
+
+
+(./exercises/graphalgorithms-ex11.tex) [335]
+\openout3 = `exercises/graphalgorithms-ex12.tex'.
+
+
+(./exercises/graphalgorithms-ex12.tex) [336]) [337
+\openout5 = `exercises/graphalgorithms-nx.tex'.
+
+]
+Chapter 10.
+(./applications/discrete.tex
+<nbody_pic.jpg, id=5249, 452.69125pt x 418.56375pt>
+File: nbody_pic.jpg Graphic file (type jpg)
+ <use nbody_pic.jpg>
+Package pdftex.def Info: nbody_pic.jpg used on input line 32.
+(pdftex.def)             Requested size: 181.07329pt x 167.42252pt.
+\openout3 = `exercises/discrete-ex1.tex'.
+
+
+(./exercises/discrete-ex1.tex) [338
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10.1})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.68 \end{exercise}
+                    <graphics/nbody_pic.jpg>]
+<graphics/bh-quadrants.jpeg, id=5259, 2358.8125pt x 1907.125pt>
+File: graphics/bh-quadrants.jpeg Graphic file (type jpg)
+
+<use graphics/bh-quadrants.jpeg>
+Package pdftex.def Info: graphics/bh-quadrants.jpeg used on input line 90.
+(pdftex.def)             Requested size: 235.89507pt x 190.72366pt.
+
+<graphics/bh-quadrants-filled.jpeg, id=5260, 1902.10625pt x 1927.2pt>
+File: graphics/bh-quadrants-filled.jpeg Graphic file (type jpg)
+
+<use graphics/bh-quadrants-filled.jpeg>
+Package pdftex.def Info: graphics/bh-quadrants-filled.jpeg used on input line 9
+1.
+(pdftex.def)             Requested size: 190.22177pt x 192.7313pt.
+ [339pdfTeX warning (ext4): destination with the same identifier (name{figure.1
+0.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.115 ...\>if $c$ \=is far enough away from $p$:\\
+                                                   <./graphics/bh-quadrants.jpe
+g> <./graphics/bh-quadrants-filled.jpeg>]
+<bh-quadrants-ratio.jpeg, id=5267, 1902.10625pt x 1927.2pt>
+File: bh-quadrants-ratio.jpeg Graphic file (type jpg)
+
+<use bh-quadrants-ratio.jpeg>
+Package pdftex.def Info: bh-quadrants-ratio.jpeg used on input line 122.
+(pdftex.def)             Requested size: 152.1716pt x 154.17915pt.
+Package acronym Info: Label `acro:FMM' newly defined as it shall be overridden
+although it is yet undefined on input line 148.
+ [340pdfTeX warning (ext4): destination with the same identifier (name{figure.1
+0.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.179 
+       <graphics/bh-quadrants-ratio.jpeg>] [341]
+\openout3 = `exercises/discrete-ex2.tex'.
+
+ (./exercises/discrete-ex2.tex)) Including 'montecarlo' comment.
+\openout3 = `comment.cut'.
+
+ Straight input of comment.cut. (./comment.cut [342
+\openout5 = `exercises/discrete-nx.tex'.
+
+]
+Chapter 11.
+(./applications/montecarlo.tex [343
+
+] [344]
+\openout3 = `exercises/montecarlo-ex1.tex'.
+
+ (./exercises/montecarlo-ex1.tex)
+[345] (./applications/ising.tex [346]))) Excluding 'notready' comment.
+Excluding 'notready' comment. [347
+\openout5 = `exercises/montecarlo-nx.tex'.
+
+] [348
+
+] [349] (./appendices/blurb.tex)
+[350]
+Chapter 12.
+(./appendices/norms.tex [351
+
+] [352]
+\openout3 = `exercises/norms-ex1.tex'.
+
+ (./exercises/norms-ex1.tex)
+Package acronym Info: Label `acro:MGS' newly defined as it shall be overridden
+although it is yet undefined on input line 138.
+Package acronym Info: Label `acro:CGS' newly defined as it shall be overridden
+although it is yet undefined on input line 151.
+ [353]
+\openout3 = `exercises/norms-ex2.tex'.
+
+
+(./exercises/norms-ex2.tex [354]) [355]
+LaTeX Font Info:    Font shape `OMS/ptm/m/sl' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 295.
+ [356]
+<reflector.jpeg, id=5381, 2740.2375pt x 1756.5625pt>
+File: reflector.jpeg Graphic file (type jpg)
+ <use reflector.jpeg>
+Package pdftex.def Info: reflector.jpeg used on input line 357.
+(pdftex.def)             Requested size: 274.0398pt x 175.66653pt.
+)
+[357pdfTeX warning (ext4): destination with the same identifier (name{figure.12
+.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.273 ...ENDIX{Complexity}{complexity}{complexity}
+                                                  
+\openout5 = `exercises/norms-nx.tex'.
+
+ <graphics/reflector.jpeg>]
+Chapter 13.
+(./appendices/complexity.tex
+\openout3 = `exercises/complexity-ex1.tex'.
+
+ (./exercises/complexity-ex1.tex)) [358
+
+\openout5 = `exercises/complexity-nx.tex'.
+
+]
+Chapter 14.
+(./appendices/pde.tex [359
+
+]) [360
+\openout5 = `exercises/pde-nx.tex'.
+
+]
+Chapter 15.
+(./appendices/taylor.tex [361
+
+] [362]) [363
+\openout5 = `exercises/taylor-nx.tex'.
+
+]
+Chapter 16.
+(./appendices/graph.tex <graph1.jpg, id=5416, 1353.055pt x 1016.79875pt>
+File: graph1.jpg Graphic file (type jpg)
+
+<use graph1.jpg>
+Package pdftex.def Info: graph1.jpg used on input line 39.
+(pdftex.def)             Requested size: 135.31342pt x 101.68582pt.
+ [364
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.16.1})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.70 T
+      he \indexterm{diameter} of a graph is the length of the longest <graphics
+/graph1.jpg>] <graph2a.jpg, id=5424, 1655.18375pt x 871.255pt>
+File: graph2a.jpg Graphic file (type jpg)
+
+<use graph2a.jpg>
+Package pdftex.def Info: graph2a.jpg used on input line 83.
+(pdftex.def)             Requested size: 165.52806pt x 87.1306pt.
+ <graph2b.jpg, id=5425, 1655.18375pt x 871.255pt>
+File: graph2b.jpg Graphic file (type jpg)
+
+<use graph2b.jpg>
+Package pdftex.def Info: graph2b.jpg used on input line 87.
+(pdftex.def)             Requested size: 165.52806pt x 87.1306pt.
+ <graph2c.jpg, id=5426, 1655.18375pt x 871.255pt>
+File: graph2c.jpg Graphic file (type jpg)
+
+<use graph2c.jpg>
+Package pdftex.def Info: graph2c.jpg used on input line 91.
+(pdftex.def)             Requested size: 165.52806pt x 87.1306pt.
+ [365pdfTeX warning (ext4): destination with the same identifier (name{figure.1
+6.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.124 
+       <graphics/graph2a.jpg> <graphics/graph2b.jpg> <graphics/graph2c.jpg>]
+\openout3 = `exercises/graph-ex1.tex'.
+
+
+(./exercises/graph-ex1.tex)
+\openout3 = `exercises/graph-ex2.tex'.
+
+ (./exercises/graph-ex2.tex)
+<matrix-graph.jpg, id=5438, 2497.33pt x 682.55pt>
+File: matrix-graph.jpg Graphic file (type jpg)
+ <use matrix-graph.jpg>
+Package pdftex.def Info: matrix-graph.jpg used on input line 198.
+(pdftex.def)             Requested size: 349.62383pt x 95.55635pt.
+
+[366]
+\openout3 = `exercises/graph-ex3.tex'.
+
+ (./exercises/graph-ex3.tex [367pdfTeX warning (ext4): destination with the sam
+e identifier (name{figure.16.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.11 \]
+        <graphics/matrix-graph.jpg>])
+\openout3 = `exercises/graph-ex4.tex'.
+
+ (./exercises/graph-ex4.tex)
+\openout3 = `exercises/graph-ex5.tex'.
+
+
+(./exercises/graph-ex5.tex)
+\openout3 = `exercises/graph-ex6.tex'.
+
+ (./exercises/graph-ex6.tex) [368]
+\openout3 = `exercises/graph-ex7.tex'.
+
+
+(./exercises/graph-ex7.tex) [369]
+\openout3 = `exercises/graph-ex8.tex'.
+
+ (./exercises/graph-ex8.tex)
+\openout3 = `exercises/graph-ex9.tex'.
+
+
+(./exercises/graph-ex9.tex) [370] [371]) Excluding 'notready' comment. [372
+\openout5 = `exercises/graph-nx.tex'.
+
+]
+Chapter 17.
+(./appendices/fsa.tex <fsa.jpg, id=5510, 2225.31375pt x 1474.50874pt>
+File: fsa.jpg Graphic file (type jpg)
+
+<use fsa.jpg>
+Package pdftex.def Info: fsa.jpg used on input line 46.
+(pdftex.def)             Requested size: 333.78267pt x 221.16676pt.
+\openout3 = `exercises/fsa-ex1.tex'.
+
+ (./exercises/fsa-ex1.tex) [373
+
+]) [374pdfTeX warning (ext4): destination with the same identifier (name{figure
+.17.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.281 ...arallel Prefix}{prefix operation}{prefix}
+                                                  
+\openout5 = `exercises/fsa-nx.tex'.
+
+ <graphics/fsa.jpg>]
+Chapter 18.
+(./appendices/prefix.tex
+\openout3 = `exercises/prefix-ex1.tex'.
+
+ (./exercises/prefix-ex1.tex) [375
+
+]
+<parallel-prefix.jpeg, id=5530, 2260.445pt x 1902.10625pt>
+File: parallel-prefix.jpeg Graphic file (type jpg)
+
+<use parallel-prefix.jpeg>
+Package pdftex.def Info: parallel-prefix.jpeg used on input line 80.
+(pdftex.def)             Requested size: 226.05774pt x 190.22177pt.
+ [376pdfTeX warning (ext4): destination with the same identifier (name{figure.1
+8.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.113 \[
+         s_{ij} = <graphics/parallel-prefix.jpeg>])
+Including 'tutorials' comment.
+\openout3 = `comment.cut'.
+
+ Straight input of comment.cut. (./comment.cut
+[377
+\openout5 = `exercises/prefix-nx.tex'.
+
+] [378
+
+] [379] (./tutorials/blurb.tex Excluding 'notready' comment.)
+[380]
+Chapter 19.
+(./tutorials/unix.tex [381
+
+] [382]
+Overfull \hbox (46.40782pt too wide) in paragraph at lines 193--193
+[]\OT1/ptm/m/sl/10 Expected out-come. \OT1/ptm/m/n/10 You will typ-i-cally see 
+some-thing like \OT1/pcr/m/n/10 /home/yourname \OT1/ptm/m/n/10 or \OT1/pcr/m/n/
+10 /Users/yourname\OT1/ptm/m/n/10 .
+ []
+
+[383] [384] [385] [386] [387] [388]
+LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 500.
+ [389] [390] [391]
+\openout3 = `exercises/unix-ex1.tex'.
+
+ (./exercises/unix-ex1.tex) [392] [393]
+Overfull \hbox (14.68211pt too wide) in paragraph at lines 852--852
+[]\OT1/ptm/b/n/10.95 Exercise. \OT1/ptm/m/n/10.95 When you have made the \OT1/p
+cr/m/n/10.95 hello \OT1/ptm/m/n/10.95 script a fore-ground pro-cess again, you 
+can kill it with \OT1/pcr/m/n/10.95 Control-c\OT1/ptm/m/n/10.95 .
+ []
+
+[394]
+Overfull \hbox (1.87776pt too wide) in paragraph at lines 852--852
+[]\OT1/ptm/m/sl/10 Expected out-come. \OT1/ptm/m/n/10 The com-mand \OT1/pcr/m/n
+/10 kill 12345 \OT1/ptm/m/n/10 us-ing the pro-cess num-ber is usu-ally enough
+ []
+
+[395] [396] [397] [398] [399] [400] [401] [402]
+\openout3 = `exercises/unix-ex2.tex'.
+
+ (./exercises/unix-ex2.tex)
+Overfull \hbox (10.18475pt too wide) in paragraph at lines 1337--1337
+[]\OT1/pcr/m/n/10.95 cat myfile | awk 'BEGIN {v="Fields:"} {v=v " " $2} END {pr
+int v}' 
+ []
+
+\openout3 = `exercises/unix-ex3.tex'.
+
+(./exercises/unix-ex3.tex) Excluding 'istc' comment.
+\openout3 = `exercises/unix-ex4.tex'.
+
+ (./exercises/unix-ex4.tex)
+Overfull \hbox (3.18394pt too wide) in paragraph at lines 1367--1367
+[][]\OT1/ptm/m/n/10.95 Write a shell script for mak-ing back-ups. When you call
+ this script as \OT1/pcr/m/n/10.95 ./backup
+ []
+
+) Excluding 'notready' comment. [403
+\openout5 = `exercises/unix-nx.tex'.
+
+]
+Chapter 20.
+(./tutorials/compile.tex
+No file tutorials/compile/c/hello.c.
+[404
+
+]
+No file tutorials/compile/c/fooprog.c.
+No file tutorials/compile/c/foosub.c.
+[405] [406]) [407
+\openout5 = `exercises/compile-nx.tex'.
+
+]
+Chapter 21.
+(./tutorials/gnumake.tex
+No file tutorials/makefiles/1c/foo.c.
+No file tutorials/makefiles/1c/bar.c.
+No file tutorials/makefiles/1c/bar.h.
+No file tutorials/makefiles/1c/Makefile.
+[408
+
+] [409]
+No file tutorials/makefiles/1f/foomain.F.
+No file tutorials/makefiles/1f/foomod.F.
+No file tutorials/makefiles/1f/Makefile.
+[410]
+Overfull \hbox (0.44702pt too wide) in paragraph at lines 211--218
+\OT1/ptm/m/n/10.95 which adds \OT1/pcr/m/n/10.95 foomod.o \OT1/ptm/m/n/10.95 as
+ a pre-req-ui-site for \OT1/pcr/m/n/10.95 foomain.o\OT1/ptm/m/n/10.95 . This me
+ans that, in this case where \OT1/pcr/m/n/10.95 foomain.o
+ []
+
+[411]
+Overfull \hbox (4.34505pt too wide) in paragraph at lines 260--260
+[]\OT1/ptm/b/n/10.95 Exercise. \OT1/ptm/m/n/10.95 Edit your make-file as in-di-
+cated. First do \OT1/pcr/m/n/10.95 make clean\OT1/ptm/m/n/10.95 , then \OT1/pcr
+/m/n/10.95 make foo \OT1/ptm/m/n/10.95 (C) or \OT1/pcr/m/n/10.95 make fooprog
+ []
+
+[412] [413]
+Overfull \hbox (17.94507pt too wide) in paragraph at lines 361--367
+\OT1/ptm/m/n/10.95 with no fur-ther in-struc-tions. This rule states, `if file 
+\OT1/pcr/m/n/10.95 bar.h \OT1/ptm/m/n/10.95 or \OT1/pcr/m/n/10.95 foomod.o \OT1
+/ptm/m/n/10.95 changed, file \OT1/pcr/m/n/10.95 foo.o \OT1/ptm/m/n/10.95 or \OT
+1/pcr/m/n/10.95 foomain.o
+ []
+
+[414] [415] [416] [417] [418]
+No file tutorials/makefiles/tex/M0.
+No file tutorials/makefiles/tex/M1.
+
+Overfull \hbox (33.26488pt too wide) in paragraph at lines 645--653
+[]\OT1/ptm/m/n/10.95 We start with a very ba-sic make-file:  The com-mand \OT1/
+pcr/m/n/10.95 make myfile.pdf \OT1/ptm/m/n/10.95 will in-voke \OT1/pcr/m/n/10.9
+5 pdflatex myfile.tex\OT1/ptm/m/n/10.95 ,
+ []
+
+No file tutorials/makefiles/tex/M2.
+No file tutorials/makefiles/tex/Makefile.
+) [419
+\openout5 = `exercises/gnumake-nx.tex'.
+
+]
+Chapter 22.
+(./tutorials/svn.tex [420
+
+]
+<graphics/repo-flow-svn.jpeg, id=5821, 2383.90625pt x 1352.05125pt>
+File: graphics/repo-flow-svn.jpeg Graphic file (type jpg)
+
+<use graphics/repo-flow-svn.jpeg>
+Package pdftex.def Info: graphics/repo-flow-svn.jpeg used on input line 80.
+(pdftex.def)             Requested size: 405.2587pt x 229.84567pt.
+
+<graphics/repo-flow-hg.jpeg, id=5822, 1847.90375pt x 1218.5525pt>
+File: graphics/repo-flow-hg.jpeg Graphic file (type jpg)
+
+<use graphics/repo-flow-hg.jpeg>
+Package pdftex.def Info: graphics/repo-flow-hg.jpeg used on input line 102.
+(pdftex.def)             Requested size: 351.10536pt x 231.52737pt.
+ [421pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+2.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.119 \Level 1 {Create and populate a repository}
+                                                  <./graphics/repo-flow-svn.jpe
+g>]
+Overfull \hbox (4.72852pt too wide) in paragraph at lines 130--136
+[]\OT1/ptm/m/n/10.95 There are com-mer-cial and free host-ing ser-vices such as
+ \OT1/ptm/m/sl/10.95 Google code[] [][]$\OT1/pcr/m/n/10.95 http : / / code . go
+ogle .
+ []
+
+
+Underfull \hbox (badness 1342) in paragraph at lines 140--140
+[][][][]\OT1/ptm/m/n/9 Alternatively, you can cre-ate a repos-i-tory in the lo-
+cal file sys-tem with \OT1/pcr/m/n/9 svnadmin create ./repository
+ []
+
+[422pdfTeX warning (ext4): destination with the same identifier (name{figure.22
+.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.145 ...}{There is a hidden directory \n{.svn}}{}
+                                                   <./graphics/repo-flow-hg.jpe
+g>] [423]
+Overfull \hbox (12.78679pt too wide) in paragraph at lines 219--223
+[]\OT1/ptm/m/n/10.95 Now let's see what hap-pens when two peo-ple edit the same
+ file. Let both stu-dents make an edit to []\OT1/pcr/m/n/10.95 firstfile\OT1/pt
+m/m/n/10.95 ,
+ []
+
+
+Overfull \hbox (43.03471pt too wide) in paragraph at lines 252--252
+[]\OT1/pcr/m/n/10.95 svn: Aborting commit: '/share/home/12345/yourname/myprojec
+t/firstfile'[] 
+ []
+
+[424] [425] [426] [427] (./tutorials/mercurial.tex [428]
+Overfull \hbox (106.23537pt too wide) in paragraph at lines 29--31
+[]\OT1/ptm/m/n/10.95 Here is a trans-la-tion be-tween the two sys-tems: [][]$\O
+T1/pcr/m/n/10.95 https : / / github . com / sympy / sympy / wiki / Git-[]hg-[]r
+osetta-[]stone$[][]\OT1/ptm/m/n/10.95 . 
+ []
+
+
+Overfull \hbox (3.61476pt too wide) in paragraph at lines 54--54
+[]\OT1/pcr/m/n/10.95 %% hg clone https://YourName@bitbucket.org/YourName/your-p
+roject 
+ []
+
+[429]
+Overfull \hbox (3.61476pt too wide) in paragraph at lines 107--107
+[]  \OT1/pcr/m/n/10.95 (use "git add <file>..." to include in what will be comm
+itted)[] 
+ []
+
+[430] [431]
+Overfull \hbox (12.78679pt too wide) in paragraph at lines 203--208
+[]\OT1/ptm/m/n/10.95 Now let's see what hap-pens when two peo-ple edit the same
+ file. Let both stu-dents make an edit to []\OT1/pcr/m/n/10.95 firstfile\OT1/pt
+m/m/n/10.95 ,
+ []
+
+[432] [433] [434])) [435
+\openout5 = `exercises/svn-nx.tex'.
+
+]
+Chapter 23.
+(./tutorials/hdf5.tex
+Overfull \hbox (0.47214pt too wide) in paragraph at lines 48--57
+\OT1/pcr/m/n/10.95 hdfgroup . org / HDF5 / doc/$[][] \OT1/ptm/m/n/10.95 or [][]
+$\OT1/pcr/m/n/10.95 http : / / www . hdfgroup . org / HDF5 / RM / RM _ H5Front 
+. html$[][]
+ []
+
+[436
+
+] [437] Excluding 'istc' comment.
+No file tutorials/hdf5/create.c.
+
+Overfull \hbox (10.18475pt too wide) in paragraph at lines 148--148
+[]   \OT1/pcr/m/n/10.95 dataset_id = H5Dcreate(file_id, "/dset", dataspace_id, 
+.... );[] 
+ []
+
+No file tutorials/hdf5/dataset.c.
+[438]
+No file tutorials/hdf5/parmdataset.c.
+[439]
+No file tutorials/hdf5/parmwrite.c.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [440]
+No file tutorials/hdf5/allread.c.
+) [441
+\openout5 = `exercises/hdf5-nx.tex'.
+
+]
+Chapter 24.
+(./tutorials/petsc.tex [442
+
+] Excluding 'istc' comment.
+Overfull \hbox (7.72774pt too wide) in paragraph at lines 130--135
+\OT1/ptm/m/n/10.95 trates the ba-sic struc-ture of a PETSc pro-gram: the in-clu
+de file at the top and the calls to \OT1/pcr/m/n/10.95 PetscInitialize\OT1/ptm/
+m/n/10.95 ,
+ []
+
+[443]
+Overfull \hbox (6.8871pt too wide) in paragraph at lines 140--144
+\OT1/ptm/m/n/10.95 the print com-mand. If you ran your pro-gram as \OT1/pcr/m/n
+/10.95 mpiexec -np 4 init \OT1/ptm/m/n/10.95 and you used \OT1/pcr/m/n/10.95 pr
+intf\OT1/ptm/m/n/10.95 ,
+ []
+
+File: snippets/petscprint  (verbatim)
+
+Overfull \hbox (69.31468pt too wide) in paragraph at lines 147--147
+[]  \OT1/pcr/m/n/10.95 ierr = PetscOptionsGetInt(PETSC_NULL,"-n",&n,PETSC_NULL)
+; CHKERRQ(ierr);[] 
+ []
+
+
+Overfull \hbox (29.89473pt too wide) in paragraph at lines 147--147
+[]  \OT1/pcr/m/n/10.95 ierr = PetscPrintf(comm,"Input parameter: %d\n",n); CHKE
+RRQ(ierr);[] 
+ []
+
+\openout3 = `exercises/petsc-ex1.tex'.
+
+(./exercises/petsc-ex1.tex)
+Overfull \hbox (56.11765pt too wide) in paragraph at lines 168--168
+[][]\OT1/ptm/m/n/10.95 Add these two lines to your pro-gram. Look up the rou-ti
+ne \OT1/pcr/m/n/10.95 PetscSynchronizedPrintf
+ []
+
+[444]
+No file tutorials/petsc/exercises/cexercises/vec.c.
+\openout3 = `exercises/petsc-ex2.tex'.
+
+(./exercises/petsc-ex2.tex)
+\openout3 = `exercises/petsc-ex3.tex'.
+
+ (./exercises/petsc-ex3.tex)
+\openout3 = `exercises/petsc-ex4.tex'.
+
+
+(./exercises/petsc-ex4.tex)
+Overfull \hbox (2.01398pt too wide) in paragraph at lines 218--218
+\OT1/ptm/m/n/10.95 ex-am-ple the re-sult should be $\OT1/cmr/m/n/10.95 (0\OML/c
+mm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1\
+OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.
+95 3\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 3)$\OT1/ptm/m/n/10.95 . Read the m
+an page for \OT1/pcr/m/n/10.95 VecSetValue\OT1/ptm/m/n/10.95 ! 
+ []
+
+No file tutorials/petsc/exercises/cexercises/mat.c.
+\openout3 = `exercises/petsc-ex5.tex'.
+
+(./exercises/petsc-ex5.tex [445]
+Overfull \hbox (0.32971pt too wide) in paragraph at lines 12--12
+ []            \OT1/pcr/m/n/10.95 (A,1,&i,3,j,v,INSERT_VALUES); CHKERRQ(ierr);[
+] 
+ []
+
+)
+\openout3 = `exercises/petsc-ex6.tex'.
+
+ (./exercises/petsc-ex6.tex)
+\openout3 = `exercises/petsc-ex7.tex'.
+
+ (./exercises/petsc-ex7.tex)
+Overfull \hbox (2.43967pt too wide) in paragraph at lines 289--292
+[]\OT1/ptm/m/n/10.95 You have just used the de-fault lin-ear sys-tem solver. Ru
+n the pro-gram again, but with the op-tion \OT1/pcr/m/n/10.95 -ksp_view\OT1/ptm
+/m/n/10.95 .
+ []
+
+\openout3 = `exercises/petsc-ex8.tex'.
+
+(./exercises/petsc-ex8.tex)
+\openout3 = `exercises/petsc-ex9.tex'.
+
+ (./exercises/petsc-ex9.tex) [446]
+\openout3 = `exercises/petsc-ex10.tex'.
+
+
+(./exercises/petsc-ex10.tex)
+Overfull \hbox (34.20712pt too wide) in paragraph at lines 320--320
+[][]\OT1/ptm/m/n/10.95 Add a call to \OT1/pcr/m/n/10.95 KSPSetFromOptions \OT1/
+ptm/m/n/10.95 to your code. Use the op-tion \OT1/pcr/m/n/10.95 -ksp_monitor
+ []
+
+\openout3 = `exercises/petsc-ex11.tex'.
+
+(./exercises/petsc-ex11.tex) [447]
+\openout3 = `exercises/petsc-ex12.tex'.
+
+ (./exercises/petsc-ex12.tex)
+Underfull \vbox (badness 6944) has occurred while \output is active []
+
+ [448]
+\openout3 = `exercises/petsc-ex13.tex'.
+
+
+(./exercises/petsc-ex13.tex) [449] Excluding 'istc' comment.
+Excluding 'istc' comment. (./tutorials/blas.tex
+Package acronym Info: Label `acro:BLAS' newly defined as it shall be overridden
+
+although it is yet undefined on input line 26.
+ [450]
+Overfull \hbox (34.69827pt too wide) in paragraph at lines 85--87
+[]\OT1/ptm/m/n/10.95 Fortran char-ac-ter ar-gu-ments have been re-placed by enu
+-mer-ated con-stants, for in-stance \OT1/pcr/m/n/10.95 CblasNoTrans
+ []
+
+
+Overfull \hbox (2.64548pt too wide) in paragraph at lines 110--113
+[]\OT1/ptm/m/n/10.95 General/symmetric/Hermitian band; these for-mats use colum
+n-major stor-age; in \OT1/pcr/m/n/10.95 SGBTRF \OT1/ptm/m/n/10.95 over-
+ []
+
+[451] <graphics/densearray.jpg, id=6062, 2782.395pt x 1357.07pt>
+File: graphics/densearray.jpg Graphic file (type jpg)
+
+<use graphics/densearray.jpg>
+Package pdftex.def Info: graphics/densearray.jpg used on input line 203.
+(pdftex.def)             Requested size: 389.53265pt x 189.9885pt.
+ [452]
+<graphics/denselda.jpg, id=6074, 3141.7375pt x 1339.0025pt>
+File: graphics/denselda.jpg Graphic file (type jpg)
+
+<use graphics/denselda.jpg>
+Package pdftex.def Info: graphics/denselda.jpg used on input line 221.
+(pdftex.def)             Requested size: 439.84026pt x 187.45908pt.
+
+<graphics/denselda2.jpg, id=6076, 3315.38625pt x 1339.0025pt>
+File: graphics/denselda2.jpg Graphic file (type jpg)
+
+<use graphics/denselda2.jpg>
+Package pdftex.def Info: graphics/denselda2.jpg used on input line 231.
+(pdftex.def)             Requested size: 464.15092pt x 187.45908pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 231--232
+[][]
+ []
+
+[453pdfTeX warning (ext4): destination with the same identifier (name{figure.24
+.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.236 \begin{verbatim}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{figure.24.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.236 \begin{verbatim}
+                       <./graphics/densearray.jpg> <./graphics/denselda.jpg>]
+Overfull \hbox (29.89473pt too wide) in paragraph at lines 237--237
+[]\OT1/pcr/m/n/10.95 call routine( A(3,2), /* M= */ 2, /* N= */ 3, /* LDA= */ M
+big, ... ) 
+ []
+
+Package acronym Info: Label `acro:API' newly defined as it shall be overridden
+although it is yet undefined on input line 245.
+
+Overfull \hbox (5.1776pt too wide) in paragraph at lines 259--261
+[]\OT1/ptm/m/sl/10.95 blis[] \OT1/ptm/m/n/10.95 (\OT1/pcr/m/n/10.95 https://cod
+e.google.com/p/blis/\OT1/ptm/m/n/10.95 ), a BLAS re-place-ment and ex-ten-sion 
+project. 
+ []
+
+[454pdfTeX warning (ext4): destination with the same identifier (name{figure.24
+.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.272 // C
+           <./graphics/denselda2.jpg>]
+File: snippets/scale  (verbatim)
+
+Overfull \hbox (62.74469pt too wide) in paragraph at lines 278--278
+[]     \OT1/pcr/m/n/10.95 if (.not.assert_equal( xarray(i),scale )) print *,"Er
+ror in index",i[] 
+ []
+
+File: snippets/scalecb  (verbatim)
+File: snippets/scaleinc  (verbatim)
+
+Overfull \hbox (82.45467pt too wide) in paragraph at lines 286--286
+[]        \OT1/pcr/m/n/10.95 if (.not.assert_equal( xarray(i),scale )) print *,
+"Error in index",i[] 
+ []
+
+
+Overfull \hbox (75.88467pt too wide) in paragraph at lines 286--286
+[]        \OT1/pcr/m/n/10.95 if (.not.assert_equal( xarray(i),1.d0 )) print *,"
+Error in index",i[] 
+ []
+
+[455]
+Overfull \hbox (49.6047pt too wide) in paragraph at lines 299--299
+[]    \OT1/pcr/m/n/10.95 double precision BETA,double precision, dimension(*) Y
+,integer INCY[] 
+ []
+
+File: snippets/mvp  (verbatim)
+File: snippets/mvpc  (verbatim)
+
+Overfull \hbox (10.18475pt too wide) in paragraph at lines 309--309
+[]      \OT1/pcr/m/n/10.95 CblasNoTrans,m,n, alpha,matrix,m, xarray,1, beta,yar
+ray,1);[] 
+ []
+
+)) [456
+\openout5 = `exercises/petsc-nx.tex'.
+
+]
+Chapter 25.
+(./tutorials/gnuplot.tex [457
+
+] [458]) [459
+\openout5 = `exercises/gnuplot-nx.tex'.
+
+]
+Chapter 26.
+(./tutorials/coding.tex [460
+
+]
+Overfull \hbox (8.12288pt too wide) in paragraph at lines 97--101
+\OT1/ptm/m/n/10.95 The C stan-dard li-brary has a file \OT1/pcr/m/n/10.95 asser
+t.h \OT1/ptm/m/n/10.95 which pro-vides an \OT1/pcr/m/n/10.95 assert() \OT1/ptm/
+m/n/10.95 macro. In-sert-ing \OT1/pcr/m/n/10.95 assert(foo)
+ []
+
+[461]
+Overfull \hbox (10.18475pt too wide) in paragraph at lines 144--144
+[]\OT1/pcr/m/n/10.95 print *, "Assert: ",trim(testStr)," Failed at ",trim(file)
+,":",ln[] 
+ []
+
+Excluding 'notready' comment. [462] [463] [464] [465] [466]) [467
+\openout5 = `exercises/coding-nx.tex'.
+
+]
+Chapter 27.
+(./tutorials/debug.tex
+No file tutorials/gdb/c/hello.c.
+[468
+
+]
+Overfull \hbox (43.03471pt too wide) in paragraph at lines 72--72
+[]\OT1/pcr/m/n/10.95 Copyright 2004 Free Software Foundation, Inc. .... copyrig
+ht info ....[] 
+ []
+
+No file tutorials/gdb/c/say.c.
+[469]
+File: snippets/gdb-square  (verbatim)
+
+Overfull \hbox (3.61476pt too wide) in paragraph at lines 152--152
+[]\OT1/pcr/m/n/10.95 Program received signal EXC_BAD_ACCESS, Could not access m
+emory.[] 
+ []
+
+[470]
+Overfull \hbox (27.13527pt too wide) in paragraph at lines 166--166
+[]\OT1/pcr/m/n/10 #2  0x0000000100000e89 in main (argc=1, argv=0x7fff5fbfc7c0) 
+at square.c:7[] 
+ []
+
+
+Overfull \hbox (9.13527pt too wide) in paragraph at lines 180--180
+[]\OT1/pcr/m/n/10 0x0000000100000ebe in main (argc=2, argv=0x7fff5fbfc7a8) at s
+quare1.c:9[] 
+ []
+
+File: snippets/gdb-up  (verbatim)
+
+Overfull \hbox (3.61476pt too wide) in paragraph at lines 199--199
+[]\OT1/pcr/m/n/10.95 Program received signal EXC_BAD_ACCESS, Could not access m
+emory. 
+ []
+
+[471]
+Overfull \hbox (23.32474pt too wide) in paragraph at lines 201--201
+[]\OT1/pcr/m/n/10.95 0x0000000100000f43 in main (argc=1, argv=0x7fff5fbfe2c0) a
+t up.c:15[] 
+ []
+
+No file tutorials/gdb/f/square.F.
+No file tutorials/gdb/c/square1.c.
+
+Overfull \hbox (21.13527pt too wide) in paragraph at lines 253--253
+[]\OT1/pcr/m/n/10 ==53695== Copyright (C) 2002-2010, and GNU GPL'd, by Julian S
+eward et al.[] 
+ []
+
+
+Overfull \hbox (33.13527pt too wide) in paragraph at lines 254--254
+[]\OT1/pcr/m/n/10 ==53695== Using Valgrind-3.6.1 and LibVEX; rerun with -h for 
+copyright info[] 
+ []
+
+[472]
+Overfull \hbox (27.13527pt too wide) in paragraph at lines 260--260
+[]\OT1/pcr/m/n/10 ==53695==  Address 0x10027e148 is 0 bytes after a block of si
+ze 40 alloc'd[] 
+ []
+
+
+Overfull \hbox (27.13527pt too wide) in paragraph at lines 266--266
+[]\OT1/pcr/m/n/10 ==53695==  Address 0x10027e148 is 0 bytes after a block of si
+ze 40 alloc'd[] 
+ []
+
+
+Overfull \hbox (9.13527pt too wide) in paragraph at lines 287--287
+[]\OT1/pcr/m/n/10 ==53785==    by 0x10003199F: __vfprintf (in /usr/lib/libSyste
+m.B.dylib)[] 
+ []
+
+
+Overfull \hbox (9.13527pt too wide) in paragraph at lines 288--288
+[]\OT1/pcr/m/n/10 ==53785==    by 0x1000738AA: vfprintf_l (in /usr/lib/libSyste
+m.B.dylib)[] 
+ []
+
+No file tutorials/gdb/c/roots.c.
+[473] [474] [475] <ddt2.jpg, id=6211, 1024.82875pt x 801.99625pt>
+File: ddt2.jpg Graphic file (type jpg)
+
+<use ddt2.jpg>
+Package pdftex.def Info: ddt2.jpg used on input line 446.
+(pdftex.def)             Requested size: 409.92424pt x 320.79282pt.
+
+Overfull \hbox (10.18475pt too wide) in paragraph at lines 461--461
+[]  \OT1/pcr/m/n/10.95 printf("[%d] iteration %d, random %e\n",mytid,it,randomn
+umber);[] 
+ []
+
+[476pdfTeX warning (ext4): destination with the same identifier (name{figure.27
+.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.461 ... %d, random %e\n",mytid,it,randomnumber);
+                                                   <graphics/ddt2.jpg>]
+Overfull \hbox (10.18475pt too wide) in paragraph at lines 472--472
+[]  \OT1/pcr/m/n/10.95 printf("[%d] iteration %d, random %e\n",mytid,it,randomn
+umber);[] 
+ []
+
+\openout3 = `exercises/debug-ex1.tex'.
+
+(./exercises/debug-ex1.tex)
+\openout3 = `exercises/debug-ex2.tex'.
+
+ (./exercises/debug-ex2.tex))
+Excluding 'notready' comment. [477
+\openout5 = `exercises/debug-nx.tex'.
+
+]
+Chapter 28.
+(./tutorials/language.tex [478
+
+]
+No file tutorials/linking/fbind.F90.
+No file tutorials/linking/fdata.F90.
+[479] [480]
+File: snippets/zscale  (verbatim)
+
+Overfull \hbox (10.18475pt too wide) in paragraph at lines 200--200
+[]  \OT1/pcr/m/n/10.95 xarray = new double complex[n]; yarray = new double comp
+lex[n];[] 
+ []
+
+<cf-arrays.jpeg, id=6244, 3065.4525pt x 1419.3025pt>
+File: cf-arrays.jpeg Graphic file (type jpg)
+ <use cf-arrays.jpeg>
+Package pdftex.def Info: cf-arrays.jpeg used on input line 217.
+(pdftex.def)             Requested size: 398.52281pt x 184.5158pt.
+
+[481] [482pdfTeX warning (ext4): destination with the same identifier (name{fig
+ure.28.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.278 \begin{verbatim}
+                       <graphics/cf-arrays.jpeg>]
+No file tutorials/linking/fstring.F90.
+No file tutorials/linking/cstring.c.
+[483]) [484
+\openout5 = `exercises/language-nx.tex'.
+
+]
+Chapter 29.
+(./tutorials/latex.tex [485
+
+] [486pdfTeX warning (ext4): destination with the same identifier (name{figure.
+29.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.133 \end{verbatim}
+                    ]
+LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 174.
+
+Overfull \hbox (19.2173pt too wide) in paragraph at lines 174--174
+\OT1/ptm/m/n/10 in the pream-ble. Only com-mands are al-lowed there; all text h
+as to go af-ter \OT1/pcr/m/n/10 \begin\OMS/cmsy/m/n/10 f\OT1/pcr/m/n/10 documen
+t\OMS/cmsy/m/n/10 g\OT1/ptm/m/n/10 . 
+ []
+
+
+Overfull \hbox (5.73668pt too wide) in paragraph at lines 185--185
+[]\OT1/ptm/b/n/10.95 Exercise. \OT1/ptm/m/n/10.95 Edit your doc-u-ment: put som
+e text in be-tween the \OT1/pcr/m/n/10.95 \begin\OMS/cmsy/m/n/10.95 f\OT1/pcr/m
+/n/10.95 document\OMS/cmsy/m/n/10.95 g \OT1/ptm/m/n/10.95 and \OT1/pcr/m/n/10.9
+5 \end\OMS/cmsy/m/n/10.95 f\OT1/pcr/m/n/10.95 document\OMS/cmsy/m/n/10.95 g
+ []
+
+[487] [488] [489]
+No file path/filename.
+[490] [491]
+Overfull \hbox (23.32474pt too wide) in paragraph at lines 467--467
+[]\OT1/pcr/m/n/10.95 For details, refer to Doe~\cite{JoeDoe1985} % somewhere in
+ the text 
+ []
+
+File: tutorials/latexdemo/demo.tex  (verbatim)
+[492]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [493]
+File: tutorials/latexdemo/math.bib  (verbatim)
+
+[494] <tutorials/latexdemo/demopage1.pdf, id=6333, 597.50786pt x 845.04686pt>
+File: tutorials/latexdemo/demopage1.pdf Graphic file (type pdf)
+
+<use tutorials/latexdemo/demopage1.pdf>
+Package pdftex.def Info: tutorials/latexdemo/demopage1.pdf used on input line 5
+16.
+(pdftex.def)             Requested size: 448.12979pt x 633.7836pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [495]
+Overfull \vbox (41.17204pt too high) has occurred while \output is active []
+
+
+[496 <./tutorials/latexdemo/demopage1.pdf>]
+<tutorials/latexdemo/demopage2.pdf, id=6391, 597.50786pt x 845.04686pt>
+File: tutorials/latexdemo/demopage2.pdf Graphic file (type pdf)
+
+<use tutorials/latexdemo/demopage2.pdf>
+Package pdftex.def Info: tutorials/latexdemo/demopage2.pdf used on input line 5
+18.
+(pdftex.def)             Requested size: 448.12979pt x 633.7836pt.
+
+Overfull \vbox (41.17204pt too high) has occurred while \output is active []
+
+
+[497 <./tutorials/latexdemo/demopage2.pdf>] Excluding 'istc' comment.))
+[498
+\openout5 = `exercises/latex-nx.tex'.
+
+] [499
+
+]
+Chapter 30.
+(./projects/cache.tex [500
+
+]) [501
+\openout5 = `exercises/cache-nx.tex'.
+
+] (./projects/bsp.tex) [502
+\openout5 = `exercises/bsp-nx.tex'.
+
+]
+(./projects/heat.tex [503] [504]) [505
+\openout5 = `exercises/heat-nx.tex'.
+
+] (./projects/wall.tex) [506
+\openout5 = `exercises/wall-nx.tex'.
+
+]
+Chapter 31.
+(./appendices/codes.tex [507
+
+]
+Overfull \hbox (5.23187pt too wide) in paragraph at lines 112--115
+[]\OT1/ptm/m/n/10.95 (If the \OT1/ptm/m/sl/10.95 In-tel com-piler[] \OT1/ptm/m/
+n/10.95 com-plains about \OT1/pcr/m/n/10.95 posix_memalign \OT1/ptm/m/n/10.95 b
+e-ing de-clared im-plic-itly, add the \OT1/pcr/m/n/10.95 -std=gnu99
+ []
+
+File: code/papi/size.c  (verbatim)
+[508]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [509]
+Overfull \hbox (39.13527pt too wide) in paragraph at lines 125--125
+[]     \OT1/pcr/m/n/10 printf("cycles per array loc: %9.5f\n",size,values[0]/(1
+.*NRUNS*size));[] 
+ []
+
+File: code/papi/line.c  (verbatim)
+[510]
+Overfull \hbox (21.13527pt too wide) in paragraph at lines 143--143
+[]     \OT1/pcr/m/n/10 for (i=0,n=0; i<L1WORDS; i++,n+=stride) array[n] = 2.3*a
+rray[n]+1.2;[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [511]
+<graphics/cacheline16.jpg, id=6539, 578.16pt x 433.62pt>
+File: graphics/cacheline16.jpg Graphic file (type jpg)
+
+<use graphics/cacheline16.jpg>
+Package pdftex.def Info: graphics/cacheline16.jpg used on input line 152.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
+File: code/papi/assoc.c  (verbatim)
+ [512pdfTeX warning (ext4): destination with the same identifier (name{figure.3
+1.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.170 \verbatiminput{code/papi/assoc.c}
+                                       ^^M <./graphics/cacheline16.jpg>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [513]
+File: code/papi/tlb.c  (verbatim)
+
+[514]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [515]
+Overfull \hbox (57.13527pt too wide) in paragraph at lines 188--188
+[]       \OT1/pcr/m/n/10 printf("Tot cycles: %d\nTLB misses:\t%d\nmisses per co
+lumn:\t%9.5f\n\n",[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [516]
+No file code/snippets/fraction.c.
+) [517]
+Chapter 32.
+(./EijkhoutIntroToHPC.bbl [518
+
+] [519]
+Missing character: There is no â in font ptmro7t!
+Missing character: There is no € in font ptmro7t!
+Missing character: There is no “ in font ptmro7t!
+ [520]
+Underfull \hbox (badness 1221) in paragraph at lines 324--329
+[]\OT1/ptm/m/n/10.95 Victor Ei-jkhout, Paolo Bi-en-ti-nesi, and Robert van de G
+eijn.  To-wards me-chan-i-cal deriva-
+ []
+
+Missing character: There is no Ã in font ptmr7t!
+Missing character: There is no © in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no “ in font ptmr7t!
+
+Underfull \hbox (badness 10000) in paragraph at lines 366--368
+[]\OT1/ptm/m/n/10.95 Project fortress home-page.  [][]$\OT1/pcr/m/n/10.95 http 
+: / / projectfortress . sun . com / Projects /
+ []
+
+[521] [522]
+Underfull \hbox (badness 10000) in paragraph at lines 599--602
+[]\OT1/ptm/m/n/10.95 Michael Karbo.  PC ar-chi-tec-ture.  [][]$\OT1/pcr/m/n/10.
+95 http : / / www . karbosguide . com / books /
+ []
+
+
+Underfull \hbox (badness 4673) in paragraph at lines 617--619
+[]\OT1/ptm/m/n/10.95 Kendall Square Re-search.  [][]$\OT1/pcr/m/n/10.95 http : 
+/ / en . wikipedia . org / wiki / Kendall _ Square _
+ []
+
+[523] [524] [525]
+Underfull \hbox (badness 10000) in paragraph at lines 898--902
+[]\OT1/ptm/m/n/10.95 David Schade.  Can-far: In-te-grat-ing cy-ber-in-fras-truc
+-ture for as-tron-omy.  [][]$\OT1/pcr/m/n/10.95 https :
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 898--902
+\OT1/pcr/m/n/10.95 / / wiki . bc . net / atl-[]conf / display / BCNETPUBLIC / C
+ANFAR + -[] + Integrating +
+ []
+
+[526]
+Underfull \hbox (badness 1496) in paragraph at lines 1024--1029
+[]\OT1/ptm/m/n/10.95 R. Clint Wha-ley, An-toine Pe-titet, and Jack J. Don-garra
+.  Au-to-mated em-pir-i-cal op-ti-miza-
+ []
+
+
+Underfull \hbox (badness 2111) in paragraph at lines 1024--1029
+\OT1/ptm/m/n/10.95 avail-able as Uni-ver-sity of Ten-nessee LA-PACK Work-ing No
+te #147, UT-CS-00-448, 2000
+ []
+
+) [527] (./acronyms.tex defining AMR defining AOS defining API defining AVX
+defining BEM defining BFS defining BLAS defining BSP defining BVP defining CAF
+defining CCS defining CG defining CGS defining COO defining CRS defining DAG
+defining DRAM defining DSP defining FD defining FMA defining FDM defining FEM
+defining FMM defining FOM defining FPU defining FFT defining FSA defining FSB
+defining FPGA defining GMRES defining GPU defining GPGPU defining GS
+Underfull \hbox (badness 5862) in paragraph at lines 32--33
+[]\OT1/ptm/m/n/10.95 General Pur-pose Graph-ics Pro-cess-ing
+ []
+
+defining HDFS defining HPC defining HPF defining IBVP defining IDE
+defining ILP defining ILU defining IVP defining LAN defining LBM defining LRU
+defining MIC defining MIMD defining MGS defining MPI defining MSI defining MTA
+defining NUMA defining ODE defining OS defining PGAS defining PDE
+defining PRAM defining RDMA defining SAN defining SAS defining SFC
+defining SIMD defining SIMT defining SM defining SMP defining SMT defining SOA
+defining SOR defining SP defining SPMD defining SPD defining SRAM defining SSE
+defining TLB defining UMA defining UPC defining WAN) [528]
+(./EijkhoutIntroToHPC.ind [529] [530] [531] [532] [533]
+Underfull \hbox (badness 10000) in paragraph at lines 525--526
+[]\OT1/ptm/m/n/10.95 General Pur-pose Graph-ics Pro-cess-ing Unit[][]
+ []
+
+[534] [535] [536] [537]
+Underfull \hbox (badness 10000) in paragraph at lines 896--898
+[]\OT1/ptm/m/n/10.95 modified Gramm-Schmidt, \OT1/ptm/m/sl/10.95 see \OT1/ptm/m
+/n/10.95 Gram-Schmidt,
+ []
+
+[538] [539] [540] [541] [542])
+<isbn_barcode.pdf, id=8283, 172.645pt x 72.27pt>
+File: isbn_barcode.pdf Graphic file (type pdf)
+ <use isbn_barcode.pdf>
+Package pdftex.def Info: isbn_barcode.pdf used on input line 366.
+(pdftex.def)             Requested size: 172.64456pt x 72.2698pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 369.
+
+[543 <graphics/isbn_barcode.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 369.
+ (./EijkhoutIntroToHPC.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 369.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 369.
+Package rerunfilecheck Info: File `EijkhoutIntroToHPC.out' has not changed.
+(rerunfilecheck)             Checksum: 12FFC1C2D4B82AFF16162C17AF7C9739;28741.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 369.
+ ) 
+Here is how much of TeX's memory you used:
+ 15833 strings out of 493603
+ 237404 string characters out of 6147805
+ 342472 words of memory out of 5000000
+ 15622 multiletter control sequences out of 15000+600000
+ 49016 words of font info for 118 fonts, out of 8000000 for 9000
+ 846 hyphenation exceptions out of 8191
+ 33i,21n,43p,465b,729s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{page.550} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{page.544} has been referenced but does not exist, r
+eplaced by a fixed one
+
+{/opt/local/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</opt/local/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/local/share/texmf-
+texlive/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></opt/local/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/local/share/texmf-texliv
+e/fonts/type1/public/amsfonts/cm/cmmi5.pfb></opt/local/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmmi6.pfb></opt/local/share/texmf-texlive/fonts/type
+1/public/amsfonts/cm/cmmi7.pfb></opt/local/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmmi8.pfb></opt/local/share/texmf-texlive/fonts/type1/public/ams
+fonts/cm/cmmi9.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmr10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
+5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb><
+/opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/lo
+cal/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/local/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></opt/local/share/texm
+f-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-tex
+live/fonts/type1/public/amsfonts/cm/cmsy5.pfb></opt/local/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmsy6.pfb></opt/local/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/cm/cmsy8.pfb></opt/local/share/texmf-texlive/fonts/type1/p
+ublic/amsfonts/cm/cmsy9.pfb></opt/local/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmti10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmtt10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/s
+ymbols/msam10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/s
+ymbols/msbm10.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/courier/ucrb8
+a.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb></opt/
+local/share/texmf-texlive/fonts/type1/urw/courier/ucrro8a.pfb></opt/local/share
+/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></opt/local/share/texmf-texlive
+/fonts/type1/urw/times/utmb8a.pfb></opt/local/share/texmf-texlive/fonts/type1/u
+rw/times/utmr8a.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmr8
+a.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
+Output written on EijkhoutIntroToHPC.pdf (543 pages, 58201676 bytes).
+PDF statistics:
+ 8854 PDF objects out of 8907 (max. 8388607)
+ 8016 compressed objects within 81 object streams
+ 2178 named destinations out of 2487 (max. 500000)
+ 3954 words of extra memory for PDF output out of 10000 (max. 10000000)
+

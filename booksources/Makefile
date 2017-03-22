@@ -1,10 +1,11 @@
+# -*- makefile -*-
 ################################################################
 ################################################################
 ####
 #### Makefile for:
 ####     Introduction to High-Performance Scientific Computing
 #### by Victor Eijkhout
-#### copyright 2010-6
+#### copyright 2010-7
 ####
 ################################################################
 ################################################################
@@ -14,10 +15,12 @@ info ::
 	@echo "to format the book"
 
 pdf :
-	TEXINPUTS=${TEXINPUTS}:graphics pdflatex EijkhoutIntroToHPC
-	TEXINPUTS=${TEXINPUTS}:graphics pdflatex EijkhoutIntroToHPC
-	TEXINPUTS=${TEXINPUTS}:graphics pdflatex EijkhoutIntroToHPC
-	cp EijkhoutIntroToHPC.pdf ../
+	for t in EijkhoutIntroToHPC EijkhoutTutorialsForHPC ; do \
+	TEXINPUTS=${TEXINPUTS}:graphics pdflatex $$t ; \
+	TEXINPUTS=${TEXINPUTS}:graphics pdflatex $$t ; \
+	TEXINPUTS=${TEXINPUTS}:graphics pdflatex $$t ; \
+	cp $$t.pdf ../ ; \
+	done
 
 info ::
 	@echo "Do: make clean"
