@@ -23,8 +23,10 @@
 \newif\ifIncludeAnswers
 \IncludeAnswersfalse
 \excludecomment{booth}
+\includecomment{tutorials}
+
 \input inex
-\includecomment{gpu} % VLE time to remove this environment
+%\includecomment{gpu} % VLE time to remove this environment
 
 \begin{notlulu}
   \usepackage[pdftex,colorlinks]{hyperref}
@@ -124,7 +126,6 @@
  \SetBaseLevel 0
 }}
 
-\includecomment{tutorials}
 \newcommand\TUTORIAL[2]{
 \vfill\pagebreak \Level 0 {#1}\label{tut:#2}
 \def\chapshortname{#2}\setcounter{excounter}0\relax
@@ -280,8 +281,12 @@
 \APPENDIXac{Automata theory}{FSA}{fsa}
 \APPENDIX{Parallel Prefix}{prefix operation}{prefix}
 
-\begin{tutorials}
 \part{Tutorials}
+\begin{lulu}
+  \input tutorials/download
+\end{lulu}
+
+\begin{notlulu}
 %\Level 0 {Practical tutorials}
 \label{app:practical}
 
@@ -307,7 +312,7 @@
 \TUTORIAL{C/Fortran interoperability}{language}
 \TUTORIAL{LaTeX for scientific documentation}{latex}
 
-\end{tutorials}
+\end{notlulu}
 
 \part{Projects, codes, index}
 
