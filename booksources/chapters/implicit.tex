@@ -128,11 +128,18 @@ matrix. We can modify this algorithm as follows to give wavefronts:
 \label{sec:recdouble}
 \index{recursive doubling|(textbf}
 
-One strategy for dealing with recurrences is
-\emph{recursive doubling}, which you already saw in
-exercise~\ref{ex:recursivedoubling}. Here we will discuss it in a more
-systematic manner. First, take the matrix
-from~\eqref{eq:ex:bidiagonal} and scale it to be of the form
+Recursions $y_{i+1} = a_i  y_i + b_i $,
+such as appear in solving a bilinear set of equations
+(see exercise~\ref{ex:solve-tri}),
+seem intrinsically sequential.
+However, you  already saw in
+exercise~\ref{ex:recursivedoubling} how, at the cost of some preliminary
+operations, the computation can be parallelized.
+
+We will now formalize this strategy, generally known as
+\emph{recursive doubling},  First, take the general
+\indexterm{bidiagonal matrix}
+from~\eqref{eq:ex:bidiagonal} and scale it to be of the normalized form
 \[ 
   \begin{pmatrix}
     1&&\emptyset\\ b_{21}&1\\ &\ddots&\ddots\\ 
@@ -142,6 +149,8 @@ from~\eqref{eq:ex:bidiagonal} and scale it to be of the form
 which we write as $A=I+B$.
 
 \begin{exercise}
+  Show that the scaling to normalized form can be done by multiplying
+  with a diagonal matrix. 
   How does solving the system $(I+B)x=y$ help in solving $Ax=y$? What
   are the operation counts of solving the system in the two different ways?
 \end{exercise}

@@ -168,6 +168,11 @@ Barbara Chapman, Gabriele Jost, and Ruud van~der Pas.
   volume~10 of {\em Scientific Computation Series}.
 \newblock MIT Press, ISBN 0262533022, 9780262533027, 2008.
 
+\bibitem{ChenDoolen:LBM}
+Shiyi Chen and Gary~D. Doolen.
+\newblock Lattice {Boltzmann} method for fluid flows.
+\newblock {\em Annual Review of Fluid Mechanics}, 30(1):329--364, 1998.
+
 \bibitem{Choi:scalapack}
 Yaeyoung Choi, Jack~J. Dongarra, Roldan Pozo, and David~W. Walker.
 \newblock Scalapack: a scalable linear algebra library for distributed memory
@@ -576,6 +581,14 @@ M.~T. Jones and P.~E. Plassmann.
   Theory and Sparse Matrix Computations}, IMA Vol 56. Springer Verlag, Berlin,
   1994.
 
+\bibitem{ScalParC}
+M.~V. Joshi, G.~Karypis, and V.~Kumar.
+\newblock Scalparc: a new scalable and efficient parallel classification
+  algorithm for mining large datasets.
+\newblock In {\em Proceedings of the First Merged International Parallel
+  Processing Symposium and Symposium on Parallel and Distributed Processing},
+  pages 573--579, Mar 1998.
+
 \bibitem{charmpp}
 L.~V. Kale and S.~Krishnan.
 \newblock Charm++: Parallel programming with message-driven objects.
@@ -691,6 +704,12 @@ Charles~E. Leiserson.
   supercomputing.
 \newblock {\em IEEE Trans. Comput}, C-34:892--901, 1985.
 
+\bibitem{LinCohen:PIC}
+F.~Lin and W.W. Cohen.
+\newblock Power iteration clustering.
+\newblock In {\em Proceedings of the 27th International Conference on Machine
+  Learning, Haifa, Israel}, 2010.
+
 \bibitem{LiRoTa:dissection}
 Richard~J. Lipton, Donald~J. Rose, and Robert~Endre Tarjan.
 \newblock Generalized nested dissection.
@@ -773,6 +792,12 @@ Kenneth Moreland and Ron Oldfield.
 \newblock In Julian~M. Kunkel and Thomas Ludwig, editors, {\em High Performance
   Computing}, volume 9137 of {\em Lecture Notes in Computer Science}, pages
   488--496. Springer International Publishing, 2015.
+
+\bibitem{NeedlemanWunsch}
+Saul~B. Needleman and Christian~D. Wunsch.
+\newblock A general method applicable to the search for similarities in the
+  amino acid sequence of two proteins.
+\newblock {\em Journal of Molecular Biology}, 48(3):443 -- 453, 1970.
 
 \bibitem{Oetiker:LaTeXintro}
 Tobi Oetiker.
@@ -884,11 +909,22 @@ R.~Schreiber.
 \newblock also: Technical Report RIACS TR 92.13, NASA Ames Research Center,
   Moffet Field, Calif., May 1992.
 
+\bibitem{Sprint:classifier}
+J.C. Shafer, R.~Agrawal, and M.~Mehta.
+\newblock {SPRINT}: A scalable parallel classifier for data mining.
+\newblock In {\em Proc. of the 22th Int'l Conference on Very Large Databases,
+  Mumbai (Bombay), India}, 1996.
+
 \bibitem{shaw}
 D.~E. Shaw.
 \newblock A fast, scalable method for the parallel evaluation of
   distance-limited pairwise particle interactions.
 \newblock {\em J. Comput. Chem.}, 26:1318--1328, 2005.
+
+\bibitem{TAU:ijhpca}
+S.~Shende and A.~D. Malony.
+\newblock {\em International Journal of High Performance Computing
+  Applications}, 20:287--331, 2006.
 
 \bibitem{Skillicorn96questionsand}
 D.~B. Skillicorn, Jonathan M.~D. Hill, and W.~F. McColl.
@@ -1040,5 +1076,10 @@ David~M. Young.
 \newblock {\em Iterative method for solving partial differential equations of
   elliptic type}.
 \newblock PhD thesis, Harvard Univ., Cambridge, MA, 1950.
+
+\bibitem{Zheng:2016arXiv:decentral-recommend}
+W.~{Zheng}.
+\newblock {Matrix Factorization Method for Decentralized Recommender Systems}.
+\newblock {\em ArXiv e-prints}, April 2016.
 
 \end{thebibliography}

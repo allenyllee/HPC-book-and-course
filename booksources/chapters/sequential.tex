@@ -222,10 +222,16 @@ if that leaves the result of the execution intact!
 In the block diagram (figure~\ref{fig:sandycore}) you see various
 units that are concerned with instruction handling: This cleverness
 actually costs considerable energy, as well as sheer amount of
-transistors. For this reason, processors such as the
-\indextermbus{Intel}{Xeon Phi} use
+transistors. 
+For this reason, processors such as the first generation
+Intel Xeon Phi, the
+\emph{Knights Corner}\index{Intel!Xeon Phi!Knights Corner},
+used
 \emph{in-order}\index{instruction!handling!in-order} instruction
 handling.
+However, in the next generation, the
+\emph{Knights Landing}\index{Intel!Xeon Phi!Knights Landing},
+this decision was reversed for reasons of performance.
 
 \Level 2 {Floating point units}
 \index{floating point!unit|(textbf}
@@ -1306,8 +1312,9 @@ meaning that if the page size had been larger, the number of needed
 pages would be greatly reduced. For this reason, operating systems can
 have support for \emph{large pages}\index{memory!pages!large|textbf},
 typically of size around~2Mb. (Sometimes `huge pages' are used; for
-instance the \indextermbus{Intel}{Knight's Landing} has Gigabyte
-pages.)
+instance the
+\emph{Intel Knights Landing}\index{Intel!Xeon Phi!Knights Landing}
+has Gigabyte pages.)
 
 The benefits of large pages are application-dependent: if the small
 pages have insufficient clustering, use of large pages may fill up

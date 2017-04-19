@@ -671,6 +671,21 @@ hand, does not have a single nonzero. Although we will not prove it,
 this sort of statement holds for most sparse matrices. Therefore, we
 want to solve $Au=f$ in a way that does not require $O(n^2)$ storage.
 
+\begin{exercise}
+  \label{ex:solve-tri}
+  How would you solve the tridiagonal
+  system of equations? Show that the \emph{factorization}%
+  \index{tridiagonal matrix!LU factorization}
+  of the coefficient matrix gives factors that are of
+  \indextermdef{bidiagonal matrix} form: they have a nonzero diagonal
+  and exactly one nonzero sub or super diagonal.
+
+  What is the total number of operations of solving the tridiagonal
+  system of equations? What is the operation count of multiplying a
+  vector with
+  such a matrix? This relation is not typical!
+\end{exercise}
+
 \Level 1 {The Poisson equation in two space dimensions}
 \label{sec:2dbvp}
 
@@ -775,7 +790,9 @@ structure.
 You can also put a block structure on the matrix, by grouping the
 unknowns together that are in one row of the domain. This is called a
 \indexterm{block matrix}, and, on the block level, it
-has a \indexterm{tridiagonal} structure, so we call this a
+has a
+\indexterm{tridiagonal matrix} structure,
+so we call this a
 \indexterm{block tridiagonal} matrix. Note that the diagonal blocks
 themselves are tridiagonal; the off-diagonal blocks are
 minus the identity matrix.
