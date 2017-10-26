@@ -39,7 +39,7 @@ Owe Axelsson and Ben Polman.
 
 \bibitem{BarnesHut}
 Josh Barnes and Piet Hut.
-\newblock A hierarchical $o(n log n)$ force-calculation algorithm.
+\newblock A hierarchical {$O(N \log N)$} force-calculation algorithm.
 \newblock {\em Nature}, 324:446--449, 1986.
 
 \bibitem{Ba:templates}
@@ -78,17 +78,6 @@ Petter~E. Bjorstad, William Gropp, and Barry Smith.
 Fischer Black and Myron~S Scholes.
 \newblock The pricing of options and corporate liabilities.
 \newblock {\em Journal of Political Economy}, 81(3):637--54, May-June 1973.
-
-\bibitem{scalapack-users-guide}
-L.S. Blackford, J.~Choi, A.~Cleary, E.~D'Azevedo, J.~Demmel, I.~Dhillon,
-  J.~Dongarra, S.~Hammerling, G.~Henry, A.~Petitet, K.~Stanley, D.~Walker, and
-  R.C. Whaley.
-\newblock {\em {ScaLAPACK} Users' Guide}.
-\newblock SIAM, 1997.
-
-\bibitem{reference-blas}
-Netlib.org {BLAS} reference implementation.
-\newblock \url{http://www.netlib.org/blas}.
 
 \bibitem{Blelloc:segmented-report}
 Guy~E. Blelloch, Michael~A. Heroux, and Marco Zagha.
@@ -168,19 +157,6 @@ Barbara Chapman, Gabriele Jost, and Ruud van~der Pas.
   volume~10 of {\em Scientific Computation Series}.
 \newblock MIT Press, ISBN 0262533022, 9780262533027, 2008.
 
-\bibitem{ChenDoolen:LBM}
-Shiyi Chen and Gary~D. Doolen.
-\newblock Lattice {Boltzmann} method for fluid flows.
-\newblock {\em Annual Review of Fluid Mechanics}, 30(1):329--364, 1998.
-
-\bibitem{Choi:scalapack}
-Yaeyoung Choi, Jack~J. Dongarra, Roldan Pozo, and David~W. Walker.
-\newblock Scalapack: a scalable linear algebra library for distributed memory
-  concurrent computers.
-\newblock In {\em Proceedings of the fourth symposium on the frontiers of
-  massively parallel computation (Frontiers '92), McLean, Virginia, Oct 19--21,
-  1992}, pages 120--127, 1992.
-
 \bibitem{ChGe:sstep}
 A.~Chronopoulos and C.W. Gear.
 \newblock {$s$}-step iterative methods for symmetric linear systems.
@@ -205,8 +181,8 @@ E.~Cuthill and J.~McKee.
 \bibitem{DAzevedo2005:vector-mvp}
 Eduardo~F. D'Azevedo, Mark~R. Fahey, and Richard~T. Mills.
 \newblock Vectorized sparse matrix multiply for compressed row storage format.
-\newblock {\em Lecture Notes in Computer Science, Computational Science –
-  ICCS 2005}, pages 99--106, 2005.
+\newblock {\em Lecture Notes in Computer Science, Computational Science ? ICCS
+  2005}, pages 99--106, 2005.
 
 \bibitem{DAzEijRo:ppscicomp}
 E.F. D'Azevedo, V.L. Eijkhout, and C.H. Romine.
@@ -279,18 +255,6 @@ J.~J. Dongarra.
   Supercomputing 1987, pages 456--474.
 \newblock Springer-Verlag, Berlin, 1988.
 
-\bibitem{BLAS3}
-Jack~J. Dongarra, Jeremy Du~Croz, Sven Hammarling, and Iain Duff.
-\newblock A set of level 3 basic linear algebra subprograms.
-\newblock {\em ACM Transactions on Mathematical Software}, 16(1):1--17, March
-  1990.
-
-\bibitem{BLAS2}
-Jack~J. Dongarra, Jeremy Du~Croz, Sven Hammarling, and Richard~J. Hanson.
-\newblock An extended set of {FORTRAN} basic linear algebra subprograms.
-\newblock {\em ACM Transactions on Mathematical Software}, 14(1):1--17, March
-  1988.
-
 \bibitem{OReilly:sedawk}
 Dale Dougherty and Arnold Robbins.
 \newblock {\em sed \& awk}.
@@ -328,10 +292,10 @@ Victor Eijkhout, Paolo Bientinesi, and Robert van~de Geijn.
   \url{http://www.sciencedirect.com/science/publication?issn=18770509&volume=1&issue=1}.
 
 \bibitem{Erdos:randomgraph}
-Paul Erd\"os and A.~Rényi.
+Paul Erd\"os and A.~R\'{e}nyi.
 \newblock On the evolution of random graphs.
 \newblock {\em Publications of the Mathematical Institute of the Hungarian
-  Academy of Sciences}, 5:17–--61, 1960.
+  Academy of Sciences}, 5:17?--61, 1960.
 
 \bibitem{FaberManteuffel:conditions-for-existence}
 V.~Faber and T.~Manteuffel.
@@ -505,6 +469,13 @@ Louis~A. Hageman and David~M. Young.
 \newblock {\em Applied Iterative Methods}.
 \newblock Academic Press, New York, 1981.
 
+\bibitem{Cryptography:IvyRandom2012}
+Mike Hamburg, Paul Kocher, and Mark~E. Marson.
+\newblock Analysis of intel?s ivy bridge digital random number generator.
+\newblock Cryptography Research, Inc.,
+  \url{http://www.rambus.com/wp-content/uploads/2015/08/Intel_TRNG_Report_20120312.pdf},
+  2012.
+
 \bibitem{Hartstein:cache-sqrt}
 A.~Hartstein, V.~Srinivasan, T.~R. Puzak, and P.~G. Emma.
 \newblock Cache miss behavior: is it \&\#8730;2?
@@ -581,19 +552,21 @@ M.~T. Jones and P.~E. Plassmann.
   Theory and Sparse Matrix Computations}, IMA Vol 56. Springer Verlag, Berlin,
   1994.
 
-\bibitem{ScalParC}
-M.~V. Joshi, G.~Karypis, and V.~Kumar.
-\newblock Scalparc: a new scalable and efficient parallel classification
-  algorithm for mining large datasets.
-\newblock In {\em Proceedings of the First Merged International Parallel
-  Processing Symposium and Symposium on Parallel and Distributed Processing},
-  pages 573--579, Mar 1998.
+\bibitem{Kalavri2016HighLevelPA}
+Vasiliki Kalavri, Vladimir Vlassov, and Seif Haridi.
+\newblock High-level programming abstractions for distributed graph processing.
+\newblock {\em CoRR}, abs/1607.02646, 2016.
 
 \bibitem{charmpp}
 L.~V. Kale and S.~Krishnan.
 \newblock Charm++: Parallel programming with message-driven objects.
 \newblock In {\em Parallel Programming using C++, G. V. Wilson and P. Lu,
   editors}, pages 175--213. MIT Press, 1996.
+
+\bibitem{Kantorovich:functional}
+L.V. Kantorovich and G.P. Akilov.
+\newblock {\em Functional Analysis in NoNorm Spaces}.
+\newblock Pergamon press, 1964.
 
 \bibitem{Karbo:book}
 Michael Karbo.
@@ -688,11 +661,6 @@ Amy~N. Langville and Carl~D. Meyer.
 \newblock A survey of eigenvector methods for web information retrieval.
 \newblock {\em SIAM Review}, 47(1):135--161, 2005.
 
-\bibitem{Lawson:blas}
-C.~L. Lawson, R.~J. Hanson, D.~R. Kincaid, and F.~T. Krogh.
-\newblock Basic linear algebra subprograms for fortran usage.
-\newblock {\em ACM Trans. Math. Softw.}, 5(3):308--323, September 1979.
-
 \bibitem{LEcuyer:multiple-random}
 P.~L'Ecuyer.
 \newblock Combined multiple recursive generators.
@@ -704,11 +672,11 @@ Charles~E. Leiserson.
   supercomputing.
 \newblock {\em IEEE Trans. Comput}, C-34:892--901, 1985.
 
-\bibitem{LinCohen:PIC}
-F.~Lin and W.W. Cohen.
-\newblock Power iteration clustering.
-\newblock In {\em Proceedings of the 27th International Conference on Machine
-  Learning, Haifa, Israel}, 2010.
+\bibitem{Lionel:reproducibility}
+Stevel Lionel.
+\newblock Improving numerical reproducibility in {C/C++/Fortran}, 2013.
+\newblock
+  \url{https://software.intel.com/sites/default/files/managed/95/69/Improving%20Numerical%20Reproducibility%20in%20C%2B%2B%20and%20Fortran.pdf}.
 
 \bibitem{LiRoTa:dissection}
 Richard~J. Lipton, Donald~J. Rose, and Robert~Endre Tarjan.
@@ -749,6 +717,12 @@ M.~Mascagni and A.~Srinivasan.
 \newblock Algorithm 806: Sprng: A scalable library for pseudorandom number
   generation,.
 \newblock {\em ACM Transactions on Mathematical Software}, 26:436--461, 2000.
+
+\bibitem{Matsumoto:DynamicMersenne}
+M.~Matsumoto and T.~Nishimura.
+\newblock Dynamic creation of pseudorandom number generator.
+\newblock In E.H. Niederreiter and J.~eds. Spanier, editors, {\em Monte Carlo
+  and Quasi-Monte Carlo Methods}, pages 56--69. Springer, 2000.
 
 \bibitem{OReilly-GnuMake}
 Robert Mecklenburg.
@@ -792,12 +766,6 @@ Kenneth Moreland and Ron Oldfield.
 \newblock In Julian~M. Kunkel and Thomas Ludwig, editors, {\em High Performance
   Computing}, volume 9137 of {\em Lecture Notes in Computer Science}, pages
   488--496. Springer International Publishing, 2015.
-
-\bibitem{NeedlemanWunsch}
-Saul~B. Needleman and Christian~D. Wunsch.
-\newblock A general method applicable to the search for similarities in the
-  amino acid sequence of two proteins.
-\newblock {\em Journal of Molecular Biology}, 48(3):443 -- 453, 1970.
 
 \bibitem{Oetiker:LaTeXintro}
 Tobi Oetiker.
@@ -851,13 +819,6 @@ Christoph Pospiech.
   chapter Hunting Down Load Imbalance: A Moving Target, pages 497--505.
 \newblock Springer International Publishing, Cham, 2015.
 
-\bibitem{Elemental:TOMS}
-Jack Poulson, Bryan Marker, Jeff~R. Hammond, and Robert van~de Geijn.
-\newblock Elemental: a new framework for distributed memory dense matrix
-  computations.
-\newblock {\em ACM Transactions on Mathematical Software}.
-\newblock submitted.
-
 \bibitem{spiral}
 M.~P{\"u}schel, B.~Singer, J.~Xiong, J.~M.~F. Moura, J.~Johnson, D.~Padua,
   M.~Veloso, and R.~W. Johnson.
@@ -909,22 +870,11 @@ R.~Schreiber.
 \newblock also: Technical Report RIACS TR 92.13, NASA Ames Research Center,
   Moffet Field, Calif., May 1992.
 
-\bibitem{Sprint:classifier}
-J.C. Shafer, R.~Agrawal, and M.~Mehta.
-\newblock {SPRINT}: A scalable parallel classifier for data mining.
-\newblock In {\em Proc. of the 22th Int'l Conference on Very Large Databases,
-  Mumbai (Bombay), India}, 1996.
-
 \bibitem{shaw}
 D.~E. Shaw.
 \newblock A fast, scalable method for the parallel evaluation of
   distance-limited pairwise particle interactions.
 \newblock {\em J. Comput. Chem.}, 26:1318--1328, 2005.
-
-\bibitem{TAU:ijhpca}
-S.~Shende and A.~D. Malony.
-\newblock {\em International Journal of High Performance Computing
-  Applications}, 20:287--331, 2006.
 
 \bibitem{Skillicorn96questionsand}
 D.~B. Skillicorn, Jonathan M.~D. Hill, and W.~F. McColl.
@@ -972,19 +922,6 @@ V.~Strassen.
 Leslie~G. Valiant.
 \newblock A bridging model for parallel computation.
 \newblock {\em Commun. ACM}, 33:103--111, August 1990.
-
-\bibitem{PLAPACK:UG}
-R.~van~de Geijn, Philip Alpatov, Greg Baker, Almadena Chtchelkanova, Joe Eaton,
-  Carter Edwards, Murthy Guddati, John Gunnels, Sam Guyer, Ken Klimkowski,
-  Calvin Lin, Greg Morrow, Peter Nagel, James Overfelt, and Michelle Pal.
-\newblock Parallel linear algebra package ({PLAPACK}): Release r0.1 (beta)
-  users' guide.
-\newblock 1996.
-
-\bibitem{PLAPACK}
-Robert~A. van~de Geijn.
-\newblock {\em Using {PLAPACK}: Parallel Linear Algebra Package}.
-\newblock The MIT Press, 1997.
 
 \bibitem{TSoPMC}
 Robert~A. van~de Geijn and Enrique~S. Quintana-Ort\'{\i}.
@@ -1076,10 +1013,5 @@ David~M. Young.
 \newblock {\em Iterative method for solving partial differential equations of
   elliptic type}.
 \newblock PhD thesis, Harvard Univ., Cambridge, MA, 1950.
-
-\bibitem{Zheng:2016arXiv:decentral-recommend}
-W.~{Zheng}.
-\newblock {Matrix Factorization Method for Decentralized Recommender Systems}.
-\newblock {\em ArXiv e-prints}, April 2016.
 
 \end{thebibliography}

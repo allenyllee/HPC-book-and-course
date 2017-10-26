@@ -63,28 +63,27 @@ in figure~\ref{fig:forkjoin}. A~group of threads that is
 forked from the same thread and active simultaneously is known
 as a \indextermbus{thread}{team}.
 
-\Level 2 {Threads and parallel computing}
+\Level 2 {Hardware support for threads}
 
-Since threads share data, they are one possible mechanism for parallel programming.
-Of course, for this to be faster than sequential single-threaded execution,
-this assumes that the hardware can work on more than one
-thread at the same time. This can happen in two main circumstances:
-a multicore processor can accommodate one thread per core,
-and secondly, some cores have hardware support for executing more
-than one thread.
-
-The thread mechanism has long existed, even on a single processor. By having more
-than one thread on a single processor, a higher processor utilization
-can result, since the instructions of one thread can be processed
-while another thread is waiting for data.  On traditional CPUs,
+Threads as they were described above are a software
+construct. Threading was possible before parallel computers existed;
+they were for instance used to handle independent activitives in an
+\ac{OS}.
+In the absence of parallel hardware, the \ac{OS} would handle
+the threads through \indexterm{multitasking} or \indextermdef{time
+  slicing}: each thread would regularly get to use the \ac{CPU} for a
+fraction of a second.
+This can lead to higher processor utilization,
+since the instructions of one thread can be processed
+while another thread is waiting for data.
+(On traditional CPUs,
 switching between threads is somewhat expensive (an exception is the
 \indexterm{hyperthreading} mechanism) but on \acp{GPU} it is not, and
-in fact they \emph{need} many threads to attain high performance.
+in fact they \emph{need} many threads to attain high performance.)
 
-In the context of parallel processing we are also interested in
-threads, since in a shared memory context multiple threads running on
-multiple processors or processor cores can be an easy way to
-parallelize a computation. The shared memory allows the threads to all
+On modern \indexterm{multicore} processors there is an obvious way of
+supporting threads: having one thread per core gives a parallel
+execution that uses your hardware efficiently. The shared memory allows the threads to all
 see the same data. This can also lead to problems; see
 section~\ref{sec:shared-lock}.
 

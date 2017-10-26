@@ -14,6 +14,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\index{sorting!bubblesort|see{bubblesort}}
+\index{sorting!Quicksort|see{Quicksort}}
+\index{sorting!Bitonic sort|see{Bitonic sort}}
+\index{sorting!Samplesort|see{Samplesort}}
+
 \label{sec:sorting}
 \index{sorting|(}
 
@@ -323,6 +328,47 @@ $O(\log n/2)$~on the next, et cetera. This makes for almost perfect
 speedup.
 
 \index{Quicksort|)}
+
+\Level 0 {Samplesort}
+\label{sec:samplesort}
+\index{Samplesort|(textbf}
+
+You saw in \indexterm{Quicksort} (section~\ref{sec:quicksort}) that
+it is possible to use probabilistic elements in a sorting
+algorithm. We can extend the idea of picking a single pivot, as in
+Quicksort, to that of picking as many pivots as there are processors.
+Instead of a \indexterm{bisection} of the elements, this divides the
+elements into as many `buckets' as there are processors. Each
+processor then sorts its elements fully in parallel.
+
+\begin{displayalgorithm}
+  \Input{$p$: the number of processors, $N$: the numbers of elements to
+    sort; $\{x_i\}_{i<N}$ the elements to sort}
+  Let $x_0=b_0<b_1<\cdots<b_{p-1}<b_p=x_N$ (where $x_N>x_{N-1}$ arbitrary)\;
+  \For { $i=0,\ldots,p-1$ } { Let $s_i=[b_i,\ldots b_{i+1}-1]$ }
+  \For { $i=0,\ldots,p-1$ } { Assign the elements in $s_i$ to
+    processor~$i$ }
+  \For { $i=0,\ldots,p-1$ in parallel } { Let processor~$i$ sort its
+    elements }
+  \caption{The Samplesort algorithm}
+\end{displayalgorithm}
+
+Clearly this algorithm can have severe \indextermbus{load}{imbalance}
+if the buckets are not chosen carefully. Randomly picking $p$ elements is
+probably not good enough; instead, some form of \indexterm{sampling}
+of the elements is needed. Correspondingly, this algorithm is known as
+\textbf{Samplesort}.
+
+While the sorting of the buckets, once assigned, is fully parallel,
+this algorithm still has some problems regarding parallelism.
+First of all, the sampling is a sequential bottleneck for the algorithm.
+Also, the step where buckets are assigned to processors is essentially
+an \indexterm{all-to-all} operation, which becomes a network
+bottleneck.
+Note that in Quicksort on a hypercube there was never any
+\indexterm{contention} for the wires.
+
+\index{Samplesort|)}
 
 \Level 0 {Bitonic sort}
 \label{app:bitonicsort}

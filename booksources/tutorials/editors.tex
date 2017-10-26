@@ -28,12 +28,22 @@ common Unix editors: \indexterm{vi} and \indexterm{emacs}.
   In this section you will learn the basics of text editing with `vi'.
 \end{purpose}
 
+Good set of
+tips: \url{https://www.cs.oberlin.edu/~kuperman/help/vim/home.html}
+
 The vi editor (pronounced `vee-eye', not `vai') has a `modal' setup:
 you are either in input mode, where what you type becomes part of your
 file, or you are in edit mode, where your typing is interpreted as
 commands.
 
 \Level 1 {Indentation}
+
+Decent settings for new files:
+\begin{verbatim}
+set smartindent
+set shiftwidth=2
+syntax on
+\end{verbatim}
 
 The command \n{[[=]]} applies the right indentation to the block
 surrounding the cursor position.

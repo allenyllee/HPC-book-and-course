@@ -1689,11 +1689,11 @@ connected to the sockets.
 
 This is an example of \indexac{NUMA} design: for a process running on
 some core, the memory attached to its socket is slightly faster to
-access than the memory attached another socket.
+access than the memory attached to another socket.
 
 One result of this is the \indexterm{first-touch} phenomenon.
 Dynamically allocated memory is not actually allocated until it's
-first written. Consider now the following OpenMP
+first written to. Consider now the following OpenMP
 (section~\ref{sec:openmp}) code:
 \begin{verbatim}
 double *array = (double*)malloc(N*sizeof(double));
@@ -1776,7 +1776,7 @@ This involves three memory accesses (two loads and one store)
 and one operation per iteration,
 giving a arithmetic intensity of~$1/3$. The \indexterm{axpy} (for
 `\emph{a}~times \emph{x} plus~\emph{y}) operation 
-\[ \forall_i\colon x_i\leftarrow x_i+a\cdot y_i
+\[ \forall_i\colon x_i\leftarrow a\,x_i+ y_i
 \]
 has
 two operations, but the same number of memory access since the

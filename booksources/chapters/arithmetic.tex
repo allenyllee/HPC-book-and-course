@@ -1000,7 +1000,7 @@ which has solutions $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$.
 Suppose $b>0$ and $b^2\gg 4ac$ then $\sqrt{b^2-4ac}\approx b$ and
 the `$+$' solution will be
 inaccurate. In this case it is better 
-to compute $x_-=\frac{-b-\sqrt{b^2-4ac}}{2a}$ and use $x_+\cdot x_-=-c/a$.
+to compute $x_-=\frac{-b-\sqrt{b^2-4ac}}{2a}$ and use $x_+\cdot x_-=c/a$.
 
 %% \begin{exercise}
 %%   Program a simulator for decimal $d$-digit arithmetic and experiment with the
@@ -1340,6 +1340,8 @@ The IEEE 754 standard only prescribes simple operations;
 there is as yet no standard that treats sine or log functions.
 Therefore, their implementation may be a source of variability.
 
+For more discussion, see~\cite{Lionel:reproducibility}.
+
 \index{compiler!optimization!vs round-off|)}
 
 \Level 0 {More about floating point arithmetic}
@@ -1463,10 +1465,12 @@ precision' and the answer is not always `yes' but rather: `it
 depends'.
 \begin{itemize}
 \item In iterative linear system solving (section~\ref{sec:iterative}, the accuracy is determined
-  by how precise the residual is calculated. Therefore, one could do
+  by how precise the residual is calculated, not how precise the
+  solution step is done. Therefore, one could do
   operations such as applying the preconditioner
   (section~\ref{sec:preconditioner}) in reduced
-  precision~\cite{Dongarra:mixed-refinement}.
+  precision~\cite{Dongarra:mixed-refinement}. This is a form of
+  \indexterm{iterative refinement}; see section~\ref{sec:preconditioner}.
 \item Certain applications, such as \indexterm{deep learning}, do not
   need full precision. The upcoming
   \emph{Intel Knights Mill}\index{Intel!Xeon Phi!Knights Mill}

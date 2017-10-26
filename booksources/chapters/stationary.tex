@@ -412,8 +412,8 @@ triangular part of~$A$. Here are some methods with their traditional names:
   diagonal)
 \item The \ac{SOR} method: $K=\omega\inv D_A+ L_A$
 \item Symmetric SOR (SSOR) method: $K=(D_A+L_A)D_A\inv(D_A+U_A)$.
-\item Iterative refinement\index{iterative refinement}: $K=LU$ where
-  $LU$ is a true factorization of~$A$. In exact arithmetic, solving a
+\item In \indextermdef{iterative refinement} we let $K=LU$ be
+  a true factorization of~$A$. In exact arithmetic, solving a
   system $LUx=y$ gives you the exact solution, so using $K=LU$ in an
   iterative method would give convergence after one step. In practice,
   roundoff error will make the solution be inexact, so people will
@@ -450,6 +450,22 @@ assume that the matrix has positive diagonal elements.
   done for the Gauss-Seidel method. Give several reasons why this is
   not a good idea.
 \end{exercise}
+
+\begin{remark}
+  Stationary iteration can be considered as a form of
+  \indextermsub{inexact}{Newton method}, where each iteration uses the
+  same approximation to the inverse of the derivative. Standard
+  functional analysis results~\cite{Kantorovich:functional} state how
+  far this approximation can deviate from the exact inverse.
+
+  A special case is \indexterm{iterative refinement}, where the Newton
+  method should converge in one step, but in practice takes multiple
+  steps because of roundoff in computer arithmetic. The fact that the
+  Newton method will converge as long as the function (or the
+  residual) is calculated accurately enough, can be exploited by doing
+  the LU solution in lower precision, thus getting higher
+  performance~\cite{Dongarra:mixed-refinement}.
+\end{remark}
 
 There are  many different ways of choosing the preconditioner
 matrix~$K$. Some of them are defined algebraically, such as the

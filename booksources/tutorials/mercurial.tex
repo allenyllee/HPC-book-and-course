@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012/3/4/5
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -29,10 +29,15 @@ Git is ultimately more powerful, but mercurial is easier to use at first.
 Here is a translation between the two systems:
 \url{https://github.com/sympy/sympy/wiki/Git-hg-rosetta-stone}.
 
+Minimal introduction to git: \url{http://rogerdudler.github.io/git-guide/}
+
 This lab should be done two people, to simulate a group
 of programmers working on a joint project. You can also do this on
 your own by using two clones of the repository, 
 preferably opening two windows on your computer.
+
+Best practices for distributed version control:
+\url{https://homes.cs.washington.edu/~mernst/advice/version-control.html}
 
 \Level 1 {Create and populate a repository}
 
@@ -40,6 +45,15 @@ preferably opening two windows on your computer.
   In this section you will create a repository and make a local copy
   to work on.
 \end{purpose}
+
+\begin{tabular}{|l|l|}
+  \hline
+  mercurial&git\\
+  \hline
+  \n{hg clone <url> [ localdir ]}&
+  \n{git clone <url> [ localdir ]}\\
+  \hline
+\end{tabular}
 
 First we need to have a repository. In practice, you will often use
 one that has been previousy set up, but there are several ways to
@@ -79,6 +93,18 @@ You now have an empty directory \n{your-project}.
   editing an existing file
 \end{purpose}
 
+\begin{tabular}{|l|l|}
+  \hline
+  mercurial&git\\
+  \hline
+  \n{hg status [ path] }&
+  \n{git status [ path ]}\\
+  \n{hg add [ files ] }&
+  \n{git add [ files ]}\\
+  once for each file&every time the file is changed\\
+  \hline
+\end{tabular}
+
 One student now makes a file to add to the repository:
 \begin{verbatim}
 %%  cat > firstfile
@@ -114,6 +140,12 @@ nothing added to commit but untracked files present
 
 \heading{Adding the file to the repository}
 
+\begin{figure}[ht]
+  \includegraphics[scale=.4]{git-push}
+  \caption{Add local changes to the remote repository}
+  \label{fig:git-push}
+\end{figure}
+
 We need to declare the file as belonging to the repository; a
 subsequent \n{hg commit} command then copies it into the repository.
 \begin{verbatim}
@@ -139,6 +171,17 @@ Changes to be committed:
   1 file changed, 5 insertions(+)
   create mode 100644 firstfile
 \end{verbatim}
+
+\begin{tabular}{|l|l|}
+  \hline
+  mercurial&git\\
+  \hline
+  \n{hg commit -m <message>}&
+  \n{git commit -m <message>}\\
+  \n{hg push}&
+  \n{git push origin master}\\
+  \hline
+\end{tabular}
 
 Unlike with Subversion, the file has now only been copied into the 
 local repository, so that you can, for instance, roll back your
@@ -176,8 +219,16 @@ git remote add origin git@bitbucket.org:YourName/yourrepo.git
 git push origin master
 \end{verbatim}
 
-The second student now needs to update their repository. Just like
-the upload took two commands, this pass also takes two. First you do \n{hg pull} to update your local repository. This does not update the local files you have: for that you need to do \n{hg update}.
+\begin{figure}[ht]
+  \includegraphics[scale=.4]{git-pull}
+  \caption{Get changes that were made to the remote repository}
+  \label{fig:git-pull}
+\end{figure}
+
+The second student now needs to update their repository. Just like the
+upload took two commands, this pass also takes two. First you do \n{hg
+  pull} to update your local repository. This does not update the
+local files you have: for that you need to do \n{hg update}.
 
 \practical{Do this and check that the contents of the file are
   correct.}{In order to do the update command, you have to be in a
@@ -319,7 +370,8 @@ repository to begin with.
 \Level 1 {Inspecting the history}
 
 \begin{purpose}
-  In this section, you will learn how to get information about the repository.
+  In this section, you will learn how to view and compare files in the
+  repository.
 \end{purpose}
 
 If you want to know where you cloned a repository from, look in the
@@ -344,6 +396,17 @@ output, right? Now make an edit in \n{firstfile} and do \n{hg diff
   firstfile} again. This gives you the difference between the last
 commited version and the working copy.
 
+\begin{tabular}{|l|l|}
+  \hline
+  mercurial&git\\
+  \hline
+  \n{hg diff <file>}&
+  \n{git diff HEAD <file>}\\
+  \n{hg diff -r A -r B <file>}&
+  \n{git diff A^..B <file>}\\
+  \hline
+\end{tabular}
+
 Check for yourself what happens when you do a commit but no push, and 
 you issue the above diff command.
 
@@ -364,65 +427,17 @@ If you save the output of \n{hg diff}, it is possible to apply it
 with the Unix \n{patch} command. This is a quick way to send patches
 to someone without them needing to check out the repository.
 
+\Level 1 {Transport}
+
+Mercurial and git can use either \texttt{ssh} or \texttt{http} as
+\indexterm{transport}%
+\index{ssh!as transport}%
+\index{http!as transport}.
+With Git you may need to redefine the transport for a \texttt{push}:
+\begin{verbatim}
+git remote rm origin
+git remote add origin git@github.com:TACC/pylauncher.git
+\end{verbatim}
+
 \index{mercurial|)}
 \index{git|)}
-
-\endinput
-\Level 1 {Shuffling files around}
-
-We now realize that we really wanted all these files in a subdirectory
-in the repository. First we create the directory, putting it under svn control:
-\begin{verbatim}
-%% svn mkdir trunk
-A         trunk
-\end{verbatim}
-Then we move all files there, again prefixing all comands with \n{svn}:
-\begin{verbatim}
-%% for f in firstfile otherfile myfile mysecondfile ; do \
-        svn mv $f trunk/ ; done
-A         trunk/firstfile
-D         firstfile
-A         trunk/otherfile
-D         otherfile
-A         trunk/myfile
-D         myfile
-A         trunk/mysecondfile
-D         mysecondfile
-\end{verbatim}
-Finally, we commit these changes:
-\begin{verbatim}
-%% svn commit -m "trunk created"
-Deleting       firstfile
-Adding         trunk/firstfile
-Deleting       myfile
-Deleting       mysecondfile
-Deleting       otherfile
-Adding         trunk
-Adding         trunk/myfile
-Adding         trunk/mysecondfile
-Adding         trunk/otherfile
-\end{verbatim}
-
-You probably now have picked up on the message that you always use
-\n{svn} to do file manipulations. Let's pretend this has slipped your
-mind.
-
-\practical{Create a file \n{somefile} and commit it to the repository.
-Then do \n{rm somefile}, thereby deleting a file without
-  \n{svn} knowing about it.
-What is the output of \n{svn status}?}{svn indicates with an
-  exclamation point that the file has disappeared.}{}
-
-You can fix this situation in a number of ways:
-\begin{itemize}
-\item \n{svn revert} restores the file to the state in which it was
-  last restored. For a deleted file, this means that it is brought
-  back into existence from the repository. This command is also useful to
-  undo any local edits, if you change your mind about something.
-\item \n{svn rm firstfile} is the official way to delete a file. You
-  can do this even if you have already deleted the file outside
-  \n{svn}.
-\item Sometimes \n{svn} will get confused about your attempts to
-  delete a file. You can then do \n{svn --force rm yourfile}.
-\end{itemize}
-

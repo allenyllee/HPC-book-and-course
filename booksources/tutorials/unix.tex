@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012/3/4/5
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -47,6 +47,16 @@ However, there is not just one Unix:
   considerably. Here you will learn the bash shell, which for a variety of
   reasons is to be preferred over the \indexterm{csh} or \indexterm{tcsh} shell.
   Other shells are the \indexterm{ksh} and \indexterm{zsh}.
+\end{itemize}
+
+For further reading:
+\begin{itemize}
+\item `The Linux Command Line' by William Shotts
+  \url{gd.tuwien.ac.at/linuxcommand.org/} discusses life on the
+  command line plus shell scripting.
+\item `Bash Guide for Beginners' by Machtelt Garrels
+  \url{tille.garrels.be/training/bash/} focuses on shell scripting in
+  great detail.
 \end{itemize}
 
 %\secttoc
@@ -1260,7 +1270,7 @@ users. Here are some commands relating to them.
 \Level 0 {The {\tt sed} and {\tt awk} tools}
 
 Apart from fairly small utilities such as \n{tr} and \n{cut}, Unix
-some more powerful ones. In this section you will see two tools for
+has some more powerful tools. In this section you will see two tools for
 line-by-line transformations on text files. Of course this tutorial
 merely touches on the depth of these tools; for more information
 see~\cite{AWK:awk,OReilly:sedawk}.
@@ -1290,8 +1300,8 @@ sed '/^a/s/b/c/'
 \end{verbatim}
 only applies the edit on lines that start with an~\n{a}. (See
 section~\ref{sec:regexp} for regular expressions.)
-\item Traditionally, \n{sed} could only function in a stream, so you
-  the output file was always different from the input. The GNU
+\item Traditionally, \n{sed} could only function in a stream, so
+  the output file always had to be different from the input. The GNU
   version, which is standard on Linux systems, has a flag \n{-i} which
   edits `in place':
 \begin{verbatim}

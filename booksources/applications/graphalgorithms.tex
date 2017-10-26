@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-6
+%%%% by Victor Eijkhout, copyright 2012-7
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -89,7 +89,8 @@ for every iteration of the while loop. This then allows you to prove
 that the algorithm terminates and that it computes what you intended it to compute.
 And on a traditional processor this would indeed be how you program 
 a graph algorithm. However, these days graphs such as from Facebook 
-can be enormous, and you want to program your graph algorithm in parallel.
+can be enormous, and you want to program your graph algorithm in
+parallel.
 
 In that case, the traditional formulations fall short:
 \begin{itemize}
@@ -99,91 +100,6 @@ In that case, the traditional formulations fall short:
   satisfy any sort of spatial locality; if a node is touched more than once there is
   no guarantee of temporal locality.
 \end{itemize}
-We will now show that graph algorithms can often be considered as sparse-matrix
-algorithms, which means that we can apply all the concepts and analysis we have developed for these.
-
-If $G$ is the \indextermsub{adjacency}{matrix} of the graph, we can
-also formulate the shortest path algorithm analogous to a series of
-matrix-vector multiplications (see appendix
-section~\ref{app:graph-mult}). Let $x$ be the vector tabulating distances
-from the source, that is, $x_i$~is the distance of node~$i$ from the source.
-For any neighbour $j$ of~$i$, the distance to the source is then $x_i+G_{ij}$,
-unless a shorter distance was already known.
-In other words, we can define a product
-\[ y^t=x^tG\equiv \forall_i\colon
-  y_j = \min\bigl\{ x_j, \min_{i\colon G_{ij}\not=0} \{x_i+1\} \bigr\},
-\]
-and the iterations of the above while-loop correspond to subsequent
-matrix-vector products under this definition.
-
-This algorithm works because we can set $d(v)$ to its final value
-the first time we visit it: this happens precisely after a number of
-outer iterations equal to the path length. The total number of inner loop
-executions equals the number of edges in the graph.
-A~weighted graph is somewhat trickier,
-since a path with more stages can actually be shorter as measured in the sum
-of the weights of the stages. Here is the Bellman-Ford algorithm:
-
-\begin{displayalgorithm}
-  Let $s$ be given, and set $d(s)=0$\;
-  Set $d(v)=\infty$ for all other nodes~$v$\;
-  \For{$|E|-1$ times}{
-    \For{all edges $e=(u,v)$}{
-      Relax: \If{$d(u)+w_{uv} < d(v)$}{Set $d(v)\leftarrow d(u)+w_{uv}$}
-    }
-  }
-\end{displayalgorithm}
-
-This algorithm is correct since, for a given node~$u$, after $k$ steps
-of the outer iteration it has considered all path $s\rightarrow u$ of
-$k$ stages.
-
-\begin{exercise}
-  What is the complexity of this algorithm? Can the length of the
-  outer loop be reduced if you have some knowledge of the graph?
-\end{exercise}
-
-We can again write this as a series of matrix-vector products, if we define
-the product as
-\[ y^t=x^tG\equiv \forall_i\colon
-  y_j = \min\bigl\{ x_j, \min_{i\colon G_{ij}\not=0} \{x_i+g_{ij}\} \bigr\},
-\]
-This has essentially the same basis as above: the minimum distance to~$j$
-is minimum of an already computed distance, or the minimum distance to any node~$i$
-plus the transition~$g_{ij}$.
-
-\Level 1 {Parallelization}
-
-Graph algorithms in their traditional formulation can be parallelized.
-Typically there are macro steps that are sequential, but in which 
-a number of variables are considered independently. Thus there is indeed
-parallelism to be exploited.
-
-However, these traditional formulations often feature sets of variables
-that are gradually built up or depleted. This is implementable by
-using a \indextermbus{task}{queue}, but this limits the 
-implementation to some form of shared memory. Also, assignment of tasks 
-to processing elements is completely arbitrary, so the algorithm
-will have little spatial or temporal locality.
-
-For these reasons, a linear algebra formulation can be preferable.
-We definitely need this approach once distributed memory is considered,
-but even on multicore architectures it can pay off to 
-encourage locality.
-
-In section~\ref{sec:pspmvp} we discussed the parallel evaluation
-of the sparse matrix-vector product. Because of the sparsity, 
-only a partitioning by block rows or columns made sense.
-In effect, we let the partitioning be determined by one of the problem
-variables. This is also the only strategy that makes sense for
-single-source shortest path algorithms.
-
-\begin{exercise}
-  Can you make an \textit{a priori} argument for basing the
-  parallelization on a distribution of the vector? How much data is
-  involved in this operation, how much work, and how many sequential
-  steps?
-\end{exercise}
 
 \Level 1 {Floyd-Warshall all-pairs shortest path}
 \label{sec:floyd}
@@ -240,39 +156,6 @@ path between $i$ and~$j$.
   and describe how to use this to find the shortest path between $i$
   and~$j$ once $d(\cdot,\cdot)$ and $n(\cdot,\cdot)$ are known.
 \end{exercise}
-
-\heading{Parallelization}
-
-In the single-source shortest path algorithm above we didn't have much
-choice but to parallelize by distributing the vector rather than the
-matrix.  This type of distribution is possible here too, and it
-corresponds to a one-dimensional distribution of the $D(\cdot,\cdot)$
-quantities.
-\begin{exercise}
-  Sketch the parallel implementation of this variant of the
-  algorithm. Show that each $k$-th iteration involves a broadcast with
-  processor~$k$ as root.
-\end{exercise}
-However, this approach runs into the same scaling problems as the
-matrix-vector product using a one-dimensional distribution of the
-matrix; see section~\ref{sec:densescaling}. Therefore we need to use a
-two-dimensional distribution.
-\begin{exercise}
-  Do the scaling analysis. In a weak scaling scenario with constant memory, 
-  what is the asymptotic efficiency?
-\end{exercise}
-\begin{exercise}
-  Sketch the Floyd-Warshall algorithm using a two-dimensional
-  distribution of the $D(\cdot,\cdot)$ quantities.
-\end{exercise}
-\begin{exercise}
-  The parallel Floyd-Warshall algorithm performs quite some operations
-  on zeros, certainly in the early stages. Can you design an algorithm
-  that avoids those?
-\end{exercise}
-
-%% For more pointers,
-%% see~\url{http://en.wikipedia.org/wiki/Floyd\%E2\%80\%93Warshall_algorithm}.
 
 \index{Floyd-Warshall algorithm|)}
 
@@ -355,6 +238,221 @@ naively an $O(N)$ operation, but through the use of a \indexterm{priority queue}
 this can be reduced to $O(\log N)$. For the parallel version of the spanning tree
 algorithm the corresponding term is~$O(\log (N/P))$, not counting the $O(\log P)$
 cost of the reduction.
+
+\Level 1 {Graph cut}
+
+Sometimes you may want to partition a graph, for instance for purposes
+of parallel processing. If this is done by partitioning the vertices,
+you are as-it-were cutting edges, which is why this is known as a
+\indexterm{vertex cut} partitioning. There are various criteria for
+what makes a good vertex cut. For instance, you want the cut parts to
+be of roughly equal size, to balance out parallel work. Since the
+vertices often correspond to communication, you want the number of
+vertices (or their sum of weights in case of a weighted graph) to be small.
+The \indextermbus{graph}{Laplacian} (section~\ref{sec:graph-laplace})
+is a popular algorithm for this.
+
+Another example of graph cutting is the case of a
+\indextermsub{bipartite}{graph}: a~graph with two classes of nodes,
+and only edges from the one class to the other. Such a graph can for
+instance model a population and a set of properties: edges denote that
+a person has a certain interest. Now you can do a \indexterm{edge cut}
+where the set of edges is partitioned. This can give you sets of
+people with similar interests. This problem is interesting, for
+instance, for targeting online advertisements.
+
+\Level 0 {Parallelization}
+
+Many graph algorithms, such as in section~\ref{sec:graph-alg}, are not
+trivial to parallelize. Here are some considerations.
+
+
+First of all, unlike in many other algorithms, it is hard to target
+the outermost loop level, since this is often a `while' loop, making a
+parallel stopping test necessary.  On the other hand, typically there
+are macro steps that are sequential, but in which a number of
+variables are considered independently. Thus there is indeed
+parallelism to be exploited.
+
+The independent work in graph algorithms is of an interesting
+structure.  While we can identify `for all' loops, which are
+candidates for parallelization, these are different from what we have
+seen before.
+%
+\begin{itemize}
+\item The traditional formulations often feature sets of variables
+  that are gradually built up or depleted. This is implementable by
+  using a shared data structures and a \indextermbus{task}{queue}, but this limits the
+  implementation to some form of shared memory.
+\item
+  Next, while in each iteration operations are independent, the dynamic
+  set on which they operate means that assignment of data
+  elements to processors is tricky.
+  A~fixed assignment may lead to much idle time, but dynamic
+  assignment carries large overhead.
+\item With dynamic task assignment, the algorithm
+  will have little spatial or temporal locality.
+\end{itemize}
+
+For these reasons, a linear algebra formulation can be preferable.
+We definitely need this approach once distributed memory is considered,
+but even on multicore architectures it can pay off to 
+encourage locality.
+
+In section~\ref{sec:pspmvp} we discussed the parallel evaluation
+of the sparse matrix-vector product. Because of the sparsity, 
+only a partitioning by block rows or columns made sense.
+In effect, we let the partitioning be determined by one of the problem
+variables. This is also the only strategy that makes sense for
+single-source shortest path algorithms.
+
+\begin{exercise}
+  Can you make an \textit{a priori} argument for basing the
+  parallelization on a distribution of the vector? How much data is
+  involved in this operation, how much work, and how many sequential
+  steps?
+\end{exercise}
+
+\Level 1 {Strategies}
+
+Here are three ways of parallelizing graph algorithms, in decreasing
+order of obviousness, and increasing order of scalability. (See
+also~\cite{Kalavri2016HighLevelPA}.)
+
+\Level 2 {Dynamic scheduling}
+
+Many graph algorithms build up a data structure~$V$ of vertices to be
+processed; they they execute a sequence of supersteps containing a
+loop
+\begin{verbatim}
+for all v in V:
+  // do something with v
+\end{verbatim}
+If the processing of a vertex~\n{v} does not affect $V$ itself, the
+loop is parallel and can be executed through dynamic scheduling.
+
+This is in effect a dynamic assignment of data to processing
+elements. It is efficient in the sense that no processing element
+winds up with data elements on which no processing is needed, so all
+processing power of the computer is fully exploited. On the other
+hand, the dynamic assignment carries operating system overhead, and it
+leads to lots of data traffice, since a vertex is unlikely to be in
+local memory (such as cache) of the processing element.
+
+A further problem is that the loop may look like:
+\begin{verbatim}
+for all v in V:
+  for all neighbours u of v:
+    // update something on u
+\end{verbatim}
+Now it can happen that two nodes \n{v1,v2} both update a shared
+neighbour~\n{u}, and this conflict needs to be resolved though
+\indextermbus{cache}{coherence}. This carries a latency penalty, or
+may even necessitate using locks, which carries an operating system
+penalty.
+
+\Level 2 {Vertex-centric thinking}
+
+\Level 2 {Linear algebra interpretation}
+
+We will now show that graph algorithms can often be considered as sparse-matrix
+algorithms, which means that we can apply all the concepts and analysis we have developed for these.
+
+If $G$ is the \indextermsub{adjacency}{matrix} of the graph, we can
+also formulate the shortest path algorithm analogous to a series of
+matrix-vector multiplications (see appendix
+section~\ref{app:graph-mult}). Let $x$ be the vector tabulating distances
+from the source, that is, $x_i$~is the distance of node~$i$ from the source.
+For any neighbour $j$ of~$i$, the distance to the source is then $x_i+G_{ij}$,
+unless a shorter distance was already known.
+In other words, we can define a product
+\[ y^t=x^tG\equiv \forall_i\colon
+  y_j = \min\bigl\{ x_j, \min_{i\colon G_{ij}\not=0} \{x_i+1\} \bigr\},
+\]
+and the iterations of the above while-loop correspond to subsequent
+matrix-vector products under this definition.
+
+This algorithm works because we can set $d(v)$ to its final value
+the first time we visit it: this happens precisely after a number of
+outer iterations equal to the path length. The total number of inner loop
+executions equals the number of edges in the graph.
+A~weighted graph is somewhat trickier,
+since a path with more stages can actually be shorter as measured in the sum
+of the weights of the stages. Here is the Bellman-Ford algorithm:
+
+\begin{displayalgorithm}
+  Let $s$ be given, and set $d(s)=0$\;
+  Set $d(v)=\infty$ for all other nodes~$v$\;
+  \For{$|E|-1$ times}{
+    \For{all edges $e=(u,v)$}{
+      Relax: \If{$d(u)+w_{uv} < d(v)$}{Set $d(v)\leftarrow d(u)+w_{uv}$}
+    }
+  }
+\end{displayalgorithm}
+
+This algorithm is correct since, for a given node~$u$, after $k$ steps
+of the outer iteration it has considered all path $s\rightarrow u$ of
+$k$ stages.
+
+\begin{exercise}
+  What is the complexity of this algorithm? Can the length of the
+  outer loop be reduced if you have some knowledge of the graph?
+\end{exercise}
+
+We can again write this as a series of matrix-vector products, if we define
+the product as
+\[ y^t=x^tG\equiv \forall_i\colon
+  y_j = \min\bigl\{ x_j, \min_{i\colon G_{ij}\not=0} \{x_i+g_{ij}\} \bigr\},
+\]
+This has essentially the same basis as above: the minimum distance to~$j$
+is minimum of an already computed distance, or the minimum distance to any node~$i$
+plus the transition~$g_{ij}$.
+
+\Level 1 {Parallelizing the all-pairs algorithms}
+
+In the single-source shortest path algorithm above we didn't have much
+choice but to parallelize by distributing the vector rather than the
+matrix.  This type of distribution is possible here too, and it
+corresponds to a one-dimensional distribution of the $D(\cdot,\cdot)$
+quantities.
+\begin{exercise}
+  Sketch the parallel implementation of this variant of the
+  algorithm. Show that each $k$-th iteration involves a broadcast with
+  processor~$k$ as root.
+\end{exercise}
+However, this approach runs into the same scaling problems as the
+matrix-vector product using a one-dimensional distribution of the
+matrix; see section~\ref{sec:densescaling}. Therefore we need to use a
+two-dimensional distribution.
+\begin{exercise}
+  Do the scaling analysis. In a weak scaling scenario with constant memory, 
+  what is the asymptotic efficiency?
+\end{exercise}
+\begin{exercise}
+  Sketch the Floyd-Warshall algorithm using a two-dimensional
+  distribution of the $D(\cdot,\cdot)$ quantities.
+\end{exercise}
+\begin{exercise}
+  The parallel Floyd-Warshall algorithm performs quite some operations
+  on zeros, certainly in the early stages. Can you design an algorithm
+  that avoids those?
+\end{exercise}
+
+%% For more pointers,
+%% see~\url{http://en.wikipedia.org/wiki/Floyd\%E2\%80\%93Warshall_algorithm}.
+
+\Level 1 {Partitioning}
+
+Traditional graph partitioning algorithms~\cite{LiTa:separator} are
+not simply parallelizable. Instead, two possible approaches are:
+\begin{itemize}
+\item Using the graph Laplacian; section~\ref{sec:graph-laplace}.
+\item Using a multi-level approach:
+  \begin{enumerate}
+  \item Partition a coarsened version of the graph;
+  \item Gradually uncoarsen the graph, adapting the partitioning.
+  \end{enumerate}
+\end{itemize}
 
 \Level 0 {`Real world' graphs}
 

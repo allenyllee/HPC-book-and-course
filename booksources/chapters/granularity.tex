@@ -273,7 +273,7 @@ between the number of processors and total problem size.
 Unfortunately, choosing a large task size to overcome slow
 communication may aggravate another problem: aggregating these
 operations may give tasks with varying running time, causing
-\indextermbus{load}{unbalance}.  One solution here is to use an
+\indextermbus{load}{imbalance}.  One solution here is to use an
 \indexterm{overdecomposition} of the problem: create more tasks then
 there are processing elements, and assign multiple tasks to a
 processor (or assign tasks dynamically) to even out irregular running
