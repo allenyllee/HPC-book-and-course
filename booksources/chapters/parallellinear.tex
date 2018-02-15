@@ -283,6 +283,7 @@ with arithmetic added, so the cost is
 \Level 0 {Parallel dense matrix-vector product}
 \label{sec:parallel-dense-mvp}
 \index{Dense linear algebra|(}
+\index{Matrix!vector product|(}
 
 In this section we will go into great detail into the performance, and
 in particular the scalability, of the parallel dense matrix-vector
@@ -1057,6 +1058,8 @@ when $ r = c $, as long as $r/c$ is kept constant.
   Compute the iso-efficiency curve for this operation.
 \end{exercise}
 
+\index{Matrix!vector product|)}
+
 \Level 0 {LU factorization in parallel}
 
 The matrix-vector and matrix-product are easy to parallelize in one sense.
@@ -1250,12 +1253,54 @@ multi-colour orderings in section~\ref{sec:redblackgreen}.
 
 %\pagebreak
 \Level 0 {Matrix-matrix product}
+\index{matrix!matrix product!parallel|(}
+
+The \emph{matrix-matrix product} $C\leftarrow A\cdot B$
+%
+(or $C\leftarrow A\cdot B+\gamma C$, as it is used in the \ac{BLAS}) 
+%
+has a simple parallel structure. Assuming all square matrices of size
+$N\times N$
+\begin{itemize}
+\item  the $N^3$ products $a_{ik}b_{kj}$ can be computed independently,
+  after which
+\item the $N^2$ elements $c_{ij}$ are formed by independent sum
+  reductions, each of which take a time~$\log_2 N$. 
+\end{itemize}
+However, considerably more interesting are the questions of data
+movement:
+\begin{itemize}
+\item With $N^3$ operations on $O(N^2)$ elements, there is
+  considerable opportunity for
+  %
+  \emph{data reuse}%
+  \index{data reuse!in matrix-matrix product}%
+  \index{matrix!matrix product!data reuse in}
+  %
+  (section~\ref{sec:reuse}). We will explore the `Goto algorithm' in
+  section~\ref{sec:goto-gemm}.
+\item Depending on the way the matrices are traversed, \ac{TLB} reuse
+  also needs to be considered (section~\ref{sec:tlb}).
+\item The distributed memory version of the matrix-matrix product is
+  especially tricky. Assuming $A,B,C$ are all distributed over a
+  processor grid, elements of $A$ have to travel through a processor
+  row, and elements of $B$~through a processor columns. We discuss the
+  `Cannon algorithm' below.
+\end{itemize}
+
+\input goto
+
+\Level 1 {Distributed memory matrix-matrix product}
 \index{Cannon's algorithm|see{matrix-matrix product, Cannon's algorithm}}
 
 In section~\ref{sec:goto-gemm} we considered the high performance
 implementation of the single-processor \indexterm{matrix-matrix
   product}.  We will now briefly consider the distributed memory
 version of this operation.
+%
+(It is maybe interesting to note that this
+is not a generalization based on the matrix-vector product algorithm
+of section~\ref{sec:parallel-dense-mvp}.)
 
 \begin{wrapfigure}{r}{4in}
   \includegraphics[scale=.15]{cannon1}
@@ -1264,7 +1309,7 @@ version of this operation.
 \end{wrapfigure}
 %
 One algorithm for this operation is known as
-\emph{Cannon's algorithm}\index{matrix-matrix product!Cannon's algorithm for}.
+\emph{Cannon's algorithm}\index{matrix!matrix product!Cannon's algorithm for}.
 It assumes a square processor grid where processor $(i,j)$ gradually
 accumulates the $(i,j)$ block $C_{i,j}=\sum_kA_{i,k}B_{k,j}$;
 see figure~\ref{fig:cannon}.
@@ -1294,6 +1339,7 @@ the next partial product term comes from increasing~$k$ by~$1$.
 The corresponding elements of $A,B$ can be moved into the processor
 by rotating the rows and columns by another location.
 
+\index{matrix!matrix product!parallel|)}
 \index{Dense linear algebra|)}
 
 \Level 0 {Sparse matrix-vector product}

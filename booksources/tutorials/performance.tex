@@ -34,16 +34,21 @@ Here we will discuss
 
 \Level 0 {Timers}
 \label{sec:perf-timers}
+\index{timer|(}
 
 There are various ways of timing your code, but mostly they come down
-to calling a routine twice that tells you the clock values:
+to calling a \emph{timer} routine twice that tells you the clock values:
 \begin{verbatim}
   tstart = clockticks()
   ....
   tend = clockticks()
   runtime = (tend-tstart)/ticks_per_sec
 \end{verbatim}
-For instance, in Fortran there is the \n{system_clock}
+
+\Level 1 {Fortran}
+\index{timer!routines, Fortran}
+
+For instance, in \emph{Fortran} there is the \n{system_clock}
 routine\index{systemclock@\n{system_clock}}:
 \verbatiminput{code/papi/timers/ftimer.F}
 with output
@@ -51,7 +56,11 @@ with output
  Clock frequency:       10000
    1.000000       813802544   813826097   2.000000  
 \end{verbatim}
-In C there is the \n{clock} function:
+
+\Level 1 {C}
+\index{timer!routines, C}
+
+In \emph{C} there is the \n{clock} function:
 \verbatiminput{code/papi/timers/ctimer.c}
 with output
 \begin{verbatim}
@@ -64,22 +73,74 @@ Do you see a difference between the Fortran and C approaches? Hint:
 what happens in both cases when the execution time becomes long? At
 what point do you run into trouble?
 
+\Level 1 {C++}
+\index{timer!routines, C++}
+
+While C routines are available in~\emph{C++}, there is also a new
+\indextermtt{chrono} library that can do many things, including
+handling different time formats.
+\begin{verbatim}
+std::chrono::system_clock::time_point start_time;
+start_time = std::chrono::system_clock::now();
+// ... code ...
+auto duration =
+    std::chrono::system_clock::now()-start_time;
+auto millisec_duration =
+    std::chrono::duration_cast<std::chrono::milliseconds>(duration);
+std::cout << "Time in milli seconds: " 
+          << .001 * millisec_duration.count() << endl;
+\end{verbatim}
+
 \Level 1 {System utilities}
 
-There are unix system calls that can be used for timing: \n{getrusage}
-and \n{gettimeofday}. These timers have the advantage that they can
+There are unix system calls that can be used for timing:
+\indextermtt{getrusage}
+\begin{verbatim}
+#include <sys/resource.h>                        
+double time00(void)                              
+{                                                
+   struct rusage ruse;
+   getrusage(RUSAGE_SELF, &ruse);
+   return( (double)(ruse.ru_utime.tv_sec+ruse.ru_utime.tv_usec
+    / 1000000.0) );
+}
+\end{verbatim}
+and \indextermtt{gettimeofday}
+\begin{verbatim}
+#include <sys/time.h>
+double time00(void)
+{
+   struct timeval tp;
+   gettimeofday(&tp, NULL);
+   return( (double) (tp.tv_sec + tp.tv_usec/1000000.0) ); /* wall
+}
+\end{verbatim}
+These timers have the advantage that they can
 distinguish between user time and system time, that is, exclusively
 timing program execution or giving \indexterm{wallclock time}
 including all system activities.
+
+\index{timer|)}
 
 \Level 0 {Accurate counters}
 
 The timers in the previous section had a resolution of at best a
 millisecond, which corresponds to several thousand cycles on a modern
 CPU. For more accurate counting it is typically necessary to use
-assembly language, such as the Intel \n{RDTSC} (ReaD Time Stamp
+assembly language, such as the Intel \indexterm{RDTSC} (ReaD Time Stamp
 Counter)
-instruction~\url{http://developer.intel.com/drg/pentiumII/appnotes/RDTSCPM1.HTM}. However,
+instruction~\url{http://developer.intel.com/drg/pentiumII/appnotes/RDTSCPM1.HTM}.
+\begin{verbatim}
+static inline void microtime(unsigned *lo, unsigned *hi)
+{
+  __asm __volatile (
+        ".byte 0x0f; .byte 0x31   # RDTSC instruction
+         movl    %%edx,%0          # High order 32 bits
+         movl    %%eax,%1          # Low order 32 bits"
+                 : "=g" (*hi), "=g" (*lo) :: "eax", "edx");
+}                                                
+\end{verbatim}
+However,
 this approach of using processor-specific timers is not portable. For
 this reason, the \indexterm{PAPI} package (\url{http://icl.cs.utk.edu/papi/})
 provides a uniform interface to \indexterm{hardware counters}.
@@ -90,6 +151,24 @@ In addition to timing, hardware counters can give you information about
 such things as cache misses and instruction counters. A~processor typically
 has only a limited number of counters, but they can be assigned to various tasks.
 Additionally, PAPI has the concept of \emph{derived metrics}.
+
+\Level 0 {Parallel timers in MPI and OpenMP}
+
+Many packages have their own timers. For instance for
+\emph{MPI}\index{MPI!timer}\index{timer!MPI}
+\begin{verbatim}
+double MPI_Wtime(void);
+double MPI_Wtick(void);
+\end{verbatim}
+and for
+\emph{OpenMP}\index{OpenMP!timer}\index{timer!OpenMP}
+\begin{verbatim}
+double omp_get_wtime()
+double omp_get_wtick()
+\end{verbatim}
+In neither of these packages are the timers synchronized over the
+parallel processes or threads. To have a synchronized timer you need
+to do an explicit barrier.
 
 \Level 0 {Profiling tools}
 

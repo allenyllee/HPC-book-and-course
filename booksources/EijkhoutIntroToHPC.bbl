@@ -85,6 +85,14 @@ Guy~E. Blelloch, Michael~A. Heroux, and Marco Zagha.
   multiprocessors.
 \newblock Technical Report CMU-CS-93-173, CMU, 1993.
 
+\bibitem{Blelloch:1991:CM2sort}
+Guy~E. Blelloch, Charles~E. Leiserson, Bruce~M. Maggs, C.~Greg Plaxton,
+  Stephen~J. Smith, and Marco Zagha.
+\newblock A comparison of sorting algorithms for the connection machine cm-2.
+\newblock In {\em Proceedings of the Third Annual ACM Symposium on Parallel
+  Algorithms and Architectures}, SPAA '91, pages 3--16, New York, NY, USA,
+  1991. ACM.
+
 \bibitem{Bohr:30yearDennard}
 Mark Bohr.
 \newblock A 30 year retrospective on {Dennard}'s {MOSFET} scaling paper.
@@ -111,13 +119,6 @@ James~P. Briggs, Simon~J. Pennycook, James~R. Fergusson, Juha J\"aykk\"a, and
 \newblock Cosmic microwave background analysis: Nested paralellism in practice.
 \newblock In James Reinders and Jim Jeffers, editors, {\em High Performance
   Pearls, Volume two}. Morgan, 2015.
-
-\bibitem{papi}
-S.~Browne, J~Dongarra, N.~Garner, G.~Ho, and P.~Mucci.
-\newblock A portable programming interface for performance evaluation on modern
-  processors.
-\newblock {\em International Journal of High Performance Computing
-  Applications}, 14:189--204, Fall 2000.
 
 \bibitem{Burks:discussion}
 A.~W. Burks, H.~H. Goldstine, and J.~von Neumann.
@@ -460,6 +461,12 @@ William Gropp, Thomas Sterling, and Ewing Lusk.
 \newblock {\em Beowulf Cluster Computing with Linux, 2nd Edition}.
 \newblock MIT Press, 2003.
 
+\bibitem{Guttman:prefetchKNC}
+Diana Guttman, Meenakshi Arunachalam, Vlad Calina, and Mahmut~Taylan Kandemir.
+\newblock Prefetch tuning optimizations.
+\newblock In James Reinders and Jim Jeffers, editors, {\em High Performance
+  Pearls, Volume two}, pages 401--419. Morgan, 2015.
+
 \bibitem{Hadoop-wiki}
 Hadoop wiki.
 \newblock \url{http://wiki.apache.org/hadoop/FrontPage}.
@@ -504,6 +511,11 @@ John~L. Hennessy and David~A. Patterson.
 \newblock Morgan Kaufman Publishers, 3rd edition edition, 1990, 3rd edition
   2003.
 
+\bibitem{Herlihy:1999:topological}
+Maurice Herlihy and Nir Shavit.
+\newblock The topological structure of asynchronous computability.
+\newblock {\em J. ACM}, 46(6):858--923, November 1999.
+
 \bibitem{HestenesStiefel1952:cg}
 M.R. Hestenes and E.~Stiefel.
 \newblock Methods of conjugate gradients for solving linear systems.
@@ -525,6 +537,12 @@ Jonathan. Hill, Bill McColl, Dan~C. Stefanescu, Mark~W. Goudreau, Kevin Lang,
 C.~A.~R. Hoare.
 \newblock An axiomatic basis for computer programming.
 \newblock {\em Communications of the ACM}, pages 576--580, October 1969.
+
+\bibitem{Hoare:CSP}
+C.A.R. Hoare.
+\newblock {\em Communicating Sequential Processes}.
+\newblock Prentice Hall, 1985.
+\newblock ISBN-10: 0131532715, ISBN-13: 978-0131532717.
 
 \bibitem{Hoefler:2010:SCP}
 Torsten Hoefler, Christian Siebert, and Andrew Lumsdaine.

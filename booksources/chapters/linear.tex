@@ -594,8 +594,9 @@ input, it will always compute the same output. However, other
 algorithms are possible, so we need worry whether they give the same result.
 
 Let us then assume that $A=L_1U_1=L_2U_2$ where $L_1,L_2$ are lower
-triangular and $U_1,U_2$ are upper triangular. Then, $L_2\inv
-L_1=U_2U_1\inv$. In that equation, the left hand side is the product
+triangular and $U_1,U_2$ are upper triangular.
+Then, $L_2\inv L_1=U_2U_1\inv$.
+In that equation, the left hand side is the product
 of lower triangular matrices, while the right hand side contains only
 upper triangular matrices.
 
@@ -957,8 +958,9 @@ where $M,N$ are the block dimensions, that is, the dimension expressed
 in terms of the subblocks. Usually, we choose the blocks such that
 $M=N$ and the diagonal blocks are square.
 
-As a simple example, consider the matrix-vector product $y=Ax$, expressed in
-block terms.
+As a simple example, consider the
+\emph{matrix-vector product}\index{matrix!vector product!block algorithm}
+$y=Ax$, expressed in block terms.
 \[ 
 \begin{pmatrix}
   Y_1\\ \vdots\\ Y_M
@@ -982,8 +984,9 @@ so
 which is the product of the $k$-th row of the $i$-th blockrow of~$A$
 with the whole of~$X$.
 
-A more interesting algorithm is the block version of the LU
-factorization. The algorithm \eqref{eq:LU-algorithm} then becomes
+A more interesting algorithm is the block version of the
+\emph{LU factorization}\index{LU factorization!block algorithm}.
+The algorithm \eqref{eq:LU-algorithm} then becomes
 \begin{equation}
  \vcenter{%
 \begin{tabbing}

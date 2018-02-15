@@ -179,6 +179,8 @@ Some observations:
   $m,n$ positive, zero, or negative.
 \end{exercise}
 
+\Level 1 {Integer overflow}
+
 Adding two numbers with the same sign, or multiplying two numbers of
 any sign, may lead to a result that is too
 large or too small to represent. This is called \indexterm{overflow};
@@ -195,6 +197,8 @@ actually undefined under the C~standard.
   does your compiler say if you try to write down a nonrepresentible
   number explicitly, for instance in an assignment statement?
 \end{exercise}
+
+\Level 1 {Subtraction in two's complement}
 
 In exercise~\ref{ex:compare-mn} above you explored comparing two integers.
 Let us know explore how 
@@ -224,6 +228,18 @@ unsigned addition $m+(2^{32}-n)$.
 In both cases we conclude that we can perform the subtraction $m-n$ by adding
 the unsigned number that represent $m$ and $-n$
 and ignoring overflow if it occurs.
+
+\Level 1 {Other operations}
+
+Some operations are very simple to do in binary: multiplying by~2
+corresponds to shifting all the bits one to the left, and dividing
+by~2 corresponds to a \indextermdef{bitshift} to the right.
+
+At least, that's the way it is with unsigned integers.
+\begin{exercise}
+  Are there extra complications when you use bitshifts to multiply or
+  divide by~2 in 2's-complement?
+\end{exercise}
 
 \Level 0 {Real numbers}
 

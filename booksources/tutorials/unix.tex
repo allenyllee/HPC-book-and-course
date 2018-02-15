@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -76,8 +76,27 @@ displaying data files.
 In this section you will learn commands for displaying file contents.
 \end{purpose}
 
-The \indextermunix{ls} command gives you a listing of files that are in your
-present location. 
+\begin{tabular}{|l|l|}
+  \hline
+  command&function\\
+  \hline
+  \tt ls & list files or directories\\
+  \tt touch & create new/empty file or update existing file\\
+  \verb+cat > filename+ & enter text into file\\
+  \tt cp & copy files\\
+  \tt mv & rename files\\
+  \tt rm & remove files\\
+  \tt file & report the type of file\\
+  \tt cat filename & display file\\
+  \tt head,tail & display part of a file\\
+  \tt less,more & incrementally display a file\\
+  \hline
+\end{tabular}
+
+\Level 2 {\tt ls}
+
+Without any argument, the \indextermunix{ls} command gives you a
+listing of files that are in your present location.
 
 \practical
 {Type \n{ls}. Does anything show up?}
@@ -85,6 +104,13 @@ present location.
   there are none, no output will be given. This is standard Unix
   behaviour: no output does not mean that something went wrong, it
   only means that there is nothing to report.}{}
+
+\practical{If the \n{ls} command shows that there are files, do \n{ls
+    name} on one of those. By using an option, for instance \n{ls -s
+    name} you can get more name.}{}{If you specify a name of a
+  non-existing file, you'll get an error message.}
+
+\Level 2 {\tt cat}
 
 The \indextermunix{cat} command is often used to display files, but it can also be
 used to create some simple content. 
@@ -109,16 +135,6 @@ used to create some simple content.
   The capital letter is for historic reasons: you use the control key
   and the lowercase letter.
   \end{remark}
-
-Above you used \n{ls} to get a directory listing. You can also use the
-\n{ls} command on specific files: 
-
-\practical
-{Do \n{ls newfilename} with the file that you created above; also do
-  \n{ls nosuchfile} with a file name that does not exist.}
-{For an existing file you get the file name on your screen; for a
-  non-existing file you get an error message.}
-{}
 
 The \n{ls} command can give you all sorts of information.
 
@@ -149,12 +165,32 @@ The \n{ls} command can give you all sorts of information.
   command, \indextermunix{man}~\n{-k keyword} can help you find it.
 \end{remark}
 
+\Level 2 {\tt touch}
+
 The \indextermunix{touch} command creates an empty file, or updates the timestamp of
 a file if it already exists. Use \n{ls -l} to confirm this behaviour.
 
-Three more useful commands for files are: \indextermunix{cp} for copying, \indextermunix{mv}
-(short for `move') for renaming, and \indextermunix{rm} (`remove') for deleting.
-Experiment with them.
+\Level 2 {\tt cp, mv, rm}
+
+The \indextermunix{cp} can be used for copying a file (or directories,
+see below): \n{cp file1 file2} makes a copy of \n{file1} and names it
+\n{file2}.
+
+\practical{Use \n{cp file1 file2} to copy a file. Confirm that the two files have
+  the same contents. If you change the original, does anything happen
+  to the copy?}{You should see that the copy does not change if the
+  original changes or is deleted.}{If \n{file2} already exists, you
+  will get an error message.}
+
+A file can be renamed with \indextermunix{mv}, for `move'.
+
+\practical{Rename a file. What happens if the target name already
+  exists?}{}{}
+
+Files are deleted with \n{rm}. This command is dangerous: there is no
+undo.
+
+\Level 2 {\tt head, tail}
 
 There are more commands for displaying a file, parts of a file, or
 information about a file. 
@@ -171,9 +207,16 @@ your system. Now experiment with the commands \n{head}, \n{tail},
   The \indextermunix{wc} (`word count') command reports the number of words,
   characters, and lines in a file.}{}
 
-Another useful command is \indextermunix{which}: it tells you what
-type of file you are dealing with. See what it tells you about
-one of the text files you just created.
+Another useful command is \indextermunix{file}: it tells you what
+type of file you are dealing with.
+
+\practical{Do \n{file foo} for various `foo': a text file, a
+  directory, or the \n{/bin/ls} command.}{Some of the information may
+  not be intelligible to you, but the words to look out for are
+  `text', `directory', or `executable'.}{}
+
+At this point it is advisable to learn to use a text
+\indexterm{editor}, such as \indexterm{emacs} or~\indexterm{vi}.
 
 \Level 1 {Directories}
 
@@ -181,6 +224,17 @@ one of the text files you just created.
   Here you will learn about the Unix directory tree, how to manipulate
   it and how to move around in it.
 \end{purpose}
+
+\begin{tabular}{|l|l|}
+  \hline
+  command&function\\
+  \hline
+  \tt ls & list the contents of directories\\
+  \tt mkdir & make new directory\\
+  \tt cd & change directory\\
+  \tt pwd & display present working directory\\
+  \hline
+\end{tabular}
 
 A unix file system is a tree of directories, where a directory is a
 container for files or more directories. We will display directories
@@ -394,6 +448,19 @@ what group a file belongs to. Analogous to \n{chmod},
 you can use \indextermunix{chgrp} to change the group to
 which a file belongs, to share it with a user who is also in that group.
 Adding a user to a group sometimes needs system priviliges.
+
+\begin{remark}
+  There are more obscure permissions. For instance the
+  \indexterm{setuid} bit declares that the program should run with the
+  permissions of the creator, rather than the user executing it. This
+  is useful for system utilities such \n{passwd} or \n{mkdir}, which
+  alter the password file and the directory structure, for which
+  \indextermbus{root}{priviliges} are needed. Thanks to the setuid
+  bit, a user can run these programs, which are then so designed that
+  a user can only make changes to their own password entry, and their
+  own directories, respectively. The setuid bit is set with
+  \indextermtt{chmod}: \n{chmod 4ugo file}.
+\end{remark}
 
 \Level 1 {Wildcards}
 \label{sec:shell-wildcard}
@@ -791,7 +858,20 @@ Problem creating file: myfile
 \end{verbatim}
 
 
-\Level 1 {Processes}
+\Level 1 {Processes and jobs}
+
+\begin{tabular}{|l|l|}
+  \hline
+  \n{ps}&list (all) processes\\
+  \n{kill}&kill a process\\
+  \verb+CTRL-c+&kill the foreground job\\
+  \verb+CTRL-z+&suspect the foreground job\\
+  \n{jobs}&give the status of all jobs\\
+  \n{fg}&bring the last suspended job to the foreground\\
+  \verb+fg %3+&bring a specific job to the foreground\\
+  \n{bg}&run the last suspended job in the background\\
+  \hline
+\end{tabular}
 
 The Unix operating system can run many programs at the same time, by
 rotating through
@@ -807,14 +887,27 @@ The command \indextermunix{ps} can tell you everything that is currently running
   through an appropriate \n{grep}, which can then be piped to \n{wc}.}
 {}
 
-In this long listing of \n{ps}, the second column contains the process
-numbers. Sometimes it is useful to have those. The \n{cut} command
+In this long listing of \n{ps}, the second column contains the
+\emph{process numbers}\index{process!numbers}.
+Sometimes it is useful to have those: if a program misbehaves you can
+\indextermtt{kill} it with
+\begin{verbatim}
+kill 123456
+\end{verbatim}
+where \n{12345} is the process number.
+
+The \n{cut} command
 explained above can
 cut certain position from a line: type \n{ps guwax | cut -c 10-14}.
 
 To get dynamic information about all running processes, use the
 \n{top} command. Read the man page to find out how to sort the output
 by CPU usage.
+
+Processes that are started in a shell are known as
+\emph{jobs}\indexterm{job (unix)}.
+In addition to the process number, they have a job number.
+We will now explore manipulating jobs.
 
 When you type a command and hit return, that command becomes, for
 the duration of its run, the \indexterm{foreground
@@ -871,13 +964,7 @@ every login session, you can add the \n{alias} command to your
 \n{.profile} file. Other shells than \n{sh}/\n{bash} have other files for such
 customizations.
 
-\Level 0 {Scripting}
-\label{sec:unix-script}
-
-The unix shells are also programming environments. You will learn more
-about this aspect of unix in this section.
-
-\Level 1 {Shell environent variables}
+\Level 0 {Shell environent variables}
 \label{tut:shellvars}
 \index{environment variable|(textbf}
 
@@ -962,6 +1049,12 @@ also defines a variable; section~\ref{sec:shell-scripting}
 shows some more built-in variables that apply in shell scripts.
 
 \index{environment variable|)}
+
+\Level 0 {Scripting}
+\label{sec:unix-script}
+
+The unix shells are also programming environments. You will learn more
+about this aspect of unix in this section.
 
 \Level 1 {Control structures}
 \label{sec:shell-control}
@@ -1060,6 +1153,39 @@ file. Hint: you need to use backquotes inside the test.
 The number of command line arguments is available as \verb+$#+. Add a
 test to your script so that it will give a helpful message if you call
 it without any arguments.
+
+\Level 1 {Script arguments}
+
+You can invoke a shell script with arguments:
+\begin{verbatim}
+./my_script -a file1 -t -x file2
+\end{verbatim}
+where you define how many arguments and what they mean.
+
+\begin{tabular}{|l|l|}
+  \hline
+  variable&meaning\\
+  \hline
+  \verb+$#+&number of arguments\\
+  \verb+$0+&the name of the script\\
+  \verb+$1,$2,...+&the arguments\\
+  \verb+$*,$@+&the list of all arguments\\
+  \hline
+\end{tabular}
+
+The variables \verb+$@+ and \verb+$*+ have a different behaviour with
+respect to double quotes. Let's say we evaluate
+\verb+myscript "1 2" 3+, then
+\begin{itemize}
+\item Using \verb+$*+ is the list of arguments after removing quotes:
+  \verb+myscript 1 2 3+.
+\item Using
+  \verb+"$*"+ is the list of arguments, with quotes removed, in quotes:
+  \verb+myscript "1 2 3"+.
+\item Using
+  \verb+"$@"+ preserved quotes:
+  \verb+myscript "1 2" 3+.
+\end{itemize}
 
 \Level 0 {Expansion}
 \label{tut:unix-expansion}

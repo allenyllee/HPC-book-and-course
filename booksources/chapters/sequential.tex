@@ -4,12 +4,11 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
 %%%% The Saylor Foundation \url{http://www.saylor.org}.
-%%%%
 %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -23,12 +22,12 @@ is not enough to have an algorithm and `put it on the computer': some
 knowledge of computer architecture is advisable, sometimes crucial.
 
 Some
-problems can be solved on a single CPU, others need a parallel
+problems can be solved on a single \ac{CPU}, others need a parallel
 computer that comprises more than one processor. We will go into
 detail on parallel computers in the next chapter, but even for
-parallel processing, it is necessary to understand the invidual CPUs.
+parallel processing, it is necessary to understand the invidual \acp{CPU}.
 
-In this chapter, we will focus on what goes on inside a CPU and its
+In this chapter, we will focus on what goes on inside a \ac{CPU} and its
 memory system. We start with a brief general discussion of how
 instructions are handled, then we will look into the arithmetic
 processing in the processor core; last but not least, we will devote
@@ -43,7 +42,7 @@ fact a growing trend, so the issue of dealing with memory traffic has
 been becoming more important over time, rather than going away.
 
 This chapter will give you a basic understanding of the issues
-involved in CPU design, how it affects performance, and how you can
+involved in \ac{CPU} design, how it affects performance, and how you can
 code for optimal performance. For much more detail, see 
 an online book about PC
 architecture~\cite{Karbo:book},
@@ -92,7 +91,7 @@ higher level languages users write in, typically specify the name of
 an operation, as well as of the locations of the operands and the
 result. These locations are not expressed as memory locations, but as
 \emph{registers}\index{register}: a small number of named memory locations that
-are part of the CPU\footnote {Direct-to-memory architectures are rare,
+are part of the \ac{CPU}\footnote {Direct-to-memory architectures are rare,
   though they have existed. The Cyber 205 supercomputer in the 1980s
   could have three data streams, two from memory to the processor, and one
   back from the processor to memory, going on at the same time. Such
@@ -142,7 +141,7 @@ The case of array data is a little more complicated: the element
 loaded (or stored) is then determined as the base address of the array
 plus an offset.
 
-In a way, then, the modern CPU looks to the programmer like a von
+In a way, then, the modern \ac{CPU} looks to the programmer like a von
 Neumann machine. There are various ways in which this is not so. For
 one, while memory looks randomly addressable\footnote{There is in fact
   a theoretical model for computation called the `Random Access
@@ -152,20 +151,20 @@ one, while memory looks randomly addressable\footnote{There is in fact
 are more efficient to load, and reloading the initial item is also faster.
 
 Another complication to this story of simple loading of data is that
-contemporary CPUs operate on several
+contemporary \acp{CPU} operate on several
 instructions simultaneously, which are said to be `in flight', meaning
 that they are in various stages of completion. 
 Of course, together with these simultaneous instructions, their inputs
 and outputs are also being moved between memory and processor in an
 overlapping manner.
 This is the basic idea
-of the \indexterm{superscalar} CPU architecture, and is also referred
+of the \indexterm{superscalar} \ac{CPU} architecture, and is also referred
 to as \indexacf{ILP}. Thus, while each
 instruction can take several clock cycles to complete, a processor can
 complete one instruction per cycle in favourable circumstances; in
 some cases more than one instruction can be finished per cycle.
  
-The main statistic that is quoted about CPUs is their 
+The main statistic that is quoted about \acp{CPU} is their 
 Gigahertz rating, implying that the speed of the processor is the main
 determining factor of a computer's performance. While speed obviously
 correlates with performance, the story is more complicated. Some
@@ -290,9 +289,9 @@ Intel Haswell     &2014 &$0+0+2\times 4      $ &1/2  \\
 
 Incidentally, there are few algorithms in which division operations
 are a limiting factor. Correspondingly, the division operation is not
-nearly as much optimized in a modern CPU as the additions and
+nearly as much optimized in a modern \ac{CPU} as the additions and
 multiplications are. Division operations can take 10 or 20 clock
-cycles, while a CPU can have multiple addition and/or multiplication
+cycles, while a \ac{CPU} can have multiple addition and/or multiplication
 units that (asymptotically) can produce a result per cycle.
 
 \index{floating point!unit|)textbf}
@@ -312,7 +311,7 @@ clock cycle.
 
 \Level 2 {Peak performance}
 
-Thanks to pipelining, for modern CPUs there is a simple relation
+Thanks to pipelining, for modern \acp{CPU} there is a simple relation
 between the \indexterm{clock speed} and the \indexterm{peak performance}.
 Since each \ac{FPU} can produce one result per cycle
 asymptotically, the peak performance is the clock speed times the
@@ -341,7 +340,7 @@ they can process as a unit. This can relate to
   bits in the x86 architecture.) This also corresponds to the size of
   a chunk of data that a processor can operate on simultaneously.
 \item The size of a floating point number. If the arithmetic unit of a
-  CPU is designed to multiply 8-byte numbers efficiently (`double
+  \ac{CPU} is designed to multiply 8-byte numbers efficiently (`double
   precision'; see section~\ref{sec:float-representation}) then numbers half
   that size (`single precision') can sometimes be processed at higher
   efficiency, and for larger numbers (`quadruple precision') some
@@ -352,7 +351,7 @@ they can process as a unit. This can relate to
 These measurements are not necessarily identical. For instance, the
 original Pentium processor had 64-bit data busses, but a 32-bit
 processor. On the other hand, the Motorola 68000 processor (of the
-original Apple Macintosh) had a 32-bit CPU, but 16-bit data busses.
+original Apple Macintosh) had a 32-bit \ac{CPU}, but 16-bit data busses.
 
 The first Intel\index{Intel} microprocessor, the 4004, was a 4-bit
 processor in the sense that it processed 4 bit chunks. These days,
@@ -399,13 +398,13 @@ various mechanisms:
 \item out-of-order execution: instructions can be rearranged if they
   are not dependent on each other, and if the resulting execution will
   be more efficient;
-\item prefetching: data can be speculatively requested before any
+\item \indexterm{prefetching}: data can be speculatively requested before any
   instruction needing it is actually encountered (this is discussed
   further in section~\ref{sec:prefetch}).
 \end{itemize}
 
 Above, you saw pipelining in the context of floating point
-operations. Nowadays, the whole CPU is pipelined. Not only floating point
+operations. Nowadays, the whole \ac{CPU} is pipelined. Not only floating point
 operations, but any sort of instruction will be put in the
 \indextermbus{instruction}{pipeline} as soon
 as possible. Note that this pipeline is no longer limited to identical
@@ -427,7 +426,7 @@ using the transistors on a chip; section~\ref{sec:multicore}.
 There is a second problem with these longer pipelines: if the code
 comes to a branch point (a conditional or the test in a loop), it is
 not clear what the next instruction to execute is. At that point the
-pipeline can \emph{stall}\index{pipeline!stall}. CPUs have taken to
+pipeline can \emph{stall}\index{pipeline!stall}. \acp{CPU} have taken to
 \indexterm{speculative execution} for instance, by always assuming
 that the test will turn out true. If the code then takes the other
 branch (this is called a \indexterm{branch misprediction}), the
@@ -485,7 +484,7 @@ of the graphics controller.
 \end{figure}
 
 The bus is typically slower than the processor, operating with clock
-frequencies slightly in excess of~1GHz, which is a fraction of the CPU
+frequencies slightly in excess of~1GHz, which is a fraction of the \ac{CPU}
 clock frequency.  This is one reason that caches are needed; the fact
 that a processors can consume many data items per clock tick
 contributes to this. Apart from the frequency, the bandwidth of a bus is
@@ -553,7 +552,7 @@ for (i)
   a[i] = b[i]+c[i]
 \end{verbatim}
 Each iteration performs one floating point operation, which modern
-CPUs can do in one clock cycle by using pipelines. However, each
+\acp{CPU} can do in one clock cycle by using pipelines. However, each
 iteration needs two numbers loaded and one written, for a total of 24
 bytes\footnote{Actually, \n{a[i]} is loaded before it can be written,
 so there are 4 memory access, with a total of 32 bytes, per
@@ -723,6 +722,16 @@ especially in sections \ref{sec:locality} and
 ~\ref{sec:performance-programming}, you will see how it is possible to
 influence cache use indirectly.
 
+\Level 2 {Cache tags}
+\label{sec:cache-tag}
+
+In the above example, the mechanism was left unspecified by which it is found whether an
+item is present in cache. For this, there is a
+%
+\emph{tag}\index{tag|see{cache, tag}}\index{cache!tag}
+for each cache location: sufficient information to reconstruct the
+memory location that the cache item came from.
+
 \Level 2 {Cache levels, speed and size}
 \label{sec:cache-level}
 
@@ -879,6 +888,11 @@ needs to be placed into it, the data that was least recently used is
 and therefore no longer accessible. LRU is by far the most common
 replacement policy; other possibilities are FIFO (first in first out)
 or random replacement.
+
+\begin{exercise}
+  How does the LRU replacement policy related to direct-mapped versus
+  associative caches?
+\end{exercise}
 
 \begin{exercise}
   Sketch a simple scenario, and give some (pseudo) code, to argue that
@@ -1162,23 +1176,24 @@ data that is purely output will be written straight to memory, without
 being cached.
 
 \Level 1 {Prefetch streams}
+\index{prefetch|(textbf}
 \label{sec:prefetch}
 
 In the traditional von Neumann model (section~\ref{sec:vonneuman}),
-each instruction contains the location of its operands, so a CPU
+each instruction contains the location of its operands, so a \ac{CPU}
 implementing this model would make a separate request for each new
 operand. In practice, often subsequent data items are adjacent or
 regularly spaced in memory. The memory system can try to detect such
 data patterns by looking at cache miss points,
-and request a \indexterm{prefetch data stream}
+and request a \indextermbus{prefetch}{data stream};
 \begin{figure}
   \includegraphics[scale=.09]{prefetch}
   \caption{Prefetch stream generated by equally spaced requests}
   \label{fig:prefetch}
 \end{figure}
-(figure~\ref{fig:prefetch}).
+figure~\ref{fig:prefetch}.
 
-In its simplest form, the CPU will detect that consecutive loads come
+In its simplest form, the \ac{CPU} will detect that consecutive loads come
 from two consecutive cache lines, and automatically issue a request
 for the next following cache line. This process can be repeated or
 extended if the code makes an actual request for that third cache
@@ -1197,11 +1212,18 @@ describe all cacheline loads, whether the processor is stalling on
 them or not.
 
 Since prefetch is controlled by the hardware, it is also described as
-\indexterm{hardware prefetch}.  Prefetch streams can sometimes be
-controlled from software, though often it takes assembly code,
-for instance \indextermsub{inline}{assembly} instructions in your C~code,
-to do so. On the \indextermbus{IBM}{BlueGene Q} prefetch can be
-activated by program directives.
+\indextermsub{hardware}{prefetch}.
+Prefetch streams can sometimes be
+controlled from software, for instance through \indexterm{intrinsics}.
+
+Introducing prefetch by the programmer is a careful balance of a
+number of factors~\cite{Guttman:prefetchKNC}. Prime among these is the
+\indextermbus{prefetch}{distance}: the number of cycles between the
+start of the prefetch and when the data is needed. In practice, this
+is often the number of iterations of a loop: the prefetch instruction
+requests data for a future iteration.
+
+\index{prefetch|)}
 
 \Level 1 {Concurrency and memory transfer}
 
@@ -1323,7 +1345,7 @@ memory prematurely with the unused parts of the large pages.
 \Level 2 {TLB}
 \label{sec:tlb}
 
-However, address translation by lookup in this table is slow, so CPUs
+However, address translation by lookup in this table is slow, so \acp{CPU}
 have a \indexac{TLB}.
 The \ac{TLB} is a cache of frequently used 
 Page Table Entries: it provides fast address translation for a number
@@ -1405,7 +1427,7 @@ This solves the above two problems:
   parallelism, managed by the programmer.
 \end{itemize}
 
-While the first multicore CPUs
+While the first multicore \acp{CPU}
 were simply two processors on the same die, later generations
 incorporated L3 or L2 caches that were shared between the two
 processor cores; see figure~\ref{fig:core-caches}
@@ -1425,7 +1447,7 @@ chip, or the processor core on the chip. For this reason, we mostly
 talk about a \indexterm{socket} for the whole chip and
 \indexterm{core}\index{core!vs processor}
 for the part containing one arithmetic and logic unit and
-having its own registers. Currently, CPUs with 4 or 6 cores are
+having its own registers. Currently, \acp{CPU} with 4 or 6 cores are
 common,
 even in laptops, and Intel and AMD are marketing 12-core chips.
 The core count is
@@ -1612,6 +1634,15 @@ While there is no actual \indexterm{race condition} (as there would be
 if the threads all updated the \n{global_result} variable),
 this code will have low performance, since the cacheline(s) with the
 \n{local_result} array will continuously be invalidated.
+
+\Level 2 {Tag directories}
+
+In multicore processors with distributed, but coherent, caches
+(such as the \indextermbus{Intel}{Xeon Phi})
+the
+%
+\emph{tag directories}\index{cache!tag directory}
+can themselves be distributed. This increases the latency of cache lookup.
 
 \index{cache!coherence|)}
 
@@ -1854,9 +1885,9 @@ illustrated in the first graph of figure~\ref{fig:roofline}.
   line at the top of the graph, is an absolute bound on the
   performance\footnote {An old joke states that the peak performance
     is that number that the manufacturer guarantees you will never
-    exceed}, achieved only if every aspect of a CPU (pipelines,
+    exceed}, achieved only if every aspect of a \ac{CPU} (pipelines,
   multiple floating point units) are perfectly used. The calculation
-  of this number is purely based on CPU properties and clock cycle; it
+  of this number is purely based on \ac{CPU} properties and clock cycle; it
   is assumed that memory bandwidth is not a limiting factor.
 \item The number of operations per second is also limited by the
   product of the bandwidth, an absolute number, and the arithmetic
@@ -1900,7 +1931,7 @@ Since using data in cache is cheaper than getting data from main
 memory, a programmer obviously wants to code in such a way that data
 in cache is reused. While placing data in cache is not under explicit
 programmer control, even from assembly language, in most
-CPUs\footnote{Low level memory access can be controlled by the
+\acp{CPU}\footnote{Low level memory access can be controlled by the
   programmer in the Cell processor and in some GPUs.}, it is still
 possible, knowing the behaviour of the caches, to know
 what data is in cache, and to some extent to control it.
@@ -1956,7 +1987,7 @@ involved. A program is said to exhibit spatial locality if it
 references memory that is `close' to memory it already referenced. In
 the classical von Neumann architecture with only a processor and
 memory, spatial locality should be irrelevant, since one address in
-memory can be as quickly  retrieved as any other. However, in a modern CPU
+memory can be as quickly  retrieved as any other. However, in a modern \ac{CPU}
 with caches, the story is different. Above, you have seen two examples
 of spatial locality:
 \begin{itemize}
@@ -2112,7 +2143,7 @@ Note that we are not making any absolute predictions on code
 performance for these implementations, or even relative comparison of
 their runtimes. Such predictions are very hard to make. However, the
 above discussion identifies issues that are relevant for a wide range
-of classical CPUs.
+of classical \acp{CPU}.
 
 \begin{exercise}
   There are more algorithms for computing the product $C\leftarrow

@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -256,7 +256,7 @@ section~\ref{sec:wavefront}. In general, the whole of
 chapter~\ref{ch:parallellinear} will be about the amount of
 parallelism intrinsic in scientific computing algorithms.
 
-\Level 0 {Quantifying parallelism}
+\Level 0 {Theoretical concepts}
 \label{sec:speedup-efficiency}
 
 There are two important reasons for using a parallel computer: to have
@@ -824,6 +824,47 @@ In strong scaling $R_1(n)$ will be a constant, so we
 make a logarithmic plot of speedup, purely based on measuring~$T_p(n)$.
 
 \index{scaling|)}\index{scalability|)}
+
+\Level 1 {Concurreny; asynchronous and distributed computing}
+
+Even on computers that are not parallel there is a question of the
+execution of multiple simultaneous processes. Operating systems
+typically have a concept of \indexterm{time slicing}, where all active
+process are given command of the \ac{CPU} for a small slice of time in
+rotation. In this way, a sequential can emulate a parallel machine; of
+course, without the efficiency.
+
+However, time slicing is useful even when not running a parallel
+application: \acp{OS} will have independent processes (your editor,
+something monitoring your incoming mail, et cetera) that all need to
+stay active and run more or less often. The difficulty with such
+independent processes arises from the fact that they sometimes need
+access to the same resources. The situation where two processes both
+need the same two resources, each getting hold of one, is called
+\indexterm{deadlock}. A~famous formalization of
+\indexterm{resource contention} is
+known as the \indexterm{dining philosophers} problem.
+
+The field that studies such as independent processes is variously
+known as
+\indextermdef{concurrency},
+\indexterm{asynchronous computing}, or
+\indexterm{distributed computing}.
+The term concurrency describes that we are dealing with tasks that are
+simultaneously active, with no temporal ordering between their actions.
+The term distributed computing derives from
+such applications as database systems, where multiple independent clients need to
+access a shared database. 
+
+We will not discuss this topic much in this
+book. Section~\ref{sec:threads} discusses the \indexterm{thread}
+mechanism that supports time slicing; on modern multicore processors
+threads can be used to implement shared memory parallel computing.
+
+The book `Communicating Sequential
+Processes' offers an analysis of the interaction between
+concurrent processes~\cite{Hoare:CSP}. Other authors use topology to analyze
+asynchronous computing~\cite{Herlihy:1999:topological}.
 
 \Level 0 {Parallel Computers Architectures}
 

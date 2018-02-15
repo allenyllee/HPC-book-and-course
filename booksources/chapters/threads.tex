@@ -72,7 +72,10 @@ they were for instance used to handle independent activitives in an
 In the absence of parallel hardware, the \ac{OS} would handle
 the threads through \indexterm{multitasking} or \indextermdef{time
   slicing}: each thread would regularly get to use the \ac{CPU} for a
-fraction of a second.
+fraction of a second. (Technically, the Linux kernel treads processes
+and threads though the \indextermdef{task} concept; tasks are kept in
+a list, and are regularly activated or de-activated.)
+
 This can lead to higher processor utilization,
 since the instructions of one thread can be processed
 while another thread is waiting for data.
@@ -570,31 +573,6 @@ for (i=0; i<N; i++)
 For an in-depth discussion of memory policies, see~\cite{Lameter:NUMAq}.
 
 \index{affinity|)}
-
-\Level 2 {Concurrency}
-
-In this book, we discuss threads in the context of scientific
-computing. However, threads also facilitate parallelism in other contexts,
-such as \acfp{OS}. In this case, the term
-\indexterm{concurrency} is often used, rather than `parallelism'.
-Concurrent tasks are tasks that are not dependent on each other; 
-therefore, they can be executed in any order, or indeed in parallel.
-Parallel tasks, on the other hand, are tasks that are indeed running 
-simultaneously.
-
-Concurrency has been studied for a long time. Since a lot of
-this research came from \indexac{OS} research,
-the question
-addressed is that of \indexterm{resource contention}: what if two
-processes, for instance users on the same system, request access to
-the same resource, for instance a printer. This means that the system
-call to print is another example of a critical section of code; see
-section~\ref{sec:shared-lock} above. Another problem with concurrency
-is that two processes can both request access to \emph{two} devices
-with exclusive use, for instance a printer and some hardware input
-device. If one process gets hold of the one resource first, and the
-other process the other resource, we have another case of
-\indexterm{deadlock}.
 
 \Level 2 {Cilk Plus}
 
