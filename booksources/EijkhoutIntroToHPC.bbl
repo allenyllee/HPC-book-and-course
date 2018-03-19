@@ -68,6 +68,11 @@ Abraham Berman and Robert~J. Plemmons.
 \newblock SIAM, 1994.
 \newblock originally published by Academic Press, 1979, New York.
 
+\bibitem{berry:inria-svdpar}
+Michael~W. Berry, Dany Mezher, Bernard Philippe, and Ahmed Sameh.
+\newblock {Parallel computation of the singular value decomposition}.
+\newblock Research Report RR-4694, {INRIA}, 2003.
+
 \bibitem{BGSm:96}
 Petter~E. Bjorstad, William Gropp, and Barry Smith.
 \newblock {\em Domain decomposition : parallel multilevel methods for elliptic
@@ -683,6 +688,14 @@ Amy~N. Langville and Carl~D. Meyer.
 P.~L'Ecuyer.
 \newblock Combined multiple recursive generators.
 \newblock {\em Operations Research}, 44, 1996.
+
+\bibitem{leho:95}
+R.~B. Lehoucq.
+\newblock {\em Analysis and Implementation of an Implicitly Restarted
+  Iteration}.
+\newblock PhD thesis, Rice University, Houston, TX, 1995.
+\newblock Also available as Technical report TR95-13, Dept. of Computational
+  and Applied Mathematics.
 
 \bibitem{Leiserson:fattree}
 Charles~E. Leiserson.

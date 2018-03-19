@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -47,10 +47,20 @@ practical projects.
 \Level 0 {Elimination of unknowns}
 \label{sec:gauss-example}
 
-In this section we are going to take a closer look at Gaussian
-elimination, or elimination of unknowns. You may have seen this method
+In this section we are going to take a closer look at
+\emph{Gaussian elimination}%
+\index{Gauss!Gaussian elimination},
+or elimination of unknowns. You may have seen this method
 before (and if not, it will be explained below), but we will be a bit
 more systematic here so that we can analyze various aspects of it.
+
+\begin{remark}
+  It is also possible to solve the equation $Ax=y$ for $x$ by
+  computing the \indextermbus{inverse}{matrix} $A\inv$, for instance
+  by executing the \indextermbus{Gauss}{Jordan} algorithm, and multiplying
+  $x\leftarrow A\inv x$. The reasons for not doing this are primarily
+  of numerical precision, and fall outside the scope of this book.
+\end{remark}
 
 One general thread of this chapter will be the discussion of the
 efficiency of the various algorithms. When you learned how to solve a
@@ -603,8 +613,9 @@ upper triangular matrices.
 \begin{exercise}
   Prove that the product of lower triangular matrices is lower
   triangular, and the product of upper triangular matrices upper
-  triangular. Is a similar statement true for inverses of nonsingular
-  triangular matrices?
+  triangular. Is a similar statement true for
+  \emph{inverses}\index{inverse!of triangular matrix}
+  of nonsingular  triangular matrices?
 \end{exercise}
 
 The product $L_2\inv L_1$ is apparently both lower triangular and
@@ -1040,6 +1051,12 @@ upper triangular', and not strictly upper triangular.
 \input chapters/cg
 \index{iterative methods|)}
 \index{Krylov methods|)}
+
+\Level 0 {Eigenvalue methods}
+\label{sec:eigen}
+\index{eigenvalue problems|(}
+\input chapters/eigenvalue
+\index{eigenvalue problems|)}
 
 \furtherreading
 

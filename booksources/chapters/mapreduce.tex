@@ -14,10 +14,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-MapReduce~\cite{Google:mapreduce} is a programming model for certain
-parallel operations. One of its distinguishing characteristics is that
-it is implemented using \indexterm{functional programming}.
-The MapReduce model handles computations of the following form:
+\emph{MapReduce}\index{MapReduce|textbf}~\cite{Google:mapreduce} is a
+programming model for certain parallel operations. One of its
+distinguishing characteristics is that it is implemented using
+\indexterm{functional programming}.  The MapReduce model handles
+computations of the following form:
 \begin{itemize}
 \item For all available data, select items that satisfy a certain
   criterion;
@@ -59,7 +60,12 @@ then sums together $(Wp)_i=\sum_j w_{ij}p_j$.
 Database operations can be implemented with MapReduce but since it has
 a relatively large latency, it is unlikely to be competitive with
 standalone databases, which are optimized for fast processing of a
-single query, rather than bulk statistics. For other applications see
+single query, rather than bulk statistics.
+
+\emph{Sorting}\index{MapReduce!sorting|see{sorting, with MapReduce}}
+  with MapReduce is considered in section~\ref{sec:terasort}.
+
+For other applications see
 \url{http://horicky.blogspot.com/2010/08/designing-algorithmis-for-map-reduce.html}.
 
 \Level 2 {Mapreduce software}
