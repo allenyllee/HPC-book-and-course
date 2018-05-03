@@ -29,7 +29,14 @@
 %\includecomment{gpu} % VLE time to remove this environment
 
 \begin{notlulu}
-  \usepackage[pdftex,colorlinks]{hyperref}
+  \usepackage[pdftex,colorlinks,pagebackref=true]{hyperref}
+  \renewcommand*{\backref}[1]{}
+  \renewcommand*{\backrefalt}[4]{[{\tiny%
+      \ifcase #1 Not cited.%
+      \or Cited on page~#2.%
+      \else Cited on pages #2.%
+      \fi%
+  }]}
   \usepackage[all]{hypcap}
 \end{notlulu}
 \begin{lulu}

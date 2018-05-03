@@ -1288,7 +1288,7 @@ movement:
   `Cannon algorithm' below.
 \end{itemize}
 
-\input goto
+\input chapters/goto
 
 \Level 1 {Distributed memory matrix-matrix product}
 \index{Cannon's algorithm|see{matrix-matrix product, Cannon's algorithm}}
@@ -1632,8 +1632,9 @@ $P_i$ of variables such that $P_e$ computes in full the coefficients
 $a_{ij}$ for all $i\in e$. In other words, if we compute the
 contributions locally, there needs to be some amount of communication to
 assemble certain matrix elements.
-For this reason, modern linear algebra libraries such as PETSc (see
-tutorial section~\ref{tut:petsc}) allow any processor to set any
+For this reason, modern linear algebra libraries such as PETSc
+% (see tutorial section~\ref{tut:petsc})
+allow any processor to set any
 matrix element.
 
 \Level 1 {A simple model for iterative method performance}

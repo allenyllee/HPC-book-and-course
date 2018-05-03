@@ -575,6 +575,11 @@ M.~T. Jones and P.~E. Plassmann.
   Theory and Sparse Matrix Computations}, IMA Vol 56. Springer Verlag, Berlin,
   1994.
 
+\bibitem{Kahan:1965:summation}
+W.~Kahan.
+\newblock Pracniques: Further remarks on reducing truncation errors.
+\newblock {\em Commun. ACM}, 8(1):40--, January 1965.
+
 \bibitem{Kalavri2016HighLevelPA}
 Vasiliki Kalavri, Vladimir Vlassov, and Seif Haridi.
 \newblock High-level programming abstractions for distributed graph processing.
@@ -588,7 +593,7 @@ L.~V. Kale and S.~Krishnan.
 
 \bibitem{Kantorovich:functional}
 L.V. Kantorovich and G.P. Akilov.
-\newblock {\em Functional Analysis in NoNorm Spaces}.
+\newblock {\em Functional Analysis in Normed Spaces}.
 \newblock Pergamon press, 1964.
 
 \bibitem{Karbo:book}
@@ -706,8 +711,6 @@ Charles~E. Leiserson.
 \bibitem{Lionel:reproducibility}
 Stevel Lionel.
 \newblock Improving numerical reproducibility in {C/C++/Fortran}, 2013.
-\newblock
-  \url{https://software.intel.com/sites/default/files/managed/95/69/Improving%20Numerical%20Reproducibility%20in%20C%2B%2B%20and%20Fortran.pdf}.
 
 \bibitem{LiRoTa:dissection}
 Richard~J. Lipton, Donald~J. Rose, and Robert~Endre Tarjan.

@@ -958,9 +958,9 @@ alternating signs?
 \label{sec:fp-associative}
 
 Another effect of the way floating point numbers are treated
-is on the \indextermbus{associativity}{of mathematical operations}.
-Operations such as addition and multiplication, that ought to be
-associative, are no longer so in computer arithmetic.
+is on the \indextermsub{associativity of}{summation}.
+While this operation is mathematically associative, this is no longer
+the case in computer arithmetic.
 
 Let's consider a simple example, showing how this can be caused
 by the rounding behaviour of floating point numbers.
@@ -1361,6 +1361,38 @@ For more discussion, see~\cite{Lionel:reproducibility}.
 \index{compiler!optimization!vs round-off|)}
 
 \Level 0 {More about floating point arithmetic}
+
+\Level 0 {Kahan summation}
+
+The example in section~\ref{sec:fp-associative} made visible some of
+the problems of computer arithmetic: rounding can cause results that
+are quite wrong, and very much dependent on evaluation order. A~number
+of algorithms exist that try to compensate for these problems, in
+particular in the case of addition. We briefly discuss
+\indextermsub{Kahan}{summation}\cite{Kahan:1965:summation}, named after
+\indextermsub{William}{Kahan}, which is one example of a
+\indextermsub{compensated}{summation} algorithm.
+
+\begin{displayalgorithm}
+  $\n{sum}\leftarrow0$\;
+  $\n{correction}\leftarrow0$\;
+  \While{there is another \n{input}}{
+    $\n{oldsum}\leftarrow\n{sum}$\;
+    $\n{input}\leftarrow\n{input}-\n{correction}$\;
+    $\n{sum}\leftarrow\n{oldsum}+\n{input}$\;
+    $\n{correction}\leftarrow(\n{sum}-\n{oldsum})-\n{input}$\;
+}
+\end{displayalgorithm}
+
+\begin{exercise}
+  \label{ex:kahan-sum}
+  Go through the example in section~\ref{sec:fp-associative}, adding a
+  final term~3; that is compute $4+6+7+3$ and $6+7+4+3$ under the
+  conditions of that example.
+  Show that the correction is precisely the $3$~undershoot when 17 is rounded
+  to~20, or the $4$~overshoot when 14 is rounded to~10; in both cases
+  the correct result of~20 is computed.
+\end{exercise}
 
 \Level 1 {Programming languages}
 

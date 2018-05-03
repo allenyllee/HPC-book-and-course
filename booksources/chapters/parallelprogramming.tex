@@ -336,10 +336,6 @@ of supersteps; for instance Google\index{Google}'s
 \indexterm{Pregel}~\cite{Pregel:podc2009}.
 
 \Level 1 {Data dependencies}
-\index{data dependencies|(}
-\index{flow dependency|see{data dependencies}}
-\index{anti dependency|see{data dependencies}}
-\index{output dependency|see{data dependencies}}
 
 If two statements refer to the same data item,
 we say that there is a \emph{data dependency} between
@@ -385,12 +381,25 @@ may be independent, but can not be recognized as such by
 a compiler. Therefore, OpenMP shifts this responsibility
 to the programmer; see for instance section~\ref{sec:omp-ordered}.
 
+We will now discuss data depencies in some detail.
+
+\Level 2 {Types of data dependencies}
+\index{data dependencies|(}
+\index{loop!dependencies|see{data dependencies}}
+\index{flow dependency|see{data dependencies}}
+\index{anti dependency|see{data dependencies}}
+\index{output dependency|see{data dependencies}}
+
 The three types of dependencies are:
 \begin{itemize}
 \item flow dependencies, or `read-after-write';
 \item anti dependencies, or `write-after-read'; and
 \item output dependencies, or `write-after-write'.
 \end{itemize}
+These dependencies can be studied in scalar code, and in fact
+compilers do this to determine whether statements can be rearranged,
+but we will mostly be concerned with their appearance in loops, since
+in scientific computation much of the work appears there.
 
 \heading{Flow dependencies}
 
@@ -464,6 +473,57 @@ for (i=0; i<N; i++) {
 If the final value of \n{t} is wanted, the lastprivate can be used in OpenMP.
 
 \index{data dependencies|)}
+
+\Level 2 {Parallelizing nested loops}
+
+In the above examples, data dependencies were non-trivial if in
+iteration~$i$ of a loop different indices appeared, such as
+$i$~and~$i+1$. Conversely, loops such as
+\begin{verbatim}
+for (int i=0; i<N; i++)
+  x[i] = x[i]+f(i);
+\end{verbatim}
+are simple to parallelize. Nested loops, however, take more
+thought. OpenMP has a `collapse' directive for loops such as
+\begin{verbatim}
+for (int i=0; i<M; i++)
+  for (int j=0; j<N; j++)
+    x[i][j] = x[i][j] + y[i] + z[j];
+\end{verbatim}
+Here, the whole $i,j$ iteration space is parallel.
+
+How is that with:
+\begin{verbatim}
+for (n = 0; n < NN; n++)
+  for (i = 0; i < N; i++)
+    for (j = 0; j < N; j++)
+      a[i] += B[i][j]*c[j] + d[n];
+\end{verbatim}
+
+\begin{exercise}
+  \label{ex:ijn-nest-parallel}
+  Do a reuse analysis on this loop. Assume that \n{a,b,c} do not all
+  fit in cache together.
+
+  Now assume that \n{c} and one row of~\n{b} fit in cache, with a
+  little room to spare. Can you find a loop interchange that will
+  greatly benefit performance? Write a test to confirm this.
+\end{exercise}
+
+Analyzing this loop nest for parallelism, you see that the \n{j}-loop
+is a reduction, and the \n{n}-loop has flow dependencies: every
+\n{a[i]} is updated in every \n{n}-iteration. The conclusion is that
+you can only reasonable parallelize the \n{i}-loop.
+
+\begin{exercise}
+  How does this parallelism analysis relate to the loop exchange from
+  exercise~\ref{ex:ijn-nest-parallel}? Is the loop after exchange
+  still parallelizable?
+
+  If you speak OpenMP, confirm your answer by writing code that adds
+  up the elements of~\n{a}. You should get the same answer no matter
+  the exchanges and the introduction of OpenMP parallelism.
+\end{exercise}
 
 \Level 1 {Program design for parallelism}
 \label{sec:aos-soa}

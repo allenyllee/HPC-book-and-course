@@ -363,12 +363,75 @@ While the sorting of the buckets, once assigned, is fully parallel,
 this algorithm still has some problems regarding parallelism.
 First of all, the sampling is a sequential bottleneck for the algorithm.
 Also, the step where buckets are assigned to processors is essentially
-an \indexterm{all-to-all} operation, which becomes a network
-bottleneck.
+an \indexterm{all-to-all} operation, 
+
+For an analysis of this, assume that there are $P$ processes that
+first function as mappers, then as reducers. Let $N$~be the number of
+data points, and define a block size $b\equiv N/P$. The cost of the
+processing steps of the algorithm is:
+\begin{itemize}
+\item The local determination of the bin for each element, which takes
+  time~$O(b)$; and
+\item The local sort, for which is we can assume an optimal complexity
+  of~$b\log b$.
+\end{itemize}
+However, the shuffle step is non-trivial. Unless the data is partially
+pre-sorted, we can expect the shuffle to be a full
+\indexterm{all-to-all}, with a time complexity of $P\alpha+b\beta$.
+Also, this may become a network bottleneck.
 Note that in Quicksort on a hypercube there was never any
 \indexterm{contention} for the wires.
 
+\begin{exercise}
+  Argue that for a small number of processes, $P\ll N$, this algorithm
+  has perfect speedup and a sequential complexity (see above) of
+  $N\log N$.
+\end{exercise}
+
+Comparing this algorithm to sorting networks like bitonic sort
+this sorting algorithm looks considerable simpler: it has only a
+one-step network. The previous question argued that in the `optimistic
+scaling' (work can increase while keeping number of processors
+constant) the sequential complexity is the same as for the sequential
+algorithm. However, in the weak scaling analysis where we increase
+work and processors proportionally, the sequential complexity is
+considerably worse.
+
+\begin{exercise}
+  Consider the case where we scale both~$N,P$, keeping $b$
+  constant.
+  Argue that in this case the shuffle step introduces an $N^2$ term
+  into the algorithm.
+\end{exercise}
+
 \index{Samplesort|)}
+
+\Level 1 {Sorting through MapReduce}
+\label{sec:terasort}
+\index{Terasort|(}
+
+The \indextermdef{terasort} benchmark concerns
+%
+\emph{sorting}\index{sorting!with MapReduce} on a large
+file-based dataset. Thus, it is somewhat of a standard in
+\indexterm{big data} systems. In particular, 
+\indexterm{MapReduce} is a prime candidate; see
+\url{http://perspectives.mvdirona.com/2008/07/hadoop-wins-terasort/}.
+
+Using MapReduce, the algorithm proceeds as follows:
+\begin{itemize}
+\item A set of key values is determined through sampling or from prior
+  information: the keys are such that an approximately equal number of
+  records is expected to fall in between each pair. The number of
+  intervals equals the number of reducer processes.
+\item The mapper processes then produces key/value pairs where the key
+  is the interval or reducer number.
+\item The reducer processes then perform a local sort.
+\end{itemize}
+
+We see that, modulo terminology changes, this is really samplesort.
+
+\index{Terasort|)}
 
 \Level 0 {Bitonic sort}
 \label{app:bitonicsort}
@@ -444,66 +507,6 @@ is called a \indextermbus{sorting}{network}, built up out of simple
 on the value of the data elements, as is the case with quicksort.
 
 \index{bitonic sort|)}
-
-\Level 0 {Sorting through MapReduce}
-\label{sec:terasort}
-\index{Terasort|(}
-
-The \indextermdef{terasort} benchmark concerns
-%
-\emph{sorting}\index{sorting!with MapReduce} on a large
-file-based dataset. Thus, it is somewhat of a standard in
-\indexterm{big data} systems. In particular, 
-\indexterm{MapReduce} is a prime candidate; see
-\url{http://perspectives.mvdirona.com/2008/07/hadoop-wins-terasort/}.
-
-Using MapReduce, the algorithm proceeds as follows:
-\begin{itemize}
-\item A set of key values is determined through sampling or from prior
-  information: the keys are such that an approximately equal number of
-  records is expected to fall in between each pair. The number of
-  intervals equals the number of reducer processes.
-\item The mapper processes then split the data into one bin for
-  each reducer.
-\item The reducer processes then perform a local sort.
-\end{itemize}
-
-For an analysis of this, assume that there are $P$ processes that
-first function as mappers, then as reducers. Let $N$~be the number of
-data points, and define a block size $b\equiv N/P$. The cost of the
-processing steps of the algorithm is:
-\begin{itemize}
-\item The local binning, which takes time~$O(b)$, and
-\item The local sort, for which is we can an optimal complexity
-  of~$b\log b$.
-\end{itemize}
-However, the shuffle step is non-trivial. Unless the data is partially
-pre-sorted, we can expect the shuffle to be a full
-\indexterm{all-to-all}, with a time complexity of $P\alpha+b\beta$.
-
-\begin{exercise}
-  Argue that for a small number of processes, $P\ll N$, this algorithm
-  has perfect speedup and a sequential complexity (see above) of
-  $N\log N$.
-\end{exercise}
-
-Comparing this algorithm to sorting networks like bitonic sort, above,
-this sorting algorithm looks considerable simpler: it has only a
-one-step network. The previous question argued that in the `optimistic
-scaling' (work can increase while keeping number of processors
-constant) the sequential complexity is the same as for the sequential
-algorithm. However, in the weak scaling analysis where we increase
-work and processors proportionally, the sequential complexity is
-considerably worse.
-
-\begin{exercise}
-  Consider the case where we scale both~$N,P$, keeping $b$
-  constant.
-  Argue that in this case the shuffle step introduces an $N^2$ term
-  into the algorithm.
-\end{exercise}
-
-\index{Terasort|)}
 
 \index{sorting|)}
 
