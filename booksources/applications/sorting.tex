@@ -16,7 +16,8 @@
 
 \index{sorting!bubblesort|see{bubblesort}}
 \index{sorting!Quicksort|see{Quicksort}}
-\index{sorting!Bitonic sort|see{Bitonic sort}}
+\index{sorting!Bitonic sort|see{bitonic sort}}
+\index{sorting!Radix sort|see{radix sort}}
 \index{sorting!Samplesort|see{Samplesort}}
 
 \label{sec:sorting}
@@ -328,6 +329,118 @@ $O(\log n/2)$~on the next, et cetera. This makes for almost perfect
 speedup.
 
 \index{Quicksort|)}
+
+\Level 0 {Radixsort}
+\label{sec:radixsort}
+\index{sorting!radix sort|(}
+
+Most sorting algorithms are based on comparing the full item value. By
+contrast, \emph{radix sort} does a number of partial sorting stages on
+the digits of the number. For each digit value a `bin' is allocated,
+and numbers are moved into these bins. Concatenating these bins gives
+a partially sorted array, and by moving through the digit
+positions, the array gets increasingly sorted.
+
+Consider an example with number of at most two digits, so two stages
+are needed:
+
+\begin{tabular}{|r|rrrr|}
+  \hline
+  array     & 25&52&71&12\\
+  \hline
+  last digit&  5& 2& 1& 2\\
+  \multicolumn{5}{|c|}{(only bins 1,2,5 receive data)}\\
+  sorted    & 71&52&12&25\\
+  next digit&  7& 5& 1& 2\\
+  sorted    & 12&25&52&71\\
+  \hline
+\end{tabular}
+
+It is important that the partial ordering of one stage is preserved
+during the next. Inductively we then arrive at a totally sorted array
+in the end.
+
+\Level 1 {Parallel radix sort}
+\index{sorting!radix sort!parallel|(}
+
+A distributed memory sorting algorithm already has an obvious
+`binning' of the data, so a natural parallel implementation of radix
+sort is based on using~$P$, the number of processes, as radix.
+
+We illustrate this with an example on two processors, meaning that we
+look at binary representations of the values.
+
+\begin{tabular}{|r|rr|rrr|}
+  \hline
+            & \multicolumn{2}{|c}{proc0}&\multicolumn{3}{|c|}{proc1}\\
+  array     & 2&5&7&1&\\
+  binary    & 010& 101& 111& 001&\\
+  \hline
+  \multicolumn{6}{|c|}{stage 1}\\
+  \hline
+  last digit&   0&   1&   1&   1&\\
+  &\multicolumn{5}{|c|}{(this serves as bin number)}\\
+  sorted    & 010&    & 101& 111& 001\\
+  \multicolumn{6}{|c|}{stage 2}\\
+  \hline
+  next digit&  1 &    &  0 &  1 &  0\\
+  &\multicolumn{5}{|c|}{(this serves as bin number)}\\
+  sorted    & 101& 001& 010& 111&\\
+  \multicolumn{6}{|c|}{stage 3}\\
+  \hline
+  next digit& 1  & 0  & 0  & 1&\\
+  &\multicolumn{5}{|c|}{(this serves as bin number)}\\
+  sorted    & 001& 010& 101& 111&\\
+  decimal   & 1  & 2  & 5  & 7&\\
+  \hline
+\end{tabular}
+
+(We see that there can be load imbalance during the algorithm.)
+
+Analysis:
+\begin{itemize}
+\item Determining the digits under consideration, and determining how
+  many local values go into which bin are local operations. We can
+  consider this as a connectivity matrix~$C$ where $C[i,j]$ is the
+  amount of data that process~$i$ will send to process~$j$. Each
+  process owns its row of this matrix.
+\item In order to receive data in the shuffle, each process needs to know
+  how much data will receive from every other process. This requires a
+  `transposition' of the connectivity matrix. In MPI terms, this is an
+  \indexterm{all-to-all} operation: \indextermtt{MPI_Alltoall}.
+\item After this, the actual data can be shuffled in another
+  all-to-all operation. However, this the amounts differ per $i,j$
+  combination, we need the \n{MPI_Alltoallv} routine.
+\end{itemize}
+
+\Level 1 {Radix sort by most significant digit}
+
+It is perfectly possible to let the stages of the radix sort progress
+from most to least significant digit, rather than the
+reverse. Sequentially this does not change anything of significance.
+
+However,
+\begin{itemize}
+\item Rather than full shuffles, we are shuffling in increasingly
+  small subsets, so even the sequential algorithm will have increased
+  \indextermsub{spatial}{locality}.
+\item A shared memory parallel version will show similar locality
+  improvements.
+\item An MPI version no longer needs all-to-all operations. If we
+  recognize that every next stage will be within a subset of
+  processes, we can use the communicator splitting mechanism.
+\end{itemize}
+
+\begin{exercise}
+  The locality argument above was done somewhat hand-wavingly. Argue
+  that the algorithm can be done in both a \indexterm{breadth-first}
+  and \indexterm{depth-first} fashion. Discuss the relation of this
+  distinction with the locality argument.
+\end{exercise}
+
+\index{sorting!radix sort!parallel|)}
+
+\index{sorting!radix sort|)}
 
 \Level 0 {Samplesort}
 \label{sec:samplesort}

@@ -233,6 +233,7 @@ However, in the next generation, the
 this decision was reversed for reasons of performance.
 
 \Level 2 {Floating point units}
+\label{sec:fma-trend}
 \index{floating point!unit|(textbf}
 
 In scientific computing we are mostly interested in what a processor
@@ -669,9 +670,7 @@ In between the registers, which contain the immediate input and output
 data for instructions, and the main memory where lots of data can reside for a
 long time, are various levels of \emph{cache} memory, that have
 lower latency and higher bandwidth than main memory and where data are
-kept for an intermediate amount of time.  Caches typically
-consist of \indexac{SRAM}, which is faster than then \indexac{DRAM}
-used for the main memory, but is also more expensive.
+kept for an intermediate amount of time.  
 
 Data from
 memory travels through the caches to wind up in registers. The
@@ -1161,6 +1160,16 @@ importance, is typically lower than of the L2.
 \end{exercise}
 
 \index{cache|)}
+
+\Level 2 {Cache memory versus regular memory}
+
+So what's so special about cache memory; why don't we use its
+technology for all of memory?
+
+Caches typically
+consist of \indexac{SRAM}, which is faster than \indexac{DRAM}
+used for the main memory, but is also more expensive, taking 5--6
+transistors per bit rather than one, and it draws more power.
 
 \Level 2 {Loads versus stores}
 

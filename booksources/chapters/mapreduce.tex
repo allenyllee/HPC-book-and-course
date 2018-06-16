@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -78,13 +78,27 @@ it had considerable disadvantages for many other users:
   for operations that take more than a single cycle the file system
   and bandwidth demands are too great.
 \item In computing center environments, where a user's data is not continuously online,
-  the time required for loading data into \indexac{HDFS} would like overwhelm the
+  the time required for loading data into \indexac{HDFS} would likely overwhelm the
   actual analysis.
 \end{itemize}
-For these reasons, further projects such as Apache \indexterm{Spark} (\url{https://spark.apache.org/})
-offer caching of data.
+For these reasons, further projects such as Apache \indexterm{Spark}
+(\url{https://spark.apache.org/}) offer caching of data.
 
-\Level 2 {\bf Functional programming}
+\Level 2 {Implementation issues}
+
+Implementing MapReduce on a distributed system has an interesting
+problem: the set of keys in the key-value pairs is dynamically
+determined. For instance, in the `word count' type of applications
+above we do not \textsl{a priori} know the set of words. Therefore it
+is not clear which reducer process to send the pair to.
+
+We could for instance use a \indexterm{hash function} to determine
+this. Since every process uses the same function, there is not
+disagreement. This leaves the problem that a process does not know how
+many messages with key-value pairs to receive. The solution to this
+was described in section~\ref{sec:par-spmvp-setup}.
+
+\Level 2 {Functional programming}
 \index{functional programming|(}
 %
 The mapping and reduction operations are easily implemented on any

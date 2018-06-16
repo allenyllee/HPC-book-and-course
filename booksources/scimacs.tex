@@ -148,7 +148,6 @@
 \closeout\acrowrite
 
 \newcommand{\indexterm}[1]{\emph{#1}\index{#1}}
-\newcommand{\indextermtt}[1]{{\ttfamily\slshape #1}\index{#1@\texttt{#1}}}
 \newcommand{\indextermttdef}[1]{{\ttfamily\slshape #1}\index{#1@\texttt{#1}|textbf}}
 \newcommand{\indextermunix}[1]{{\ttfamily\slshape #1}\index{#1@\texttt{#1}}}
 \newcommand{\indextermdef}[1]{\emph{#1}\index{#1|textbf}}
@@ -162,6 +161,22 @@
 \newcommand{\indextermend}[1]{\index{#1|)}}
 \newcommand{\indexstart}[1]{\index{#1|(}}
 \newcommand{\indexend}[1]{\index{#1|)}}
+
+{ \catcode`\_=13
+  %% MPI index routines
+%\newcommand{\indextermtt}[1]{{\ttfamily\slshape #1}\index{#1@\texttt{#1}}}
+\gdef\indextermtt#{\bgroup \catcode`\_=13 \def_{\char95\discretionary{}{}{}}
+  \catcode`\>=12 \catcode`\<=12
+  \catcode`\&=12 \catcode`\^=12 \catcode`\~=12 \def\\{\char`\\}\relax
+  \tt \afterassignment\tttoindex\edef\indexedtt}
+}
+\def\tttoindex{%\tracingmacros=2
+  \edef\tmp{\noexpand\n{\indexedtt}%
+            \noexpand\index[mpi]{\indexedtt@{\noexpand\tt{\indexedtt}}}}%
+  \tmp
+  \egroup
+}
+
 \makeatletter
 \newcommand\indexac[1]{\emph{\ac{#1}}%
   %\tracingmacros=2 \tracingcommands=2

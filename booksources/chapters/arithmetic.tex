@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -840,10 +840,24 @@ are needed~\cite{Goldberg:arithmetic}.
 
 In 2008, the IEEE~754 standard was revised to include the behaviour
 of \indexacf{FMA} operations, that is, operations of the
-form \n{a*b+c}.  The standard here defines correct rounding to be that
-the result of this combined computation should be the rounded correct
+form \n{a*b+c}. This operation has twofold motivation:
+
+First, the \ac{FMA} is potentially more accurate than a separate
+multiplication and addition, since it can use higher precision for the
+intermediate results, for instance by using the 80-bit
+\indexterm{extended precision}\index{precision!extended|see{extended
+    precision}} format.
+
+The standard here defines correct rounding to be that the result of
+this combined computation should be the rounded correct
 result. A~naive implementation of this operations would involve two
-roundings: one after the multiplication and one after the addition.
+roundings: one after the multiplication and one after the
+addition\footnote {On the other hand, if the behaviour of an
+  application was `certified' using a non-FMA architecture, the
+  increased precision breaks the certification. Chip manufacturers
+  have been known to get requests for a `double-rounding' FMA to
+  counteract this change in numerical behaviour.}.
+
 
 \begin{exercise}
   Can you come up with an example where correct rounding of
@@ -853,10 +867,18 @@ roundings: one after the multiplication and one after the addition.
   subtraction.
 \end{exercise}
 
-\index{precision!extended|see{extended precision}}
-%
-Mul-add operations sometimes use the 80-bit \indexterm{extended precision}
-format for great \indextermbus{precision}{of the intermediate result}.
+Secondly, \ac{FMA} instructions are a way of getting higher
+performance: through pipelining we asymptotially get two operations
+per cycle. An \ac{FMA} unit is then cheaper to construct than separate
+addition and multiplication units. Fortunately, the \ac{FMA} occures
+frequently in practical calculations.
+
+\begin{exercise}
+  Can you think of some linear algebra operations that features
+  \ac{FMA} operations?
+\end{exercise}
+
+See section~\ref{sec:fma-trend} for historic use of \ac{FMA} in processors.
 
 \Level 1 {Addition}
 

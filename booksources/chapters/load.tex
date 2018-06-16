@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -50,7 +50,7 @@ processor. However, we will not go into the actual cost of moving: our
 main concerns here are to balance the workload, and to preserve any
 locality in the original load distribution.
 
-\Level 2 {Load balancing versus data distribution}
+\Level 1 {Load balancing versus data distribution}
 \label{sec:load-vs-data}
 
 There is a duality between work and data: in many applications
@@ -91,7 +91,12 @@ points to all processors except one, which gets fewer; see the exercise above.
 
 It is better to spread the surplus $r=N-p\lfloor N/p\rfloor$
 over $r$ processors than one. This could be done by giving one extra
-data point to the first or last $r$ processors. While this scheme
+data point to the first or last $r$ processors. This can be achieved
+by assigning to process~$p$ the range
+\[ \bigl[ p\times \lfloor (N+p-1)/p \rfloor, (p+1)\times \lfloor
+  (N+p-1)/p \rfloor \bigr)
+\]
+While this scheme
 is decently balanced, computing for instance to what processor
 a given point belongs is tricky. The following scheme makes
 such computations easier: let $f(i)=\lfloor iN/p\rfloor$, then processor~$i$
@@ -104,7 +109,7 @@ Show that $\lfloor N/p\rfloor \leq f(i+1)-f(i)\leq \lceil N/p\rceil$.
 Under this scheme, the processor that owns index~$i$ is
 $\lfloor (p(i+1)-1)/N \rfloor$.
 
-\Level 2 {Load scheduling}
+\Level 1 {Load scheduling}
 \label{sec:load-schedule}
 
 In some circumstances, the computational load can be freely assigned
@@ -134,7 +139,7 @@ any thread that finishes its task gets the next task. This clearly
 gives a better running time in this particular example. On the other
 hand, dynamic scheduling is likely to have a higher overhead.
 
-\Level 2 {Load balancing of independent tasks}
+\Level 1 {Load balancing of independent tasks}
 
 In other cases, work load is not directly determined by data.
 This can happen if there is a pool of work to be done,
@@ -177,7 +182,7 @@ communicate frequently.
   (This exercise was inspired by~\cite{Pospiech2015}.)
 \end{exercise}
 
-\Level 2 {Load balancing as graph problem}
+\Level 1 {Load balancing as graph problem}
 \label{sec:graph-loadbalancing}
 
 Next let us consider a parallel job where the parts do communicate. In
@@ -239,7 +244,7 @@ sign; further analysis shows that the elements with positive sign are
 connected, as are the negative ones. This leads to a natural bisection
 of the graph.
 
-\Level 2 {Load redistributing}
+\Level 1 {Load redistributing}
 
 In certain applications an initial load distribution is clear, but
 later adjustments are needed. A~typical example is in \ac{FEM} codes,
@@ -251,7 +256,7 @@ of the domain changes, the load has to be
 subsection we will see one technique for load balancing and
 rebalancing that is aimed at preserving locality.
 
-\Level 2 {Load balancing with space-filling curves}
+\Level 1 {Load balancing with space-filling curves}
 \label{sec:space-filling}
 \index{space-filling curve|(textbf}
 
@@ -360,11 +365,4 @@ still have locality preserved.
 discussed in~\cite{Warren:1993:hash-octree} and~\cite{Springel:gadget}.)
 
 \index{space-filling curve|)}
-
-\endinput
-\Level 2 {Task migration}
-
-An extreme case of load balancing is \indexterm{task migration}, where
-a whole process is moved between processors.
-
 

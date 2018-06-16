@@ -1284,15 +1284,21 @@ movement:
 \item The distributed memory version of the matrix-matrix product is
   especially tricky. Assuming $A,B,C$ are all distributed over a
   processor grid, elements of $A$ have to travel through a processor
-  row, and elements of $B$~through a processor columns. We discuss the
-  `Cannon algorithm' below.
+  row, and elements of $B$~through a processor columns. We discuss 
+  `Cannon's algorithm' and the outer-product method below.
 \end{itemize}
 
 \input chapters/goto
 
-\Level 1 {Distributed memory matrix-matrix product}
+\Level 1 {Cannon's algorithm for the distributed memory matrix-matrix product}
 \index{Cannon's algorithm|see{matrix-matrix product, Cannon's algorithm}}
 
+\begin{wrapfigure}{r}{4in}
+  \includegraphics[scale=.15]{cannon1}
+  \caption{Cannon's algorithm for matrix-matrix multiplication: (a) initial rotation of matrix rows and colums, (b)~resulting position in which processor~$(i,j)$ can start accumulating~$\sum_kA_{ik}B_{kj}$, (c)~subsequent rotation of $A,B$ for the next term.}
+  \label{fig:cannon}
+\end{wrapfigure}
+%
 In section~\ref{sec:goto-gemm} we considered the high performance
 implementation of the single-processor \indexterm{matrix-matrix
   product}.  We will now briefly consider the distributed memory
@@ -1302,12 +1308,6 @@ version of this operation.
 is not a generalization based on the matrix-vector product algorithm
 of section~\ref{sec:parallel-dense-mvp}.)
 
-\begin{wrapfigure}{r}{4in}
-  \includegraphics[scale=.15]{cannon1}
-  \caption{Cannon's algorithm for matrix-matrix multiplication: (a) initial rotation of matrix rows and colums, (b)~resulting position in which processor~$(i,j)$ can start accumulating~$\sum_kA_{ik}B_{kj}$, (c)~subsequent rotation of $A,B$ for the next term.}
-  \label{fig:cannon}
-\end{wrapfigure}
-%
 One algorithm for this operation is known as
 \emph{Cannon's algorithm}\index{matrix!matrix product!Cannon's algorithm for}.
 It assumes a square processor grid where processor $(i,j)$ gradually
@@ -1338,6 +1338,35 @@ Now we observe that $C_{ij}=\sum_kA_{ik}B_{kj}$ implies that
 the next partial product term comes from increasing~$k$ by~$1$.
 The corresponding elements of $A,B$ can be moved into the processor
 by rotating the rows and columns by another location.
+
+\Level 1 {The outer-product method for the distributed matrix-matrix
+  product}
+
+Cannon's algorithm suffered from the requirement of needing a square
+processors grid.
+%
+The \emph{outer-product method}%
+\index{matrix!matrix product!outer-product variant}
+is more general. It is based the following arrangement of the
+matrix-matrix product calculation:
+\begin{verbatim}
+for ( k ) 
+  for ( i )
+    for ( j )
+      c[i,j] += a[i,k] * b[k,j]
+\end{verbatim}
+That is, for each $k$ we take a column of~$A$ and a row of~$B$, and computing the
+rank-1 matrix (or `outer product') $A_{*,k}\cdot B_{k,*}$. We then sum
+over~$k$.
+
+Looking at the structure of this algorithm, we notice that in
+step~$k$, each column $j$ receives $A_{*,k}$, and each row $i$
+receives~$B_{k,*}$. In other words, elements of $A_{*,k}$ are
+broadcast through their row, and elements of $B_{k,*}$ are broadcast
+through their row.
+
+Using the MPI library, these simultaneous broadcasts are realized by
+having a subcommunicator for each row and each column.
 
 \index{matrix!matrix product!parallel|)}
 \index{Dense linear algebra|)}
@@ -1930,6 +1959,7 @@ In such cases the following can be done:
 \end{enumerate}
 
 \Level 1 {Ordering for cache efficiency}
+\label{sec:fd-oblivious}
 
 The \indextermsub{performance of}{stencil operations} is often quite
 low. The operations have no obvious cache reuse; often they resemble
