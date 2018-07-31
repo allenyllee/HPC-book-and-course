@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -13,6 +13,20 @@
 %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {High performance computing in bio-informatics}
+
+Bio-informatics differs from some of the other application areas
+discussed in this book in the sense that we are usually not interested
+in speeding up one large computation, but in getting better throughput
+of a large number of simpler computations. For instance, in
+\indexterm{gene alignment} one has a large number of `reads' that need
+to be aligned independently against a reference genome. Of course we
+are still interested in speeding up this alignment, but to a large
+extend we are concerned with speeding up a
+\indextermsub{bio-informatics}{pipeline} of computations.
+
+\Level 0 {Smith-Waterman gene alignment}
 
 Sequence alignment algorithms try to find similarities between 
 DNA sequences.
@@ -167,3 +181,17 @@ Both
 \indexterm{genome alignment} and \indexterm{signature selection} can
 be done with suffix trees.
 
+\endinput
+
+\Level 0 {Protein interaction networks}
+
+\Level 0 {Data mining}
+
+From~\cite{wang:undergrad-bioinf-course}
+\begin{quotation}
+  In our course, a Hadoop based distributed data mining system is used
+  in our course to implement some basic data mining algorithms for the
+  analysis of various kinds of gene expression datasets, including 36
+  time-series gene expression datasets of yeast, 79 tissue- specific
+  gene expression datasets of human and so on.
+\end{quotation}

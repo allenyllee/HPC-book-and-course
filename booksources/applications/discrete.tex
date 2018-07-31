@@ -47,7 +47,7 @@ For a small enough time interval this algorithm gives a reasonable approximation
 The last step, updating the particle positions, is easy and completely
 parallel: the problem is in evaluating the forces. In a naive way this
 calculation is simple enough, and even completely parallel:
-\begin{quotation}
+
   \begin{tabbing}
     for \=each particle $i$\\
     \>for \= each particle $j$\\
@@ -57,7 +57,7 @@ calculation is simple enough, and even completely parallel:
     \>\> (where $m_i,m_j$ are the masses or charges) and\\
     \>\> $f_{ji}=-f_{ij}$.
   \end{tabbing}
-\end{quotation}
+
 The main objection to this algorithm is that it has quadratic computational
 complexity: for $N$ particles, the number of operations is~$O(N^2)$.
 

@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -37,10 +37,11 @@ popular storage schemes for sparse matrices.
 Since a matrix is no longer stored as a simple 2-dimensional array,
 algorithms using such storage schemes need to be rewritten too. 
 
-\Level 2 {Diagonal storage}
+\Level 2 {Band storage and diagonal storage}
 \label{sec:diagonal-storage}
-\index{diagonal storage|(}
-\index{banded matrix!storage|(}
+\label{sec:band-storage}
+\index{diagonal storage|see{matrix, diagonal storage}}
+\index{band storage|see{matrix, band storage}}
 
 In section~\ref{sec:1dbvp} you have seen examples of sparse matrices
 that were banded. In fact, their nonzero elements are located
@@ -50,8 +51,9 @@ specialized storage scheme is possible.
 Let us take as an example the matrix of the one-dimensional \ac{BVP}
 (section~\ref{sec:1dbvp}). Its elements are located on three
 subdiagonals: the main diagonal and the first super and
-subdiagonal. The idea of \indexterm{storage by diagonals} or
-\emph{diagonal storage} is to store the diagonals consecutively
+subdiagonal. In
+\emph{band storage}\index{matrix!band storage}
+we store only the band containing the nonzeros
 in memory. The most economical storage scheme for such a matrix would
 store the $2n-2$ elements consecutively. However, for various reasons
 it is more convenient to waste a few storage locations, as shown in
@@ -66,8 +68,7 @@ figure~\ref{fig:sparsediag}.
 \end{figure}
 
 Thus, for a matrix with size $n\times n$ and a
-\emph{bandwidth}\index{bandwidth!of a matrix}~$p$\index{bandwidth!of a
-  matrix|see{halfbandwidth}}, we need a
+\indextermbus{matrix}{bandwidth}~$p$, we need a
 rectangular array of size $n\times p$ to store the matrix. The matrix
 of equation~\eqref{eq:1d2nd-matrix-vector} would then be stored as
 \begin{equation}
@@ -113,7 +114,10 @@ conversion
 
 If we apply this scheme to the matrix of the two-dimensional \ac{BVP}
 (section~\ref{sec:2dbvp}), it becomes wasteful, since we would be
-storing many zeros that exist inside the band. Therefore, we refine
+storing many zeros that exist inside the band.
+Therefore, in storage by diagonals or
+\emph{diagonal storage}\index{matrix!diagonal storage}
+we refine
 this scheme by storing only the nonzero diagonals: if the matrix has
 $p$ nonzero diagonals, we need an $n\times p$ array. For the matrix of
 equation~\eqref{eq:5starmatrix} this means:
@@ -131,6 +135,12 @@ equation~\eqref{eq:5starmatrix} this means:
 Of course, we need an additional integer array telling us the
 locations of these nonzero diagonals.
 
+\begin{exercise}
+  For the central difference matrix in $d=1,2,3$ space dimensions,
+  what is the bandwidth as order of~$N$? What is it as order of the
+  discretization parameter~$h$?
+\end{exercise}
+
 In the preceding examples, the matrices had an equal number of nonzero
 diagonals above and below the main diagonal. In general this need not
 be true. For this we introduce the concepts of
@@ -140,9 +150,6 @@ be true. For this we introduce the concepts of
 \item \indextermsub{right}{halfbandwidth}: if $A$ has a right
   halfbandwidth of~$p$ then $A_{ij}=0$ for~\mbox{$j>i+p$}.
 \end{itemize}
-
-\index{banded matrix!storage|)}
-\index{diagonal storage|)}
 
 \Level 2 {Operations on diagonal storage}
 
@@ -380,6 +387,8 @@ it is not truly symmetric in the
 sense that $\forall_{ij}\colon a_{ij}=a_{ij}$, but every nonzero in
 the upper triangle corresponds to one in the lower triangle and vice versa.
 
+\Level 2 {Graph properties under permutation}
+
 One advantage of considering the graph of a matrix is that graph properties
 do not depend on how we order the nodes, that is, they are invariant
 under permutation of the matrix.
@@ -398,6 +407,11 @@ under permutation of the matrix.
   what is the effect on the matrix~$A$?
 \end{exercise}
 
+\begin{remark}
+  Some matrix properties stay invariant under permutation. Convince
+  your self that permutation does not change the eigenvalues of a matrix.
+\end{remark}
+
 Some graph properties can be hard to see from the sparsity pattern of
 a matrix, but are easier deduced from the graph.
 
@@ -407,17 +421,17 @@ a matrix, but are easier deduced from the graph.
   (see section~\ref{sec:1dbvp}) of size~$n$ with $n$~odd. What does
   the graph of~$A$ look like?  Consider the permutation that results
   from putting the nodes in the following sequence:
-  $1,3,5,\ldots,n,2,4,\allowbreak6,\ldots,\allowbreak n-\nobreak
-  1$. What does the sparsity pattern of the permuted matrix look like?
+  \[ 1,3,5,\ldots,n,2,4,\allowbreak6,\ldots,\allowbreak n-\nobreak1. \]
+
+  What does the sparsity pattern of the permuted matrix look like?
   Renumbering strategies such as this will be discussed in more detail
   in section~\ref{sec:redblackgreen}.
-\end{exercise}
 
-\begin{exercise}
   \label{ex:reducible-tridiagonal}
-  Take again the matrix from the previous exercise, and zero the
+  Now take this matrix and zero the
   offdiagonal elements closest to the `middle' of the matrix: let
-  $a_{(n+1)/2,(n+1)/2+1}=a_{(n+1)/2+1,(n+1)/2}=0$. Describe what that
+  \[ a_{(n+1)/2,(n+1)/2+1}=a_{(n+1)/2+1,(n+1)/2}=0. \]
+  Describe what that
   does to the graph of~$A$. Such a graph is called
   \indexterm{reducible}. Now apply the permutation of the previous
   exercise and sketch the resulting sparsity pattern. Note that the
@@ -784,8 +798,20 @@ section on parallelism~\ref{sec:dissection}.
 Here we briefly show two other heuristics that predate the
 need for parallelism.
 
-\index{Cuthill-McKee ordering|(}
-The \emph{Cuthill-McKee ordering}~\cite{CuMcK:reducing} orders
+First we will look at the \indexterm{Cuthill-McKee ordering} which
+directly minimizes the bandwidth of the permuted matrix.
+Since the amount of fill-in can be bounded in terms of the bandwidth,
+we hope that such a bandwidth reducing ordering will also reduce the
+fill-in.
+
+Secondly, we will consider the \indexterm{minimum degree ordering},
+which aims more directly for fill-in reduction.
+
+\Level 3 {Cuthill-McKee ordering}
+
+The \indexterm{Cuthill-McKee ordering}~\cite{CuMcK:reducing}
+is a \emph{bandwidth reducing ordering}\index{matrix!bandwidth!reduction}
+that works by ordering
 the variables in \indexterm{level sets}. It considers the
 \indextermsub{adjacency}{graph} of the matrix, and proceeds as
 follows:
@@ -803,7 +829,22 @@ follows:
 \end{exercise}
 We will revisit this algorithm in section~\ref{sec:wavefront} when we
 consider parallelism.
-\index{Cuthill-McKee ordering|)}
+
+Of course, one can wonder just how far the bandwidth can be reduced.
+\begin{exercise}
+  The \indexterm{diameter} of a graph is defined as the maximum
+  shortest distance between two nodes.
+  \begin{enumerate}
+  \item Argue that in the graph of a 2D elliptic problem this diameter
+    is~$O(N^{1/2})$.
+  \item Express the path length between nodes 1~and~$N$ in terms of
+    the bandwidth.
+  \item Argue that this gives a lower bound on the diameter, and use
+    this to derive a lower bound on the bandwidth.
+  \end{enumerate}
+\end{exercise}
+
+\Level 3 {Minimum degree ordering}
 
 Another ordering is motivated by the observation that the amount of
 fill-in is related to the degree of nodes.

@@ -184,6 +184,11 @@ E.~Cuthill and J.~McKee.
 \newblock Reducing the bandwidth of sparse symmetric matrices.
 \newblock In {\em ACM proceedings of the 24th National Conference}, 1969.
 
+\bibitem{Cybenko:1989:balancing}
+G.~Cybenko.
+\newblock Dynamic load balancing for distributed memory multiprocessors.
+\newblock {\em J. Parallel Distrib. Comput.}, 7(2):279--301, October 1989.
+
 \bibitem{DAzevedo2005:vector-mvp}
 Eduardo~F. D'Azevedo, Mark~R. Fahey, and Richard~T. Mills.
 \newblock Vectorized sparse matrix multiply for compressed row storage format.
@@ -553,6 +558,11 @@ C.A.R. Hoare.
 Torsten Hoefler, Christian Siebert, and Andrew Lumsdaine.
 \newblock Scalable communication protocols for dynamic sparse data exchange.
 \newblock {\em SIGPLAN Not.}, 45(5):159--168, January 2010.
+
+\bibitem{HuBlake:diffusion1999}
+Y.~F. Hu and R.~J. Blake.
+\newblock An improved diffusion algorithm for dynamic load balancing.
+\newblock {\em Parallel Computing}, 25:417--444, 1999.
 
 \bibitem{ieee754-webpage}
 {IEEE} 754: Standard for binary floating-point arithmetic.

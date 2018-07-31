@@ -253,10 +253,58 @@ domain; see section~\ref{sec:par-spmvp}. If later the discretization
 of the domain changes, the load has to be
 \emph{rebalanced}\index{load!rebalancing} or
 \emph{redistributed}\index{load!redistributing}. In the next
-subsection we will see one technique for load balancing and
-rebalancing that is aimed at preserving locality.
+subsections we will see techniques for load balancing and
+rebalancing aimed at preserving locality.
 
-\Level 1 {Load balancing with space-filling curves}
+\Level 2 {Diffusion load balancing}
+
+In many practical situations we can associate a
+\indextermbus{processor}{graph} with our problem: there is a vertex
+between any pair of processes that directly interacts through
+point-to-point communication. Thus, it seems a natural thought to use
+this graph in load balancing, and only move load from a processor to
+its neighbours in the graph.
+
+This is the idea by 
+\emph{diffusion}\index{load!balancing!by diffusion} load
+balancing~\cite{Cybenko:1989:balancing,HuBlake:diffusion1999}.
+
+While the graph is not intrinsically directed, for load balancing we
+put arbitrary directions on the edges. Load balancing is then
+described as follows.
+
+Let $\ell_i$ be the
+load on process~$i$, and $\tau^{(j)}_i$ the transfer of load on an edge
+$j\rightarrow i$. Then
+\[ \ell_i \leftarrow \ell_i
+    + \sum_{j\rightarrow i} \tau^{(j)}_i
+    - \sum_{i\rightarrow j} \tau^{(i)}_j
+\]
+Although we just used a $i,j$ number of edges, in practice
+we put a linear numbering the edges. We then get a system
+\[ AT=\bar L \]
+where
+\begin{itemize}
+\item $A$ is a matrix of size $|N|\times|E|$ describing what edges
+  connect in/out of a node, with elements values equal to $\pm1$ depending;
+\item $T$ is the vector of transfers, of size~$|E|$; and
+\item $\bar L$ is the load deviation vector, indicating for each node
+  how far over/under the average load they are.
+\end{itemize}
+
+In the case of a linear processor array this matrix is
+under-determined, with fewer edges than processors, but in most cases the
+system will be over-determined, with more edges than processes.
+Consequently, we solve
+%
+\[ T= (A^tA)\inv A^t\bar L \qquad\hbox{or} T=A^t(AA^t)\inv \bar L. \]
+%
+Since $A^tA$ and $AA^t$ are positive indefinite, we could solve the
+approximately by relaxation, needing only local knowledge.
+Of course, such relaxation has slow convergence, and a global method,
+such as \ac{CG}, would be faster~\cite{HuBlake:diffusion1999}.
+
+\Level 2 {Load balancing with space-filling curves}
 \label{sec:space-filling}
 \index{space-filling curve|(textbf}
 

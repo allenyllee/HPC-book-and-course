@@ -1808,8 +1808,10 @@ allow several processors to access memory simultaneously. Also, their
 access times are identical, so exchange networks are a way of
 implementing a \indexac{UMA} architecture; see
 section~\ref{sec:uma}. One computer that was based on a Butterfly
-exchange network was the
-\indextermbus{BBN}{Butterfly}\footnote{\url{http://en.wikipedia.org/wiki/BBN_Butterfly}}.
+exchange network was the \indextermbus{BBN}{Butterfly}\footnote
+{\url{http://en.wikipedia.org/wiki/BBN_Butterfly}}.
+In section~\ref{sec:stampede-fattree} we will see how these ideas are
+realized in a practical cluster.
 
 \begin{figure}[ht]
   \begin{quote}
@@ -1829,9 +1831,9 @@ expressed in the unit time that it takes to traverse a unit length of wire
 and the time to traverse a switching element?
 \end{exercise}
 
-Routing through a butterfly network is done based on considering the
-bits in the destination address. On the $i$-th level the $i$-th digit
-is considered;
+\emph{Packet routing}\index{routing!packet} through a butterfly
+network is done based on considering the bits in the destination
+address. On the $i$-th level the $i$-th digit is considered;
 \begin{figure}[ht]
   \includegraphics[scale=.18]{graphics/butterfly-route}
   \caption{Routing through a three-stage butterfly exchange network}
@@ -1913,7 +1915,7 @@ every next level a new, bigger, switch would have to be designed. In
 practice, therefore, a network with the characteristics of a fat-tree
 is constructed from simple switching elements; see
 figure~\ref{fig:fattreeclos}.
-\begin{figure}
+\begin{figure}[ht]
   \begin{quote}
     \includegraphics[scale=.11]{graphics/fattree-clos}
   \end{quote}
@@ -1962,6 +1964,45 @@ will look like a collection of identical cabinets, since each contains
   \label{fig:bluegenep}
 \end{figure}
 an identical part of the network; see figure~\ref{fig:bluegenep}.
+
+\Level 2 {Case study: Stampede}
+\label{sec:stampede-fattree}
+
+As an example of networking in practice, let's consider the
+\emph{Stampede}\index{TACC!Stampede cluster} cluster at the Texas
+Advanced Computing Center. This can be described as a multi-root
+multi-stage fat-tree.
+\begin{itemize}
+\item Each rack consists of 2 chassis, with 20 nodes each.
+\item Each chassis has a leaf switch that is an internal
+  \indexterm{crossbar} that gives perfect connectivity between the
+  nodes in a chassis;
+\item The leaf switch has 36 ports, with 20 connected to the nodes and
+  16~outbound. This \indexterm{oversubscription} implies that at most
+  16 nodes can have perfect bandwidth when communicating outside the
+  chassis.
+\item There are 8 central switches that function as 8 independent
+  fat-tree root. Each chassis is connected by two connections to a
+  `leaf card' in each
+  of the central switches, taking up precisely the 16 outbound ports.
+\item Each central switch has 18 spine cards with 36 ports each, with
+  each port connecting to a different leaf card.
+\item Each central switch has 36 leaf cards with 18 ports to the leaf switches
+  and 18 ports to the spine cards. This means we can support 648
+  chassis, of which 640 are actually used.
+\end{itemize}
+One of the optimizations in the network is that two connections to the
+same leaf card communicate without the latency of the higher tree levels.
+This means that 16 nodes in one chassis and 16 nodes in another can
+have perfect connectivity.
+
+However, with
+\indextermsub{static!routing}, such as used in \indexterm{Infiniband},
+there is a fixed port associated with each destination. (This mapping
+of destination to port is in the \indextermbus{routing}{tables} in
+each switch.) Thus, for some subsets of 16 nodes out 20 possible
+destination there will be perfect bandwidth, but other subsets will
+see the traffic for two destinations go through the same port.
 
 \Level 1 {Bandwidth and latency}
 \label{sec:bwlatency}

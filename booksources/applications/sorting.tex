@@ -14,11 +14,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\index{sorting!bubblesort|see{bubblesort}}
-\index{sorting!Quicksort|see{Quicksort}}
-\index{sorting!Bitonic sort|see{bitonic sort}}
-\index{sorting!Radix sort|see{radix sort}}
-\index{sorting!Samplesort|see{Samplesort}}
+\index{Bubblesort|see{sorting, bubblesort}}
+\index{Quicksort|see{sorting, quicksort}}
+\index{Bitonic sort|see{soring, bitonic sort}}
+\index{Radix sort|see{sorting, radix sort}}
+\index{Samplesort|see{sorting, samplesort}}
 
 \label{sec:sorting}
 \index{sorting|(}
@@ -54,12 +54,12 @@ least complexity~$O(n\log n)$\footnote{One can consider a sorting
   n!$. Using Stirling's formula, this means that $n\geq O(n\log
   n)$}. There are indeed several algorithms that are guaranteed to
 attain this complexity, but a very popular algorithm, called
-\indexterm{Quicksort} has only an `expected' complexity of~$O(n\log
-n)$, and a worst case complexity of~$O(n^2)$. This behaviour results
-from the fact that quicksort needs to choose `pivot elements' (we will
-go into more detail below in section~\ref{sec:quicksort}), and if
-these choices are consistently the worst possible, the optimal
-complexity is not reached.
+\emph{Quicksort}\index{sorting!quicksort!complexity} has only an
+`expected' complexity of~$O(n\log n)$, and a worst case complexity
+of~$O(n^2)$. This behaviour results from the fact that quicksort needs
+to choose `pivot elements' (we will go into more detail below in
+section~\ref{sec:quicksort}), and if these choices are consistently
+the worst possible, the optimal complexity is not reached.
 
 \begin{displayalgorithm}
   \While{the input array has length~$>1$}{
@@ -70,7 +70,8 @@ complexity is not reached.
   \caption{The quicksort algorithm}
 \end{displayalgorithm}
 
-On the other hand, the very simple \indexterm{bubble sort} algorithm
+On the other hand, the very simple \emph{bubble
+  sort}\index{sorting!bubble sort!complexity} algorithm
 always has the same complexity, since it has a static structure:
 
 \begin{displayalgorithm}
@@ -109,7 +110,7 @@ In figure~\ref{fig:bubble-pass} we show buble sort, built up
 %
 out of compare and swap elements.
 
-Below we will consider the \indexterm{Bitonic sort} algorithm
+Below we will consider the Bitonic sort algorithm
 as a prime example of a sorting network.
 
 \Level 1 {Parallel complexity}
