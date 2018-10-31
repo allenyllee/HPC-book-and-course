@@ -362,7 +362,12 @@ this may not always be the case: there can be dependencies between
 operations, which limits the amount of parallelism that can be
 employed.
 
-In order to take this into account, we define the following concepts:
+We define the \indextermdef{critical path} as a (possibly non-unique) chain of dependencies
+of maximum length. Since the tasks on a critical path need to be
+executed one after another, the length of the critical path is a lower
+bound on parallel execution time.
+
+To make these notions precise, we define the following concepts:
 \begin{definition}
   \[ 
   \begin{array}{l@{\colon}l}
@@ -374,7 +379,7 @@ In order to take this into account, we define the following concepts:
   \]
 \end{definition}
 With these concepts, we can define the \indextermsub{average}{parallelism}
-of an algorithm as $T_1/T_\infty$.
+of an algorithm as $T_1/T_\infty$, and the length of the critical path is~$T_\infty$.
 
 We will now give a few illustrations by showing a graph of tasks and their dependencies.
 We assume for simplicity that each node is a unit time task.

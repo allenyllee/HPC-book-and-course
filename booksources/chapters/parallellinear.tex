@@ -1838,7 +1838,6 @@ increase in iterations.
 
 \Level 1 {Parallel ILU}
 \label{sec:parallel-ilu}
-\index{Incomplete LU (ILU)!parallel|(}
 
 The Block Jacobi preconditioner operates by decoupling domain
 parts. While this may give a method that is highly parallel, it may
@@ -1846,59 +1845,9 @@ give a higher number of iterations than a true \ac{ILU}
 preconditioner. (A~theoretical argument can be made that this
 decoupling decreases the efficiency of the iterative method; see
 section~\ref{sec:region-influence}.) Fortunately it is possible to
-have a parallel \ac{ILU} method.
-
-In section~\ref{sec:redblackgreen} you saw the combination of
-\indextermbus{graph}{colouring} and permutation. Let $P$ be the
-permutation that groups like-coloured variables together, then $\tilde
-A=P^tAP$ is a matrix with the following structure:
-\begin{itemize}
-\item $\tilde A$ has a block structure with the number of blocks equal
-  to the number of colours in the adjacency graph of~$A$; and
-\item each diagonal block is a diagonal matrix.
-\end{itemize}
-Now, if you are performing an iterative system solution
-and you are looking for a parallel preconditioner you can use this
-permuted matrix. Consider solving $Ly=x$ with the permuted system. We
-write the usual algorithm (section~\ref{sec:lu-solve}) as
-\begin{quotation}
-  \begin{tabbing}
-    for \=$c$ in the set of colours:\\
-    \>for \=$i$ in the variables of colour $c$:\\
-    \>\>$y_i\leftarrow x_i-\sum_{j<i} \ell_{ij}y_j$
-  \end{tabbing}
-\end{quotation}
-
-\begin{exercise}
-  Show that the flop count of solving a system $LUx=y$ remains the
-  same (in the highest order term) when you from an \ac{ILU}
-  factorization in the natural ordering to one in the colour-permuted
-  ordering.
-\end{exercise}
-
-\begin{figure}
-  \includegraphics[scale=.12]{graphics/pilu}
-  \caption{A partitioned domain with coloured nodes}
-  \label{fig:pilu}
-\end{figure}
-Where does all this colouring get us? Solving is still
-sequential\ldots Well, it is true that the outer loop over the colours
-is sequential, but all the points of one colour are independent of
-each other, so they can be solved at the same time.
-\begin{figure}
-  \includegraphics[scale=.13]{graphics/pilu-solve}
-  \caption{Solving a parallel multicolour ILU in four steps}
-  \label{fig:pilu-solve}
-\end{figure}
-So if we use an ordinary domain partitioning and combine that with a
-multi-colouring (see figure~\ref{fig:pilu}), the processors are all
-active during all the colour stages; see
-figure~\ref{fig:pilu-solve}. Ok, if you take a close look at that
-figure you'll see that one processor is not active in the last
-colour. With large numbers of nodes per processor this is unlikely to
-happen, but there may be some load imbalance.
-
-\index{Incomplete LU (ILU)!parallel|)}
+have a parallel \ac{ILU} method. Since we need the upcoming
+material on re-ordering of variables, we postpone this discussion
+until section~\ref{sec:jones-plassman}.
 
 \Level 0 {Ordering strategies and parallelism}
 \label{sec:ordering}

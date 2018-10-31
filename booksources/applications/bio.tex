@@ -26,6 +26,18 @@ are still interested in speeding up this alignment, but to a large
 extend we are concerned with speeding up a
 \indextermsub{bio-informatics}{pipeline} of computations.
 
+Another characteristic of bio-informatics computations is that many
+are not oriented to floating point operations. For instance, the
+\indexterm{biobench} suite~\cite{biobench:ieee} contains the following programs:
+\begin{itemize}
+\item Sequence similarity: Blast and Fasta
+\item Phylogenetic analysis: Phylyp
+\item Multiple sequence alignment: Clustal W
+\item Sequence profile search: Hmmer
+\item Genome-level alignment: Mummer
+\item Sequence assembly: Tigr
+\end{itemize}
+
 \Level 0 {Smith-Waterman gene alignment}
 
 Sequence alignment algorithms try to find similarities between 
@@ -133,7 +145,18 @@ diagonals can be processed with \indextermbus{vector}{instructions}.
 Each diagonal only needs two previous diagonals for its computation,
 so the required amount of temporary space is linear in the input size.
 
-\Level 0 {Suffix tree}
+\Level 0 {Short read alignment}
+
+A common task is to take a short read (50 to 1000 base pairs) and
+align it to a reference genome. Packages such as \indexterm{SOAP2} (`Short
+Oligonucleotide Alignment Program')~\cite{soap2:2009} use the
+%
+\indexterm{Burrow Wheeler transform}~\cite{BurrowWheeler:report},
+%
+which uses a data structure known as a \indexterm{trie} or
+\indextermsub{suffix}{tree}.
+
+\Level 1 {Suffix tree}
 
 \url{http://homepage.usask.ca/~ctl271/857/suffix_tree.shtml}
 

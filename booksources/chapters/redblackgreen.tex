@@ -17,13 +17,23 @@
 \index{red-black ordering|(}
 \index{matrix ordering!red-black dissection|see{red-black ordering}}
 
-Another permutation of the problem variables is based on graph colouring
-(section~\ref{sec:independent}). The direct goal here is to maximize
-available parallelism.
+Parallelism can be achieved in sparse matrices by using graph colouring
+(section~\ref{sec:independent}). Since a `colour' is defined as points
+that are only connected to other colours, they are by definition
+independent of each other, and therefore can be processed in
+parallel. This leads us to the following strategy:
+\begin{enumerate}
+\item Decompose the adjacency graph of the problem into a small number
+  of independent sets, called `colours';
+\item Solve the problem in a number of sequential steps equal to the
+  number of colours; in each step there will be large number of
+  independently processable points.
+\end{enumerate}
 
-Let us take a
-simple example, where $A$ is a tridiagonal matrix. The equation $Ax=b$
-looks like
+\Level 2 {Red-black colouring}
+
+We start with a simple example, where we consider a tridiagonal
+matrix~$A$. The equation $Ax=b$ looks like
 \[ 
 \begin{pmatrix}
   a_{11}&a_{12}&&&&\emptyset\\ a_{21}&a_{22}&a_{23}\\ 
@@ -139,6 +149,8 @@ section~\ref{sec:2dbvp} or its extension to 3D, the \indexterm{colour
 
 \index{red-black ordering|)}
 
+\Level 2 {General colouring}
+
 There is a simple bound for the number of colours needed for the graph
 of a sparse matrix: the number of colours is at most $d+1$ where
 $d$~is the degree of the graph. To see that we can colour a graph with
@@ -164,3 +176,76 @@ it is clear how to continue the process. This is called
 \indexterm{block tridiagonal}, this operation can be performed on
 blocks.
 
+\Level 2 {Multi-colour parallel ILU}
+\label{sec:jones-plassman}
+\index{Incomplete LU (ILU)!parallel|(}
+
+In section~\ref{sec:redblackgreen} you saw the combination of
+\indextermbus{graph}{colouring} and permutation. Let $P$ be the
+permutation that groups like-coloured variables together, then $\tilde
+A=P^tAP$ is a matrix with the following structure:
+\begin{itemize}
+\item $\tilde A$ has a block structure with the number of blocks equal
+  to the number of colours in the adjacency graph of~$A$; and
+\item each diagonal block is a diagonal matrix.
+\end{itemize}
+Now, if you are performing an iterative system solution
+and you are looking for a parallel preconditioner you can use this
+permuted matrix. Consider solving $Ly=x$ with the permuted system. We
+write the usual algorithm (section~\ref{sec:lu-solve}) as
+\begin{quotation}
+  \begin{tabbing}
+    for \=$c$ in the set of colours:\\
+    \>for \=$i$ in the variables of colour $c$:\\
+    \>\>$y_i\leftarrow x_i-\sum_{j<i} \ell_{ij}y_j$
+  \end{tabbing}
+\end{quotation}
+
+\begin{exercise}
+  Show that the flop count of solving a system $LUx=y$ remains the
+  same (in the highest order term) when you from an \ac{ILU}
+  factorization in the natural ordering to one in the colour-permuted
+  ordering.
+\end{exercise}
+
+\begin{figure}
+  \includegraphics[scale=.12]{graphics/pilu}
+  \caption{A partitioned domain with coloured nodes}
+  \label{fig:pilu}
+\end{figure}
+Where does all this colouring get us? Solving is still
+sequential\ldots Well, it is true that the outer loop over the colours
+is sequential, but all the points of one colour are independent of
+each other, so they can be solved at the same time.
+\begin{figure}
+  \includegraphics[scale=.13]{graphics/pilu-solve}
+  \caption{Solving a parallel multicolour ILU in four steps}
+  \label{fig:pilu-solve}
+\end{figure}
+So if we use an ordinary domain partitioning and combine that with a
+multi-colouring (see figure~\ref{fig:pilu}), the processors are all
+active during all the colour stages; see
+figure~\ref{fig:pilu-solve}. Ok, if you take a close look at that
+figure you'll see that one processor is not active in the last
+colour. With large numbers of nodes per processor this is unlikely to
+happen, but there may be some load imbalance.
+
+One remaining problem is how to generate the multi-colouring in
+parallel. Finding the optimal colour number is NP-hard. 
+The thing that saves us is that we don't necessarily need the optimal
+number because we are making in incomplete factorization
+anyway. (There is even an argument that using a slightly larger number
+of colours decreases the number of iterations.)
+
+An elegant algorithm for finding a multi-colouring in parallel was
+found by~\cite{jopl94,Luby:parallel}:
+\begin{enumerate}
+\item Assign a random value to each variable.
+\item Find the variables that have a higher random value than all their
+  neighbours; that is colour~1.
+\item Then find the variables that have a higher random value than all
+  their neighbours that are not of colour~1. That is colour~2.
+\item Iterate until all points are coloured.
+\end{enumerate}
+
+\index{Incomplete LU (ILU)!parallel|)}

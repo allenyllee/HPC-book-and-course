@@ -82,6 +82,23 @@ continuous function on a bounded domain.
 
 The function $y\leftarrow w^tx$ is called a \indextermdef{perceptron}.
 
+\Level 1 {Stochastic Gradient Descent}
+
+In regression problems, we have a sample set $S\subset X$, and values
+$f_x=f(x)$ for $x\in S$. The training problem is then to determine the
+coefficients~$W=\{w_i\}_i$ that minimize the loss $\ell(x)=|F(x)-f_x|$,
+or, with all parameters in place:
+\[ \ell(x,W) = |F_W(x)-f_x| \]
+The most popular algorithm for this is \acf{SGD}:
+%
+\begin{displayalgorithm}
+  \While{not converged}
+        { $x\leftarrow\hbox{random element from $S$}$\;
+          $g\leftarrow\grad \ell(x,W)$\;
+          update $W$ with $g$\;
+          }
+\end{displayalgorithm}
+
 \Level 1 {Linear discrimination}
 
 A perceptron can be used to distinguish between two classes, by
