@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -114,13 +114,17 @@ sequence of operations is prescribed, to a \indexterm{data flow} view.
 In the latter only data dependencies are indicated, and any ordering of
 operations that obeys these dependencies is allowed. (Technically, we
 abandon the program order of the tasks and replace it with a
-\indexterm{partial ordering}\footnote{Let's write $a\leq b$ if $a$~is
+\indexterm{partial ordering}
+\begin{footnoteenv}
+{Let's write $a\leq b$ if $a$~is
   executed before~$b$, then the relation~$\cdot\leq\cdot$ is a partial
   order if $a\leq b\wedge b\leq a\Rightarrow a=b$ and $a\leq b\wedge
   b\leq c\Rightarrow a\leq c$. The difference with a total ordering,
   such as program ordering, is that it is not true that $a\leq b\vee
   b\leq a$: there can be pairs that are not ordered, meaning that
-  their time ordering is not prescribed.}.)  The best way of
+  their time ordering is not prescribed.}
+  \end{footnoteenv}
+  .)  The best way of
 representing the data flow of an algorithm is by constructing a
 \indexacf{DAG} (see section~\ref{app:graph} for a brief tutorial on
 graphs) of tasks.  We add an edge $(i,j)$ to the graph if task~$j$

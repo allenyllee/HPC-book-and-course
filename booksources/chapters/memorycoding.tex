@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -549,11 +549,15 @@ is dependent on factors like the target architecture.
 We make the following observations:
 \begin{itemize}
 \item Compilers\index{compiler} are not able to extract anywhere close
-  to optimal performance\footnote{Presenting a compiler with the
+  to optimal performance
+  \begin{footnoteenv}
+    {Presenting a compiler with the
     reference implementation may still lead to high performance, since
     some compilers are trained to recognize this operation. They will
     then forego translation and simply replace it by an optimized
-    variant.}.
+    variant.}
+  \end{footnoteenv}
+  .
 \item There are \indexterm{autotuning} projects for automatic
   generation of implementations that are tuned to the
   architecture. This approach can be moderately to very
@@ -574,9 +578,13 @@ piece of code repeatedly operates on an amount of data that is less
 than the cache size. We can assume that the first time the data is
 accessed, it is brought into cache; the next time it is accessed it
 will already be in cache. On the other hand, if the amount of data is
-more than the cache size\footnote{We are conveniently ignoring matters
+more than the cache size
+\begin{footnoteenv}
+  {We are conveniently ignoring matters
   of set-associativity here, and basically assuming a fully
-  associative cache.}, it will partly or fully be flushed out of cache
+  associative cache.}
+\end{footnoteenv}
+, it will partly or fully be flushed out of cache
 in the process of accessing it.
 
 We can experimentally demonstrate this phenomenon. With a very

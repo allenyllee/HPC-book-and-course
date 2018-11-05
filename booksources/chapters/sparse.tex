@@ -156,8 +156,12 @@ be true. For this we introduce the concepts of
 The most important operation on sparse matrices is the matrix-vector
 product. With a matrix stored by diagonals, as described above, it is
 still possible to perform the ordinary rowwise or columnwise product using the
-conversion formula~\eqref{eq:sparse-conversion}\footnote{In fact,
-  this is how Lapack banded routines work.}.
+conversion formula~\eqref{eq:sparse-conversion}
+\begin{footnoteenv}
+  {In fact,
+    this is how Lapack banded routines work.}
+\end{footnoteenv}%
+.
 %
 However, with
 a small bandwidth, this gives short vector lengths and relatively high

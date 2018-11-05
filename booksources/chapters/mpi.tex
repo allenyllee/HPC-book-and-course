@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -35,10 +35,14 @@ the following categories:
 \end{itemize}
 
 Let us consider how the OpenMP examples can be coded in
-MPI\footnote{This is not a course in MPI programming, and consequently
+MPI
+\begin{footnoteenv}
+{This is not a course in MPI programming, and consequently
   the examples will leave out many details of the MPI calls. If you
   want to learn MPI programming, consult for
-  instance~\cite{Gropp:UsingMPI1,Gropp:UsingMPI2,Gropp:UsingAdvancedMPI}.}. First of all, we no longer allocate
+  instance~\cite{Gropp:UsingMPI1,Gropp:UsingMPI2,Gropp:UsingAdvancedMPI}.}
+  \end{footnoteenv}%
+  . First of all, we no longer allocate
 \begin{verbatim}
 double a[ProblemSize];
 \end{verbatim}

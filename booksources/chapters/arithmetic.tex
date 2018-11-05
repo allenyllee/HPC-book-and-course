@@ -54,8 +54,12 @@ by Higham~\cite{Higham:2002:ASN} and Wilkinson~\cite{Wilkinson:roundoff}.
 
 In scientific computing, most operations are on real
 numbers. Computations on integers rarely add up to any serious
-computation load\footnote{Some computations are done on bit
-  strings. We will not mention them at all.}. It is mostly for
+computation load
+\begin{footnoteenv}
+  {Some computations are done on bit
+    strings. We will not mention them at all.}
+\end{footnoteenv}
+. It is mostly for
 completeness that we start with a short discussion of integers.
 
 Integers are commonly stored in 16, 32, or 64~bits, with 16 becoming
@@ -170,6 +174,8 @@ Some observations:
   negative integers, in particular, there is only one pattern for zero.
 \item The positive numbers have a leading bit zero, the negative
   numbers have the leading bit set.
+\item If you have a positive number~$n$, you get $-n$ by flipping
+  all the bits, and adding~1.
 \end{itemize}
 
 \begin{exercise}
@@ -194,6 +200,7 @@ of overflow in the case of signed quantities is
 actually undefined under the C~standard.
 
 \begin{exercise}
+  \label{ex:int-overflow}
   Investigate what happens when you perform such a calculation. What
   does your compiler say if you try to write down a nonrepresentible
   number explicitly, for instance in an assignment statement?
@@ -202,7 +209,7 @@ actually undefined under the C~standard.
 \Level 1 {Subtraction in two's complement}
 
 In exercise~\ref{ex:compare-mn} above you explored comparing two integers.
-Let us know explore how 
+Let us now explore how 
 subtracting numbers in two's complement is implemented. Consider $0\leq
 m\leq 2^{31}-1$ and $1\leq n\leq 2^{31}$ and let us see what happens
 in the computation of $m-n$. 
@@ -458,10 +465,15 @@ In the case IEEE standard arithmetic (section~\ref{sec:ieee754})
 this is done through a zero exponent field.
 
 However, this is typically tens or hundreds of times slower than
-computing with regular floating point numbers\footnote{In real-time
+computing with regular floating point numbers
+\begin{footnoteenv}
+  {In real-time
 applications such as audio processing this phenomenon is especially
 noticeable;
-see \url{http://phonophunk.com/articles/pentium4-denormalization.php?pg=3}.}. 
+see
+\url{http://phonophunk.com/articles/pentium4-denormalization.php?pg=3}.}
+\end{footnoteenv}
+. 
 At the time of this writing, only the IBM\index{IBM} Power6 has
 hardware support for gradual underflow.
 
@@ -563,12 +575,13 @@ digits accuracy in single precision, or 15 in double.
   \indextermbus{compiler}{optimization levels} low or high? 
   %Can you find other ways in which this computation goes wrong?
 \end{exercise}
+
 \begin{exercise}
   The number $e\approx 2.72$, the base for the natural logarithm, has
   various definitions. One of them is 
   \[ e=\lim_{n\rightarrow\infty} (1+1/n)^n. \]
   Write a single precision program that tries to compute~$e$ in this
-  manner. Evaluate the expression for $n=10^k$ with
+  manner. Evaluate the expression for an upper bound $n=10^k$ with
   $k=1,\ldots,10$. Explain the output for large~$n$. Comment on the
   behaviour of the error.
 \end{exercise}
@@ -623,14 +636,21 @@ could differ between computer manufacturers, and even between models
 from one manufacturer. This was obviously a bad situation from a point
 of portability of codes and reproducibility of results.
 The \indextermdef{IEEE 754} standard%
-\footnote{Full name of the 754 standard is `IEEE Standard for Binary
+\begin{footnoteenv}
+  {The full name of the 754 standard is `IEEE Standard for Binary
   Floating-Point Arithmetic (ANSI/IEEE Std 754-1985)'. It is also
   identical to IEC 559: `Binary floating-point arithmetic for
-  microprocessor systems', superseded by ISO/IEC/IEEE 60559:2011.}%
+  microprocessor systems', superseded by ISO/IEC/IEEE 60559:2011.}
+\end{footnoteenv}
+%
 \index{IEC 559|see{IEEE 754}}%
-\footnote{IEEE 754 is a standard for binary arithmetic;
+\begin{footnoteenv}
+  {IEEE 754 is a standard for binary arithmetic;
   there is a further standard, IEEE 854, that allows decimal
-  arithmetic.}\footnote{`` It was remarkable that so many hardware
+  arithmetic.}
+\end{footnoteenv}
+\begin{footnoteenv}
+  {`` It was remarkable that so many hardware
   people there, knowing how difficult p754 would be, agreed that it
   should benefit the community at large. If it encouraged the
   production of floating-point software and eased the development of
@@ -640,6 +660,7 @@ The \indextermdef{IEEE 754} standard%
   to miss the country's two most awesome spectacles: the Grand Canyon,
   and meetings of IEEE p754.'' W. Kahan,
   \url{http://www.cs.berkeley.edu/~wkahan/ieee754status/754story.html}.}
+\end{footnoteenv}
 codified all this, for instance stipulating 24 and 53 bits for the
 mantissa\index{mantissa} in single and double precision arithmetic,
 using a storage sequence of sign bit, exponent, mantissa. 
@@ -691,10 +712,14 @@ int main() {
 What happens when you print \n{x} in the function? Consider the bit
 pattern for a small integer, and use the table in
 figure~\ref{fig:single-precision} to interpret it as a floating point
-number. Explain that it will be an unnormalized number\footnote{This
+number. Explain that it will be an unnormalized number
+\begin{footnoteenv}
+  {This
   is one of those errors you won't forget after you make it. In the
   future, whenever you see a number on the order of $10^{-305}$ you'll
-  recognize that you probably made this error.}.
+  recognize that you probably made this error.}
+\end{footnoteenv}
+.
 \end{exercise}
 
 These days, almost all processors adhere to the IEEE 754 standard.
@@ -853,11 +878,15 @@ The standard here defines correct rounding to be that the result of
 this combined computation should be the rounded correct
 result. A~naive implementation of this operations would involve two
 roundings: one after the multiplication and one after the
-addition\footnote {On the other hand, if the behaviour of an
+addition
+\begin{footnoteenv}
+  {On the other hand, if the behaviour of an
   application was `certified' using a non-FMA architecture, the
   increased precision breaks the certification. Chip manufacturers
   have been known to get requests for a `double-rounding' FMA to
-  counteract this change in numerical behaviour.}.
+  counteract this change in numerical behaviour.}
+\end{footnoteenv}
+.
 
 
 \begin{exercise}
@@ -949,11 +978,15 @@ error in a single operation.
 
 For example, consider subtraction with 3 digits to the mantissa:
 $1.24-1.23=0.01\rightarrow \fp{1.00}{-2}$. While the result is exact,
-it has only one significant digit\footnote {Normally, a number with 3
+it has only one significant digit
+\begin{footnoteenv}
+  {Normally, a number with 3
   digits to the mantissa suggests an error corresponding to rounding
   or truncating the fourth digit. We say that such a number has 3
   \indexterm{significant digits}. In this case, the last two digits have no
-  meaning, resulting from the normalization process.}. To see this, consider
+  meaning, resulting from the normalization process.}
+\end{footnoteenv}
+. To see this, consider
 the case where the first operand~$1.24$ is actually the rounded result
 of a computation that should have resulted in~$1.235$. In that case,
 the result of the subtraction should have been~$\fp{5.00}{-3}$, that
@@ -976,6 +1009,21 @@ disastrous effects. You'll see an example in section~\ref{sec:abc-formula}.
 Exercise: sine function through power series. How to deal with the
 alternating signs?
 \end{comment}
+
+\begin{exercise}
+  Consider the iteration
+  \[ x_{n+1}=f(x_n) = \
+  \begin{cases}
+    2x_n&\hbox{if $2x_n<1$}\\
+    2x_n-1&\hbox{if $2x_n\>1$}\\
+  \end{cases}
+  \]
+  Does this function have a fixed point, $x_0\equiv f(x_0)$, or is there a cycle
+  $x_1=f(x_0),\,x_0\equiv x_2=f(x_1)$ et cetera?
+
+  Now code this function and see what happens with various starting
+  points~$x_0$. Can you explain this?
+\end{exercise}
 
 \Level 1 {Associativity}
 \label{sec:fp-associative}
@@ -1279,12 +1327,16 @@ that hold for mathematical real numbers do not hold for floating-point numbers.
 For instance, in floating-point arithmetic 
 \[ (a+b)+c\not=a+(b+c).\]
 This implies that a compiler can not perform certain optimizations
-without it having an effect on round-off behaviour\footnote{This
+without it having an effect on round-off behaviour
+\begin{footnoteenv}
+  {This
 section borrows from documents by
 Microsoft \url{http://msdn.microsoft.com/en-us/library/aa289157(vs.71).aspx}
 and
 Intel \url{http://software.intel.com/sites/default/files/article/164389/fp-consistency-122712_1.pdf};
-for detailed discussion the reader is referred to these.}.  In some
+for detailed discussion the reader is referred to these.}
+\end{footnoteenv}
+.  In some
 codes such slight differences can be tolerated, for instance because
 the method has built-in safeguards. For instance, the stationary
 iterative methods of section~\ref{sec:iterative} damp out any error
@@ -1613,9 +1665,13 @@ for the real and imaginary part.  (Alternatively, use \n{DOUBLE
 
 By contrast, the \n{C} language does not natively have complex
 numbers, but both \n{C99} and \n{C++} have a \n{complex.h} header
-file\footnote {These two header files are not identical, and in fact
+file
+\begin{footnoteenv}
+  {These two header files are not identical, and in fact
   not compatible. Beware, if you compile C code with a C++
-  compiler~\cite{DobbsComplex}.}. This defines as complex number as in
+  compiler~\cite{DobbsComplex}.}
+\end{footnoteenv}
+. This defines as complex number as in
 Fortran, as two real numbers.
 
 Storing a complex number like this is easy, but sometimes it is

@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -125,6 +125,7 @@ making this a \indextermsub{long vector}{collective operation}.
 \index{broadcast|)}
 
 \Level 1 {Reduction}
+\label{sec:reduction}
 \index{reduction|(}
 
 In a \emph{reduction} operation, each processor has $n$ data elements, and
@@ -312,8 +313,12 @@ computational significance. We now have two choices:
 
 We start by considering the decomposition in block rows. Consider
 a processor~$p$ and the set $I_p$ of indices of rows that it
-owns\footnote{For ease of exposition we will let $I_p$ be a contiguous
-  range of indices, but any general subset is allowed.}, and
+owns
+\begin{footnoteenv}
+  {For ease of exposition we will let $I_p$ be a contiguous
+    range of indices, but any general subset is allowed.}
+\end{footnoteenv}%
+, and
 let $i\in I_p$ be a row that is assigned to this processor. 
 %(In
 %illustrations we will let $I_p$ be a consecutive set, but this need
@@ -918,14 +923,18 @@ a_{11,9} & a_{11,10} & a_{11,11} & y_{11} \\
 \end{figure}
 
 In other words, $ p_{ij} $ owns the matrix block $A_{ij}$
-and parts of $x$ and~$y$. This makes possible the following algorithm\footnote
+and parts of $x$ and~$y$. This makes possible the following algorithm
+\begin{footnoteenv}
 {This figure shows a partitioning of the matrix into contiguous blocks,
 and the vector distribution seem to be what is necessary to work with this 
 matrix distribution. You could also look at this story the other way:
 start with a distribution of input and output vector, and then decide what
 that implies for the matrix distribution. For instance, if you distributed
 $x$ and~$y$ the same way, you would arrive at a different matrix distribution,
-but otherwise the product algorithm would be much the same; see~\cite{Flame:PBMD-report}.}:
+but otherwise the product algorithm would be much the same;
+see~\cite{Flame:PBMD-report}.}
+\end{footnoteenv}%
+:
 \begin{itemize}
 \item Since $x_j$ is distributed over the $j$th column, the algorithm starts
   by collecting $x_j$ on each processor $p_{ij}$ by an
@@ -1135,8 +1144,11 @@ is quite
 involved, so we will state without further proof that as in the matrix-vector case a
 two-dimensional distribution is needed. However, we can identify a
 further complication. Since factorizations of any
-type\footnote{Gaussian elimination can be performed in right-looking,
-  left-looking and Crout variants; see~\cite{TSoPMC}.}
+type
+\begin{footnoteenv}
+  {Gaussian elimination can be performed in right-looking,
+    left-looking and Crout variants; see~\cite{TSoPMC}.}
+\end{footnoteenv}
 progress through a matrix, processors will be inactive for part of the
 time.
 

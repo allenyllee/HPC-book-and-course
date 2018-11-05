@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -39,8 +39,8 @@ has efficiency~$1$, which is optimal.
   \end{itemize}
 \end{exercise}
 
-Adding $N$ numbers $\{x_i\}_{i=1\ldots N}$ can be performed in $\log_2
-N$ time with $N/2$ processors. As a simple example, consider the sum
+Adding $N$ numbers $\{x_i\}_{i=1\ldots N}$ can be performed in
+$\log_2 N$ time with $N/2$ processors. As a simple example, consider the sum
 of $n$ numbers: $s=\sum_{i=1}^n a_i$. If we have $n/2$ processors we
 could compute:
 \begin{enumerate}
@@ -72,9 +72,13 @@ implicitly assume some form of shared memory. In fact, the formal
 model for these algorithms is called a \indexac{PRAM}, where the
 assumption is that every memory location is accessible to any
 processor.  Often an additional assumption is made that multiple simultaneous
-accesses to the same location are in fact possible\footnote{This notion
+accesses to the same location are in fact possible
+\begin{footnoteenv}
+  {This notion
   can be made precise; for instance, one talks of a CREW-PRAM, for
-  Concurrent Read, Exclusive Write PRAM.}. These assumptions are
+  Concurrent Read, Exclusive Write PRAM.}
+\end{footnoteenv}
+. These assumptions are
 unrealistic in practice, especially in the context of scaling up the
 problem size and the number of processors. A~further objection to the
 \ac{PRAM} model is that even on a single processor it ignores the

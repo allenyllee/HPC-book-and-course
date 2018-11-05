@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -46,9 +46,12 @@ that already has its data can proceed with its computations.
 \Level 2 {SIMD-type programming with kernels}
 \label{sec:gpu-kernel}
 
-Present day \acp{GPU}\footnote{The most popular GPUs today are made by
+Present day \acp{GPU}
+\begin{footnoteenv}
+{The most popular GPUs today are made by
   NVidia, and are programmed in \indexterm{CUDA}, an extension of the
-  C language.}%
+  C language.}
+  \end{footnoteenv}
 have an architecture that combines \ac{SIMD}
 and \ac{SPMD} parallelism. Threads are not completely independent, but
 are ordered in \indextermbus{thread}{blocks}, where all threads in the

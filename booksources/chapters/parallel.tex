@@ -68,9 +68,12 @@ execution time is linearly
 reduced with the number of processors. If each operation takes a unit
 time, the original algorithm takes time~$n$, and the parallel
 execution on $p$ processors~$n/p$. The parallel algorithm is faster by
-a factor of~$p$\footnote{We ignore lower order errors in this result
+a factor of~$p$. 
+\begin{footnoteenv}
+  {Here we ignore lower order errors in this result
   when $p$ does not divide perfectly in~$n$. We will also, in general,
-ignore matters of loop overhead.}.
+  ignore matters of loop overhead.}
+\end{footnoteenv}
 
 Next, let us consider summing the elements of a vector.
 (An operation that has a vector as input but only a scalar as output
@@ -654,15 +657,17 @@ a smaller number such as 64 processors is used as the baseline from
 which scalability is judged.
 
 More interestingly, \indextermsubdef{weak}{scalability} is a more vaguely
-defined term. It describes that, as problem size and number of
-processors grow in such a way that the amount of data per processor
-stays constant, the execution time
-also stays constant.
-This measure is somewhat hard to report, since
+defined term. It describes the behaviour of execution, as problem size and number of
+processors both grow, but in such a way that the amount of data per processor
+stays constant. 
+Measures such as speedup are somewhat hard to report, since
 the relation between the number of operations and the amount of data
 can be complicated. If this relation is linear, one could state that
 the amount of data per processor is kept constant, and report that parallel
 execution time is constant as the number of processors grows.
+(Can you think of applications where the relation between work and
+data is linear? Where it is not?)
+
 In terms of efficiency:
 \[ \left.
 \begin{array}{l}
@@ -743,10 +748,11 @@ In most discussions of weak scaling
 we assume that the amount of work and 
 the amount of storage are linearly related. This is not always the case; for instance
 the operation complexity of a matrix-matrix product is $N^3$ for $N^2$ data.
-If you linearly increase the number of processors, the work will go up with a higher power.
+If you linearly increase the number of processors, and keep the data
+per process constant, the work may go up with a higher power.
 
-A similar effect comes into play if you simulate time-dependent \acp{PDE}\footnote
-{This uses concepts from chapter~\ref{ch:odepde}.}.
+A similar effect comes into play if you simulate time-dependent \acp{PDE}.
+(This uses concepts from chapter~\ref{ch:odepde}.)
 Here, the total work is a product of the work per time step and the number of 
 time steps. These two numbers are related; in section~\ref{sec:fd-ode} you
 saw that the time step has a certain minimum size as a function of the 
@@ -760,7 +766,9 @@ memory we need. This corresponds to the following real-life scenario:
 you have a simulation that models a certain amount of real-world time 
 in a certain amount of running time; now you buy a bigger computer, and you wonder
 what size problem you can solve in the same running time and maintaining
-the same simulated time.
+the same simulated time. In other words, if you can compute a two-day weather
+forecast in one day you don't want to it to start taking three days
+when you buy a bigger computer.
 
 Let $m$ be the memory per processor, and $P$ the number of processors, giving:
 \[ M=Pm\qquad\hbox{total memory.} \]
@@ -1019,8 +1027,10 @@ modern superscalar CPU and in, more old-fashioned, vector units.  The
 pipeline units in these vector computers are not integrated floating
 point units in the CPU, but can better be considered as attached
 vector units to a CPU that itself has a floating point unit. The
-vector unit has \index{register!vector}\emph{vector registers}\footnote
-{The Cyber205 was an exception, with direct-to-memory architecture.}
+vector unit has \index{register!vector}\emph{vector registers}
+\begin{footnoteenv}
+  {The Cyber205 was an exception, with direct-to-memory architecture.}
+\end{footnoteenv}
 with a typical
 length of 64 floating point numbers; there is typically no `vector
 cache'. The logic in vector units is also simpler, often addressable
@@ -1319,9 +1329,8 @@ problem here, consider two
 simple schemes that do not `scale up':
 \begin{itemize}
 \item \indextermdef{Ethernet} is a connection scheme where all machines on a network
-  are on a single cable\footnote{We are here describing the original
-    design of Ethernet. With the use of switches, especially in an HPC
-    context, this description does not really apply anymore.}. If one
+  are on a single cable (see remark below).
+  If one
   machine puts a signal on the wire to send a message, and another
   also wants to send a message, the latter will detect that the sole
   available communication channel is occupied, and it will wait some
@@ -1334,11 +1343,7 @@ simple schemes that do not `scale up':
   communication channel is finite, so as more processors are connected
   to it, the capacity available to each will go down. Because of the
   scheme for resolving conflicts, the average delay before a message
-  can be started will also increase\footnote{It was initially thought
-    that ethernet would be inferior to other solutions such as
-    IBM\index{IBM}'s \indexterm{token ring} network. It takes fairly
-    sophisticated statistical analysis to prove that it works a lot
-    better than was naively expected.}.
+  can be started will also increase.
 \item In a \indexterm{fully connected} configuration,
   each processor has one wire for
   the communications with each other processor. This scheme is perfect
@@ -1359,6 +1364,17 @@ simple schemes that do not `scale up':
   linearly in the number of processors.
 \end{itemize}
 
+\begin{remark}
+The above description of Ethernet is of the original design. With the
+use of switches, especially in an HPC context, this description does
+not really apply anymore.
+
+It was initially thought that ethernet would be inferior to other
+solutions such as IBM\index{IBM}'s \indexterm{token ring} network. It
+takes fairly sophisticated statistical analysis to prove that it works
+a lot better than was naively expected.
+\end{remark}
+
 In this section we will see a number of schemes that \emph{can} be
 increased to large numbers of processors.
 
@@ -1369,10 +1385,10 @@ The network that connects the processors in a parallel computer can
 conveniently be described with some elementary \emph{graph
   theory}\index{graph!theory!of parallel computers} concepts. We
 describe the parallel machine with a graph where each processor is a
-node, and two nodes are connected\footnote{We assume that connections
+node, and two nodes are connected if there is a direct connection
+between them. (We assume that connections
   are symmetric, so that the network is an
-  \indextermsub{undirected}{graph}.} if there is a direct connection
-between them.
+  \indextermsub{undirected}{graph}.)
 
 We can then analyze two
 important concepts of this graph.
@@ -1558,9 +1574,7 @@ is a natural candidate for running physics simulations.
   work per second that can be done (that does not involve communication)
   doubles; since the network stays the same, the bisection bandwidth
   also stays the same, so I can reasonably expect my new machine to
-  become twice as fast\footnote{With the numbers one and two replaced
-    by higher numbers, this is actually not a bad description of
-    current trends in processor design.}.'
+  become twice as fast'.
 \end{exercise}
 
 Grid-based designs often have so-called \emph{wrap-around} or
@@ -1813,9 +1827,9 @@ allow several processors to access memory simultaneously. Also, their
 access times are identical, so exchange networks are a way of
 implementing a \indexac{UMA} architecture; see
 section~\ref{sec:uma}. One computer that was based on a Butterfly
-exchange network was the \indextermbus{BBN}{Butterfly}\footnote
-{\url{http://en.wikipedia.org/wiki/BBN_Butterfly}}.
-In section~\ref{sec:stampede-fattree} we will see how these ideas are
+exchange network was the \indextermbus{BBN}{Butterfly}
+(\url{http://en.wikipedia.org/wiki/BBN_Butterfly}).  In
+section~\ref{sec:stampede-fattree} we will see how these ideas are
 realized in a practical cluster.
 
 \begin{figure}[ht]
@@ -2153,9 +2167,14 @@ Some notable parallel machines with co-processors are:
   processor. In a later revision, it became possible to pass data and
   function pointers to the communication processors.
 \item The \indextermbus{IBM}{Roadrunner} at Los Alamos was the first
-  machine to reach a PetaFlop\footnote{The \indexterm{Grape computer}
+  machine to reach a PetaFlop
+  \begin{footnoteenv}
+    The \indexterm{Grape computer}
     had reached this point earlier, but that was a special purpose
-    machine for molecular dynamics calculations.}. It achieved this
+    machine for molecular dynamics calculations.
+  \end{footnoteenv}%
+  .
+  It achieved this
   speed through the use of Cell\index{Cell processor}
   co-processors. Incidentally, the Cell processor is in essence the
   engine of the Sony Playstation3, showing again the commoditization

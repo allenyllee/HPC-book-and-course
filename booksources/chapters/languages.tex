@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -133,7 +133,10 @@ than on~C.
 \label{sec:HPF}
 \indexacstart{HPF}
 
-High Performance Fortran\footnote{This section quoted from Wikipedia}
+High Performance Fortran
+\begin{footnoteenv}
+  {This section quoted from Wikipedia}
+\end{footnoteenv}
 (HPF) is an extension of Fortran 90 with constructs that support
 parallel computing, published by the High Performance Fortran Forum
 (HPFF). The HPFF was convened and chaired by Ken Kennedy of Rice
@@ -203,7 +206,10 @@ The Fortran 2008 standard includes co-arrays.
 \index{Chapel|(}
 
 Chapel~\cite{Chapel:homepage} is a new parallel programming
-language\footnote{This section quoted from the Chapel homepage.}
+language
+\begin{footnoteenv}
+  {This section quoted from the Chapel homepage.}
+\end{footnoteenv}
 being developed by Cray Inc. as part of the DARPA-led High
 Productivity Computing Systems program (HPCS). Chapel is designed to
 improve the productivity of high-end computer users while also serving
@@ -251,8 +257,12 @@ forall(a, b, c) in(A, B, C) do
 \index{Fortress|(}
 
 Fortress~\cite{Fortress:homepage} is a programming language developed
-by Sun Microsystems.  Fortress\footnote{This section quoted from the
-  Fortress homepage.} aims to make parallelism more tractable
+by Sun Microsystems.  Fortress
+\begin{footnoteenv}
+  {This section quoted from the
+    Fortress homepage.}
+\end{footnoteenv}
+aims to make parallelism more tractable
 in several ways. First, parallelism is the default. This is intended
 to push tool design, library design, and programmer skills in the
 direction of parallelism. Second, the language is designed to be more
@@ -347,10 +357,14 @@ know its provenance. Thus, Linda becomes one way of implementing
 The Global Arrays library (\url{http://www.emsl.pnl.gov/docs/global/})
 is another example of \indexterm{one-sided communication}, and in fact
 it predates MPI. This library has as its prime data structure
-\indexterm{Cartesian product} arrays\footnote{This means that if the
+\indexterm{Cartesian product} arrays
+\begin{footnoteenv}
+  {This means that if the
   array is three-dimensional, it can be described by three integers
   $n_1,n_2,n_3$, and each point has a coordinate $(i_1,i_2,i_3)$ with
-  $1\leq i_1\leq n_1$ et cetera.}, distributed over a processor grid
+  $1\leq i_1\leq n_1$ et cetera.}
+\end{footnoteenv}
+, distributed over a processor grid
 of the same or lower dimension. Through library calls, any processor
 can access any sub-brick out of the array in either a \n{put} or
 \n{get} operation. These operations are non-collective. As with any

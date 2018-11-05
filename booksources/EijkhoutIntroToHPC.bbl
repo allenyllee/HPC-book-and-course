@@ -125,6 +125,13 @@ James~P. Briggs, Simon~J. Pennycook, James~R. Fergusson, Juha J\"aykk\"a, and
 \newblock In James Reinders and Jim Jeffers, editors, {\em High Performance
   Pearls, Volume two}. Morgan, 2015.
 
+\bibitem{Brown:IJHPCA:papi}
+S.~Browne, J~Dongarra, N.~Garner, G.~Ho, and P.~Mucci.
+\newblock A portable programming interface for performance evaluation on modern
+  processors.
+\newblock {\em International Journal of High Performance Computing
+  Applications}, 14:189--204, Fall 2000.
+
 \bibitem{Burks:discussion}
 A.~W. Burks, H.~H. Goldstine, and J.~von Neumann.
 \newblock Preliminary discussion of the logical design of an electronic

@@ -342,8 +342,12 @@ work may increase or decrease, necessitating moving some of the load
 to a different processor.
 
 For instance, some problems are adaptively
-refined\index{refinement!adaptive}\footnote{For a detailed
-  discussion, see~\cite{Campbell:octree}.}. This is illustrated in
+refined\index{refinement!adaptive}
+\begin{footnoteenv}
+  {For a detailed
+    discussion, see~\cite{Campbell:octree}.}
+\end{footnoteenv}
+. This is illustrated in
 figure~\ref{fig:octree1}.
 \begin{figure}[ht]
 %  \includegraphics[scale=1]{graphics/octree1}
@@ -388,12 +392,16 @@ not give a formal discussion of \acp{SFC}; instead we
 \end{figure}
 will let figure~\ref{fig:octree3} stand for a definition: a \ac{SFC} is a
 recursively defined curve that touches each subdomain
-once\footnote{\acfp{SFC} were introduced by Peano as a mathematical
+once
+\begin{footnoteenv}
+  {\acfp{SFC} were introduced by Peano as a mathematical
   device for constructing a continuous surjective function from the
   line segment $[0,1]$ to a higher dimensional cube $[0,1]^d$. This
   upset the intuitive notion of dimension that `you can not stretch
   and fold a line segment to fill up the square'. A~proper treatment
-  of the concept of dimension was later given by Brouwer.}.
+  of the concept of dimension was later given by Brouwer.}
+\end{footnoteenv}
+.
 \begin{figure}[ht]
   \includegraphics[scale=.08]{my_octree3_evolve}
   \caption{Space filling curves, regularly and irregularly refined}

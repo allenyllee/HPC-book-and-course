@@ -326,14 +326,17 @@ after which we sum $y\leftarrow\sum_py^{(p)}$.
 
 While the dense matrix-vector product relies on collectives
 (see section~\ref{sec:parallel-dense-mvp}),
-the sparse case uses point-to-point communication\footnote
+the sparse case uses point-to-point communication
+\begin{footnoteenv}
+  
 {This makes sense for the type of sparse matrices
 that come from \acp{PDE}
 which have a clear structure, as you saw 
 in section~\ref{sec:2dbvp}. However, there are 
 sparse matrices that are so random that you essentially
-have to use dense techniques; see section~\ref{sec:random-graph-product}.}
-%
+have to use dense techniques; see
+section~\ref{sec:random-graph-product}.}
+\end{footnoteenv}
 Every processor sends to just a few neighbours, and receives
 from just a few.
 

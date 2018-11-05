@@ -94,8 +94,12 @@ section~\ref{sec:shared-lock}.
 \label{sec:thread-example}
 \index{pthreads|(}
 
-The following example\footnote{This is strictly Unix-centric and will
-  not work on Windows.} is a clear illustration of the \indexterm{fork-join} model.
+The following example
+\begin{footnoteenv}
+  {This is strictly Unix-centric and will
+    not work on Windows.}
+\end{footnoteenv}
+is a clear illustration of the \indexterm{fork-join} model.
 It uses the \emph{pthreads} library to spawn
 a number of tasks that all update a global counter. Since threads
 share the same memory space, they indeed see and update the same
@@ -183,8 +187,12 @@ We call this \emph{private}\index{thread!private data} data.
 The totality of all data that a thread can access is called
 its \emph{context}.  It contains private and shared data, as well as
 temporary results of computations that the thread is working
-on\footnote{It also contains the program counter and stack pointer. If
-you don't know what those are, don't worry.}.
+on
+\begin{footnoteenv}
+  {It also contains the program counter and stack pointer. If
+    you don't know what those are, don't worry.}
+\end{footnoteenv}%
+.
 
 It is quite possible to create more threads than a processor has cores,
 so a processor may need to switch between the execution of different threads.

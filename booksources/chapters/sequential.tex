@@ -36,7 +36,11 @@ processor, and inside the processor. This latter point is, maybe
 unexpectedly, very important, since memory access is typically much
 slower than executing the processor's instructions, making it the
 determining factor in a program's performance; the days when
-`flop\footnote{Floating Point Operation.}  counting' was the key to
+`flop
+\begin{footnoteenv}
+  {Floating Point Operation.}
+\end{footnoteenv}
+counting' was the key to
 predicting a code's performance are long gone. This discrepancy is in
 fact a growing trend, so the issue of dealing with memory traffic has
 been becoming more important over time, rather than going away.
@@ -59,21 +63,29 @@ architectures can be described as \indexterm{von Neumann architectures}.
 This describes a design with an undivided memory
 that stores both program and data (`stored program'), and a processing
 unit that executes the instructions, operating on the data in `fetch,
-execute, store cycle'\footnote{This model with a prescribed sequence
+execute, store cycle'
+\begin{footnoteenv}
+  {This model with a prescribed sequence
   of instructions is also referred to as \indexterm{control flow}.
   This is in contrast to \indexterm{data flow}, which we will
-  see in section~\ref{sec:multicore-block}.}.
+  see in section~\ref{sec:multicore-block}.}
+\end{footnoteenv}%
+.
 
 This setup distinguishes modern processors for the very earliest, and
 some special purpose contemporary, designs where the program was
 hard-wired. It also allows programs to modify themselves or generate
 other programs, since instructions and data are in the same
 storage. This allows us to have editors and compilers: the computer
-treats program code as data to operate on\footnote{At one time, the
+treats program code as data to operate on
+\begin{footnoteenv}
+  {At one time, the
   stored program concept was included as an essential component the
   ability for a running program to modify its own source. However, it
   was quickly recognized that this leads to unmaintainable code, and
-  is rarely done in practice~\cite{EWD:EWD117}.}. In this book we will
+  is rarely done in practice~\cite{EWD:EWD117}.}
+\end{footnoteenv}%
+. In this book we will
 not explicitly discuss compilers, the programs that translate high
 level languages to machine instructions. However, on occasion we will
 discuss how a program at high level can be written to ensure
@@ -91,20 +103,27 @@ higher level languages users write in, typically specify the name of
 an operation, as well as of the locations of the operands and the
 result. These locations are not expressed as memory locations, but as
 \emph{registers}\index{register}: a small number of named memory locations that
-are part of the \ac{CPU}\footnote {Direct-to-memory architectures are rare,
+are part of the \ac{CPU}
+\begin{footnoteenv}
+  {Direct-to-memory architectures are rare,
   though they have existed. The Cyber 205 supercomputer in the 1980s
   could have three data streams, two from memory to the processor, and one
   back from the processor to memory, going on at the same time. Such
   an architecture is only feasible if memory can keep up with the
-  processor speed, which is no longer the case these days.}.  As an
+  processor speed, which is no longer the case these days.}
+\end{footnoteenv}%
+.  As an
 example, here is a simple C~routine
 \begin{verbatim}
 void store(double *a, double *b, double *c) {
  *c = *a + *b;
 }
 \end{verbatim}
-and its X86 assembler output, obtained by\footnote{This is 64-bit
-  output; add the option \n{-m64} on 32-bit systems.}
+and its X86 assembler output, obtained by
+\begin{footnoteenv}
+  {This is 64-bit
+    output; add the option \n{-m64} on 32-bit systems.}
+\end{footnoteenv}
 \verb+gcc -O2 -S -o - store.c+:
 \begin{verbatim}
        .text
@@ -143,10 +162,14 @@ plus an offset.
 
 In a way, then, the modern \ac{CPU} looks to the programmer like a von
 Neumann machine. There are various ways in which this is not so. For
-one, while memory looks randomly addressable\footnote{There is in fact
+one, while memory looks randomly addressable
+\begin{footnoteenv}
+  {There is in fact
   a theoretical model for computation called the `Random Access
   Machine'; we will briefly see its parallel generalization in
-  section~\ref{sec:asymptotics}.}, in practice there is a concept of
+  section~\ref{sec:asymptotics}.}
+\end{footnoteenv}%
+, in practice there is a concept of
 \indexterm{locality}: once a data item has been loaded, nearby items
 are more efficient to load, and reloading the initial item is also faster.
 
@@ -555,9 +578,13 @@ for (i)
 Each iteration performs one floating point operation, which modern
 \acp{CPU} can do in one clock cycle by using pipelines. However, each
 iteration needs two numbers loaded and one written, for a total of 24
-bytes\footnote{Actually, \n{a[i]} is loaded before it can be written,
+bytes
+\begin{footnoteenv}
+  {Actually, \n{a[i]} is loaded before it can be written,
 so there are 4 memory access, with a total of 32 bytes, per
-iteration.} of memory traffic. Typical memory bandwidth figures (see
+iteration.}
+\end{footnoteenv}
+of memory traffic. Typical memory bandwidth figures (see
 for instance figure~\ref{fig:hierarchy}) are nowhere near 24 (or~32) bytes per
 cycle. This means that, without caches, algorithm performance can be
 bounded by memory performance. Of course, caches will not speed up
@@ -1003,9 +1030,13 @@ mapped to the same address'.
 
 The simplest cache mapping strategy is \indexterm{direct
   mapping}. Suppose that memory addresses are 32 bits long, so that
-they can address 4G bytes\footnote{We implicitly use the convention
+they can address 4G bytes
+\begin{footnoteenv}
+  {We implicitly use the convention
   that K,M,G suffixes refer to powers of 2 rather than~10: 1K=1024,
-  1M=1,048,576, 1G=1,073,741,824.}; suppose further that the
+  1M=1,048,576, 1G=1,073,741,824.}
+\end{footnoteenv}%
+; suppose further that the
 cache has 8K words, that is, 64K~bytes, needing 16 bits to address.
 Direct mapping then takes from each memory address the last (`least
 significant') 16~bits,
@@ -1416,12 +1447,17 @@ traditional processor chip design.
 One of the ways of getting a higher utilization out of a single
 processor chip is then to move from a strategy of further
 sophistication of the single processor, to a division of the chip into
-multiple processing `cores'\footnote{Another solution is Intel\index{Intel}'s
+multiple processing `cores'
+\begin{footnoteenv}
+  {Another solution is Intel\index{Intel}'s
   \indexterm{hyperthreading}, which lets a processor mix the instructions of
   several instruction streams. The benefits of this are strongly
   dependent on the individual case. However, this same mechanism is
   exploited with great success in GPUs; see
-  section~\ref{sec:gpu}. For a discussion see section~\ref{sec:hyperthread}}.
+  section~\ref{sec:gpu}. For a discussion see
+  section~\ref{sec:hyperthread}}
+\end{footnoteenv}%
+.
 The separate cores can work on unrelated
 tasks, or, by introducing what is in effect data parallelism
 (section~\ref{sec:simd}), collaborate on a common task at a higher
@@ -1892,9 +1928,13 @@ illustrated in the first graph of figure~\ref{fig:roofline}.
 \begin{enumerate}
 \item The \indexterm{peak performance}, indicated by the horizontal
   line at the top of the graph, is an absolute bound on the
-  performance\footnote {An old joke states that the peak performance
+  performance
+  \begin{footnoteenv}
+    {An old joke states that the peak performance
     is that number that the manufacturer guarantees you will never
-    exceed}, achieved only if every aspect of a \ac{CPU} (pipelines,
+    exceed}
+  \end{footnoteenv}%
+  , achieved only if every aspect of a \ac{CPU} (pipelines,
   multiple floating point units) are perfectly used. The calculation
   of this number is purely based on \ac{CPU} properties and clock cycle; it
   is assumed that memory bandwidth is not a limiting factor.
@@ -1940,8 +1980,12 @@ Since using data in cache is cheaper than getting data from main
 memory, a programmer obviously wants to code in such a way that data
 in cache is reused. While placing data in cache is not under explicit
 programmer control, even from assembly language, in most
-\acp{CPU}\footnote{Low level memory access can be controlled by the
-  programmer in the Cell processor and in some GPUs.}, it is still
+\acp{CPU}
+\begin{footnoteenv}
+  {Low level memory access can be controlled by the
+    programmer in the Cell processor and in some GPUs.}
+\end{footnoteenv}%
+, it is still
 possible, knowing the behaviour of the caches, to know
 what data is in cache, and to some extent to control it.
 
@@ -2290,9 +2334,13 @@ for each element.
 
 \begin{exercise}
   Consider the matrix-vector product operation $y\leftarrow
-  Ax$\footnote {The Blas operation for the matrix vector product
+  Ax$
+  \begin{footnoteenv}
+    {The Blas operation for the matrix vector product
     computes $y\leftarrow Ax+y$. The difference in the code involved
-    is minimal}:
+    is minimal}
+  \end{footnoteenv}%
+  :
 \begin{verbatim}
 for (i<M) {
   s = 0

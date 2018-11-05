@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -76,9 +76,13 @@ this to first order, involving only first derivatives, if we allow
 vector quantities. 
 
 We introduce a two-component vector~$u$ that combines the location~$x$ and
-velocity~$x'$~\footnote{We use the
+velocity~$x'$~
+\begin{footnoteenv}
+  {We use the
   prime symbol to indicate differentiation in case of functions of a
-  single variable.}:
+  single variable.}
+\end{footnoteenv}%
+:
 \[ u(t)=(x(t),x'(t))^t,\]
 Newton's equation expressed in $u$ then becomes:
 \[ u'=Au+B,\qquad A=
@@ -104,11 +108,15 @@ the  so-called `autonomous'  \acp{ODE} of the form
   u'(t)=f(u(t))
 \end{equation}
 in which the right hand side does not explicitly depend
-on~$t$\footnote
+on~$t$
+\begin{footnoteenv}
 {Non-autonomous \ac{ODE}s can be transformed to autonomous
   ones, so this is no limitation. If $u=u(t)$ is a scalar function and
   $f=f(t,u)$, we define $u_2(t)=t$ and consider the equivalent
-autonomous system $\big({u'\atop u'_2}\bigr)=\bigl({f(u_2,u)\atop 1}\bigr)$}.
+autonomous system $\big({u'\atop u'_2}\bigr)=\bigl({f(u_2,u)\atop
+  1}\bigr)$}
+\end{footnoteenv}%
+.
 
 Typically, the initial value in some starting point (often
 chosen as $t=0$) is given: $u(0)=u_0$ for some value~$u_0$, and we are
@@ -172,8 +180,12 @@ problem is stable if~$\lambda>0$.
 In order to solve the problem numerically, we turn the continuous
 problem into a discrete one by looking at finite time/space steps.
 Assuming all functions are sufficiently smooth, a straightforward
-\indexterm{Taylor series} expansion\footnote{See appendix~\ref{app:taylor} 
-if you are unfamiliar with this.} gives:
+\indexterm{Taylor series} expansion
+\begin{footnoteenv}
+  {See appendix~\ref{app:taylor} 
+    if you are unfamiliar with this.}
+\end{footnoteenv}
+gives:
 \[ u(t+\Delta t)=u(t)+u'(t)\Delta t+u''(t)\frac{\Delta t^2}{2!}
 + u'''(t)\frac{\Delta t^3}{3!}+\cdots \]
 This gives for $u'$:
@@ -188,19 +200,23 @@ This gives for $u'$:
   \label{eq:forwarddifference}\end{equation}
 We can approximate the infinite sum of higher derivatives by a single
 $O(\Delta t^2)$ if all derivatives are bounded; alternatively,
-appendix~\ref{app:taylor} shows that this sum is equal to $\Delta
+you can show that this sum is equal to $\Delta
 t^2u''(t+\alpha\Delta t)$ with $0<\alpha<1$.
 
 We see that we can approximate a differential operator by a
 \indexterm{finite difference}, with an error that is known in its
 order of magnitude as a function of the time step.
 
-Substituting this in $u'=f(t,u)$ gives\footnote{The following equation
+Substituting this in $u'=f(t,u)$ gives
+\begin{footnoteenv}
+  {The following equation
   is a mathematical equality, and should not be interpreted as a way
   of computing $u'$ for a given function~$u$. Recalling the discussion
   in section~\ref{sec:subtraction} you can see that this formula would
   quickly lead to cancellation for small~$\Delta t$. For a discussion
   of numerical differentiation, see a numerical analysis textbook.}
+\end{footnoteenv}
+
 \[ \frac{u(t+\Delta t)-u(t)}{\Delta t} = f(t,u(t)) +O(\Delta t)\]
 or 
 \[ u(t+\Delta t) = u(t) + \Delta t\,f(t,u(t)) +O(\Delta t^2) \]
@@ -432,11 +448,16 @@ a phenomenon that is location dependent. Examples would be the shape
 of a bridge under a load, or the heat distribution in a window pane,
 as the temperature outside differs from the one inside.
 
-The general form of a (second order, one-dimensional) \ac{BVP} is\footnote
+The general form of a (second order, one-dimensional) \ac{BVP} is
+\begin{footnoteenv}
+  
 {Actually, the boundary conditions are can be more general, involving 
 derivatives on the interval end points. Here we only look at
 \emph{Dirichlet boundary conditions}\index{Dirichlet boundary
-  condition} which prescribe function values on the boundary of the domain.}
+  condition} which prescribe function values on the boundary of the
+domain.}
+\end{footnoteenv}
+
 \[ \hbox{$u''(x)=f(x,u,u')$ for $x\in[a,b]$ where $u(a)=u_a$,
   $u(b)=u_b$} \]
 but here we will only consider the simple form
@@ -480,14 +501,18 @@ and they describe diffusion-like phenomena; these often tend to a
 \indexterm{steady state}. The best way to
 characterize them is to consider that the solution in each point in
 space and time is influenced by a certain finite region at each
-previous point in space\footnote{This leads to a condition limiting
+previous point in space
+\begin{footnoteenv}
+  {This leads to a condition limiting
   the time step in \indexacp{IBVP}, known as the
   \indexterm{Courant-Friedrichs-Lewy
     condition}~\url{http://en.wikipedia.org/wiki/Courant-Friedrichs-Lewy_condition}.
   It describes the notion that in the exact problem $u(x,t)$ depends
   on a range of $u(x',t-\Delta t)$ values; the time step of the
   numerical method has to be small enough that the numerical solution
-  takes all these points into account.}. The \indexterm{heat equation}
+  takes all these points into account.}
+\end{footnoteenv}
+. The \indexterm{heat equation}
 (section~\ref{sec:heateq}) is the standard example of this type.
 \item \emph{Elliptic \acp{PDE}}\index{Elliptic PDEs} have the form 
 \[ Au_{xx}+Bu_{yy}+\hbox{lower order terms} =0 \]
@@ -1138,10 +1163,14 @@ too. Alternatively, see exercise~\ref{ex:crank}.
 
 We now analyse the stability of the explicit and implicit
 schemes in a simple case. Let $q\equiv0$, and assume
-$T_j^k=\beta^ke^{i\ell x_j}$ for some~$\ell$\footnote{Actually,
+$T_j^k=\beta^ke^{i\ell x_j}$ for some~$\ell$
+\begin{footnoteenv}
+  {Actually,
   $\beta$ is also dependent on~$\ell$, but we will save ourselves a
   bunch of subscripts, since different $\beta$ values never appear
-  together in one formula.}. This assumption is intuitively
+  together in one formula.}
+\end{footnoteenv}
+. This assumption is intuitively
 defensible: since the differential equation does not `mix' the $x$ and
 $t$ coordinates, we surmise that the solution will be a product
 $T(x,t)=v(x)\cdot w(t)$ of the
