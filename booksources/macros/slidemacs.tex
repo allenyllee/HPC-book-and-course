@@ -1,0 +1,50 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Introduction to High-Performance Scientific Computing'
+%%%% by Victor Eijkhout, copyright 2012-8
+%%%%
+%%%% This book is distributed under a Creative Commons Attribution 3.0
+%%%% Unported (CC BY 3.0) license and made possible by funding from
+%%%% The Saylor Foundation \url{http://www.saylor.org}.
+%%%%
+%%%% bookmacs : macros specifically for the book version
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% Outlining
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{outliner}
+\OutlineLevelStart 0{\frame{\part{#1}\Huge\bf #1}}
+\OutlineLevelStart 1{\section{#1}}%{\frame{\section{#1}\Large\bf#1}}
+\def\sectionframe#{\Level 1 }
+\usepackage{framed}
+\colorlet{shadecolor}{blue!15}
+\OutlineLevelStart 2{\subsection{#1}
+  \frame{\begin{shaded}\large #1\end{shaded}}}
+%% \OutlineLevelCont 2{\end{frame}\begin{frame}{#1}}
+%% \OutlineLevelEnd 2{\end{frame}}
+%\OutlineTracetrue
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% Exercises
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{excounter}
+\newenvironment
+    {exercise}[1]
+    {
+      \refstepcounter{excounter}
+      \begin{frame}{Exercise \arabic{excounter}: #1}
+    }
+    {\end{frame}}
+               
+
