@@ -1180,6 +1180,53 @@ negative, it may pay off to rearrange the algorithm accordingly.
 % \end{tabular}
 % The last digit in the smaller number is not lost if $n<1/\epsilon$
 
+\begin{exercise}
+  \label{ex:sine-power}
+  The sine function is defined as
+  \[ 
+  \begin{array}{rcl}
+    \sin(x) &=& x-\frac{x^3}{3!} + \frac{x^5}{7!} - \frac{x^7}{7!} + \cdots\\
+    &=& \sum_{i\geq 0}^\infty (-1)^{2i}\frac{x^{2i+1}}{(2i+1)!}.
+  \end{array}
+  \]
+  Here are two code fragments that compute this sum (assuming that \n{x}
+  and \n{nterms} are given):
+  \begin{multicols}{2}
+\unitindent=0pt \scriptsize
+\begin{verbatim}
+double term = x, sum = term;
+for (int i=1; i<=nterms; i+=2) {
+  term *= 
+    - x*x / (double)((i+1)*(i+2));
+  sum += term;
+}
+printf("Sum: %e\n\n",sum);
+\end{verbatim}
+\columnbreak
+\begin{verbatim}
+double term = x, sum = term;
+double power = x, factorial = 1., factor = 1.;
+for (int i=1; i<=nterms; i+=2) {
+  power *= -x*x;
+  factorial *= (factor+1)*(factor+2);
+  term = power / factorial;
+  sum += term; factor += 2;
+}
+printf("Sum: %e\n\n",sum);
+\end{verbatim}
+  \end{multicols}
+  \begin{itemize}
+  \item
+    Explain what happens if you compute a large number of terms for
+    $x>1$.
+  \item Does either code make sense for a large number of terms?
+  \item Is it possible to sum the terms starting at the smallest?
+    Would that be a good idea?
+  \item Can you come with other schemes to improve the computation
+    of~$\sin(x)$?
+  \end{itemize}
+\end{exercise}
+
 \Level 2 {Unstable algorithms}
 
 We will now consider an example where we can give a direct argument

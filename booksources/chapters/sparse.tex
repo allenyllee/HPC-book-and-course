@@ -663,7 +663,27 @@ factorization algorithm.
   \end{enumerate}
 \end{exercise}
 
-This exercise shows that we can allocate enough storage for the
+\begin{exercise}
+  \label{ex:fill-uncoupled}
+  Consider the matrix
+  \[ A=
+  \begin{pmatrix}
+    a_{11}&0     &a_{13}&      &      &         &      &\emptyset \\
+    0     &a_{22}&0     &a_{24}\\
+    a_{31}&0     &a_{33}&0     &a_{35}\\
+          &a_{42}&0     &a_{44}&0     &a_{46}\\
+          &      &\ddots&\ddots&\ddots&\ddots   &\ddots\\
+    \emptyset   &&      &      &      &a_{n,n-1}&0     &a_{nn}\\
+  \end{pmatrix}
+  \]
+  You have proved earlier that any fill-in from performing an $LU$
+  factorization is limited to the band that contains the original
+  matrix elements. Show that in this case no fill-in occurs. Why is
+  that?
+  (Hint: look at the adjacency graph.)
+\end{exercise}
+
+Exercise~\ref{ex:skyline} shows that we can allocate enough storage for the
 factorization of a banded matrix:
 \begin{itemize}
 \item for the factorization without pivoting of a matrix with
@@ -788,7 +808,7 @@ Some matrix properties are invariant under symmetric permutations.
   particular under \indexterm{unitary basis transformations}:
   \[ B = VAV^t,\quad\hbox{where $VV^t=I$.} \]
   Show that a
-  symmetric permutation a particular change of basis is. Name some
+  symmetric permutation is a particular change of basis. Name some
   matrix properties that do not change under unitary transformations.
 \end{exercise}
 Other properties are not: in the previous section you saw that the

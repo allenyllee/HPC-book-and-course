@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012
+%%%% by Victor Eijkhout, copyright 2012-8
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -14,7 +14,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\Level 1 {Theory of general iterative methods}
+\Level 1 {Theory of general polynomial iterative methods}
 \label{sec:nonstationary}
 
 Above, you saw iterative methods of the form $x_{i+1}=x_i-K\inv r_i$,
@@ -41,8 +41,10 @@ We now find that
 \[ x=A\inv b=\tilde x-A\inv K\tilde r = \tilde x-(K\inv A)\inv \tilde r. \]
 %
 Now, the \indexterm{Cayley-Hamilton theorem} states that for
-every~$ A $ there exists a polynomial~$\phi(x)$ (the
-\indexterm{characteristic polynomial}) such that
+every~$ A $ there exists a polynomial~$\phi(x)$
+(the
+\index{characteristic polynomial|see{polynomial, characteristic}}%
+\indextermsub{characteristic}{polynomial}) such that
 \[ \phi(A)=\nobreak0 .\]
 We observe that we can write this polynomial $\phi$ as
 \[ \phi(x)=1+x\pi(x) \]
@@ -68,7 +70,21 @@ us a sequence of iterates
   \label{eq:x-from-PA-r0}
 \end{equation}
 that ultimately reaches the true solution.
-Multiplying this equation by~$A$ and subtracting~$b$ on both sides gives
+Based on this use of polynomials in the iterative process, such
+methods are called
+\emph{polynomial iterative methods}%
+\index{iterative method!polynomial|textbf}%
+\index{polymial!iterative methods|see{iterative methods, polynomial}}%
+.
+
+\begin{exercise}
+  \label{ex:stat-horner-polynomial}
+  Are stationary iterative methods polynomial methods?
+  Can you make a connection with Horner's rule?
+\end{exercise}
+
+Multiplying equation \eqref{eq:x-from-PA-r0} by~$A$ and
+subtracting~$b$ on both sides gives
 \[ r_{i+1} = r_0+\tilde\pi^{(i)}(AK\inv)r_0 \]
 where $\tilde\pi^{(i)}(x)=x\pi^{(i)}(x)$. This immediately gives us
 \begin{equation}
@@ -552,7 +568,8 @@ these can not orthogonalize the residuals, they are still attractive
 in practice.
 
 \Level 1 {Complexity}
-\index{complexity!of iterative methods|(}
+\index{complexity!of iterative methods|see{iterative methods, complexity}}
+\index{iterative method!complexity|(}
 
 The efficiency of Gaussian elimination was fairly easy to assess:
 factoring and solving a system takes, deterministically,
@@ -572,4 +589,4 @@ linear system solving somewhere in between a craft and a black art. In
 practice, people do considerable experimentation to decide whether an
 iterative method will pay off, and if so, which method is preferable.
 
-\index{complexity!of iterative methods|)}
+\index{iterative methods!complexity|)}
