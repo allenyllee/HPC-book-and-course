@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-8
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -39,14 +39,17 @@ gives you any suggestions. There are several problems with this:
   from all proccessors, making the inspection process very tedious.
 \end{itemize}
 
-\index{gdb|(}
+\index{gdb|(}\index{lldb|(}
 
 For these reasons, the best way to debug is by the use of an
 interactive \indexterm{debugger}, a program that allows you to monitor
 and control the behaviour of a running program. In this section you
 will familiarize yourself with
-\emph{gdb}\index{GNU!gdb|see{gdb}}, which is the open source
-debugger of the \indexterm{GNU} project. Other debuggers are
+\emph{gdb}\index{GNU!gdb|see{gdb}} and
+\indexterm{lldb},
+the open source
+debuggers of the \indexterm{GNU} and \indexterm{clang} projects respectively.
+Other debuggers are
 proprietary, and typically come with a compiler suite. Another
 distinction is that gdb is a commandline debugger; there are
 graphical debuggers such as \indexterm{ddd} (a~frontend to gdb) or
@@ -59,7 +62,7 @@ gdb and valgrind. The files can be found in the repository
 in the directory \n{tutorials/debug_tutorial_files}.
 
 
-\Level 0 {Invoking {\tt gdb}}
+\Level 0 {Invoking the debugger}
 
 There are three ways of using gdb: using it to start a program,
 attaching it to an already running program, or using it to inspect a
@@ -423,6 +426,15 @@ You can set a breakpoint in various ways:
 \item If you leave gdb, the breakpoints are cleared but you can save
   them: \n{save breakpoints <file>}. Use \n{source <file>} to read
   them in on the next gdb run.
+\item In languages with \emph{exceptions}, such
+  as~\emph{C++}\index{C++!exception}, you can set a \indexterm{catchpoint}:
+  \begin{tabular}{|l|l|}
+    \hline
+    \multicolumn{2}{|c|}{Set a breakpoint for exceptions}\\
+    \hline
+    gdb&clang\\   \n{catch throw}&\n{break set -E C++}\\
+    \hline
+  \end{tabular}
 \end{itemize}
 
 Finally, you can execute commands at a breakpoint:

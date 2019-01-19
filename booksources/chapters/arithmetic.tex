@@ -1185,7 +1185,7 @@ negative, it may pay off to rearrange the algorithm accordingly.
   The sine function is defined as
   \[ 
   \begin{array}{rcl}
-    \sin(x) &=& x-\frac{x^3}{3!} + \frac{x^5}{7!} - \frac{x^7}{7!} + \cdots\\
+    \sin(x) &=& x-\frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots\\
     &=& \sum_{i\geq 0}^\infty (-1)^{2i}\frac{x^{2i+1}}{(2i+1)!}.
   \end{array}
   \]
@@ -1521,9 +1521,9 @@ particular in the case of addition. We briefly discuss
 Different languages have different approaches to declaring integers and
 floating point numbers.
 
-\Level 2 {Type declarations}
+\Level 2 {Fortran}
 
-\heading{Fortran}In Fortran, variable declarations can take
+In Fortran, variable declarations can take
 various forms. For instance, it is possible for a
 %
 \emph{type identifier}\index{Fortran!type!identifier}
@@ -1546,8 +1546,15 @@ r = 2._k9; print *, sqrt(r) ! prints 1.4142135623730
 The `kind' values will usually be 4,8,16 but this is compiler
 dependent.
 
-\heading{C/C++}
+\heading{C99 and Fortran2003}
 %
+Recent standards of the C and Fortran
+languages incorporate the C/Fortran interoperability standard, which
+can be used to declare a type in one language so that it is compatible
+with a certain type in the other language.
+
+\Level 2 {C}
+
 In C, the commonly used
 %
 \emph{type identifiers}\index{C!type!identifier}
@@ -1558,31 +1565,29 @@ is \texttt{short int, int, long int}, and for floating point
 number of bytes used to store a datatype.
 
 The \emph{numerical ranges}\index{C!type!numerical range}
-of C~integers are defined in \indextermtt{limits.h} (C) or
-\indextermtt{climits}~(\n{C++}), typically giving an upper or lower bound.
+of C~integers are defined in \indextermtt{limits.h}, typically giving an upper or lower bound.
 For instance, \n{INT_MAX} is defined to be 32767~or greater.
 
-Floating point types are specified in \indextermtt{float.h} or \indextermtt{cfloat},
+Floating point types are specified in \indextermtt{float.h}.
 
 C~integral types with specified storage exist: constants such as
-\n{int64_t} are defined by \n{typedef} in \indextermtt{stdint.h} or
-\indextermtt{cstdint}.
+\n{int64_t} are defined by \n{typedef} in \indextermtt{stdint.h}.
 
-\heading{C99 and Fortran2003}
-%
-Recent standards of the C and Fortran
-languages incorporate the C/Fortran interoperability standard, which
-can be used to declare a type in one language so that it is compatible
-with a certain type in the other language.
+The constant \n{NAN} is declared in \n{math.h}.
+For checking whether a value is \n{NaN}, use \n{isnan()}.
 
-\Level 2 {NaN, Inf}
-\index{NaN!programming language support|(}
+\Level 2 {C++}
 
-It is possible to manipulate NaN and Inf quantities through
-\emph{programming language support}.
+\heading{Limits}
 
-The constant \n{NAN} is declared in \n{math.h} or \n{cmath}.
-%
+You can still use the C~header \n{limits.h} or
+\indextermtt{climits}, but it's better to use
+\indextermtt{std::numeric_limits}, which is templated over the
+types. For instance
+\begin{verbatim}
+std::numerical_limits<int>.max();
+\end{verbatim}
+
 In~C++, \n{std::numeric_limits<double>::quiet_NaN()} is declared in
 \n{limits}, which is meaningful if
 \n{std::numeric_limits::has_quiet_NaN} is true, which is the case if
@@ -1591,12 +1596,19 @@ IEEE~754; see section~\ref{sec:ieee754}.)
 
 The same module also has \n{infinity()} and \n{signaling_NaN()}.
 
-For checking whether a value is \n{NaN}, use \n{isnan()} from \n{math.h} in~C, or
-\n{std::isnan()} from \n{cmath} in~C++.
+For checking whether a value is \n{NaN}, use \n{std::isnan()} from \n{cmath} in~C++.
 
 See further \url{http://en.cppreference.com/w/cpp/numeric/math/nan}.
 
 \index{NaN!programming language support|)}
+
+\heading{Exceptions}
+
+Both the IEEE 754 standard and the C++ language define a concept
+\emph{exception}\index{C++!exception|textbf} which differ from each
+other. The 754 exception means the occurence of an operation that has `no outcome
+suitable for every reasonable application'. This does not necessarily
+translate to the language-defined exception.
 
 \Level 1 {Other computer arithmetic systems}
 

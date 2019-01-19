@@ -834,6 +834,11 @@ Andrew~T. Ogielski and William Aiello.
 \newblock {\em SIAM J. Sci. Stat. Comput.}
 \newblock in press.
 
+\bibitem{Olukotun:1996:single-chip}
+Kunle Olukotun, Basem~A. Nayfeh, Lance Hammond, Ken Wilson, and Kunyung Chang.
+\newblock The case for a single-chip multiprocessor.
+\newblock {\em SIGOPS Oper. Syst. Rev.}, 30(5):2--11, September 1996.
+
 \bibitem{mpi-ref}
 S.~Otto, J.~Dongarra, S.~Hess-Lederman, M.~Snir, and D.~Walker.
 \newblock {\em Message Passing Interface: The Complete Reference}.
