@@ -339,7 +339,7 @@ representation.
   Old Cray 64 bit&2&48&-16383&16384\\
   IBM mainframe 32 bit&16&6&-64&63\\
   packed decimal&10&50&-999&999\\
-  Setun&3
+  Setun&3\\
 \end{tabular}
 
 Of these, the single and double precision formats are by far the most
@@ -741,7 +741,8 @@ standard also declares that a processor should be
 able to switch its rounding behaviour between ordinary rounding,
 rounding up or down (sometimes phrased as `towards plus infinity'
 and `towards minus infinity' respectively) or truncation.
-In~C99, the API for this is contained in \indextermtt{fenv.h}:
+In~C99, the API for this is contained in \indextermtt{fenv.h} (or for
+C++ \indextermtt{cfenv}):
 \begin{verbatim}
 #include <fenv.h>
 
@@ -1528,13 +1529,13 @@ various forms. For instance, it is possible for a
 %
 \emph{type identifier}\index{Fortran!type!identifier}
 to declare the number of
-bytes that it takes to store a variable: \texttt{INTEGER*2,
-  REAL*8}. One advantage of this approach is the easy interoperability
+bytes that it takes to store a variable: \texttt{INTEGER*2},
+\texttt{REAL*8}. One advantage of this approach is the easy interoperability
 with other languages, or the MPI library.
 
-Often it is possible to write a code using only \texttt{INTEGER,
-  REAL}, and use \indextermbus{compiler}{flags} to indicate the size
-of an integer and real number in bytes.
+Often it is possible to write a code using only \texttt{INTEGER},
+\texttt{REAL}, and use \indextermbus{compiler}{flags} to indicate the
+size of an integer and real number in bytes.
 
 More sophisticated, modern versions of Fortran can indicate the number
 of digits of precision a floating point number needs to have:

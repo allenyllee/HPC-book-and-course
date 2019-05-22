@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-8
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -13,8 +13,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[11pt,letterpaper,twoside,openany]{boek3}
-%\documentclass{book}
 
+%pyskipbegin
 \usepackage{comment,verbatim}
 \makeatletter
 \def\verbatim@startline{\verbatim@line{\leavevmode\kern\unitindent\relax}}
@@ -45,7 +45,7 @@
 
 \usepackage{amssymb}
 \usepackage[fleqn]{amsmath}
-\usepackage{graphicx,undertilde,arydshln,wrapfig}
+\usepackage{graphicx,arydshln,wrapfig}
 \usepackage{times,makeidx,multirow,multicol}
 \usepackage{dirtree}
 
@@ -158,7 +158,7 @@
 \newcommand\APPENDIX[3]{
   \vfill\pagebreak \Level 0 {#1}\label{app:#3}
   \def\chapshortname{#3}
-  {\SetBaseLevel 1 {\index{#2|(}}
+  {\SetBaseLevel 1 {\index{#2|(textbf}}
    \setcounter{excounter}0
    \input appendices/#3 {\index{#2|)}}
    \write\chapterlist{\chapshortname}
@@ -221,6 +221,8 @@
 \setcounter{tocdepth}{2}
 }
 
+%pyskipend
+
 \part{Theory}
 
 \CHAPTER{Single-processor Computing}{sequential}
@@ -252,6 +254,7 @@
 \APPLICATION{Big data}{analytics}
 \APPLICATION{Machine learning}{learning}
 \APPLICATION{Computer graphics}{graphics}
+\APPLICATION{Quantum computing}{quantum}
 \end{notready}
 
 % not for public consumption
@@ -279,10 +282,12 @@
 
 \input appendices/blurb
 
+% arg 2 is term in the index
 \APPENDIX{Linear algebra}{linear algebra}{norms}
 \APPENDIX{Complexity}{complexity}{complexity}
 \APPENDIX{Partial Differential Equations}{partial differential equations}{pde}
 \APPENDIX{Taylor series}{Taylor series}{taylor}
+\APPENDIX{Minimization}{minimization}{newton}
 \APPENDIX{Graph theory}{graph!theory}{graph}
 \begin{notready}
 \APPENDIX{Fourier Transforms}{Fourier Transform}{fft}
@@ -319,9 +324,11 @@
   \TUTORIAL{Timing and benchmarking}{performance}
 \end{notready}
 \TUTORIAL{C/Fortran interoperability}{language}
-\TUTORIAL{LaTeX for scientific documentation}{latex}
+\TUTORIAL{LaTeX for scientific documentation}{latex}%pyskip
 
 \end{notlulu}
+
+%pyskipbegin
 
 \part{Projects, codes, index}
 
@@ -380,4 +387,5 @@
 \includegraphics{isbn_barcode}
 
 \closeout\chapterlist
+%pyskipend
 \end{document}

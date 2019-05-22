@@ -16,6 +16,8 @@
 
 \index{graphics|(}
 
+\Level 0 {Image blurring}
+
 Many problems in computer graphics can be
 considered as a case of \ac{SIMD} programming:
 an image is a square or rectangular array
@@ -83,5 +85,50 @@ On the other hand, this code structure would not be right for
 \indextermbus{vector}{instructions} or \emph{pipeline
   instructions}\index{pipeline!instruction} where the parallelism has
 to be in the inner loop, and preferably be as large as possible.
+
+\Level 0 {Ray tracing}
+
+The basic \indextermbus{Eikonal}{equation} of ray propagation is
+\begin{equation}
+  \| \nabla S(\mathbf x) \| = n
+  \label{eq:ekonal}
+\end{equation}
+states that the gradient of the \indextermdef{Eikonal} $S(\cdot)$ is
+the \indextermsub{index of}{refraction}. The surfaces
+$|S(x)|=\mathrm{const}$ are
+\emph{wavefronts}\index{wavefront!(of light propagation)},
+describing the iso-surface of constant time of light propagation from
+a single source.
+
+This gives the \emph{ray equation of geometric optics}:
+\begin{equation}
+  \frac{d}{ds}\bigl( n\frac{d\mathbf x}{ds} \bigr)
+  = \nabla n
+\end{equation}
+which can be written as coupled \acp{ODE}:
+\begin{equation}
+  n\frac{d\mathbf{x}}{dx}=\mathbf{d}, \qquad
+  \frac{d\mathbf{d}}{ds} = \nabla n.
+\end{equation}
+where $\mathbf{d}$ is the local ray direction, scaled by the
+refractive index.
+
+\Level 1 {Volume reconstruction}
+
+The above equations are normally applied to a known medium, to derive
+the paths the light rays take. However, we can also consider the
+\indextermbus{inverse}{problem}:
+\begin{quotation}
+  Given an unknown object, with known rays entering, and measurements of
+  rays exiting: can we reconstruct the object?
+\end{quotation}
+For this we observe that
+\begin{equation}
+  \mathbf{d}^{\scriptstyle\mathrm{out}} =
+  \int_c \nabla n\, ds
+  +
+  \mathbf{d}^{\scriptstyle\mathrm{in}}.
+\end{equation}
+
 
 \index{graphics|)}

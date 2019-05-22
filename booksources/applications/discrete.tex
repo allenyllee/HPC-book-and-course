@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-6
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -264,6 +264,28 @@ tasks than processor cores, this will all even out. With distributed
 memory we lack the possibility to assign work to arbitrary processors,
 so we need to assign load carefully. \acfp{SFC} can be used here 
 to good effect (see section~\ref{sec:space-filling}).
+
+\Level 1 {1.5D implementation of the full method}
+
+It is possible to make a straightforward parallel implementation of
+the full $N^2$ method by distributing the particles, and let each
+particle evaluate the forces from every other particle.
+
+\begin{exercise}
+  Since forces are symmetric, we can save a factor of two in
+  work by letting particle $p_i$ only interact with particles $p_j$
+  with~$j>i$. In this scheme, an equal distribution of data, e.g.,
+  particles, leads to an uneven distribution of work, e.g.,
+  interactions. How do the particles need to be distributed to get an
+  even load distribution?
+\end{exercise}
+
+Assuming we don't care about the factor of two gain from using
+symmetry of forces, and using an even distribution of the particles,
+this scheme has a more serious problem in that it asymptotically does
+not scale.
+
+\input allpairs15d
 
 \index{N-body problems|)}
 

@@ -213,7 +213,7 @@ The exceptions to this story are:
 
 \index{context|)}
 
-\Level 2 {Data races, thread safety, and atomic operations}
+\Level 2 {Race conditions, thread safety, and atomic operations}
 \index{atomic operation|(}
 \index{atomicity|see{atomic operation}}
 \label{sec:shared-lock}
@@ -256,7 +256,7 @@ write the variable. Here are three scenarios:
   \multicolumn{2}{|c|}{$\n{I}=5$}\\ \hline
 \end{tabular}
 Such a scenario, where the final result depends on which thread
-executes first, is known as a \indexterm{race condition} or
+executes first, is known as a \indextermdef{race condition} or
 \emph{data race}\index{data race|see{race condition}}.
 
 A very practical example of such conflicting updates is the inner

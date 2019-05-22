@@ -4,9 +4,9 @@
     \subitem static
       \subsubitem routing, \hyperpage{141}
   \item {\texttt{.bashrc}}, 
-		\hyperindexformat{\see{shell, startup files}}{418}
+		\hyperindexformat{\see{shell, startup files}}{424}
   \item {\texttt{.profile}}, 
-		\hyperindexformat{\see{shell, startup files}}{418}
+		\hyperindexformat{\see{shell, startup files}}{424}
   \item 2's complement, \hyperpage{166}
 
   \indexspace
@@ -18,14 +18,14 @@
   \indexspace
 
   \item active messages, \hyperpage{122}
-  \item acyclic graph, \hyperpage{381}
+  \item acyclic graph, \hyperpage{388}
   \item \acl {AMR} (AMR), \hyperpage{332}
   \item address space, \hyperpage{87}
     \subitem shared, \hyperpage{87}
   \item adjacency
     \subitem matrix, \hyperpage{352}
-  \item adjacency graph, \hyperpage{228}, \hyperpage{383}
-  \item adjacency matrix, \hyperpage{382}
+  \item adjacency graph, \hyperpage{228}, \hyperpage{390}
+  \item adjacency matrix, \hyperpage{390}
   \item \acl {AVX} (AVX), \hyperpage{86}, \hyperpage{148}, 
 		\hyperpage{358}
   \item affinity, \hyperpage{100--102}
@@ -37,25 +37,25 @@
 		\hyperpage{266}
   \item Alliant FX/8, \hyperpage{38}
   \item allocation
-    \subitem aligned, \hyperindexformat{\textbf}{489}
-    \subitem static, \hyperpage{516}
+    \subitem aligned, \hyperindexformat{\textbf}{496}
+    \subitem static, \hyperpage{522}
   \item allreduce, \hyperpage{257}
   \item AMD, \hyperpage{86}, \hyperpage{162}
     \subitem Barcelona, \hyperpage{32}, \hyperpage{35}
-    \subitem Opteron, \hyperpage{36}, \hyperpage{49}, 
+    \subitem Opteron, \hyperpage{36}, \hyperpage{50}, 
 		\hyperpage{54, 55}
   \item Amdahl's law, \hyperpage{77--79}
-  \item AMR, \hyperindexformat{\see{Adaptive Mesh Refinement}}{537}
+  \item AMR, \hyperindexformat{\see{Adaptive Mesh Refinement}}{543}
   \item analytics
     \subitem graph, \hyperpage{343}
   \item anti dependency, 
 		\hyperindexformat{\see{data dependencies}}{125}
-  \item AOS, \hyperindexformat{\see{Array-Of-Structures}}{537}
+  \item AOS, \hyperindexformat{\see{Array-Of-Structures}}{543}
   \item API, 
-		\hyperindexformat{\see{Application Programmer Interface}}{537}
+		\hyperindexformat{\see{Application Programmer Interface}}{543}
   \item Apple
     \subitem iCloud, \hyperpage{157}
-  \item archive utility, \hyperpage{424}
+  \item archive utility, \hyperpage{431}
   \item arithmetic
     \subitem computer, 
 		\hyperindexformat{\see{floating point arithmetic}}{165}
@@ -68,24 +68,24 @@
   \item \acl {AOS} (AOS), \hyperpage{127}
   \item assembly
     \subitem language, \hyperpage{24}
-  \item assertion, \hyperindexformat{\textbf}{465}
-  \item assertions, \hyperpage{464--466}
+  \item assertion, \hyperindexformat{\textbf}{472}
+  \item assertions, \hyperpage{471--473}
   \item associative, 
-		\hyperindexformat{\seealso{cache, associative}}{31}
+		\hyperindexformat{\seealso{cache, associative}}{32}
   \item asynchronous communication, \hyperpage{129}
   \item asynchronous computing, \hyperpage{83}
   \item atomic operation, \hyperpage{39}, \hyperpage{98--99}
   \item atomicity, \hyperindexformat{\see{atomic operation}}{98}
-  \item automaton, \hyperpage{389--390}
-    \subitem linear bounded, \hyperpage{390}
+  \item automaton, \hyperpage{396--397}
+    \subitem linear bounded, \hyperpage{397}
   \item autotuning, \hyperpage{61}
-  \item AVX, \hyperindexformat{\see{Advanced Vector Extensions}}{537}
+  \item AVX, \hyperindexformat{\see{Advanced Vector Extensions}}{543}
   \item axpy, \hyperpage{43}
 
   \indexspace
 
-  \item background process, \hyperpage{411}
-  \item backwards stability, \hyperpage{181}
+  \item background process, \hyperpage{417}
+  \item backwards stability, \hyperpage{182}
   \item band storage, 
 		\hyperindexformat{\see{matrix, band storage}}{223}
   \item banded matrix, \hyperpage{199}
@@ -94,23 +94,23 @@
     \subitem aggregate, \hyperpage{132}
     \subitem measure in GT/s, \hyperpage{145}
   \item bandwidth bound algorithm, \hyperpage{161}
-  \item bandwidth-bound, \hyperindexformat{\textbf}{44}, 
+  \item bandwidth-bound, \hyperindexformat{\textbf}{46}, 
 		\hyperpage{285}
   \item Barnes-Hut algorithm, \hyperpage{356--357}
   \item barrier, \hyperpage{123}
   \item base, \hyperpage{168}
-  \item bash, \hyperpage{397}
+  \item bash, \hyperpage{403}
   \item \acl {BLAS} (BLAS), \hyperpage{271}
   \item BBN
     \subitem Butterfly, \hyperpage{137}
-  \item BEM, \hyperindexformat{\see{Boundary Element Method}}{537}
+  \item BEM, \hyperindexformat{\see{Boundary Element Method}}{543}
   \item benchmarking, \hyperpage{28}, \hyperpage{44}
-  \item BFS, \hyperindexformat{\see{Breadth-First Search}}{537}
+  \item BFS, \hyperindexformat{\see{Breadth-First Search}}{543}
   \item bidiagonal matrix, \hyperindexformat{\textbf}{200}, 
 		\hyperpage{303}
   \item bidirectional exchange, \hyperpage{258}
   \item big data, \hyperpage{340}
-  \item big-endian, \hyperpage{451}, \hyperpage{458}
+  \item big-endian, \hyperpage{458}, \hyperpage{465}
   \item binary-coded-decimal, \hyperpage{169}
   \item bisection, \hyperpage{339}
   \item bisection bandwidth, \hyperpage{131}
@@ -123,103 +123,104 @@
     \subitem sequential complexity of, \hyperpage{341}
   \item bits, \hyperpage{165}
   \item bitshift, \hyperindexformat{\textbf}{168}
-  \item Bjam, \hyperpage{426}
-  \item Black-Scholes model, \hyperpage{361}
+  \item Bjam, \hyperpage{433}
+  \item Black-Scholes model, \hyperpage{364}
   \item BLAS, 
-		\hyperindexformat{\see{Basic Linear Algebra Subprograms}}{537}
+		\hyperindexformat{\see{Basic Linear Algebra Subprograms}}{543}
   \item block Jacobi, \hyperpage{287}, \hyperpage{305}
   \item block matrix, \hyperpage{202}, \hyperpage{275}, \hyperpage{294}
   \item block tridiagonal, \hyperpage{202}, \hyperpage{234}, 
 		\hyperpage{298}
   \item blocking communication, \hyperpage{106}, \hyperpage{113}
-  \item blocking for cache reuse, \hyperpage{52}
+  \item blocking for cache reuse, \hyperpage{53}
   \item \acl {BEM} (BEM), \hyperpage{280}
   \item \acl {BVP} (BVP), \hyperpage{196--204}
   \item branch misprediction, \hyperpage{21}
   \item branch penalty, \hyperpage{21}
   \item breadth-first, \hyperpage{339}
-  \item breakpoint, \hyperpage{479}, 
-		\hyperindexformat{\textbf}{480--481}
+  \item breakpoint, \hyperpage{486}, 
+		\hyperindexformat{\textbf}{487--488}
   \item Brent's theorem, \hyperindexformat{\textbf}{75}, 
 		\hyperpage{151}
   \item broadcast, \hyperpage{109}, \hyperpage{255--256}
-  \item BSP, \hyperindexformat{\see{Bulk Synchronous Parallel}}{537}
+  \item BSP, \hyperindexformat{\see{Bulk Synchronous Parallel}}{543}
   \item Bubblesort, \hyperindexformat{\see{sorting, bubblesort}}{332}
   \item bucket brigade algorithm, \hyperpage{256}
   \item buffering, \hyperpage{260}
-  \item bug, \hyperpage{464}
+  \item bug, \hyperpage{471}
   \item \acl {BSP} (BSP), \hyperpage{123}
-  \item bus, \hyperpage{21}
+  \item bus, \hyperpage{22}
     \subitem memory, \hyperpage{132}
     \subitem speed, \hyperpage{23}
     \subitem width, \hyperpage{23}
   \item butterfly exchange, \hyperpage{136}, 
 		\hyperindexformat{\textbf}{136--137}
-  \item BVP, \hyperindexformat{\see{Boundary Value Problem}}{537}
-  \item by reference, \hyperpage{490}
+  \item BVP, \hyperindexformat{\see{Boundary Value Problem}}{543}
+  \item by reference, \hyperpage{497}
   \item bytes, \hyperpage{165}
 
   \indexspace
 
   \item C
-    \subitem array layout, \hyperpage{488--489}
+    \subitem array layout, \hyperpage{495--496}
     \subitem language standard, \hyperpage{183}
     \subitem type
       \subsubitem identifier, \hyperpage{185}
       \subsubitem numerical range, \hyperpage{185}
   \item C++
-    \subitem exception, \hyperindexformat{\textbf}{185}, 
-		\hyperpage{481}
+    \subitem exception, \hyperindexformat{\textbf}{186}, 
+		\hyperpage{488}
     \subitem language standard, \hyperpage{183}
-    \subitem linking to, \hyperpage{486--487}
-    \subitem name mangling, \hyperpage{486}
+    \subitem linking to, \hyperpage{493--494}
+    \subitem name mangling, \hyperpage{493}
   \item cache, \hyperpage{20, 21}, \hyperindexformat{\textbf}{25--33}
     \subitem associative, \hyperpage{32}
-    \subitem block, \hyperpage{28}
-    \subitem blocking, \hyperpage{52}, \hyperpage{58}, \hyperpage{221}
-    \subitem coherence, \hyperpage{26}, \hyperpage{37--40}, 
-		\hyperpage{49}, \hyperpage{89}, \hyperpage{132}, 
+    \subitem block, \hyperpage{29}
+    \subitem blocking, \hyperpage{53}, \hyperpage{59}, \hyperpage{221}
+    \subitem coherence, \hyperpage{27}, \hyperpage{37--41}, 
+		\hyperpage{50}, \hyperpage{89}, \hyperpage{132}, 
 		\hyperpage{311}, \hyperpage{348}
     \subitem hierarchy, \hyperpage{26}, \hyperpage{62}
     \subitem hit, \hyperpage{26}
-    \subitem hot, \hyperpage{516}
-    \subitem line, \hyperpage{28--29}, \hyperpage{47}
+    \subitem hot, \hyperpage{522}
+    \subitem line, \hyperpage{29--30}, \hyperpage{47}
     \subitem mapping, \hyperpage{30}
     \subitem miss, \hyperpage{26}, \hyperpage{34}
     \subitem miss, capacity, \hyperpage{27}
     \subitem miss, compulsory, \hyperpage{27}
     \subitem miss, conflict, \hyperpage{27}
-    \subitem miss, invalidation, \hyperpage{27}
+    \subitem miss, invalidation, \hyperpage{28}
     \subitem oblivious programming, \hyperpage{62--63}
     \subitem replacement policies, \hyperpage{28}
     \subitem shared, \hyperpage{88}
     \subitem tag, \hyperpage{26}
-    \subitem tag directory, \hyperpage{40}
-    \subitem warming, \hyperpage{516}
+    \subitem tag directory, \hyperpage{41}
+    \subitem warming, \hyperpage{522}
   \item cacheline
     \subitem boundary alignent, 
-		\hyperindexformat{\seealso{allocation, aligned}}{489}
-    \subitem boundary alignment, \hyperpage{29}, \hyperpage{516}
+		\hyperindexformat{\seealso{allocation, aligned}}{496}
+    \subitem boundary alignment, \hyperpage{30}, \hyperpage{522}
     \subitem invalidation, \hyperpage{39}
-  \item CAF, \hyperindexformat{\see{Co-array Fortran}}{537}
-  \item call stack, \hyperpage{475}
+  \item CAF, \hyperindexformat{\see{Co-array Fortran}}{543}
+  \item call stack, \hyperpage{482}
   \item Cannon's algorithm, 
 		\hyperindexformat{\see{matrix-matrix product, Cannon's algorithm}}{273}
   \item capability computing, \hyperpage{158--159}
   \item capacity computing, \hyperpage{158--159}
   \item Cartesian mesh, \hyperpage{133}
   \item Cartesian product, \hyperpage{122}
-  \item \texttt  {cat}, \hyperpage{398}
-  \item catchpoint, \hyperpage{481}
+  \item \texttt  {cat}, \hyperpage{404}
+  \item catchpoint, \hyperpage{488}
   \item Cayley-Hamilton theorem, \hyperpage{244}
   \item ccNUMA, \hyperpage{89}
-  \item CCS, \hyperindexformat{\see{Compressed Column Storage}}{537}
-  \item \texttt  {cd}, \hyperpage{401}
+  \item CCS, \hyperindexformat{\see{Compressed Column Storage}}{543}
+  \item \texttt  {cd}, \hyperpage{407}
   \item CDC
     \subitem Cyber205, \hyperpage{87}
   \item Cell processor, \hyperpage{144}
-  \item CG, \hyperindexformat{\see{Conjugate Gradients}}{537}
-  \item CGS, \hyperindexformat{\see{Classical Gram-Schmidt}}{537}
+  \item {\tt  {cfenv}}, \hyperpage{174}
+  \item CG, \hyperindexformat{\see{Conjugate Gradients}}{543}
+  \item CGS, \hyperindexformat{\see{Classical Gram-Schmidt}}{543}
   \item channel rate, \hyperpage{142}
   \item channel width, \hyperpage{142}
   \item Chapel, \hyperpage{117}, \hyperpage{120}
@@ -228,24 +229,25 @@
   \item Charm++, \hyperpage{122}
   \item checkerboard ordering, \hyperpage{202}
   \item Cheeger's
-    \subitem constant, \hyperpage{387}
-    \subitem inequality, \hyperpage{387}
+    \subitem constant, \hyperpage{394}
+    \subitem inequality, \hyperpage{394}
   \item chess, \hyperpage{93}
-  \item \texttt  {chgrp}, \hyperpage{404}
-  \item \texttt  {chmod}, \hyperpage{403}
-  \item {\tt  {chmod}}, \hyperpage{404}
+  \item \texttt  {chgrp}, \hyperpage{426}
+  \item \texttt  {chmod}, \hyperpage{409}
+  \item {\tt  {chmod}}, \hyperpage{410}
   \item Cholesky factorization, \hyperpage{216}, \hyperpage{310}
-  \item Chomsky hierarchy, \hyperpage{390}
+  \item Chomsky hierarchy, \hyperpage{397}
   \item Cilk Plus, \hyperpage{103}
+  \item clang, \hyperpage{479}
   \item cleanup code, \hyperpage{51}
   \item {\tt  {climits}}, \hyperpage{185}
-  \item clique, \hyperpage{383}
+  \item clique, \hyperpage{390}
   \item clock speed, \hyperpage{19}
   \item Clos network, \hyperpage{139}
   \item cloud computing, \hyperpage{154--158}
     \subitem service models, \hyperpage{158}
   \item cluster
-    \subitem node, \hyperindexformat{\see{node}}{538}
+    \subitem node, \hyperindexformat{\see{node}}{544}
   \item clusters, \hyperpage{85}, \hyperpage{87}
     \subitem Beowulf, \hyperpage{87}
   \item \acl {CAF} (CAF), \hyperpage{119--120}
@@ -259,39 +261,43 @@
 		\hyperpage{255--258}
     \subitem long vector, \hyperpage{256}
     \subitem short vector, \hyperpage{256}
-  \item colour number, \hyperpage{297}, \hyperpage{382}
+  \item colour number, \hyperpage{297}, \hyperpage{389}
   \item colouring, \hyperpage{297}
-  \item column-major, \hyperpage{273}, \hyperpage{488}
+  \item column-major, \hyperpage{273}, \hyperpage{495}
   \item communication
     \subitem blocking, \hyperpage{112}
     \subitem overhead, \hyperpage{78}
     \subitem overlapping computation with, \hyperpage{128}, 
 		\hyperpage{308}
-  \item compare-and-swap, \hyperpage{333, 334}, \hyperpage{341}
-  \item compiler, \hyperpage{60}, \hyperpage{91}, \hyperpage{118}
+  \item compare-and-swap, \hyperpage{333}, \hyperpage{335}, 
+		\hyperpage{341}
+  \item compiler, \hyperpage{61}, \hyperpage{91}, \hyperpage{118}
     \subitem directives, \hyperpage{103}, \hyperpage{119}
-    \subitem flags, \hyperpage{184}
+    \subitem flags, \hyperpage{185}
     \subitem optimization, \hyperpage{24}
       \subsubitem vs round-off, \hyperpage{182--184}
     \subitem optimization levels, \hyperpage{172}
     \subitem parallelizing, \hyperpage{94}, \hyperpage{124}
-    \subitem vectorization, \hyperpage{57}
-  \item complex numbers, \hyperpage{187}
-    \subitem C and Fortran, \hyperpage{487}
-  \item complexity, \hyperpage{374}
-    \subitem computational, \hyperpage{220--221}, \hyperpage{374}
+    \subitem vectorization, \hyperpage{58}
+  \item complex numbers, \hyperpage{187--188}
+    \subitem C and Fortran, \hyperpage{494}
+  \item complexity, \hyperindexformat{\textbf}{378}
+    \subitem computational, \hyperpage{220--221}, \hyperpage{378}
     \subitem of iterative methods, 
 		\hyperindexformat{\see{iterative methods, complexity}}{253}
-    \subitem space, \hyperpage{231--233}, \hyperpage{374}
+    \subitem sequential, \hyperindexformat{\textbf}{333}
+      \subsubitem of bitonic sort, \hyperpage{341}
+      \subsubitem of quicksort, \hyperpage{336}
+    \subitem space, \hyperpage{231--233}, \hyperpage{378}
   \item \acl {CCS} (CCS), \hyperpage{226}
   \item \acl {CRS} (CRS), \hyperpage{225--227}, \hyperpage{280}
   \item Compressed Row Storage (CRS)
     \subitem performance of the   matrix-vector product, 
 		\hyperpage{285}
   \item computation rate, \hyperpage{142}, \hyperpage{255}
-  \item compute-bound, \hyperindexformat{\textbf}{44}, \hyperpage{161}
+  \item compute-bound, \hyperindexformat{\textbf}{46}, \hyperpage{161}
   \item concurrency, \hyperindexformat{\textbf}{83}
-  \item condition number, \hyperpage{181}, \hyperpage{368}
+  \item condition number, \hyperpage{181}, \hyperpage{372}
   \item conditionally stable, \hyperpage{193}
   \item congestion, \hyperpage{131}
   \item \acl {CG} (CG), 252, \hyperpage{309}
@@ -303,19 +309,19 @@
   \item control flow, \hyperpage{12}, \hyperindexformat{\textbf}{20}, 
 		\hyperpage{83}, \hyperpage{311}
   \item conveniently parallel, \hyperpage{93}
-  \item COO, \hyperindexformat{\see{Coordinate Storage}}{537}
+  \item COO, \hyperindexformat{\see{Coordinate Storage}}{543}
   \item coordinate storage, \hyperpage{226}
   \item coordination language, \hyperpage{122}
   \item core, \hyperindexformat{\textbf}{14}, \hyperpage{37}
     \subitem vs processor, \hyperpage{37}
-  \item core dump, \hyperpage{472}
+  \item core dump, \hyperpage{479}
   \item correct rounding, 
 		\hyperindexformat{\see{rounding, correct}}{175}
   \item cost-optimal, \hyperpage{73}
   \item Courant-Friedrichs-Lewy condition, \hyperpage{197}
-  \item \texttt  {cp}, \hyperpage{399}
-  \item CPU, \hyperindexformat{\see{Central Processing Unit}}{537}
-  \item CPU-bound, \hyperindexformat{\see{compute-bound}}{538}
+  \item \texttt  {cp}, \hyperpage{405}
+  \item CPU, \hyperindexformat{\see{Central Processing Unit}}{543}
+  \item CPU-bound, \hyperindexformat{\see{compute-bound}}{544}
   \item cpu-bound, \hyperpage{14}
   \item Cramer's rule, \hyperpage{210}
   \item Crank-Nicolson method, \hyperpage{208}
@@ -333,20 +339,20 @@
 		\hyperpage{311}
   \item critical section, \hyperpage{98}
   \item crossbar, \hyperpage{88}, \hyperpage{136}, \hyperpage{140}
-  \item CRS, \hyperindexformat{\see{Compressed Row Storage}}{537}
-  \item csh, \hyperpage{397}
+  \item CRS, \hyperindexformat{\see{Compressed Row Storage}}{543}
+  \item csh, \hyperpage{403}
   \item CUDA, \hyperpage{85}, \hyperpage{144}, \hyperpage{146}, 
 		\hyperpage{164}
-  \item \texttt  {cut}, \hyperpage{406}
+  \item \texttt  {cut}, \hyperpage{412}
   \item Cuthill-McKee ordering, \hyperpage{234}, \hyperpage{303}
-  \item cycle (in graph), \hyperpage{381}
+  \item cycle (in graph), \hyperpage{388}
   \item cyclic distribution, \hyperpage{270}
-  \item Cygwin, \hyperpage{397}
+  \item Cygwin, \hyperpage{403}
 
   \indexspace
 
-  \item daemon, \hyperpage{66}
-  \item DAG, \hyperindexformat{\see{Directed Acyclic Graph}}{537}
+  \item daemon, \hyperpage{67}
+  \item DAG, \hyperindexformat{\see{Directed Acyclic Graph}}{543}
   \item data decomposition, \hyperpage{259}
   \item data dependencies, \hyperpage{125--126}
   \item data flow, \hyperpage{12}, \hyperindexformat{\textbf}{20}, 
@@ -357,21 +363,21 @@
   \item data race, \hyperindexformat{\see{race condition}}{98}
   \item data reuse, \hyperpage{21}, \hyperpage{43}
     \subitem in matrix-matrix product, \hyperpage{271}
-  \item ddd, \hyperpage{472}
-  \item DDT, \hyperpage{472}, \hyperindexformat{\textbf}{482}
+  \item ddd, \hyperpage{479}
+  \item DDT, \hyperpage{479}, \hyperindexformat{\textbf}{490}
   \item deadlock, \hyperpage{83}, \hyperpage{108}, 
-		\hyperindexformat{\textbf}{113}, \hyperpage{481}
-  \item debug flag, \hyperpage{473}
-  \item debugger, \hyperpage{472}
-  \item debugging, \hyperpage{472--483}
-    \subitem in parallel, \hyperpage{481--483}
+		\hyperindexformat{\textbf}{113}, \hyperpage{488}
+  \item debug flag, \hyperpage{480}
+  \item debugger, \hyperpage{479}
+  \item debugging, \hyperpage{479--490}
+    \subitem in parallel, \hyperpage{488--490}
   \item DEC
     \subitem Alpha, \hyperpage{17}, \hyperpage{87}
   \item deep learning, \hyperpage{186}
-  \item defensive programming, \hyperpage{464}
-  \item degree, \hyperpage{130}, \hyperpage{380}
+  \item defensive programming, \hyperpage{471}
+  \item degree, \hyperpage{130}, \hyperpage{387}
   \item Delauney mesh refinement, \hyperpage{92}
-  \item Dennard scaling, \hyperpage{64}
+  \item Dennard scaling, \hyperpage{65}
   \item denormal, 
 		\hyperindexformat{\see{floating point numbers, unnormalized}}{171}
   \item Dense linear algebra, \hyperpage{258--274}
@@ -385,7 +391,7 @@
   \item diagonal storage, 
 		\hyperindexformat{\see{matrix, diagonal storage}}{223}, 
 		225, \hyperpage{275}
-  \item diameter, \hyperpage{131}, \hyperpage{234}, \hyperpage{381}
+  \item diameter, \hyperpage{131}, \hyperpage{234}, \hyperpage{388}
   \item die, \hyperpage{14}, \hyperpage{26}
   \item difference stencil, 
 		\hyperindexformat{\see{stencil, finite difference}}{203}
@@ -395,19 +401,19 @@
   \item direct mapping, \hyperpage{30}
   \item direct methods
     \subitem for linear systems, \hyperpage{285}
-  \item \acl {DAG} (DAG), \hyperpage{311}, \hyperpage{381}
-  \item directives, \hyperindexformat{\see{compiler, directives}}{538}
-  \item directories, \hyperpage{397}
+  \item \acl {DAG} (DAG), \hyperpage{311}, \hyperpage{388}
+  \item directives, \hyperindexformat{\see{compiler, directives}}{544}
+  \item directories, \hyperpage{403}
   \item Dirichlet boundary   condition, \hyperpage{196}
   \item Dirichlet boundary condition, \hyperpage{199}
   \item discretization, \hyperpage{192}
   \item distributed computing, \hyperpage{83}, \hyperpage{154--158}
   \item divide-and-conquer, \hyperpage{62}
-  \item domain decomposition, \hyperpage{289}, \hyperpage{387}
+  \item domain decomposition, \hyperpage{289}, \hyperpage{394}
   \item double precision, \hyperpage{147}
   \item DRAM, 
-		\hyperindexformat{\see{Dynamic Random-Access Memory}}{537}
-  \item DSP, \hyperindexformat{\see{Digital Signal Processing}}{537}
+		\hyperindexformat{\see{Dynamic Random-Access Memory}}{543}
+  \item DSP, \hyperindexformat{\see{Digital Signal Processing}}{543}
   \item dynamic programming, \hyperpage{344}
   \item \acl {DRAM} (DRAM), \hyperpage{33}
 
@@ -416,21 +422,21 @@
   \item Earth Simulator, \hyperpage{162}
   \item ebook, \hyperpage{157}
   \item edge cut, \hyperpage{347}
-  \item edges, \hyperpage{380}
-  \item editor, \hyperpage{400}
+  \item edges, \hyperpage{387}
+  \item editor, \hyperpage{406}
   \item efficiency, \hyperindexformat{\textbf}{73}
   \item eigenvalue problems, \hyperpage{253--254}
   \item eigenvector
-    \subitem dominant, \hyperpage{371}
+    \subitem dominant, \hyperpage{375}
   \item Elliptic PDEs, \hyperpage{197}
-  \item emacs, \hyperpage{400}
+  \item emacs, \hyperpage{406}
   \item embarrassingly parallel, \hyperpage{73}, \hyperpage{93}
   \item embedding, \hyperpage{133}
-  \item environment variable, \hyperpage{407}, 
-		\hyperindexformat{\textbf}{412--414}
+  \item environment variable, \hyperpage{413}, 
+		\hyperindexformat{\textbf}{418--420}
   \item Eratosthenes
     \subitem sieve of, \hyperpage{341}
-  \item escape, \hyperpage{406}, \hyperpage{419}
+  \item escape, \hyperpage{412}, \hyperpage{425}
   \item ETA-10, \hyperpage{87}
   \item Ethernet, \hyperpage{87}, \hyperindexformat{\textbf}{130}
   \item Euler
@@ -439,12 +445,10 @@
   \item evicted, \hyperindexformat{\textbf}{33}, \hyperpage{39}
   \item exception, \hyperpage{174, 175}
   \item excess, \hyperpage{169}
-  \item exchange sort, 
-		\hyperindexformat{\see{odd-even transposition     sort}}{333}
-  \item executable, \hyperpage{397}
-  \item exit status, \hyperpage{410}
+  \item executable, \hyperpage{403}
+  \item exit status, \hyperpage{416}
   \item exponent, \hyperpage{168}
-  \item {\tt  {export}}, \hyperpage{413}
+  \item {\tt  {export}}, \hyperpage{419}
   \item extended precision, \hyperpage{176}, 
 		\hyperindexformat{\textbf}{186}, \hyperpage{186}
 
@@ -461,33 +465,33 @@
     \subitem bisection width of a, \hyperpage{138}
     \subitem clusters based on, \hyperpage{140}
   \item fault tolerance, \hyperpage{160}
-  \item FD, \hyperindexformat{\see{Finite Difference}}{537}
-  \item FDM, \hyperindexformat{\see{Finite Difference Method}}{537}
-  \item FEM, \hyperindexformat{\see{Finite Element Method}}{537}
+  \item FD, \hyperindexformat{\see{Finite Difference}}{543}
+  \item FDM, \hyperindexformat{\see{Finite Difference Method}}{543}
+  \item FEM, \hyperindexformat{\see{Finite Element Method}}{543}
   \item {\tt  {fenv.h}}, \hyperpage{174}
-  \item FFT, \hyperindexformat{\see{Fast Fourier Transform}}{537}
-  \item Fiedler vector, \hyperindexformat{\textbf}{387}
-  \item Fiedler's theorem, \hyperpage{387}
-  \item field scaling, \hyperpage{64}
-  \item \texttt  {file}, \hyperpage{400}
-  \item files, \hyperpage{397}
+  \item FFT, \hyperindexformat{\see{Fast Fourier Transform}}{543}
+  \item Fiedler vector, \hyperindexformat{\textbf}{394}
+  \item Fiedler's theorem, \hyperpage{394}
+  \item field scaling, \hyperpage{65}
+  \item \texttt  {file}, \hyperpage{406}
+  \item files, \hyperpage{403}
   \item fill locations, \hyperpage{230}
   \item fill-in, \hyperpage{229--235}, \hyperpage{300}
     \subitem estimates, \hyperpage{231--233}
     \subitem reduction, \hyperpage{233--235}
   \item financial applications, \hyperpage{67}
-  \item \texttt  {finger}, \hyperpage{419}
+  \item \texttt  {finger}, \hyperpage{425}
   \item finite difference, \hyperpage{192}
   \item \acl {FDM} (FDM), \hyperpage{198}
   \item \acl {FEM} (FEM), \hyperpage{204}, \hyperpage{284}
-  \item \acl {FSA} (FSA), \hyperpage{39}, \hyperpage{389--390}
+  \item \acl {FSA} (FSA), \hyperpage{40}, \hyperpage{396--397}
   \item finite volume method, \hyperpage{204}
-  \item first-touch, \hyperpage{41}, \hyperindexformat{\textbf}{102}
+  \item first-touch, \hyperpage{42}, \hyperindexformat{\textbf}{102}
   \item {\tt  {float.h}}, \hyperpage{185}
   \item floating point
     \subitem unit, \hyperindexformat{\textbf}{15--16}
   \item floating point   arithmetic
-    \subitem associativity of, \hyperpage{182}, \hyperpage{391}
+    \subitem associativity of, \hyperpage{182}, \hyperpage{398}
   \item floating point arithmetic, \hyperindexformat{\textbf}{165--188}
   \item floating point numbers
     \subitem normalized, \hyperpage{170}
@@ -503,25 +507,25 @@
   \item flushing
     \subitem pipeline, \hyperpage{99}
   \item Flynn's taxonomy, \hyperpage{83}
-  \item FMA, \hyperindexformat{\see{Fused Multiply-Add}}{537}
-  \item FMM, \hyperindexformat{\see{Fast Multipole Method}}{537}
+  \item FMA, \hyperindexformat{\see{Fused Multiply-Add}}{543}
+  \item FMM, \hyperindexformat{\see{Fast Multipole Method}}{543}
   \item FOM, 
-		\hyperindexformat{\see{Full Orthogonalization Method}}{537}
-  \item foreground process, \hyperpage{411}
+		\hyperindexformat{\see{Full Orthogonalization Method}}{543}
+  \item foreground process, \hyperpage{417}
   \item fork-join, \hyperpage{95, 96}
   \item Fortran
-    \subitem array layout, \hyperpage{488--489}
-    \subitem iso C bindings, \hyperpage{485}
+    \subitem array layout, \hyperpage{495--496}
+    \subitem iso C bindings, \hyperpage{492}
     \subitem language standard, \hyperpage{183}
     \subitem type
-      \subsubitem identifier, \hyperpage{184}
+      \subsubitem identifier, \hyperpage{185}
   \item Fortress, \hyperpage{121}
   \item FPGA, 
-		\hyperindexformat{\see{Field-Programmable Gate Array}}{537}
-  \item FPU, \hyperindexformat{\see{Floating Point Unit}}{537}
-  \item \acl {FSB} (FSB), \hyperpage{21}
-  \item FSA, \hyperindexformat{\see{Finite State Automaton}}{537}
-  \item FSB, \hyperindexformat{\see{Front-Side Bus}}{537}
+		\hyperindexformat{\see{Field-Programmable Gate Array}}{543}
+  \item FPU, \hyperindexformat{\see{Floating Point Unit}}{543}
+  \item \acl {FSB} (FSB), \hyperpage{22}
+  \item FSA, \hyperindexformat{\see{Finite State Automaton}}{543}
+  \item FSB, \hyperindexformat{\see{Front-Side Bus}}{543}
   \item \acl {FOM} (FOM), \hyperpage{247}
   \item fully associative, \hyperpage{32}
   \item fully connected, \hyperpage{130}
@@ -538,22 +542,22 @@
     \subitem Jordan, \hyperpage{209}
   \item Gauss-Seidel, \hyperpage{239}
   \item gcc, \hyperpage{104}
-    \subitem memory checking, \hyperpage{469}
-  \item gdb, \hyperpage{472--481}
+    \subitem memory checking, \hyperpage{476}
+  \item gdb, \hyperpage{479--488}
   \item \acl {GPGPU} (GPGPU), \hyperpage{145}
   \item \acl {GMRES} (GMRES), \hyperpage{252}
   \item ghost region, \hyperpage{122}, \hyperpage{277}, 
-		\hyperpage{306, 307}, \hyperpage{364}
-  \item git, \hyperpage{442--450}
+		\hyperpage{306, 307}, \hyperpage{367}
+  \item git, \hyperpage{449--457}
   \item Global Arrays, \hyperpage{122}
   \item GMRES, 
-		\hyperindexformat{\see{Generalized Minimum Residual}}{537}
-  \item GNU, \hyperpage{472}
-    \subitem gdb, \hyperindexformat{\see{gdb}}{472}, 
-		\hyperindexformat{\see{gdb}}{538}
-    \subitem gnuplot, \hyperindexformat{\see{gnuplot}}{461}
-    \subitem Make, \hyperindexformat{\see{Make}}{426}
-  \item gnuplot, \hyperpage{461}
+		\hyperindexformat{\see{Generalized Minimum Residual}}{543}
+  \item GNU, \hyperpage{479}
+    \subitem gdb, \hyperindexformat{\see{gdb}}{479}, 
+		\hyperindexformat{\see{gdb}}{544}
+    \subitem gnuplot, \hyperindexformat{\see{gnuplot}}{468}
+    \subitem Make, \hyperindexformat{\see{Make}}{433}
+  \item gnuplot, \hyperpage{468}
   \item Goodyear
     \subitem MPP, \hyperpage{85}
   \item Google, \hyperpage{124}, \hyperpage{280}, \hyperpage{350}
@@ -561,37 +565,38 @@
   \item Goto
     \subitem Kazushige, \hyperpage{271}
   \item GPGPU, 
-		\hyperindexformat{\see{General Purpose Graphics Processing Unit}}{537}
-  \item GPU, \hyperindexformat{\see{Graphics Processing Unit}}{537}
-  \item Gram-Schmidt, \hyperpage{248}, \hyperpage{368--370}
-    \subitem modified, \hyperpage{248}, \hyperpage{369}
+		\hyperindexformat{\see{General Purpose Graphics Processing Unit}}{543}
+  \item GPU, \hyperindexformat{\see{Graphics Processing Unit}}{543}
+  \item gradient descent, \hyperpage{385}
+  \item Gram-Schmidt, \hyperpage{248}, \hyperpage{372--374}
+    \subitem modified, \hyperpage{248}, \hyperpage{373}
   \item granularity, \hyperpage{93--94}, \hyperpage{97}
   \item Grape computer, \hyperpage{144}, \hyperpage{357}
   \item graph
     \subitem adjacency, \hyperpage{234}, 
-		\hyperindexformat{\see{adjacency graph}}{382}
+		\hyperindexformat{\see{adjacency graph}}{390}
     \subitem bipartite, \hyperpage{347}
-    \subitem colouring, \hyperpage{297, 298}, \hyperpage{382}
-    \subitem directed, \hyperpage{380}
+    \subitem colouring, \hyperpage{297, 298}, \hyperpage{389}
+    \subitem directed, \hyperpage{387}
     \subitem Laplacian, \hyperpage{152}, \hyperpage{347}, 
-		\hyperpage{386}
+		\hyperpage{393}
     \subitem random, \hyperpage{350}
     \subitem social, \hyperpage{343}
-    \subitem theory, \hyperpage{380--388}
+    \subitem theory, \hyperindexformat{\textbf}{387--395}
       \subsubitem of parallel computers, \hyperpage{130}
     \subitem undirected, \hyperpage{130}, \hyperpage{228}, 
-		\hyperpage{380}
+		\hyperpage{387}
   \item graph theory
     \subitem of sparse matrices, \hyperpage{227}
-  \item \acl {GPU} (GPU), \hyperpage{57}, \hyperpage{86}, 
+  \item \acl {GPU} (GPU), \hyperpage{58}, \hyperpage{86}, 
 		\hyperpage{145--148}, \hyperpage{162}, \hyperpage{174}, 
 		\hyperpage{281}, \hyperpage{302}
   \item Gray code, \hyperpage{135}
-  \item \texttt  {grep}, \hyperpage{405}
+  \item \texttt  {grep}, \hyperpage{411}
   \item grid (CUDA), \hyperpage{146}
   \item grid computing, \hyperpage{156}
-  \item \texttt  {groups}, \hyperpage{404}
-  \item GS, \hyperindexformat{\see{Gram-Schmidt}}{537}
+  \item \texttt  {groups}, \hyperpage{426}
+  \item GS, \hyperindexformat{\see{Gram-Schmidt}}{543}
   \item guard digit, \hyperindexformat{\textbf}{175}, \hyperpage{178}
   \item Gustafson's law, \hyperpage{78--79}
 
@@ -603,29 +608,29 @@
   \item halfbandwidth, \hyperpage{231}
     \subitem left, \hyperpage{224}
     \subitem right, \hyperpage{224}
-  \item halo, \hyperindexformat{\see{ghost region}}{538}
+  \item halo, \hyperindexformat{\see{ghost region}}{544}
   \item handshake protocol, \hyperpage{116}
   \item Harwell-Boeing matrix format, \hyperpage{226}
   \item hash function, \hyperpage{160}
-  \item HDFS, \hyperindexformat{\see{Hadoop File System}}{537}
-  \item \texttt  {head}, \hyperpage{400}
+  \item HDFS, \hyperindexformat{\see{Hadoop File System}}{543}
+  \item \texttt  {head}, \hyperpage{406}
   \item heap, \hyperpage{94}
   \item heat equation, \hyperpage{197}, \hyperpage{204}
   \item Hessenberg matrix, \hyperpage{246}
   \item heterogeneous computing, \hyperpage{163--164}
-  \item hg, \hyperindexformat{\see{mercurial}}{442}
+  \item hg, \hyperindexformat{\see{mercurial}}{449}
   \item \acl {HPF} (HPF), \hyperpage{117}, \hyperpage{119}
   \item \acl {HPC} (HPC), \hyperpage{122}, \hyperpage{155}
   \item HITS, \hyperpage{351}
   \item Horner's rule, \hyperpage{305}, \hyperpage{353}
   \item host process, \hyperpage{144}
   \item host processor, \hyperpage{163}
-  \item Householder reflectors, \hyperpage{373}
+  \item Householder reflectors, \hyperpage{377}
     \subitem in LU factorization, \hyperpage{215}
-  \item HPC, \hyperindexformat{\see{High-Performance Computing}}{537}
-  \item HPF, \hyperindexformat{\see{High Performance Fortran}}{537}
+  \item HPC, \hyperindexformat{\see{High-Performance Computing}}{543}
+  \item HPF, \hyperindexformat{\see{High Performance Fortran}}{543}
   \item http
-    \subitem as transport, \hyperpage{449}
+    \subitem as transport, \hyperpage{457}
   \item hybrid computing, \hyperpage{115--116}
   \item Hyperbolic PDEs, \hyperpage{196}
   \item hypercube, \hyperpage{134}
@@ -637,19 +642,19 @@
 
   \item I/O subsystem, \hyperpage{20}
   \item IBM, \hyperpage{121}, \hyperpage{130}, \hyperpage{169}, 
-		\hyperpage{171}, \hyperpage{458}
+		\hyperpage{171}, \hyperpage{465}
     \subitem BlueGene, \hyperpage{90}, \hyperpage{140}, 
 		\hyperpage{162, 163}
     \subitem Power 5, \hyperpage{17}
     \subitem Power series, \hyperpage{87}
     \subitem Power6, \hyperpage{169}
-    \subitem Roadrunner, \hyperpage{66}, \hyperpage{144}
+    \subitem Roadrunner, \hyperpage{67}, \hyperpage{144}
   \item IBVP, 
-		\hyperindexformat{\see{Initial Boundary Value Problem}}{537}
+		\hyperindexformat{\see{Initial Boundary Value Problem}}{543}
   \item ICL
     \subitem DAP, \hyperpage{84}, \hyperpage{144}
   \item IDE, 
-		\hyperindexformat{\see{Integrated Development Environment}}{537}
+		\hyperindexformat{\see{Integrated Development Environment}}{543}
   \item idle, \hyperpage{149}
   \item idle time, \hyperpage{113}
   \item IEC 559, \hyperindexformat{\see{IEEE 754}}{172}
@@ -658,15 +663,15 @@
     \subitem revision 2008, \hyperpage{175}
     \subitem rounding behaviour, \hyperpage{174}
   \item ILP, 
-		\hyperindexformat{\see{Instruction Level Parallelism}}{537}
-  \item ILU, \hyperindexformat{\see{Incomplete LU}}{537}
+		\hyperindexformat{\see{Instruction Level Parallelism}}{543}
+  \item ILU, \hyperindexformat{\see{Incomplete LU}}{543}
   \item imbalance
     \subitem load, \hyperpage{124}
   \item incidence matrix, \hyperpage{351}
   \item \acl {ILU} (ILU), \hyperpage{241}
   \item Incomplete LU (ILU)
     \subitem parallel, \hyperpage{298--299}
-  \item independent sets, \hyperpage{382}
+  \item independent sets, \hyperpage{389}
   \item indirect addressing, \hyperpage{227}
   \item {\tt  {Inf}}, \hyperpage{170}
   \item Infiniband, \hyperpage{141}
@@ -674,7 +679,7 @@
   \item \aclp {IBVP} (IBVP), \hyperpage{197}
   \item \acl {IVP} (IVP), \hyperpage{189--195}
   \item inner products, \hyperpage{283--284}
-  \item input redirection, \hyperindexformat{\see{redirection}}{408}
+  \item input redirection, \hyperindexformat{\see{redirection}}{413}
   \item instruction
     \subitem handling
       \subsubitem in-order, \hyperpage{15}
@@ -682,21 +687,21 @@
     \subitem issue, \hyperpage{85}
     \subitem pipeline, \hyperpage{21}
   \item \acl {ILP} (ILP), \hyperpage{14}, \hyperpage{20}, 
-		\hyperpage{65}, \hyperpage{91}
-  \item Intel, \hyperpage{20}, \hyperpage{37, 38}, \hyperpage{86}, 
+		\hyperpage{66}, \hyperpage{91}
+  \item Intel, \hyperpage{20}, \hyperpage{37}, \hyperpage{86}, 
 		\hyperpage{162}
     \subitem 80287 co-processor, \hyperpage{186}
-    \subitem compiler, \hyperpage{516}
+    \subitem compiler, \hyperpage{522}
     \subitem Haswell, \hyperpage{17}
     \subitem i860, \hyperpage{87}, \hyperpage{144}
     \subitem Itanium, \hyperpage{24}, \hyperpage{162}
-    \subitem Ivy Bridge, \hyperpage{362}
+    \subitem Ivy Bridge, \hyperpage{365}
     \subitem MIC, \hyperpage{164}
     \subitem Paragon, \hyperpage{144}
     \subitem Sandy Bridge, \hyperpage{14}, \hyperpage{17}, 
 		\hyperpage{26}
     \subitem Woodcrest, \hyperpage{32}
-    \subitem Xeon Phi, \hyperpage{40, 41}, \hyperpage{85}, 
+    \subitem Xeon Phi, \hyperpage{40--42}, \hyperpage{85}, 
 		\hyperpage{97}, \hyperpage{103}, \hyperpage{116}, 
 		\hyperpage{144, 145}, \hyperpage{148}
       \subsubitem bandwidth, \hyperpage{145}
@@ -705,20 +710,20 @@
       \subsubitem Knights Mill, \hyperpage{186}
   \item inter-node communication, \hyperpage{116}
   \item Inter-Processor Interrupt, \hyperpage{41}
-  \item interior nodes, \hyperpage{382}
+  \item interior nodes, \hyperpage{389}
   \item interoperability
-    \subitem C to Fortran, \hyperpage{484--491}
+    \subitem C to Fortran, \hyperpage{491--498}
   \item interrupt, \hyperpage{170}, \hyperpage{175}
-    \subitem periodic, \hyperindexformat{\textbf}{66}, \hyperpage{67}
+    \subitem periodic, \hyperindexformat{\textbf}{67}, \hyperpage{67}
   \item intra-node communication, \hyperpage{116}
   \item intrinsics, \hyperpage{34}
   \item inverse
     \subitem iteration, \hyperindexformat{\textbf}{253}
     \subitem matrix, \hyperpage{209}
     \subitem of triangular matrix, \hyperpage{217}
-  \item irreducible, \hyperpage{384}, 
-		\hyperindexformat{\see{reducible}}{538}
-  \item Ising model, \hyperpage{363--364}
+  \item irreducible, \hyperpage{391}, 
+		\hyperindexformat{\see{reducible}}{544}
+  \item Ising model, \hyperpage{366--367}
   \item iso-efficiency curve, \hyperindexformat{\textbf}{80}, 
 		\hyperpage{265}
   \item ispc, \hyperpage{128}
@@ -735,13 +740,14 @@
     \subitem complexity, 253
   \item iterative refinement, \hyperpage{186}, 
 		\hyperindexformat{\textbf}{240}, \hyperpage{241}
-  \item IVP, \hyperindexformat{\see{Initial Value Problem}}{537}
+  \item IVP, \hyperindexformat{\see{Initial Value Problem}}{543}
 
   \indexspace
 
   \item Jacobi method, \hyperpage{238}
+  \item Jacobian, \hyperpage{384}
   \item jitter, \hyperindexformat{\textbf}{67}
-  \item job (unix), \hyperpage{411}
+  \item job (unix), \hyperpage{417}
 
   \indexspace
 
@@ -750,51 +756,59 @@
   \item kernel
     \subitem CUDA, \hyperpage{146}
     \subitem tickless, \hyperindexformat{\textbf}{67}
-  \item {\tt  {kill}}, \hyperpage{411}
+  \item {\tt  {kill}}, \hyperpage{417}
   \item Krylov method, \hyperindexformat{\see{iterative method}}{235}
-  \item ksh, \hyperpage{397}
+  \item ksh, \hyperpage{403}
 
   \indexspace
 
-  \item LAN, \hyperindexformat{\see{Local Area Network}}{537}
+  \item LAN, \hyperindexformat{\see{Local Area Network}}{543}
   \item language
-    \subitem context-free, \hyperpage{390}
-    \subitem context-sensitive, \hyperpage{390}
-    \subitem recursively enumerable, \hyperpage{390}
-    \subitem regular, \hyperpage{390}
+    \subitem context-free, \hyperpage{397}
+    \subitem context-sensitive, \hyperpage{397}
+    \subitem recursively enumerable, \hyperpage{397}
+    \subitem regular, \hyperpage{397}
   \item language interoperability, 
-		\hyperindexformat{\see{interoperability}}{484}
+		\hyperindexformat{\see{interoperability}}{491}
   \item Lapack, \hyperpage{161}
-  \item Laplace equation, \hyperpage{375}, \hyperpage{387}
+  \item Laplace equation, \hyperpage{379}, \hyperpage{394}
   \item large pages, \hyperindexformat{\see{memory, pages, large}}{36}
   \item latency, \hyperpage{22}, \hyperpage{141}, \hyperpage{255}
     \subitem hiding, \hyperpage{23}, \hyperpage{43}
   \item latency hiding, \hyperpage{128}
-  \item {\LaTeX}, \hyperindexformat{\seealso{\TeX}}{492}, 
-		\hyperpage{492--505}
+  \item {\LaTeX}, \hyperindexformat{\seealso{\TeX}}{499}, 
+		\hyperpage{499--512}
   \item \aclp {LBM} (LBM), \hyperpage{174}
-  \item LBM, \hyperindexformat{\see{Lattice Boltzmann Method}}{537}
-  \item leaf nodes, \hyperpage{382}
+  \item LBM, \hyperindexformat{\see{Lattice Boltzmann Method}}{543}
+  \item leaf nodes, \hyperpage{389}
   \item level sets, \hyperpage{234}
   \item lexicographic ordering, \hyperpage{200}, \hyperpage{202}, 
 		\hyperpage{288}
   \item libraries
-    \subitem creating and using, \hyperpage{424--425}
+    \subitem creating and using, \hyperpage{431--432}
   \item {\tt  {limits.h}}, \hyperpage{185}
   \item Linda, \hyperpage{121--122}
-  \item linear algebra, \hyperpage{367--373}
+  \item linear algebra, \hyperindexformat{\textbf}{371--377}
   \item linear array (of processors), \hyperpage{132}
-  \item linker, \hyperpage{424}
+  \item linear system
+    \subitem iterative solution, \hyperindexformat{\textbf}{235}, 
+		\hyperpage{384}
+    \subitem of 2D Poisson equation, \hyperpage{200}
+    \subitem solving
+      \subsubitem in implicit methods, \hyperpage{206}
+      \subsubitem in Newton's method, \hyperpage{384}
+  \item linker, \hyperpage{431}
   \item LINPACK
     \subitem benchmark, \hyperpage{44}
   \item Linpack, \hyperpage{161}
     \subitem benchmark, \hyperpage{50}, \hyperpage{161}
   \item Linux
-    \subitem distributions, \hyperpage{397}
+    \subitem distributions, \hyperpage{403}
     \subitem kernel, \hyperpage{89}
   \item Lisp, \hyperpage{160}
   \item Little's law, \hyperpage{34}
-  \item little-endian, \hyperpage{451}, \hyperpage{458}
+  \item little-endian, \hyperpage{458}, \hyperpage{465}
+  \item lldb, \hyperpage{479}
   \item load
     \subitem balancing, \hyperpage{149--154}
       \subsubitem by diffusion, \hyperpage{152}
@@ -812,19 +826,20 @@
   \item locality, \hyperpage{14}
     \subitem core, \hyperpage{49}
     \subitem in parallel computing, \hyperpage{142--143}
-    \subitem spatial, \hyperpage{46}, \hyperpage{59}, \hyperpage{338}
+    \subitem spatial, \hyperpage{46, 47}, \hyperpage{60}, 
+		\hyperpage{338}
     \subitem temporal, \hyperpage{46}
   \item lock, \hyperpage{97}, \hyperindexformat{\textbf}{99}
   \item loop, \hyperpage{64}
     \subitem dependencies, 
 		\hyperindexformat{\see{data dependencies}}{125}
-    \subitem nested, \hyperpage{56--57}
-    \subitem tiling, \hyperindexformat{\textbf}{57}
+    \subitem nested, \hyperpage{56--58}
+    \subitem tiling, \hyperindexformat{\textbf}{58}
     \subitem unrolling, \hyperindexformat{\textbf}{50}
   \item loop tiling, \hyperpage{300}
   \item loop unrolling, \hyperpage{183}
-  \item LRU, \hyperindexformat{\see{Least Recently Used}}{537}
-  \item \texttt  {ls}, \hyperpage{398}
+  \item LRU, \hyperindexformat{\see{Least Recently Used}}{543}
+  \item \texttt  {ls}, \hyperpage{404}
   \item LU factorization, \hyperindexformat{\textbf}{214--222}
     \subitem block algorithm, \hyperpage{222}
     \subitem computation in parallel
@@ -839,13 +854,13 @@
   \item machine   epsilon, 
 		\hyperindexformat{\see{machine precision}}{172}
   \item machine precision, \hyperpage{172}
-  \item Make, \hyperpage{426--439}
-    \subitem {and \LaTeX}, \hyperpage{438--439}
-    \subitem automatic variables, \hyperindexformat{\textbf}{431}
-    \subitem debugging, \hyperpage{437}
-    \subitem template rules, \hyperpage{431, 432}
+  \item Make, \hyperpage{433--446}
+    \subitem {and \LaTeX}, \hyperpage{445--446}
+    \subitem automatic variables, \hyperindexformat{\textbf}{438}
+    \subitem debugging, \hyperpage{444}
+    \subitem template rules, \hyperpage{438, 439}
   \item {\tt  {malloc}}, \hyperpage{94}
-  \item \texttt  {man}, \hyperpage{399}
+  \item \texttt  {man}, \hyperpage{405}
   \item Mandelbrot set, \hyperpage{93}, \hyperpage{151}
   \item mantissa, \hyperpage{169--172}, \hyperpage{176, 177}
   \item manycore, \hyperpage{146}
@@ -854,15 +869,15 @@
     \subitem sorting, 
 		\hyperindexformat{\see{sorting, with MapReduce}}{159}
   \item Markov
-    \subitem chains, \hyperpage{385}
-    \subitem matrix, \hyperpage{386}
+    \subitem chains, \hyperpage{392}
+    \subitem matrix, \hyperpage{393}
   \item MasPar, \hyperpage{85}
   \item master-worker paradigm, \hyperpage{92}
   \item Matrix
     \subitem vector product, \hyperpage{258--268}
   \item matrix
     \subitem adjacency, \hyperpage{348}, 
-		\hyperindexformat{\see{adjacency matrix}}{382}
+		\hyperindexformat{\see{adjacency matrix}}{390}
     \subitem band storage, \hyperpage{223}
     \subitem bandwidth, \hyperpage{223}
       \subsubitem reduction, \hyperpage{234}
@@ -875,11 +890,11 @@
 		\hyperindexformat{\textbf}{271--273}
       \subsubitem outer-product variant, \hyperpage{274}
       \subsubitem parallel, \hyperpage{271--274}
-      \subsubitem tiling, \hyperpage{59}
+      \subsubitem tiling, \hyperpage{60}
     \subitem nonnegative, \hyperpage{351}
-    \subitem norms, \hyperpage{368}
-      \subsubitem associated, \hyperpage{368}
-    \subitem permutation, \hyperpage{383}
+    \subitem norms, \hyperpage{372}
+      \subsubitem associated, \hyperpage{372}
+    \subitem permutation, \hyperpage{390}
     \subitem reducible, \hyperpage{352}
     \subitem stochastic, \hyperpage{352}
     \subitem storage, cyclic, \hyperpage{269--270}
@@ -888,10 +903,10 @@
     \subitem structurally symmetric, \hyperpage{151}, 
 		\hyperindexformat{\textbf}{228}, \hyperpage{282}
     \subitem tessellation, \hyperpage{275}
-    \subitem transposition, \hyperpage{58}, \hyperpage{62}
+    \subitem transposition, \hyperpage{59}, \hyperpage{62}
     \subitem unit upper triangular, \hyperpage{305}
     \subitem vector product
-      \subsubitem block algorithm, \hyperpage{222}
+      \subsubitem block algorithm, \hyperpage{221}
       \subsubitem reuse analysis, \hyperpage{63--64}
   \item Matrix Market, \hyperpage{226}
     \subitem matrix format, \hyperpage{226}
@@ -904,75 +919,76 @@
 		\hyperindexformat{\see{red-black ordering}}{294}
   \item matrix-matrix product, \hyperpage{271}, \hyperpage{273}
     \subitem Goto implementation, 273
-    \subitem reuse in, \hyperpage{43}
+    \subitem reuse in, \hyperpage{44}
   \item matrix-vector product, \hyperpage{63}
     \subitem sparse, 
 		\hyperindexformat{\see{sparse, matrix-vector product}}{274}
-  \item {\tt  {mcheck}}, \hyperpage{469}
+  \item {\tt  {mcheck}}, \hyperpage{476}
   \item memory
     \subitem access pattern, \hyperpage{28}
     \subitem banks, \hyperpage{35}
     \subitem distributed, \hyperpage{87}
     \subitem distributed shared, \hyperpage{89}
     \subitem hierarchy, \hyperpage{21}
-    \subitem leak, \hyperpage{469}
+    \subitem leak, \hyperpage{476}
     \subitem model, \hyperpage{99}
-    \subitem pages, \hyperpage{31}, \hyperindexformat{\textbf}{35}
-      \subsubitem large, \hyperindexformat{\textbf}{36}, \hyperpage{36}
+    \subitem pages, \hyperpage{32}, \hyperindexformat{\textbf}{36}
+      \subsubitem large, \hyperindexformat{\textbf}{36}, \hyperpage{37}
     \subitem shared, \hyperpage{87}
     \subitem stall, \hyperpage{22}
-    \subitem violations, \hyperpage{468}
-    \subitem virtual, \hyperindexformat{\textbf}{35}
+    \subitem violations, \hyperpage{475}
+    \subitem virtual, \hyperindexformat{\textbf}{36}
     \subitem virtual shared, \hyperpage{89}
-    \subitem wall, \hyperpage{21}, \hyperpage{514}
+    \subitem wall, \hyperpage{21}, \hyperpage{520}
   \item memory model
     \subitem relaxed, \hyperpage{100}
   \item memory-bound, \hyperpage{14}
-  \item mercurial, \hyperpage{442--450}
-  \item Mersenne twister, \hyperpage{363}
+  \item mercurial, \hyperpage{449--457}
+  \item Mersenne twister, \hyperpage{366}
   \item \acl {MPI} (MPI), \hyperpage{109--115}
-  \item Metropolis algorithm, \hyperpage{364}
-  \item MGS, \hyperindexformat{\see{Modified Gram-Schmidt}}{537}
-  \item MIC, \hyperindexformat{\see{Many Integrated Cores}}{537}
+  \item Metropolis algorithm, \hyperpage{367}
+  \item MGS, \hyperindexformat{\see{Modified Gram-Schmidt}}{543}
+  \item MIC, \hyperindexformat{\see{Many Integrated Cores}}{543}
   \item MIMD, 
-		\hyperindexformat{\see{Multiple Instruction Multiple Data}}{537}
+		\hyperindexformat{\see{Multiple Instruction Multiple Data}}{543}
+  \item minimization, \hyperindexformat{\textbf}{384--385}
   \item minimum
     \subitem spanning tree, \hyperpage{255}, \hyperpage{345}
   \item minimum degree ordering, \hyperpage{234}
   \item MIPS, \hyperpage{87}
-  \item \texttt  {mkdir}, \hyperpage{401}
+  \item \texttt  {mkdir}, \hyperpage{407}
   \item MKL, \hyperpage{148}
   \item modified Gramm-Schmidt, 
-		\hyperindexformat{\see{Gram-Schmidt, modified}}{538}
+		\hyperindexformat{\see{Gram-Schmidt, modified}}{544}
   \item Moore's law, \hyperpage{65}
-  \item \texttt  {more}, \hyperpage{400}
-  \item MPI, \hyperindexformat{\see{Message Passing Interface}}{537}
+  \item \texttt  {more}, \hyperpage{406}
+  \item MPI, \hyperindexformat{\see{Message Passing Interface}}{543}
     \subitem MPI 3.0 draft, \hyperpage{113}
   \item {\tt  {MPI\char 95\discretionary {}{}{}Alltoall}}, 
 		\hyperpage{338}
-  \item MSI, \hyperindexformat{\see{Modified-Shared-Invalid}}{537}
-  \item MTA, \hyperindexformat{\see{Multi-Threaded Architecture}}{537}
+  \item MSI, \hyperindexformat{\see{Modified-Shared-Invalid}}{543}
+  \item MTA, \hyperindexformat{\see{Multi-Threaded Architecture}}{543}
   \item multi-colouring, \hyperpage{297}
   \item \acl {MTA} (MTA), \hyperpage{143}
   \item multi-threading, \hyperpage{103}, \hyperpage{143}
-  \item multicore, \hyperpage{21}, \hyperpage{27}, 
-		\hyperindexformat{\textbf}{36--41}, \hyperpage{65}, 
+  \item multicore, \hyperpage{21}, \hyperpage{28}, 
+		\hyperindexformat{\textbf}{37--41}, \hyperpage{66}, 
 		\hyperpage{88}, \hyperpage{95}, \hyperpage{221}, 
 		\hyperpage{309}
-    \subitem motivated by power, \hyperpage{65}
+    \subitem motivated by power, \hyperpage{66}
   \item multigrid, \hyperpage{246}
     \subitem smoother, \hyperpage{240}
   \item \acl {MIMD} (MIMD), \hyperpage{86--87}
   \item multitasking, \hyperpage{95}
-  \item MUMPS, \hyperpage{513}
-  \item \texttt  {mv}, \hyperpage{399}
+  \item MUMPS, \hyperpage{519}
+  \item \texttt  {mv}, \hyperpage{405}
 
   \indexspace
 
   \item $n_{1/2}$, \hyperpage{17}
-  \item N-body problems, \hyperpage{355--359}
+  \item N-body problems, \hyperpage{355--362}
   \item NaN, \hyperindexformat{\textbf}{174--175}
-    \subitem programming language support, 185
+    \subitem programming language support, 186
     \subitem quiet, \hyperpage{175}
     \subitem signalling, \hyperpage{175}
   \item {\tt  {NaN}}, \hyperpage{170}
@@ -982,56 +998,59 @@
   \item nested dissection, \hyperpage{234}, \hyperpage{350}
   \item nested dissection ordering, \hyperpage{288--294}
   \item Neumann boundary condition, \hyperpage{199}
-  \item Newton method, \hyperpage{242}
+  \item Newton's method, \hyperpage{242}, 
+		\hyperindexformat{\textbf}{384}
+    \subitem and linear system solving, 
+		\hyperindexformat{\see{linear system, solving}}{384}
     \subitem inexact, \hyperpage{241}
-  \item nm, \hyperpage{484}
-  \item {\tt  {nm}}, \hyperpage{424}
-  \item node, \hyperpage{41}, \hyperpage{116}, \hyperpage{133}
-  \item nodes, \hyperpage{380}
+  \item nm, \hyperpage{491}
+  \item {\tt  {nm}}, \hyperpage{431}
+  \item node, \hyperpage{42}, \hyperpage{116}, \hyperpage{133}
+  \item nodes, \hyperpage{387}
   \item non-blocking communication, \hyperpage{109}, 
 		\hyperpage{112, 113}, \hyperpage{129}
   \item non-local operation, \hyperpage{113}
-  \item \acl {NUMA} (NUMA), \hyperpage{41}, \hyperpage{88}, 
+  \item \acl {NUMA} (NUMA), \hyperpage{42}, \hyperpage{88}, 
 		\hyperpage{142}
-  \item norm, \hyperpage{367}
+  \item norm, \hyperpage{371}
   \item NP-complete, \hyperpage{159}
-  \item null termination, \hyperpage{489}
-  \item NUMA, \hyperindexformat{\see{Non-Uniform Memory Access}}{537}
+  \item null termination, \hyperpage{496}
+  \item NUMA, \hyperindexformat{\see{Non-Uniform Memory Access}}{543}
   \item NVidia, \hyperpage{144}
     \subitem Tesla, \hyperpage{174}
 
   \indexspace
 
-  \item object file, \hyperpage{424}, \hyperpage{484}
+  \item object file, \hyperpage{431}, \hyperpage{491}
   \item octtree, \hyperpage{357}
     \subitem hashed, \hyperpage{358}
-  \item odd-even transposition sort, \hyperpage{333}, 
-		\hyperindexformat{\textbf}{333--334}
-  \item ODE, \hyperindexformat{\see{Ordinary Diffential Equation}}{537}
+  \item odd-even transposition sort, 
+		\hyperindexformat{\textbf}{334--335}
+  \item ODE, \hyperindexformat{\see{Ordinary Diffential Equation}}{543}
   \item offloading, \hyperpage{148}
   \item Omega network, \hyperindexformat{\see{butterfly exchange}}{136}
   \item one-sided communication, \hyperpage{114--115}, \hyperpage{122}, 
 		\hyperpage{124}
-  \item OpenMP, \hyperpage{57}, \hyperpage{103--105}
+  \item OpenMP, \hyperpage{58}, \hyperpage{103--105}
     \subitem version 4, \hyperpage{86}
-  \item \acl {OS} (OS), \hyperpage{66}, \hyperpage{397}
-  \item option pricing, \hyperpage{361}
-  \item order, \hyperpage{374}
+  \item \acl {OS} (OS), \hyperpage{67}, \hyperpage{403}
+  \item option pricing, \hyperpage{364}
+  \item order, \hyperpage{378}
   \item \acl {ODE} (ODE), \hyperpage{189--195}
-  \item OS, \hyperindexformat{\see{Operating System}}{537}
+  \item OS, \hyperindexformat{\see{Operating System}}{543}
   \item out-of-order, 
 		\hyperindexformat{\see{instruction, handling, out-of-order}}{15}
   \item out-of-order execution, \hyperpage{124}
   \item output dependency, 
 		\hyperindexformat{\see{data dependencies}}{125}
-  \item output redirection, \hyperindexformat{\see{redirection}}{408}
+  \item output redirection, \hyperindexformat{\see{redirection}}{413}
   \item overdecomposition, \hyperpage{94}, \hyperpage{124}, 
 		\hyperpage{151}, \hyperpage{269}
   \item overflow, \hyperpage{167}, \hyperindexformat{\textbf}{170}, 
-		\hyperpage{174}, \hyperpage{464}
+		\hyperpage{174}, \hyperpage{471}
   \item overflow bit, \hyperpage{167}
   \item overhead, \hyperpage{73}
-  \item overlays, \hyperpage{35}
+  \item overlays, \hyperpage{36}
   \item oversubscription, \hyperpage{140}
   \item owner computes, \hyperpage{149}
 
@@ -1041,10 +1060,10 @@
   \item PageRank, \hyperpage{280}, \hyperpage{350}, 
 		\hyperindexformat{\textbf}{351--353}
   \item pages
-    \subitem memory, \hyperindexformat{\see{memory, pages}}{35}
+    \subitem memory, \hyperindexformat{\see{memory, pages}}{36}
   \item Parabolic PDEs, \hyperpage{196}
   \item parallel fraction, \hyperpage{77}
-  \item parallel prefix, \hyperindexformat{\see{prefix operation}}{538}
+  \item parallel prefix, \hyperindexformat{\see{prefix operation}}{544}
   \item \acl {PRAM} (PRAM), \hyperpage{76}
   \item parallelism
     \subitem average, \hyperpage{74}
@@ -1056,41 +1075,42 @@
   \item parallelization
     \subitem incremental, \hyperpage{104}
   \item parameter sweep, \hyperpage{93}
-  \item partial derivates, \hyperpage{375}
+  \item partial derivates, \hyperpage{379}
   \item \acl {PDE} (PDE), \hyperpage{196--208}
-  \item partial differential equations, \hyperpage{375--376}
+  \item partial differential equations, \hyperpage{379}, 
+		\hyperindexformat{\textbf}{379--380}
   \item partial ordering, \hyperpage{311}
   \item partial pivoting, \hyperpage{213}
   \item \acl {PGAS} (PGAS), \hyperpage{89}, \hyperpage{117--122}
-  \item path (graph theory), \hyperpage{381}
-  \item {\tt  {patsubst}}, \hyperpage{433}
+  \item path (graph theory), \hyperpage{388}
+  \item {\tt  {patsubst}}, \hyperpage{440}
   \item PCI bus, \hyperpage{145}
   \item PCI-X, \hyperpage{148}
   \item PCI-X bus, \hyperpage{147}
-  \item PDE, \hyperindexformat{\see{Partial Diffential Equation}}{537}
+  \item PDE, \hyperindexformat{\see{Partial Diffential Equation}}{543}
   \item peak performance, \hyperpage{19}, \hyperpage{44}, 
 		\hyperpage{50}
   \item penta-diagonal, \hyperpage{201}
   \item permutation, \hyperpage{233}
   \item Perron vector, \hyperpage{351}, \hyperpage{353}
-  \item Perron-Frobenius theorem, \hyperpage{372}
+  \item Perron-Frobenius theorem, \hyperpage{376}
   \item PGAS, 
-		\hyperindexformat{\see{Partitioned Global Address Space}}{537}
-  \item physical addresses, \hyperpage{31}
+		\hyperindexformat{\see{Partitioned Global Address Space}}{543}
+  \item physical addresses, \hyperpage{32}
   \item pipeline, \hyperindexformat{\textbf}{16--19}, 
-		\hyperpage{50--51}
-    \subitem depth, \hyperpage{21}, \hyperpage{65}
+		\hyperpage{50--52}
+    \subitem depth, \hyperpage{21}, \hyperpage{66}
     \subitem flush, \hyperpage{21}
     \subitem length, \hyperpage{21}
     \subitem processor, \hyperpage{85}
     \subitem stall, \hyperpage{21}
-  \item pivoting, \hyperpage{211--213}, \hyperpage{218--219}
+  \item pivoting, \hyperpage{211--213}, \hyperpage{217--219}
     \subitem diagonal, \hyperpage{213}
     \subitem full, \hyperpage{213}
     \subitem partial, \hyperpage{213}
   \item pivots, \hyperpage{211}
   \item point-to-point   communication, \hyperpage{109}
-  \item Poisson equation, \hyperpage{197}, \hyperpage{375}
+  \item Poisson equation, \hyperpage{197}, \hyperpage{379}
   \item polymial
     \subitem iterative methods, 
 		\hyperindexformat{\see{iterative methods, polynomial}}{244}
@@ -1098,22 +1118,22 @@
     \subitem characteristic, \hyperpage{244}
     \subitem iterative method, 
 		\hyperindexformat{\see{iterative method, polynomial}}{243}
-  \item \texttt  {posix\_memalign}, \hyperindexformat{\textbf}{516}
+  \item \texttt  {posix\_memalign}, \hyperindexformat{\textbf}{522}
   \item power
-    \subitem consumption, \hyperpage{64--66}
+    \subitem consumption, \hyperpage{65--67}
     \subitem efficiency, \hyperpage{85}
-    \subitem wall, \hyperpage{65}
+    \subitem wall, \hyperpage{66}
   \item power method, \hyperindexformat{\textbf}{253}, 
-		\hyperpage{351, 352}, \hyperpage{370}
+		\hyperpage{351, 352}, \hyperpage{374}
   \item PowerPC, \hyperpage{86}
   \item PRAM, 
-		\hyperindexformat{\see{Parallel Random Access Machine}}{537}
+		\hyperindexformat{\see{Parallel Random Access Machine}}{543}
   \item precision
     \subitem double, \hyperindexformat{\see{double precision}}{172}
     \subitem extended, 
 		\hyperindexformat{\see{extended     precision}}{176}
     \subitem machine, \hyperindexformat{\see{machine precision}}{172}
-    \subitem of the intermediate result, \hyperpage{183}
+    \subitem of the intermediate result, \hyperpage{184}
     \subitem single, \hyperindexformat{\see{single precision}}{172}
   \item preconditioner, \hyperpage{240--243}
   \item predicate, \hyperpage{344}
@@ -1121,11 +1141,11 @@
     \subitem data stream, \hyperpage{33}
     \subitem distance, \hyperpage{34}
     \subitem hardware, \hyperpage{34}
-  \item prefetching, \hyperpage{20}
+  \item prefetching, \hyperpage{21}
   \item prefix operation, \hyperpage{304}, \hyperpage{336}, 
-		\hyperpage{391--393}
+		\hyperindexformat{\textbf}{398--400}
   \item prefix operations
-    \subitem sparse matrix vector product, \hyperpage{392--393}
+    \subitem sparse matrix vector product, \hyperpage{399--400}
   \item Pregel, \hyperpage{124}
   \item Prim's algorithm, \hyperpage{345}
   \item prime number
@@ -1134,52 +1154,55 @@
   \item probability vector, \hyperpage{352}
   \item process, \hyperpage{94}
     \subitem affinity, \hyperindexformat{\see{affinity}}{101}
-    \subitem numbers, \hyperpage{411}
+    \subitem numbers, \hyperpage{417}
   \item processor
     \subitem graph, \hyperpage{152}
   \item program counter, \hyperpage{13}, \hyperpage{95}, 
 		\hyperpage{103}
   \item program order, \hyperpage{124}
   \item protein interactions, \hyperpage{343}
-  \item \texttt  {ps}, \hyperpage{411}
+  \item \texttt  {ps}, \hyperpage{417}
   \item pseudo-random numbers, 
-		\hyperindexformat{\see{random     numbers}}{362}
+		\hyperindexformat{\see{random     numbers}}{365}
   \item pthreads, \hyperpage{96--97}
-  \item purify, \hyperpage{477}
+  \item purify, \hyperpage{484}
   \item PVM, \hyperpage{114}
-  \item \texttt  {pwd}, \hyperpage{400}
+  \item \texttt  {pwd}, \hyperpage{406}
 
   \indexspace
 
   \item QR
     \subitem method, \hyperpage{254}
-  \item QR factorization, \hyperpage{369}
+  \item QR factorization, \hyperpage{373}
   \item Quicksort, \hyperindexformat{\see{sorting, quicksort}}{332}, 
 		\hyperpage{335--337}, \hyperpage{339}
+  \item quicksort
+    \subitem sequential complexity of, \hyperpage{336}
 
   \indexspace
 
-  \item race condition, \hyperpage{40}, \hyperpage{98, 99}
+  \item race condition, \hyperpage{41}, \hyperindexformat{\textbf}{98}, 
+		\hyperpage{99}
   \item radix point, \hyperpage{168}
   \item Radix sort, \hyperindexformat{\see{sorting, radix sort}}{332}
-  \item random numbers, \hyperpage{362--363}
-    \subitem generator, \hyperpage{362--363}
-      \subsubitem lagged Fibonacci, \hyperpage{362}
-      \subsubitem linear congruential, \hyperpage{362}
+  \item random numbers, \hyperpage{365--366}
+    \subitem generator, \hyperpage{365--366}
+      \subsubitem lagged Fibonacci, \hyperpage{365}
+      \subsubitem linear congruential, \hyperpage{365}
   \item random placement, \hyperpage{124}, \hyperpage{153}
-  \item Ranger, \hyperpage{41}
+  \item Ranger, \hyperpage{42}
   \item rate
     \subitem computational, \hyperpage{82}
-  \item RDMA, \hyperindexformat{\see{Remote Direct Memory Access}}{537}
+  \item RDMA, \hyperindexformat{\see{Remote Direct Memory Access}}{543}
   \item re-association, \hyperpage{183}
   \item real numbers
     \subitem representation of, \hyperpage{165}
   \item recursive doubling, \hyperpage{19}, \hyperpage{29}, 
 		\hyperpage{298}, \hyperindexformat{\textbf}{303--304}
-  \item Red Hat, \hyperpage{397}
+  \item Red Hat, \hyperpage{403}
   \item red-black ordering, \hyperpage{202}, \hyperpage{240}, 
 		\hyperpage{294--297}
-  \item redirection, \hyperpage{406}, \hyperindexformat{\textbf}{408}
+  \item redirection, \hyperpage{412}, \hyperindexformat{\textbf}{414}
   \item reduce-scatter, \hyperpage{258}, \hyperpage{265, 266}, 
 		\hyperpage{282}
   \item reducible, \hyperpage{228}
@@ -1202,7 +1225,7 @@
   \item \acl {RDMA} (RDMA), \hyperpage{114}
   \item remote method invocation, \hyperpage{122}
   \item remote procedure call, \hyperpage{154}
-  \item repository, \hyperpage{440}
+  \item repository, \hyperpage{447}
   \item representation error
     \subitem absolute, \hyperpage{171}
     \subitem relative, \hyperpage{171}
@@ -1211,12 +1234,12 @@
   \item residual, \hyperpage{236}
   \item resource contention, \hyperpage{83}
   \item revision control   systems, 
-		\hyperindexformat{\see{source code control}}{440}
-  \item Riemann sums, \hyperpage{361}
+		\hyperindexformat{\see{source code control}}{447}
+  \item Riemann sums, \hyperpage{364}
   \item ring network, \hyperpage{132}
-  \item roofline model, \hyperpage{44}
+  \item roofline model, \hyperpage{44--46}
   \item root
-    \subitem priviliges, \hyperpage{404}
+    \subitem priviliges, \hyperpage{410}, \hyperpage{426}
   \item round-off error analysis, \hyperpage{175--182}
     \subitem in parallel computing, \hyperpage{182}
   \item round-robin
@@ -1227,15 +1250,15 @@
   \item routing
     \subitem packet, \hyperpage{137}
     \subitem tables, \hyperpage{141}
-  \item row-major, \hyperpage{488}
+  \item row-major, \hyperpage{495}
 
   \indexspace
 
   \item Samplesort, \hyperindexformat{\see{sorting, samplesort}}{332}, 
 		\hyperindexformat{\textbf}{339--340}
   \item sampling, \hyperpage{339}
-  \item SAN, \hyperindexformat{\see{Storage Area Network}}{537}
-  \item SAS, \hyperindexformat{\see{Software As a Service}}{537}
+  \item SAN, \hyperindexformat{\see{Storage Area Network}}{543}
+  \item SAS, \hyperindexformat{\see{Software As a Service}}{543}
   \item satisfyability, \hyperpage{71}
   \item scalability, \hyperpage{79--82}
     \subitem strong, \hyperpage{79}, \hyperpage{263}
@@ -1250,68 +1273,69 @@
     \subitem fair-share, \hyperpage{159}
     \subitem job, \hyperpage{158}
     \subitem static, \hyperpage{105}, \hyperpage{150}
-  \item Scons, \hyperpage{426}
+  \item Scons, \hyperpage{433}
   \item search direction, \hyperpage{248}, \hyperpage{252}
-  \item \texttt  {sed}, \hyperpage{406}
-  \item segmentation fault, \hyperpage{475}
-  \item segmentation violation, \hyperpage{468}
+  \item \texttt  {sed}, \hyperpage{412}
+  \item segmentation fault, \hyperpage{482}
+  \item segmentation violation, \hyperpage{475}
   \item semaphore, \hyperpage{99}
   \item separable problem, \hyperpage{241}
   \item separator, \hyperpage{288}, \hyperpage{350}
   \item Sequent Symmetry, \hyperpage{38}
-  \item sequential complexity, \hyperpage{333}
+  \item sequential complexity, 
+		\hyperindexformat{\see{complexity, sequential}}{333}
   \item sequential consistency, \hyperpage{100}, \hyperpage{103}, 
 		\hyperpage{311}
   \item sequential fraction, \hyperpage{77}
   \item serialized execution, \hyperpage{106}
-  \item setuid, \hyperpage{404}
-  \item SFC, \hyperindexformat{\see{Space-Filling Curve}}{537}
-  \item SGD, \hyperindexformat{\see{Stochastic Gradient Descent}}{537}
+  \item setuid, \hyperpage{410}
+  \item SFC, \hyperindexformat{\see{Space-Filling Curve}}{543}
+  \item SGD, \hyperindexformat{\see{Stochastic Gradient Descent}}{543}
   \item SGE, \hyperpage{159}
   \item SGI, \hyperpage{143}
     \subitem UV, \hyperpage{89}
-  \item sh, \hyperpage{397}
-  \item shared libraries, \hyperpage{424}
-  \item shell, \hyperpage{397}
-    \subitem command history, \hyperpage{437}
-    \subitem startup files, \hyperindexformat{\textbf}{418}
+  \item sh, \hyperpage{403}
+  \item shared libraries, \hyperpage{431}
+  \item shell, \hyperpage{403}
+    \subitem command history, \hyperpage{444}
+    \subitem startup files, \hyperindexformat{\textbf}{424}
   \item shift-and-inverse
     \subitem see{iteration, shift-and-inverse}, \hyperpage{253}
   \item shortest path
-    \subitem all-pairs, \hyperpage{343}
-    \subitem single source, \hyperpage{343}
+    \subitem all-pairs, \hyperpage{343}, \hyperpage{389}
+    \subitem single source, \hyperpage{343}, \hyperpage{389}
   \item side effects, \hyperpage{161}
-  \item side-effects, \hyperpage{465}
+  \item side-effects, \hyperpage{472}
   \item sign bit, \hyperpage{166}, \hyperpage{169}
   \item significant, \hyperpage{168, 169}
   \item significant digits, \hyperpage{177}
   \item SIMD, 
-		\hyperindexformat{\see{Single Instruction Multiple Data}}{537}
+		\hyperindexformat{\see{Single Instruction Multiple Data}}{543}
     \subitem lanes, \hyperindexformat{\textbf}{86}
-    \subitem width, \hyperpage{44}, \hyperpage{128}
+    \subitem width, \hyperpage{46}, \hyperpage{128}
   \item \acl {SSE} (SSE), \hyperpage{86}, \hyperpage{144}, 
 		\hyperpage{358}
   \item SIMT, 
-		\hyperindexformat{\see{Single Instruction Multiple Thread}}{537}
+		\hyperindexformat{\see{Single Instruction Multiple Thread}}{543}
   \item \acl {SIMD} (SIMD), \hyperpage{128}
   \item \acl {SIMT} (SIMT), \hyperpage{146}
   \item single precision, \hyperpage{147}
   \item \acl {SPMD} (SPMD), \hyperpage{86}, \hyperpage{128}
   \item skyline storage, \hyperpage{231}
   \item Slurm, \hyperpage{159}
-  \item SM, \hyperindexformat{\see{Streaming Multiprocessor}}{537}
+  \item SM, \hyperindexformat{\see{Streaming Multiprocessor}}{543}
   \item small world, \hyperpage{350}
   \item smoothers, \hyperpage{246}
-  \item SMP, \hyperindexformat{\see{Symmetric Multi Processing}}{537}
-  \item SMT, \hyperindexformat{\see{Symmetric Multi Threading}}{537}
-  \item snooping, \hyperpage{39}, \hyperindexformat{\textbf}{40}, 
+  \item SMP, \hyperindexformat{\see{Symmetric Multi Processing}}{543}
+  \item SMT, \hyperindexformat{\see{Symmetric Multi Threading}}{543}
+  \item snooping, \hyperindexformat{\textbf}{40}, \hyperpage{40}, 
 		\hyperpage{132}
-  \item SOA, \hyperindexformat{\see{Structure-Of-Arrays}}{537}
-  \item socket, \hyperpage{26}, \hyperpage{37}, \hyperpage{41}, 
+  \item SOA, \hyperindexformat{\see{Structure-Of-Arrays}}{543}
+  \item socket, \hyperpage{27}, \hyperpage{37}, \hyperpage{41}, 
 		\hyperindexformat{\textbf}{41--42}, \hyperpage{116}, 
 		\hyperpage{163}
   \item \acl {SAS} (SAS), \hyperpage{156}
-  \item SOR, \hyperindexformat{\see{Successive Over-Relaxation}}{537}
+  \item SOR, \hyperindexformat{\see{Successive Over-Relaxation}}{543}
   \item sorting, \hyperpage{332--341}
     \subitem bubble sort
       \subsubitem complexity, \hyperpage{333}
@@ -1321,17 +1345,17 @@
     \subitem radix sort, \hyperpage{337--339}
       \subsubitem parallel, \hyperpage{338--339}
     \subitem with MapReduce, \hyperpage{340}
-  \item source code control, \hyperpage{440}
-    \subitem distributed, \hyperpage{440--442}
-  \item source-to-source transformations, \hyperpage{51}
-  \item SP, \hyperindexformat{\see{Streaming Processor}}{537}
+  \item source code control, \hyperpage{447}
+    \subitem distributed, \hyperpage{447--449}
+  \item source-to-source transformations, \hyperpage{52}
+  \item SP, \hyperindexformat{\see{Streaming Processor}}{543}
   \item space-filling curve, \hyperpage{149}, 
 		\hyperindexformat{\textbf}{153--154}
   \item spanning tree, \hyperpage{345}
   \item Spark, \hyperpage{160}
   \item sparse
     \subitem linear algebra, \hyperpage{222--235}
-    \subitem matrix, \hyperpage{199}, \hyperpage{223}, \hyperpage{383}
+    \subitem matrix, \hyperpage{199}, \hyperpage{223}, \hyperpage{390}
       \subsubitem from PDEs, \hyperpage{201}
     \subitem matrix-vector product
       \subsubitem implementation, \hyperpage{226}
@@ -1342,27 +1366,28 @@
       \subsubitem performance of, \hyperpage{285}
   \item spatial locality, 
 		\hyperindexformat{\see{locality,     spatial}}{46}
-  \item SPD, \hyperindexformat{\see{symmetric positive definite}}{537}
+  \item SPD, \hyperindexformat{\see{symmetric positive definite}}{543}
   \item speculative execution, \hyperpage{21}
   \item speedup, \hyperindexformat{\textbf}{72}, \hyperpage{87}
   \item SPMD, 
-		\hyperindexformat{\see{Single Program Multiple Data}}{537}
-  \item SRAM, \hyperindexformat{\see{Static Random-Access Memory}}{537}
-  \item SSE, \hyperindexformat{\see{SIMD Streaming Extensions}}{537}
+		\hyperindexformat{\see{Single Program Multiple Data}}{543}
+  \item SRAM, \hyperindexformat{\see{Static Random-Access Memory}}{543}
+  \item SSE, \hyperindexformat{\see{SIMD Streaming Extensions}}{543}
   \item ssh
-    \subitem as transport, \hyperpage{449}
+    \subitem as transport, \hyperpage{457}
   \item stall, \hyperpage{34}
-  \item Stampede, \hyperpage{41}
-  \item \texttt  {stat}, \hyperpage{399}
-  \item static libraries, \hyperpage{424}
+  \item Stampede, \hyperpage{42}
+  \item \texttt  {stat}, \hyperpage{405}
+  \item static libraries, \hyperpage{431}
   \item \acl {SRAM} (SRAM), \hyperpage{33}
   \item stationary iteration, \hyperpage{237}
-  \item statistical mechanics, \hyperpage{364}
+  \item statistical mechanics, \hyperpage{367}
   \item {\tt  {std::numeric\char 95\discretionary {}{}{}limits}}, 
 		\hyperpage{185}
   \item {\tt  {stdint.h}}, \hyperpage{185}
   \item steady state, \hyperpage{194}, \hyperpage{197}, \hyperpage{204}, 
-		\hyperpage{376}, \hyperpage{512}
+		\hyperpage{380}, \hyperpage{518}
+  \item steepest descent, \hyperpage{385}
   \item stencil, \hyperpage{299}, \hyperpage{306}
     \subitem 7-point, \hyperpage{203}
     \subitem finite difference, \hyperpage{201}, \hyperpage{203}, 
@@ -1372,17 +1397,17 @@
     \subitem of the lower triangular factor, \hyperpage{302}
   \item stencil operations
     \subitem performance of, \hyperpage{300}
-  \item stochastic matrix, \hyperpage{386}
+  \item stochastic matrix, \hyperpage{393}
   \item \acl {SAN} (SAN), \hyperpage{155}
   \item stream operations, \hyperpage{300}
   \item streaming stores, \hyperindexformat{\textbf}{33}
   \item stride, \hyperpage{29}, \hyperpage{47}, \hyperpage{53}
   \item strip mining, \hyperpage{64}
-  \item structurally symmetric, \hyperpage{383}
+  \item structurally symmetric, \hyperpage{390}
   \item \acl {SOA} (SOA), \hyperpage{127}
   \item subdomain, \hyperpage{289}
   \item substructuring, \hyperpage{289}
-  \item Subversion, \hyperpage{440}
+  \item Subversion, \hyperpage{447}
   \item \acl {SOR} (SOR), \hyperpage{239}
   \item summation
     \subitem associativity of, \hyperpage{178}
@@ -1396,17 +1421,18 @@
   \item superstep, \hyperpage{70}
   \item supersteps, \hyperpage{115}, \hyperpage{123}
   \item surface-to-volume, \hyperpage{94}
-  \item swap sort, 
-		\hyperindexformat{\see{odd-even transposition     sort}}{333}
-  \item swapped, \hyperpage{35}
+  \item swapped, \hyperpage{36}
   \item switch, \hyperpage{136}
     \subitem leaf, \hyperpage{138}, \hyperpage{143}
-  \item symbol table, \hyperpage{473}
+  \item symbol table, \hyperpage{480}
   \item \acl {SMP} (SMP), \hyperpage{88}, \hyperpage{132}
   \item Symmetric Multi Threading, 
 		\hyperindexformat{\see{hyperthreading}}{103}
   \item \acl {SPD} (SPD), \hyperpage{219}, \hyperpage{247}, 
 		\hyperpage{252}
+  \item systolic
+    \subitem algorithm, \hyperpage{19}
+    \subitem array, \hyperpage{19}
 
   \indexspace
 
@@ -1415,13 +1441,14 @@
     \subitem Stampede cluster, \hyperpage{140}, \hyperpage{144}
   \item tag, \hyperindexformat{\see{cache, tag}}{26}
   \item tag directory, \hyperindexformat{\textbf}{40}
-  \item \texttt  {tail}, \hyperpage{400}
+  \item \texttt  {tail}, \hyperpage{406}
   \item task, \hyperindexformat{\textbf}{95}
     \subitem parallelism, \hyperpage{91--93}
     \subitem queue, \hyperpage{92}, \hyperpage{102}, \hyperpage{347}
   \item task parallelism, \hyperpage{71}
-  \item Taylor series, \hyperpage{191}, \hyperpage{377--379}
-  \item tcsh, \hyperpage{397}
+  \item Taylor series, \hyperpage{191}, 
+		\hyperindexformat{\textbf}{381--383}
+  \item tcsh, \hyperpage{403}
   \item temporal   locality, 
 		\hyperindexformat{\see{locality, temporal}}{46}
   \item Tera Computer
@@ -1429,8 +1456,8 @@
   \item Terasort, \hyperpage{340}
   \item terasort, \hyperindexformat{\textbf}{340}
   \item ternary arithmetic, \hyperpage{170}
-  \item {\TeX}, \hyperpage{492}
-    \subitem environment variables, \hyperpage{499}
+  \item {\TeX}, \hyperpage{499}
+    \subitem environment variables, \hyperpage{506}
   \item thin client, \hyperpage{156}
   \item thread, \hyperpage{83}, \hyperindexformat{\textbf}{94--103}, 
 		\hyperpage{148}
@@ -1447,38 +1474,38 @@
   \item throughput computing, \hyperpage{145}
   \item Tianhe-1A, \hyperpage{144}
   \item Tianhe-2, \hyperpage{144}
-  \item time slice, \hyperpage{66}
+  \item time slice, \hyperpage{67}
   \item time slicing, \hyperpage{83}, \hyperindexformat{\textbf}{95}
   \item time-stepping
     \subitem explicit, \hyperpage{299}
   \item Titanium, \hyperpage{119}
   \item TLB, 
-		\hyperindexformat{\see{Translation Look-aside Buffer}}{537}
+		\hyperindexformat{\see{Translation Look-aside Buffer}}{543}
     \subitem miss, \hyperpage{36}
   \item TLB shoot-down, \hyperindexformat{\textbf}{41}
   \item token ring, \hyperpage{130}
-  \item \texttt  {top}, \hyperpage{419}
+  \item \texttt  {top}, \hyperpage{425}
   \item top 500, \hyperpage{161--163}
   \item topology, \hyperpage{130}
   \item torus, \hyperpage{133}
     \subitem clusters based on, \hyperpage{140}
-  \item TotalView, \hyperpage{472}
-  \item \texttt  {touch}, \hyperpage{399}, \hyperpage{401}
+  \item TotalView, \hyperpage{479}
+  \item \texttt  {touch}, \hyperpage{405}, \hyperpage{407}
   \item transactional memory, \hyperpage{99}
-  \item \acl {TLB} (TLB), \hyperpage{36}, \hyperpage{522}
-  \item transport, \hyperpage{449}
-  \item tree graph, \hyperpage{382}
+  \item \acl {TLB} (TLB), \hyperpage{36}, \hyperpage{528}
+  \item transport, \hyperpage{457}
+  \item tree graph, \hyperpage{389}
   \item tridiagonal matrix, \hyperpage{199}, \hyperpage{202}
     \subitem LU factorization, \hyperpage{200}
   \item truncation, \hyperpage{171}
   \item truncation error, \hyperpage{192}, \hyperpage{198}
   \item tuple space, \hyperpage{122}
-  \item Turing machine, \hyperpage{390}
+  \item Turing machine, \hyperpage{397}
 
   \indexspace
 
-  \item Ubuntu, \hyperpage{397}
-  \item UMA, \hyperindexformat{\see{Uniform Memory Access}}{537}
+  \item Ubuntu, \hyperpage{403}
+  \item UMA, \hyperindexformat{\see{Uniform Memory Access}}{543}
   \item unconditionally stable, \hyperpage{194}
   \item underflow, \hyperindexformat{\textbf}{170}
     \subitem gradual, \hyperpage{170, 171}, \hyperpage{184}
@@ -1487,46 +1514,48 @@
 		\hyperpage{137}
   \item unitary basis transformations, \hyperpage{234}
   \item Unix
-    \subitem user account, \hyperpage{419}
+    \subitem user account, \hyperpage{425}
   \item unsigned, \hyperpage{166}
-  \item UPC, \hyperindexformat{\see{Unified Parallel C}}{537}
-  \item \texttt  {uptime}, \hyperpage{419}
+  \item UPC, \hyperindexformat{\see{Unified Parallel C}}{543}
+  \item \texttt  {uptime}, \hyperpage{425}
+  \item user
+    \subitem super, \hyperindexformat{\textbf}{426}, \hyperpage{426}
   \item utility computing, \hyperpage{156}
 
   \indexspace
 
-  \item valgrind, \hyperpage{477--478}
-  \item value safety, \hyperpage{182}
+  \item valgrind, \hyperpage{484--485}
+  \item value safety, \hyperpage{183}
   \item vector
     \subitem instructions, \hyperindexformat{\textbf}{86}, 
 		\hyperpage{302}
-    \subitem norms, \hyperpage{367}
+    \subitem norms, \hyperpage{371}
     \subitem pipeline, \hyperindexformat{\see{pipeline, processor}}{85}
     \subitem register, \hyperindexformat{\see{register, vector}}{86}
-  \item vector instructions, \hyperpage{489}
+  \item vector instructions, \hyperpage{496}
   \item vector processor, \hyperpage{85}, \hyperpage{302}
-  \item verbatim mode, \hyperpage{497}
+  \item verbatim mode, \hyperpage{504}
   \item version control systems, 
-		\hyperindexformat{\see{source code control}}{440}
+		\hyperindexformat{\see{source code control}}{447}
   \item vertex cut, \hyperpage{347}
-  \item vertices, \hyperpage{380}
-  \item vi, \hyperpage{400}
+  \item vertices, \hyperpage{387}
+  \item vi, \hyperpage{406}
   \item virtualization, \hyperpage{155}
   \item von Neumann architectures, \hyperpage{12}
 
   \indexspace
 
-  \item WAN, \hyperindexformat{\see{Wide Area Network}}{537}
+  \item WAN, \hyperindexformat{\see{Wide Area Network}}{543}
   \item wavefront, \hyperpage{302--303}
-  \item \texttt  {wc}, \hyperpage{400}
+  \item \texttt  {wc}, \hyperpage{406}
   \item weak scaling, \hyperpage{77}
-  \item weighted graph, \hyperpage{381}
-  \item \texttt  {which}, \hyperpage{407}
-  \item \texttt  {who}, \hyperpage{419}
-  \item \texttt  {whoami}, \hyperpage{419}
+  \item weighted graph, \hyperpage{388}
+  \item \texttt  {which}, \hyperpage{413}
+  \item \texttt  {who}, \hyperpage{425}
+  \item \texttt  {whoami}, \hyperpage{425}
   \item \acl {WAN} (WAN), \hyperpage{156}
-  \item wildcard, \hyperpage{404}
-  \item {\tt  {wildcard}}, \hyperpage{433}
+  \item wildcard, \hyperpage{410}
+  \item {\tt  {wildcard}}, \hyperpage{440}
   \item work pool, \hyperpage{151}
   \item World Wide Web, \hyperpage{343}
 
@@ -1537,7 +1566,9 @@
 
   \indexspace
 
-  \item {\tt  {zscal}}, \hyperpage{487}
-  \item zsh, \hyperpage{397}
+  \item zero
+    \subitem of a function, \hyperpage{384}
+  \item {\tt  {zscal}}, \hyperpage{494}
+  \item zsh, \hyperpage{403}
 
 \end{theindex}

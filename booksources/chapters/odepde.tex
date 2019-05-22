@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-8
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -630,12 +630,13 @@ vector $f$ changes.
 
 \begin{exercise}
   A condition of the type $u(0)=u_0$ is called a \indexterm{Dirichlet
-    boundary condition}. Physically, this corresponds to knowing the
-  temperature at the end point of a rod. Other boundary conditions
-  exist. Specifying a value for the derivative, $u'(0)=u'_0$, rather
-  than for the function value,would be appropriate if we are modeling
-  fluid flow and the outflow rate at $x=0$ is known. This is known as
-  a \indexterm{Neumann boundary condition}.
+    boundary condition}. Physically, this corresponds to, for
+  instance, knowing the temperature at the end point of a rod. Other
+  boundary conditions exist. Specifying a value for the derivative,
+  $u'(0)=u'_0$, rather than for the function value,would be
+  appropriate if we are modeling fluid flow and the outflow rate at
+  $x=0$ is known. This is known as a \indexterm{Neumann boundary
+    condition}.
 
   A Neumann boundary condition $u'(0)=u'_0$ can be modeled by stating
   \[ \frac{u_0-u_1}h=u'_0. \]
@@ -751,8 +752,11 @@ our discrete equation becomes
   4u_{ij}-u_{i+1,j}-u_{i-1,j}-u_{i,j+1}-u_{i,j-1}=h^{-2}f_{ij}.
   \label{eq:5-point-star-ij}
 \end{equation}
-We now have $n\times n$ unknowns~$u_{ij}$. To render this in a linear
-system as before we need to put them in a linear ordering, which we do
+We now have $n\times n$ unknowns~$u_{ij}$. To render this in a
+%
+\emph{linear system}\index{linear system!of 2D Poisson equation}
+%
+as before we need to put them in a linear ordering, which we do
 by defining $I=I_{ij}=j+i\times n$. This is called the
 \indexterm{lexicographic ordering} since it sorts the coordinates
 $(i,j)$ as if they are strings.
@@ -1130,7 +1134,9 @@ Again we write this in vector form:
 \end{equation}
 As opposed to the explicit method, where a matrix-vector
 multiplication sufficed, the derivation of the vector $ T^{k+1}$ 
-from $ T^k$ now involves solving a linear system
+from $ T^k$ now involves a
+\emph{linear system solution}%
+\index{linear system!solving!in implicit methods}:
 \[ T^{k+1}\leftarrow A\inv (T^k+\Delta tq^{k+1}) \]
 where $A=I+\fr K$, a harder operation than the matrix-vector
 multiplication.  In this case, it is not possible, as above, to

@@ -147,3 +147,137 @@ overriding consideration, with influence in unlikely places. For
 instance, the \ac{SIMD} design of processors (see
 section~\ref{sec:simd}, in particular section~\ref{sec:sse-avx}) is
 dictated by the power cost of instruction decoding.
+
+\endinput
+
+\Level 1 {Frequency scaling}
+
+For the Xeon Scalable Processors (Skylake Xeon), the core frequency is
+governed by
+(1) The number of active cores
+(2) The width of the SIMD units that are active
+(3) The power consumption of the package
+(4) The temperature of the package
+
+The first two items determine the maximum frequency of the cores from
+a table lookup, while the last two items can reduce the frequency to
+avoid violating power or temperature limits.
+
+The frequencies are all documented in Figures 1-15 of the document
+``Intel Xeon Processor Scalable Family Specification Update''
+(336065-005, February 2018).
+
+Figures 4-6 show the maximum core frequency for the Xeon Platinum 8160
+processors as a function of SIMD width (not precisely, but this is how
+the tables are organized -- see more details at the bottom of this
+note) and number of cores used.
+For all cores in use, each the base & maximum frequencies (GHz) for
+the three SIMD widths are:
+non-AVX 2.1 2.8
+AVX256 1.8 2.5
+AVX512 1.4 2.0
+
+Figures 1-3 show the maximum core frequency for the Xeon Gold 6148
+processors as a function of SIMD width and number of cores used.
+For all cores in use, each the base & maximum frequencies (GHz) for
+the three SIMD widths are:
+non-AVX 2.4 3.1 ``level 0 turbo license'' -- see notes at bottom
+AVX256 1.9 2.6 ``level 1 turbo license'' -- see notes at bottom
+AVX512 1.6 2.2 ``level 2 turbo license'' -- see notes at bottom
+
+Based on these tables, your observations of average frequency are all
+consistent with the expected behavior.
+
+Both the Xeon Platinum 8160 and Xeon Gold 6148 have a power limit of
+150 Watts, so it is certainly possible that the 4 extra cores on the
+Xeon Platinum 8160 in Stampede2 are causing more significant frequency
+reductions due to hitting the power limit. (Stampede2 is very well
+cooled, so it is extremely unlikely that you are hitting temperature
+limits.)
+
+Since the upgrade to CentOS 7.6 in February, the ``perf stat'' command
+has the ability to read the package energy counters on the compute
+nodes.
+An example using the STREAM benchmark:
+
+perf stat -a -A -e ``power/energy-pkg/''
+./stream.COMMON-AVX512.80M.1000x
+
+gives the output:
+
+-------------------------------------------------------------
+Array size = 80000000 (elements), Offset = 0 (elements)
+Memory per array = 610.4 MiB (= 0.6 GiB).
+Total memory required = 1831.1 MiB (= 1.8 GiB).
+-------------------------------------------------------------
+Function Best Rate MB/s Avg time Min time Max time
+Copy: 185691.3780 0.0069 0.0069 0.0075
+Scale: 184441.0169 0.0070 0.0069 0.0084
+Add: 201977.9710 0.0096 0.0095 0.0111
+Triad: 201805.8810 0.0096 0.0095 0.0099
+-------------------------------------------------------------
+Performance counter stats for 'system wide':
+
+CPU0 4,498.12 Joules power/energy-pkg/
+CPU1 4,564.78 Joules power/energy-pkg/
+
+33.249033615 seconds time elapsed
+
+
+This shows that socket 0 (containing CPU0) used an average of
+(4498/33.25)=135.3 Watts, while socket 1 (containing CPU1) used an
+average of (4565/33.25)=137.3 Watts. This is the expected value -- all
+the cores are active (so the power is not low), but they are mostly
+waiting on loads and stores rather than executing a lot of
+instructions(so the power is not high).
+
+For more fine-grained detail, you can add ``-e cpu-cycles'' to the
+perf stat command to get the elapsed core cycles for each logical
+processor.
+
+
+--- MORE DETAIL ON POWER ``LICENSE'' LEVELS AND SIMD WIDTHS ---
+Although Intel describes the three frequency tables as ``non-AVX'',
+``AVX256'', and ``AVX512'', the details are slightly more subtle.
+Both 256-bit and 512-bit SIMD have instructions that are ``low-power''
+(loads, stores, bitwise operations) and instructions that are
+``high-power'' (any floating-point arithmetic). The ``low-power''
+instructions in each case are able to run at the frequency of the next
+smaller SIMD width. So an AVX512 code that only does loads, stores,
+and bitwise operations (AND, OR, XOR, etc), can run at up to the
+maximum ``AVX256'' frequency.
+
+You can use the performance counters to collect information on how
+many core cycles were spent in each of the three power levels.
+perf stat -a -A -e ``power/energy-pkg/'' -e ``cpu-cycles'' -e
+``core_power.lvl0_turbo_license'' \
+-e ``core_power.lvl1_turbo_license'' -e
+``core_power.lvl2_turbo_license'' ./stream.COMMON-AVX512.80M.1000x
+
+This provides a whole lot of output, but by sorting the output by
+logical processor, you can quickly see how many core cycles were spent
+operating in each of the three power regimes. In the example above,
+extracting the CPU0 data only shows:
+CPU0 69,831,653,594 cpu-cycles
+CPU0 181,049,669 core_power.lvl0_turbo_license
+CPU0 15,850,999,671 core_power.lvl1_turbo_license
+CPU0 53,845,943,660 core_power.lvl2_turbo_license
+
+About 3/4 of the cycles were spent in the expected AVX512 ``level 2
+turbo license'', and about 1/4 in the ``level 1 turbo license''.
+The entire code uses AVX512 instructions, but the STREAM Copy kernel
+only does loads and stores (no floating-point arithmetic), so these
+cycles use less power and are assigned to the ``level 1 turbo
+license''. The power control unit modifies frequencies every
+millisecond based on the power license levels, so in this case, the
+STREAM Copy kernel should be able to run at up to 2.5 GHz (AVX256
+frequency) instead of 2.0 GHz (AVX512 frequency). I did not instrument
+this code check the frequency for each kernel, but the global average
+frequency of 2.085 GHz is consistent with a portion of the code
+running at over 2.0 GHz.
+
+There is no easy documentation for any of this, but if you have more
+questions, you can either open a ticket here or (if you think the
+topic is of general interest), you can post a question on one of the
+Intel software developer forums, such as
+https://software.intel.com/en-us/forums/software-tuning-performance-optimization-platform-monitoring

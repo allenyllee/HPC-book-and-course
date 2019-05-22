@@ -361,6 +361,7 @@ What is the difference between \n{cp -r newdir
 existing directory name?
 
 \Level 1 {Permissions}
+\label{sec:unix-permissions}
 
 \begin{purpose}
   In this section you will learn about how to give various users on
@@ -441,13 +442,8 @@ echo "Hello world!"
 This is a legitimate shell script. What happens when you type
 \n{./com}? Can you make the script executable?
 
-In the three permission categories it is who `you' and `others'
-refer to. How about `group'? The command \indextermunix{groups}
-tells you all the groups you are in, and \n{ls -l} tells you
-what group a file belongs to. Analogous to \n{chmod},
-you can use \indextermunix{chgrp} to change the group to
-which a file belongs, to share it with a user who is also in that group.
-Adding a user to a group sometimes needs system priviliges.
+In the three permission categories it is clear who `you' and `others'
+refer to. How about `group'? We'll go into that in section~\ref{sec:users}.
 
 \begin{remark}
   There are more obscure permissions. For instance the
@@ -1393,6 +1389,64 @@ users. Here are some commands relating to them.
 \item [\indextermunix{uptime}] how long has it been since your last reboot?
 \end{itemize}
 
+\Level 1 {Groups}
+
+In section~\ref{sec:unix-permissions} you saw that there is a
+permissions category for `group'. This allows you to open up files to
+your close collaborators, while leaving them protected from the wide
+world.
+
+When your account is created, your system administrator will have
+assigned you to one or more groups. (If you admin your own machine,
+you'll be in some default group; read on for adding yourself to more groups.)
+
+The command \indextermunix{groups}
+tells you all the groups you are in, and \n{ls -l} tells you
+what group a file belongs to. Analogous to \n{chmod},
+you can use \indextermunix{chgrp} to change the group to
+which a file belongs, to share it with a user who is also in that group.
+
+Creating a new group, or
+adding a user to a group needs system priviliges.
+To create a group:
+\begin{verbatim}
+sudo groupadd new_group_name
+\end{verbatim}
+To add a user to a group:
+\begin{verbatim}
+sudo usermod -a -G thegroup theuser
+\end{verbatim}
+
+\Level 1 {The super user}
+
+Even if you own your machine, there are good reasons to work as much
+as possible from a regular user account, and use
+\indextermbus{root}{priviliges} only when strictly needed.
+%
+(The root account is also known as the \indextermsubdef{super}{user}.)
+%
+If you have root priviliges, you can also use that to `become another
+user' and do things with their priviliges.
+
+\begin{itemize}
+\item To execute a command as another user:
+\begin{verbatim}
+sudo -u otheruser command arguments
+\end{verbatim}
+\item To execute a command as the root user:
+\begin{verbatim}
+sudo command arguments
+\end{verbatim}
+\item Become another user:
+\begin{verbatim}
+sudo su - otheruser
+\end{verbatim}
+\item Become the \indextermsub{super}{user}:
+\begin{verbatim}
+sudo su -
+\end{verbatim}
+\end{itemize}
+
 \Level 0 {The {\tt sed} and {\tt awk} tools}
 
 Apart from fairly small utilities such as \n{tr} and \n{cut}, Unix
@@ -1400,7 +1454,6 @@ has some more powerful tools. In this section you will see two tools for
 line-by-line transformations on text files. Of course this tutorial
 merely touches on the depth of these tools; for more information
 see~\cite{AWK:awk,OReilly:sedawk}.
-
 \Level 1 {\tt sed}
 
 The streaming editor \n{sed} is like an editor by remote control,

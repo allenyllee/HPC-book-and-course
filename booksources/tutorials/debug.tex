@@ -345,6 +345,16 @@ Breakpoint 1, main () at roots.c:14
 14        float x=0;
 \end{verbatim}
 
+Most of the time you will set a breakpoint at a specific line:
+\begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{2}{|c|}{Set a breakpoint at a line}\\
+  \hline
+  gdb&clang\\
+  \n{break foo.c:12}&\n{breakpoint set -f foo.c -l 12}\\
+  \hline
+\end{tabular}
+
 If execution is stopped at a breakpoint, you can do various things,
 such as issuing the \n{step} command:
 \begin{verbatim}

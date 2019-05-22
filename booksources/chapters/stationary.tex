@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-8
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -15,10 +15,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Gaussian elimination, the use of an $LU$ factorization, is a simple
-way to find the solution of a linear system, but as we saw above, in
+way to find the solution of a
+linear system, but as we saw above, in
 the sort of problems that come from discretized \ac{PDE}s, it can 
 create a lot of fill-in. In this section we will look at a completely
-different approach, where the solution of the system is found
+different approach,
+\emph{iterative solution}\index{linear system!iterative solution|textbf},
+where the solution of the system is found
 by a sequence of approximations.
 
 The computational scheme looks, very roughly, like:
@@ -457,7 +460,7 @@ assume that the matrix has positive diagonal elements.
 
 \begin{remark}
   Stationary iteration can be considered as a form of
-  \indextermsub{inexact}{Newton method}, where each iteration uses the
+  \indextermsub{inexact}{Newton's method}, where each iteration uses the
   same approximation to the inverse of the derivative. Standard
   functional analysis results~\cite{Kantorovich:functional} state how
   far this approximation can deviate from the exact inverse.
@@ -553,8 +556,8 @@ such as constructing the preconditioner,
 will be amortized over the sequence of systems that is to be
 solved. A~similar argument holds in the context of nonlinear
 equations, a~topic that we will not discuss as such. Nonlinear
-equations are solved by an iterative process such as the
-\indexterm{Newton method}, which in its multidimensional form leads
+equations are solved by an iterative process such as
+\indexterm{Newton's method}, which in its multidimensional form leads
 to a sequence of linear systems. Although these have different
 coefficient matrices, it is again possible to amortize setup costs by
 reusing the preconditioner for a number of Newton steps.

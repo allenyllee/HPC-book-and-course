@@ -118,17 +118,31 @@ as a prime example of a sorting network.
 Above we remarked that sorting sequentially takes at least $O(N\log N)$ time.
 If we can have perfect speedup, using for simplicity $P=N$ processors,
 we would have parallel time~$O(\log N)$. If the parallel time
-is more than that, we define the \indexterm{sequential complexity}
-as the total number of operations. For instance, below you will see
-\indexterm{odd-even transposition sort},
-also called \emph{swap sort}\index{swap sort|see{odd-even transposition
-    sort}}
-or \emph{exchange sort}\index{exchange sort|see{odd-even transposition
-    sort}}.
-This takes~$N$ parallel steps,
-giving a sequential complexity of~$N^2$, and bitonic sort
-which has a parallel time of~$(\log N)^2$ and a
-sequential complexity of~$N(\log N)^2$.
+is more than that, we define the
+\indextermsubdef{sequential}{complexity}%
+\index{sequential complexity|see{complexity, sequential}}
+as the total number of operations over all processors.
+
+This equals the number of operations if the parallel algorithm were
+executed by one process, emulating all the others. Ideally this would
+be the same as the number of operations for a single-process
+algorithm, but it need not be. If it is larger, we have found another
+source of overhead: an intrinsic penalty for using a parallel
+algorithm.
+
+For instance, below we will see that sorting algorithm often have a
+sequential complexity of $O(N\log^2N)$.
+
+%% For instance, below you will see
+%% \indexterm{odd-even transposition sort},
+%% also called \emph{swap sort}\index{swap sort|see{odd-even transposition
+%%     sort}}
+%% or \emph{exchange sort}\index{exchange sort|see{odd-even transposition
+%%     sort}}.
+%% This takes~$N$ parallel steps,
+%% giving a sequential complexity of~$N^2$, and bitonic sort
+%% which has a parallel time of~$(\log N)^2$ and a
+%% sequential complexity of~$N(\log N)^2$.
 
 \Level 0 {Odd-even transposition sort}
 \index{odd-even transposition sort|(textbf}
@@ -273,6 +287,11 @@ and move those accordingly.
 This shows that each pivoting step can be done in $O(\log n)$ time,
 and since there $\log n$ steps to the sorting algorithm, the
 total algorithm runs in $O((\log n)^2)$ time.
+%
+The
+\indextermsub{sequential complexity of}{quicksort}%
+\index{complexity!sequential!of quicksort}$(\log_2N)^2$.
+
 
 \Level 1 {Quicksort on a hypercube}
 
@@ -371,25 +390,27 @@ sort is based on using~$P$, the number of processes, as radix.
 We illustrate this with an example on two processors, meaning that we
 look at binary representations of the values.
 
-\begin{tabular}{|r|rr|rrr|}
+\begin{tabular}{|r|ll|lll|}
   \hline
             & \multicolumn{2}{|c}{proc0}&\multicolumn{3}{|c|}{proc1}\\
   array     & 2&5&7&1&\\
   binary    & 010& 101& 111& 001&\\
   \hline
-  \multicolumn{6}{|c|}{stage 1}\\
+  \multicolumn{6}{|c|}{stage 1: sort by least significant bit}\\
   \hline
-  last digit&   0&   1&   1&   1&\\
+  last digit&   $\hphantom{00}0$&   $\hphantom{00}1$&   $\hphantom{00}1$&   $\hphantom{00}1$&\\
   &\multicolumn{5}{|c|}{(this serves as bin number)}\\
   sorted    & 010&    & 101& 111& 001\\
-  \multicolumn{6}{|c|}{stage 2}\\
   \hline
-  next digit&  1 &    &  0 &  1 &  0\\
+  \multicolumn{6}{|c|}{stage 2: sort by middle bit}\\
+  \hline
+  next digit&  $\hphantom{0}1 $&                    &$\hphantom{0}0 $&  $\hphantom{0}1 $&  $\hphantom{0}0$\\
   &\multicolumn{5}{|c|}{(this serves as bin number)}\\
   sorted    & 101& 001& 010& 111&\\
-  \multicolumn{6}{|c|}{stage 3}\\
   \hline
-  next digit& 1  & 0  & 0  & 1&\\
+  \multicolumn{6}{|c|}{stage 3: sort by most significant bit}\\
+  \hline
+  next digit& $\hphantom{}1  $& $\hphantom{}0  $& $\hphantom{}0  $& $\hphantom{}1$&\\
   &\multicolumn{5}{|c|}{(this serves as bin number)}\\
   sorted    & 001& 010& 101& 111&\\
   decimal   & 1  & 2  & 5  & 7&\\
@@ -613,7 +634,9 @@ use larger and larger bitonic networks.
 \end{figure}
 From this description you see that you $\log_2N$ stages to sort $N$
 elements, where the $i$-th stage is of length~$\log_2i$. This makes
-the total \indextermsub{sequential complexity of}{bitonic sort}~$(\log_2N)^2$.
+the total
+\indextermsub{sequential complexity of}{bitonic sort}%
+\index{complexity!sequential!of bitonic sort}~$(\log_2N)^2$.
 
 The sequence of operations in figure~\ref{fig:full-bitonic}
 is called a \indextermbus{sorting}{network}, built up out of simple 

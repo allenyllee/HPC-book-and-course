@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -239,10 +239,38 @@ local files you have: for that you need to do \n{hg update}.
   obtain the changes the other mde.}{You can do \n{hg add} on the
   directory, this will also add the files contained in it.}{}
 
-In order for Mercurial to keep track of your files, you should never do
-the shell commands
-\n{cp} or \n{mv} on files that are in the repository. Instead, do
-\n{hg cp} or \n{hg mv}. Likewise, there is a command \n{hg rm}.
+Since you will mostly be doing an update immediately after a pull, you
+can combine them:
+\begin{verbatim}
+hg pull -u
+\end{verbatim}
+Git will report what files are updated; for Hg you need to take the
+changeset number and query:
+\begin{verbatim}
+hg status --change 82ffb99c79fd
+\end{verbatim}
+
+\begin{remark}
+  In order for Mercurial to keep track of your files, you should never do
+  the shell commands
+  \n{cp} or \n{mv} on files that are in the repository. Instead, do
+  \n{hg cp} or \n{hg mv}. Likewise, there is a command \n{hg rm}.
+\end{remark}
+
+\Level 1 {Oops! Undo!}
+
+One of the reasons for having source code control is to be able to
+revert changes. The easiest undo is to go back to the last stored
+version in the repository.
+
+\begin{tabular}{|l|l|}
+  \hline
+  mercurial&git\\
+  \hline
+  \n{hg revert <yourfile>}&
+  \n{git checkout -- <yourfile>}\\
+  \hline
+\end{tabular}
 
 \Level 1 {Conflicts}
 
@@ -303,7 +331,8 @@ to figure~\ref{fig:hg}.
 You should find that both edits are incorporated. That is the `merge'
 that Mercurial referred to.}{}{}
 
-If both students make edits on the same part of the file, Mercurial can no
+If both students make edits on the same part of the file, version
+control can no
 longer resolve the conflicts. For instance, let one student insert a
 line between the first and the second, and let the second student edit
 the second line. Whoever tries to push second, will get messages
@@ -323,7 +352,19 @@ use 'hg resolve' to retry unresolved file merges
     or 'hg update -C .' to abandon
 \end{verbatim}
 }
-Mercurial will give you several options. It is easiest to resolve the
+There are now the following options:
+\begin{enumerate}
+\item There is usually a way to indicate whether to use the local or
+  the remote version.
+\item There are graphical programs to resolve conflicts. They will
+  typically show you 3 colums, for the two versions, and for your
+  resolution. You can then indicate `take this from the local version,
+  and this from the remote'.
+\item You can also edit the file to resolve the conflicts yourself. We
+  will discuss that shortly.
+\end{enumerate}
+
+Both  will give you several options. It is easiest to resolve the
 conflict with a text editor. If you open the file that has the conflict
 you'll see something like:
 \begin{verbatim}
@@ -347,6 +388,10 @@ After this, you tell hg that the conflict was resolved:
 %% hg status
 M firstfile
 ? firstfile.orig
+\end{verbatim}
+or
+\begin{verbatim}
+git add <name of that file>
 \end{verbatim}
 After this you can commit and push again.
 The other student then needs to do another update to get the

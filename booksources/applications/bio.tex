@@ -63,10 +63,10 @@ and $A=a_0\ldots a_{m-1}$, $B=b_0\ldots b_{n-1}$ are words over this alphabet
 (if this terminology is strange to you, see appendix~\ref{app:fsa}),
 then we build a matrix $H_{ij}$ with $i\leq m, j\leq m$
 of similarity scores as follows.
-%
-\newcommand\wm{w_{\mathrm{match}}}
-\newcommand\ws{w_{\mathrm{mismatch}}}
-\newcommand\wdel{w_{\mathrm{deletion}}}
+
+%mathjax mathjax_sw.tex
+\input mathjax_sw
+
 We first define weights $\wm,\ws$, typically positive and zero or negative 
 respectively, and a `gap scoring' weight function over~$\Sigma\cup\{-\}$
 \[ w(a,b)=

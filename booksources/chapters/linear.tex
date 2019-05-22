@@ -514,9 +514,8 @@ to lose~$A$.
 Let us write out the $LU$ factorization algorithm in more or less
 formal code.
 
-\newcommand\macro[1]{$\langle$#1$\rangle$}
-\begin{quote}
-\medskip
+\newcommand\macro[1]{$\langle$#1$\rangle$} %pyskip
+
 \begin{tabbing}
   \kern20pt\=\kern10pt\=\kill
   \macro{$LU$ factorization}:\\
@@ -532,11 +531,9 @@ formal code.
   \>for $j=k+1$ to $n$:\\
   \>\>$a_{ij}\leftarrow a_{ij}-a_{ik}*a_{kj}$
 \end{tabbing}
-\end{quote}
 
 Or, putting everything together:
-\begin{equation}
- \vcenter{%
+
 \begin{tabbing}
   \kern20pt\=\kern10pt\=\kern10pt\=\kern10pt\=\kill
   \macro{$LU$ factorization}:\\
@@ -546,9 +543,8 @@ Or, putting everything together:
   \>\>\>for\={} $j=k+1$ to $n$:\\
   \>\>\>\>$a_{ij}\leftarrow a_{ij}-a_{ik}*a_{kj}$
 \end{tabbing}
-  }
-\label{eq:LU-algorithm}
-\end{equation}
+
+%\label{eq:LU-algorithm}
 
 This is the most common way of presenting the LU
 factorization. However, other ways of computing the same result
@@ -695,6 +691,7 @@ exchanged. Since we may have to pivot in every iteration of the
 factorization process, we introduce a sequence $p(\cdot)$ where $p(i)$
 is the $j$ values of the row that row $i$ is switched with. We write
 $P^{(i)}\equiv P^{(i,p(i))}$ for short.
+
 \begin{exercise}
   Show that $P^{(i)}$ is its own inverse.
 \end{exercise}
@@ -1006,6 +1003,7 @@ with the whole of~$X$.
 A more interesting algorithm is the block version of the
 \emph{LU factorization}\index{LU factorization!block algorithm}.
 The algorithm \eqref{eq:LU-algorithm} then becomes
+
 \begin{equation}
  \vcenter{%
 \begin{tabbing}
@@ -1020,6 +1018,7 @@ The algorithm \eqref{eq:LU-algorithm} then becomes
   }
 \label{eq:LU-block-algorithm}
 \end{equation}
+
 which mostly differs from the earlier algorithm in that the division
 by $a_{kk}$ has been replaced by a multiplication
 by~$A_{kk}\inv$. Also, the $U$ factor will now have pivot blocks,

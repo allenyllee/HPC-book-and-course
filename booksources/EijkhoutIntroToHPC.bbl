@@ -285,6 +285,13 @@ Dale Dougherty and Arnold Robbins.
 \newblock Complex arithmetic: in the intersection of {C} and {C++}.
 \newblock \url{http://www.ddj.com/cpp/184401628}.
 
+\bibitem{Driscoll:optimal-nbody}
+Michael Driscoll, Evangelos Georganas, Penporn Koanantakool, Edgar Solomonik,
+  and Katherine Yelick.
+\newblock A communication-optimal {N}-body algorithm for direct interactions.
+\newblock In {\em IEEE International Parallel and Distributed Processing
+  Symposium (IPDPS)}, 213.
+
 \bibitem{Duff:harwellboeingformat}
 I.~S. Duff, R.~G. Grimes, and J.~G. Lewis.
 \newblock Users' guide for the {H}arwell-{B}oeing sparse matrix collection
@@ -301,6 +308,14 @@ C.~Edwards, P.~Geng, A.~Patra, and R.~van~de Geijn.
 Victor Eijkhout.
 \newblock A general formulation for incomplete blockwise factorizations.
 \newblock {\em Comm. Appl. Numer. Meth.}, 4:161--164, 1988.
+
+\bibitem{Eijkhout:ICCS2012}
+Victor Eijkhout.
+\newblock A theory of data movement in parallel computations.
+\newblock {\em Procedia Computer Science}, 9(0):236 -- 245, 2012.
+\newblock Proceedings of the International Conference on Computational Science,
+  ICCS 2012, Also published as technical report TR-12-03 of the Texas Advanced
+  Computing Center, The University of Texas at Austin.
 
 \bibitem{Eijkhout2010ICCS-krylov}
 Victor Eijkhout, Paolo Bientinesi, and Robert van~de Geijn.
@@ -667,6 +682,12 @@ Milind Kulkarni, Martin Burtscher, Rajasekhar Inkulu, Keshav Pingali, and Calin
 Vipin Kumar, Ananth Grama, Anshul Gupta, and George Karypis.
 \newblock {\em Introduction to Parallel Computing}.
 \newblock Benjamin Cummings, 1994.
+
+\bibitem{Ku:systolic}
+H.T. Kung.
+\newblock Systolic algorithms.
+\newblock In S.~Parter, editor, {\em Large scale scientific computation}, pages
+  127--140. Academic Press, 1984.
 
 \bibitem{Kung:pegasus2009}
 U.~Kung, Charalampos~E. Tsourakakis, and Christos Faloutsos.
