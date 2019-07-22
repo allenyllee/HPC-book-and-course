@@ -318,6 +318,14 @@ We get the correct value $x_2=1$, but
 \[ \epsilon x_1+x_2=1 \Rightarrow \epsilon x_1=0 \Rightarrow x_1=0, \]
 which is $100\%$ wrong.
 
+\begin{remark}
+  In this example, the numbers in computer arithmetic are little
+  off from what they would be in exact arithmetic. Yet the results can
+  be very much wrong. An analysis of this phenomenon belongs in any
+  good course in numerical analysis. See for instance chapter~1
+  of~\cite{Heath:scicomp}.
+\end{remark}
+
 What would have happened if we had pivoted as described above?
 We exchange the matrix rows, giving
 \[ 

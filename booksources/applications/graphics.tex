@@ -88,6 +88,19 @@ to be in the inner loop, and preferably be as large as possible.
 
 \Level 0 {Ray tracing}
 
+The \indexterm{light transport equation} states that the outgoing
+radiance $L_o(p,\omega_o)$ from a point~$p$ in a direction~$\omega_o$
+is the sum light generated there, plus incident light reflected from all other
+sources:
+\[ L_o(p,\omega_o) = L_e(p,\omega_o)
+   + \int_S f(p,\omega_o,\omega_i) L_i(p,\omega_i) \left|\cos \omega_i\right| 
+   d\omega_i,
+\]
+scaled by a 
+bidirectional scattering distribution function (BSDF)~$f(p,\omega_o,\omega_i)$
+and a cosine term to account for the angle between incident and
+outgoing rays.
+
 The basic \indextermbus{Eikonal}{equation} of ray propagation is
 \begin{equation}
   \| \nabla S(\mathbf x) \| = n
@@ -113,7 +126,13 @@ which can be written as coupled \acp{ODE}:
 where $\mathbf{d}$ is the local ray direction, scaled by the
 refractive index.
 
-\Level 1 {Volume reconstruction}
+\Level 1 {Computational aspects}
+
+The tiles in an image can be processed independently. For reasons of
+\indextermbus{load}{balancing}, we over-decompose the image into more
+tiles than there are processing elements (such as cores).
+
+\Level 0 {Volume reconstruction}
 
 The above equations are normally applied to a known medium, to derive
 the paths the light rays take. However, we can also consider the

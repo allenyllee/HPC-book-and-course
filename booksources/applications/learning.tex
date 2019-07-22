@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-7
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -15,15 +15,57 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\Level 0 {Perceptrons}
+\acf{ML} is a collective name for a number of techniques that
+approach problems we might consider `intelligent', such as image
+recognition. In the abstract, such problems are mappings from a vector
+space of \indexterm{feature}s, such as pixel values in an image, to
+another vector space of outcomes. In the case of image recognition of
+letters, this final space could be 26-dimensional, and a maximum value
+in the second component would indicate that a `B' was recognized.
 
-\Level 1 {Hyperplanes}
+The essential characteristic of \ac{ML} techniques is that
+this mapping is described by a --~usually large~-- number of internal
+parameters, and that these parameters are gradually refined. The
+learning aspect here is that refining the parameters happens by
+comparing an input to both its predicted output based on current
+parameters, and the intended output.
 
-Given an input vector (feature vector)~$x$, we can compute a linear
-function of the input
-\[ y = w^tx. \]
-(An affine function $y=w^tx+b$ can be accomodated by including a `bias
-component' $x_n\equiv1$.)
+\Level 0 {Neural networks}
+
+% https://www.youtube.com/watch?v=aircAruvnKk
+
+The most popular form of \ac{ML} these days is \acf{DL}, or
+\indextermdef{neural networks}. Let's start by explaining this term.
+
+A neuron, in a living body, is a cell that `fires', that is, gives off
+a voltage spike, if it receives certain inputs. In \ac{ML} we abstract
+this to a \indextermdef{perceptron}: a~function that outputs a value
+depending on certain inputs. To be specific, the output value is often
+a linear function of the inputs, with the result
+limited to the range~$(0,1)$.
+
+If we write the inputs as a vector~$\bar x$, and we introduce a vector~$\bar w$
+of \indextermdef{weights} of the same size, and a scalar \indextermdef{bias}~$b$;
+and we have a function~$\sigma$ known as the
+\indextermdef{sigmoid} that maps $\bbR\rightarrow(0,1)$, we write the
+scalar output~$y$ as:
+\[ \bbR\owns y = \sigma( \bar w^t\bar x+b ). \]
+Since we typically have many perceptrons, we let $y$ be a vector.
+Now we have weights and a bias for each component, so
+\[ \bbR^n\owns \bar y = \sigma( W\bar x + \bar b ). \]
+
+A few observations:
+\begin{itemize}
+\item
+  As indicated above, the output vector typically has fewer components
+  than the input, so the matrix is not square, in particular not
+  invertible.
+\item The sigmoid function makes the total mapping non-linear.
+\item Neural nets typically have multiple layers, each of which is a
+  mapping of the form $x\rightarrow y$ as above.
+\end{itemize}
+
+\Level 1 {Classification}
 
 This output $y$ can be used as a numerical value,
 or as classification through
@@ -34,7 +76,20 @@ or as classification through
 \end{cases}
 \]
 
-\Level 1 {Learning the coefficients}
+\Level 0 {Learning the coefficients}
+
+Now consider the problem of determining the coefficients of the neural
+net: the $W$ matrix and the $\bar b$ vector. The key here is that we have
+for an input $\bar x$ both the computed output $\bar y$ and the
+`correct' output~$\tilde y$. With this we can compute the error
+$\|\bar y -\tilde y$, which is a complicated function of the
+coefficients, and minimize this by setting the coefficients correctly.
+
+Finding coefficients that give a zero error for one particular input
+$\bar x$ is not hard, but they will likely give a bad error for
+another input. (This is sometimes called \indexterm{over-fitting}.)
+Therefore, learning typically involves cycling through a set of inputs
+until the error is acceptable for all of them.
 
 Given an input and true output $(x^t,r^t)$ and a computed output
 of~$y^t$, we have a squared error of

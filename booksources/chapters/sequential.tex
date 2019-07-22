@@ -1327,17 +1327,63 @@ $1,5,9,\ldots$ are in bank~1, et cetera.
 
 Suppose we now access memory sequentially, then such 4-way interleaved
 memory can sustain four times the bandwidth of a single memory
-bank. Unfortunately,  accessing by stride~2 will halve the bandwidth,
-and larger strides are even worse. In practice the number of memory
+bank. Unfortunately, accessing by stride~2 will halve the bandwidth,
+and larger strides are even worse.
+%
+If two consecutive operations
+access the same memory bank, we speak of a
+\emph{bank conflict}\index{memory!banks!conflict}~\cite{Bailey:conflict}.
+%
+In practice the number of memory
 banks will be higher, so that strided memory access with small strides
-will still have the full advertised bandwidth.
+will still have the full advertised bandwidth. For instance, the
+\emph{Cray-1}\index{Cray!Cray-1} had 16 banks, and the
+\emph{Cray-2}\index{Cray!Cray-2}~1024.
 
-This concept of banks can also apply to caches. For instance, the
+\begin{exercise}
+  Show that with a prime number of banks, any stride up to that number
+  will be conflict free. Why do you think this solution is not adopted
+  in actual memory architectures?
+\end{exercise}
+
+In modern processors, \indexac{DRAM} still has banks, but the effects
+of this are felt less because of the presence of caches. However,
+\emph{GPUs}%
+\index{GPU!memory banks|see{memory banks, on GPU}}%
+\index{memory!banks!on GPUs}
+have memory banks and no caches,
+so they suffer from some of the same problems as the old
+supercomputers.
+
+\begin{exercise}
+  The \indexterm{recursive doubling} algorithm for summing the
+  elements of an array is:
+\begin{verbatim}
+for (s=2; s<2*n; s*=2)
+  for (i=0; i<n-s/2; i+=s)
+    x[i] += x[i+s/2]
+\end{verbatim}
+  Analyze bank conflicts for this algorithm. Assume $n=2^p$ and banks
+  have $2^k$ elements where~$k<p$. Also consider this as a parallel
+  algorithm where all iterations of the inner loop are independent,
+  and therefore can be performed
+  simultaneously.
+
+  Alternatively, we can use \indexterm{recursive halving}:
+\begin{verbatim}
+for (s=(n+1)/2; s>1; s/=2)
+  for (i=0; i<n; i+=1)
+    x[i] += x[i+s]
+\end{verbatim}
+  Again analyze bank conficts. Is this algorithm better? In the
+  parallel case?
+\end{exercise}
+
+\emph{Cache memory}\index{cache!memory banks} can also use banks. For instance, the
 cache lines in the L1 cache of the \indextermbus{AMD}{Barcelona} chip
 are 16 words long, divided into two interleaved banks of 8 words. This
 means that sequential access to the elements of a cache line is
 efficient, but strided access suffers from a deteriorated performance.
-
 
 \Level 1 {TLB, pages, and virtual memory}
 

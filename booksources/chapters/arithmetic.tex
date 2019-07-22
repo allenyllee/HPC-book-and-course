@@ -1646,19 +1646,60 @@ and in the accumulation of inner products.
 You can ask `does double precision always give benefits over single
 precision' and the answer is not always `yes' but rather: `it
 depends'.
+
+\Level 2 {Lower precision in iterative refinement}
+
+In iterative linear system solving (section~\ref{sec:iterative}, the
+accuracy is determined by how precise the residual is calculated, not
+how precise the solution step is done. Therefore, one could do
+operations such as applying the preconditioner
+(section~\ref{sec:preconditioner}) in reduced
+precision~\cite{Dongarra:mixed-refinement}. This is a form of
+\indexterm{iterative refinement}; see
+section~\ref{sec:preconditioner}.
+
+\Level 2 {Lower precision in Deep Learning}
+
+In \indexac{DL} it is more important to express the range of values
+than to be precise about the exact value. (This is the opposite of
+traditional scientific applications, where close values need to be resolved.)
+This has led to the definition of the \indextermdef{bfloat16} format~\cite{Intel:bfloat16}
+which is a 16-bit floating point format. It uses 8~bits for the
+exponent and 7~bits for the mantissa. This means that it shares the
+same exponent range as the IEEE single precision format.
+
+\includegraphics{bfloat16def}
+
 \begin{itemize}
-\item In iterative linear system solving (section~\ref{sec:iterative}, the accuracy is determined
-  by how precise the residual is calculated, not how precise the
-  solution step is done. Therefore, one could do
-  operations such as applying the preconditioner
-  (section~\ref{sec:preconditioner}) in reduced
-  precision~\cite{Dongarra:mixed-refinement}. This is a form of
-  \indexterm{iterative refinement}; see section~\ref{sec:preconditioner}.
-\item Certain applications, such as \indexterm{deep learning}, do not
-  need full precision. The upcoming
-  \emph{Intel Knights Mill}\index{Intel!Xeon Phi!Knights Mill}
-  processor has \indexterm{half precision}, 16-bit floating
-  point, modes for this purpose.
+\item Since bfloat16 and fp32 have the same structure in the first two bytes,
+  a bfloat16 number can be derived from an fp32 number by
+  truncating the third and fourth byte. However, rounding may give
+  better results in practice.
+\item Conversely, casting a bloat16 to fp32 only requires filling the
+  final two bytes with zeros.
+\end{itemize}
+
+The limited precision of bfloat16 is probably enough to represent
+quantities in \indexac{DL} applications, but in order not to lose
+further precision it is envisioned that \ac{FMA} hardware uses 32-bit
+numbers internally: the product of two bfloat16 number is a regular
+32-bit number. In order to compute inner products (which happens as
+part of matrix-matrix multiplication in \indexac{DL}), we then need an
+\ac{FMA} unit as in figure~\ref{fig:bfloat16fma}.
+
+\begin{figure}[ht]
+  \includegraphics{bfloat16fma}
+  \caption{An FMA unit taking two bloat16 and one fp32 number}
+  \label{fig:bfloat16fma}
+\end{figure}
+
+\begin{itemize}
+\item The 
+  \emph{Intel Knights Mill}\index{Intel!Xeon Phi!Knights Mill}, based
+  on the \emph{Intel Knights Landing}\index{Intel!Xeon Phi!Knights Landing}, 
+  has support for reduced precision.
+\item The \indextermbus{Intel}{Cooper Lake} implements the
+  \indexterm{bfloat16} format.
 \end{itemize}
 
 \Level 1 {Fixed-point arithmetic}

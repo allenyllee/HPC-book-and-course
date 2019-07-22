@@ -37,6 +37,11 @@ Owe Axelsson and Ben Polman.
 \newblock Block preconditioning and domain decomposition methods~{II}.
 \newblock {\em J. Comp. Appl. Math.}, 24:55--72, 1988.
 
+\bibitem{Bailey:conflict}
+David~H. Bailey.
+\newblock Vector computer memory bank contention.
+\newblock {\em IEEE Trans. on Computers}, C-36:293--298, 1987.
+
 \bibitem{BarnesHut}
 Josh Barnes and Piet Hut.
 \newblock A hierarchical {$O(N \log N)$} force-calculation algorithm.
@@ -185,6 +190,14 @@ Barry~A. Cipra.
 Charles Clos.
 \newblock A study of non-blocking switching networks.
 \newblock {\em Bell System Technical Journal}, 32:406--242, 1953.
+
+\bibitem{Intel:bfloat16}
+Intel Corporation.
+\newblock bfloat16 - hardware numerics defintion.
+\newblock
+  \url{https://software.intel.com/sites/default/files/managed/40/8b/bf16-hardware-numerics-definition-white-paper.pdf},
+  2018.
+\newblock Document Number: 338302-001US.
 
 \bibitem{CuMcK:reducing}
 E.~Cuthill and J.~McKee.

@@ -2017,12 +2017,28 @@ This means that 16 nodes in one chassis and 16 nodes in another can
 have perfect connectivity.
 
 However, with
-\indextermsub{static!routing}, such as used in \indexterm{Infiniband},
+\indextermsub{static}{routing}, such as used in \indexterm{Infiniband},
 there is a fixed port associated with each destination. (This mapping
 of destination to port is in the \indextermbus{routing}{tables} in
 each switch.) Thus, for some subsets of 16 nodes out 20 possible
 destination there will be perfect bandwidth, but other subsets will
 see the traffic for two destinations go through the same port.
+
+\Level 2 {Case study: Cray Dragonfly networks}
+
+\index{Dragonfly|see{Cray, Dragonfly}}
+%
+The \indextermbusdef{Cray}{Dragonfly} network
+is an interesting practical compromise. Above we argued that a fully
+connected network would be too expensive to scale up. However, it is possible to
+have a fully connected set of processors, if the number stays
+limited.  The Dragonfly design uses small fully connected groups, and
+then makes a fully connected graph of these groups.
+
+This introduces an obvious asymmetry, since processors inside a group
+have a larger bandwidth then between groups. However, thanks to
+\indextermsub{dynamic}{routing} messages can take a non-minimal path,
+being routed through other groups. This can alleviate the Happy birthday!
 
 \Level 1 {Bandwidth and latency}
 \label{sec:bwlatency}
