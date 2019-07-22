@@ -1662,13 +1662,19 @@ section~\ref{sec:preconditioner}.
 
 In \indexac{DL} it is more important to express the range of values
 than to be precise about the exact value. (This is the opposite of
-traditional scientific applications, where close values need to be resolved.)
-This has led to the definition of the \indextermdef{bfloat16} format~\cite{Intel:bfloat16}
-which is a 16-bit floating point format. It uses 8~bits for the
-exponent and 7~bits for the mantissa. This means that it shares the
-same exponent range as the IEEE single precision format.
+traditional scientific applications, where close values need to be
+resolved.)  This has led to the definition of the
+\indextermdef{bfloat16} format~\cite{Intel:bfloat16} which is a 16-bit
+floating point format. It uses 8~bits for the exponent and 7~bits for
+the mantissa. This means that it shares the same exponent range as the
+IEEE single precision format; see figure~\ref{fig:bfloat16def}.
 
-\includegraphics{bfloat16def}
+\begin{figure}[ht]
+  \includegraphics[scale=.5]{bfloat16def}  
+  \caption{Comparison of fp32, fp16, and bfloat16
+    formats. (Illustration from \cite{Intel:bfloat16})}
+  \label{fig:bfloat16def}
+\end{figure}
 
 \begin{itemize}
 \item Since bfloat16 and fp32 have the same structure in the first two bytes,
@@ -1688,8 +1694,9 @@ part of matrix-matrix multiplication in \indexac{DL}), we then need an
 \ac{FMA} unit as in figure~\ref{fig:bfloat16fma}.
 
 \begin{figure}[ht]
-  \includegraphics{bfloat16fma}
-  \caption{An FMA unit taking two bloat16 and one fp32 number}
+  \includegraphics[scale=.5]{bfloat16fma}
+  \caption{An FMA unit taking two bloat16 and one fp32
+    number. (illustration from \cite{Intel:bfloat16})}
   \label{fig:bfloat16fma}
 \end{figure}
 
