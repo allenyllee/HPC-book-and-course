@@ -16,16 +16,18 @@
 \newcommand\furtherreading{\Level 0 {Further Reading}\label{sec:furtherreading-\chapshortname}}
 
 {\catcode`\^^I=13 \globaldefs=1
-\newcommand\listing[2]{\begingroup\small\par\vspace{1ex}
+\newcommand\srclisting[2]{\begingroup\small\par\vspace{1ex}
   \catcode`\^^I=13 \def^^I{\leavevmode\hspace{40pt}}
   \noindent\fbox{#1}
-  \verbatiminput{#2}\endgroup}
-  \newcommand\codelisting[1]{\begingroup\small\par\vspace{1ex}
+  \verbatiminput{#2}\endgroup
+  }
+\newcommand\codelisting[1]{\begingroup\small\par\vspace{1ex}
   \catcode`\^^I=13 \def^^I{\leavevmode\hspace{40pt}}
   \noindent\fbox{#1}
   \verbatiminput{#1}\endgroup}
 }
-\newcommand\inv{^{-1}}\newcommand\invt{^{-t}}
+\newcommand\inv{^{-1}}
+\newcommand\invt{^{-t}}
 \newcommand\setspan[1]{[\![#1]\!]}
 \newcommand\fp[2]{#1\cdot10^{#2}}
 \newcommand\fxp[2]{\langle #1,#2\rangle}
@@ -154,7 +156,17 @@
 
 \newcommand{\indexterm}[1]{\emph{#1}\index{#1}}
 \newcommand{\indextermttdef}[1]{{\ttfamily\slshape #1}\index{#1@\texttt{#1}|textbf}}
-\newcommand{\indextermunix}[1]{{\ttfamily\slshape #1}\index{#1@\texttt{#1}}}
+\newcommand{\indextermunix}[1]
+           {{\ttfamily\slshape #1}\index{#1@\texttt{#1}!(unix command)}}
+\newcommand{\indextermunixdef}[1]
+           {{\ttfamily\slshape #1}\index{#1@\texttt{#1}!(unix command)|textbf}}
+\newcommand{\indextermunixdefus}% begin term with underscore
+           {\bgroup\catcode`\_=12 \indextermunixdefeg}
+\newcommand{\indextermunixdefeg}[1]%end term with underscore
+           {{\ttfamily\slshape #1}%
+            \index{#1@\makeatletter\texttt{#1}\makeatother!(unix command)|textbf}\egroup
+           }
+
 \newcommand{\indextermdef}[1]{\emph{#1}\index{#1|textbf}}
 \newcommand{\indextermp}[1]{\emph{#1s}\index{#1}}
 \newcommand{\indextermsub}[2]{\emph{#1 #2}\index{#2!#1}}

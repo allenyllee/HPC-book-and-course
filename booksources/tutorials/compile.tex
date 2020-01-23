@@ -1,9 +1,10 @@
+% -*- latex -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012/3/4/5
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -13,27 +14,59 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\Level 0 {An introduction to binary files}
+\Level 0 {What is executed when you run a program?}
 
 \begin{purpose}
   In this section you will be introduced to the different types of
-  binary files that you encounter while programming.
+  files that you encounter while programming.
 \end{purpose}
 
-One of the first things you become aware of when you start programming
-is the distinction between the readable source code, and the
+\Level 1 {Source versus program}
+
+There are two types of programming languages:
+\begin{enumerate}
+\item In an \indextermsubdef{interpreted}{language} you write
+  human-readable source code and you execute it directly: the computer
+  translates your source line by line as it encounters it. 
+\item In a \indextermsubdef{compiled}{language} your code whole source
+  is first compiled to a program, which you then execute.
+\end{enumerate}
+Examples of interpreted languages are \indexterm{Python},
+\indexterm{Matlab}, \indexterm{Basic}, \indexterm{Lisp}.
+Interpreted languages have some advantages: often you can write them
+in an interactive environment that allows you to test code very
+quickly. They also allow you to construct code dynamically, during
+runtime. However, all this flexibility comes at a price: if a source
+line is executed twice, it is translated twice. In the context of this
+book, then, we will focus on compiled languages, using \indexterm{C}
+and \indexterm{Fortran} as prototypical examples.
+
+So now you have
+a distinction between the readable source code, and the
 unreadable, but executable, program code. In this tutorial you will
-learn about a couple more file types:
-\begin{itemize}
-\item A source file can be compiled to an \emph{object file}, which is
+learn about the translation process from the one to the other. The
+program doing this translation is known as a \indextermdef{compiler}.
+This tutorial will be a `user manual' for compilers, as it were; what
+goes on inside a compiler is a different branch of computer science.
+
+\Level 1 {Binary files}
+
+Programs can get very large, so  you don't want to recompile
+everything for every change you make: typically you divide your source
+in multiple files, and compile them separately.
+
+First of all, a source file can be compiled to an \emph{object file}, which is
   a bit like a piece of an executable: by itself it does nothing, but
   it can be combined with other object files to form an executable.
-\item A \emph{library} is a bundle of object files that can be used to
+
+If you have a collection of object files that you need for more than
+one program, it is usually a good idea to make a 
+\emph{library}: a bundle of object files that can be used to
   form an executable. Often, libraries are written by an expert and
   contain code for specialized purposes such as linear algebra
   manipulations. Libraries are important enough that they can be
   commercial, to be bought if you need expert code for a certain purpose.
-\end{itemize}
+
 You will now learn how these types of files are created and used.
 
 \Level 0 {Simple compilation}
@@ -42,9 +75,23 @@ You will now learn how these types of files are created and used.
   In this section you will learn about executables and object files.
 \end{purpose}
 
+\Level 1 {Compilers}
+
+Your main tool for turning source into a program is the
+\indexterm{compiler}. Compilers are specifically to a language: you
+use a different compiler for C than for Fortran.
+You can also have two compilers for the same language, but from
+different `vendors'. For instance, while many people use the open
+source \indexterm{gcc} or \indexterm{clang} compiler families,
+companies like \emph{Intel}\index{Intel!compiler} and
+\emph{IBM}\index{IBM!compiler} offer compilers that may give more
+efficient code on their processors.
+
+\Level 1 {Compile a single file}
+
 Let's start with a simple program that has the whole source in one
 file.
-\listing{One file: \n{hello.c}}{tutorials/compile/c/hello.c}
+\srclisting{One file: \n{hello.c}}{tutorials/compile/c/hello.c}
 Compile this program with your favourite compiler; we will use \n{gcc}
 in this tutorial, but substitute your own as desired. As a result of
 the compilation, a file \n{a.out} is created, which is the executable.
@@ -60,24 +107,44 @@ You can get a more sensible program name with the \n{-o} option:
 hello world
 \end{verbatim}
 
+\Level 1 {Multiple files: compile and link}
+
 Now we move on to a program that is in more than one source file.
-\listing{Main program: \n{fooprog.c}}{tutorials/compile/c/fooprog.c}
-\listing{Subprogram: \n{fooprog.c}}{tutorials/compile/c/foosub.c}
+
+\begin{multicols}{2}
+  Main program: \n{fooprog.c}
+  \lstinputlisting{code/compile/c/fooprog.c}
+  \columnbreak
+  Subprogram: \n{fooprog.c}
+  \lstinputlisting{code/compile/c/foosub.c}
+\end{multicols}
+
 As before, you can make the program with one command.
+
+\snippetoutput{compile/c}{makeoneprogram}
+\begin{comment}
 \begin{verbatim}
-%% gcc -o foo fooprog.c foosub.c 
-%% ./foo
+clang -o oneprogram fooprog.c foosub.c
+./oneprogram
 hello world
 \end{verbatim}
+\end{comment}
+
 However, you can also do it in steps, compiling each file separately
 and then linking them together.
+
+\snippetoutput{compile/c}{makeseparatecompile}
+
+\begin{comment}
 \begin{verbatim}
-%% gcc -c fooprog.c
-%% gcc -c foosub.c
-%% gcc -o foo fooprog.o foosub.o
-%% ./foo
+clang -c -fPIC fooprog.c
+clang -c -fPIC foosub.c
+clang -o oneprogram fooprog.o foosub.o
+./oneprogram
 hello world
 \end{verbatim}
+\end{comment}
+
 The \n{-c} option tells the compiler to compile the source file,
 giving an \indexterm{object file}. The third command than acts as the
 \indexterm{linker}, tieing together the object files into an
@@ -85,6 +152,20 @@ executable. (With programs that are spread over several files there is
 always the danger of editing a subroutine definition and then
 forgetting to update all the places it is used. See the `make'
 tutorial, section~\ref{tut:gnumake}, for a way of dealing with this.) 
+
+Each object file defines some routine names, and uses some others that
+are undefined in it, but that will be defined in other object files or
+system libraries. Use the \indextermunixdef{nm} command to display
+this:
+\begin{verbatim}
+[c:264] nm foosub.o
+0000000000000000 T _bar
+                 U _printf
+\end{verbatim}
+Lines with \n{T} indicate routines that are defined; lines with \n{U}
+indicate routines that are used but not define in this file. In this
+case, \n{printf} is a system routine that will be supplied in the
+linker stage.
 
 \Level 0 {Libraries}
 \index{libraries!creating and using|(}
@@ -106,11 +187,19 @@ Create a directory to contain your library (depending on what your
 library is for this can be a
 system directory such as \n{/usr/bin}), and create the library file
 there. 
+
+\snippetoutput{compile/c}{makestaticlib}
+
+\begin{comment}
 \begin{verbatim}
 %% mkdir ../lib
 %% ar cr ../lib/libfoo.a foosub.o
 \end{verbatim}
-The \indextermtt{nm} command tells you what's in the library:
+\end{comment}
+
+The \indextermunix{nm} command tells you what's in the library, just
+like it did with object files, but now it also tells you what object
+files are in the library:
 \begin{verbatim}
 %% nm ../lib/libfoo.a 
 
@@ -118,11 +207,13 @@ The \indextermtt{nm} command tells you what's in the library:
 00000000 T _bar
          U _printf
 \end{verbatim}
-Line with \n{T} indicate functions defined in the library file;
-a~\n{U} indicates a function that is used.
 
 The library can be linked into your executable by explicitly giving
 its name, or by specifying a library path:
+
+\snippetoutput{compile/c}{staticprogram}
+
+\begin{comment}
 \begin{verbatim}
 %% gcc -o foo fooprog.o ../lib/libfoo.a
 # or
@@ -130,19 +221,19 @@ its name, or by specifying a library path:
 %% ./foo
 hello world
 \end{verbatim}
-A third possibility is to use the \n{LD_LIBRARY_PATH} shell
-variable. Read the man page of your compiler for its use, and give the
-commandlines that create the \n{foo} executable, linking the library
-through this path.
- 
+\end{comment}
+
 Although they are somewhat more complicated to use, 
 \indexterm{shared libraries}
 have several advantages. For
 instance, since they are not linked into the executable but only
 loaded at runtime, they lead to (much) smaller executables. They are
 not created with \n{ar}, but through the compiler. For instance:
+
+\snippetoutput{compile/c}{makedynamiclib}
+
+You can again use \indextermunix{nm}:
 \begin{verbatim}
-%% gcc -dynamiclib -o ../lib/libfoo.so foosub.o
 %% nm ../lib/libfoo.so 
 
 ../lib/libfoo.so(single module):
@@ -153,9 +244,15 @@ not created with \n{ar}, but through the compiler. For instance:
 00001000 d dyld__mach_header
 00000fb0 t dyld_stub_binding_helper
 \end{verbatim}
+
 Shared libraries are not actually linked into the executable;
-instead, the executable will contain the information where the library
-is to be found at execution time:
+instead, the executable needs the information where the library
+is to be found at execution time. One way to do this is with
+\indextermunixdefus{LD_LIBRARY_PATH}:
+
+\snippetoutput{compile/c}{dynamicprogram}
+
+Another solution is to have the path be included in the executable:
 \begin{verbatim}
 %% gcc -o foo fooprog.o -L../lib -Wl,-rpath,`pwd`/../lib -lfoo
 %% ./foo
@@ -168,11 +265,8 @@ The link line now contains the library path twice:
 \item once with the linker directive \verb+-Wl,-rpath,`pwd`/../lib+ which
   stores the path into the executable so that it can be found at runtime.
 \end{enumerate}
-Build the executable again, but without the \n{-Wl} directive. Where
-do things go wrong and why? You can also fix this problem by using
-\n{LD_LIBRARY_PATH}. Explore this.
 
-Use the command \n{ldd} to get information about what shared libraries
+Use the command \indextermunixdef{ldd} to get information about what shared libraries
 your executable uses. (On Mac OS~X, use \n{otool -L} instead.)
 
 \index{libraries!creating and using|)}

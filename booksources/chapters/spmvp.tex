@@ -166,13 +166,14 @@ giving a speed up of
 \end{exercise}
 
 \begin{exercise}
+  \label{ex:scale-2d-domain}
   In this exercise you will analyze the parallel sparse matrix-vector
   product for a hypothetical, but realistic, parallel machine.
   Let the machine parameters be characterized by (see
   section~\ref{sec:latencybandwidth}):
   \begin{itemize}
-  \item {\it Latency:} $\alpha=1\mu s=10^{-6}s$.
-  \item {\it Bandwidth:} $1Gb/s$ corresponds to $\beta=10^{-9}$.
+  \item Network {\it Latency:} $\alpha=1\mu s=10^{-6}s$.
+  \item Network {\it Bandwidth:} $1Gb/s$ corresponds to $\beta=10^{-9}$.
   \item {\it Computation rate:} A per-core flops rate of $1G$flops
     means $\gamma=10^9$. This number may seem low, but note that the
     matrix-vector product has less reuse than the matrix-matrix
@@ -180,7 +181,13 @@ giving a speed up of
     and that the sparse matrix-vector product is even more
     bandwidth-bound.
   \end{itemize}
-  We assume $10^4$ processors, and a five-point
+  We perform a combination of asymptotic analysis and deriving specific numbers.
+  We assume a cluster of 
+  $10^4$ single-core processors\footnote
+  {Introducing multicore processors would complicate the story, but
+    since the number of cores is $O(1)$, and the only way to grow a
+    cluster is by adding more networked nodes, it does not change the
+    asymptotic analysis.}. We appy this to a five-point
   stencil matrix of size $N=25\cdot 10^{10}$. This means each
   processor stores $5\cdot 8\cdot N/p=10^9$ bytes. If the matrix comes
   from a problem on a square domain, this means the domain was size
@@ -326,19 +333,16 @@ after which we sum $y\leftarrow\sum_py^{(p)}$.
 
 While the dense matrix-vector product relies on collectives
 (see section~\ref{sec:parallel-dense-mvp}),
-the sparse case uses point-to-point communication
-\begin{footnoteenv}
-  
-{This makes sense for the type of sparse matrices
+the sparse case uses point-to-point communication, that is,
+every processor sends to just a few neighbours, and receives
+from just a few.
+This makes sense for the type of sparse matrices
 that come from \acp{PDE}
 which have a clear structure, as you saw 
 in section~\ref{sec:2dbvp}. However, there are 
 sparse matrices that are so random that you essentially
 have to use dense techniques; see
-section~\ref{sec:random-graph-product}.}
-\end{footnoteenv}
-Every processor sends to just a few neighbours, and receives
-from just a few.
+section~\ref{sec:random-graph-product}.
 
 However, there is an asymmetry between sending and receiving.
 It is fairly easy for a processor to find out what other processors

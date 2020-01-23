@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012/3/4/5
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -378,3 +378,42 @@ INTEGER,KIND(C_SHORT) :: i
 \end{itemize}
 
 \index{interoperability!C to Fortran|)}
+
+\Level 0 {Python calling C code}
+
+\index{interoperability!C to python|(}
+
+Because of its efficiency of computing, C~is a logical language to use
+for the lowest layers of a program. On the other hand, because of its
+expressiveness, Python is a good candidate for the top layers. It is
+then a logical thought to want to call C~routines from a python
+program.
+%
+This is possible using the python \emph{ctypes}\index{ctypes (python module)}
+module.
+\begin{enumerate}
+\item You write your C code, and compile it to a dynamic library as
+  indicated above;
+\item The python code loads the library dynamically, for instance for
+  \indextermtt{libc}:
+\begin{verbatim}
+path_libc = ctypes.util.find_library("c")
+libc = ctypes.CDLL(path_libc)
+libc.printf(b"%s\n", b"Using the C printf function from Python ... ")
+\end{verbatim}
+\item You need to declare what the types are of the C routines in python:
+\begin{verbatim}
+test_add = mylib.test_add
+test_add.argtypes = [ctypes.c_float, ctypes.c_float]
+test_add.restype = ctypes.c_float
+test_passing_array = mylib.test_passing_array
+test_passing_array.argtypes = [ctypes.POINTER(ctypes.c_int), ctypes.c_int]
+test_passing_array.restype = None
+\end{verbatim}
+\item Scalars can be passed simply; arrays need to be constructed:
+\begin{verbatim}
+data = (ctypes.c_int * Nelements)(*[x for x in range(numel)])
+\end{verbatim}
+\end{enumerate}
+
+\index{interoperability!C to python|)}

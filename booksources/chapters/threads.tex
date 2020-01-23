@@ -94,11 +94,8 @@ section~\ref{sec:shared-lock}.
 \label{sec:thread-example}
 \index{pthreads|(}
 
-The following example
-\begin{footnoteenv}
-  {This is strictly Unix-centric and will
-    not work on Windows.}
-\end{footnoteenv}
+The following example,
+which is strictly Unix-centric and will not work on Windows,
 is a clear illustration of the \indexterm{fork-join} model.
 It uses the \emph{pthreads} library to spawn
 a number of tasks that all update a global counter. Since threads
@@ -187,12 +184,9 @@ We call this \emph{private}\index{thread!private data} data.
 The totality of all data that a thread can access is called
 its \emph{context}.  It contains private and shared data, as well as
 temporary results of computations that the thread is working
-on
-\begin{footnoteenv}
-  {It also contains the program counter and stack pointer. If
-    you don't know what those are, don't worry.}
-\end{footnoteenv}%
-.
+on.
+(It also contains the program counter and stack pointer. If
+    you don't know what those are, don't worry.)
 
 It is quite possible to create more threads than a processor has cores,
 so a processor may need to switch between the execution of different threads.
@@ -381,13 +375,27 @@ on a thread
 needs to consult all other threads. We discussed this in section~\ref{sec:coherence}.
 
 In a \indextermsub{relaxed}{memory model} it is possible to get a result that
-is not sequentially consistent. Suppose, in the above example, the instructions
-$\n{A}\leftarrow \n{1}$, $\n{B}\leftarrow \n{1}$ are executed first, but
-these changes are not immediately visible to the other threads.
-Then subsequent instructions
-$\n{x}\leftarrow \n{B}$, $\n{y}\leftarrow \n{A}$  can receive the
-result $x=0,y=0$, which was not possible under the sequentially consistent
-model above.
+is not sequentially consistent. Suppose, in the above example,
+that the compiler decides to reorder the
+statements for the two processes, since the read and write are independent.
+In effect we get a fourth scenario:
+
+\begin{tabular}{|l|}
+  \hline
+  scenario 4.\\ \hline
+  $\n{x}\leftarrow \n{B}$\\
+  $\n{y}\leftarrow \n{A}$\\
+  $\n{A}\leftarrow \n{1}$\\
+  $\n{B}\leftarrow \n{1}$\\
+  \hline
+  $x=0, y=0$\\
+  \hline
+\end{tabular}
+
+leading to the result $x=0,y=0$, which was not possible under the
+sequentially consistent model above. (There are algorithms for finding
+such dependecies~\cite{KrishnaYelick:cycledetect}.)
+
 
 Sequential consistency implies that
 \begin{verbatim}

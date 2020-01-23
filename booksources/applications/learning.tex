@@ -50,6 +50,8 @@ and we have a function~$\sigma$ known as the
 \indextermdef{sigmoid} that maps $\bbR\rightarrow(0,1)$, we write the
 scalar output~$y$ as:
 \[ \bbR\owns y = \sigma( \bar w^t\bar x+b ). \]
+One choice for a sigmoid function is
+\[ \sigma(z) = \frac{1}{1+e^{-z}}. \]
 Since we typically have many perceptrons, we let $y$ be a vector.
 Now we have weights and a bias for each component, so
 \[ \bbR^n\owns \bar y = \sigma( W\bar x + \bar b ). \]
@@ -81,8 +83,9 @@ or as classification through
 Now consider the problem of determining the coefficients of the neural
 net: the $W$ matrix and the $\bar b$ vector. The key here is that we have
 for an input $\bar x$ both the computed output $\bar y$ and the
-`correct' output~$\tilde y$. With this we can compute the error
-$\|\bar y -\tilde y$, which is a complicated function of the
+`correct' output~$\tilde y$. With this we can compute the
+\indextermbusdef{error}{function} (or \indextermbusdef{cost}{function})
+$E=\|\bar y -\tilde y\|$, which is a complicated function of the
 coefficients, and minimize this by setting the coefficients correctly.
 
 Finding coefficients that give a zero error for one particular input
@@ -94,15 +97,27 @@ until the error is acceptable for all of them.
 Given an input and true output $(x^t,r^t)$ and a computed output
 of~$y^t$, we have a squared error of
 \[ E = \frac12 (r^t-y^t)^2 = \frac12 \left[r^t- w^tx^t\right]^2. \]
+Alternatively:
+\[ E = \frac1n \sum_x E_x \]
+where we have a set of $n$ samples~$x$.
+This form of the error function allows us to compute partial
+derivatives $\partial E/\partial w$ wrt some coefficient~$w$
+for a single sample. We can then estimate the partial deriviate by
+averaging over a number of samples.
+
 We train the weights
 by finding a (local) minimum, characterized by
 \[ 0=\frac{d E}{d x} = \bigl( \frac{\partial E}{\partial x_j} \bigr)_j
     = \bigl( (r-y)x_j \bigr)_j \]
 This can be done with \indexterm{gradient descent}:
-\[ w\leftarrow w+\Delta w \qquad
-    \hbox{where $\Delta w=( \eta(r-y)x_j )_j$}. \]
+\[ w\leftarrow w+\Delta w, \qquad b\leftarrow b+\Delta b\]
+%%    \hbox{where $\Delta w=( \eta(r-y)x_j )_j$}. \]
 where $\eta$ is a learning rate.
-
+Per component this looks like:
+\[ w_k \leftarrow w_k - \eta \frac{\partial E}{\partial w_k},
+\qquad
+b_k \leftarrow b_k - \eta \frac{\partial E}{\partial b_k},
+\]
 
 The linear function $y=w^tx$ is surprisingly useful. In fact, there is
 a hard theoretical statement that says that enough of these functions,
@@ -136,6 +151,26 @@ continuous function on a bounded domain.
 \end{quotation}
 
 The function $y\leftarrow w^tx$ is called a \indextermdef{perceptron}.
+
+\Level 1 {Backpropagation}
+
+The process of `learning' consists of updating the weights and biases.
+So let's take a single layer~$L$ with $y^{(L-1)}$ of the previous layer
+as input, and output $y^{(L)}$ defined by
+\[ y^{(L)} = \sigma\bigl( z^{(L)} \bigr),\qquad
+z^{(L)}=W^{(L)}y^{(L-1)}+b^{(L)}. \]
+The error function is
+\[ E= \| y^{(L)}-\tilde y \|. \]
+Then by the chain rule:
+\[ \frac{dE}{dw^{(L)}} = \frac{dE}{dy^{(L)}}\cdot
+\frac{dy^{(L)}}{dz^{(L)}}\cdot
+\frac{dz^{(L)}}{dW^{(L)}} \]
+where
+\begin{itemize}
+\item \[ \frac{dE}{dy^{(L)}} = 2(y^{(L)}-\tilde y) \],
+\item \[ \frac{dy^{(L)}}{dz^{(L)}} = \sigma'(z^{(L)}) \],
+\item \[ \frac{dz^{(L)}}{dW^{(L)}} = y^{(L-1)} \]
+\end{itemize}
 
 \Level 1 {Stochastic Gradient Descent}
 

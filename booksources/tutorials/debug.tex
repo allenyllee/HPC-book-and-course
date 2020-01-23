@@ -68,6 +68,16 @@ There are three ways of using gdb: using it to start a program,
 attaching it to an already running program, or using it to inspect a
 \indexterm{core dump}. We will only consider the first possibility.
 
+\begin{tabular}{|c|c|}
+  \hline
+  \multicolumn{2}{c}{Starting a debugger run} \\
+  gdb & lldb\\
+  \hline
+  \n{\$ gdb program}&\n{\$ lldb program}\\
+  \n{(gdb) run}&\n{(lldb) run}\\
+  \hline
+\end{tabular}
+
 Here is an exaple of how to start gdb with program that has no
 arguments (Fortran users, use \n{hello.F}):
 \codelisting{tutorials/gdb/c/hello.c}
@@ -163,6 +173,17 @@ Program received signal EXC_BAD_ACCESS, Could not access memory.
 Reason: KERN_INVALID_ADDRESS at address: 0x000000000000eb4a
 0x00007fff824295ca in __svfscanf_l ()
 \end{verbatim}
+
+\begin{tabular}{|c|c|}
+  \hline
+  \multicolumn{2}{c}{Displaying a stack trace} \\
+  gdb & lldb\\
+  \hline
+  \n{(gdb) where}&\n{(lldb) thread backtrace}\\
+  \hline
+\end{tabular}
+
+
 Apparently the error occurred in a function \n{__svfscanf_l}, which is
 not one of ours, but a system function. Using the \n{backtrace}
 (or~\n{bt}, also \n{where} or~\n{w}) command we
@@ -235,7 +256,54 @@ Illegal instruction/operand.
 We take a close look at the code and see that we did not allocate
 \n{squares} properly.
 
-\Level 0 {Memory debugging with Valgrind}
+\Level 0 {Memory debugging}
+
+Many problems in programming stem from memory errors. We start with a
+sort description of the most common types, and then discuss tools that
+help you detect them.
+
+\Level 1 {Type of memory errors}
+
+\Level 2 {Invalid pointers}
+
+Dereferencing a pointer that does not point to an allocated object can lead to an error.
+If your pointer points into valid memory anyway, your computation will continue but with incorrect results.
+
+However, it is more likely that
+your program will probably abort with a
+\indexterm{segmentation violation} or a \indexterm{bus error}.
+
+\Level 2 {Out-of-bounds errors}
+
+Addressing outside the bounds of an allocated object is less likely to crash your program and more likely to give incorrect results.
+
+Exceeding bounds by a large enough amount will again give a
+segmentation violation, but going out of bounds by a small amount may
+read invalid data, or corrupt data of other variables, giving
+incorrect results that may go undetected for a long time.
+
+\Level 2 {Memory leaks}
+
+We speak of a \indexterm{memory leak} if allocated memory becomes unreachable.
+Example:
+\begin{lstlisting}
+if (something) {
+  double *x = malloc(10*sizeofdouble);
+  // do something with x
+}
+\end{lstlisting}
+After the conditional, the allocated memory is not freed, but the
+pointer that pointed to has gone away.
+
+This last type especially can be hard to find.
+Memory leaks will only surface in that your program runs out of
+  memory. That in turn is detectable because your allocation will
+  fail. It is a good idea to always check the return result of your
+  \indextermtt{malloc} or \indextermtt{allocate} statement!
+
+\Level 1 {Memory tools}
+
+\Level 2 {Valgrind}
 \label{sec:valgrind}
 
 Insert the following allocation of \n{squares} in your program:
@@ -308,6 +376,23 @@ been added to several times. Do you see why valgrind calls it
 uninitialized all the same?
 
 \index{valgrind|)}
+
+\Level 2 {Electric fence}
+
+The \indexterm{electric fence} library is one of a number of tools
+that supplies a new \indextermtt{malloc} with debugging support.
+These are linked instead of the \n{malloc} of the standard
+\indextermtt{libc}.
+
+\begin{verbatim}
+cc -o program program.c -L/location/of/efence -lefence
+\end{verbatim}
+
+Suppose your program has an out-of-bounds error. Running with gdb,
+this error may only become apparent if the bounds are exceeded by a
+large amount. On the other hand, if the code is linked with
+\indextermtt{libefence}, the debugger will stop at the very first time
+the bounds are exceeded.
 
 \Level 0 {Stepping through a program}
 

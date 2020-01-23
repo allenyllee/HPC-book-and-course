@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-8
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -27,12 +27,8 @@ available, but in this tutorial we will assume that you are using the
 \indexterm{sh} or \indexterm{bash} shell, although many commands are
 common to the various shells in existence.
 
-This short tutorial will get you going; 
-if you want to learn more about Unix and shell scripting,
-see for instance~\url{http://www.tldp.org/guides.html}.
 Most of this tutorial will work on any Unix-like platform,
-including \indexterm{Cygwin} on Windows.
-However, there is not just one Unix:
+however, there is not just one Unix:
 \begin{itemize}
 \item Traditionally there are a few major flavours of Unix: ATT and BSD.
   Apple has Darwin which is close to BSD; IBM and HP have their own
@@ -43,22 +39,26 @@ However, there is not just one Unix:
   such as \indexterm{Red Hat} or \indexterm{Ubuntu}. These mainly differ
   in the organization of system files and again you probably need not worry
   about them.
-\item As mentioned just now, there are different shells, and they do differ
-  considerably. Here you will learn the bash shell, which for a variety of
-  reasons is to be preferred over the \indexterm{csh} or \indexterm{tcsh} shell.
-  Other shells are the \indexterm{ksh} and \indexterm{zsh}.
+\item As mentioned just now, there are different shells, and they do
+  differ considerably. Here you will learn the \indextermdef{bash}
+  shell, which is an improved version of the old \indexterm{sh} shell.
+   For a variety of reasons, \n{bash} is to be preferred over the
+  \indexterm{csh} or \indexterm{tcsh} shell.  Other shells are the
+  \indexterm{ksh} and \indexterm{zsh}, which is itself an improvement
+  over the \n{bash} shell.
 \end{itemize}
 
-For further reading:
-\begin{itemize}
-\item `The Linux Command Line' by William Shotts
-  \url{gd.tuwien.ac.at/linuxcommand.org/} discusses life on the
-  command line plus shell scripting.
-\item `Bash Guide for Beginners' by Machtelt Garrels
-  \url{tille.garrels.be/training/bash/} focuses on shell scripting in
-  great detail.
-\end{itemize}
-
+\begin{comment}
+  For further reading:
+  \begin{itemize}
+  \item `The Linux Command Line' by William Shotts
+    \url{gd.tuwien.ac.at/linuxcommand.org/} discusses life on the
+    command line plus shell scripting.
+  \item `Bash Guide for Beginners' by Machtelt Garrels
+    \url{tille.garrels.be/training/bash/} focuses on shell scripting in
+    great detail.
+  \end{itemize}
+\end{comment}
 %\secttoc
 
 \Level 0 {Files and such}
@@ -99,13 +99,13 @@ Without any argument, the \indextermunix{ls} command gives you a
 listing of files that are in your present location.
 
 \practical
-{Type \n{ls}. Does anything show up?}
+{Type \indextermunix{ls}. Does anything show up?}
 {If there are files in your directory, they will be \n{l}i\n{s}ted; if
   there are none, no output will be given. This is standard Unix
   behaviour: no output does not mean that something went wrong, it
   only means that there is nothing to report.}{}
 
-\practical{If the \n{ls} command shows that there are files, do \n{ls
+\practical{If the \indextermunix{ls} command shows that there are files, do \n{ls
     name} on one of those. By using an option, for instance \n{ls -s
     name} you can get more name.}{}{If you specify a name of a
   non-existing file, you'll get an error message.}
@@ -120,8 +120,8 @@ used to create some simple content.
   filename) and type some text. Conclude with \n{Control-d}
   on a line by itself\footnote 
   {Press the \texttt{Control} and hold it while you press the \texttt{d} key.}.
-  Now use \n{cat} to view the contents of that file: \n{cat newfilename}.}
-{In the first use of \n{cat}, text was con\n{cat}enated from the
+  Now use \indextermunix{cat} to view the contents of that file: \n{cat newfilename}.}
+{In the first use of \indextermunix{cat}, text was con\n{cat}enated from the
   terminal to a file; in the second the file was cat'ed to the
   terminal output. You should see on your screen precisely what you
   typed into the file.}
@@ -136,19 +136,19 @@ used to create some simple content.
   and the lowercase letter.
   \end{remark}
 
-The \n{ls} command can give you all sorts of information.
+The \indextermunix{ls} command can give you all sorts of information.
 
-\practical {Read the man page of the \n{ls} command: \n{man ls}. Find
+\practical {Read the man page of the \indextermunix{ls} command: \n{man ls}. Find
   out the size and the time/date date of the last change to some files, for instance the file
   you just created.}
 {Did you find the \n{ls -s} and \n{ls -l}
   options? The first one lists the size of each file, usually in
   kilobytes, the other gives all sorts of information about a file,
   including things you will learn about later.}  
-{The \n{man} command
+{The \indextermunix{man} command
   puts you in a mode where you can view long text documents. This
-  viewer is common on Unix systems (it is available as the \n{more} or
-  \n{less} system command), so memorize the following ways of navigating: Use
+  viewer is common on Unix systems (it is available as the \indextermunix{more} or
+  \indextermunix{less} system command), so memorize the following ways of navigating: Use
   the space bar to go forward and the \n{u} key to go back up. Use
   \n{g} to go to the beginning fo the text, and \n{G} for the end. Use
   \n{q} to exit the viewer. If you really get stuck, \n{Control-c} will
@@ -455,7 +455,7 @@ refer to. How about `group'? We'll go into that in section~\ref{sec:users}.
   bit, a user can run these programs, which are then so designed that
   a user can only make changes to their own password entry, and their
   own directories, respectively. The setuid bit is set with
-  \indextermtt{chmod}: \n{chmod 4ugo file}.
+  \indextermunix{chmod}: \n{chmod 4ugo file}.
 \end{remark}
 
 \Level 1 {Wildcards}
@@ -620,6 +620,8 @@ This tells \n{cut} to use the colon as delimiter, and to print fields
 \Level 0 {Command execution}
 
 \Level 1 {Search paths}
+\label{sec:PATH}
+
 \begin{purpose}
   In this section you will learn how Unix determines what to do when
   you type a command name.
@@ -632,15 +634,16 @@ with the same name, and which one gets executed depends on which one
 is found first.
 
 \practical{What you may think of as `Unix commands' are often just
-  executable files in a system directory. Do \indextermunix{which}\n{ ls}, and do an
+  executable files in a system directory. Do \indextermunix{which}~\n{ls}, and do an
   \n{ls -l} on the result}
 {The location of \n{ls} is something like \n{/bin/ls}. If you
   \n{ls} that, you will see that it is probably owned by root. Its
   executable bits are probably set for all users.}{}
 
-The locations where unix searches for commands is the `search path',
+The locations where unix searches for commands is the
+\indextermdef{search path},
 which is stored in the \indexterm{environment variable} (for more
-details see below) \n{PATH}.
+details see below) \indextermunixdef{PATH}.
 
 \practical{Do \n{echo \$PATH}. Can you find the location of \n{cd}?
   Are there other commands in the same location? Is the current
@@ -773,6 +776,8 @@ the output of the first as input. The syntax for this is
 {}{}
 
 \Level 2 {Backquoting}
+\label{tut:unix-backquote}
+\index{backtick|see{backquote}}
 
 There are a few more ways to combine commands. Suppose you want to
 present the result of \n{wc} a bit nicely. Type the following command
@@ -780,7 +785,7 @@ present the result of \n{wc} a bit nicely. Type the following command
 echo The line count is wc -l foo
 \end{verbatim}
 where \n{foo} is the name of an existing file. The way to
-get the actual line count echoed is by the backquote:
+get the actual line count echoed is by the \indextermdef{backquote}:
 \begin{verbatim}
 echo The line count is `wc -l foo`
 \end{verbatim}
@@ -886,7 +891,7 @@ The command \indextermunix{ps} can tell you everything that is currently running
 In this long listing of \n{ps}, the second column contains the
 \emph{process numbers}\index{process!numbers}.
 Sometimes it is useful to have those: if a program misbehaves you can
-\indextermtt{kill} it with
+\indextermunix{kill} it with
 \begin{verbatim}
 kill 123456
 \end{verbatim}
@@ -960,14 +965,14 @@ every login session, you can add the \n{alias} command to your
 \n{.profile} file. Other shells than \n{sh}/\n{bash} have other files for such
 customizations.
 
-\Level 0 {Shell environent variables}
+\Level 0 {Shell environment variables}
 \label{tut:shellvars}
 \index{environment variable|(textbf}
 
 Above you encountered \n{PATH}, which is an example of an
 shell, or environment, variable. These are variables that are known to the shell
 and that can be used by all programs run by the shell. You can see the
-full list of all variables known to the shell by typing \n{env}. 
+full list of all variables known to the shell by typing \indextermunixdef{env}. 
 
 You can get the value of a shell variable by prefixing it with
 a dollar sign. Type the following two commands and compare the output:
@@ -991,7 +996,7 @@ is by an assignment as in other programming languages.
 
 A variable set this way will be known to all subsequent commands
 you issue in this shell, but not to commands in new shells you start up.
-For that you need the \indextermtt{export} command.
+For that you need the \indextermunix{export} command.
 Reproduce the following session (the square brackets form the command prompt):
 \begin{verbatim}
 [] a=20
@@ -1046,13 +1051,7 @@ shows some more built-in variables that apply in shell scripts.
 
 \index{environment variable|)}
 
-\Level 0 {Scripting}
-\label{sec:unix-script}
-
-The unix shells are also programming environments. You will learn more
-about this aspect of unix in this section.
-
-\Level 1 {Control structures}
+\Level 0 {Control structures}
 \label{sec:shell-control}
 
 Like any good programming system, the shell has some control
@@ -1060,7 +1059,10 @@ structures. Their syntax takes a bit of getting used to. (Different
 shells have different syntax; in this tutorial we only discuss the
 bash shell.
 
-In the bash shell, control structures can be written over several
+\Level 1 {Conditionals}
+
+The \emph{conditional} of the bash shell is predictably called
+\indextermunixdef{if}, and it can be written over several
 lines:
 \begin{verbatim}
 if [ $PATH = "" ] ; then
@@ -1071,9 +1073,34 @@ or on a single line:
 \begin{verbatim}
 if [ `wc -l file` -gt 100 ] ; then echo "file too long" ; fi
 \end{verbatim}
+(The backquote is explain in section~\ref{tut:unix-backquote}.)
 There are a number of tests defined, for instance \n{-f somefile}
 tests for the existence of a file. Change your script so that it will
 report \n{-1} if the file does not exist.
+
+The syntax of this is finicky:
+\begin{itemize}
+\item \indextermunix{if} and \indextermunix{elif} are followed by a
+  conditional, followed by a semicolon.
+\item The brackets of the conditional need to have spaces surrounding
+  them.
+\item There is no semicolon after \indextermunix{then} of \indextermunix{else}.
+\end{itemize}
+
+\begin{exercise}
+  Bash conditionals have an \indextermunix{elif} keyword. Still you can write
+  the sequence \n{else if}, as in:
+\begin{verbatim}
+if [ something ] ; then
+  foo
+else if [ something_else ] ; then
+  bar
+fi
+\end{verbatim}
+  Can you predict what the error is here?
+\end{exercise}
+
+\Level 1 {Looping}
 
 There are also loops. A~\n{for} loop looks like
 \begin{verbatim}
@@ -1110,10 +1137,34 @@ characters from a variable:
 [] echo ${a%.c}
 b
 \end{verbatim}
+(See the section~\ref{tut:unix-expansion} on expansion.)
 With this as a hint, write a loop that renames all your \n{.c} files
 to~\n{.x} files.
 
-\Level 1 {Scripting}
+The above construct easily loops over words, such as the output of
+\n{ls}. To do a numeric loop, use the command \indextermunixdef{seq}:
+\begin{verbatim}
+[shell:474] seq 1 5
+1
+2
+3
+4
+5
+\end{verbatim}
+Looping over a sequence of numbers then typically looks like
+\begin{verbatim}
+for i in `seq 1 ${HOWMANY}` ; do echo $i ; done
+\end{verbatim}
+Note the \indexterm{backtick}, which is necessary to have the \n{seq}
+command executed before evaluating the loop.
+
+\Level 0 {Scripting}
+\label{sec:unix-script}
+
+The unix shells are also programming environments. You will learn more
+about this aspect of unix in this section.
+
+\Level 1 {How to execute scripts}
 \label{sec:shell-scripting}
 
 It is possible to write programs of unix shell commands. First you
@@ -1126,12 +1177,23 @@ echo "hello world"
 and type \n{./script1} on the command line. Result?
 Make the file executable and try again.
 
-You can give your script command line arguments. If you want to be
-able to call
+In order write scripts that you want to invoke from anywhere, people
+typically put them in a directory \n{bin} in their home directory.
+You would then add this directory to your \indexterm{search path},
+contained in \indextermtt{PATH}; see section~\ref{sec:PATH}.
+
+\Level 1 {Script arguments}
+
+You can invoke a shell script with options and arguments:
 \begin{verbatim}
-./script1 foo bar
+./my_script -a file1 -t -x file2 file3
 \end{verbatim}
-you can use variables \verb+$1+,\verb+$2+ et cetera in the script:
+
+You will now learn how to incorporate this functionality in your scripts.
+
+First of all, all commandline arguments and options are available
+as variables \verb+$1+,\verb+$2+ et cetera in the script, and
+the number of command line arguments is available as \verb+$#+:
 \begin{verbatim}
 #!/bin/bash
 
@@ -1139,25 +1201,7 @@ echo "The first argument is $1"
 echo "There were $# arguments in all"
 \end{verbatim}
 
-Write a script that takes as input a file name argument, and reports how many
-lines are in that file.
-
-Edit your script to test whether the file has less than 10 lines
-(use the \n{foo -lt bar} test), and if it does, \n{cat} the
-file. Hint: you need to use backquotes inside the test.
-
-The number of command line arguments is available as \verb+$#+. Add a
-test to your script so that it will give a helpful message if you call
-it without any arguments.
-
-\Level 1 {Script arguments}
-
-You can invoke a shell script with arguments:
-\begin{verbatim}
-./my_script -a file1 -t -x file2
-\end{verbatim}
-where you define how many arguments and what they mean.
-
+Formally:
 \begin{tabular}{|l|l|}
   \hline
   variable&meaning\\
@@ -1168,6 +1212,41 @@ where you define how many arguments and what they mean.
   \verb+$*,$@+&the list of all arguments\\
   \hline
 \end{tabular}
+
+\begin{exercise}
+  Write a script that takes as input a file name argument, and reports how many
+  lines are in that file.
+
+  Edit your script to test whether the file has less than 10 lines
+  (use the \n{foo -lt bar} test), and if it does, \n{cat} the
+  file. Hint: you need to use backquotes inside the test.
+
+  Add a
+  test to your script so that it will give a helpful message if you call
+  it without any arguments.
+\end{exercise}
+
+The standard way to parse argument is using the \indextermunixdef{shift}
+command, which pops the first argment off the list of arguments.
+Parsing the arguments in sequence then involves looking at \verb+$1+,
+shifting, and looking at the new \verb+$1+.
+%
+\snippetwithoutput{argumentshift}{code/shell}{arguments}
+
+\begin{exercise}
+  Write a script \n{say.sh} that prints its text argument. However, if you invoke it with 
+\begin{verbatim}
+./say.sh -n 7 "Hello world"
+\end{verbatim}
+  it should be print it as many times as you indicated. Using the
+  option \n{-u}:
+\begin{verbatim}
+./say.sh -u -n 7 "Goodbye cruel world"
+\end{verbatim}
+  should print the message in uppercase. Make sure that the order of
+  the arguments does not matter, and give an error message for any
+  unrecognized option.
+\end{exercise}
 
 The variables \verb+$@+ and \verb+$*+ have a different behaviour with
 respect to double quotes. Let's say we evaluate
@@ -1243,7 +1322,7 @@ x.bak
 \end{verbatim}
 \end{comment}
 
-The backquote mechanism (section~\ref{sec:unixpipe} above)
+The backquote mechanism (section~\ref{tut:unix-backquote} above)
 is known as command substitution. It allows you to evalute part
 of a command and use it as input for another. For example,
 if you want to ask what type of file the command \n{ls} is, do
@@ -1301,6 +1380,13 @@ introduce for your own purposes. Many of these customizations will
 need to apply to every sessions, so you can have 
 \emph{shell startup files} that will be read at the start of any session.
 
+Popular things to do in a startup file are defining \indextermunix{alias}es:
+\begin{verbatim}
+alias grep='grep -i'
+alias ls='ls -F'
+\end{verbatim}
+and setting a custom commandline \indexterm{prompt}.
+
 Unfortunately, there are several startup files, and which one gets read
 is a complicated functions of circumstances. Here is a good common sense
 guideline\footnote{Many thanks to Robert McLay for figuring this out.}:
@@ -1316,7 +1402,7 @@ fi
 \begin{verbatim}
 # ~/.bashrc
 # make sure your path is updated
-if [ -z ``$MYPATH'' ]; then
+if [ -z "$MYPATH" ]; then
   export MYPATH=1
   export PATH=$HOME/bin:$PATH
 fi
@@ -1426,7 +1512,8 @@ as possible from a regular user account, and use
 (The root account is also known as the \indextermsubdef{super}{user}.)
 %
 If you have root priviliges, you can also use that to `become another
-user' and do things with their priviliges.
+user' and do things with their priviliges, with the
+\indextermunixdef{sudo} (`superuser do') command.
 
 \begin{itemize}
 \item To execute a command as another user:
@@ -1447,6 +1534,52 @@ sudo su -
 \end{verbatim}
 \end{itemize}
 
+\Level 0 {Other systems: {\tt ssh} and {\tt scp}}
+
+No man is an island, and no computer is either. Sometimes you want to
+use one computer, for instance your laptop, to connect to another, for
+instance a supercomputer.
+
+If you are already on a Unix computer, you can log into another with
+the `secure shell' command~\indextermunixdef{ssh}, a~more secure variant
+of the old `remote shell' command~\indextermunixdef{rsh}:
+\begin{verbatim}
+ssh yourname@othermachine.otheruniversity.edu
+\end{verbatim}
+where the \n{yourname} can be omitted if you have the same name on
+both machines.
+
+To only copy a file from one machine to another you can use the
+`secure copy' \indextermunixdef{scp}, a~secure variant of `remote
+copy'~\indextermunixdef{rcp}. The \n{scp} command is much like \n{cp} in syntax,
+except that the source or destination can have a machine prefix.
+
+To copy a file from the current machine to
+another, type:
+\begin{verbatim}
+scp localfile yourname@othercomputer:otherdirectory
+\end{verbatim}
+where \n{yourname} can again be omitted, and \n{otherdirectory} can be
+an absolute path, or a path relative to your home directory:
+\begin{verbatim}
+# absolute path:
+scp localfile yourname@othercomputer:/share/
+# path relative to your home directory:
+scp localfile yourname@othercomputer:mysubdirectory
+\end{verbatim}
+Leaving the destination path empty puts the file in the remote home directory:
+\begin{verbatim}
+scp localfile yourname@othercomputer:
+\end{verbatim}
+Note the colon at the end of this command: if you leave it out you get
+a local file with an `at' in the name.
+
+You can also copy a file from the remote machine. For instance, to
+copy a file, preserving the name:
+\begin{verbatim}
+scp yourname@othercomputer:otherdirectory/otherfile .
+\end{verbatim}
+
 \Level 0 {The {\tt sed} and {\tt awk} tools}
 
 Apart from fairly small utilities such as \n{tr} and \n{cut}, Unix
@@ -1454,9 +1587,10 @@ has some more powerful tools. In this section you will see two tools for
 line-by-line transformations on text files. Of course this tutorial
 merely touches on the depth of these tools; for more information
 see~\cite{AWK:awk,OReilly:sedawk}.
+
 \Level 1 {\tt sed}
 
-The streaming editor \n{sed} is like an editor by remote control,
+The streaming editor \indextermunixdef{sed} is like an editor by remote control,
 doing simple line edits with a commandline interface. Most of the time
 you will use \n{sed} as follows:
 \begin{verbatim}
@@ -1490,7 +1624,7 @@ sed -e 's/ab/cd/' -e 's/ef/gh/' -i thefile
 
 \Level 1 {\tt awk}
 
-The \n{awk} utility also operates on each line, but it can be
+The \indextermunixdef{awk} utility also operates on each line, but it can be
 described as having a memory. An awk program consists of a sequence of
 pairs, where each pair consists of a match string and an action. The
 simplest awk program is
@@ -1549,10 +1683,38 @@ cat myfile | awk '/END/ {p=0} p==1 {print} /BEGIN/ {p=1} '
 \end{istc}
 
 \begin{exercise}
-Write a shell script for making backups. When you call this script as
-\n{./backup somefile} it should test whether \n{somefile.bak} exists,
-and give a warning if it does. In either case, it should copy the 
-original file to a backup.
+  Pretend that you're a professor writing a script for homework
+  submission: if a student invokes this script it copies the student
+  file to some standard location.
+\begin{verbatim}
+submit_homework myfile.txt
+\end{verbatim}
+  For simplicity, we simulate this by making a directory
+  \n{submissions} and two different files \n{student1.txt} and
+  \n{student2.txt}. After
+\begin{verbatim}
+submit_homework student1.txt
+submit_homework student2.txt
+\end{verbatim}
+  there should be copies of both files in the \n{submissions}
+  directory. Start by writing a simple script; it should give a
+  helpful message if you use it the wrong way.
+
+  Try to detect if a student is cheating. Explore the
+  \indextermunix{diff} command to see if the submitted file is
+  identical to something already submitted:
+  loop over all submitted files and
+  \begin{enumerate}
+  \item First print out all differences.
+  \item Count the differences.
+  \item Test if this count is zero.
+  \end{enumerate}
+  Now refine your test by catching if the cheating student randomly
+  inserted some spaces.
+
+  For a harder test: try to detect whether the cheating student
+  inserted newlines. This can not be done with \indextermunix{diff}, but you could
+  try \indextermunix{tr} to remove the newlines.
 \end{exercise}
 
 %\Level 0 {Unix tools}

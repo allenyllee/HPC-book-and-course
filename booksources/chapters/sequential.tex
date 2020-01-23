@@ -36,11 +36,7 @@ processor, and inside the processor. This latter point is, maybe
 unexpectedly, very important, since memory access is typically much
 slower than executing the processor's instructions, making it the
 determining factor in a program's performance; the days when
-`flop
-\begin{footnoteenv}
-  {Floating Point Operation.}
-\end{footnoteenv}
-counting' was the key to
+`flops (Floating Point Operations per Second) counting' was the key to
 predicting a code's performance are long gone. This discrepancy is in
 fact a growing trend, so the issue of dealing with memory traffic has
 been becoming more important over time, rather than going away.
@@ -63,29 +59,29 @@ architectures can be described as \indexterm{von Neumann architectures}.
 This describes a design with an undivided memory
 that stores both program and data (`stored program'), and a processing
 unit that executes the instructions, operating on the data in `fetch,
-execute, store cycle'
-\begin{footnoteenv}
-  {This model with a prescribed sequence
+execute, store cycle'.
+
+\begin{remark}
+This model with a prescribed sequence
   of instructions is also referred to as \indexterm{control flow}.
   This is in contrast to \indexterm{data flow}, which we will
-  see in section~\ref{sec:multicore-block}.}
-\end{footnoteenv}%
-.
+  see in section~\ref{sec:multicore-block}.
+\end{remark}
 
 This setup distinguishes modern processors for the very earliest, and
 some special purpose contemporary, designs where the program was
 hard-wired. It also allows programs to modify themselves or generate
 other programs, since instructions and data are in the same
 storage. This allows us to have editors and compilers: the computer
-treats program code as data to operate on
-\begin{footnoteenv}
-  {At one time, the
+treats program code as data to operate on.
+\begin{remark}
+At one time, the
   stored program concept was included as an essential component the
   ability for a running program to modify its own source. However, it
   was quickly recognized that this leads to unmaintainable code, and
-  is rarely done in practice~\cite{EWD:EWD117}.}
-\end{footnoteenv}%
-. In this book we will
+  is rarely done in practice~\cite{EWD:EWD117}.
+\end{remark}
+In this book we will
 not explicitly discuss compilers, the programs that translate high
 level languages to machine instructions. However, on occasion we will
 discuss how a program at high level can be written to ensure
@@ -103,16 +99,16 @@ higher level languages users write in, typically specify the name of
 an operation, as well as of the locations of the operands and the
 result. These locations are not expressed as memory locations, but as
 \emph{registers}\index{register}: a small number of named memory locations that
-are part of the \ac{CPU}
-\begin{footnoteenv}
-  {Direct-to-memory architectures are rare,
+are part of the \ac{CPU}.
+\begin{remark}
+Direct-to-memory architectures are rare,
   though they have existed. The Cyber 205 supercomputer in the 1980s
   could have three data streams, two from memory to the processor, and one
   back from the processor to memory, going on at the same time. Such
   an architecture is only feasible if memory can keep up with the
-  processor speed, which is no longer the case these days.}
-\end{footnoteenv}%
-.  As an
+  processor speed, which is no longer the case these days.
+\end{remark}
+As an
 example, here is a simple C~routine
 \begin{verbatim}
 void store(double *a, double *b, double *c) {
@@ -120,10 +116,6 @@ void store(double *a, double *b, double *c) {
 }
 \end{verbatim}
 and its X86 assembler output, obtained by
-\begin{footnoteenv}
-  {This is 64-bit
-    output; add the option \n{-m64} on 32-bit systems.}
-\end{footnoteenv}
 \verb+gcc -O2 -S -o - store.c+:
 \begin{verbatim}
        .text
@@ -136,6 +128,9 @@ store:
        movsd   %xmm0, (%rdx)		# Store to *c
        ret
 \end{verbatim}
+(This is 64-bit
+    output; add the option \n{-m64} on 32-bit systems.)
+
 The instructions here are:
 \begin{itemize}
 \item A load from memory to register;
@@ -162,14 +157,11 @@ plus an offset.
 
 In a way, then, the modern \ac{CPU} looks to the programmer like a von
 Neumann machine. There are various ways in which this is not so. For
-one, while memory looks randomly addressable
-\begin{footnoteenv}
+one, while memory looks randomly addressable\footnote
   {There is in fact
   a theoretical model for computation called the `Random Access
   Machine'; we will briefly see its parallel generalization in
-  section~\ref{sec:asymptotics}.}
-\end{footnoteenv}%
-, in practice there is a concept of
+  section~\ref{sec:asymptotics}.}, in practice there is a concept of
 \indexterm{locality}: once a data item has been loaded, nearby items
 are more efficient to load, and reloading the initial item is also faster.
 
@@ -329,7 +321,164 @@ pipelined, which has the effect that a stream of independent
 operations can be performed at an asymptotic speed of one result per
 clock cycle.
 
-\input chapters/pipeline
+The idea behind a
+pipeline is as follows. Assume that an operation consists of multiple
+simpler operations, and that for each suboperation there is separate
+hardware in the processor.
+For instance, an addition instruction can have the following components:
+\begin{itemize}
+\item Decoding the instruction, including finding the locations of the
+  operands.
+\item Copying the operands into registers (`data fetch').
+\item Aligning the exponents; the addition
+  %
+  $.35\times 10^{-1}\,+\, .6\times 10^{-2}$ becomes 
+  %
+  $.35\times 10^{-1}\,+\, .06\times 10^{-1}$.
+\item Executing the addition of the mantissas, in this case giving 
+  %
+  $.41$.
+\item Normalizing the result, in this example to $.41\times
+  10^{-1}$. (Normalization in this example does not do anything. Check
+  for yourself that in 
+  %
+  $.3\times10^0\,+\,.8\times 10^0$ and 
+  % 
+  $.35\times10^{-3}\,+\,(-.34)\times 10^{-3}$ there is a non-trivial
+  adjustment.)
+\item Storing the result.
+\end{itemize}
+These parts are often called the `stages' or `segments' of the pipeline.
+
+If every component is designed to finish in 1 clock cycle, the whole
+instruction takes 6~cycles. However, if each has its own hardware, we
+can execute two operations in less than 12~cycles:
+\begin{itemize}
+\item Execute the decode stage for the first operation;
+\item Do the data fetch for the first operation, and at the same time
+  the decode for the second.
+\item Execute the third stage for the first operation and the second
+  stage of the second operation simultaneously.
+\item Et cetera.
+\end{itemize}
+You see that the first operation still takes 6 clock cycles, but the
+second one is finished a mere 1~cycle later. 
+
+Let us make a formal analysis of the speedup you can get from a
+pipeline. On a traditional \ac{FPU}, producing $n$ results
+takes $t(n)=n\ell\tau$ where $\ell$~is the number of stages, and
+$\tau$~the clock cycle time. The rate at which results are produced is
+the reciprocal of $t(n)/n$: $r_{\mathrm{serial}}\equiv(\ell\tau)\inv$.
+
+On the other hand, for a pipelined \ac{FPU} the time is
+$t(n)=[s+\ell+n-1]\tau$ where $s$ is a setup cost:
+the first operation still has to go through the same stages
+as before, but after that one more result will be
+produced each cycle. We can also write this formula as\index{n@$n_{1/2}$}
+\[ t(n)=[n+n_{1/2}]\tau, \]
+expressing the linear time, plus an offset.
+
+
+\begin{figure}[ht]
+  \begin{quote}
+  \includegraphics[scale=.12]{graphics/pipeline}
+  \end{quote}
+  \caption{Schematic depiction of a pipelined operation}
+  \label{fig:pipeline}
+\end{figure}
+\begin{exercise}
+  Let us compare the speed of a classical \ac{FPU}, and a pipelined
+  one. Show that the result rate is now dependent on~$n$: give a
+  formula for $r(n)$, and for
+  $r_\infty=\lim_{n\rightarrow\infty}r(n)$. What is the asymptotic
+  improvement in $r$ over the non-pipelined case?
+
+  Next you can wonder how long it takes to get close to the asymptotic
+  behaviour. Show that for $n=n_{1/2}$ you get $r(n)=r_\infty/2$.
+  This is often used as the definition of~$n_{1/2}$.
+\end{exercise}
+Since a vector processor works on a number of instructions
+simultaneously, these instructions have to be independent. The
+operation $\forall_i\colon a_i\leftarrow b_i+c_i$ has independent
+additions; the operation $\forall_i\colon a_{i+1}\leftarrow
+a_ib_i+c_i$ feeds the result of one iteration ($a_i$) to the input of
+the next ($a_{i+1}=\ldots$), so
+the operations are not independent. 
+%% In this respect,
+%% a vector processor is like an array processor, and for this reason,
+%% pipelines are often characterized as SIMD processors.
+
+A pipelined processor can speed up operations by a factor of $4,5,6$
+with respect to earlier CPUs. Such numbers were typical in the 1980s
+when the first successful vector computers came on the market. These
+days, CPUs can have 20-stage pipelines. Does that mean they are
+incredibly fast? This question is a bit complicated. Chip designers
+continue to increase the clock rate, and the pipeline segments can no
+longer finish their work in one cycle, so they are further split
+up. Sometimes there are even segments in which nothing happens: that
+time is needed to make sure data can travel to a different part of the
+chip in time.
+
+
+The amount of improvement you can get from a pipelined CPU is limited,
+so in a quest for ever higher performance several variations on the
+pipeline design have been tried. For instance, the Cyber 205 had
+separate addition and multiplication pipelines, and it was possible to
+feed one pipe into the next without data going back to memory
+first. Operations like $\forall_i\colon a_i\leftarrow b_i+c\cdot d_i$
+were called `linked triads' (because of the number of paths to memory,
+one input operand had to be scalar).
+
+\begin{exercise}
+  Analyse the speedup and $n_{1/2}$ of linked triads.
+\end{exercise}
+
+Another way to increase performance is to have multiple identical
+pipes. This design was perfected by the NEC SX series. With, for
+instance, 4~pipes, the operation $\forall_i\colon a_i\leftarrow
+b_i+c_i$ would be split module~4, so that the first pipe operated on
+indices $i=4\cdot j$, the second on $i=4\cdot j+1$, et cetera.
+
+\begin{exercise}
+  Analyze the speedup and $n_{1/2}$ of a processor with multiple
+  pipelines that operate in parallel. That is, suppose that there are
+  $p$ independent pipelines, executing the same instruction, that can
+  each handle a stream of operands.
+\end{exercise}
+
+(You may wonder why we are mentioning some fairly old computers here:
+true pipeline supercomputers hardly exist anymore. In the US, the
+Cray~X1 was the last of that line, and in Japan only NEC still makes
+them. However, the functional units of a CPU these days are pipelined,
+so the notion is still important.)
+
+\begin{exercise}
+\label{ex:recursivedoubling}
+  The operation
+\begin{verbatim}
+for (i) {
+  x[i+1] = a[i]*x[i] + b[i];
+}
+\end{verbatim}
+  can not be handled by a pipeline because there is
+  a \indexterm{dependency} between input of one iteration of the operation
+  and the output of the previous.
+  However, you can transform the loop into one that is mathematically
+  equivalent, and potentially more efficient to compute. Derive an
+  expression that computes \texttt{x[i+2]} from \texttt{x[i]} without
+  involving \texttt{x[i+1]}. This is known as \indexterm{recursive
+    doubling}. Assume you have plenty of temporary storage. You can now
+  perform the calculation by
+  \begin{itemize}
+  \item Doing some preliminary calculations;
+  \item computing \texttt{x[i],x[i+2],x[i+4],...}, and from these,
+  \item compute the missing terms \texttt{x[i+1],x[i+3],...}.
+  \end{itemize}
+  Analyze the efficiency of this scheme by giving formulas for
+  $T_0(n)$ and~$T_s(n)$. Can you think of an argument
+  why the preliminary calculations may be of lesser importance in some
+  circumstances?
+\end{exercise}
 
 \Level 3 {Systolic computing}
 
@@ -587,13 +736,11 @@ for (i)
 Each iteration performs one floating point operation, which modern
 \acp{CPU} can do in one clock cycle by using pipelines. However, each
 iteration needs two numbers loaded and one written, for a total of 24
-bytes
-\begin{footnoteenv}
-  {Actually, \n{a[i]} is loaded before it can be written,
+bytes of memory traffic.
+(Actually, \n{a[i]} is loaded before it can be written,
 so there are 4 memory access, with a total of 32 bytes, per
-iteration.}
-\end{footnoteenv}
-of memory traffic. Typical memory bandwidth figures (see
+iteration.)
+Typical memory bandwidth figures (see
 for instance figure~\ref{fig:hierarchy}) are nowhere near 24 (or~32) bytes per
 cycle. This means that, without caches, algorithm performance can be
 bounded by memory performance. Of course, caches will not speed up
@@ -919,7 +1066,8 @@ and as other data needs to be placed there.  Below, we will go into
 detail on how caches do this, but as a general principle, a \acf{LRU}
 cache replacement policy is used: if a cache is full and new data
 needs to be placed into it, the data that was least recently used is
-\indexterm{flushed}, meaning that it is overwritten with the new item,
+\indextermsub{flushed from}{cache},
+meaning that it is overwritten with the new item,
 and therefore no longer accessible. LRU is by far the most common
 replacement policy; other possibilities are FIFO (first in first out)
 or random replacement.
@@ -948,6 +1096,11 @@ long, which in the context of scientific computing implies 8 or 16
 double precision floating point numbers. The cache line size for data
 moved into L2 cache can be larger than for data moved into L1 cache.
 
+A first motivation for cache lines is a practical one: it simplifies
+the circuitry involved. Secondly, cachelines make sense since many
+codes show \indextermsub{spatial}{locality};
+section~\ref{sec:locality}.
+
 \begin{wrapfigure}{r}{3in}
   \includegraphics[scale=.07]{graphics/stride-1}
   \caption{Accessing 4 elements at stride 1}
@@ -955,7 +1108,8 @@ moved into L2 cache can be larger than for data moved into L1 cache.
   %\vskip-.5in
 \end{wrapfigure}
 %
-It is important to acknowledge the existence of cache lines in coding,
+Conversely, there is now a strong incentive to code in such a way to
+exploit this locality,
 since any memory access costs the transfer of several words (see
 section~\ref{sec:coding-cacheline} for some examples). An
 efficient program then tries to use the other items on the cache line,
@@ -1039,13 +1193,10 @@ mapped to the same address'.
 
 The simplest cache mapping strategy is \indexterm{direct
   mapping}. Suppose that memory addresses are 32 bits long, so that
-they can address 4G bytes
-\begin{footnoteenv}
+they can address 4G bytes\footnote
   {We implicitly use the convention
   that K,M,G suffixes refer to powers of 2 rather than~10: 1K=1024,
-  1M=1,048,576, 1G=1,073,741,824.}
-\end{footnoteenv}%
-; suppose further that the
+  1M=1,048,576, 1G=1,073,741,824.}; suppose further that the
 cache has 8K words, that is, 64K~bytes, needing 16 bits to address.
 Direct mapping then takes from each memory address the last (`least
 significant') 16~bits,
@@ -1502,21 +1653,20 @@ traditional processor chip design.
 One of the ways of getting a higher utilization out of a single
 processor chip is then to move from a strategy of further
 sophistication of the single processor, to a division of the chip into
-multiple processing `cores'
-\begin{footnoteenv}
-  {Another solution is Intel\index{Intel}'s
+multiple processing `cores'.
+The separate cores can work on unrelated
+tasks, or, by introducing what is in effect data parallelism
+(section~\ref{sec:simd}), collaborate on a common task at a higher
+overall efficiency\cite{Olukotun:1996:single-chip}.
+\begin{remark}
+Another solution is Intel\index{Intel}'s
   \indexterm{hyperthreading}, which lets a processor mix the instructions of
   several instruction streams. The benefits of this are strongly
   dependent on the individual case. However, this same mechanism is
   exploited with great success in GPUs; see
   section~\ref{sec:gpu}. For a discussion see
-  section~\ref{sec:hyperthread}}
-\end{footnoteenv}%
-.
-The separate cores can work on unrelated
-tasks, or, by introducing what is in effect data parallelism
-(section~\ref{sec:simd}), collaborate on a common task at a higher
-overall efficiency\cite{Olukotun:1996:single-chip}.
+  section~\ref{sec:hyperthread}.
+\end{remark}
 
 This solves the above two problems:
 \begin{itemize}
@@ -1811,8 +1961,9 @@ have more than one \indextermdef{socket}, that is, processor chip.
 The shared memory on the node is typically spread over banks that are
 directly attached to one particular socket.
 This is for instance illustrated in figure~\ref{fig:stampede-node},
-which shows the four-socket node of the \indexterm{Ranger}
-supercomputer (no longer in production) and the two-socket node of the \indexterm{Stampede}
+which shows the four-socket node of the \indextermbus{TACC}{Ranger cluster}
+supercomputer (no longer in production) and the two-socket node of the
+\indextermbus{TACC}{Stampede cluster}
 supercomputer which contains an \indextermbus{Intel}{Xeon Phi}
 co-processor.
 In both designs you clearly see the memory chips that are directly
@@ -1983,13 +2134,10 @@ illustrated in the first graph of figure~\ref{fig:roofline}.
 \begin{enumerate}
 \item The \indexterm{peak performance}, indicated by the horizontal
   line at the top of the graph, is an absolute bound on the
-  performance
-  \begin{footnoteenv}
+  performance\footnote
     {An old joke states that the peak performance
     is that number that the manufacturer guarantees you will never
-    exceed}
-  \end{footnoteenv}%
-  , achieved only if every aspect of a \ac{CPU} (pipelines,
+    exceed}, achieved only if every aspect of a \ac{CPU} (pipelines,
   multiple floating point units) are perfectly used. The calculation
   of this number is purely based on \ac{CPU} properties and clock cycle; it
   is assumed that memory bandwidth is not a limiting factor.
@@ -2034,13 +2182,10 @@ subsystem, and the full capacity of the processor is not used.
 Since using data in cache is cheaper than getting data from main
 memory, a programmer obviously wants to code in such a way that data
 in cache is reused. While placing data in cache is not under explicit
-programmer control, even from assembly language, in most
-\acp{CPU}
-\begin{footnoteenv}
-  {Low level memory access can be controlled by the
-    programmer in the Cell processor and in some GPUs.}
-\end{footnoteenv}%
-, it is still
+programmer control, even from assembly language
+(low level memory access can be controlled by the
+    programmer in the Cell processor and in some GPUs.),
+in most \acp{CPU}, it is still
 possible, knowing the behaviour of the caches, to know
 what data is in cache, and to some extent to control it.
 
@@ -2389,13 +2534,10 @@ for each element.
 
 \begin{exercise}
   Consider the matrix-vector product operation $y\leftarrow
-  Ax$
-  \begin{footnoteenv}
-    {The Blas operation for the matrix vector product
+  Ax$ 
+  (the Blas operation for the matrix vector product
     computes $y\leftarrow Ax+y$. The difference in the code involved
-    is minimal}
-  \end{footnoteenv}%
-  :
+    is minimal):
 \begin{verbatim}
 for (i<M) {
   s = 0

@@ -3,7 +3,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012/3/4/5
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -143,7 +143,7 @@ routines:
   get four copies of the output.
 \end{itemize}
 
-%\listing{init.c}{tutorials/petsc/exercises/cexercises/init.c}
+%\srclisting{init.c}{tutorials/petsc/exercises/cexercises/init.c}
 \verbatimsnippet{petscprint}
 
 Just about  the only lines
@@ -171,7 +171,7 @@ and use it to let each process print out a line like \n{Process 3 out
 \Level 2 {Vectors}
 
 Next we start making PETSc objects, first a vector.
-\listing{vec.c}{tutorials/petsc/exercises/cexercises/vec.c}
+\srclisting{vec.c}{tutorials/petsc/exercises/cexercises/vec.c}
 Note how it takes several calls to fully create the vector
 object:
 \begin{itemize}
@@ -227,7 +227,7 @@ does.
 Let's move up to matrices. Creating a matrix is similar to creating a
 vector. In this case the type is \n{MPIAIJ} which stands for a
 distributed sparse matrix.
-\listing{mat.c}{tutorials/petsc/exercises/cexercises/mat.c}
+\srclisting{mat.c}{tutorials/petsc/exercises/cexercises/mat.c}
 In this example a diagonal matrix is constructed, with each processor
 setting only its locally stored elements.
 

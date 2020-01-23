@@ -1,3 +1,12 @@
+/****************************************************************
+ ****
+ **** This code is part of the book
+ **** Introduction to High Performance Scientific Programming
+ **** by Victor Eijkhout eijkhout@tacc.utexas.edu
+ **** copyright 2010-2019
+ ****
+ ****************************************************************/
+
 Êdouble sum1, sum2, sum3, sum4;
 Êdouble temp1, temp2, temp3, temp4;
 Ê

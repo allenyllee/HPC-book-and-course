@@ -21,8 +21,8 @@ Hoisie~\cite{Goedeker:performance-book}.
 
 The full listings of the codes and explanations of the data graphed
 here can be found in chapter~\ref{app:codes}. All performance results
-were obtained on the \indextermbus{AMD}{Opteron} processors of the Ranger
-computer~\cite{tacc:ranger}.
+were obtained on the \indextermbus{AMD}{Opteron} processors of the
+\indextermbus{TACC}{Ranger cluster}~\cite{tacc:ranger}.
 
 \Level 1 {Peak performance}
 
@@ -195,6 +195,14 @@ This strategy is called \indextermbus{cache}{blocking} or
   blocks. In this particular example you could also simply exchange
   the \n{i} and \n{j} loops. Why may this not be optimal for performance?
 \end{exercise}
+
+\begin{remark}
+  Blocked code may change the order of evaluation of
+  expressions. Since floating point arithmetic is not
+  \emph{associative}%
+  \index{floating point arithmetic!associativity of},
+  blocking is not a transformation that compilers are allowed to make.
+\end{remark}
 
 \Level 1 {Cache lines}
 \label{sec:coding-cacheline}

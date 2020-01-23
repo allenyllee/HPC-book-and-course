@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-8
+%%%% by Victor Eijkhout, copyright 2012-2020
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -15,6 +15,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \index{arithmetic!computer|see{floating point arithmetic}}
+\index{computer arithmetic|see{floating point arithmetic}}
 \index{floating point arithmetic|(textbf}
 
 Of the various types of data that one normally encounters, the ones we
@@ -22,7 +23,7 @@ are concerned with in the context of scientific computing are the
 numerical types: integers (or whole numbers)
 $\ldots,-2,-1,0,1,2,\ldots$, real numbers $0,1,-1.5,2/3,\sqrt 2,\log
 10,\ldots$, and complex numbers $1+2i,\sqrt 3-\sqrt 5i,\ldots$.
-Computer memory is organized to give only a certain amount of space to
+Computer hardware is organized to give only a certain amount of space to
 represent each number, in multiples of \indexterm{bytes}, each
 containing 8~\indexterm{bits}. Typical values are 4 bytes for an
 integer,  4~or~8 bytes for a real number, and 8~or~16 bytes for a
@@ -30,14 +31,20 @@ complex number.
 
 Since only a certain amount of memory is available to store a number,
 it is clear that not all numbers of a certain type can be stored. For
-instance, for integers only a range is stored. In the case of real
+instance, for integers only a range is stored.
+%
+(Languages such as
+\emph{Python}\index{Python!large integers}
+have arbitrarily \emph{large integers}, but this has no hardware support.)
+%
+In the case of real
 numbers, even storing a range is not possible since any interval $[a,b]$
 contains infinitely many numbers. Therefore, any
 \indextermsub{representation of}{real numbers} will cause gaps between the
 numbers that are stored. 
 Calculations in a computer are sometimes
 described as \indextermsub{finite precision}{arithmetic}.
-Since many results are not representible, any computation that results in
+Since many results are not representable, any computation that results in
 such a number will have to be dealt with by issuing an
 error or by approximating the result. 
 In this chapter we will look at
@@ -54,13 +61,10 @@ by Higham~\cite{Higham:2002:ASN} and Wilkinson~\cite{Wilkinson:roundoff}.
 
 In scientific computing, most operations are on real
 numbers. Computations on integers rarely add up to any serious
-computation load
-\begin{footnoteenv}
-  {Some computations are done on bit
-    strings. We will not mention them at all.}
-\end{footnoteenv}
-. It is mostly for
-completeness that we start with a short discussion of integers.
+computation load, except in applications such as cryptography.
+There are also applications such as `particle-in-cell' that
+can be implemented with bit operations.
+However, integers are still experiencing in indexing calculations.
 
 Integers are commonly stored in 16, 32, or 64~bits, with 16 becoming
 less common and 64 becoming more and more so. The main reason for this increase is
@@ -86,7 +90,7 @@ negative integers. The simplest solution is to reserve one bit as a
 \indexterm{sign bit}, and use the remaining 31 (or 15 or 63; from now on we will
 consider 32 bits the standard) bits to store the
 absolute magnitude. By comparison, we will call the straightforward
-interpretation of bitstring \indexterm{unsigned} integers.
+interpretation of bitstrings as \indexterm{unsigned} integers.
 
 \[
 \begin{array}{|c|rrrrrr|}
@@ -108,7 +112,7 @@ This scheme has some disadvantages, one being that
 there is both a positive and negative number zero. This means that a test
 for equality becomes more complicated than simply testing for equality
 as a bitstring. More importantly, in the second half of the
-bitstrings, the interpretation as signed integer \emph{decreases},
+bitstring, the interpretation as signed integer \emph{decreases},
 going to the right. This means that a test for greater-than becomes
 complex; also
 adding a positive number to a
@@ -144,24 +148,33 @@ The resulting scheme, which is the one that is used most commonly, is
 called \indexterm{2's complement}. Using this scheme,
 the representation of integers is
 formally defined as follows.
-\begin{itemize}
-\item If $0\leq m\leq 2^{31}-1$, the normal bit pattern for $m$ is
-  used.
-\item For $-2^{31}\leq n\leq -1$, $n$ is represented by the bit
-  pattern for $2^{32}-|n|$.
-\end{itemize}
+\begin{definition}
+  Let $n$ be an integer, then the 2's complement `bit pattern'
+  $\beta(n)$ is a non-negative integer defined as follows:
+  \begin{itemize}
+  \item If $0\leq n\leq 2^{31}-1$, the normal bit pattern for $n$ is
+    used, that is
+    \[ 0\leq n\leq 2^{31}-1 \Rightarrow \beta(n) = n. \]
+  \item For $-2^{31}\leq n\leq -1$, $n$ is represented by the bit
+    pattern for $2^{32}-|n|$:
+    \[ -2^{31}\leq n\leq -1 \Rightarrow \beta(n) = 2^{32}-|n|. \]
+  \end{itemize}
+  We denote the inverse function that takes a bit pattern and
+  interprets as integer with~$\eta=\beta\inv$.
+\end{definition}
+
 The following diagram shows the correspondence between bitstrings and
 their interpretation as 2's complement integer:
 \[
 \begin{array}{|c|rrrrrr|}
   \hline
-  \hbox{bitstring}&
+  \hbox{bitstring $n$}&
   00\cdots0&\ldots&01\cdots1&
   10\cdots0&\ldots&11\cdots1\\ \hline
   \hbox{interpretation as unsigned int}&
   0&\ldots&2^{31}-1&
   2^{31}&\ldots&2^{32}-1\\ \hline
-  \hbox{interpretation as 2's comp. integer}&
+  \hbox{interpretation $\beta(n)$ as 2's comp. integer}&
   0&\cdots&2^{31}-1&
   -2^{31}&\cdots&-1\\
   \hline
@@ -174,6 +187,8 @@ Some observations:
   negative integers, in particular, there is only one pattern for zero.
 \item The positive numbers have a leading bit zero, the negative
   numbers have the leading bit set.
+  This makes the leading bit act like a sign bit; however note the
+  above discussion.
 \item If you have a positive number~$n$, you get $-n$ by flipping
   all the bits, and adding~1.
 \end{itemize}
@@ -194,10 +209,7 @@ large or too small to represent. This is called \indexterm{overflow};
 see section~\ref{sec:exceptions} for the corresponding floating
 point phenomenon.
 The following exercise lets you explore the behaviour of an actual
-program. If you program this in~C, it is worth noting that while you
-probably get an outcome that is understandable, the behaviour
-of overflow in the case of signed quantities is
-actually undefined under the C~standard.
+program.
 
 \begin{exercise}
   \label{ex:int-overflow}
@@ -205,6 +217,53 @@ actually undefined under the C~standard.
   does your compiler say if you try to write down a nonrepresentible
   number explicitly, for instance in an assignment statement?
 \end{exercise}
+
+If you program this in~C, it is worth noting that while you
+probably get an outcome that is understandable, the behaviour
+of overflow in the case of signed quantities is
+actually undefined under the C~standard.
+
+\Level 1 {Addition in two's complement}
+
+Let us consider doing some simple arithmetic on 2's complement
+integers. We start by assuming that we have hardware that works on unsigned integers.
+The goal is to see that we can use this hardware to do calculations
+on signed integers, as represented in 2's complement.
+
+We consider the computation of $m+n$, where $m,n$ are representable
+numbers:
+\[ 0\leq |m|,|n|<2^{31}. \]
+We distinguish different cases.
+\begin{itemize}
+\item The easy case is $0<m,n$. In that case we perform the normal
+  addition, and as long as the result stays under $2^{31}$, we get the
+  right result. If the result is $2^{31}$ or more, we have integer
+  overflow, and there is nothing to be done about that.
+  %
+  \begin{figure}[ht]
+    \includegraphics[scale=.5]{mminusn1}
+    \caption{Addition with one positive and one negative number in 2's
+      complement}
+    \label{fig:mminusn1}
+  \end{figure}
+  %
+\item Case $m>0$, $n<0$, and $m+n>0$. 
+  Then $\beta(m)=m$ and
+  $\beta(n)=2^{32}-|n|$, so the unsigned addition becomes
+  \[ \beta(m)+\beta(n)=m+(2^{32}-|n|)=2^{32}+m-|n|. \]
+  Since $m-|n|>0$, this result is~$>2^{32}$.
+  %
+  (See figure~\ref{fig:mminusn1}.)
+  %
+  However, we observe that
+  this is basically $m+n$ with the 33rd bit set. If we ignore this
+  overflowing bit, we then have the correct result.
+\item Case $m>0$, $n<0$, but $m+n<0$. Then
+  \[ \beta(m)+\beta(n) = m+ (2^{32}-|n|) = 2^{32}-(|n|-m). \]
+  Since $|n|-m>0$ we get
+  \[ \eta\bigl(2^{32}-(|n|-m)\bigr) = -\left| (|n|-m) \right| = m-|n|=m+n.
+  \]
+\end{itemize}
 
 \Level 1 {Subtraction in two's complement}
 
@@ -219,11 +278,18 @@ Suppose we have an algorithm for adding and subtracting unsigned
 We start by observing that the integer subtraction $m-n$ becomes the
 unsigned addition $m+(2^{32}-n)$.
 \begin{itemize}
-\item Case: $m<{n}$. In this case, $m-n$ is negative and $1\leq
-  |m-n|\leq 2^{31}$, so the bit pattern for $m-n$ is that of
-  $2^{32}-(n-m)$. Now, $2^{32}-(n-m)=m+(2^{32}-n)$, so we can compute
+\item Case: $m<|n|$. In this case, $m-n$ is negative and
+  $1\leq |m-n|\leq 2^{31}$, so the bit pattern for $m-n$ is
+  \[ \beta(m-n) = 2^{32}-(n-m). \]
+  Now, $2^{32}-(n-m)=m+(2^{32}-n)$, so we can compute
   $m-n$ in 2's complement by adding the bit patterns of $m$ and $-n$ as
-  unsigned integers.
+  unsigned integers:
+  \[ \eta\bigl( \beta(m)+\beta(-n) \bigr) =
+  \eta\bigl( m+(2^{32}-|n|) \bigr) =
+  \eta\bigl( 2^{32} + (m-|n|) \bigr) = 
+  \eta\left( 2^{32} - \bigl|m-|n|\bigr| \right) = m-|n| = m+n
+  .
+  \]
 \item Case: $m>n$. Here we observe that
   $m+(2^{32}-n)=2^{32}+m-n$. Since $m-n>0$, this is a number $>2^{32}$
   and therefore not a legitimate
@@ -249,6 +315,49 @@ At least, that's the way it is with unsigned integers.
   divide by~2 in 2's-complement?
 \end{exercise}
 
+In C, the leftshift operation is \verb+<<+ and rightshift is~\verb+>>+
+Thus
+\begin{lstlisting}
+i<<3
+\end{lstlisting}
+is equivalent to multiplying by~8.
+
+\Level 2 {Binary coded decimal}
+\label{sec:bcd}
+
+Decimal numbers are not relevant in scientific computing, but they are
+useful in financial calculations, where computations involving money
+absolutely have to be exact. Binary arithmetic is at a disadvantage
+here, since numbers such as $1/10$ are repeating fractions in
+binary. With a finite number of bits in the mantissa\index{mantissa},
+this means that the number $1/10$ can not be represented exactly in
+binary.  For this reason, \indexterm{binary-coded-decimal} schemes
+were used in old IBM\index{IBM} mainframes, and are in fact being
+standardized in revisions of \indexterm{IEEE 754}~\cite{ieee754-webpage}; see also
+section~\ref{sec:ieee754}.
+
+In BCD schemes, one or more decimal digits are encoded in a number of
+bits. The simplest scheme would encode the digits $0\ldots9$ in four
+bits. This has the advantage that in a
+BCD number each digit is readily identified; it has the disadvantage
+that about $1/3$ of all bits are wasted, since 4 bits can
+encode the numbers~$0\ldots15$.
+%
+More efficient encodings would encode $0\ldots999$ in ten bits, which
+could in principle store the numbers~$0\ldots1023$. While this is
+efficient in the sense that few bits are wasted, identifying
+individual digits in such a number takes some decoding. For this
+reason, BCD arithmetic needs hardware support from the processor,
+which is rarely found these days; one example is the IBM
+Power architecture, starting with the \indextermbus{IBM}{Power6}.
+
+\Level 1 {Other number bases for computer arithmetic}
+
+There have been some experiments with \indexterm{ternary arithmetic}
+(see~\url{http://en.wikipedia.org/wiki/Ternary_computer}
+and~\url{http://www.computer-museum.ru/english/setun.htm}), however,
+no practical hardware exists.
+
 \Level 0 {Real numbers}
 
 In this section we will look at how real numbers are
@@ -264,7 +373,8 @@ it's convenient to pretend that computers can do this too. However,
 since numbers in a computer have only a finite number of bits, most
 real numbers can not be represented exactly. In fact, even many
 fractions can not be represented exactly, since they repeat; for
-instance, $1/3=0.333\ldots$. An illustration of this is given in
+instance, $1/3=0.333\ldots$, which is not representible in either
+decimal or binary. An illustration of this is given in
 appendix~\ref{sec:fraction-code}.
 
 \begin{exercise}
@@ -278,8 +388,14 @@ you write $1/3$ in ternary, base~3, arithmetic?) In binary computers
 this means that fractions such as $1/10$, which in decimal arithmetic
 are terminating, are repeating. Since decimal arithmetic is important
 in financial calculations, some
-people care about this kind of arithmetic right;
+people care about the accuracy of this kind of arithmetic;
 see section~\ref{sec:bcd} for what was done about it.
+
+\begin{exercise}
+  Show that each binary fraction can exactly be represented as a
+  terminating decimal fraction. What is the reason that not every
+  decimal fraction can be represented as a binary fraction?
+\end{exercise}
 
 \Level 1 {Representation of real numbers}
 \label{sec:float-representation}
@@ -287,8 +403,8 @@ see section~\ref{sec:bcd} for what was done about it.
 
 Real numbers are stored using a scheme that is analogous to what is
 known as `scientific notation', where a number is represented as a
-\indexterm{significant} and an \indexterm{exponent}, for
-instance~$6.022\cdot 10^{23}$, which has a significant \n{6022} with a
+\indexterm{significand} and an \indexterm{exponent}, for
+instance~$6.022\cdot 10^{23}$, which has a significand \n{6022} with a
 \indexterm{radix point} after the first digit, and an exponent~\n{23}.
 This number stands for
 \[ 6.022\cdot 10^{23}= \left[
@@ -310,7 +426,7 @@ where the components are
   number is positive or negative;
 \item $\beta$ is the base of the number system;
 \item $0\leq d_i\leq \beta-1$ the digits of the \indexterm{mantissa}
-  or \indexterm{significant} -- the location of the radix point
+  or \indexterm{significand} -- the location of the radix point
   (decimal point in decimal numbers) is implicitly assumed to the
   immediately following the first digit;
 \item $t$ is the length of the mantissa;
@@ -346,51 +462,22 @@ Of these, the single and double precision formats are by far the most
 common. We will discuss these in section~\ref{sec:ieee754} and
 further.
 
-\Level 2 {Binary coded decimal}
-\label{sec:bcd}
-
-Decimal numbers are not relevant in scientific computing, but they are
-useful in financial calculations, where computations involving money
-absolutely have to be exact. Binary arithmetic is at a disadvantage
-here, since numbers such as $1/10$ are repeating fractions in
-binary. With a finite number of bits in the mantissa\index{mantissa},
-this means that the number $1/10$ can not be represented exactly in
-binary.  For this reason, \indexterm{binary-coded-decimal} schemes
-were used in old IBM\index{IBM} mainframes, and are in fact being
-standardized in revisions of \indexterm{IEEE 754}~\cite{ieee754-webpage}; see also
-section~\ref{sec:ieee754}.
-
-In BCD schemes, one or more decimal digits are encoded in a number of
-bits. The simplest scheme would encode the digits $0\ldots9$ in four
-bits. This has the advantage that in a
-BCD number each digit is readily identified; it has the disadvantage
-that about $1/3$ of all bits are wasted, since 4 bits can
-encode the numbers~$0\ldots15$.
-%
-More efficient encodings would encode $0\ldots999$ in ten bits, which
-could in principle store the numbers~$0\ldots1023$. While this is
-efficient in the sense that few bits are wasted, identifying
-individual digits in such a number takes some decoding. For this
-reason, BCD arithmetic needs hardware support from the processor,
-which is rarely found these days; one example is the IBM
-Power architecture, starting with the \indextermbus{IBM}{Power6}.
-
-\Level 2 {Other number bases for computer arithmetic}
-
-There have been some experiments with \indexterm{ternary arithmetic}
-(see~\url{http://en.wikipedia.org/wiki/Ternary_computer}
-and~\url{http://www.computer-museum.ru/english/setun.htm}), however,
-no practical hardware exists.
-
 \index{floating point numbers!representation|)}
 
-\Level 1 {Limitations}
+\Level 1 {Limitations: overflow and underflow}
 \label{sec:exceptions}
 
 Since we use only a finite number of bits to store floating point
 numbers, not all numbers can be represented. The ones that can not be
 represented fall into two categories: those that are too large or too
-small (in some sense), and those that fall in the gaps. Numbers can be
+small (in some sense), and those that fall in the gaps.
+
+The second category, where a computational result has to be rounded or
+truncated to be representable, is the basis of the field of round-off
+error analysis. We will study this in some detail in the following
+sections.
+
+Numbers can be
 too large or too small in the following ways.
 \begin{itemize}
 \item[Overflow] The largest number we can store is
@@ -415,9 +502,6 @@ The occurrence of overflow or underflow means that your computation
 will be `wrong' from that point on. Underflow will make the computation
 proceed with a zero where there should have been a nonzero;
 overflow is represented as \indextermtt{Inf}, short of `infinite'.
-Computing with \n{Inf} is possible to an extent: adding two of those
-quantities will again give \n{Inf}. However, subtracting them gives
-\indextermtt{NaN}: `not a number'.
 
 \begin{exercise}
 For real numbers $x,y$, the quantity $g=\sqrt{(x^2+y^2)/2}$ satisfies
@@ -427,6 +511,10 @@ What can go wrong if you compute $g$ using the above formula?
 Can you think of a better way?
 \end{exercise}
 
+
+Computing with \n{Inf} is possible to an extent: adding two of those
+quantities will again give \n{Inf}. However, subtracting them gives
+\indextermtt{NaN}: `not a number'.
 
 In none of these cases will the computation abort:
 the processor will continue, unless you tell it otherwise.
@@ -455,7 +543,6 @@ and only the digits $d_1d_2\ldots d_t$ are stored.
 \index{denormal|see{floating point numbers, unnormalized}}
 Another implication of this scheme is that we have to amend the
 definition of underflow (see section~\ref{sec:exceptions} above):
-instead of having a smallest number~$-(\beta-\beta^{-(t-1)}$,
 any number less than $1\cdot\beta^L$ now causes underflow. Trying
   to compute a number less than that in absolute value is sometimes
   handled by using \indextermsub{unnormalized}{floating point numbers},
@@ -731,7 +818,7 @@ where exact compliance matters less. For many scientific computations,
 double precision is necessary, since the precision of calculations
 gets worse with increasing problem size or runtime. This is true for
 the sort of calculations in chapter~\ref{ch:odepde}, but not for
-others such as \indexacp{LBM}
+others such as \indexacp{LBM}.
 
 \Level 2 {Setting the exception and rounding behaviour}
 \label{sec:fenvh}
@@ -1022,7 +1109,9 @@ alternating signs?
   Does this function have a fixed point, $x_0\equiv f(x_0)$, or is there a cycle
   $x_1=f(x_0),\,x_0\equiv x_2=f(x_1)$ et cetera?
 
-  Now code this function and see what happens with various starting
+  Now code this function. Is it possible to reproduce the fixed
+  points?
+  What happens with various starting
   points~$x_0$. Can you explain this?
 \end{exercise}
 
@@ -1030,8 +1119,10 @@ alternating signs?
 \label{sec:fp-associative}
 
 Another effect of the way floating point numbers are treated
-is on the \indextermsub{associativity of}{summation}.
-While this operation is mathematically associative, this is no longer
+is on the
+\emph{associativity}\index{floating point arithmetic!associativity of}
+of operations such as summation.
+While summation is mathematically associative, this is no longer
 the case in computer arithmetic.
 
 Let's consider a simple example, showing how this can be caused
@@ -1187,7 +1278,7 @@ negative, it may pay off to rearrange the algorithm accordingly.
   \[ 
   \begin{array}{rcl}
     \sin(x) &=& x-\frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots\\
-    &=& \sum_{i\geq 0}^\infty (-1)^{2i}\frac{x^{2i+1}}{(2i+1)!}.
+    &=& \sum_{i\geq 0}^\infty (-1)^{i}\frac{x^{2i+1}}{(2i+1)!}.
   \end{array}
   \]
   Here are two code fragments that compute this sum (assuming that \n{x}
@@ -1332,8 +1423,9 @@ Higham~\cite{Higham:2002:ASN}.
 
 As we discussed in section~\ref{sec:fp-associative}, and as you saw
 in the above example of summing a series, addition in
-computer arithmetic is not \emph{associative}\index{floating point
-  arithmetic!associativity of}. A~similar fact holds for
+computer arithmetic is not
+\emph{associative}\index{floating point arithmetic!associativity of}.
+A~similar fact holds for
 multiplication.  This has an interesting consequence for parallel
 computations: the way a computation is spread over parallel processors
 influences the result. 
@@ -1660,11 +1752,16 @@ section~\ref{sec:preconditioner}.
 
 \Level 2 {Lower precision in Deep Learning}
 
+IEEE 754-2008 has a definition for the \indexterm{binary16} half
+precision format, which has a 5-bit exponent and 11-bit mantissa.
+
 In \indexac{DL} it is more important to express the range of values
 than to be precise about the exact value. (This is the opposite of
 traditional scientific applications, where close values need to be
 resolved.)  This has led to the definition of the
-\indextermdef{bfloat16} format~\cite{Intel:bfloat16} which is a 16-bit
+\indextermdef{bfloat16} `brain float' format
+\url{https://en.wikipedia.org/wiki/Bfloat16_floating-point_format}
+which is a 16-bit
 floating point format. It uses 8~bits for the exponent and 7~bits for
 the mantissa. This means that it shares the same exponent range as the
 IEEE single precision format; see figure~\ref{fig:bfloat16def}.
@@ -1706,7 +1803,7 @@ part of matrix-matrix multiplication in \indexac{DL}), we then need an
   on the \emph{Intel Knights Landing}\index{Intel!Xeon Phi!Knights Landing}, 
   has support for reduced precision.
 \item The \indextermbus{Intel}{Cooper Lake} implements the
-  \indexterm{bfloat16} format.
+  \indexterm{bfloat16} format~\cite{Intel:bfloat16}.
 \end{itemize}
 
 \Level 1 {Fixed-point arithmetic}
@@ -1723,10 +1820,10 @@ an exponent. Consider the multiplication $\fxp{N_1}{F_1}\times
 \fxp{N_2}{F_2}$, where $N_1\geq \beta^{n_1}$ and $N_2\geq
 \beta^{n_2}$. This overflows if $n_1+n_2$ is more than the number of
 positions available for the integer part. (Informally, the number of
-digits of the product is the sum of the digits of the operands.)
+digits of the product is the sum of the number of digits of the operands.)
 This means that, in a program
-that uses fixed-point, numbers will need to have a number of zero
-digits, if you are ever going to multiply them, 
+that uses fixed-point, numbers will need to have a number of
+leading zero digits, if you are ever going to multiply them, 
 which lowers the numerical accuracy.
 It also means that the programmer has to think harder about
 calculations, arranging them in such a way that overflow will not
@@ -1833,3 +1930,16 @@ further detail in this book.
 
 \index{floating point arithmetic|)}
 
+\Level 0 {Review questions}
+
+\begin{exercise}
+  True or false?
+  \begin{itemize}
+  \item For integer types, the `most negative' integer is the negative
+    of the `most positive' integer.
+  \item For floating point types, the `most negative' number is the negative
+    of the `most positive' one.
+  \item For floating point types, the smallest positive number is the reciprocal
+    of the largest positive number.
+  \end{itemize}
+\end{exercise}

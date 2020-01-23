@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-8
+%%%% by Victor Eijkhout, copyright 2012-2020
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -48,8 +48,7 @@ practical projects.
 \label{sec:gauss-example}
 
 In this section we are going to take a closer look at
-\emph{Gaussian elimination}%
-\index{Gauss!Gaussian elimination},
+\indexterm{Gaussian elimination},
 or elimination of unknowns. You may have seen this method
 before (and if not, it will be explained below), but we will be a bit
 more systematic here so that we can analyze various aspects of it.
@@ -202,10 +201,8 @@ way of predicting zero pivots from looking at the system of equations.
 If a pivot turns out to be zero, all is not lost for the computation:
 we can always exchange two matrix rows; this is known as
 \indexterm{pivoting}.  It is not hard to show
-\begin{footnoteenv}
-  {And you can
-    find this in any elementary linear algebra textbook.}
-\end{footnoteenv}
+(and you can
+    find this in any elementary linear algebra textbook)
 that with a
 nonsingular matrix there is always a row exchange possible that puts a
 nonzero element in the pivot location.
@@ -280,15 +277,29 @@ Using the $(1,1)$ element to clear the remainder of the first column gives:
 \[ \left(
   \begin{matrix}
     \epsilon&1\\ 0&1-\frac1\epsilon
-  \end{matrix}\right) x = \left(
+  \end{matrix}\right) x =
+  \left(
   \begin{matrix}
     1+\epsilon\\ 2-\frac{1+\epsilon}\epsilon
-  \end{matrix}\right).
+  \end{matrix}\right)
+  =
+  \begin{pmatrix}
+    1+\epsilon\\ 1-\frac1\epsilon
+  \end{pmatrix}
+  .
 \]
-We can now solve $x_2$ and from it~$x_1$.
+We can now solve $x_2$ and from it~$x_1$:
+\[ 
+\left\{
+\begin{array}{rl}
+  x_2&=(1-\epsilon\inv)/(1-\epsilon\inv)=1\\
+  x_1&=\epsilon\inv(1+\epsilon - x_2)=1.
+\end{array}
+\right.
+\]
 
 If $\epsilon$ is small, say $\epsilon<\epsilon_{\mathrm{mach}}$,
-the $1+\epsilon$ term in the right hand side will be simply~$1$: our
+the $1+\epsilon$ term in the right hand side will be~$1$: our
 linear system will be
 \[ \left(
   \begin{matrix}
@@ -303,20 +314,34 @@ arithmetic.
 
 Next, $1/\epsilon$ will be very large, so the second component of the
 right hand side after elimination will be
-$2-\frac1\epsilon=-1/\epsilon$.
-Also, the $(2,2)$ element of the matrix is then $-1/\epsilon$ instead of
+$2-\frac1\epsilon=-1/\epsilon$,
+and the $(2,2)$ element of the matrix is then $-1/\epsilon$ instead of
 $1-1/\epsilon$:
-\[ 
-  \begin{pmatrix}
-    \epsilon&1\\ 0&-1/\epsilon
+%
+\[ \begin{pmatrix}
+    \epsilon&1\\ 0&1-\epsilon\inv
   \end{pmatrix} x = 
   \begin{pmatrix}
-    1\\-1/\epsilon
+    1\\2-\epsilon\inv
+  \end{pmatrix}
+  \quad\Rightarrow\quad
+  \begin{pmatrix}
+    \epsilon&1\\ 0&-\epsilon\inv
+  \end{pmatrix} x = 
+  \begin{pmatrix}
+    1\\-\epsilon\inv
   \end{pmatrix}
 \] 
-We get the correct value $x_2=1$, but
-\[ \epsilon x_1+x_2=1 \Rightarrow \epsilon x_1=0 \Rightarrow x_1=0, \]
-which is $100\%$ wrong.
+
+Solving first $x_2$, then~$x_1$, we get:
+\[ \left\{
+\begin{array}{rl}
+  x_2&=\epsilon\inv / \epsilon\inv = 1\\
+  x_1&=\epsilon\inv (1-1\cdot x_2) = \epsilon \inv \cdot 0 = 0,
+\end{array}
+\right.
+\]
+so $x_2$ is correct, but $x_1$ is completely wrong.
 
 \begin{remark}
   In this example, the numbers in computer arithmetic are little
@@ -423,7 +448,8 @@ So far, we have looked at eliminating unknowns in the context of
 solving a single system of linear equations.  Suppose you need to
 solve more than one system with the same matrix, but with different
 right hand sides. This happens for instance if you take multiple time
-steps in an implicit method. Can you use any of the work you did in
+steps in an implicit Euler method (section~\ref{sec:implicit-euler}).
+Can you use any of the work you did in
 the first system to make solving subsequent ones easier?
 
 The answer is yes. You can split the solution process in a part that
@@ -542,6 +568,7 @@ formal code.
 
 Or, putting everything together:
 
+\begin{equation}\vcenter{% %pyskip
 \begin{tabbing}
   \kern20pt\=\kern10pt\=\kern10pt\=\kern10pt\=\kill
   \macro{$LU$ factorization}:\\
@@ -551,8 +578,7 @@ Or, putting everything together:
   \>\>\>for\={} $j=k+1$ to $n$:\\
   \>\>\>\>$a_{ij}\leftarrow a_{ij}-a_{ik}*a_{kj}$
 \end{tabbing}
-
-%\label{eq:LU-algorithm}
+}\label{eq:LU-algorithm}\end{equation} %pyskip
 
 This is the most common way of presenting the LU
 factorization. However, other ways of computing the same result
@@ -1012,8 +1038,7 @@ A more interesting algorithm is the block version of the
 \emph{LU factorization}\index{LU factorization!block algorithm}.
 The algorithm \eqref{eq:LU-algorithm} then becomes
 
-\begin{equation}
- \vcenter{%
+\begin{equation}\vcenter{% %pyskip
 \begin{tabbing}
   \kern20pt\=\kern10pt\=\kern10pt\=\kern10pt\=\kill
   \macro{$LU$ factorization}:\\
@@ -1023,9 +1048,7 @@ The algorithm \eqref{eq:LU-algorithm} then becomes
   \>\>\>for $j=k+1$ to $n$:\\
   \>\>\>\>$A_{ij}\leftarrow A_{ij}-A_{ik}\cdot A_{kj}$
 \end{tabbing}
-  }
-\label{eq:LU-block-algorithm}
-\end{equation}
+  }\label{eq:LU-block-algorithm}\end{equation} %pyskip
 
 which mostly differs from the earlier algorithm in that the division
 by $a_{kk}$ has been replaced by a multiplication

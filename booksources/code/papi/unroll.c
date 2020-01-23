@@ -1,3 +1,12 @@
+/****************************************************************
+ ****
+ **** This code is part of the book
+ **** Introduction to High Performance Scientific Programming
+ **** by Victor Eijkhout eijkhout@tacc.utexas.edu
+ **** copyright 2010-2019
+ ****
+ ****************************************************************/
+
 /*
   This is a demo of a few loop optimization techniques in C
   one can use to improve numerical throughput on modern CPUs.

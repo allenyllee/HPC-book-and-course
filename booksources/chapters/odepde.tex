@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-9
+%%%% by Victor Eijkhout, copyright 2012-2020
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -26,7 +26,7 @@ computers to produce the desired results. Here we will describe the
 techniques that turn \acp{ODE} and \acp{PDE} into computable problems.
 
 First of all, we will look at \acfp{IVP}, which describes processes
-that develop in time. Here we only consider \acp{ODE}: scalar functions that
+that develop in time. Here we consider \acp{ODE}: scalar functions that
 are only depend on time. The name derives from the fact that typically
 the function is specified at an initial time point.
 
@@ -59,22 +59,28 @@ sufficiently smooth.
 
 Many physical phenomena change over time, and typically the laws of
 physics give a description of the change, rather than of the quantity
-of interest itself. For instance, Newton's second law \[F=ma\] is a
+of interest itself. For instance, Newton's second law
+\begin{equation}
+  F=ma
+  \label{eq:f=ma}
+\end{equation}
+is a
 statement about the change in position of a point mass: expressed as
-\[ a=\frac{d^2}{dt^2}x=F/m \]
+\[ a(t)=\frac{d^2}{dt^2}x(t)=F/m \]
 it states that acceleration depends linearly on the force exerted on
 the mass. A~closed form description $x(t)=\ldots$ for the location of
 the mass can sometimes be
 derived analytically, but in many cases some form of approximation or
 numerical computation is needed.
+This is also known as `numerical integration'.
 
-Newton's equation is an \ac{ODE} since it describes a function of one
+Newton's second law \eqref{eq:f=ma} is an \ac{ODE} since it describes a function of one
 variable, time. It is an \ac{IVP} since it describes the development
 in time, starting with some initial conditions.  As an \ac{ODE}, it is
 `of second order' since it involves a second derivative, We can reduce
 this to first order, involving only first derivatives, if we allow
 vector quantities. 
-
+%
 We introduce a two-component vector~$u$ that combines the location~$x$ and
 velocity~$x'$~
 \begin{footnoteenv}
@@ -108,15 +114,15 @@ the  so-called `autonomous'  \acp{ODE} of the form
   u'(t)=f(u(t))
 \end{equation}
 in which the right hand side does not explicitly depend
-on~$t$
-\begin{footnoteenv}
-{Non-autonomous \ac{ODE}s can be transformed to autonomous
+on~$t$.
+
+\begin{remark}
+Non-autonomous \ac{ODE}s can be transformed to autonomous
   ones, so this is no limitation. If $u=u(t)$ is a scalar function and
   $f=f(t,u)$, we define $u_2(t)=t$ and consider the equivalent
-autonomous system $\big({u'\atop u'_2}\bigr)=\bigl({f(u_2,u)\atop
-  1}\bigr)$}
-\end{footnoteenv}%
-.
+  autonomous system
+  $\big({u'\atop u'_2}\bigr)=\bigl({f(u_2,u)\atop 1}\bigr)$
+\end{remark}
 
 Typically, the initial value in some starting point (often
 chosen as $t=0$) is given: $u(0)=u_0$ for some value~$u_0$, and we are
@@ -128,7 +134,6 @@ The equation~\eqref{eq:ode-nonauton} can be solved analytically for some
 choices of~$f$, but we will not consider this. Instead, we only
 consider the numerical solution and the accuracy of this process.
 
-We will now consider numerical methods for the solution
 In a numerical method, we consider discrete size time steps to
 approximate the solution of the continuous time-dependent
 process. Since this introduces a certain amount of error, we will
@@ -166,7 +171,8 @@ the PDE, and write $u(t)=u^*+\eta(t)$, then we have
 \]
 Ignoring the second order terms, this has the solution
 \[ \eta(t)=e^{f'(x^*)t} \]
-which means that the perturbation will damp out if $f'(x^*)<0$.
+which means that the perturbation will damp out if $f'(x^*)<0$,
+and amplify if~$f'(x^*)>0$.
 
 We will often refer to the simple example
 $f(u)=-\lambda u$, with solution $u(t)=u_0e^{-\lambda t}$. This
@@ -181,10 +187,9 @@ In order to solve the problem numerically, we turn the continuous
 problem into a discrete one by looking at finite time/space steps.
 Assuming all functions are sufficiently smooth, a straightforward
 \indexterm{Taylor series} expansion
-\begin{footnoteenv}
-  {See appendix~\ref{app:taylor} 
-    if you are unfamiliar with this.}
-\end{footnoteenv}
+%
+(see appendix~\ref{app:taylor})
+%
 gives:
 \[ u(t+\Delta t)=u(t)+u'(t)\Delta t+u''(t)\frac{\Delta t^2}{2!}
 + u'''(t)\frac{\Delta t^3}{3!}+\cdots \]
@@ -351,9 +356,9 @@ where $u_k$ is an approximation of~$u(t_k)$.
 
 An important difference with the explicit scheme is that $u_{k+1}$ now
 also appears on the right hand side of the equation. That is,
-computation of $u_{k+1}$ is now implicit.
+the computation of $u_{k+1}$ is now implicit.
 For example, let $f(t,u)=-u^3$, then $u_{k+1}=u_k-\Delta t
-u_{k+1}^3$. In other words, $u_{k+1Z}$~is the solution for~$x$ of the
+u_{k+1}^3$. In other words, $u_{k+1}$~is the solution for~$x$ of the
 equation $\Delta t x^3+x=u_k$. This is a nonlinear equation, which
 typically can be solved using the Newton method.
 
@@ -449,15 +454,6 @@ of a bridge under a load, or the heat distribution in a window pane,
 as the temperature outside differs from the one inside.
 
 The general form of a (second order, one-dimensional) \ac{BVP} is
-\begin{footnoteenv}
-  
-{Actually, the boundary conditions are can be more general, involving 
-derivatives on the interval end points. Here we only look at
-\emph{Dirichlet boundary conditions}\index{Dirichlet boundary
-  condition} which prescribe function values on the boundary of the
-domain.}
-\end{footnoteenv}
-
 \[ \hbox{$u''(x)=f(x,u,u')$ for $x\in[a,b]$ where $u(a)=u_a$,
   $u(b)=u_b$} \]
 but here we will only consider the simple form
@@ -476,6 +472,16 @@ in two space dimensions. Here, $\delta\Omega$ is the boundary of the
 domain~$\Omega$. Since we prescribe the value of $u$ on the boundary,
 such a problem is called a \acf{BVP}.
 
+\begin{remark}
+  The boundary conditions can be more general, involving 
+  derivatives on the interval end points. Here we only look at
+  \emph{Dirichlet boundary conditions}%
+  \index{Dirichlet boundary condition}
+  which prescribe function values on the boundary of the
+  domain.
+\end{remark}
+
+
 \Level 1 {General PDE theory}
 \label{sec:region-influence}
 
@@ -484,7 +490,7 @@ properties. The most important property is that of \indexterm{region
   of influence}: if we tinker with the problem so that the solution
 changes in one point, what other points will be affected.
 \begin{itemize}
-\item \emph{Hyperbolic \acp{PDE}}\index{Hyperbolic PDEs} are of the form
+\item \emph{Hyperbolic} \acp{PDE}\index{Hyperbolic PDEs} are of the form
 \[ Au_{xx}+Bu_{yy}+\hbox{lower order terms} =0 \]
 with $A,B$ of opposite sign. Such equations describe waves,
 or more general convective phenomena, that are conservative,
@@ -495,7 +501,7 @@ will only change certain future points, since waves have a propagation
 speed that makes it impossible for a point to influence points in the
 near future that are too far away in space. This type of \ac{PDE} will
 not be discussed in this book.
-\item \emph{Parabolic \acp{PDE}}\index{Parabolic PDEs} are of the form
+\item \emph{Parabolic} \acp{PDE}\index{Parabolic PDEs} are of the form
 \[ Au_x+Bu_{yy}+\hbox{no higher order terms in $x$}=0 \]
 and they describe diffusion-like phenomena; these often tend to a
 \indexterm{steady state}. The best way to
@@ -514,7 +520,7 @@ previous point in space
 \end{footnoteenv}
 . The \indexterm{heat equation}
 (section~\ref{sec:heateq}) is the standard example of this type.
-\item \emph{Elliptic \acp{PDE}}\index{Elliptic PDEs} have the form 
+\item \emph{Elliptic} \acp{PDE}\index{Elliptic PDEs} have the form 
 \[ Au_{xx}+Bu_{yy}+\hbox{lower order terms} =0 \]
 where $A,B>0$; they typically describe processes that have reached a
 \indexterm{steady state}, for instance as $t\rightarrow\infty$ in a parabolic
@@ -664,6 +670,9 @@ of equations:
   are not randomly distributed but located in a band around the main
   diagonal. We call this a \indexterm{banded matrix} in general, and a
   \indexterm{tridiagonal matrix} in this specific case.
+
+  The banded structure is typical for \acp{PDE}, but sparse matrices
+  in different applications can be less regular.
 \item The matrix is symmetric. This property does not hold for all
   matrices that come from discretizing \ac{BVP}s, but it is true if
   there are no odd order (meaning first, third, fifth,\ldots)
@@ -700,7 +709,8 @@ want to solve $Au=f$ in a way that does not require $O(n^2)$ storage.
 \begin{exercise}
   \label{ex:solve-tri}
   How would you solve the tridiagonal
-  system of equations? Show that the \emph{factorization}%
+  system of equations?
+  Show that the \emph{LU factorization}%
   \index{tridiagonal matrix!LU factorization}
   of the coefficient matrix gives factors that are of
   \indextermdef{bidiagonal matrix} form: they have a nonzero diagonal
@@ -784,6 +794,7 @@ and the linear system looks like
     &        &      &&&\ddots  &        &        &&  &\ddots\\
   \end{array}\right)
 \end{equation}
+where the matrix is of size $N\times N$, with~$N=n^2$.
 As in the one-dimensional case, we see that a \ac{BVP}
 gives rise to a \emph{sparse matrix}\index{sparse!matrix!from PDEs}.
 
@@ -852,12 +863,7 @@ the linear system with $N\log N$ time complexity.
   should get a $10\times 10$ matrix with a $4\times 4$ block structure.
 \end{exercise}
 For domains that are even more irregular, the matrix structure will
-%% \begin{figure}[ht]
-%%   \includegraphics[scale=.6]{graphics/drivencavity}
-%%   \caption{A matrix from an irregular problem}
-%%   \label{fig:driven}
-%% \end{figure}
-also be irregular.%; see figure~\ref{fig:driven} for an example.
+also be irregular.
 
 The regular block structure is also caused by our decision to order
 the unknowns by rows and columns. This known as the \indexterm{natural
@@ -871,8 +877,9 @@ There is more to say about analytical aspects of the \ac{BVP} (for
 instance, how smooth is the solution and how does that depend on the
 boundary conditions?) but those questions are outside the scope of
 this course. Here we only focus on the numerical aspects of the
-matrices. In the  chapter on linear algebra, we will come back to the
-\ac{BVP}, since solving the linear system is mathematically interesting.
+matrices. In the  chapter on linear algebra,
+specifically sections \ref{sec:sparse} and~\ref{sec:iterative},
+we will discuss solving the linear system from~\acp{BVP}.
 
 \Level 1 {Difference stencils}
 
@@ -993,8 +1000,6 @@ not depend on time, only on location, then intuitively $T$~will
 converge to a \indexterm{steady state}. 
 The equation for this is $-\alpha u''(x)=q$.
 
-\def\fr{\frac{\alpha\Delta t}{\Delta x^2}}
-
 \Level 1 {Discretization}
 
 We now discretize both space and time, by $x_{j+1}=x_j+\Delta x$ and
@@ -1017,6 +1022,8 @@ resulting stability.
 
 \Level 2 {Explicit scheme}
 \label{fig:explicit-heat}
+
+\newcommand\dtdxx{\frac{\alpha\Delta t}{\Delta x^2}}
 
 \begin{wrapfigure}{r}{2.5in}
   \leavevmode\kern\unitindent 
@@ -1041,7 +1048,7 @@ Taking this together with the central differences in space, we now have
 which we rewrite as
 \begin{equation}
   \label{eq:bivp-explicit}
-  T_j^{k+1}=T_j^k+\fr
+  T_j^{k+1}=T_j^k+\dtdxx
   (T_{j-1}^k-2T_j^k+T_{j+1}^k)+\Delta t q_j^k 
 \end{equation}
 Pictorially, we render this as a difference stencil in
@@ -1054,7 +1061,7 @@ It is convenient to summarize the set of equations
 in vector form as
 \begin{equation}
   \label{eq:bivp-explicit-vector}  
-   T^{k+1}=\left(I-\fr K\right)
+   T^{k+1}=\left(I-\dtdxx K\right)
    T^k+\Delta t q^k 
 \end{equation}
 where
@@ -1072,7 +1079,7 @@ The important observation here is that the dominant computation for
 deriving the vector $T^{k+1}$ 
 from $ T^k$ is a simple matrix-vector multiplication:
 \[ T^{k+1}\leftarrow AT^k+\Delta tq^k \]
-where $A=I-\fr K$. This is a first indication that the sparse
+where $A=I-\dtdxx K$. This is a first indication that the sparse
 matrix-vector product is an important operation; see sections
 \ref{sec:sparse} and~\ref{sec:pspmvp}.
 Actual
@@ -1120,7 +1127,7 @@ evaluated in~$t_{k+1}$, now becomes:
 or
 \begin{equation}
   \label{eq:bivp-implicit}
-  T_j^{k+1}-\fr
+  T_j^{k+1}-\dtdxx
   (T_{j-1}^{k+1}-2T_j^{k+1}+T_{j+1}^{k+1})=T_j^k+\Delta t q_j^{k+1}
 \end{equation}
 Figure~\ref{fig:Euler-backward-stencil} renders this as a stencil;
@@ -1129,7 +1136,7 @@ combination of points on the next level.
 Again we write this in vector form:
 \begin{equation}
   \label{eq:bivp-implicit-vector}
-  \left(I+\fr K\right) T^{k+1}=
+  \left(I+\dtdxx K\right) T^{k+1}=
    T^k+\Delta t q^{k+1}
 \end{equation}
 As opposed to the explicit method, where a matrix-vector
@@ -1138,7 +1145,7 @@ from $ T^k$ now involves a
 \emph{linear system solution}%
 \index{linear system!solving!in implicit methods}:
 \[ T^{k+1}\leftarrow A\inv (T^k+\Delta tq^{k+1}) \]
-where $A=I+\fr K$, a harder operation than the matrix-vector
+where $A=I+\dtdxx K$, a harder operation than the matrix-vector
 multiplication.  In this case, it is not possible, as above, to
 evaluate the equation~\eqref{eq:bivp-implicit} directly. Codes using an
 implicit method actually form the coefficient matrix, and solve the
@@ -1199,21 +1206,21 @@ $|\beta|<1$ for stability.
 
 Substituting the surmised form for $T_j^k$ into the  explicit scheme gives
   \begin{eqnarray*}
-    T_j^{k+1}&=&T_j^k+\fr(T_{j-1}^k-2T_j^k+T_{j+1}^k)\\
+    T_j^{k+1}&=&T_j^k+\dtdxx(T_{j-1}^k-2T_j^k+T_{j+1}^k)\\
     \Rightarrow \beta^{k+1}e^{i\ell x_j}&=&\beta^ke^{i\ell x_j}
-    +\fr (\beta^ke^{i\ell x_{j-1}}-2\beta^ke^{i\ell x_j}+\beta^ke^{i\ell x_{j+1}})\\
-    &=&\beta^ke^{i\ell x_j}\left[1+\fr\left[e^{-i\ell\Delta x}-2+e^{i\ell\Delta x}\right]\right]\\
+    +\dtdxx (\beta^ke^{i\ell x_{j-1}}-2\beta^ke^{i\ell x_j}+\beta^ke^{i\ell x_{j+1}})\\
+    &=&\beta^ke^{i\ell x_j}\left[1+\dtdxx\left[e^{-i\ell\Delta x}-2+e^{i\ell\Delta x}\right]\right]\\
     \Rightarrow \beta&=&
-    1+2\fr[\frac12(e^{i\ell\Delta x}+e^{-\ell\Delta x})-1]\\
-    &=&1+2\fr(\cos(\ell\Delta x)-1)
+    1+2\dtdxx[\frac12(e^{i\ell\Delta x}+e^{-\ell\Delta x})-1]\\
+    &=&1+2\dtdxx(\cos(\ell\Delta x)-1)
   \end{eqnarray*}
 
 For stability we need $|\beta|<1$:
   \begin{itemize}
-  \item $\beta<1\Leftrightarrow 2\fr(\cos(\ell\Delta x)-1)<0$: this is
+  \item $\beta<1\Leftrightarrow 2\dtdxx(\cos(\ell\Delta x)-1)<0$: this is
     true for any $\ell$ and any choice of $\Delta x,\Delta t$.
-  \item $\beta>-1\Leftrightarrow 2\fr(\cos(\ell\Delta x)-1)>-2$: this
-    is true for all~$\ell$ only if $2\fr<1$, that is
+  \item $\beta>-1\Leftrightarrow 2\dtdxx(\cos(\ell\Delta x)-1)>-2$: this
+    is true for all~$\ell$ only if $2\dtdxx<1$, that is
     \[ \Delta t<\frac{\Delta x^2}{2\alpha} \]
   \end{itemize}
 The latter condition poses a big restriction on the allowable size of
@@ -1228,9 +1235,9 @@ Let us now consider the stability of the implicit scheme.
 Substituting the form of the solution $T_j^k=\beta^ke^{i\ell x_j}$
 into the numerical scheme gives
   \begin{eqnarray*}
-    T_j^{k+1}-T_j^k&=&\fr(T_{j_1}^{k+1}-2T_j^{k+1}+T_{j+1}^{k+1})\\
+    T_j^{k+1}-T_j^k&=&\dtdxx(T_{j_1}^{k+1}-2T_j^{k+1}+T_{j+1}^{k+1})\\
     \Rightarrow \beta^{k+1}e^{i\ell \Delta x}-\beta^ke^{i\ell x_j}&=&
-    \fr(\beta^{k+1}e^{i\ell x_{j-1}}-2\beta^{k+1}e^{i\ell x_j}
+    \dtdxx(\beta^{k+1}e^{i\ell x_{j-1}}-2\beta^{k+1}e^{i\ell x_j}
     +\beta^{k+1}e^{i\ell x_{j+1}})
   \end{eqnarray*}
 Dividing out $e^{i\ell x_j}\beta^{k+1}$ gives

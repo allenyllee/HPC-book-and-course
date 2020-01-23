@@ -98,7 +98,33 @@ If $n$ is small, the latency cost dominates, so we may characterize this
 as a \indextermsub{short vector}{collective operation}
 
 The following algorithm implements the broadcast as a combination of a scatter
-and a \indexterm{bucket brigade algorithm}:
+and a \indexterm{bucket brigade algorithm}. First the scatter:
+\[
+\begin{array}{|c|cccc|}
+\hline
+  &t=0&t=1&t=2&t=3\\ \hline
+  p_0&x_0\downarrow,x_1,x_2,x_3 % t=0
+  &x_0,x_1\downarrow,x_2,x_3 % t=1
+   &x_0,x_1,x_2\downarrow,x_3 % t=2
+  &x_0,x_1,x_2,x_3\downarrow % t=3
+  \\
+  p_1& % t=0
+  &x_1&&\\
+  p_2&& % t=0,1
+  &x_2&\\
+  p_3&&& % t=0,1,2
+  &x_3\\
+\hline
+\end{array}
+\]
+takes $p-1$ messages of size $N/p$, for a total time of
+\[ T_{\scriptsize\mathrm{scatter}}(N,P) = (p-1)\alpha +
+(p-1)\cdot\frac{N}{p}\cdot beta.
+\]
+
+Then the bucket brigade has each processor active in every step,
+accepting a partial message (except in the first step), and passing it
+on to the next processor.
 \[
 \begin{array}{|c|lll|}
 \hline
@@ -118,7 +144,13 @@ p_3&\hphantom{x_0\downarrow,x_1\downarrow,x_2\downarrow,}x_3\downarrow
 \hline
 \end{array}
 \]
-The complexity now becomes \[ p\alpha+\beta n(p-1)/p \]
+Each partial message gets sent $p-1$ times, so this stage also has a
+complexity of 
+\[ T_{\scriptsize\mathrm{bucket}}(N,P) = (p-1)\alpha +
+(p-1)\cdot\frac{N}{p}\cdot beta.
+\]
+
+The complexity now becomes \[ 2(p-1)\alpha+2\beta n(p-1)/p \]
 which is not optimal in latency, but is a better algorithm if $n$ is large,
 making this a \indextermsub{long vector}{collective operation}.
 
@@ -171,6 +203,11 @@ this algorithm does not achieve the lower bound; instead it has a complexity
 \[ \lceil\log_2 p\rceil (\alpha+n\beta +\frac{p-1}p \gamma n). \]
 For short vectors the $\alpha$ term dominates, so this algorithm is sufficient.
 For long vectors one can, as above, use other algorithms~\cite{Chan2007Collective}.
+
+A \indextermsub{long vector}{reduction} can be done using a bucket
+brigade followed by a gather. The complexity is as above, except that
+the bucket brigade performs partial reductions, for a time
+of~$\gamma(p-1)N/p$. The gather performs no further operations.
 
 \index{reduction|)}
 
@@ -356,7 +393,7 @@ We now reason:
   detail, like above, but without giving pseudo code.
 \end{exercise}
 
-\def\sublocal{_{\mathrm\scriptstyle local}}
+\def\sublocal{_{\mathrm\scriptstyle local}}%pyskip
 
 Let us now look at the communication in detail: we will consider a
 fixed processor~$p$ and consider the operations it performs and the
@@ -521,16 +558,11 @@ An algorithm with cost computation
 for $ y = A x $ in parallel is then given by
 
 \[ \vcenter{\hskip\unitindent
-\setbox0=\hbox{Allgather $ x_i $ so that $ x $ is available on all nodes
-}
-\dimen0=\wd0
-\setbox1=\hbox{$ \lceil \log_2(p)\rceil \alpha + \frac{p-1}{p} n \beta$ }
-\dimen1=\wd1
-\begin{tabular}{| p{\dimen0} |  p{\dimen1} |}\hline
+\begin{tabular}{| p{2in} |  l |}\hline
 Step & Cost (lower bound) \\ \whline
 Allgather $ x_i $ so that $ x $ is available on all nodes & 
-$ \lceil \log_2(p)\rceil \alpha + \frac{p-1}{p} n \beta$\\
-&$ \approx \log_2(p) \alpha + n \beta $ \\
+$ \lceil \log_2(p)\rceil \alpha + \frac{p-1}{p} n \beta
+  \approx \log_2(p) \alpha + n \beta $ \\
 Locally compute $ y_i = A_i x $ &
 $ \approx 2 \frac{n^2}{p} \gamma $ \\ \hline
 \end{tabular}
@@ -572,7 +604,7 @@ E_p^{\mbox{1D-row}}(n) =
 + \frac{p}{2 n} \frac{\beta}{\gamma} }.
 \]
 
-\paragraph*{An optimist's view}
+\Level 3 {An optimist's view}
 
 Now, if one fixes $ p $ and lets $ n $ get large,
 \[
@@ -592,7 +624,7 @@ so this analysis is not practical.
 
 
 
-\paragraph*{A pessimist's view}
+\Level 3 {A pessimist's view}
 
 In a \indextermsub{strong}{scalability} analysis,
 one fixes $ n $ and lets $ p $ get large, to get
@@ -609,7 +641,7 @@ one fixes $ n $ and lets $ p $ get large, to get
 \]
 Thus, eventually the parallel efficiency becomes nearly nonexistent.
 
-\paragraph*{A realist's view}
+\Level 3 {A realist's view}
 
 In a more realistic view we increase the number of processors with the
 amount of data. This is called \indextermsub{weak}{scalability}, and 
@@ -759,7 +791,7 @@ $ \lceil \log_2(p)\rceil \alpha + \frac{p-1}{p} n \beta
 }
 \]
 
-\paragraph*{Cost analysis}
+\Level 3 {Cost analysis}
 
 The total cost of the algorithm is given by, approximately,
 \[
@@ -952,7 +984,7 @@ see~\cite{Flame:PBMD-report}.}
 \end{itemize}
 
 
-\paragraph*{Algorithm}
+\Level 3 {Algorithm}
 
 The algorithm with cost analysis is
 \[ \vcenter{\hskip\unitindent
@@ -978,7 +1010,7 @@ $ \\
 }
 \]
 
-\paragraph*{Cost analysis}
+\Level 3 {Cost analysis}
 
 The total cost of the algorithm is given by, approximately,
 \[
@@ -1493,31 +1525,6 @@ iterate on the permuted system.
 \input chapters/spmvp
 \index{sparse!matrix-vector product!parallel|)}
 
-\begin{notready}
-\Level 0 {Parallelism in solving linear systems from \acp{PDE}}
-
-The numerical solution of \acp{PDE} is an important activity,
-and the precision required often makes it a prime candidate for
-parallel treatment. If we wonder just how parallel we can be,
-and in particular what sort of a speedup is attainable,
-we need to distinguish between various aspects of the question.
-
-First of all we can ask if there is any intrinsic parallelism
-in the problem. On a global level this will typically not be the case
-(if parts of the problem were completely uncoupled, then they would be
-separate problems, right?) but on a smaller level there may be
-parallelism. 
-
-For instance, looking at time-dependent problems, and referring to
-section~\ref{sec:region-influence}, we can say that every next time
-step is of course dependent on the previous one, but not every
-individual point on the next time step is dependent on every point in
-the previous step: there is a \indexterm{region of influence}. 
-Thus it may be possible to partition the problem domain and
-obtain parallelism.
-\end{notready}
-
-
 \Level 0 {Computational aspects of iterative methods}
 \label{sec:iterative-computational}
 
@@ -1949,7 +1956,29 @@ time-space trapezoid that is cache-contained. Then (right) we compute
 another cache-contained trapezoid that builds on the
 first~\cite{Frigo:2007:oblivious-stencil}.
 
-\Level 0 {Operator splitting}
+\Level 0 {Parallelism in solving linear systems from \acp{PDE}}
+
+The numerical solution of \acp{PDE} is an important activity,
+and the precision required often makes it a prime candidate for
+parallel treatment. If we wonder just how parallel we can be,
+and in particular what sort of a speedup is attainable,
+we need to distinguish between various aspects of the question.
+
+First of all we can ask if there is any intrinsic parallelism
+in the problem. On a global level this will typically not be the case
+(if parts of the problem were completely uncoupled, then they would be
+separate problems, right?) but on a smaller level there may be
+parallelism. 
+
+For instance, looking at time-dependent problems, and referring to
+section~\ref{sec:region-influence}, we can say that every next time
+step is of course dependent on the previous one, but not every
+individual point on the next time step is dependent on every point in
+the previous step: there is a \indexterm{region of influence}. 
+Thus it may be possible to partition the problem domain and
+obtain parallelism.
+
+\Level 1 {Operator splitting}
 
 In some contexts, it is necessary to perform implicit calculations
 through all directions of a two or three-dimensional array. For

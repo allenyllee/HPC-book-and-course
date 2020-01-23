@@ -62,8 +62,6 @@
   \begin{procedure}[H]\leftskip=\unitindent\caption{#1(#2)}}
  {\end{procedure}}
 
-\def\verbatimsnippet#1{\verbatiminput{snippets/#1}}
-
 % for edmond
 \usepackage{subfigure,algorithmic,algorithm}
 
@@ -189,6 +187,7 @@
 
 \input scimacs
 \input bookmacs
+\input snippetmacs
 \input tutmacs
 
 \makeindex
@@ -196,7 +195,7 @@
 %\tracingcommands=2
 
 \def\publicdraft{{\bf\normalsize \\Evolving Copy - open for comments}}
-\def\revdate{2nd edition, revision 2016}
+\def\revdate{3rd edition 2020}
 \begin{lulu}
 \def\publicdraft{}
 \end{lulu}
@@ -324,6 +323,7 @@
   \TUTORIAL{Timing and benchmarking}{performance}
 \end{notready}
 \TUTORIAL{C/Fortran interoperability}{language}
+\TUTORIAL{Bit operations}{bit}
 \TUTORIAL{LaTeX for scientific documentation}{latex}%pyskip
 
 \end{notlulu}

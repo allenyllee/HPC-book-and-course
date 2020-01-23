@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-8
+%%%% by Victor Eijkhout, copyright 2012-2020
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -112,7 +112,8 @@ conversion
   elements $A_{ij}$ and array elements~\n{A[i][j]}.
 \end{exercise}
 
-If we apply this scheme to the matrix of the two-dimensional \ac{BVP}
+If we apply this scheme of storing the matrix as an $N\times p$ array
+to the matrix of the two-dimensional \ac{BVP}
 (section~\ref{sec:2dbvp}), it becomes wasteful, since we would be
 storing many zeros that exist inside the band.
 Therefore, in storage by diagonals or
@@ -150,18 +151,16 @@ be true. For this we introduce the concepts of
 \item \indextermsub{right}{halfbandwidth}: if $A$ has a right
   halfbandwidth of~$p$ then $A_{ij}=0$ for~\mbox{$j>i+p$}.
 \end{itemize}
+If the left and right halfbandwidth are the same, we simply refer to
+the \indextermdef{halfbandwidth}.
 
 \Level 2 {Operations on diagonal storage}
 
 The most important operation on sparse matrices is the matrix-vector
 product. With a matrix stored by diagonals, as described above, it is
 still possible to perform the ordinary rowwise or columnwise product using the
-conversion formula~\eqref{eq:sparse-conversion}
-\begin{footnoteenv}
-  {In fact,
-    this is how Lapack banded routines work.}
-\end{footnoteenv}%
-.
+conversion formula~\eqref{eq:sparse-conversion};
+in fact, this is how Lapack banded routines work.
 %
 However, with
 a small bandwidth, this gives short vector lengths and relatively high
@@ -372,7 +371,7 @@ Many arguments regarding sparse matrices can be formulated in terms of
 graph theory.  To see why this can be done,
 consider a matrix~$A$ of size~$n$ and observe that we can
 define a graph $\langle E,V\rangle$ by $V=\{1,\ldots,n\}$, $E=\{(i,j)\colon
-a_{ij}\not=0\}$. This is called the \indexterm{adjacency graph} of the
+a_{ij}\not=0\}$. This is called the \indextermbus{adjacency}{graph} of the
 matrix. For simplicity, we assume that $A$ has a nonzero
 diagonal. 
 If
@@ -425,7 +424,7 @@ a matrix, but are easier deduced from the graph.
   (see section~\ref{sec:1dbvp}) of size~$n$ with $n$~odd. What does
   the graph of~$A$ look like?  Consider the permutation that results
   from putting the nodes in the following sequence:
-  \[ 1,3,5,\ldots,n,2,4,\allowbreak6,\ldots,\allowbreak n-\nobreak1. \]
+  \[ 1,3,5,\ldots,n,2,4,6,\ldots, n-1. \]
 
   What does the sparsity pattern of the permuted matrix look like?
   Renumbering strategies such as this will be discussed in more detail
@@ -470,20 +469,6 @@ change to nonzero: the sparsity pattern of $L+U$ is the same as
 of~$A$, and so the factorization takes the same amount of space to
 store as the matrix.
 
-\begin{comment}
-this one already appears elsewhere
-\begin{exercise}
-  Since in the factorization of a tridiagonal matrix $L+U$ has the
-  same storage demands as~$A$, we intuitively double the storage, if
-  we do not overwrite~$A$. However, it is possible to be even more
-  parsimonious. Recall equation~\eqref{eq:A=LUnormalized} where $A$
-  was factored as $A=(I+L)D(I+U)$. Show that, in this case of a
-  tridiagonal matrix, $L$~and $U$ contain unaltered elements of~$A$:
-  $\ell_{ij}=a_{ij}$ for $i>j$ and $u_{ij}=a_{ij}$ for~$j>i$. What
-  does this imply for the required storage?
-\end{exercise}
-\end{comment}
-
 The case of tridiagonal matrices is unfortunately not typical, as we
 will shortly see in the case of two-dimensional problems. But first we
 will extend the discussion on graph theory of
@@ -512,19 +497,25 @@ The relationship between $E$ and $E'$ is more complicated. In the
 Gaussian elimination algorithm the result of eliminating variable~$k$ is
 that the statement
 \[ a_{ij} \leftarrow a_{ij}- a_{ik}a_{kk}\inv a_{kj} \]
-is executed for all $i,j\not=k$. If $a_{ij}\not=0$ originally, then
-its value is merely altered. In case $a_{ij}=0$ in the original
-matrix, there will be a nonzero element, termed a \indexterm{fill-in}
-element, after the $k$ unknown
+is executed for all $i,j\not=k$. If $a_{ij}\not=0$ originally, that
+is, $(i,j)\in E$,
+then
+the value of~$a_{ij}$ is merely altered.
+In case $a_{ij}=0$  in the original
+matrix,
+meaning $(i,j)\not\in E$,
+there will be a nonzero element, termed a \indextermdef{fill-in}
+element,
+after the $k$~unknown
 \begin{figure}[ht]
   \includegraphics[scale=.12]{graphics/ijk-eliminate}
   \caption{Eliminating a vertex introduces a new edge in the quotient
     graph}
   \label{fig:ijk-eliminate}
 \end{figure}
-is eliminated: in $E$ there was no edge $(i,j)$, and
-this edge \emph{is} present in~$E'$. This is illustrated in
-figure~\ref{fig:ijk-eliminate}.
+is eliminated:
+\[ (i,j)\not\in E\quad\hbox{but}\quad (i,j)\in E'. \] 
+This is illustrated in figure~\ref{fig:ijk-eliminate}.
 
 Summarizing, eliminating an unknown gives a graph that has one vertex
 less, and that has edges for all $i,j$ such that there were edges
@@ -709,7 +700,7 @@ difference is not a constant factor, but related to the matrix
 size. Without proof we state that the inverses of the kind of sparse
 matrices you have seen so far are fully dense, so storing them takes
 even more. This is an important reason that solving linear systems
-$Ax=y$ is not done in practice by computing $A\inv$ and multiplying
+$Ax=y$ is not done in practice by computing~$A\inv$ and subsequently multiplying
 $x=A\inv y$. (Numerical stability is another reason that this is not
 done.) The fact that even a factorization can take a lot of
 space is one reason for considering iterative methods, as we will do

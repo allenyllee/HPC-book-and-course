@@ -455,6 +455,11 @@ Gene~H. Golub and Charles~F. {Van Loan}.
 \newblock The Johns Hopkins University Press, Baltimore, second edition
   edition, 1989.
 
+\bibitem{GoogleTPUpage}
+Google.
+\newblock Google cloud tpu.
+\newblock \url{https://cloud.google.com/tpu/}.
+
 \bibitem{GotoGeijn:2008:Anatomy}
 Kazushige Goto and Robert A. van~de Geijn.
 \newblock Anatomy of high-performance matrix multiplication.
@@ -530,7 +535,7 @@ Mike Hamburg, Paul Kocher, and Mark~E. Marson.
 
 \bibitem{Hartstein:cache-sqrt}
 A.~Hartstein, V.~Srinivasan, T.~R. Puzak, and P.~G. Emma.
-\newblock Cache miss behavior: is it \&\#8730;2?
+\newblock Cache miss behavior: is it $\sqrt2$?
 \newblock In {\em Proceedings of the 3rd conference on Computing frontiers}, CF
   '06, pages 313--320, New York, NY, USA, 2006. ACM.
 
@@ -673,6 +678,13 @@ Donald Knuth.
 Helmut Kopka and Patrick~W. Daly.
 \newblock {\em A Guide to {\LaTeX}}.
 \newblock Addison-Wesley, first published 1992.
+
+\bibitem{KrishnaYelick:cycledetect}
+Arvind Krishnamurthy and Katherine Yelick.
+\newblock Optimizing parallel spmd programs.
+\newblock In Keshav Pingali, Utpal Banerjee, David Gelernter, Alex Nicolau, and
+  David Padua, editors, {\em Languages and Compilers for Parallel Computing},
+  pages 331--345, Berlin, Heidelberg, 1995. Springer Berlin Heidelberg.
 
 \bibitem{Kulisch:2011:VFE}
 Ulrich Kulisch.
@@ -1103,5 +1115,10 @@ David~M. Young.
 \newblock {\em Iterative method for solving partial differential equations of
   elliptic type}.
 \newblock PhD thesis, Harvard Univ., Cambridge, MA, 1950.
+
+\bibitem{zhwa94}
+L.~Zhou and H.~F. Walker.
+\newblock Residual smoothing techniques for iterative methods.
+\newblock 15:297--312, 1994.
 
 \end{thebibliography}

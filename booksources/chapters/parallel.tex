@@ -719,7 +719,7 @@ precise and define the \indextermdef{iso-efficiency curve} as the
 relation between $N,P$ that gives constant
 efficiency~\cite{Grama:1993:isoefficiency}.
 
-\Level 2 {Precisely \emph{what} is scalable?}
+\Level 2 {Precisely what do you mean by scalable?}
 
 In industry parlance the term `scalability' is sometimes
 applied to architectures or whole computer systems:
@@ -1244,7 +1244,7 @@ still access any memory location.
 \end{figure}
 
 Figure~\ref{fig:ranger-numa} illustrates \ac{NUMA} in the case of the
-four-socket motherboard of the Ranger supercomputer. Each chip has its
+four-socket motherboard of the \indextermbus{TACC}{Ranger cluster}. Each chip has its
 own memory (8Gb) but the motherboard acts as if the processors have
 access to a shared pool of 32Gb. Obviously, accessing the memory of
 another processor is slower than accessing local memory. In addition,
@@ -1426,7 +1426,7 @@ processor $p_i$ with $i<n/2$ send a message to~$p_{i+n/2}$: there will
 be $n/2$ messages trying to get through the wire between $p_{n/2-1}$
 and~$p_{n/2}$.
 \begin{figure}[ht]
-  \includegraphics[scale=.09]{graphics/contention}
+  \includegraphics[scale=.4]{graphics/contention}
   \caption{Contention for a network link due to simultaneous messages}
   \label{fig:contention}
 \end{figure}
@@ -1435,8 +1435,10 @@ sort of conflict is called \indexterm{congestion} or
 \indexterm{contention}. Clearly, the more links a
 parallel computer has, the smaller the chance of congestion.
 
+\index{bandwidth!bisection|see{bisection, bandwidth}}
+
 A~precise way to describe the likelihood of congestion, is
-to look at the \indexterm{bisection width}. This is defined as the
+to look at the \indextermbus{bisection}{width}. This is defined as the
 minimum number of links that have to be removed to partition the
 processor graph into two unconnected graphs. For instance, consider
 processors connected as a linear array, that is, processor $P_i$ is
@@ -1463,7 +1465,7 @@ still find its way from sender to receiver?
 
 While bisection width is a measure expressing a number of wires, in
 practice we care about the capacity through those wires. The relevant
-concept here is \indexterm{bisection bandwidth}: the bandwidth across
+concept here is \indextermbus{bisection}{bandwidth}: the bandwidth across
 the bisection width, which is the product of the bisection width, and
 the capacity (in bits per second) of the wires.  
 %
@@ -1810,7 +1812,7 @@ number of processors~$n$.
 \index{butterfly exchange|(textbf}
 
 \begin{figure}[ht]
-  \includegraphics[scale=.06]{butterflys}
+  \includegraphics[scale=.2]{butterflys}
   \caption{Butterfly exchange networks for 2,4,8 processors, each with
     a local memory}
   \label{fig:butterfly}
@@ -1926,7 +1928,8 @@ larger.
 This argument, while theoretically interesting, is of no practical
 significance, as the physical size of the network hardly plays a role
 in the biggest currently available computers that use fat-tree
-interconnect. For instance, in the Ranger supercomputer of The
+interconnect. For instance, in the
+\indextermbus{TACC}{Ranger cluster} at The
 University of Texas at Austin, the fat-tree switch connects 60,000
 cores, yet takes less than 10 percent of the floor space.
 
@@ -2252,10 +2255,19 @@ they report the higher number.
 \Level 1 {Intel Xeon Phi}
 \index{Intel!Xeon Phi|(}
 
-Recently, Intel has released a co-processor, the \emph{Intel Xeon Phi}
+Intel \emph{Xeon Phi}\index{Intel!Xeon Phi}
 (also known by its architecture design as \ac{MIC})
-which is expressly designed for numerical computing.
-It has both differences and similarities with \acp{GPU}.
+is a design expressly designed for numerical computing.
+The initial design, the
+%
+\emph{Knight's Corner}%
+\index{Intel!Xeon Phi!Knight's Corner}
+was a co-processor, though the second iteration, the
+\emph{Knight's Landing}%
+\index{Intel!Xeon Phi!Knight's Landing}
+was self-hosted.
+
+As a co-processor, the Xeon Phi has both differences and similarities with \acp{GPU}.
 \begin{itemize}
 \item Both are connected through a \indexterm{PCI-X} bus, which means
   that operations on the device have a considerable latency in

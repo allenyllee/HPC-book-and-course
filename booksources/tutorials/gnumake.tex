@@ -4,7 +4,7 @@
 %%%%
 %%%% This text file is part of the source of 
 %%%% `Introduction to High-Performance Scientific Computing'
-%%%% by Victor Eijkhout, copyright 2012-17
+%%%% by Victor Eijkhout, copyright 2012-9
 %%%%
 %%%% This book is distributed under a Creative Commons Attribution 3.0
 %%%% Unported (CC BY 3.0) license and made possible by funding from
@@ -62,11 +62,11 @@ directory
 
 Make the following files:
 
-\listing{foo.c}{tutorials/makefiles/1c/foo.c}
-\listing{bar.c}{tutorials/makefiles/1c/bar.c}
-\listing{bar.h}{tutorials/makefiles/1c/bar.h}
+\srclisting{foo.c}{tutorials/makefiles/1c/foo.c}
+\srclisting{bar.c}{tutorials/makefiles/1c/bar.c}
+\srclisting{bar.h}{tutorials/makefiles/1c/bar.h}
 and a makefile:
-\listing{Makefile}{tutorials/makefiles/1c/Makefile}
+\srclisting{Makefile}{tutorials/makefiles/1c/Makefile}
 
 The makefile has a number of rules like
 \begin{verbatim}
@@ -166,10 +166,10 @@ needs to be reconstructed.
 
 Make the following files:
 
-\listing{foomain.F}{tutorials/makefiles/1f/foomain.F}
-\listing{foomod.F}{tutorials/makefiles/1f/foomod.F}
+\srclisting{foomain.F}{tutorials/makefiles/1f/foomain.F}
+\srclisting{foomod.F}{tutorials/makefiles/1f/foomod.F}
 and a makefile:
-\listing{Makefile}{tutorials/makefiles/1f/Makefile}
+\srclisting{Makefile}{tutorials/makefiles/1f/Makefile}
 If you call \n{make}, the first rule in the makefile is executed. Do
 this, and explain what happens.
 
@@ -317,6 +317,7 @@ The full list of these automatic variables can be found at
 
 \Level 1 {Template rules}
 \label{sec:make-template}
+\index{template rule|see{Make, template rule}}
 
 So far, you wrote a separate rule for each file that
 needed to be compiled. However, the rules for the various \n{.c}
@@ -473,12 +474,15 @@ instructions need to be performed'. However, this does not actually
 cause a file \n{clean} to spring into being, so calling \n{make clean}
 again will make the same instructions being executed.
 
-To indicate that this rule does not actually make the target, declare
+To indicate that this rule does not actually make the target, you use
+the \indextermtt{.PHONY} keyword:
 \begin{verbatim}
 .PHONY : clean
 \end{verbatim}
-One benefit of declaring a target to be phony, is that the \emph{Make}
-rule will still work, even if you have a file named \n{clean}.
+Most of the time, the makefile will actually work fine without this
+declaration, but the main benefit of declaring a target to be phony is
+that the \emph{Make} rule will still work, even if you have a file (or folder)
+named \n{clean}.
 
 \Level 1 {Predefined variables and rules}
 
@@ -588,6 +592,7 @@ If you are defining shell variables in the command section of a
 makefile rule, you need to be aware of the following. Extend your
 \n{backup} rule with a loop to copy the object files:
 \begin{verbatim}
+#### This Script Has An ERROR!
 backup :
         if [ ! -d backup ] ; then mkdir backup ; fi
         cp myprog backup/myprog
@@ -680,3 +685,116 @@ the makefile dynamically.
 
 \index{Make!and LaTeX@{and \LaTeX}|)}
 \index{Make|)}
+
+\Level 0 {Cmake}
+\index{Cmake|(textbf}
+
+Makefiles can be cumbersome to make, and they may need customization
+for any specific installation. For this reason, \emph{Cmake} is a
+build system that first generates the makefiles, which can then be
+used in the normal manner.
+
+Here are the main components:
+\begin{itemize}
+\item The source directory has a file \indextermtt{CMakeLists.txt}
+  that describes the structure of the application.
+\item Generated files can be kept separate from the source:
+\begin{verbatim}
+sourcedir=.... # source location
+builddir=....  # place for temporaries
+installdir=... # here goes the finished stuff
+cd ${builddir}
+cmake \
+  -DCMAKE_PREFIX_PATH=${installdir} \
+  ${sourcedir} # do the setup
+make           # compile
+make install   # move finished stuff in place
+\end{verbatim}
+\end{itemize}
+
+\Level 1 {Dependency analysis}
+
+Above you learned how \n{Make} can be used for projects with
+complicated dependencies. You can tell \n{Cmake} about this using
+clauses
+\begin{verbatim}
+include_directories(include)
+file(GLOB SOURCES "*/*.c")
+file(GLOB HEADERS "*/*.h")
+add_executable(hello_world hello.c ${SOURCES} )
+\end{verbatim}
+%%%% VLE this seems to be old style. should not use `include_directories'
+When invoked, \n{Cmake} will then report
+\begin{verbatim}
+Scanning dependencies of target hello_world
+\end{verbatim}
+and generate makefiles accordingly.
+
+One advantage of this setup is that the \n{cmake} stage only needs to
+be redone if the structure of the application changes, for instance
+because files are added. For any ordinary edits during program
+development it is enough to repeat the \n{make} and \n{make install}
+part.
+
+Example. Consider a main file \n{hello.c} that uses two auxiliary
+files \n{compute.c} and \n{output.c}. After cmake, the \n{make; make
+  install} gives as output:
+\begin{verbatim}
+Scanning dependencies of target hello_world
+[ 25%] Building C object CMakeFiles/hello_world.dir/hello.c.o
+[ 50%] Building C object
+                CMakeFiles/hello_world.dir/compute/compute.c.o
+[ 75%] Building C object CMakeFiles/hello_world.dir/output/output.c.o
+[100%] Linking C executable hello_world
+[100%] Built target hello_world
+[100%] Built target hello_world
+Install the project...
+\end{verbatim}
+After editing the \n{compute.c} file only that is recompiled, and the
+project is relinked:
+\begin{verbatim}
+Scanning dependencies of target hello_world
+[ 25%] Building C object
+                
+CMakeFiles/hello_world.dir/compute/compute.c.o
+[100%] Built target hello_world
+[100%] Built target hello_world
+Install the project...
+\end{verbatim}
+Clearly, cmake has generated makefiles with the right structure.
+The disadvantage of using \n{cmake} is that the automatically
+generated makefiles are close to unreadable.
+
+\Level 1 {Re-Cmaking}
+
+The structure sketched just now, with a separate build and install
+directory, means that completely deleting these libraries is enough to
+start with a clean slate. For a more modest approach, you can delete
+the file \indextermtt{CMakeCache.txt}, which is in the build directory.
+
+\Level 1 {System dependencies}
+
+You can give \n{Cmake} options that find their way into the makefile
+structure. For instance, on the Apple laptop where this book was
+written, a straight invocation make \n{Cmake} discover the native C~compiler:
+\begin{verbatim}
+-- The C compiler identification is AppleClang 9.1.0.9020039
+\end{verbatim}
+However, specifying
+\begin{verbatim}
+cmake -DCMAKE_C_COMPILER=gcc
+\end{verbatim}
+gives:
+\begin{verbatim}
+-- The C compiler identification is GNU 7.4.0
+\end{verbatim}
+
+\Level 1 {Details}
+
+CMake has variables:
+\begin{verbatim}
+set(myvar myvalue)
+message(STATUS "my variable has value ${myvar}")
+\end{verbatim}
+\index{Cmake|)}
+
